@@ -194,11 +194,11 @@ module UltraLog
     end
     
     def start_datagrabber_service
-      send_command('start_datagrabber', 30)
+      send_command('start_datagrabber_service', 30)
     end
     
     def stop_datagrabber_service
-      send_command('stop_datagrabber', 30)
+      send_command('stop_datagrabber_service', 30)
     end
     
     private
