@@ -17,7 +17,7 @@ ua_prototype_provider = "com.bbn.fcss.ldm.UAPrototypeProvider"
 society.each_agent do |agent|
 #
 # Check if agent has physical assets
-  if agent.get_facet(:has_physical_assets)
+  if agent.get_facet(:has_physical_assets) || agent.has_facet? { |facet| facet[:role]=='AmmunitionProvider' && (facet[:mechanism] == 'TerminalAmmunitionPacker') }
     agent.add_component do |c|
       c.classname = xml_prototype_provider_plugin
       # Make the XMLPrototypeProvider loaded at BINDER priority
@@ -25,6 +25,12 @@ society.each_agent do |agent|
       # Comment out for now c.priority = "BINDER"
     end
   end
+  #
+  # Then check if agent has a role of "AmmunitionProvider" with a mechanism of "TerminalAmmunitionPacker"
+  # This would be the OSC agent which needs the XMLPrototypeProviderPlugin  
+  # if agent.get_facet(:role) == "AmmunitionProvider" && agent.get_facet(:mechanism) == "TerminalAmmunitionPacker"
+  # AMH - covered above
+
   #
   # Then check if agent has equipment assets
   if agent.get_facet(:has_equipment_assets)
@@ -47,14 +53,5 @@ society.each_agent do |agent|
 	c.add_argument("+PrototypeProvider") if agent.get_facet(:is_ua)
       end
     end
-  end
-  #
-  # Then check if agent has a role of "AmmunitionProvider" with a mechanism of "TerminalAmmunitionPacker"
-  # This would be the OSC agent which needs the XMLPrototypeProviderPlugin  
-  # if agent.get_facet(:role) == "AmmunitionProvider" && agent.get_facet(:mechanism) == "TerminalAmmunitionPacker"
-  if agent.has_facet? { |facet| facet[:role]=='AmmunitionProvider' && (facet[:mechanism] == 'TerminalAmmunitionPacker') }
-    agent.add_component do |c|
-      c.classname = xml_prototype_provider_plugin
-    end    
   end
 end
