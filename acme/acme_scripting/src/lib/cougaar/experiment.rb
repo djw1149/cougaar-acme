@@ -144,25 +144,25 @@ module Cougaar
         $StdOutMonitor = ExperimentMonitor.new
       
         def $StdOutMonitor.on_experiment_begin(experiment)
-          m = "[#{Time.now}] Experiment: #{experiment.name} started."
+          m = "[#{Time.now.gmtime}] Experiment: #{experiment.name} started."
           puts m
         end
         def $StdOutMonitor.on_experiment_end(experiment)
-          m = "[#{Time.now}] Experiment: #{experiment.name} finished."
+          m = "[#{Time.now.gmtime}] Experiment: #{experiment.name} finished."
           puts m
         end
       
         def $StdOutMonitor.on_run_begin(run)
-          m = "[#{Time.now}]   Run: #{run.name} started."
+          m = "[#{Time.now.gmtime}]   Run: #{run.name} started."
           puts m
         end
         def $StdOutMonitor.on_run_end(run)
-          m = "[#{Time.now}]   Run: #{run.name} finished."
+          m = "[#{Time.now.gmtime}]   Run: #{run.name} finished."
           puts m
         end
       
         def $StdOutMonitor.on_state_begin(state)
-          t = Time.now
+          t = Time.now.gmtime
           @state_times = {} if @state_times.nil?
           @state_times[state] = t
           m = "[#{t}]     Waiting for: #{state}"
@@ -171,17 +171,17 @@ module Cougaar
 
         def $StdOutMonitor.on_state_end(state)
           if (!@state_times.nil? && !@state_times[state].nil?) then
-            t = Time.now
+            t = Time.now.gmtime
             sec = (t - @state_times[state])
             m = "[#{t}]     Done: #{state} in #{sec} seconds"
           else
-            m= "[#{Time.now}]     Done: #{state}"
+            m= "[#{Time.now.gmtime}]     Done: #{state}"
           end
           puts m
         end
       
         def $StdOutMonitor.on_action_begin(action)
-          t = Time.now
+          t = Time.now.gmtime
           @action_times = {} if @action_times.nil?
           @action_times[action] = t
           m = "[#{t}]     Starting: #{action}"
@@ -189,32 +189,32 @@ module Cougaar
         end
         def $StdOutMonitor.on_action_end(action)
           if (!@action_times.nil? && !@action_times[action].nil?) then
-            t = Time.now
+            t = Time.now.gmtime
             sec = (t - @action_times[action])
             m = "[#{t}]     Finished: #{action} in #{sec} seconds" 
          else
-            m= "[#{Time.now}]     Finished: #{action}" 
+            m= "[#{Time.now.gmtime}]     Finished: #{action}" 
           end
           puts m
         end
       
         def $StdOutMonitor.on_state_interrupt(state)
-          m = "[#{Time.now}]      ** INTERRUPT ** #{state}"
+          m = "[#{Time.now.gmtime}]      ** INTERRUPT ** #{state}"
           puts m
         end
       
         def $StdOutMonitor.on_action_interrupt(action)
-          m = "[#{Time.now}]      ** INTERRUPT ** #{action}"
+          m = "[#{Time.now.gmtime}]      ** INTERRUPT ** #{action}"
           puts m
         end
       
         def $StdOutMonitor.on_info_message(message)
-          m = "[#{Time.now}]      INFO: #{message}"
+          m = "[#{Time.now.gmtime}]      INFO: #{message}"
           puts m
         end
       
         def $StdOutMonitor.on_error_message(message)
-          m = "[#{Time.now}]      ERROR: #{message}"
+          m = "[#{Time.now.gmtime}]      ERROR: #{message}"
           puts m
         end
       end
@@ -238,7 +238,7 @@ module Cougaar
       end
       
       def monitor.on_state_begin(state)
-        t = Time.now
+        t = Time.now.gmtime
         @state_times = {} if @state_times.nil?
         @state_times[state] = t
         Cougaar.logger.info  "    Waiting for: #{state}"
@@ -246,7 +246,7 @@ module Cougaar
 
       def monitor.on_state_end(state)
         if (!@state_times.nil? && !@state_times[state].nil?) then
-          t = Time.now
+          t = Time.now.gmtime
           sec = (t - @state_times[state])
           Cougaar.logger.info  "    Done: #{state} in #{sec} seconds"
         else
@@ -255,7 +255,7 @@ module Cougaar
       end
       
       def monitor.on_action_begin(action)
-        t = Time.now
+        t = Time.now.gmtime
         @action_times = {} if @action_times.nil?
         @action_times[action] = t
         Cougaar.logger.info  "    Starting: #{action}"
@@ -263,7 +263,7 @@ module Cougaar
 
       def monitor.on_action_end(action)
         if (!@action_times.nil? && !@action_times[action].nil?) then
-          t = Time.now
+          t = Time.now.gmtime
           sec = (t - @action_times[action])
           Cougaar.logger.info  "    Finished: #{action} in #{sec} seconds"
         else
