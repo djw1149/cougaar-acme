@@ -161,7 +161,7 @@ end
 class SocietyGenerator
 
   XML_HEADER = %Q{<?xml version="1.0"?>
-<society name='JEFF-BERLINER-PROTO'
+<society name='ACME-UL-SOCIETY'
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
   <host name='localhost'>
