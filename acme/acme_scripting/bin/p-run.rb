@@ -1,6 +1,6 @@
-#!/usr/bin/ruby
+#!/usr/bin/ruby -W0
 
-$CIP = ENV['CIP']
+# $stdout.sync = true
 
 if $0 == __FILE__
   $:.unshift File.dirname( __FILE__ )
@@ -11,13 +11,12 @@ if $0 == __FILE__
   $:.unshift File.join( $CIP, "csmart", "acme_scripting", "src", "lib" )
 end
 
-$stdout.sync = true
-
-
 require "p-config"
 
 require "cougaar/scripting"
 require "ultralog/scripting"
+require "assessment/scripting"
+require "framework/scripting"
 require "polaris/tools"
 
 require "xmlrpc/client"
