@@ -5,6 +5,10 @@ module ACME
     
     
     class DataGrabberTest
+
+      UNITS = 1056
+      ASSETS = 22000      
+
       DataGrabberData = Struct.new("DataGrabberData", :run, :assets, :units, :time)  
       
       def initialize(archive, plugin, ikko)
@@ -22,6 +26,14 @@ module ACME
         if (!data.empty?) then
           @archive.add_report("Grabber", @plugin.plugin_configuration.name) do |report|
 
+            result = analyze(data.last)
+            if result == 0 then
+              report.success
+            elsif result == 1 then
+              report.partial_success
+            else
+              report.failure
+            end
             output = html_output(data)
             report.open_file("grabber.html", "text/html", "Data grabber information") do |file|
               file.puts output
@@ -31,7 +43,6 @@ module ACME
             report.open_file("grabber_description.html", "text/html", "Data grabber test description") do |file|
               file.puts output
             end
-            report.success
           end
         end
       end
@@ -77,7 +88,31 @@ module ACME
         end
         return data
       end
-      
+
+      def analyze(data)
+        units_ranges = [UNITS..UNITS, 
+                        (0.95*UNITS)..(1.05*UNITS)]
+        assets_ranges = [(0.95*ASSETS)..(1.05*ASSETS), 
+                         (0.90*ASSETS)..(1.10*ASSETS)]
+         
+        unit_error_lvl = units_ranges.size
+        asset_error_lvl = assets_ranges.size
+        units_ranges.each_index do |i|
+          if units_ranges[i].include?(data.units) then
+            unit_error_lvl = i
+            break
+          end
+        end
+
+        assets_ranges.each_index do |i|
+          if assets_ranges[i].include?(data.assets) then
+            asset_error_lvl = i
+            break
+          end
+        end
+        return [unit_error_lvl, asset_error_lvl].max
+      end
+       
       def html_output(data)
         ikko_data = {}
         ikko_data["id"] = @archive.base_name
@@ -100,9 +135,9 @@ module ACME
         ikko_data["name"]="Data Grabber Test"
         ikko_data["title"] = "Data Grabber Test Description"
         ikko_data["description"] = "Displays how much time the data grabber took along with the number of assets and units."
-        success_table = {"success"=>"Currently this report is always successful",
-                         "partial"=>"not used",
-                         "fail"=>"not used"}
+        success_table = {"success"=>"Exactly 1056 units and Assets within 5% of 22000",
+                         "partial"=>"Units within 5% of 1056 and Assets within 10% of 22000",
+                         "fail"=>"All other cases"}
         ikko_data["table"] = @ikko["success_template.html", success_table]
         return @ikko["description.html", ikko_data]
       end
