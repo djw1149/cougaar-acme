@@ -23,7 +23,7 @@ module Cougaar
       end
       
       def load_rules(list)
-        list.split(":").each do |item|
+        list.split(";").each do |item|
           raise "Unknown file or direcotory: #{item}" unless File.exist?(item)
           if File.stat(item).directory?
             rules = Dir.glob(File.join(item, "*.rule"))
