@@ -11,7 +11,7 @@ society.each_host do |host|
       xmx = 768
     elsif (host.nodes.size == 3)
       xms = 256
-      xmx = 512
+      xmx = 640
     else
       xms = 256
       xmx = 512
