@@ -2,12 +2,12 @@
 <society name="17a0v.oo.facets" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="society.xsd">
   <host name="localhost">
     <node name="localnode">
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="UA-HHC">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-HHC">
         <facet org_id="UA-HHC">
         </facet>
         <facet orig_org_id="UA-HHC">
         </facet>
-        <facet superior_org_id="UA">
+        <facet superior_org_id="">
         </facet>
         <facet home_location="TYFV">
         </facet>
@@ -50,7 +50,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-HHC">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-CO">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-CO">
         <facet org_id="UA-BIC-CO">
         </facet>
         <facet orig_org_id="UA-BIC-CO">
@@ -84,7 +84,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-BIC-CO">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-HHC">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-HHC">
         <facet org_id="1-CA-BN-HHC">
         </facet>
         <facet orig_org_id="1-CA-BN-HHC">
@@ -130,7 +130,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="1-CA-BN-HHC">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-HQ">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-HQ">
         <facet org_id="1-CA-BN-INF-CO-A-HQ">
         </facet>
         <facet orig_org_id="1-CA-BN-INF-CO-A-HQ">
@@ -168,7 +168,7 @@
         <facet subordinate="1-CA-BN-INF-CO-A-3-PLT">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT">
         <facet org_id="1-CA-BN-INF-CO-A-1-PLT">
         </facet>
         <facet orig_org_id="1-CA-BN-INF-CO-A-1-PLT">
@@ -200,7 +200,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT">
         <facet org_id="1-CA-BN-INF-CO-A-2-PLT">
         </facet>
         <facet orig_org_id="1-CA-BN-INF-CO-A-2-PLT">
@@ -232,7 +232,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT">
         <facet org_id="1-CA-BN-INF-CO-A-3-PLT">
         </facet>
         <facet orig_org_id="1-CA-BN-INF-CO-A-3-PLT">
@@ -264,7 +264,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B">
         <facet org_id="1-CA-BN-INF-CO-B">
         </facet>
         <facet orig_org_id="1-CA-BN-INF-CO-B">
@@ -296,7 +296,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A">
         <facet org_id="1-CA-BN-MCS-CO-A">
         </facet>
         <facet orig_org_id="1-CA-BN-MCS-CO-A">
@@ -328,7 +328,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B">
         <facet org_id="1-CA-BN-MCS-CO-B">
         </facet>
         <facet orig_org_id="1-CA-BN-MCS-CO-B">
@@ -360,7 +360,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET">
         <facet org_id="1-CA-BN-RECON-DET">
         </facet>
         <facet orig_org_id="1-CA-BN-RECON-DET">
@@ -392,7 +392,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY">
         <facet org_id="1-CA-BN-MORTAR-BTY">
         </facet>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY">
@@ -424,7 +424,7 @@
         <facet agency="FORSCOM">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN">
         <facet org_id="2-CA-BN">
         </facet>
         <facet orig_org_id="2-CA-BN">
@@ -458,7 +458,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="2-CA-BN">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN">
         <facet org_id="3-CA-BN">
         </facet>
         <facet orig_org_id="3-CA-BN">
@@ -492,7 +492,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="3-CA-BN">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="AVN-DET">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="AVN-DET">
         <facet org_id="AVN-DET">
         </facet>
         <facet orig_org_id="AVN-DET">
@@ -526,7 +526,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="AVN-DET">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN">
         <facet org_id="NLOS-BN">
         </facet>
         <facet orig_org_id="NLOS-BN">
@@ -560,7 +560,7 @@
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="NLOS-BN">
         </facet>
       </agent>
-      <agent classname="org.cougaar.core.agent.SimpleAgent" name="FSB">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FSB">
         <facet org_id="FSB">
         </facet>
         <facet orig_org_id="FSB">
@@ -596,8 +596,6 @@
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider">
         </facet>
         <facet sca_echelon_of_support="BRIGADE" sca_supported_org="UA-HHC">
-        </facet>
-        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="UA-MCG1">
         </facet>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="FSB">
         </facet>
