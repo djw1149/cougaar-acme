@@ -453,6 +453,7 @@ module Cougaar
       
       def start
         @client = InfoEther::MessageRouter::Client.new(@experiment_name, @server, @port)
+        @client.start_and_reconnect
         monitor_cougaar_events
         monitor_commands
       end

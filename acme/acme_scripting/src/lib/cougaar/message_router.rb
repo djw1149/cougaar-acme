@@ -56,6 +56,12 @@ module InfoEther
         @listeners = []
       end
       
+      def reconnect(socket)
+        @socket = socket
+        send_messages
+        receive_messages
+      end
+      
       def on_close(&block)
         @on_close = block
       end
@@ -94,20 +100,15 @@ module InfoEther
         @receive_thread = Thread.new {
           while(true)
             header = fully_read(8)
-            unless header
-              @on_close.call(self) if @on_close
-              stop
-              break
-            end
+            break unless header
             sizes = header.unpack("CCCCN")
             body = fully_read(sizes[0]+sizes[1]+sizes[2]+sizes[3]+sizes[4])
-            unless body
-              @on_close.call(self) if @on_close
-              stop
-              break
-            end
+            break unless body
             notify_listeners(Message.new(self, header+body))
           end
+          @socket.close unless @socket.closed?
+          @send_thread.kill
+          @on_close.call(self) if @on_close
         }
       end
       
@@ -117,7 +118,9 @@ module InfoEther
         begin
           while (length-read) > 0
             data = @socket.recv(length-read)
-            return nil if data.nil?
+            if data.nil? || data.size==0
+              return nil 
+            end
             read += data.size
             result << data
           end
@@ -155,11 +158,34 @@ module InfoEther
         @name = name
         @service_host = service_host
         @service_port = service_port
+      end
+      
+      def start_and_reconnect(count=-1, sleep_time=5)
         start
+        loop_count = count
+        @socket_handler.on_close do 
+          while loop_count != 0
+            sleep sleep_time
+            begin
+              start_and_reconnect(count, sleep_time)
+              loop_count = 0
+            rescue Exception => e
+              loop_count -= 1
+            end
+          end
+        end
       end
       
       def start
-        @socket_handler = SocketHandler.new(TCPSocket.new(@service_host, @service_port))
+        if @socket_handler
+          @socket_handler.reconnect(TCPSocket.new(@service_host, @service_port))
+        else
+          @socket_handler = SocketHandler.new(TCPSocket.new(@service_host, @service_port))
+        end
+        authenticate
+      end
+      
+      def authenticate
         reply = Message.new(@socket_handler).set_subject("connect").set_body(@name).request
         unless reply.subject=="connected"
           raise "Connection error #{reply.body}"
