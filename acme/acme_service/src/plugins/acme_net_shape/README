@@ -23,14 +23,6 @@ names as arguments.  The operator is expected to keep track
 of what is a C-Link, K-Link and UTB interfaces, and where
 they go.
 
-NOTE:  The following files are remanants from 2003 and should
-not be used.  They are maintained here for reference while
-development is ongoing, but should be moved to the apropriate
-location when development is finished:
-    vlan-startup
-    vlan.rb
-    network.xml
-
 The following files have been updated to 2004:
     plugin.rb
     plugin.yaml
