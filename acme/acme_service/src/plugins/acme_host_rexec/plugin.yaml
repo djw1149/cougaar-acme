@@ -6,3 +6,4 @@ require_path: acme_host_rexec/rexec
 startup_module: ACME::Plugins::RExec
 start_dependencies: 
   acme_host_jabber_service: "*"
+  acme_cougaar_config: "*"
