@@ -1,7 +1,9 @@
 #! /usr/bin/env ruby
 path = Dir.pwd.split("/")[0...(Dir.pwd.split("/").index("config"))]
-$:.unshift ( path + ['src', 'ruby', 'acme_scripting', 'src', 'lib'] ).join("/")
-$:.unshift ( path + ['src', 'ruby', 'acme_service', 'src', 'redist'] ).join("/")
+dir1 = ( path + ['src', 'ruby', 'acme_scripting', 'src', 'lib'] ).join("/")
+dir2 = ( path + ['src', 'ruby', 'acme_service', 'src', 'redist'] ).join("/")
+$:.unshift dir1 if File.exist?(dir1)
+$:.unshift dir2 if File.exist?(dir2)
 
 require 'cougaar/society_builder'
 require 'cougaar/society_model'
