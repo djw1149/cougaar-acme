@@ -97,10 +97,11 @@ module Cougaar
         save(xml)
       end
       def save(result)
-        File.open(@file, "wb") do |file|
+        Dir.mkdir("COMPS") unless File.exist?("COMPS")
+        File.open(File.join("COMPS", @file), "wb") do |file|
           file.puts result
         end
-        @run.archive_and_remove_file(@file, "Society completion data.")
+        @run.archive_and_remove_file(File.join("COMPS", @file), "Society completion data.")
       end
     end
 
