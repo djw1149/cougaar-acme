@@ -1,0 +1,2 @@
+scp *.gem  cougaar.org:/var/www/gforge-projects/acme/gems
+scp yaml yaml.Z cougaar.org:/var/www/gforge-projects/acme/

@@ -240,3 +240,41 @@ FileUtils.rm_rf("plugins")
 FileUtils.rm_rf("redist")
 FileUtils.rm_rf("bin")
 FileUtils.rm_f("default.yaml")
+
+##
+#
+# Build ACME gem
+#
+#
+spec = Gem::Specification.new do |s|
+  s.name = 'acme-all'
+  s.version = ACME_VERSION
+  s.summary = "This gem holds no files, but depends on all of the other ACME gems"
+  s.description = <<-EOF
+    ACME is a framework to configure and control Cougaar multiagent societies. 
+    This gem simply depends on the other three ACME gems to enable simple installation.
+  EOF
+
+  s.has_rdoc = false
+
+
+  s.add_dependency(%q<acme-configuration>, [">= 1.6.0"])
+  s.add_dependency(%q<acme-control>, [">= 1.6.0"])
+  s.add_dependency(%q<acme-service>, [">= 1.6.0"])
+
+  s.author = "Richard Kilmer"
+  s.email = "rich@infoether.com"
+  s.homepage = "http://acme.cougaar.org"
+end
+
+Gem::Builder.new(spec).build
+
+##
+#
+# Build index
+#
+#
+
+require 'indexer'
+Indexer.new(".").build_index
+
