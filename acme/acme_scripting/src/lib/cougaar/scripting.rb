@@ -129,7 +129,8 @@ module Cougaar
   
   def self.logger
     unless @logger
-      @logger = Log4r::Logger.new("run")
+      @logger = Log4r::Logger.new("ACME Run")
+      File.delete('run.log') if File.exist?('run.log')
       outputter = Log4r::FileOutputter.new(name, {:filename=>"run.log"})
       outputter.formatter = Log4r::PatternFormatter.new(:pattern => "[%l] %d :: %m")
       @logger.outputters = outputter
