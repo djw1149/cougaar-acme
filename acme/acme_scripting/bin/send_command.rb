@@ -12,18 +12,18 @@ require 'optparse'
 options = {}
 ARGV.options do |opts|
   opts.on_tail("--help", "show this message") {puts opts; exit}
-  opts.on('--expt EXPERIMENT', "experiment to send message to.") {|options[:expt]|}
-  opts.on('--host HOST', "host to send message to") {|options[:host]|}
-  opts.on('--message MESSAGE', "message to send") {|options[:message]|}
+  opts.on('--expt EXPERIMENT', "experiment to send command to.") {|options[:expt]|}
+  opts.on('--host HOST', "host to send command to") {|options[:host]|}
+  opts.on('--command COMMAND', "command to send") {|options[:command]|}
   opts.parse!
 end
 
 host = options[:host]
-message = options[:message]
+command = options[:command]
 expt = options[:expt]
 
-unless message
-  puts "ERROR: Please specify --message 'message text'"
+unless command
+  puts "ERROR: Please specify --command 'command text'"
   exit
 end
 
@@ -75,7 +75,7 @@ else
   end
 end
 
-puts "Sending 'command[#{message}]' to #{host}/#{expt}"
-reply = client.new_message(expt).set_body("command[#{message}]").request
+puts "Sending 'command[#{command}]' to #{host}/#{expt}"
+reply = client.new_message(expt).set_body("command[#{command}]").request
 puts "Reply: #{reply.body}"
 client.stop
