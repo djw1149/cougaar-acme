@@ -40,7 +40,9 @@ module Cougaar; module Actions
     end
 
     def set_bandwidth( bw )
-       @run.comms.new_message( @noc ).set_body("command[rexec]/sbin/tc class change dev eth0.#{@to_vlan} parent 1:1 classid 1:#{@from_vlan} htb rate #{bw}Mbit burst 15k ceil #{bw}Mbit").request( 30 )
+       @run.comms.new_message( @noc ).set_body("command[shape]shape(#{@from_vlan},#{@to_vlan},bw)")
+
+#       @run.comms.new_message( @noc ).set_body("command[rexec]/sbin/tc class change dev eth0.#{@to_vlan} parent 1:1 classid 1:#{@from_vlan} htb rate #{bw}Mbit burst 15k ceil #{bw}Mbit").request( 30 )
     end
 
     def start_intermittent( on_time, off_time )
