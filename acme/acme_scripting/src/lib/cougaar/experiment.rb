@@ -756,6 +756,23 @@ module Cougaar
         @action.call(@run)
       end
     end
+    class Log < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Logs the string provided"
+        @parameters = [
+          :str => "Logs the string provided"
+        ]
+        @example = "do_action 'Log', 'Doing Stuff'"
+      }
+      def initialize(run, str)
+        super(run)
+        @str = str
+      end
+      def perform
+        puts "#{@str}"
+      end
+    end
+
     class Sleep < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
         @description = "Sleep the script for the specified number of seconds."
