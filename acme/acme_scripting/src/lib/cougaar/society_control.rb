@@ -68,9 +68,7 @@ module Cougaar
           msgs[node] = launch_db_node(node)
         end
       end
-      threads = []
       nodes.each do |each_node|
-	threads << Thread.new(each_node) { |node| 
         @run.info_message "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msgs[node]}").request(@timeout)
         if result.nil?
@@ -79,10 +77,8 @@ module Cougaar
           @pids[node.name] = result.body
           node.active=true
         end
-        }
       end
 
-	threads.each { |aThread|  aThread.join }
     end
     
     def stop_all_nodes(action)
@@ -393,9 +389,7 @@ module Cougaar
       }
       
       def perform
-        threads = []
         @run.society.each_service_host("acme") do |each_host|
-          threads << Thread.new(each_host) { |host| 
           @run.info_message "Shutting down acme on #{host}\n" if @debug
 	    @run.comms.new_message(host).set_body("command[nic]reset").send
 	  @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
@@ -403,26 +397,18 @@ module Cougaar
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           @run.comms.new_message(host).set_body("command[cpu]0").send()
           @run.comms.new_message(host).set_body("command[shutdown]").send()
-          }
         end
-        threads.each { |aThread|  aThread.join }
  
-        threads = []
         @run.society.each_service_host("operator") do |each_host|
-         
-          threads << Thread.new(each_host) { |host| 
           @run.info_message "Shutting down acme on #{host}\n" if @debug
           @run.comms.new_message(host).set_body("command[nic]reset").send
 	  @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           # kills don't always work first time, try again to be sure
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           @run.comms.new_message(host).set_body("command[cpu]0").send()
-          }
         end         
         @run.info_message "Waiting for ACME services to restart"
 	
-	threads.each { |aThread|  aThread.join }
-
         sleep 20 # wait for all acme servers to start back up
       end
     end
