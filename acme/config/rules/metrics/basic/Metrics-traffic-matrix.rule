@@ -1,0 +1,28 @@
+######################################
+# Rule to insert  Traffic Matrix components into all Nodes
+# Includes all aspects, plugins, and architecture
+
+# [Traffic Matrix Components]
+agentflowaspect = "org.cougaar.core.mts.AgentFlowAspect"
+agentflowrateplugin = "org.cougaar.core.qos.metrics.AgentFlowRatePlugin"
+
+
+aspects_to_add = [agentflowaspect]
+
+# Add all traffic matrix senor on all node agents mts insertion point
+society.each_node_agent() do |node_agent|
+   aspects_to_add.each { |comp| 
+     node_agent.add_component do |c|
+     c.classname = comp
+     c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+     end
+    }
+end
+
+# convert raw sensor to metric service
+society.each_node_agent() do |node_agent|
+   node_agent.add_component(agentflowrateplugin)
+end
+
+# Traffic Matrix Display support
+# TBD

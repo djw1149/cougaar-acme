@@ -12,10 +12,24 @@ statisticsPlugin = "org.cougaar.core.mts.StatisticsPlugin"
 # enable TopServlet, RogueThreadDetector:
 topPlugin = "org.cougaar.core.thread.TopPlugin"
 
-metric_sensor_servlet_plugins_to_add = [statisticsPlugin, topPlugin]
+metric_sensor_servlet_plugins_to_add = [statisticsPlugin]
 
 # Add metrics sensor servlet plugins
 society.each_node_agent() do |node_agent|
   node_agent.add_components(metric_sensor_servlet_plugins_to_add)
+end
+
+# the arguments of TopPlugin may be changed
+# don't add a new one of there exist a component of the topPlugin class
+society.each_node_agent() do |node_agent|
+  found=FALSE
+  node_agent.each_component do |comp|
+     if comp.classname == topPlugin 
+       found = TRUE
+      end 
+   end
+  unless found 
+   node_agent.add_component(topPlugin)
+  end
 end
 
