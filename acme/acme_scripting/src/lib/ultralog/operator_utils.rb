@@ -46,20 +46,26 @@ module Ultralog
       
       def get_hosts_file(host=nil)
         host = @hostname unless host
+        localhost_file = nil
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
-          return file if  ts.get_service_host("operator") && (ts.get_service_host("operator").host_name.downcase==host.downcase || ts.get_service_host("operator").host_name.downcase=="localhost")
+          return file if ts.get_service_host("operator") && ts.get_service_host("operator").host_name.downcase==host.downcase
+          localhost_file = file if ts.get_service_host("operator").host_name.downcase=="localhost"
         end
-        return nil
+        return localhost_file # may be nil
       end
       
       def load_society(host=nil)
         host = @hostname unless host
         society = nil
+        localhost_society = nil
+        
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
-          society = ts if  ts.get_service_host("operator") && (ts.get_service_host("operator").host_name.downcase==host.downcase || ts.get_service_host("operator").host_name.downcase=="localhost")
+          society = ts if ts.get_service_host("operator") && ts.get_service_host("operator").host_name.downcase==host.downcase
+          localhost_society = ts if ts.get_service_host("operator").host_name.downcase=="localhost"
         end
+        society = localhost_society unless society
         unless society
           raise "Could not find society for #{host}...you may not be logged into the society operator host"
         end
