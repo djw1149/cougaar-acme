@@ -31,7 +31,7 @@ module Cougaar
       RESULTANT_STATE = 'OperatorServiceConnected'
       def initialize(run, host)
         super(run)
-        @host = run.society.hosts[host]
+        @host = host
       end
       def perform
         operator = ::UltraLog::Operator.from_run(@run, @host)
@@ -143,7 +143,7 @@ module UltraLog
     private
     
     def send_command(command, timeout, params="")
-      reply = @run.comms.new_message(@host).set_body("command[#{command}]#{params}").request(timeout)
+      reply = @run.comms.new_message("#{@host}@#{@run.comms.jabber_server}/acme").set_body("command[#{command}]#{params}").request(timeout)
       return "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
       return reply.body
     end
