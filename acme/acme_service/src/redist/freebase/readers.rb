@@ -34,7 +34,9 @@ module FreeBASE
       if RUBY_PLATFORM =~ /mswin32/
         @@userdir = File.join(ENV['USERPROFILE'], $FREEBASE_APPLICATION) unless ENV['USERPROFILE'].nil?
       else
-        @@userdir = File.join(ENV['HOME'],".#{$FREEBASE_APPLICATION}") unless ENV['HOME'].nil?
+        @@userdir = File.join(ENV['HOME'],".#{$FREEBASE_APPLICATION}") if ENV['HOME'] && ENV['HOME']!='/'
+        puts "$$$$$ USERDIR = #{@@userdir}"
+        $stdout.flush
       end
     end
 
