@@ -183,6 +183,9 @@ class XMLCougaarNode
         #search and replace $COUGAAR_INSTALL_PATH
         data = request.body
         data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
+        cmd_string = "chmod 777 #{@plugin['/cougaar/config'].manager.tmp_dir}"
+        cmd_string = @plugin['/cougaar/config'].manager.cmd_wrap(cmd_string)
+        `#{cmd_string}`
 
         File.open(filename, "w") do |file|
           file.write(data)
