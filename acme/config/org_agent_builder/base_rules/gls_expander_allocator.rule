@@ -17,7 +17,7 @@ society.each_agent do |agent|
 	c.add_argument("PackagedPOL")
 	c.add_argument("Consumable")	
       end
-	c.add_argument("BulkPOL")
+      c.add_argument("BulkPOL")
     end
     if agent.get_facet(:has_personnel_assets)
       unless agent.get_facet(:is_ua)
