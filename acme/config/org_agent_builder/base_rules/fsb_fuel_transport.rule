@@ -16,6 +16,7 @@ society.each_agent do |agent|
     if agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
       agent.add_component do |c|
 	c.classname = util_ldm_xml_plugin
+        c.add_argument("ldmFile=FSB.ldm.xml")
       end    
       agent.add_component do |c|
 	c.classname = simple_expander_plugin
