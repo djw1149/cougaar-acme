@@ -124,7 +124,7 @@ module ACME; module Plugins
       end
       @start_time = Time.now
       result = `#{cmd}`
-      out_log_rename = File.join(@script_dir, "scheduledRun-#{Time.now.to_i}.log")
+      out_log_rename = File.join(@script_dir, "scheduledRun-#{Time.now.strftime('%Y%m%d-%H%M%S')}.log")
       rename_cmd = @cougaar_config.manager.cmd_wrap("mv #{out_log} #{out_log_rename}")
       `#{rename_cmd}`
       if @log_file
