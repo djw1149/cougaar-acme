@@ -46,12 +46,12 @@ module Cougaar
         if @destination == 'operator'
           @run.society.each_service_host("operator") do |host|
             result = Cougaar::Communications::HTTP.post("http://#{host.uri_name}:9444/communities", communities_xml, "text/xml")
-            puts result if @debug
+            @run.info_message result if @debug
           end
         else
           @run.society.each_service_host("acme") do |host|
             result = Cougaar::Communications::HTTP.post("http://#{host.uri_name}:9444/communities", communities_xml, "text/xml")
-            puts result if @debug
+            @run.info_message result if @debug
           end
         end
       end
@@ -219,6 +219,7 @@ module Cougaar
           end
           community_element.elements.each("Community") do |subcommunity_element|
             puts community_element.attributes['Name']
+	    Cougaar.logger.info "[#{Time.now}]  #{community_element.attributes['Name']}"
             add_subcommunity(community_element.attributes['Name']) do |subcommunity|
               subcommunity.initialize_from_rexml_element(subcommunity_element)
             end
@@ -314,7 +315,7 @@ module Cougaar
           end
         end
         
-        def add_entity(name, entity_type=nil, &block)
+        def add_entity(name, entity_typEx=nil, &block)
           entity = Entity.new(name, entity_type)
           @entities << entity
           yield entity if block_given?

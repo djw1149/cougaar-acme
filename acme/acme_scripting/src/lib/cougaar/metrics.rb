@@ -51,7 +51,7 @@ module Cougaar
           @run.society.each_active_host do |host|
             ms = Cougaar::MtsStats.new(@run.society)
             d = ms.getAllData()
-            puts d if @debug
+            @run.info_message d if @debug
             File.open(@filename, File::CREAT|File::WRONLY) do |f|
               f.write(d)
             end
@@ -117,8 +117,10 @@ if $0==__FILE__
   ms = Cougaar::MtsStats.new(soc)
   d = ms.getAllData()
   puts d
+  Cougaar.logger.info d
 
   ms = UltraLog::MtsStats.new(soc, "local")
   d = ms.getAllData()
   puts d
+  Cougaar.logger.info d
 end

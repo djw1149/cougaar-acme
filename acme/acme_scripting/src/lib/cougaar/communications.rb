@@ -438,6 +438,7 @@ module Cougaar
         return CURL.get(uri, @@user, @@password, @@certfile, @@certpassword, timeout) if uri[0,5]=='https'
         uri = URI.parse(uri)
         puts "HTTP GET: [#{uri.to_s}]" if $COUGAAR_DEBUG
+	Cougaar.logger.info "[#{Time.now}]  HTTP GET: [#{uri.to_s}]" if $COUGAAR_DEBUG
         begin
           c = Net::HTTP.new(uri.host, uri.port)
           c.read_timeout = timeout
@@ -448,9 +449,11 @@ module Cougaar
           resp = c.request req
           return get(resp['location']) if resp.code=="302"
           puts "RESPONSE: [#{resp.body}]" if $COUGAAR_DEBUG
-          return resp.body, uri
+    	  Cougaar.logger.info "[#{Time.now}]  RESPONSE: [#{resp.body}]" if $COUGAAR_DEBUG
+	  return resp.body, uri
         rescue
           puts "Cougaar::Util exception #{$!}"
+    	  Cougaar.logger.error "[#{Time.now}]  Cougaar::Util exception #{$!}"
           return nil
         end    
       end

@@ -69,7 +69,7 @@ module Cougaar
         end
       end
       nodes.each do |node|
-        puts "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
+        @run.info_message "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msgs[node]}").request(@timeout)
         if result.nil?
           @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
@@ -103,7 +103,7 @@ module Cougaar
       @run.info_message "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
       result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
       if result.nil?
-        puts "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+        @run.info_message "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
       else
         node.active=false
       end
@@ -157,7 +157,7 @@ module Cougaar
       end
       node_society.remove_all_facets
       result = Cougaar::Communications::HTTP.post("http://#{node.host.uri_name}:9444/xmlnode/#{node.name}.rb", node_society.to_ruby, "x-application/ruby")
-      puts result if @debug
+      @run.info_message result if @debug
     end
     
   end
@@ -540,7 +540,7 @@ module Cougaar
           return if @run.stopped?
           sleep 2
         end
-        puts "Run Stopped"
+        @run.info_message "Run Stopped"
       end
     end
   end

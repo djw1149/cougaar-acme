@@ -36,10 +36,10 @@ module Cougaar
             session.start
             sessions[node.name] = session
           rescue Exception => e
-            puts "Error debugging..."
-            puts node.name
-            puts node.host.uri_name
-            puts node.get_facet(:debug_port).to_i
+            @run.info_message "Error debugging..."
+            @run.info_message node.name
+            @run.info_message node.host.uri_name
+            @run.info_message node.get_facet(:debug_port).to_i
           end
         end
       end

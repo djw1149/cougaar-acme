@@ -690,6 +690,7 @@ module Cougaar
             port = found[32..-1].strip.to_i
           rescue
             puts "Malformed Cougaar port on Node #{@name}"
+            Cougaar.logger.error "[#{Time.now}] Malformed Cougaar port on Node #{@name}"
           end
         end
         port = host.society.cougaar_port unless port
