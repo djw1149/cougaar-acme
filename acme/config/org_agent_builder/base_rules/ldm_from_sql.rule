@@ -26,14 +26,34 @@ society.each_agent do |agent|
 	else
 	  c.add_argument('fcs_indiv_equip.q')
 	end
-
+	
 	# loop thru subordinates: for each one that has equip_type_id
 	# facet, add that value to a list if not already there
-	# FIXME!
-      else
-	c.classname = ldm_sql_plugin
-	c.add_argument("fdm_equipment.q")
+	first = true
+	agent.each_facet(:subordinate) do |facet|
+	  subordinate = facet[:sca_supported_org].to_s
+	  sub_agent = society.agents[subordinate]	  
+	  unless sub_agent == nil 
+	    if sub_agent.get_facet(:equip_type_id)	       
+	      if first
+		exclude_types = "exclude_types=#{subordinate}"
+		first = false
+	      else
+		exclude_types << "&#{subordinate}"
+	      end
+	    end unless exclude_types.include? subordinate
+	  else
+	    puts("WARNING: Cannot find agent: #{subordinate} in society.")
+	  end
+	end
+	unless exclude_types.empty?
+	  c.add_agrument(exclude_types)
+	end
       end
+    else
+      c.classname = ldm_sql_plugin
+      c.add_argument("fdm_equipment.q")
     end
   end
 end
+
