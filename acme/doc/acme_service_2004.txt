@@ -83,6 +83,134 @@ An example of this file would be:
   start_dependencies: 
     raa_webrick: "*"
 
-The key thing to change to start this service is the '''autoload: false''' to autoload: true.  This will start the Scheduler service when ACME restarts.
+The key thing to change to start this service is the '''autoload: false''' to autoload: true.  This will start the Scheduler service when ACME restarts.  You also need to start the Scheduler queue (see below) prior to its operation.
 
-=== Scheduling experiments to run ===
+=== Scheduling Experiments to Run ===
+
+There two mechanisms to schedule an experiment to start.  One is via the command line, and the other is via a web browser.  In actuality, both techniques use HTTP to schedule the experiment, but one is code driven and the second is through a browser.
+
+The first question is ''what'' will you schedule to run.  The answer is a file that complies with the ACME Experiment Definition Format.  Also of very high importance, the references to files within the experiment definition file (scripts paths, rules paths, etc) should be fully qualified '''or''' be qualified off of the $COUGAAR_INSTALL_PATH (or $CIP).  These locations are replaced prior to execution of the provided experiment definition.  If you find that your experiments are not working correctly through the scheduling service, it may well be that you have non-qualified paths.
+
+To schedule via the command line you ''execute'' the experiment definition file with command line options that inform the ACME framework to schedule the file.  Assuming you had an experiment definition file named '''test_expt''' observe the following:
+  $ ruby test_expt --help
+
+  Usage: test_expt [options]
+        --schedule                   installation directory for the Gem
+        --priority=PRIORITY          Priority (1=high, 2=normal, 3=low)
+        --host=HOST                  host to schedule on, default 'localhost'
+        --debug                      output a  list of actions and states based on included subscripts
+        --help                       show this message
+
+From the provided help display you see that you can schedule the file by passing '''--schedule''' and specifying the optional arguments '''--host''', '''--priority'''.  If you do not specify these optional arguments, ACME assumes that you want to schedule the script to execute on the current machine.  If you are on an ''operator'' machine, this default will likely be correct.  The priority value defaults to '2' (normal).  If you want your script to execute ahead of other scripts, you could pass in --priority=1.  Then, your script will execute ahead of scripts of lower priority.
+
+  Note:  If you try the above command and you receive to following error:
+           test_expt.rb:19:in `require': No such file to load -- cougaar/scripting (LoadError)
+           from test_expt.rb:19
+         it indicates that you have not properly set up your RUBYLIB path environment variable to
+         include the ACME libraries.  You can set this with:
+           $ export RUBYLIB $CIP/csmart/acme_scripting/src/lib:$CIP/csmart/acme_service/src/redist
+
+The other way to schedule experiment definitions for execution is to use the Web interface.  To do this you browse into the scheduler machine's ACME Service Web server:
+
+  http://<hostname>:9444/schedule_run
+
+And follow the directions located there.  They follow the above directions, but you can select a file from your local machine to post (or paste it into the provided text area).
+
+=== Managing the Scheduler Queue ===
+
+The interface for managing the Schedule queue is to use the Web interface to perform necessary operations.  The uri to manage the Schedule queue is:
+
+  http://<hostname>:9444/schedule_queue
+
+This will present the list of queued experiments, the currently executing experiment, and the main queue control.  You can use the queue control to start/stop the queue.  You can also use it to remove pending experiments.
+
+  Note:  By default the Scheduler queue is turned off.  If you just enabled the Scheduler
+         service on a particular machine, you need to turn this queue on prior to it 
+         executing experiment definitions.
+
+== 2004 ACME Reporting Service (acme_reporting_service) ==
+
+One critical requirement that came from 2003 and into 2004 was for the ability of archived runs to be analyzed and reported on in a consistent and automated way.  To meet that requirement, the ACME Reporting Service was created.  This service consists on several discrete components that cooperate to produce the desired online summary of experiment's outcomes.  The ACME Reporting Service includes three distinct components that cooperate together to create an automated analysis and online reporting capability.  The first component is the ACME Reporting Service which is an ACME Service plugin.  The second component is the ACME Report Posting Service which is an Ruby-based Apache cgi which receives reports and generates HTML indexes.  The third component, or rather, set of components are the ACME Service plugins that register for reports with the ACME Report Service plugin and generate reports and files.  Each of these components will be discussed in the detail that follows.
+
+=== ACME Reporting Service Plugin ===
+
+The main component of the ACME Reporting Service is the Reporting Service plugin.  This plugin is an ACME Service plugin which manages the processing of the archive files generated during experiment execution.  The plugin operates by checking a (provided) directory for new experiment archive files.  Specifically, when an experiment is provided with an '''archive path''' two files are created, both named a unique experiment ID and suffixed with .xml and .tgz.  The .xml file is an index of all the files that are archived in the .tgz file.  The Reporting Service plugin keeps a list of the known .xml files within the archive directory, and when a new .xml file appears, it parses that file.  
+
+If the file has not been processed before (more on this later) it opens the archive in a temporary directory, and builds an ArchiveStructure object to represent it.  The structure is then sent to each registered reporting plugin (see below on how to register a plugin to be notified).  Those plugins then process the extracted files, performing whatever they need to, and then add one or more Report objects each with optional ReportFile objects (files written by the report plugin).  After all plugins have been notified and executed, the Report Service archives just the generated report files and posts these to the Report Posting Service (below) for display purposes.  After this, the Report Service re-archives the extracted files, including the newly generated reports, and updates the .xml file to include a <reports> tag with embedded <report> tags for each report.  The existence of this tag (<reports>) is how the Report Service knows that a particular archive has been processed.  
+
+'''NOTE:''' If there is a need to re-run reports on a set of archives, you can simply hand edit the .xml files and remove these <reports></reports> tags (and the embedded subtags) and the reporting framework will pick it up and re-run the report plugins against it.
+
+For detail on how to write reporting plugins, see that section below.
+
+==== Installation of the ACME Reporting Service ====
+
+This service plugin is installed when the ACME Service is installed, so you need to install the ACME Service first.  After this, the Reporting Service plugin needs to be enabled on the machine that will serve as the reporting host for a society.  To enable this plugin edit the plugin.yaml file located here:
+
+  /usr/local/acme/plugins/acme_reporting_service/plugin.yaml
+
+Then change the:
+
+  autoload: false
+
+to:
+
+  autoload: true
+
+In addition, the reporting service needs to be configured prior to starting.  To configure this, edit the properties.yaml file (in the same directory as the plugin.yaml file).  An example properties.yaml file is presented here:
+
+  #### Properties: acme_reporting_service - Version: 1.0
+  properties: ~
+  "|": 
+    - archive_path: "./archives"
+    - temp_path: "./temp"
+    - report_path: "reports"
+    - report_host_name: "reports.ultralog.net"
+    - report_host_port: 80
+    - society_name: socM1
+
+The main elements to change are (1) the archive_path and (2) the society_name. The society_name should be unique to the reporting service (ultralog.net) and in the TIC are usually socM1-2, socS1-S4 or AS/AR/ALsmall.  The archive_path is the (fully qualified) path to the directory that experiments write their archives into.  In the TIC, the Reporting Service is typically installed on the NFS (shared drive) machine, so the archive_path is something like /export/shared/socM/Logs, but this is dependent on where the service is installed and configured.  
+
+Within the TIC environment there is a script that exists in the root home directory on each society's NFS server.  That script is executed with:
+
+  $ ruby install_reporting.rb
+
+This script will then ask the following questions:
+
+  $ Archive Path? 
+  $ Society Name? 
+
+After providing these inputs (as per the above mentioned editing of the properties.yaml file) the script pulls the latest (ACME HEAD) overlay from the overlays site and installs it on the current machine, fully configured and ready to go.  This is useful if updates to the reporting services need to be propagated to all societies in the TIC.
+
+=== Developing ACME Report Plugins ===
+
+This section will document how to write ACME Report plugins.  These plugins are ACME Service plugins and to write them you first need to understand how to have read the ACME Developer's Guide.
+
+=== ACME Report Posting Service ===
+
+The last component is the ACME Report Posting service.  This service resides on http://reports.ultralog.net and receives reports posted by reporting hosts that are located in each executing society.  The Posting Service is a Ruby-based cgi that is configured to execute behind the Apache web service on reports.ultralog.net.  The CGI accepts an HTTP POST of the following format:
+
+  URI:  h t t p://reports.ultralog.net/post_report.rb/SOCIETY/EXPERIMENT<br>
+        '''SOCIETY''' The name of the society that the reporting service is active on<br>
+        '''EXPERIMENT''' A unique experiment ID
+  BODY: report archive (tar/gz) with internal /reports directory
+
+When the Posting Service receives that HTTP method call, it builds the following directory structure:
+
+  /var/www/reports/societies/HOST/EXPERIMENT
+
+And then proceeds to extract the supplied report archive into the /EXPERIMENT directory (and report the temporary archive file).  After this, the Post Service (re)builds the index files which produce the pages:
+
+  http://reports.ultralog.net/index.html <br>
+  http://reports.ultralog.net/societies/HOST/index.html <br>
+  http://reports.ultralog.net/societies/HOST2/index.html (etc)<br>
+
+After these indexes are rebuilt, you can browse reports.ultralog.net to see the results.  The ACME Report Post Service source code is in cvs at:
+
+  csmart/src/ruby/acme_service/src/plugins/acme_reporting_service/post_report/...
+
+The look-and-feel of the generated index pages are managed through the reporting.css cascading style sheet located (in cvs above) at:
+
+  /var/www/reports/reporting.css
+
+Most colors, font styles/sizes and layout can be changed by simply editing this file.  If this file is edited, please make sure that the cvs version is updated as well.  Please look at this file to see which CSS classes are available for editing and use.
+
