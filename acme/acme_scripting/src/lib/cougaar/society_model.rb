@@ -589,7 +589,58 @@ module Cougaar
         @parameters = []
         yield self if block_given?
       end
+      
+      def cougaar_port
+        found = nil
+        port = nil
+        @parameters.each do |param| 
+          found = param if param[0, 32]=='-Dorg.cougaar.lib.web.http.port='
+        end
+        if found
+          begin
+            port = found[32..-1].strip.to_i
+          rescue
+            puts "Malformed Cougaar port on Node #{@name}"
+          end
+        end
+        port = host.society.cougaar_port unless port
+        return port
+      end
+      
+      def secure_cougaar_port
+        found = nil
+        port = nil
+        @parameters.each {|param| found = param if param[0, 33]=='-Dorg.cougaar.lib.web.https.port='}
+        if found
+          begin
+            port = found[33..-1].strip.to_i
+          rescue
+          end
+        end
+        return port
+      end
+      
+      def uri
+        cp = cougaar_port
+        protocol = 'http'
+        if cp < 0
+          cp = secure_cougaar_port
+          protocol << 's'
+        end
+        if cp.nil?
+          raise "Could not form valid URL for node #{@name} on host #{@host.host_name}\nCougaar port set to -1 but HTTPS port not set."
+        end
+        return "#{protocol}://#{@host.host_name}:#{cp}/"
+      end
 
+      def secure_uri
+        cp = secure_cougaar_port
+        if cp.nil?
+          raise "Could not form valid secure URL for node #{@name} on host #{@host.host_name}\nCougaar HTTPS port not set."
+        end
+        return "https://#{@host.host_name}:#{cp}/"
+      end
+      
       def init_block
         yield self if block_given?
       end
@@ -872,6 +923,14 @@ module Cougaar
 
       def init_block
         yield self if block_given?
+      end
+      
+      def uri
+        return @node.uri+"$#{@name}/"
+      end
+      
+      def secure_uri
+        return @node.secure_uri+"$#{@name}/"
       end
       
       ##
