@@ -32,16 +32,19 @@ society.each_agent do |agent|
 	first = true
 	exclude_types = ""
 	agent.each_facet(:subordinate_org_id) do |facet|
+	  #puts "In sub_org_id loop for #{agent.name}"
 	  subordinate = facet[:subordinate_org_id].to_s
-	  sub_agent = society.agents[subordinate]	  
+	  sub_agent = society.agents[subordinate]
 	  unless sub_agent == nil 
-	    if sub_agent.get_facet(:equip_type_id)	      
-	      equip_type_id = sub_agent.get_facet(:equip_type_id)
+	    #puts "found sub_agent: #{sub_agent.name}"
+	    equip_type_id = sub_agent.get_facet(:equip_type_id)
+	    if equip_type_id != nil
+	      #puts "sub is vehicle of type #{equip_type_id}"
 	      if first
 		exclude_types = "exclude_types=#{equip_type_id}"
 		first = false
 	      elsif !exclude_types.include? equip_type_id
-		exclude_types << "&#{equip_type_id}"
+		exclude_types << ";#{equip_type_id}"
 	      end
 	    end 
 	  else
@@ -49,7 +52,8 @@ society.each_agent do |agent|
 	  end
 	end
 	unless exclude_types.empty?
-	  c.add_agrument(exclude_types)
+	  #puts "Adding excl arg"
+	  c.add_argument(exclude_types)
 	end
       else
 	c.classname = ldm_sql_plugin
