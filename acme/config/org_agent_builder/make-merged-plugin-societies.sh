@@ -25,5 +25,5 @@ echo "Making full-1ad-160a237v.oo.plugins.xml..."
 ruby ../bin/transform_society.rb -i 1ua.orig-org-id/full-160a237v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/full-160a237v.oo.plugins.xml
 echo "Done"
 echo "Making full-trans-stub-160a237v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/full-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.orig-org-id/full-trans-stub-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ua.orig-org-id/full-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/full-trans-stub-160a237v.oo.plugins.xml
 echo "Done"
