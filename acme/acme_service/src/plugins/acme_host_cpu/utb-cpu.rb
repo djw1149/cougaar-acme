@@ -37,7 +37,7 @@ class CPU
     if (@platform == "unix")
       @num_processors = `grep ^processor /proc/cpuinfo|wc -l`.to_i
     else 
-      @num_processors = ENV["NUMBER_OF_PROCESSORS"]
+      @num_processors = ENV["NUMBER_OF_PROCESSORS"].to_i
     end
 
     @plugin['log/info'] << "CPU_WASTER PLATFORM IS #{@platform}.  #{@num_processors} processor(s)"
