@@ -175,33 +175,55 @@ module Cougaar
         
         # build a list of available hosts
         hostlist = nil
+        hostgroups = nil
         unused_hostlist = nil
         if @society_hosts
-          hostlist = []
+          hostgroups = {}
           unused_hostlist = []
           @society_hosts.each_host do |host|
             target = false
             host.each_facet(:service) do |facet|
-              target = true if facet[:service]=='acme'
-              target = true if facet[:service]=='ACME'
+              target = true if facet[:service].downcase=='acme'
             end
             if target
-              hostlist << host
+              group = host.get_facet(:group)
+              if group
+                list = hostgroups[group]
+                list ||= []
+                list << host
+                hostgroups[group]=list
+              else
+                list = hostgroups[:ungrouped]
+                list ||= []
+                list << host
+                hostgroups[:ungrouped] = list
+              end
             else
               unused_hostlist << host
             end
           end
         end
+        
         # perform layout
-        hostindex = 0
         @society_layout.each_host do |host|
-          if hostlist && (hostindex == hostlist.size)
-            raise "Not enough hosts in #{@hosts_file} for the society layout in #{@layout_file}"
+          if @society_hosts
+            if host.has_facet?(:group)
+              target_host = hostgroups[host.get_facet(:group)].shift
+              #puts "Group #{host.get_facet(:group)} has #{hostgroups[host.get_facet(:group)].size} hosts left"
+            else
+              target_host = hostgroups[:ungrouped].shift
+              #puts "Group ungrouped has #{hostgroups[:ungrouped].size} hosts left"
+            end
+            unless target_host
+              raise "Not enough hosts in #{@host_file} for group #{host.get_facet(:group)} in the society layout file #{@layout_file}"
+            end
+          else
+            target_host = host
           end
-          @society.add_host(hostlist ? hostlist[hostindex].name : host.name) do |newhost|
+          @society.add_host(target_host.name) do |newhost|
             host.each_facet { |facet| newhost.add_facet(facet.clone) }
-            if hostlist
-              hostlist[hostindex].each_facet { |facet| newhost.add_facet(facet.clone) }
+            if target_host!=host
+              target_host.each_facet { |facet| newhost.add_facet(facet.clone) }
             end
             host.each_node do |node|
               newhost.add_node(node.name) do |newnode|
@@ -209,16 +231,16 @@ module Cougaar
               end
               node.each_agent do |agent| 
                 to_move = @society.agents[agent.name]
-		if to_move
-		  to_move.move_to(node.name)
-		else
+                if to_move
+                  to_move.move_to(node.name)
+                else
                   puts "Layout specifies agent '#{agent.name}' that is not defined in the society"
-		end
+                end
               end
             end
           end
-          hostindex += 1
         end
+        
         if unused_hostlist
           unused_hostlist.each do |host|
             @society.add_host(host.name) do |newhost|
@@ -226,6 +248,7 @@ module Cougaar
             end
           end
         end
+        
         # check to make sure we laid out all the agents
         agentlist = []
         @society.nodes["node-#{guid}"].each_agent { |agent| agentlist << agent }
