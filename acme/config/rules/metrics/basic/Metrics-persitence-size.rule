@@ -1,0 +1,7 @@
+######################################
+# Rule to insert Persistence sensors into all agents
+
+# Add all traffic matrix components on all node agents, different insertion points 
+society.each_agent() do |agent| 
+     agent.add_component("org.cougaar.core.qos.metrics.PersistenceAdapterPlugin")
+end
