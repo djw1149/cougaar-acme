@@ -119,7 +119,7 @@ module Cougaar
         parser.listen( :start_element ) do |uri, localname, qname, attributes|
           case qname
           when "CougaarEvents"
-            @node = attributes['node']
+            @node = attributes['Node']
             @experiment = attributes['experiment']
             puts "  Node: #{@node}  Experiment: #{@experiment}"
             @started = true
