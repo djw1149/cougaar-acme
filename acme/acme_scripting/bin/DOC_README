@@ -1,0 +1,29 @@
+This is a basic readme for using the acme_doc.rb and html_doc.rb scripts to generate
+output of the internal documentation located in each Action and State class.  These
+file use Ruby reflection to gather the documentation and print it to the screen.  To
+save the output of one of these scripts, simply redirect the output to a file (see
+below).  The text version is suitable for terminal based sessions as a quick reference
+mechanism (looking up an Action sytax, etc).  The HTML version is suitable for printing
+or graphic display (in a web browser).
+
+Text:
+
+cd acme_scripting/bin
+ruby acme_doc.rb <ActionName | StateName>
+ # This generates documentation only for the named action or state
+ruby acme_doc.rb
+ # This generates documentation for ALL actions and states
+ 
+ruby acme_doc.rb > state_action.txt
+ # Create text file for use or printing
+ 
+HTML:
+
+cd acme_scripting/bin
+ruby html_doc.rb <ActionName | StateName>
+ # This generates HTML documentation only for the named action or state
+ruby html_doc.rb
+ # This generates HTML documentation for ALL actions and states
+ 
+ruby html_doc.rb > state_action.html
+ # Create text file for use or printing
