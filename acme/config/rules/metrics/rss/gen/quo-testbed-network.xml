@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<network name="quotestbed" device="eth0">
+  <vlan id="100" name="Corporate"
+        router="128.89.72.1"
+        netmask="255.255.0.0"
+        bandwidth="100">
+    <link name="QuOTestbed" bandwidth="0.333"/>
+  </vlan>
+
+  <vlan id="101" name="QuOTestbed"
+        router="128.33.15.1"
+        netmask="255.255.255.240"
+        bandwidth="10">
+     <link name="Corporate" bandwidth="0.2662" />
+  </vlan>
+</network>

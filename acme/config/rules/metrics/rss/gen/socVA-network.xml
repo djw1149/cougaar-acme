@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+
+<network name="socVA" device="eth0">
+  <vlan id="102" name="REAR-CONUS"
+        router="10.100.2.1"
+        netmask="255.255.255.0"
+        bandwidth="100">
+    <link name="DIV-SUPPORT" bandwidth="0.5"/>
+    <link name="DIVISION" bandwidth="0.5"/>
+    <link name="1-UA-BDE" bandwidth="0.5"/>
+  </vlan>
+
+  <vlan id="103" name="DIVISION"
+        router="10.100.3.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIV-SUPPORT" bandwidth="0.5" />
+     <link name="REAR-CONUS" bandwidth="0.5" />
+     <link name="AVN-BDE" bandwidth="1.54" />
+     <link name="1-BDE" bandwidth="1.54" />
+     <link name="2-BDE" bandwidth="1.54" />
+     <link name="3-BDE" bandwidth="1.54" />
+  </vlan>
+
+
+  <vlan id="104" name="DIV-SUPPORT"
+        router="10.100.4.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="REAR-CONUS" bandwidth="0.5" />
+     <link name="DIVISION" bandwidth="0.5" />
+  </vlan>
+
+  <vlan id="110" name="AVN-BDE"
+        router="10.100.10.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+
+  <vlan id="111" name="1-BDE"
+        router="10.100.11.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+
+  <vlan id="112" name="2-BDE"
+        router="10.100.12.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+
+  <vlan id="113" name="3-BDE"
+        router="10.100.13.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+  <vlan id="120" name="1-UA-BDE"
+        router="10.100.20.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="REAR-CONUS" bandwidth="0.5" />
+     <link name="1-CA" bandwidth="0.5" />
+     <link name="2-CA" bandwidth="0.5" />
+     <link name="3-CA" bandwidth="0.5" />
+  </vlan>
+
+  <vlan id="121" name="1-CA"
+        router="10.100.21.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="1-UA-BDE" bandwidth="0.5" />
+  </vlan>
+
+  <vlan id="122" name="2-CA"
+        router="10.100.22.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="1-UA-BDE" bandwidth="0.5" />
+  </vlan>
+
+  <vlan id="123" name="3-CA"
+        router="10.100.23.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="1-UA-BDE" bandwidth="0.5" />
+  </vlan>
+
+</network>
