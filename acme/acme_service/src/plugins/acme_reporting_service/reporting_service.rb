@@ -114,7 +114,7 @@ class ReportingService
               archive.rebuild_index
               archive.build_index_page
               archive.compress
-              #post_reports(archive) # send results to service
+              post_reports(archive) # send results to service
             else
               puts "Errors: Skipping archive file: #{archive.xml_file}"
             end
