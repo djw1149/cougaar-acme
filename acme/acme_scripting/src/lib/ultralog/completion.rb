@@ -378,7 +378,13 @@ module UltraLog
           @society.each_agent(true) do |agent|
             agentHash = comp[agent.name]
             agentHash["receivers"].each do |destAgent, msg|
-              if (destMsg = comp[destAgent]["senders"][agent.name]) && destMsg != msg
+              if !(comp[destAgent])
+                soc_status = "INCOMPLETE"
+                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
+                ::Cougaar.logger.info "  #{destAgent} does not currently have quiescence info, but it did at earlier test" if @debug
+                ::Cougaar.logger.info " trying to verify against #{agent.name} (#{destMsg}) != " if @debug
+                break
+              elsif (destMsg = comp[destAgent]["senders"][agent.name]) && destMsg != msg
                 soc_status = "INCOMPLETE"
                 ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
                 ::Cougaar.logger.info "   src message for #{agent.name} (#{destMsg}) != " if @debug
@@ -389,7 +395,13 @@ module UltraLog
             break if soc_status == "INCOMPLETE"
 
             agentHash["senders"].each do |srcAgent, msg|
-              if (srcMsg = comp[srcAgent]["receivers"][agent.name]) && srcMsg != msg
+              if !(comp[srcAgent])
+                soc_status = "INCOMPLETE"
+                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
+                ::Cougaar.logger.info "  #{srcAgent} does not currently have quiescence info, but it did at earlier test" if @debug
+                ::Cougaar.logger.info " trying to verify against #{agent.name} (#{srcMsg}) != " if @debug
+                break
+              elsif (srcMsg = comp[srcAgent]["receivers"][agent.name]) && srcMsg != msg
                 soc_status = "INCOMPLETE"
                 ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
                 ::Cougaar.logger.info "   dest message for #{agent.name} (#{srcMsg}) != " if @debug
