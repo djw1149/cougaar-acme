@@ -103,8 +103,10 @@ module ACME; module Plugins
       path_as = File.join(@cougaar_config.manager.cougaar_install_path, "csmart", "acme_scripting", "src", "lib")
       path_redist = File.join(@cougaar_config.manager.cougaar_install_path, "csmart", "acme_service", "src", "redist")
       File.open(@current, 'w') { |f| f.puts(data)}
-      result = `ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0`
-      File.delete(@current)
+      cmd = @cougaar_config.manager.cmd_wrap("ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0")
+      result = `#{cmd}`
+      cmd = @cougaar_config.manager.cmd_wrap("rm -f #{@current}")
+      `#{cmd}`
     end
     
     def replace_cip(script)
