@@ -5,10 +5,10 @@ $CIP = ENV['CIP']
 if $0 == __FILE__
   $:.unshift File.dirname( __FILE__ )
   $:.unshift File.join( $CIP, "csmart", "acme_service", "src", "redist" )
-  $:.unshift File.join( $CIP, "csmart", "acme_scripting", "src", "lib" )
-  $:.unshift File.join( $CIP, "csmart", "assessment", "scripts" )
   $:.unshift File.join( $CIP, "csmart", "assessment", "lib" )
+  $:.unshift File.join( $CIP, "csmart", "assessment", "scripts" )
   $:.unshift File.join( $CIP, "csmart", "config", "lib" )
+  $:.unshift File.join( $CIP, "csmart", "acme_scripting", "src", "lib" )
 end
 
 require "p-config"
