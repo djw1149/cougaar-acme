@@ -7,3 +7,4 @@ startup_module: ACME::Plugins::TICScheduler
 properties_path: properties.yaml
 start_dependencies: 
   raa_webrick: "*"
+  acme_cougaar_config: "*"
