@@ -59,11 +59,12 @@ at :society_ready
 
   parameters[:stages].each do |stage|
     wait_for  "NextOPlanStage", 10.minutes
+
+at :starting_stage
+
     do_action "PublishNextStage"
     do_action "InfoMessage", "########  Starting Planning Phase Stage - #{stage} #########"
   end
-
-at :starting_stage
 
 at :ending_stage
 
