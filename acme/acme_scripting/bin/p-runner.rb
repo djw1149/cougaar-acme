@@ -62,6 +62,7 @@ while (@@is_OK) do
     rescue XMLRPC::FaultException => e
       puts "Code: #{e.faultCode}"
       puts "Msg: #{e.faultString}"
+      monitor.acme_failure( exc )
       throw e
     rescue Exception => exc
       puts "Caught ACME Exception: #{exc}"
