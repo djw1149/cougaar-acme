@@ -27,10 +27,57 @@ module Cougaar
   def self.new_experiment(name=nil)
     return Experiment.new(name)
   end
+
+  class EventQueue
+    def initialize()
+      @q     = []
+      @mutex = Mutex.new
+      @cond  = ConditionVariable.new
+    end
+  
+    def enqueue(*elems)
+      @mutex.synchronize do
+        @q.push *elems
+        @cond.signal
+      end
+    end
+  
+    def dequeue()
+      @mutex.synchronize do
+        while @q.empty? do
+          @cond.wait(@mutex)
+        end
+  
+        return @q.shift
+      end
+    end
+  
+    def empty?()
+      @mutex.synchronize do
+        return @q.empty?
+      end
+    end
+  end
   
   class ExperimentMonitor
   
     @@monitors = []
+    @@notification_queue = EventQueue.new
+    
+    Thread.new do 
+      loop do
+        notification = @@notification_queue.dequeue
+        @@monitors.each do |monitor| 
+          begin
+            monitor.notify(notification)
+          rescue
+            puts "Got exception notifying #{monitor}"
+            puts $!
+            puts $!.backtrace.join("\n")
+          end
+        end
+      end
+    end
     
     ExperimentNotification = Struct.new(:experiment, :begin_flag)
     RunNotification = Struct.new(:run, :begin_flag)
@@ -58,7 +105,7 @@ module Cougaar
     end
     
     def self.notify(notification)
-      @@monitors.each {|monitor| monitor.notify(notification)}
+      @@notification_queue.enqueue(notification)
     end
   
     def self.enable_stdout
@@ -373,37 +420,6 @@ module Cougaar
     end
   end
   
-  class CougaarEventQueue
-    def initialize()
-      @q     = []
-      @mutex = Mutex.new
-      @cond  = ConditionVariable.new
-    end
-  
-    def enqueue(*elems)
-      @mutex.synchronize do
-        @q.push *elems
-        @cond.signal
-      end
-    end
-  
-    def dequeue()
-      @mutex.synchronize do
-        while @q.empty? do
-          @cond.wait(@mutex)
-        end
-  
-        return @q.shift
-      end
-    end
-  
-    def empty?()
-      @mutex.synchronize do
-        return @q.empty?
-      end
-    end
-  end
-  
   ArchiveEntry = Struct.new(:file, :description, :autoremove)
   
   class Run
@@ -431,11 +447,11 @@ module Cougaar
       @state = STOPPED
       @properties = {}
       @name = "#{@experiment.name}-#{count+1}of#{@multirun.run_count}"
-      @event_queue = CougaarEventQueue.new
+      @event_queue = EventQueue.new
       @include_stack = []
       @archive_entries = []
       if ExperimentDefinition.current
-        @include_stack.push (ExperimentDefinition.current.script.parameters.collect {|param| param.value})
+        @include_stack.push(ExperimentDefinition.current.script.parameters.collect {|param| param.value})
       else
         @include_stack.push ARGV.clone
       end
