@@ -266,6 +266,11 @@ module Cougaar
           @run.info_message "Finished sending servlet requests"
         end
 
+	society_request_time = (change_time - Time.now).ceil
+	if (society_request_time <= 0.0)
+	  @run.error_message "ERROR: All nodes did not receive Advance Time message before sync time"
+	else
+
         # now wait for quiescence
         if @wait_for_quiescence
           comp = @run["completion_monitor"]
@@ -283,7 +288,10 @@ module Cougaar
         end
 
         # make sure we don't progress until the time we've told the society to put the new time into effect
-        sleep (change_time - Time.now).ceil 
+	sleep_time = (change_time - Time.now).ceil
+	if (sleep_time > 0.0)
+          sleep sleep_time
+	end
 
         @run.info_message "Society time advanced to #{get_society_time}"
         return result
