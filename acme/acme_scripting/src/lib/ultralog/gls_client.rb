@@ -51,7 +51,7 @@ module UltraLog
             return connect(resp['location']) if resp.code=='302'
             resp.read_body do |data|
               data.each_line do |line|
-                puts "DATA: #{line.strip}"
+puts "DATA: #{line.strip}"
                 case line.strip
                 when /^<oplan name=.* id=[0-9A-F]*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
@@ -87,7 +87,7 @@ module UltraLog
     
     def wait_for_next_stage
       @next_stage_count += 1
-      puts "Waiting for stage: #{@next_stage_count}"
+puts "Waiting for stage: #{@next_stage_count}"
       while @next_stage_count != @stages.size
         sleep 2
       end
@@ -189,7 +189,6 @@ module Cougaar
         end
         begin
           result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
-          puts result
           raise_failure "Error sending OPlan" unless result
         rescue
           puts $!
@@ -402,8 +401,6 @@ module Cougaar
           raise_failure "Error publishing next stage" unless result
         rescue
           raise_failure "Could not publish next stage", $!
-        ensure
-          gls_client.close
         end
       end
     end
