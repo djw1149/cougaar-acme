@@ -321,7 +321,11 @@ module Cougaar; module Actions
               end
            # DON'T SHAPE ROUTERS!
            when "migratory":
-             @run.error_message("Migratory Hosts will not be implemented until after the PAD assessment.")
+              sn = net.subnet[@subnet]
+
+              if (host.get_facet(:subnet)[@subnet]) then
+                @run.comms.new_message(host).set_body("command[net]shape(#{sn.make_interface(host.get_facet(:interface))},#{@bw})").send()
+              end
          end
       }
     end
