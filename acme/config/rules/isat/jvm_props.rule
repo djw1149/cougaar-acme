@@ -12,12 +12,9 @@ society.each_host do |host|
     elsif (host.nodes.size == 3)
       xms = 256
       xmx = 512
-    elsif (host.nodes.size == 4)
-      xms = 256
-      xmx = 384
     else
-      xms = 128
-      xmx = 256
+      xms = 256
+      xmx = 512
     end
 
     host.each_node do |node|
