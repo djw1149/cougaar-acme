@@ -16,7 +16,7 @@ module ACME
       def perform
         run_log = @archive.files_with_name(/run\.log/)[0]
         data = grabber_data(run_log.name)
-        if (!data.nil?) then
+        if (!data.empty?) then
           @archive.add_report("Grabber", @plugin.plugin_configuration.name) do |report|
 
             output = html_output(data)
@@ -48,22 +48,28 @@ module ACME
       end
 
       def grabber_data(run_log)
-        data = nil
+        data = []
+        curr = nil
+        new_run = /Run:(.*)started/
         start_pattern = /Starting: StartDatagrabberService/
         data_pattern = /INFO: DataGrabber run ([0-9]+) assets ([0-9]+) units ([0-9]+)/
         end_pattern = /Finished: StopDatagrabberService/
         start_time = nil
         
         IO.foreach(run_log) do |line|
-          if (ts = get_timestamp(line, start_pattern)) then
-            data = DataGrabberData.new
+          if (ts = get_timestamp(line, new_run)) then
+            data = []
+            curr = nil
+          elsif (ts = get_timestamp(line, start_pattern)) then
+            curr = DataGrabberData.new(0, 0, 0, Time.at(0).gmtime)
             start_time = ts[0]
           elsif (ts = get_timestamp(line, data_pattern)) then
-            data.run = ts[1][0]
-            data.assets = ts[1][1]
-            data.units = ts[1][2]
+            curr.run = ts[1][0]
+            curr.assets = ts[1][1]
+            curr.units = ts[1][2]
           elsif (ts = get_timestamp(line, end_pattern)) then
-            data.time = Time.at(ts[0] - start_time).gmtime
+            curr.time = Time.at(ts[0] - start_time).gmtime
+            data << curr
           end
         end
         return data
@@ -73,10 +79,16 @@ module ACME
         ikko_data = {}
         ikko_data["id"] = @archive.base_name
         ikko_data["description_link"] = "grabber_description.html"
-        ikko_data["run"] = data.run
-        ikko_data["assets"] = data.assets
-        ikko_data["units"] = data.units
-        ikko_data["time"] = data.time.strftime("%H:%M:%S")
+        tables = []
+        data.each do |d|
+          table_data = {}
+          table_data["run"] = d.run
+          table_data["assets"] = d.assets
+          table_data["units"] = d.units
+          table_data["time"] = d.time.strftime("%H:%M:%S")
+          tables << @ikko["grabber_table.html", table_data]
+        end
+        ikko_data["tables"] = tables
         return @ikko["grabber.html", ikko_data]
       end
 
