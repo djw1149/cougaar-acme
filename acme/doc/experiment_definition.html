@@ -1,0 +1,435 @@
+<html>
+<head>
+<title>2004 ACME Experiment Format</title>
+</head>
+<link rel="stylesheet" type="text/css" href="cougaar.css">
+<body>
+<h1> ACME Capabilities in 2004 </h1>
+<p>This document is presented to catch folks up on new capabilities that 
+have been added to the ACME scripting framework to allow for the 
+scaling of ACME into the Engineering Test and Assessment cycles.    </p>
+<p>First, as a quick review, a typical script looks something like this:</p>
+<h2> Society Scripting Review </h2>
+<pre> CIP = ENV['CIP']
+ RULES = File.join(CIP, 'csmart','config','rules')
+ 
+ $:.unshift File.join(CIP, 'csmart', 'acme_scripting', 'src', 'lib')
+ $:.unshift File.join(CIP, 'csmart', 'acme_service', 'src', 'redist')
+ 
+ require 'cougaar/scripting'
+ require 'ultralog/scripting'
+ 
+ HOSTS_FILE = Ultralog::OperatorUtils::HostManager.new.get_hosts_file
+ 
+ Cougaar::ExperimentMonitor.enable_stdout
+ Cougaar::ExperimentMonitor.enable_logging
+ 
+ Cougaar.new_experiment("Soc-RichKilmer").run(1) {
+   
+   do_action "LoadSocietyFromScript", "#{CIP}/csmart/config/societies/ad/SMALL-1AD-TRANS-1359.rb"
+   do_action "LayoutSociety", "#{CIP}/operator/1AD-SMALL-layout.xml", HOSTS_FILE
+   
+   do_action "TransformSociety", false,
+     "#{RULES}/isat",
+     "#{RULES}/logistics"
+   do_action "SaveCurrentSociety", "mySociety.xml"
+   do_action "StartJabberCommunications"
+   do_action "CleanupSociety"
+   do_action "VerifyHosts"
+   
+   do_action "ConnectOperatorService"
+   do_action "ClearPersistenceAndLogs"
+   do_action "InstallCompletionMonitor"
+   
+   do_action "StartSociety"
+   
+   wait_for  "GLSConnection", true
+   wait_for  "NextOPlanStage"
+   do_action "Sleep", 30.seconds
+   do_action "PublishNextStage"
+   
+   wait_for  "SocietyQuiesced"  do
+     do_action "StopSociety"
+     do_action "StopCommunications"
+   end
+   
+   do_action "StopSociety"
+   do_action "StopCommunications"
+ }</pre>
+<p>The main behavior of all scripts is contained in the Actions 
+and States.  The two directives in ACME which let you call these are:</p>
+<pre> do_action "ActionName" [, param1, param2, paramN  { optional block } ]</pre>
+<p>and</p>
+<pre> wait_for "StateName" [, timeout, param1, param2, paramN] do |arg1, argN| 
+   <i>block of actions and states to use if state times out</i>
+ end</pre>
+<h2> Include Directive </h2>
+<p>In 2003 the <b>include</b> directive was added that "includes" the content of 
+another script at a certain location:</p>
+<pre> include "scriptname.rb" [, param1, param2, paramN]</pre>
+<p>This was useful if you had a repeated set of State/Actions 
+that you wanted to use in different scripts.  As shown above, 
+you can pass parameters into this included script.  In that 
+script, you access the parameters using the local variable 
+<b>parameters</b>.</p>
+<h3> Include Usage </h3>
+<p>There has been a need to reuse parts of scripts from one script 
+to another.  To enable this, I added a new directive named 
+<b>include</b> that allows for inlining pieces of scripts into 
+another script.  For example here is the beginning of a script:</p>
+<pre> Cougaar.new_experiment("Soc-Base-Plan").run {
+   do_action "LoadSocietyFromScript", "#{CIP}/configs/ul/FULL-1AD-TRANS-1359.rb"
+   do_action "LayoutSociety", "#{CIP}/operator/1ad-layout-10_4_1.xml", HOSTS_FILE
+   
+   do_action "TransformSociety", false,
+     "#{RULES}/isat",
+     "#{RULES}/logistics"
+   do_action "SaveCurrentSociety", "mySociety.xml"
+   do_action "StartJabberCommunications"
+   do_action "VerifyHosts"
+   
+   do_action "CleanupSociety"
+   
+   do_action "ConnectOperatorService"
+   do_action "ClearPersistenceAndLogs"
+   
+   do_action "StartSociety"
+   
+   wait_for  "GLSConnection", true
+   wait_for  "NextOPlanStage"
+   do_action "Sleep", 30.seconds
+   do_action "PublishNextStage"
+   ...</pre>
+<p>and you wanted to reuse the section at the end (start society...) 
+you could move that to a new file:</p>
+<h3> start_society.rb </h3>
+<pre> do_action "StartSociety"
+ 
+ wait_for  "GLSConnection", true
+ wait_for  "NextOPlanStage"
+ do_action "Sleep", 30.seconds
+ do_action "PublishNextStage"</pre>
+<p>And change your prior script to...</p>
+<pre> Cougaar.new_experiment("Soc-Base-Plan").run {
+   do_action "LoadSocietyFromScript", "#{CIP}/configs/ul/FULL-1AD-TRANS-1359.rb"
+   do_action "LayoutSociety", "#{CIP}/operator/1ad-layout-10_4_1.xml", HOSTS_FILE
+   
+   do_action "TransformSociety", false,
+     "#{RULES}/isat",
+     "#{RULES}/logistics"
+   do_action "SaveCurrentSociety", "mySociety.xml"
+   do_action "StartJabberCommunications"
+   do_action "VerifyHosts"
+   
+   do_action "CleanupSociety"
+   
+   do_action "ConnectOperatorService"
+   do_action "ClearPersistenceAndLogs"
+   
+   include "start_society.rb"
+   ...</pre>
+<p>Within the included file, there is an ability to get access to 
+the parameters that you specify after the file name in the 
+include directive.  Optional parameters are accessed in an array 
+'parameters' that is zero-length if you don't specify any 
+parameters or you can access them like this:</p>
+<p>in the script:</p>
+<pre> include "test.rb", "foo"</pre>
+<p>in the included file:</p>
+<pre> parameters[0] #=> "foo"</pre>
+<p>If you wanted to then parameterize the included file (say the 
+amount of time to sleep between NextOPlan...PublishNext...) 
+then you could refactor it like this:</p>
+<h3> start_society.rb </h3>
+<pre> if parameters.size==0
+   sleepTime = 30.seconds
+ else
+   sleepTime = parameters[0]
+ end
+ 
+ do_action "StartSociety"
+ 
+ wait_for  "GLSConnection", true
+ wait_for  "NextOPlanStage"
+ do_action "Sleep", sleepTime
+ do_action "PublishNextStage"</pre>
+<p>Then, in your script you change the include line to be:</p>
+<pre> include "start_society.rb", 50.seconds</pre>
+<p>That's all there is to it.</p>
+<p>Note that variables/constants that are local to the scope of the 
+script (like CIP, HOSTS_FILE, RULES above) will not be accessible 
+in the included files...instead you would pass those values as 
+parameters to the included files like:</p>
+<pre> include "configure_society.rb", CIP, HOSTS_FILE, RULES</pre>
+<h2> Insert Before/After/At Directives </h2>
+<p>The new directives are:</p>
+<pre> insert_before(<location> [, ordinality]) do
+   ...actions and states...
+ end</pre>
+<pre> insert_after(<location> [, ordinality]) do
+   ...actions and states...
+ end</pre>
+<pre> at :<i>location</i></pre>
+<p>These three work together and with the do_action and wait_for.  
+The <i>location</i> can be any Action name, State name, or "at" symbol.  
+insert_before/after insert the block of Actions/States in the 
+script at the identified location.  For example, if in the above 
+script you had:</p>
+<pre> ...
+   wait_for  "SocietyQuiesced"  do
+     do_action "StopSociety"
+     do_action "StopCommunications"
+   end
+   
+   at :society_completed
+   
+   do_action "StopSociety"
+   do_action "StopCommunications"
+ }</pre>
+<p>You could then do:</p>
+<pre> insert_before(:society_completed) do
+   wait_for "Command", "shutdown"
+ end</pre>
+<p>And when that is executed the wait_for "Command"... would be 
+inserted above the :society_completed location of the script.</p>
+<p>You could just as easily done:</p>
+<pre> insert_before("StopSociety") do
+   wait_for "Command", "shutdown"
+ end</pre>
+<p>To insert it above the StopSociety Action.  In both examples 
+it gets included in the same spot, the difference being that 
+the at :location symbol lets you move it around if you needed 
+to change the script (like archive logs or something).</p>
+<p>The question becomes where do these insert_before/after 
+segments go?  They go in included scripts (rather than the 
+main script).</p>
+<p>Let's create a simple example.  If you rewrote the original 
+script to contain 'at' locations:</p>
+<h3> baseline.rb (location script) </h3>
+<pre> CIP = ENV['CIP']
+ RULES = File.join(CIP, 'csmart','config','rules')
+ 
+ $:.unshift File.join(CIP, 'csmart', 'acme_scripting', 'src', 'lib')
+ $:.unshift File.join(CIP, 'csmart', 'acme_service', 'src', 'redist')
+ 
+ require 'cougaar/scripting'
+ require 'ultralog/scripting'
+ 
+ HOSTS_FILE = Ultralog::OperatorUtils::HostManager.new.get_hosts_file
+ 
+ Cougaar::ExperimentMonitor.enable_stdout
+ Cougaar::ExperimentMonitor.enable_logging
+ 
+ Cougaar.new_experiment("SocBaseline").run(1) {
+ 
+   do_action "LoadSocietyFromScript", "#{CIP}/csmart/config/societies/ad/SMALL-1AD-TRANS-1359.rb"
+   do_action "LayoutSociety", "#{CIP}/operator/1AD-SMALL-layout.xml", HOSTS_FILE
+ 
+   do_action "TransformSociety", false,
+     "#{RULES}/isat",
+     "#{RULES}/logistics"
+   do_action "SaveCurrentSociety", "mySociety.xml"
+   do_action "StartJabberCommunications"
+   do_action "CleanupSociety"
+   do_action "VerifyHosts"
+   
+   at :society_configured
+   
+   do_action "ConnectOperatorService"
+   do_action "ClearPersistenceAndLogs"
+   do_action "InstallCompletionMonitor"
+   
+   do_action "StartSociety"
+   
+   wait_for  "GLSConnection", true
+   wait_for  "NextOPlanStage"
+   do_action "Sleep", 30.seconds
+   
+   at :begin_planning
+   
+   do_action "PublishNextStage"
+   wait_for  "SocietyQuiesced"  do
+     do_action "StopSociety"
+     do_action "StopCommunications"
+   end
+   
+   at :planning_complete
+   
+   do_action "StopSociety"
+   do_action "StopCommunications"
+ }</pre>
+
+<p>We can then create two 'include' scripts:</p>
+<h3> stress_cpu.rb script </h3>
+<pre> =begin script
+ 
+ include_path: stress_cpu.rb
+ description: Stresses the CPUs of a provided list of hosts during planning
+ parameters:
+   - percent_stress: The percentage of stress (0-99)
+   - hosts: The host names (as a comma delimited string i.e. 'hosta,hostb')
+ 
+ =end
+ 
+ insert_before(:begin_planning) do
+   do_action 'StressCPU', parameters[0], parameters[1]
+ end
+ 
+ insert_before(:planning_complete) do
+   # NOTE: Remove stresses by setting at zero percent
+   do_action 'StressCPU', 0, parameters[1]
+ end</pre>
+<p>In the above example, we have some "executable" documentation 
+(between the '=begin script' and '=end') and then two insert_before 
+examples.  We are going to ignore the documentation for now.  This 
+script accepts two parameters.</p>
+<p>The second script will just pause the experiment before shutting down:</p>
+<h3> pause.rb script </h3>
+<pre> =begin script
+ 
+ description: Pauses a script to await a Jabber IM.
+ parameters:
+   - resume_command: The command to wait for (received via Jabber)
+ 
+ =end
+ 
+ insert_before("StopSociety") do
+   wait_for "Command", parameters[0]
+ end</pre>
+<p>This script contains a single parameter (the resume_command). Now, 
+we need a way to include these two 'include scripts' into our main script.</p>
+<p>One way to do this would be to modify the main script with two includes:</p>
+<pre> ...
+   at :planning_complete
+   
+   do_action "StopSociety"
+   do_action "StopCommunications"
+   
+   include "stress_cpu.rb", 40, "u113"
+   include "pause.rb", "shutdown"
+ }</pre>
+<h2> Experiment Definitions </h2>
+<p>While this works, the problem with it is you are modifying (main) 
+scripts that are likely checked into CVS...and those changes will 
+be lost once you reload cougaar/overlays.  Also, you may want the 
+same script with just differing includes/parameters.  To address this 
+requirement, a new capability (and file format) was created.  This 
+capability allows you to create an Experiment Description file:</p>
+<h3> Experiment isat_expt_uc1.rb </h3>
+<pre> =begin experiment
+ 
+ name: ISAT-StressCPU
+ description: Normal run with CPU degraded to 40 percent during planning
+ script: baseline.rb
+ include_scripts:
+   - script: stress_cpu.rb
+     parameters:
+       - percent_stress: 40
+       - hosts: "hosta,hostb"
+   -script: pause.rb
+     parameters:
+       - resume_command: shutdown
+ 
+ use_cases:
+   - isat_uc1
+ 
+ =end
+ 
+ require 'cougaar/scripting'
+ Cougaar::ExperimentDefinition.register(__FILE__)</pre>
+<p>The first section is a ruby comment block ("=being experiment"..."=end") 
+which contains the YAML formatted description of the experiment.  The last 
+two lines contain the "magic" code which causes the ACME framework to 
+parse the YAML description out of the file, and register the experiment 
+definition.  In addition, if you run this file...</p>
+<pre> > ruby isat_expt_uc1.rb</pre>
+<p>...ACME will also execute the experiment defined within it.  This 
+enables the file to be used to both define and execute experiments.  
+What ACME does internally is similar to the modification of the main 
+script (above).  After the main script is processed, but before execution, 
+the include scripts are 'include'd into that main script, and the 
+parameters defined in the description file are passed in.  This keeps 
+the main scripts free of change, and the parameters passed into include 
+scripts to be located in a single place.  It is possible to have multiple 
+"=begin experiment / =end" definitions in a single file but the direct 
+execution of that file will run the last definition.  If this file is 
+required, rather than directly executed, it will just define the 
+experiments, but not execute them.</p>
+
+<p>One major benefit with the use of experiment definitions is that the
+parameters can be referenced by symbolic name (rather than numberic
+index):</p>
+<pre> =begin script
+ 
+ include_path: command_include.rb
+ description: Inserts a wait_for "Command" state after a given location
+ parameters:
+   - location: The location to insert the command after
+   - command_text: The command text to wait for
+ 
+ =end
+ 
+ insert_before(parameters[:location].intern) do
+   wait_for "Command", parameters[:command_text]
+ end</pre>
+
+<h3> Cougaar overlay specifications isat_expt_uc1.rb </h3>
+<pre> =begin experiment
+ 
+ name: ISAT-StressCPU
+ description: Normal run with CPU degraded to 40 percent during planning
+ script: baseline.rb
+ include_scripts:
+   - script: stress_cpu.rb
+     parameters:
+       - percent_stress: 40
+       - hosts: "hosta,hostb"
+   -script: pause.rb
+     parameters:
+       - resume_command: shutdown
+ 
+ use_cases:
+   - isat_uc1
+ 
+ cougaar_configuration:
+   - cougaar_build: B10_4_4
+   - overlays:
+     - BBN_ulconfigs_HEAD_HEAD.zip
+ 
+ =end
+ 
+ require 'cougaar/scripting'
+ Cougaar::ExperimentDefinition.register(__FILE__)</pre>
+<h3> Reporting ACME Plugins </h3>
+<pre> class ReportingCore
+   extend FreeBASE::StandardPlugin
+   
+   def self.start(plugin)
+     self.new(plugin)
+     plugin.transition(FreeBASE::RUNNING)
+   end
+   
+   attr_reader :plugin
+   def initialize(plugin)
+     @plugin = plugin
+     @reporting = @plugin['/acme/reporting']
+     @reporting.manager.add_listener(&method(:process_archive))
+   end
+   
+   def process_archive(archive_structure)
+     archive_structure.files_with_description(/Log4j/).each do |file_ref|
+       # process log4j files
+     end
+     myfile = 'myreport.txt'
+     File.open(myfile, 'w') do |file|
+       #write out report
+     end
+     archive_structure.add_report do |report|
+       report.file = myfile
+       report.description = "This is my report file"
+       report.success
+     end
+   end
+ end
+</body>
+</html>
