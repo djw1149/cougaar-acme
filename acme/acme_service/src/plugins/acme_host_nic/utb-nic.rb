@@ -5,15 +5,6 @@ require "utb/failure.rb"
 class NIC < UTB::Failure
   extend FreeBASE::StandardPlugin
   
-  def self.load(plugin)
-    begin
-      require 'utb/UTB.rb'
-      plugin.transition(FreeBASE::LOADED)
-    rescue
-      plugin.transition_failure
-    end
-  end
-  
   def self.start(plugin)
     plugin["instance"].data = NIC.new(plugin)
     plugin.transition(FreeBASE::RUNNING)
@@ -33,16 +24,14 @@ class NIC < UTB::Failure
 
   def trigger()
      if (!@isOn) then
-      `ifdown eth0`
-       #UTB.nic_close(@interface)
+      `ifdown #{@interface}`
        @isOn = true
      end
   end
 
   def reset()
     if (@isOn) then
-      `ifup eth0`
-      #UTB.nic_open(@interface)
+      `ifup  #{@interface}`
       @isOn = false
     end
   end

@@ -1,7 +1,7 @@
 --- !ruby/object:FreeBASE::PluginConfiguration 
 name: acme_host_power
 version: 1.0
-autoload: true
+autoload: false
 require_path: acme_host_power/utb-power
 startup_module: ACME::Plugins::Power
 properties_path: properties.yaml
