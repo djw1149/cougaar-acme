@@ -205,44 +205,44 @@ module Cougaar
       monitor = ExperimentMonitor.new
       
       def monitor.on_experiment_begin(experiment)
-        Cougaar.logger.info "[#{Time.now}] Experiment: #{experiment.name} started."
+        Cougaar.logger.info "Experiment: #{experiment.name} started."
       end
       def monitor.on_experiment_end(experiment)
-        Cougaar.logger.info  "[#{Time.now}] Experiment: #{experiment.name} finished."
+        Cougaar.logger.info  "Experiment: #{experiment.name} finished."
       end
       
       def monitor.on_run_begin(run)
-        Cougaar.logger.info  "[#{Time.now}]   Run: #{run.name} started."
+        Cougaar.logger.info  "  Run: #{run.name} started."
       end
       def monitor.on_run_end(run)
-        Cougaar.logger.info  "[#{Time.now}]   Run: #{run.name} finished."
+        Cougaar.logger.info  "  Run: #{run.name} finished."
       end
       
       def monitor.on_state_begin(state)
-        Cougaar.logger.info  "[#{Time.now}]     Waiting for: #{state}"
+        Cougaar.logger.info  "    Waiting for: #{state}"
       end
       def monitor.on_state_end(state)
-        Cougaar.logger.info  "[#{Time.now}]     Done: #{state}"
+        Cougaar.logger.info  "    Done: #{state}"
       end
       
       def monitor.on_action_begin(action)
-        Cougaar.logger.info  "[#{Time.now}]     Starting: #{action}"
+        Cougaar.logger.info  "    Starting: #{action}"
       end
       def monitor.on_action_end(action)
-        Cougaar.logger.info  "[#{Time.now}]     Finished: #{action}"
+        Cougaar.logger.info  "    Finished: #{action}"
       end
       
       def monitor.on_state_interrupt(state)
-        Cougaar.logger.info  "[#{Time.now}]      ** INTERRUPT ** #{state}"
+        Cougaar.logger.info  "     ** INTERRUPT ** #{state}"
       end
       def monitor.on_action_interrupt(action)
-        Cougaar.logger.info  "[#{Time.now}]      ** INTERRUPT ** #{action}"
+        Cougaar.logger.info  "     ** INTERRUPT ** #{action}"
       end
       def monitor.on_info_message(message)
-        Cougaar.logger.info  "[#{Time.now}]      INFO: #{message}"
+        Cougaar.logger.info  "     INFO: #{message}"
       end
       def monitor.on_error_message(message)
-        Cougaar.logger.error "[#{Time.now}]      ERROR: #{message}"
+        Cougaar.logger.error "     ERROR: #{message}"
       end
     end
   
@@ -349,7 +349,8 @@ module Cougaar
   class ExperimentDefinition
     attr_accessor :name, :description, :script, :include_scripts, :use_cases, :metadata
     
-    @@current=nil
+    @@current = nil
+    @@debug = false
     
     def initialize(name, description=nil)
       @name = name
@@ -400,7 +401,48 @@ module Cougaar
         @@experiments ||= {}
         @@experiments[expt.name] = expt
       end
-      expt.start if expt && file==$0
+      if expt && file==$0
+        require 'optparse'
+
+        options = {}
+        ARGV.options do |opts|
+          opts.on_tail("--help", "show this message") {puts opts; exit}
+          opts.on('--schedule', "installation directory for the Gem") {|options[:schedule]|}
+          opts.on('--priority=PRIORITY', "Priority (1=high, 2=normal, 3=low)") {|options[:priority]|}
+          opts.on('--host=HOST', "host to schedule on, default 'localhost'") {|options[:host]|}
+          opts.on('--debug', "output a  list of actions and states based on included subscripts") {|options[:debug]|}
+          opts.parse!
+        end
+
+        schedule = options[:schedule]
+        host = options[:host] || 'localhost'
+        priority = (options[:priority] || 2).to_i
+        @@debug = options[:debug]
+        if schedule
+          boundary = "----------0xKhTmLbOuNdArY"
+          content_type = "multipart/form-data; boundary=#{boundary}"
+          data = EXPERIMENT_POST_DATA
+          data = data.gsub(/\n/, "\r\n")
+          data = data.gsub(/EXPERIMENT/, File.read($0))
+          data = data.gsub(/PRIORITY/, priority.to_s)
+          data = data.gsub(/FILENAME/, $0)
+          data = data.gsub(/BOUNDARY/, boundary)
+          Net::HTTP.start(host, 9444) do |http|
+            response = http.post('/schedule_run', data, {'content-type'=>content_type})
+            data = response.read_body
+            if data
+              md = /\<h1\>Experiment Successfully Scheduled as:\<br\>(.*)\<\/h1\>/.match(data)
+              if md
+                puts "Scheduled #{$0} for execution as #{md[1]} on host #{host} with priority #{priority}"
+              else
+                puts "ERROR: Unsuccessfully scheduled experiment definition for execution"
+              end
+            end
+          end
+        else
+          expt.start
+        end
+      end
     end
     
     def self.replace_tokens(yaml)
@@ -424,6 +466,10 @@ module Cougaar
       @@experiments[@@current]
     end
     
+    def self.debug?
+      @@debug
+    end
+    
     def start
       self.class.current = name
       load script.script
@@ -442,7 +488,7 @@ module Cougaar
     end
     
     def run(runcount = 1, &block)
-      raise "The experiment defintion must be supplied in a block to the run method" unless block_given?
+      raise "The experiment definition must be supplied in a block to the run method" unless block_given?
       ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, true)) if ExperimentMonitor.active?
       MultiRun.start(self, runcount, &block)
       ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, false)) if ExperimentMonitor.active?
@@ -615,6 +661,10 @@ module Cougaar
         ExperimentDefinition.current.include_scripts.each do |include_script|
           include(include_script.script, include_script.parameter_map)
         end
+        if ExperimentDefinition.debug?
+          dump
+          exit
+        end
       end
     end
     
@@ -705,6 +755,22 @@ module Cougaar
       @stop_listeners << block if block_given?
     end
     
+    def dump
+      @sequence.definitions.each do |definition|
+        if definition.kind_of? State
+          puts "wait_for  #{definition.to_s}"
+        else
+          line = "do_action #{definition.to_s}"
+          md = /do_action AtLocation\(\'(.*)\'\)/.match(line)  #'
+          if md
+            puts "  at :#{md[1]}"
+          else
+            puts line
+          end
+        end
+      end
+    end
+    
     def info_message(message)
       ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new(message)) if ExperimentMonitor.active?
     end
@@ -729,7 +795,7 @@ module Cougaar
     def dump
       @definitions.each do |definition|
         if definition.kind_of?(Cougaar::Action)
-	  ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} do_action #{definition.class.to_s.split('::').last}")) 
+          ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} do_action #{definition.class.to_s.split('::').last}")) 
         else
           ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} wait_for #{definition.class.to_s.split('::').last}"))
         end
@@ -1347,3 +1413,25 @@ module Cougaar
   end
 end
 
+module Cougaar
+class ExperimentDefinition
+
+EXPERIMENT_POST_DATA = <<-MULTIPART
+--BOUNDARY
+Content-Disposition: form-data; name="priority"
+
+PRIORITY
+--BOUNDARY
+Content-Disposition: form-data; name="definition_file"; filename="FILENAME"
+Content-Type: application/octet-stream
+
+EXPERIMENT
+--BOUNDARY
+Content-Disposition: form-data; name="definition_text"
+
+
+--BOUNDARY--
+MULTIPART
+
+end
+end
