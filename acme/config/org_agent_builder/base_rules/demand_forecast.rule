@@ -24,7 +24,7 @@ society.each_agent do |agent|
     agent.add_component do |c|
       c.classname = demand_forecast_plugin
       c.add_argument('SUPPLY_TYPE=BulkPOL')
-      c.add_argument('SUPPLY_PG_CLASS=FueConsumerPG')
+      c.add_argument('SUPPLY_PG_CLASS=FuelConsumerPG')
     end
     agent.add_component do |c|
       c.classname = demand_forecast_plugin
