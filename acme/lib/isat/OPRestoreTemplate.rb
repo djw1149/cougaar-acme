@@ -71,9 +71,9 @@ at :ending_stage
 
   wait_for  "SocietyQuiesced", 2.hours
   if !(parameters[:stages].index(5).nil? && parameters[:stages].index(6).nil? && parameters[:stages].index(7).nil?)
-    include "post_stage_data.inc", "Stage-#{parameters[:stages].join("_")}", true
+    include "post_stage_data.inc", "Stage#{parameters[:stages].join("_")}", true
   else
-    include "post_stage_data.inc", "Stage-#{parameters[:stages].join("_")}"
+    include "post_stage_data.inc", "Stage#{parameters[:stages].join("_")}"
   end
   
 at :after_stage
