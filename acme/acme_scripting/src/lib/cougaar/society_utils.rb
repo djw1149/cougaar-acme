@@ -45,14 +45,13 @@ module Cougaar
         @layout.load_files
       end
       
-      def to_s
-        param = "('#{@layout}'"
-        param << ", '#{@hosts}'" if @hosts
-        param << ")"
-        return super.to_s+param
-      end
-      
       def perform
+        @run.info_message "Layout file #{@layout.layout_file}"
+        if @hosts
+          @run.info_message "Hosts file  #{@layout.hosts_file}"
+        else
+          @run.info_message "No hosts file used for layout"
+        end
         @layout.society = @run.society
         @layout.layout
       end
