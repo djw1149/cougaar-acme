@@ -1,6 +1,7 @@
 
 require 'cougaar/scripting'
 require 'cougaar/society_builder'
+
 module ACME ; module Plugins
 
 class XMLCougaarNode
@@ -23,7 +24,7 @@ class XMLCougaarNode
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
       node = NodeConfig.new(@plugin, command)
       pid = node.start
-      @running_nodes[pid]=node
+      @running_nodes[pid] = node
       message.reply.set_body(pid).send
     end
     
@@ -92,9 +93,23 @@ class XMLCougaarNode
       txt << "cmd_prefix=#{cmd_prefix}\n"
       cmd_suffix=@plugin.properties['cmd_suffix']
       txt << "cmd_suffix=#{cmd_suffix}\n"
-=begin
-=end
       message.reply.set_body(txt).send
+    end
+    
+    # Mount handler for receiving file via HTTP
+    @plugin['/protocols/http/xmlnode'].set_proc do |request, response|
+      if request.request_method=="POST"
+        filename = File.join(@plugin.plugin_configuration.user_filename("foo.bar", true), request.path[9..-1])
+        File.open(filename, "w") do |file|
+          file.write(request.body)
+          response.body = "File #{request.path[9..-1]} written."
+          response['Content-Type'] = "text/plain"
+        end
+        File.chmod(0644, filename)
+      else
+        response.body = "<html>XMLNode File upload only responds to HTTP POST.</html>"
+        response['Content-Type'] = "text/html"
+      end
     end
   end
   
@@ -143,8 +158,8 @@ class XMLCougaarNode
 			end
 		end
 
-		def edit_society(society, url) 
-			society.each_host do |host|
+		def edit_society
+			@society.each_host do |host|
 				host.each_node do |node|
 					#node.override_parameter("-Dorg.cougaar.class.path","/debug/classes")
           node.override_parameter("-Dorg.cougaar.workspace","#{@cip}/workspace")
@@ -153,60 +168,69 @@ class XMLCougaarNode
 					node.override_parameter("-Dorg.cougaar.system.path","#{@cip}/sys")
 					node.override_parameter("-Djava.class.path","#{@cip}/lib/bootstrap.jar")
 					node.override_parameter("-Dorg.cougaar.core.node.XML","true")
-					node.override_parameter("-Dorg.cougaar.society.file",url)
+					node.override_parameter("-Dorg.cougaar.society.file", @xml_filename)
 					node.add_parameter("-Xbootclasspath/p:#{@cip}/lib/javaiopatch.jar")
 				end
 			end
 		end
 
-		def read_config(config_str)
-			tokens = config_str.split(":")
-			host = tokens[0]
-			port = tokens[1].to_i
-			sock = TCPSocket.new(host, port)
-			text = sock.read()
-			sock.close
-			return Cougaar::SocietyBuilder.from_string(text).society
-		end
-
     def initialize(plugin, node_config)
-			@plugin = plugin
-      @plugin['log/info']  << "NEW NODE Starting. Config server = #{node_config}"
-
-			@society = read_config(node_config)
-
-      @plugin['log/info'] << "NODE Starting. parsed society.."
-      @jvm = plugin.properties['jvm_path']
-
-			@cmd_prefix = plugin.properties['cmd_prefix']
-			if (!@cmd_prefix) 
-				@cmd_prefix = ""
-			end
-			@cmd_suffix = plugin.properties['cmd_suffix']
-			if (!@cmd_suffix) 
-				@cmd_suffix = ""
-			end
-
-			@cip = plugin.properties['cip']
-      @java_class = get_java_class(@society)
-      @arguments = get_arguments(@society)
-      @env = get_env(@society)
-      @jvm_props = get_jvm_props(@society)
-      @name = get_node_name(@society)
-      @monitors = []
-      @event_queue = plugin["/plugins/Events/event"]
+      begin
+        @plugin = plugin
+        
+        @filename = File.join(@plugin.plugin_configuration.user_filename("foo.bar", true), node_config)
+        if @filename=~/.xml/
+          @xml_filename = @filename
+        else
+          @xml_filename = @filename[0..(@filename=~/.rb/)]+'xml'
+        end
+        
+        @plugin['log/info']  << "NEW NODE Starting. Config file = #{@xml_filename}"
+        
+        if @filename=~/.xml/
+          @builder = Cougaar::SocietyBuilder.from_xml_file(@filename)
+        else
+          @builder = Cougaar::SocietyBuilder.from_ruby_file(@filename)
+        end
+        
+        @society = @builder.society
+  
+        @jvm = plugin.properties['jvm_path']
+  
+        @cmd_prefix = plugin.properties['cmd_prefix']
+        if (!@cmd_prefix) 
+          @cmd_prefix = ""
+        end
+        @cmd_suffix = plugin.properties['cmd_suffix']
+        if (!@cmd_suffix) 
+          @cmd_suffix = ""
+        end
+  
+        @cip = plugin.properties['cip']
+        @java_class = get_java_class(@society)
+        @arguments = get_arguments(@society)
+        @env = get_env(@society)
+        @jvm_props = get_jvm_props(@society)
+        @name = get_node_name(@society)
+        @monitors = []
+        @event_queue = plugin["/plugins/Events/event"]
+        
+        # Edit the society per the current configuration
+        edit_society
+        @builder.to_xml_file(@xml_filename)
+        unless @filename == @xml_filename
+          File.unlink(@filename)
+        end
+        @plugin.log_info << "NODE Starting. parsed society.."
+      rescue
+        puts $!
+        puts $!.backtrace
+      end
     end
-
+    
     def start
-			require "tempfile"
-			xml = Tempfile.new("society",".")
-			edit_society(@society, xml.path)
-			text = @society.to_xml
-			xml.write(text)
-			xml.close
-  			File.chmod(0644, xml.path)
 			cmd = build_command
-      @plugin['log/info']  << "Starting command:\n#{cmd}"
+      @plugin.log_info << "Starting command:\n#{cmd}"
 
       @pipe = IO.popen(cmd)
       if @cip.index(":") == nil
@@ -222,7 +246,7 @@ class XMLCougaarNode
 					break
 				end
       end
-			@plugin['log/info'] << "DONE starting NODE: #{@pid}\n"
+			@plugin.log_info << "DONE starting NODE: #{@pid}\n"
 			return @pid
     end
 
