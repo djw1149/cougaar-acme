@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
-$:.unshift "../src/lib"
+$:.unshift Dir.pwd.split("/")[0..(Dir.pwd.split("/").index("acme_scripting"))].push("src").push("lib").join("/")
 
 require 'cougaar/scripting'
 require 'getoptlong'
