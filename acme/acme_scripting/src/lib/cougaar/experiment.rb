@@ -765,23 +765,41 @@ module Cougaar
         @action.call(@run)
       end
     end
-    class Log < Cougaar::Action
+    
+    class InfoMessage < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
-        @description = "Logs the string provided"
+        @description = "Sends an informational message to experiment monitors"
         @parameters = [
-          :str => "Logs the string provided"
+          :message => "The message to send"
         ]
-        @example = "do_action 'Log', 'Doing Stuff'"
+        @example = "do_action 'InfoMessage', 'Doing Stuff'"
       }
-      def initialize(run, str)
+      def initialize(run, message)
         super(run)
-        @str = str
+        @message = message
       end
       def perform
-        puts "#{@str}"
+        @run.info_message "#{@message}"
       end
     end
 
+    class ErrorMessage < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sends an error message to experiment monitors"
+        @parameters = [
+          :message => "The message to send"
+        ]
+        @example = "do_action 'ErrorMessage', 'This was bad'"
+      }
+      def initialize(run, message)
+        super(run)
+        @message = message
+      end
+      def perform
+        @run.error_message "#{@message}"
+      end
+    end
+    
     class Sleep < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
         @description = "Sleep the script for the specified number of seconds."
