@@ -96,6 +96,7 @@ module Cougaar
 
     class InstallCompletionMonitor < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
+      RESULTANT_STATE = "CompletionMonitorInstalled"
       DOCUMENTATION = Cougaar.document {
         @description = ""
         @parameters = []
@@ -114,9 +115,16 @@ module Cougaar
   end  # Module Actions
 
   module States
+
+    class CompletionMonitorInstalled < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Society quiescence is being actively monitored."
+      }
+    end
+    
     class SocietyQuiesced < Cougaar::State
       DEFAULT_TIMEOUT = 60.minutes
-      PRIOR_STATES = ["SocietyRunning"]
+      PRIOR_STATES = ["CompletionMonitorInstalled"]
       DOCUMENTATION = Cougaar.document {
         @description = "Waits for ACME to report that the society has quiesced ."
         @parameters = [
@@ -146,8 +154,6 @@ module Cougaar
         @run.do_action "StopCommunications"
       end
     end
-
-
 
   end  # Module States
 end

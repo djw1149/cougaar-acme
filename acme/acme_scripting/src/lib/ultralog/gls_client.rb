@@ -202,88 +202,6 @@ module Cougaar
       end
     end
     
-    class PlanningComplete < Cougaar::State
-      DEFAULT_TIMEOUT = 60.minutes
-      PRIOR_STATES = ["SocietyPlanning"]
-      DOCUMENTATION = Cougaar.document {
-        @description = "Waits for the Planning Complete Cougaar Event."
-        @parameters = [
-          {:timeout => "default=nil, Amount of time to wait in seconds."},
-          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
-        ]
-        @example = "
-          wait_for 'PlanningComplete', 2.hours do
-            puts 'Did not get Planning Complete!!!'
-            do_action 'StopSociety'
-            do_action 'StopCommunications'
-          end
-        "
-      }
-      
-      def initialize(run, timeout=nil, &block)
-        super(run, timeout, &block)
-      end
-      
-      def process
-        loop = true
-        while loop
-          event = @run.get_next_event
-          if event != nil && event.data != nil && event.data.include?("Planning Complete")
-            loop = false
-          end
-        end
-      end
-      
-      def unhandled_timeout
-        @run.do_action "StopSociety"
-        @run.do_action "StopCommunications"
-      end
-    end
-    
-    class PlanningActive < Cougaar::State
-      DEFAULT_TIMEOUT = 60.minutes
-      PRIOR_STATES = ["PlanningComplete"]
-      DOCUMENTATION = Cougaar.document {
-        @description = "Waits for the Planning Active Cougaar Event."
-        @parameters = [
-          {:timeout => "default=nil, Amount of time to wait in seconds."},
-          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
-        ]
-        @example = "
-          wait_for 'PlanningActive', 10.minutes do
-            puts 'Did not get Planning Active!!!'
-            do_action 'StopSociety'
-            do_action 'StopCommunications'
-          end
-        "
-      }
-      
-      def initialize(run, timeout=nil, &block)
-        super(run, timeout, &block)
-      end
-      
-      def process
-        loop = true
-        while loop
-          event = @run.get_next_event
-          if event != nil && event.data != nil && event.data.include?("Planning Active")
-            loop = false
-          end
-        end
-      end
-      
-      def unhandled_timeout
-        @run.do_action "StopSociety"
-        @run.do_action "StopCommunications"
-      end
-    end
-    
-    class OPlanSent < Cougaar::NOOPState
-      DOCUMENTATION = Cougaar.document {
-        @description = "Indicates that the OPlan was sent."
-      }
-    end
-    
     class SocietyPlanning < Cougaar::NOOPState
       DOCUMENTATION = Cougaar.document {
         @description = "Indicates that the society is planning."
@@ -305,23 +223,6 @@ module Cougaar
       end
     end
 
-    class SendOPlan < Cougaar::Action
-      PRIOR_STATES = ["OPlanReady"]
-      RESULTANT_STATE = "OPlanSent"
-      DOCUMENTATION = Cougaar.document {
-        @description = "Sends the OPlan to the glsinit servlet."
-        @example = "do_action 'SendOPlan'"
-      }
-      def perform
-        begin
-          result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=sendoplan")
-          raise_failure "Error sending OPlan" unless result
-        rescue
-          raise_failure "Could not send OPlan", $!
-        end
-      end
-    end
-
     class PublishNextStage < Cougaar::Action
       PRIOR_STATES = ["NextOPlanStage"]
       RESULTANT_STATE = "SocietyPlanning"
@@ -337,35 +238,6 @@ module Cougaar
           raise_failure "Error publishing next stage" unless result
         rescue
           raise_failure "Could not publish next stage", $!
-        end
-      end
-    end
-    
-    class PublishGLSRoot < Cougaar::Action
-      PRIOR_STATES = ["OPlanSent"]
-      RESULTANT_STATE = "SocietyPlanning"
-      DOCUMENTATION = Cougaar.document {
-        @description = "Publishes the GLS root task to the glsinit servlet."
-        @example = "do_action 'PublishGLSRoot'"
-      }
-      def perform
-      
-        gls_client = @run['gls_client']
-        until gls_client.gls_connected?
-          sleep 2
-        end
-
-        begin
-          if gls_client.c0_date
-            result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
-          else
-            result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}")
-          end
-          raise_failure "Error publishing OPlan" unless result
-        rescue
-          raise_failure "Could not publish OPlan", $!
-        ensure
-          gls_client.close
         end
       end
     end
