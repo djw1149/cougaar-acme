@@ -7,7 +7,7 @@ description: Stops a society and saves a persistence snapshot
 =end
 
 insert_after parameters[:snapshot_location].intern do
-  do_action "FreezeSociety"
+#  do_action "FreezeSociety"
   do_action "Sleep", 10.minutes
   do_action "SynchronizeSocietyTime"
   do_action "StopSociety"
