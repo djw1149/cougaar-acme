@@ -4,7 +4,7 @@ $POLARIS=true
 
 # $POLARIS_HOST - Which Polaris Host are you running against?
 # It should be polaris.ultralog.net for production stuff, u180 for testing.
-$POLARIS_HOST="u180"
+$POLARIS_HOST="polaris.ultralog.net"
 
 # $POLARIS_UPDATE - Should we download Cougaar and its Overlays, or reuse
 # the installation already on the the disk.
