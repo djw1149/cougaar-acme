@@ -8,6 +8,7 @@ class XMLCougaarNode
 
   def XMLCougaarNode.start(plugin)
     XMLCougaarNode.new(plugin)
+    system("rm -f society*.?") # clean up temp files
     plugin.transition(FreeBASE::RUNNING)
   end
   
@@ -146,6 +147,7 @@ class XMLCougaarNode
 			society.each_host do |host|
 				host.each_node do |node|
 					#node.override_parameter("-Dorg.cougaar.class.path","/debug/classes")
+          node.override_parameter("-Dorg.cougaar.workspace","#{@cip}/workspace")
 					node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
 					node.override_parameter("-Dorg.cougaar.install.path","#{@cip}")
 					node.override_parameter("-Dorg.cougaar.system.path","#{@cip}/sys")
@@ -249,7 +251,14 @@ class XMLCougaarNode
       @plugin['log/info'] << "Stopping process: #{@pipe.id}"
       if @pipe
 				if (@pipe.pid)
-          Process.kill(9, @pipe.pid)
+          a = `ps -falx`.split("\n")
+          pidlist = [@pid]
+          a.each do |line|
+            pidlist << line[10,5].strip if pidlist.include? line[16,5].strip
+          end
+          `kill -9 #{pidlist[2]}`
+          sleep 2
+          `kill -9 #{@pid}` 
 				end
 				@pipe.close
       end
@@ -295,7 +304,8 @@ class XMLCougaarNode
     end
     
     def build_command
-      result = @cmd_prefix
+      result = ""
+      result << @cmd_prefix
 			#@env.each {|var| result << "set #{var};"}
       result << %Q[#{@jvm} #{@jvm_props.join(" ")} #{@java_class} #{@arguments}]
 			result << @cmd_suffix
