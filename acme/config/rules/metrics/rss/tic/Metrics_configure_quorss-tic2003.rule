@@ -2,8 +2,8 @@
 ### QuO RSS configuration 
 ### for TIC 2003 using config finder
 
-sitesFeedLoader = "org.cougaar.core.qos.metrics.ConfigFinderDataFeedComponent"
-hostsFeedLoader = "org.cougaar.core.qos.metrics.ConfigFinderDataFeedComponent"
+sitesFeedLoader = "org.cougaar.core.qos.rss.ConfigFinderDataFeedComponent"
+hostsFeedLoader = "org.cougaar.core.qos.rss.ConfigFinderDataFeedComponent"
 
 sitesArgs = ["name=sites","url=cougaarconfig:TIC-Sites.conf"]
 hostsArgs = ["name=hosts","url=cougaarconfig:TIC-Hosts.conf"]
