@@ -61,7 +61,7 @@ rules = nil
 
 def help
   puts "Transforms a society with rules (and converts between xml and ruby).\nUsage:\n\t#$0 -i <input file> -l <layout file> [-h <hosts file>] -r <rules dir> [-o <output file>] [-c <communities file>] [-?]"
-  puts "\t-i --input\tThe input file (.xml or .rb)."
+  puts "\t-i --input\tThe input file (.xml or .rb) -- 'empty' assumes starting from scratch."
   puts "\t-l --layout\tThe layout file (.xml or .rb)."
   puts "\t-h --hosts\tThe hosts file (.xml or .rb)."
   puts "\t-r --rules\tThe rule directory (e.g. ./rules)."
@@ -74,8 +74,10 @@ opts.each do |opt, arg|
 	case opt
   when '--input'
     input = arg
-    input_type = :xml if (File.basename(input)!=File.basename(input, ".xml"))
-    input_type = :ruby if (File.basename(input)!=File.basename(input, ".rb"))
+    unless input == 'empty'
+      input_type = :xml if (File.basename(input)!=File.basename(input, ".xml"))
+      input_type = :ruby if (File.basename(input)!=File.basename(input, ".rb"))
+    end
   when '--layout'
     layout = arg
   when '--hosts'
@@ -107,12 +109,12 @@ unless output
   output_type = input_type
 end
 
-if (input_type==:unknown || output_type==:unknown)
+if input != 'empty' && (input_type==:unknown || output_type==:unknown)
   puts "Unknown file type on input or output.  Must be .xml or .rb."
   exit
 end
 
-unless File.exist?(input)
+if input != 'empty' && !File.exist?(input)
   puts "Cannot find file: #{input}"
   exit
 end
@@ -129,11 +131,15 @@ end
 
 print "Loading #{input}..."
 $stdout.flush
-builder = case input_type
-when :ruby
-  Cougaar::SocietyBuilder.from_ruby_file(input)
-when :xml
-  Cougaar::SocietyBuilder.from_xml_file(input)
+if input == 'empty'
+  builder = Cougaar::SocietyBuilder.from_string(Cougaar::Model::Society.new("empty").to_xml)
+else
+  builder = case input_type
+  when :ruby
+    Cougaar::SocietyBuilder.from_ruby_file(input)
+  when :xml
+    Cougaar::SocietyBuilder.from_xml_file(input)
+  end
 end
 society = builder.society
 puts "done."
