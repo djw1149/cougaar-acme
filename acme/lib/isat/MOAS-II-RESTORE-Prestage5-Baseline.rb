@@ -23,7 +23,7 @@ include_scripts:
       - description: Stage 56 Baseline
   - script: $CIP/csmart/assessment/assess/analysis_baseline_cmds.rb
     parameters:
-      - only_analyze: "moe1"
+      - only_analyze: "moe1,moe3"
       - baseline_name: base2
 
 =end

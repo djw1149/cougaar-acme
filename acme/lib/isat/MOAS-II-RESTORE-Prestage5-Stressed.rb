@@ -24,7 +24,7 @@ include_scripts:
 
   - script: $CIP/csmart/assessment/assess/analysis_stress_cmds.rb
     parameters:
-      - only_analyze: "moe1"
+      - only_analyze: "moe1,moe3"
       - baseline_name: base2
 
   - script: $CIP/csmart/lib/isat/standard_restart_nodes.rb
