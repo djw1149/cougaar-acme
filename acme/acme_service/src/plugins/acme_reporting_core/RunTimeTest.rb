@@ -21,6 +21,7 @@ module ACME
               prior = @archive.open_prior_archive(archive_name)
               run_log = prior.files_with_name(/run\.log/)[0]
               times << RunTime.new(run_log.name) if run_log
+              prior.cleanup
             end
   
 
