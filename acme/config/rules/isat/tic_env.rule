@@ -26,7 +26,7 @@ society.each_node do |node|
       start_time = param if param =~ /agent\.startTime/
     end
     unless start_time
-      node.add_parameter('-Dorg.cougaar.core.agent.startTime=07/11/2005')
+      node.add_parameter('-Dorg.cougaar.core.agent.startTime=08/10/2005')
       node.add_parameter('-Duser.timezone=GMT')
     end
     
