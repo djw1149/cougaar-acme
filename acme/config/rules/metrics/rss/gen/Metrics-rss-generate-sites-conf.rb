@@ -3,7 +3,7 @@
 # parse network.xml into QuO RSS config file
 #
 # usage
-# ruby Metrics-rss-generate-sites-conf.rb network.xml
+# ruby Metrics-rss-generate-sites-conf.rb net.xml > $CIP/configs/rss/TIC-Sites.conf
 #
 networkDef =  ARGV[0]
 # Setup Ultralog load path
@@ -43,7 +43,7 @@ puts "#  Network #{network.name} from file #{networkDef}"
 puts "#############################"
 puts "#"
 
-# Expand implicit links where the router does not traffic shap
+# Expand implicit links where the router does not traffic shape
 # These links are limited by the intra-vlan bandwidth
 # so the link should be the min of the src and dst
 network.vlans.each { |srcVlan|

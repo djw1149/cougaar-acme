@@ -2,8 +2,17 @@
 # Rule to insert  Traffic Matrix components into all Nodes
 # Includes all aspects, plugins, and architecture
 
-# [Traffic Matrix Components]
-agentflowaspect = "org.cougaar.core.mts.AgentFlowAspect"
+# The Aspect load order is defined at 
+#    https://cvs.ultralog.net/ultralog/AspectConfiguration
+#
+# aspectRecord=[className, loadOrder]
+className=0
+loadOrder=1
+
+# Traffic Matrix Aspects
+agentflowaspect = ["org.cougaar.core.mts.AgentFlowAspect",210]
+
+# Traffic Matrix Plugins
 agentflowrateplugin = "org.cougaar.core.qos.metrics.AgentFlowRatePlugin"
 
 
@@ -11,12 +20,15 @@ aspects_to_add = [agentflowaspect]
 
 # Add all traffic matrix senor on all node agents mts insertion point
 society.each_node_agent() do |node_agent|
-   aspects_to_add.each { |comp| 
-     node_agent.add_component do |c|
-     c.classname = comp
-     c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
-     end
-    }
+  aspects_to_add.each { |comp| 
+    node_agent.add_component do |c|
+      c.classname = comp[className]
+      if defined? c.order
+	c.order = comp[loadOrder]
+      end
+      c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+    end
+  }
 end
 
 # convert raw sensor to metric service

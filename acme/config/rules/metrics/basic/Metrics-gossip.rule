@@ -5,34 +5,45 @@
 
 # Message Transport Asspects
 # Used to manage requests for metrics and transfer of the messages themselves
-# insertion point: Node.AgentManager.Agent.MessageTransport.Aspect
+#
+# The Aspect load order is defined at 
+#    https://cvs.ultralog.net/ultralog/AspectConfiguration
+#
+# aspectRecord=[className, loadOrder]
+className=0
+loadOrder=1
 
-gossipaspect = "org.cougaar.core.mts.GossipAspect"
-gossipstatisticsserviceaspect = "org.cougaar.core.mts.GossipStatisticsServiceAspect"
-simplegossipqualifiercomponent = "org.cougaar.core.mts.SimpleGossipQualifierComponent"
+gossipAspect = ["org.cougaar.core.mts.GossipAspect",230]
+statisticsService = ["org.cougaar.core.mts.GossipStatisticsServiceAspect",240]
+simpleGossipQualifier = ["org.cougaar.core.mts.SimpleGossipQualifierComponent",250]
 
-gossip_components_to_add = [gossipaspect, gossipstatisticsserviceaspect, simplegossipqualifiercomponent]
+gossip_components_to_add = [gossipAspect, statisticsService, simpleGossipQualifier]
 
+# RSS components
 gossipfeed = "org.cougaar.core.qos.rss.GossipFeedComponent"
 
 # Add Gossip Components to a MTS insertion point
 society.each_node_agent() do |node_agent|
   gossip_components_to_add.each { |comp|
-     node_agent.add_component do |c|
-       c.classname = comp
-       c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
-     end
-    }
+    node_agent.add_component do |c|
+      c.classname = comp[className]
+      if defined? c.order
+	c.order = comp[loadOrder]
+      end
+      c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+    end
+  }
 
 
-# Metrics Service Components
-# Adds a data feed for importing the requests from the 
- node_agent.add_component do |c|
-   c.classname = gossipfeed
-   c.insertionpoint = "Node.AgentManager.Agent.MetricsServices.Component"
- end
+  # Metrics Service Components
+  # Adds a data feed for importing the requests from the 
+  node_agent.add_component do |c|
+    c.classname = gossipfeed
+    c.insertionpoint = "Node.AgentManager.Agent.MetricsServices.Component"
+  end
 end
 
 
 # Gossip Monitoring servlet
-# TBD
+#  servlet = org.cougaar.core.mts.GossipServlet
+# Added as part of the mts.statisticsPlugin

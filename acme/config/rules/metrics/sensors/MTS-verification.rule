@@ -4,23 +4,31 @@
 # compatible with other MTS aspects
 
 # Message Transport Aspects
-# insertion point: Node.AgentManager.Agent.MessageTransport.Aspect
+# The Aspect load order is defined at 
+#    https://cvs.ultralog.net/ultralog/AspectConfiguration
+#
+# aspectRecord=[className, loadOrder]
+className=0
+loadOrder=1
 
 # Detect if message has not been delivered for 10 seconds
-deliver = "org.cougaar.core.mts.DeliveryVerificationAspect"
+deliver = ["org.cougaar.core.mts.DeliveryVerificationAspect",220]
 # Detect if agent to agent messages are out of sequence, dropped, or duplicated
-sequence= "org.cougaar.core.mts.SequenceAspect.java"
+sequence= ["org.cougaar.core.mts.SequenceAspect.java", 222]
 # Single step through messages with gui
-step= "org.cougaar.core.mts.StepperAspect.java"
+step= ["org.cougaar.core.mts.StepperAspect.java",224]
 
 components_to_add = [deliver]
 
 # Add Components to MTS Aspects insertion point
 society.each_node_agent() do |node_agent|
   components_to_add.each { |comp|
-     node_agent.add_component do |c|
-       c.classname = comp
-       c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
-     end
-    }
+    node_agent.add_component do |c|
+      c.classname = comp[className]
+      if defined? c.order
+	c.order = comp[loadOrder]
+      end
+      c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+    end
+  }
 end
