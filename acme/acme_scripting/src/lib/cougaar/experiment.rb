@@ -420,6 +420,7 @@ module Cougaar
     def interrupt
       if @continue_after_timeout
         @continue_after_timeout = false
+        ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Continuing from failed state #{@definitions[@current_definition].name}...")) if ExperimentMonitor.active?
         return
       end
       state = @definitions[@current_definition]
