@@ -43,6 +43,7 @@ unless host
 end
 
 client = InfoEther::MessageRouter::Client.new("CommandLineInterface", host)
+client.start
 
 expts = []
 client.available_clients.each do |c|

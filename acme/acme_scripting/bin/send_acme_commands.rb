@@ -42,6 +42,7 @@ unless host
 end
 
 client = InfoEther::MessageRouter::Client.new("CommandLineInterface", host)
+client.start
 
 society.each_service_host("acme") do |acme_host|
   reply = client.new_message(acme_host.host_name).set_body("command[#{command}]").request
