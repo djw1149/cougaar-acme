@@ -1,26 +1,28 @@
 =begin
-/* 
- * <copyright>
- *  Copyright 2002-2003 BBNT Solutions, LLC
- *  under sponsorship of the Defense Advanced Research Projects Agency (DARPA).
- * 
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the Cougaar Open Source License as published by
- *  DARPA on the Cougaar Open Source Website (www.cougaar.org).
- * 
- *  THE COUGAAR SOFTWARE AND ANY DERIVATIVE SUPPLIED BY LICENSOR IS
- *  PROVIDED 'AS IS' WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR
- *  IMPLIED, INCLUDING (BUT NOT LIMITED TO) ALL IMPLIED WARRANTIES OF
- *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND WITHOUT
- *  ANY WARRANTIES AS TO NON-INFRINGEMENT.  IN NO EVENT SHALL COPYRIGHT
- *  HOLDER BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT OR CONSEQUENTIAL
- *  DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE OF DATA OR PROFITS,
- *  TORTIOUS CONDUCT, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- *  PERFORMANCE OF THE COUGAAR SOFTWARE.
- * </copyright>
- */
+ * <copyright>  
+ *  Copyright 2001-2004 InfoEther LLC  
+ *  Copyright 2001-2004 BBN Technologies
+ *
+ *  under sponsorship of the Defense Advanced Research Projects  
+ *  Agency (DARPA).  
+ *   
+ *  You can redistribute this software and/or modify it under the 
+ *  terms of the Cougaar Open Source License as published on the 
+ *  Cougaar Open Source Website (www.cougaar.org <www.cougaar.org> ).   
+ *   
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR 
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * </copyright>  
 =end
-
 
 require 'cougaar/scripting'
 require 'cougaar/society_builder'
@@ -76,7 +78,7 @@ class XMLCougaarNode
       "Starts Cougaar node and returns PID. Params: filename (previously posted to /xmlnode) "
     @plugin["/plugins/acme_host_communications/commands/start_xml_node"].set_proc do |message, command| 
       node = NodeConfig.new(self, @plugin, command)
-      pid = node.start
+      pid = node.start(message.from)
       puts "STARTED: #{pid}"
       running_nodes[pid] = node
       message.reply.set_body(pid).send
@@ -340,6 +342,11 @@ class XMLCougaarNode
 				end
 			end
 		end
+    
+    STARTING = 1
+    RUNNING = 2
+    STOPPING = 3
+    STOPPED = 4
 
     def initialize(xml_cougaar_node, plugin, node_config)
       begin
@@ -377,7 +384,7 @@ class XMLCougaarNode
         @jvm_props = get_jvm_props(@society)
         @name = get_node_name(@society)
         @monitors = []
-        @event_queue = plugin["/plugins/Events/event"]
+        @event_queue = plugin["/plugins/acme_cougaar_events/event"]
         
         # Edit the society per the current configuration
         edit_society
@@ -387,6 +394,7 @@ class XMLCougaarNode
           File.unlink(@filename)
         end
         @plugin.log_info << "NODE Starting. parsed society.."
+        @status = STOPPED
       rescue
         puts $!
         puts $!.backtrace
@@ -401,7 +409,8 @@ class XMLCougaarNode
       @xml_cougaar_node.jabber.connection.send(iq)
     end
 
-    def start
+    def start(script_name)
+      @status = STARTING
       cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} >& #{@config_mgr.cougaar_install_path}/workspace/nodelogs/#{@name}.log")
       # wwright: use the line below to allow stdio to go to message clients 
       #          instead of a file
@@ -411,7 +420,18 @@ class XMLCougaarNode
 
       @mproc = MonitoredProcess.new(cmd)
       @mproc.addStdioListener(self)
-      @mproc.start
+      @mproc.start do 
+        # called on process death
+        if @status == RUNNING
+          event = CougaarEvent.new
+          event.node = name
+          event.experiment = script_name
+          event.event_type = "NODE_DEATH"
+          event.cluster_identifier = name
+          event.component = "ACME_SERVICE"
+          @event_queue << event
+        end
+      end
 
 			@pid = @mproc.pid.to_s
       if @pid == ''
@@ -424,6 +444,7 @@ class XMLCougaarNode
 				end
       end
 			@plugin.log_info << "DONE starting NODE: #{@pid}\n"
+      @status = RUNNING
 			return @pid
     end
 
@@ -484,9 +505,11 @@ class XMLCougaarNode
     end
 
     def stop
+      @status = STOPPING
       @monitors.each {|thread| thread.kill}
       @plugin['log/info'] << "Stopping process: #{@mproc.pid}"
       @mproc.kill
+      @status = STOPPED
       @plugin['log/info'] << "Stopped process."
     end
     
