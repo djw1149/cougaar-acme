@@ -32,6 +32,7 @@ module Cougaar
         time = Time.now.gmtime
         @run.society.each_node do |node|
           node.replace_parameter(/Dorg.cougaar.core.society.startTime/, "-Dorg.cougaar.core.society.startTime=\"#{time.strftime('%m/%d/%Y %H:%M:%S')}\"")
+#          node.replace_parameter(/Dorg.cougaar.core.node.SkipReconciliation/, "-Dorg.cougaar.core.node.SkipReconciliation=true")
         end
 
         @run.society.communities = Cougaar::Model::Communities.from_xml_file(@run.society, "#{ENV['CIP']}/workspace/P/communities.xml")
