@@ -43,7 +43,7 @@ module Cougaar
         @action = block
       end
       def perform
-        @action.call(::UltraLog::OPlan.from_society(@run.society))
+        @action.call(::UltraLog::OPlan.new(@run.society))
       end
     end
   end
@@ -62,69 +62,13 @@ module UltraLog
     # Class to hold the oplan data provided by editOplan servlet.
     #
     class OPlan
-        attr_reader :organizations, :host, :port, :uri_frag
+        attr_reader :organizations, :society
 
-        ##
-        # Constructs an Oplan from uri.
-        #
-        # uri:: [String] Node uri for NCA
-        #
-        def initialize(uri)
-          @base_uri = uri
-          @uri = uri+"/$NCA/editOplan"
-          get_data
+        def initialize(society)
+          @society = society
+          @organizations = {}
         end
         
-        def self.from_society(society)
-          OPlan.new(society.agents['NCA'].node.uri)
-        end
-        
-      private
-
-        ##
-        # Populates the oplan created by parsing the return page from oplan servlet.
-        #
-        def get_data 
-            re0 = /\<td\>(.+)\<\/td\>/
-            re1 = /.*href=\"(.+)\">(\S+).*/
-            #puts "host=#{@host} port=#{@port}"
-            result,uri = Cougaar::Communications::HTTP.get(@uri)
-            @host = uri.host
-            @port = uri.port
-            #puts "new_host=#{@host} new_port=#{@port}"
-            array = []
-            result.each_line {|line| array << line.strip}
-            result = array.join("\n")
-            start = result.index("</tr>\n</tr>\n")
-            stop = result.index("</table>")
-            result = result[(start+12)...stop]
-            result = result.split("</tr>\n")
-            @organizations = {}
-            
-            result.each do |org_data|
-                org_name = re0.match(org_data)[1]
-                org = OrganizationData.new(self, org_name)
-                org_activity_data = org_data.scan(re1)
-
-                activity_list = []
-                org_activity_data.each do |item|
-                    activity_list << OrgActivity.new(org, *item) 
-                end
-
-                if activity_list.size==3
-                    t = activity_list.pop
-                    activity_list.push nil
-                    activity_list.push t
-                end
-
-                org.org_activities = activity_list
-                @organizations[org_name] = org
-            end
- 
-#            print_detail_all
-
-        end
-
       public
 
         ##
@@ -132,15 +76,17 @@ module UltraLog
         #
         # org:: [String] Name of organization
         #
-        def [](org)
-            return @organizations[org]
+        def [](org_name)
+          @organizations[org_name] = OrganizationData.new(self, org_name)
         end
 
         ##
-        # Publish the modified oplan.
+        # Publish the modified oplan to each of the org agents.
         #
         def publish
-            result,uri = Cougaar::Communications::HTTP.get("#{@uri}?action=Publish")
+            @organizations.each do |key, value| 
+              result,uri = Cougaar::Communications::HTTP.get("#{value.uri}?action=Publish")
+            end
         end
 
         ##
@@ -184,7 +130,7 @@ module UltraLog
     # Class to hold the organization data required by editOplan servlet.
     #
     class OrganizationData
-        attr_reader :oplan
+        attr_reader :oplan, :host, :port, :uri_frag
         attr_accessor :org_name, :org_activities
 
         ##
@@ -193,9 +139,57 @@ module UltraLog
         # oplan:: [Cougaar::Oplan] Reference to oplan object
         # org:: [String] Name of the organization
         #
-        def initialize(oplan, org)
+        def initialize(oplan, org_name)
             @oplan = oplan
-            @org_name = org
+            @org_name = org_name
+            @uri = oplan.society.agents[org_name].node.uri + "/$#{org_name}/editOplan"
+            get_data
+        end
+
+      private
+
+        ##
+        # Populates the oplan for this org by parsing the return page from oplan servlet.
+        #
+        def get_data 
+            re0 = /\<td\>(.+)\<\/td\>/
+            re1 = /.*href=\"(.+)\">(\S+).*/
+            #puts "host=#{@host} port=#{@port}"
+            result,uri = Cougaar::Communications::HTTP.get(@uri)
+            @host = uri.host
+            @port = uri.port
+            #puts "new_host=#{@host} new_port=#{@port}"
+            array = []
+            result.each_line {|line| array << line.strip}
+            result = array.join("\n")
+            start = result.index("</tr>\n</tr>\n")
+            stop = result.index("</table>")
+            result = result[(start+12)...stop]
+            result = result.split("</tr>\n")
+            
+            result.each do |org_data|
+                if (@org_name != re0.match(org_data)[1])
+                  next
+                end
+                
+                org_activity_data = org_data.scan(re1)
+
+                activity_list = []
+                org_activity_data.each do |item|
+                    activity_list << OrgActivity.new(org, *item) 
+                end
+
+                if activity_list.size==3
+                    t = activity_list.pop
+                    activity_list.push nil
+                    activity_list.push t
+                end
+
+                @org_activities = activity_list
+            end
+ 
+#            print_detail_all
+
         end
 
       public
