@@ -1,5 +1,4 @@
-#!/restart
-bin/bash
+#!/bin/bash
 # init file for ACME
 #
 # description: Ultra*Log Automated Configuration Management Environment (ACME) Daemon
