@@ -78,8 +78,8 @@ DLAHQ,DLAHQ,MIL,SubsistenceSupplyProvider,JOINT,TerminalInventoryManager,C .gt. 
 HNS,HNS,MIL,FuelSupplyProvider,JOINT,TerminalInventoryManager,
 HNS,HNS,MIL,PackagedPOLSupplyProvider,JOINT,TerminalInventoryManager,
 OSC,OSC,MIL,AmmunitionProvider,JOINT,TerminalAmmunitionPacker,C .gt. 30
-TRANSCOM-7,TRANSCOM-7,MIL,StrategicTransportationProvider,JOINT,ModeSelector
-TRANSCOM-1,TRANSCOM-1,MIL,StrategicTransportationProvider,JOINT,StubTransportationProvider
+TRANSCOM-7,TRANSCOM-7,TRANSCOM.MIL,StrategicTransportationProvider,JOINT,ModeSelector
+TRANSCOM-1,TRANSCOM-1,TRANSCOM.MIL,StrategicTransportationProvider,JOINT,StubTransportationProvider
 USAEUR,USAEUR,MIL,ArmyCommander,US-ARMY,
 CONUSGround,CONUSGround,TRANSCOM.MIL,ToPOEGroundTransportationProvider,JOINT,
 GlobalAir,AMC,TRANSCOM.MIL,AirTransportationProvider,JOINT,
@@ -87,7 +87,7 @@ GlobalSea,MSC,TRANSCOM.MIL,SeaTransportationProvider,JOINT,
 PlanePacker,PlanePacker,TRANSCOM.MIL,OrganicAirTransportationProvider,JOINT,
 ShipPacker,ShipPacker,TRANSCOM.MIL,ShipPackingTransportationProvider,JOINT,
 TheaterGround,TheaterGround,TRANSCOM.MIL,FromPODGroundTransportationProvider,JOINT,
-TRANSCOM-20,TRANSCOM-20,MIL,StrategicTransportationProvider,JOINT,TaskSorter
+TRANSCOM-20,TRANSCOM-20,TRANSCOM.MIL,StrategicTransportationProvider,JOINT,TaskSorter
 EuroTRANSCOM,EuroTRANSCOM,TRANSCOM.MIL,EuroStrategicTransportationProvider,JOINT,ModeSelector
 EuroSea,EuroSea,TRANSCOM.MIL,SeaTransportationProvider,JOINT,
 EuroShipPacker,EuroShipPacker,TRANSCOM.MIL,ShipPackingTransportationProvider,JOINT,

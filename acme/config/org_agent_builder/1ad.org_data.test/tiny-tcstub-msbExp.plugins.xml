@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<society name='ACME-UL-SOCIETY'
+<society name='tiny-tcstub-msbExp.facets'
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:noNamespaceSchemaLocation='http://www.cougaar.org/2003/society.xsd'>
   <host name='localhost'>
@@ -1338,8 +1338,6 @@
         <facet org_id='1-AD'  />
         <facet orig_org_id='1-AD'  />
         <facet superior_org_id='5-CORPS'  />
-        <facet subordinate_org_id='2-BDE-1-AD'  />
-        <facet subordinate_org_id='DISCOM-1-AD'  />
         <facet home_location='ULRK'  />
         <facet uic='WAPBAA'  />
         <facet combat_support='CMD'  />
@@ -1349,6 +1347,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='2-BDE-1-AD'  />
+        <facet subordinate_org_id='DISCOM-1-AD'  />
         <facet echelon_of_support='DIVISION' mechanism='PassThrough' role='StrategicTransportationProvider'  />
         <facet sca_supported_org='1-AD' sca_echelon_of_support='CORPS'  />
         <component
@@ -2566,7 +2566,7 @@
         <facet echelon='BATTALION'  />
         <facet echelon_group='Division'  />
         <facet is_deployable='T'  />
-        <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
+        <facet echelon_of_support='DIVISION' mechanism='' role='SubsistenceSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -2899,10 +2899,6 @@
         <facet org_id='123-MSB-HQ'  />
         <facet orig_org_id='123-MSB-HQ'  />
         <facet superior_org_id='DISCOM-1-AD'  />
-        <facet subordinate_org_id='123-MSB-POL'  />
-        <facet subordinate_org_id='123-MSB-ORD'  />
-        <facet subordinate_org_id='123-MSB-PARTS'  />
-        <facet subordinate_org_id='123-MSB-FOOD'  />
         <facet home_location='AJPG'  />
         <facet uic='WDJ0A0'  />
         <facet combat_support='CSS'  />
@@ -2912,6 +2908,10 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='123-MSB-POL'  />
+        <facet subordinate_org_id='123-MSB-ORD'  />
+        <facet subordinate_org_id='123-MSB-PARTS'  />
+        <facet subordinate_org_id='123-MSB-FOOD'  />
         <facet sca_supported_org='1-AD' sca_echelon_of_support='DIVISION'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -3518,7 +3518,7 @@
         <facet echelon='BATTALION'  />
         <facet echelon_group='Division'  />
         <facet is_deployable='T'  />
-        <facet echelon_of_support='DIVISION' role='AmmunitionProvider'  />
+        <facet echelon_of_support='DIVISION' mechanism='' role='AmmunitionProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3857,7 +3857,7 @@
         <facet echelon='BATTALION'  />
         <facet echelon_group='Division'  />
         <facet is_deployable='T'  />
-        <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
+        <facet echelon_of_support='DIVISION' mechanism='' role='SparePartsProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -4197,7 +4197,7 @@
         <facet echelon_group='Division'  />
         <facet is_deployable='T'  />
         <facet echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
-        <facet echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='DIVISION' mechanism='' role='FuelSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -5760,9 +5760,6 @@
         <facet org_id='2-BDE-1-AD'  />
         <facet orig_org_id='2-BDE-1-AD'  />
         <facet superior_org_id='1-AD'  />
-        <facet subordinate_org_id='1-6-INFBN'  />
-        <facet subordinate_org_id='1-35-ARBN'  />
-        <facet subordinate_org_id='47-FSB'  />
         <facet home_location='VTYA'  />
         <facet uic='WAPGAA'  />
         <facet combat_support='CBT'  />
@@ -5772,6 +5769,9 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='1-6-INFBN'  />
+        <facet subordinate_org_id='1-35-ARBN'  />
+        <facet subordinate_org_id='47-FSB'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6380,7 +6380,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
+        <facet echelon_of_support='CORPS' role='SparePartsProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6980,10 +6980,6 @@
         <facet org_id='21-TSC-HQ'  />
         <facet orig_org_id='21-TSC-HQ'  />
         <facet superior_org_id='USAEUR'  />
-        <facet subordinate_org_id='AWR-2'  />
-        <facet subordinate_org_id='200-MMC'  />
-        <facet subordinate_org_id='29-SPTGP'  />
-        <facet subordinate_org_id='37-TRANSGP'  />
         <facet home_location='CYWK'  />
         <facet uic='WNBSAA'  />
         <facet combat_support='CSS'  />
@@ -6993,6 +6989,10 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='AWR-2'  />
+        <facet subordinate_org_id='200-MMC'  />
+        <facet subordinate_org_id='29-SPTGP'  />
+        <facet subordinate_org_id='37-TRANSGP'  />
         <facet echelon_of_support='THEATER' mechanism='PassThrough' role='StrategicTransportationProvider'  />
         <facet sca_supported_org='USAEUR' sca_echelon_of_support='THEATER'  />
         <component
@@ -7594,8 +7594,6 @@
         <facet org_id='29-SPTGP'  />
         <facet orig_org_id='29-SPTGP'  />
         <facet superior_org_id='21-TSC-HQ'  />
-        <facet subordinate_org_id='51-MAINTBN'  />
-        <facet subordinate_org_id='191-ORDBN'  />
         <facet home_location='LXQD'  />
         <facet uic='WCAYAA'  />
         <facet combat_support='CSS'  />
@@ -7605,6 +7603,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='51-MAINTBN'  />
+        <facet subordinate_org_id='191-ORDBN'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -8204,7 +8204,6 @@
         <facet org_id='3-SUPCOM-HQ'  />
         <facet orig_org_id='3-SUPCOM-HQ'  />
         <facet superior_org_id='5-CORPS'  />
-        <facet subordinate_org_id='7-CSG'  />
         <facet home_location='YRBU'  />
         <facet uic='WBG0AA'  />
         <facet combat_support='CSS'  />
@@ -8214,6 +8213,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='7-CSG'  />
         <facet echelon_of_support='CORPS' mechanism='PassThrough' role='StrategicTransportationProvider'  />
         <facet sca_supported_org='3-SUPCOM-HQ' sca_echelon_of_support='CORPS'  />
         <component
@@ -8815,7 +8815,6 @@
         <facet org_id='316-POL-SUPPLYBN'  />
         <facet orig_org_id='316-POL-SUPPLYBN'  />
         <facet superior_org_id='7-CSG'  />
-        <facet subordinate_org_id='900-POL-SUPPLYCO'  />
         <facet home_location='XJN1'  />
         <facet uic='WSRPAA'  />
         <facet combat_support='CSS'  />
@@ -8825,7 +8824,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Not Used Now' echelon_of_support='CORPS' role='FuelTransportProvider'  />
+        <facet subordinate_org_id='900-POL-SUPPLYCO'  />
+        <facet echelon_of_support='CORPS' role='FuelTransportProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10034,7 +10034,6 @@
         <facet org_id='37-TRANSGP'  />
         <facet orig_org_id='37-TRANSGP'  />
         <facet superior_org_id='21-TSC-HQ'  />
-        <facet subordinate_org_id='6-TCBN'  />
         <facet home_location='MJPG'  />
         <facet uic='WCJZAA'  />
         <facet combat_support='CSS'  />
@@ -10044,6 +10043,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='6-TCBN'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10652,7 +10652,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
+        <facet echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -11261,8 +11261,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='BRIGADE' role='AmmunitionProvider'  />
-        <facet echelon_of_support='BRIGADE' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='BRIGADE' mechanism='' role='AmmunitionProvider'  />
+        <facet echelon_of_support='BRIGADE' mechanism='' role='FuelSupplyProvider'  />
         <facet echelon_of_support='BRIGADE' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
         <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
@@ -11866,8 +11866,6 @@
         <facet org_id='5-CORPS'  />
         <facet orig_org_id='5-CORPS'  />
         <facet superior_org_id='USAEUR'  />
-        <facet subordinate_org_id='1-AD'  />
-        <facet subordinate_org_id='3-SUPCOM-HQ'  />
         <facet home_location='CYWK'  />
         <facet uic='WAT6AA'  />
         <facet combat_support='CMD'  />
@@ -11877,6 +11875,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='1-AD'  />
+        <facet subordinate_org_id='3-SUPCOM-HQ'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12476,7 +12476,6 @@
         <facet org_id='51-MAINTBN'  />
         <facet orig_org_id='51-MAINTBN'  />
         <facet superior_org_id='29-SPTGP'  />
-        <facet subordinate_org_id='343-SUPPLYCO'  />
         <facet home_location='VYZR'  />
         <facet uic='WB0HAA'  />
         <facet combat_support='CSS'  />
@@ -12486,6 +12485,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='343-SUPPLYCO'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -13085,7 +13085,6 @@
         <facet org_id='561-SSBN'  />
         <facet orig_org_id='561-SSBN'  />
         <facet superior_org_id='7-CSG'  />
-        <facet subordinate_org_id='406-SUPPLYCO'  />
         <facet home_location='HDBL'  />
         <facet uic='WDEEAA'  />
         <facet combat_support='CSS'  />
@@ -13095,6 +13094,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='406-SUPPLYCO'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14303,7 +14303,6 @@
         <facet org_id='6-TCBN'  />
         <facet orig_org_id='6-TCBN'  />
         <facet superior_org_id='37-TRANSGP'  />
-        <facet subordinate_org_id='110-POL-SUPPLYCO'  />
         <facet home_location='HERT'  />
         <facet uic='WCKKAA'  />
         <facet combat_support='CSS'  />
@@ -14313,7 +14312,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Not Used Now' echelon_of_support='THEATER' role='FuelTransportProvider'  />
+        <facet subordinate_org_id='110-POL-SUPPLYCO'  />
+        <facet echelon_of_support='THEATER' role='FuelTransportProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14913,10 +14913,6 @@
         <facet org_id='7-CSG'  />
         <facet orig_org_id='7-CSG'  />
         <facet superior_org_id='3-SUPCOM-HQ'  />
-        <facet subordinate_org_id='71-MAINTBN'  />
-        <facet subordinate_org_id='561-SSBN'  />
-        <facet subordinate_org_id='316-POL-SUPPLYBN'  />
-        <facet subordinate_org_id='125-ORDBN'  />
         <facet home_location='AVFD'  />
         <facet uic='WH7MAA'  />
         <facet combat_support='CSS'  />
@@ -14926,6 +14922,10 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='71-MAINTBN'  />
+        <facet subordinate_org_id='561-SSBN'  />
+        <facet subordinate_org_id='316-POL-SUPPLYBN'  />
+        <facet subordinate_org_id='125-ORDBN'  />
         <facet sca_supported_org='5-CORPS' sca_echelon_of_support='CORPS'  />
         <facet sca_supported_org='7-CSG' sca_echelon_of_support='DIVISION'  />
         <component
@@ -15527,7 +15527,6 @@
         <facet org_id='71-MAINTBN'  />
         <facet orig_org_id='71-MAINTBN'  />
         <facet superior_org_id='7-CSG'  />
-        <facet subordinate_org_id='565-RPRPTCO'  />
         <facet home_location='YKLA'  />
         <facet uic='WB0RAA'  />
         <facet combat_support='CSS'  />
@@ -15537,6 +15536,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='565-RPRPTCO'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -16750,9 +16750,9 @@
         <facet combat_support='CSS'  />
         <facet echelon='GROUP'  />
         <facet echelon_group='Theater'  />
-        <facet note='C .lt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='AmmunitionProvider'  />
-        <facet note='C .lt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SparePartsProvider'  />
-        <facet note='C .lt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SubsistenceSupplyProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='AmmunitionProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SparePartsProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SubsistenceSupplyProvider'  />
         <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -17077,7 +17077,6 @@
         <facet org_id='DISCOM-1-AD'  />
         <facet orig_org_id='DISCOM-1-AD'  />
         <facet superior_org_id='1-AD'  />
-        <facet subordinate_org_id='123-MSB-HQ'  />
         <facet home_location='ULRK'  />
         <facet uic='WAPLAA'  />
         <facet combat_support='CSS'  />
@@ -17087,6 +17086,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <facet subordinate_org_id='123-MSB-HQ'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17690,9 +17690,9 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet note='Remove' echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='ConstructionSupplyProvider'  />
-        <facet note='C .gt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SparePartsProvider'  />
-        <facet note='C .gt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SubsistenceSupplyProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='ConstructionSupplyProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SparePartsProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalInventoryManager' role='SubsistenceSupplyProvider'  />
         <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -18343,6 +18343,360 @@
           insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
       </agent>
+      <agent name='NCA' class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='NCA'  />
+        <facet orig_org_id='NCA'  />
+        <facet home_location='VDYD'  />
+        <facet combat_support='CMD'  />
+        <facet echelon='JOINT'  />
+        <facet echelon_group='Conus'  />
+        <facet subordinate_org_id='TRANSCOM-1'  />
+        <facet subordinate_org_id='HNS'  />
+        <facet subordinate_org_id='DLAHQ'  />
+        <facet subordinate_org_id='OSC'  />
+        <facet subordinate_org_id='USEUCOM'  />
+        <facet echelon_of_support='JOINT' role='LogisticsCommanderInChief'  />
+        <facet echelon_of_support='JOINT' role='OperationalCommanderInChief'  />
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.planning.servlet.PlanViewServlet
+          </argument>
+          <argument>
+            /tasks
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.glm.servlet.GLMCompletionServlet(/completion)'
+          class='org.cougaar.glm.servlet.GLMCompletionServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            /completion
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.HierarchyServlet,/hierarchy)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.planning.servlet.HierarchyServlet
+          </argument>
+          <argument>
+            /hierarchy
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.mlm.ui.servlet.DataGathererServlet,/datagatherer)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.mlm.ui.servlet.DataGathererServlet
+          </argument>
+          <argument>
+            /datagatherer
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent(org.cougaar.logistics.servlet.LogisticsInventoryServlet,/log_inventory)'
+          class='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.logistics.servlet.LogisticsInventoryServlet
+          </argument>
+          <argument>
+            /log_inventory
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.planning.servlet.LoaderServletComponent(/load)'
+          class='org.cougaar.planning.servlet.LoaderServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            /load
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet,/CSMART_AgentInfoServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet
+          </argument>
+          <argument>
+            /CSMART_AgentInfoServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet,/CSMART_CommunityProviderServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet
+          </argument>
+          <argument>
+            /CSMART_CommunityProviderServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.MetricsServlet,/CSMART_MetricsServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.MetricsServlet
+          </argument>
+          <argument>
+            /CSMART_MetricsServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.SearchServlet,/CSMART_SearchServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.SearchServlet
+          </argument>
+          <argument>
+            /CSMART_SearchServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.PlanServlet,/CSMART_PlanServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.PlanServlet
+          </argument>
+          <argument>
+            /CSMART_PlanServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.wp.WhitePagesServlet(/wp)'
+          class='org.cougaar.core.wp.WhitePagesServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            /wp
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.mobility.servlet.MoveAgentServlet()'
+          class='org.cougaar.core.mobility.servlet.MoveAgentServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.planning.plugin.completion.SimpleTimeAdvanceComponent(DEAD_NODE_TIMEOUT=180000,NORMAL_TIME_ADVANCE_DELAY=300000)'
+          class='org.cougaar.planning.plugin.completion.SimpleTimeAdvanceComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            DEAD_NODE_TIMEOUT=180000
+          </argument>
+          <argument>
+            NORMAL_TIME_ADVANCE_DELAY=300000
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
+          class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.community.CommunityPlugin()'
+          class='org.cougaar.community.CommunityPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.yp.YPServer()'
+          class='org.cougaar.yp.YPServer'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.util.yp.PublishTaxonomy()'
+          class='org.cougaar.servicediscovery.util.yp.PublishTaxonomy'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(0)'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            0
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='LOW'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF)'
+          class='org.cougaar.mlm.plugin.organization.GLSInitServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            093FF
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin()'
+          class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
+          class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.generic.GenericTablePlugin(default_allocation_rules.xml)'
+          class='org.cougaar.mlm.plugin.generic.GenericTablePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            default_allocation_rules.xml
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
+          class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
+          class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            forward.xml
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.qos.metrics.PersistenceAdapterPlugin'
+          class='org.cougaar.core.qos.metrics.PersistenceAdapterPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+      </agent>
       <agent name='OSC' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='OSC'  />
         <facet orig_org_id='OSC'  />
@@ -18351,7 +18705,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet note='C .gt. 30' echelon_of_support='JOINT' mechanism='TerminalAmmunitionPacker' role='AmmunitionProvider'  />
+        <facet echelon_of_support='JOINT' mechanism='TerminalAmmunitionPacker' role='AmmunitionProvider'  />
         <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -18696,364 +19050,9 @@
           insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
       </agent>
-      <agent name='NCA' class='org.cougaar.core.agent.SimpleAgent'>
-        <facet org_id='NCA'  />
-        <facet orig_org_id='NCA'  />
-        <facet superior_org_id=''  />
-        <facet subordinate_org_id='TRANSCOM'  />
-        <facet subordinate_org_id='HNS'  />
-        <facet subordinate_org_id='DLAHQ'  />
-        <facet subordinate_org_id='OSC'  />
-        <facet subordinate_org_id='USEUCOM'  />
-        <facet home_location='VDYD'  />
-        <facet combat_support='CMD'  />
-        <facet echelon='JOINT'  />
-        <facet echelon_group='Conus'  />
-        <facet echelon_of_support='JOINT' role='LogisticsCommanderInChief'  />
-        <facet echelon_of_support='JOINT' role='OperationalCommanderInChief'  />
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.planning.servlet.PlanViewServlet
-          </argument>
-          <argument>
-            /tasks
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.glm.servlet.GLMCompletionServlet(/completion)'
-          class='org.cougaar.glm.servlet.GLMCompletionServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            /completion
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.HierarchyServlet,/hierarchy)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.planning.servlet.HierarchyServlet
-          </argument>
-          <argument>
-            /hierarchy
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.mlm.ui.servlet.DataGathererServlet,/datagatherer)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.mlm.ui.servlet.DataGathererServlet
-          </argument>
-          <argument>
-            /datagatherer
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent(org.cougaar.logistics.servlet.LogisticsInventoryServlet,/log_inventory)'
-          class='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.logistics.servlet.LogisticsInventoryServlet
-          </argument>
-          <argument>
-            /log_inventory
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.planning.servlet.LoaderServletComponent(/load)'
-          class='org.cougaar.planning.servlet.LoaderServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            /load
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet,/CSMART_AgentInfoServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet
-          </argument>
-          <argument>
-            /CSMART_AgentInfoServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet,/CSMART_CommunityProviderServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet
-          </argument>
-          <argument>
-            /CSMART_CommunityProviderServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.MetricsServlet,/CSMART_MetricsServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.MetricsServlet
-          </argument>
-          <argument>
-            /CSMART_MetricsServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.SearchServlet,/CSMART_SearchServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.SearchServlet
-          </argument>
-          <argument>
-            /CSMART_SearchServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.PlanServlet,/CSMART_PlanServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.PlanServlet
-          </argument>
-          <argument>
-            /CSMART_PlanServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.wp.WhitePagesServlet(/wp)'
-          class='org.cougaar.core.wp.WhitePagesServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            /wp
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.mobility.servlet.MoveAgentServlet()'
-          class='org.cougaar.core.mobility.servlet.MoveAgentServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.planning.plugin.completion.SimpleTimeAdvanceComponent(DEAD_NODE_TIMEOUT=180000,NORMAL_TIME_ADVANCE_DELAY=300000)'
-          class='org.cougaar.planning.plugin.completion.SimpleTimeAdvanceComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            DEAD_NODE_TIMEOUT=180000
-          </argument>
-          <argument>
-            NORMAL_TIME_ADVANCE_DELAY=300000
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
-          class='org.cougaar.core.mobility.service.RedirectMovePlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.community.CommunityPlugin()'
-          class='org.cougaar.community.CommunityPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.yp.YPServer()'
-          class='org.cougaar.yp.YPServer'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.util.yp.PublishTaxonomy()'
-          class='org.cougaar.servicediscovery.util.yp.PublishTaxonomy'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
-          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
-          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
-          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(0)'
-          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            0
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
-          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
-          </argument>
-          <argument>
-            /matchmaker_query
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
-          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='LOW'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
-          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
-          class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF)'
-          class='org.cougaar.mlm.plugin.organization.GLSInitServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            093FF
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin()'
-          class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
-          class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.generic.GenericTablePlugin(default_allocation_rules.xml)'
-          class='org.cougaar.mlm.plugin.generic.GenericTablePlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            default_allocation_rules.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
-          class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
-          class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.qos.metrics.PersistenceAdapterPlugin'
-          class='org.cougaar.core.qos.metrics.PersistenceAdapterPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.yp.YPClientComponent()'
-          class='org.cougaar.yp.YPClientComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.YPService'>
-        </component>
-      </agent>
-      <agent name='TRANSCOM' class='org.cougaar.core.agent.SimpleAgent'>
-        <facet org_id='TRANSCOM'  />
-        <facet orig_org_id='TRANSCOM'  />
+      <agent name='TRANSCOM-1' class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='TRANSCOM-1'  />
+        <facet orig_org_id='TRANSCOM-1'  />
         <facet superior_org_id='NCA'  />
         <facet home_location='VDYD'  />
         <facet combat_support='CSS'  />
@@ -19372,13 +19371,13 @@
         <facet org_id='USAEUR'  />
         <facet orig_org_id='USAEUR'  />
         <facet superior_org_id='USEUCOM'  />
-        <facet subordinate_org_id='5-CORPS'  />
-        <facet subordinate_org_id='21-TSC-HQ'  />
         <facet home_location='VDYD'  />
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet echelon_of_support='US-ARMY' role='ArmyCommander'  />
+        <facet subordinate_org_id='5-CORPS'  />
+        <facet subordinate_org_id='21-TSC-HQ'  />
+        <facet echelon_of_support='US-ARMY' mechanism='' role='ArmyCommander'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -19696,11 +19695,11 @@
         <facet org_id='USEUCOM'  />
         <facet orig_org_id='USEUCOM'  />
         <facet superior_org_id='NCA'  />
-        <facet subordinate_org_id='USAEUR'  />
         <facet home_location='VDYD'  />
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
+        <facet subordinate_org_id='USAEUR'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'

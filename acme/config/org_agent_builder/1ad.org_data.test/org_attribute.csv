@@ -1,14 +1,14 @@
 order,orig_org_id,base_org_id,suffix,org_name,combat_support,echelon,echelon_group,is_ua,is_deployable,has_physical_assets,has_equipment_assets,has_personnel_assets,uic,home_location
 1,NCA,OSD,GOV,NCA,CMD,JOINT,Conus,N,N,N,N,N,,VDYD
-2,TRANSCOM-1,TRANSCOM-1,MIL,TRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
-3,TRANSCOM-7,TRANSCOM-7,MIL,TRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
+2,TRANSCOM-1,TRANSCOM-1,TRANSCOM.MIL,TRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
+3,TRANSCOM-7,TRANSCOM-7,TRANSCOM.MIL,TRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 4,GlobalSea,MSC,TRANSCOM.MIL,GlobalSea,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 5,ShipPacker,ShipPacker,TRANSCOM.MIL,ShipPacker,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 6,GlobalAir,AMC,TRANSCOM.MIL,GlobalAir,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 7,PlanePacker,PlanePacker,TRANSCOM.MIL,PlanePacker,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 8,CONUSGround,CONUSGround,TRANSCOM.MIL,CONUSGround,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 9,TheaterGround,TheaterGround,TRANSCOM.MIL,TheaterGround,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
-10,TRANSCOM-20,TRANSCOM-20,MIL,TRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
+10,TRANSCOM-20,TRANSCOM-20,TRANSCOM.MIL,TRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 11,EuroTRANSCOM,EuroTRANSCOM,TRANSCOM.MIL,EuroTRANSCOM,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 12,EuroSea,EuroSea,TRANSCOM.MIL,EuroSea,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
 13,EuroShipPacker,EuroShipPacker,TRANSCOM.MIL,EuroShipPacker,CSS,JOINT,Transcom,N,N,N,N,N,,VDYD
