@@ -17,7 +17,8 @@ insert_after parameters[:start_tag] do
   end
 
   parameters[:ks_to_stress].each { |link|
-     do_action "ShapeHost", link[:router], link[:bandwidth], link[:target]
+     do_action "ShapeHost", link['router'], link['bandwidth'], link['target']
+     do_action "InfoMessage", "ShapeHost( #{link['router']}, #{link['bandwidth']}, #{link['target']})"
   }
 
   at :network_stress_start
