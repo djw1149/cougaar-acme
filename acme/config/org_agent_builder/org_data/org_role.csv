@@ -62,18 +62,18 @@ orig_org_id,base_org_id,suffix,role,echelon_of_support,role_mechanism,notes
 6-TCBN,6-TCBN,37-TRANSGP.21-TSC.ARMY.MIL,FuelTransportProvider,THEATER,,Not Used Now
 900-POL-SUPPLYCO,900-POL-SUPPLYCO,7-CSG.5-CORPS.ARMY.MIL,FuelSupplyProvider,CORPS,,
 900-POL-SUPPLYCO,900-POL-SUPPLYCO,7-CSG.5-CORPS.ARMY.MIL,PackagedPOLSupplyProvider,CORPS,,
-AWR-2,AWR-2,21-TSC.ARMY.MIL,AmmunitionProvider,JOINT,TerminalInventoryManager,C < 30
-AWR-2,AWR-2,21-TSC.ARMY.MIL,SparePartsProvider,JOINT,TerminalInventoryManager,C < 30
-AWR-2,AWR-2,21-TSC.ARMY.MIL,SubsistenceSupplyProvider,JOINT,TerminalInventoryManager,C < 30
+AWR-2,AWR-2,21-TSC.ARMY.MIL,AmmunitionProvider,JOINT,TerminalInventoryManager,C .lt. 30
+AWR-2,AWR-2,21-TSC.ARMY.MIL,SparePartsProvider,JOINT,TerminalInventoryManager,C .lt. 30
+AWR-2,AWR-2,21-TSC.ARMY.MIL,SubsistenceSupplyProvider,JOINT,TerminalInventoryManager,C .lt. 30
 CONUSGround,CONUSGround,TRANSCOM.MIL,CONUSGroundTransportationProvider,JOINT,,
 DLAHQ,DLAHQ,MIL,ConstructionSupplyProvider,JOINT,TerminalInventoryManager,Remove
-DLAHQ,DLAHQ,MIL,SparePartsProvider,JOINT,TerminalInventoryManager,C > 30
-DLAHQ,DLAHQ,MIL,SubsistenceSupplyProvider,JOINT,TerminalInventoryManager,C > 30
+DLAHQ,DLAHQ,MIL,SparePartsProvider,JOINT,TerminalInventoryManager,C .gt. 30
+DLAHQ,DLAHQ,MIL,SubsistenceSupplyProvider,JOINT,TerminalInventoryManager,C .gt. 30
 GlobalAir,AMC,TRANSCOM.MIL,AirTransportationProvider,JOINT,,
 GlobalSea,MSC,TRANSCOM.MIL,SeaTransportationProvider,JOINT,,
 HNS,HNS,MIL,FuelSupplyProvider,JOINT,TerminalInventoryManager,
 HNS,HNS,MIL,PackagedPOLSupplyProvider,JOINT,TerminalInventoryManager,
-OSC,OSC,MIL,AmmunitionProvider,JOINT,TerminalAmmunitionPacker,C > 30
+OSC,OSC,MIL,AmmunitionProvider,JOINT,TerminalAmmunitionPacker,C .gt. 30
 PlanePacker,PlanePacker,TRANSCOM.MIL,OrganicAirTransportationProvider,JOINT,,
 ShipPacker,ShipPacker,TRANSCOM.MIL,ShipPackingTransportationProvider,JOINT,,
 TheaterGround,TheaterGround,TRANSCOM.MIL,TheaterStrategicTransportationProvider,JOINT,,
