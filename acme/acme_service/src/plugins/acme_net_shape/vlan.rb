@@ -44,8 +44,8 @@ module VlanSupport
         # Add a Class to the primary QDisc
         `/sbin/tc class add dev #{@device}.#{id} parent 1:1 classid 1:#{to_vlan.id} htb rate #{link.bandwidth}Mbit burst 15k ceil #{link.bandwidth}Mbit`
 
-        # Add the TBF to the Class
-        `/sbin/tc qdisc add dev #{@device}.#{id} parent 1:#{to_vlan.id} sfq perturb 10`
+        # Add the SFQ to the Class
+        `/sbin/tc qdisc add dev #{@device}.#{id} parent 1:#{to_vlan.id} handle #{to_vlan.id}:1 sfq perturb 10`
 
         # And a filter, to let it know to use the class.
         `/sbin/tc filter add dev #{@device}.#{id} protocol ip parent 1: prio 1 u32 match ip src 10.155.#{to_vlan.id}.0/24 flowid 1:#{to_vlan.id}`
@@ -117,47 +117,3 @@ module VlanSupport
   end
 end
 
-module ACME; module Plugins
-
-class Shaper < UTB::Failure
-  extend FreeBASE::StandardPlugin
-
-  def self.start(plugin)
-    plugin["instance"].data = Shaper.new( plugin )
-    plugin['log/info'] << "ACME::Plugin::Shaper[start]"
-
-    plugin.transition(FreeBASE::RUNNING)
-  end
-
-  def self.stop(plugin)
-    plugin["instance"].data.reset()
-    plugin['log/info'] << "ACME::Plugin::Shaper[stop]"
-
-    plugin.transition(FreeBASE::LOADED)
-  end
-
-  attr_reader :plugin
-
-  def initialize( plugin )
-    super( plugin )
-    @network = VlanSupport::Network.new( plugin.properties["config"] )
-  end
-
-  def trigger
-    plugin['log/info'] << "ACME::Plugin::Shaper[trigger]"
-    if (!@isOn) then
-      @isOn = true
-      @network.do_shaping
-    end
-  end
-
-  def reset
-    plugin['log/info'] << "ACME::Plugin::Shaper[reset]"
-    if (@isOn) then
-      @isOn = false
-      @network.stop_shaping
-    end
-  end
-end
-
-end; end
