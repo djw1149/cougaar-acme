@@ -69,7 +69,13 @@ module ACME; module Plugins
           if next_experiment
             data = File.read(next_experiment)
             File.delete(next_experiment)
-            run_experiment(File.basename(next_experiment), data)
+            begin
+              run_experiment(File.basename(next_experiment), data)
+            rescue Exception => e
+              @plugin.log_error << "Exception running experiment #{next_experiment}"
+              @plugin.log_error <<  e.to_s
+              @plugin.log_error <<  e.backtrace.join("\n")
+            end
           else
             sleep 5
           end
@@ -106,6 +112,7 @@ module ACME; module Plugins
       out_log = File.join(@script_dir, 'scheduledRun.log')
       File.open(@current, 'w') { |f| f.puts(data)}
       cmd = @cougaar_config.manager.cmd_wrap("ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0 >& #{out_log}")
+      @start_time = Time.now
       result = `#{cmd}`
       cmd = @cougaar_config.manager.cmd_wrap("rm -f #{@current}")
       `#{cmd}`
@@ -229,7 +236,9 @@ module ACME; module Plugins
         params['disabled'] = 'checked' if queue_disabled?
         params['experiment'] = current
         if @current
-          params['experiment'] = @ikko['schedule_queue_current.html', {'experiment'=>@current}]
+          start_time = @start_time ? @start_time.strftime("%m/%d/%y %H:%M:%S") : "unknown"
+          run_time = @start_time ? (Time.now - @start_time).to_i/60 : "unknown"
+          params['experiment'] = @ikko['schedule_queue_current.html', {'experiment'=>@current, 'start_time'=>start_time, 'run_time'=>run_time}]
         else
           params['experiment'] = "None"
         end
