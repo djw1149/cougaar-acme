@@ -594,7 +594,7 @@ module Cougaar
         yield self if block_given?
       end
       
-      #Methods deligated to node agent
+      #Methods delegated to node agent
       def add_components(array)
         @agent.add_components(array)
       end
@@ -614,7 +614,7 @@ module Cougaar
       def has_component?(name=nil, &block)
         @agent.has_component?(name, &block)
       end
-      #End deligated methods
+      #End delegated methods
       
       ##
       # Add an agent to this node
