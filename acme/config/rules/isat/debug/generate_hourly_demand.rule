@@ -1,0 +1,19 @@
+####################################################
+# Rule to generate hourly demand
+# plugin = org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin
+
+demand_generator = "org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin"
+
+society.each_agent do |agent|
+   if agent.get_facet(:is_ua) == "T"
+     agent.each_component do |c|
+        if c.classname == demand_generator
+          c.arguments.delete_if { |arg|
+            arg.value[0..15] == "GENERATE_PERIOD="
+          }
+          c.add_argument("GENERATE_PERIOD=3600000")
+          c.name = c.comparison_name
+        end
+     end
+   end
+end
