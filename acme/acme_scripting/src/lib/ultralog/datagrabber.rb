@@ -100,7 +100,7 @@ module UltraLog
     #
     class Run
       DEFAULT_TIMEOUT = 30*60 # (30 minutes in seconds)
-      attr_reader :datagrabber, :id, :status, :action
+      attr_reader :datagrabber, :id, :status, :action, :start_time, :end_time, :units, :assets
       
       ##
       # Constructs a Run instance
@@ -110,11 +110,15 @@ module UltraLog
       # status:: [String] The current status
       # action:: [String] The action of the run instance
       #
-      def initialize(datagrabber, id, status, action)
+      def initialize(datagrabber, id, status, action, start_time, end_time, units, assets)
         @datagrabber = datagrabber
         @id = id
         @status = status
         @action = action
+        @start_time = start_time
+        @end_time = end_time
+        @units = units
+        @assets = assets
       end
       
       ##
@@ -180,9 +184,13 @@ module UltraLog
       while lines[offset].strip=="<TR>"
         offset = offset + 1
         id = strip_tags(lines[offset].strip).to_i
+        start_time = strip_tags(lines[offset+1].strip)
+        end_time = strip_tags(lines[offset+2].strip)
+        units = strip_tags(lines[offset+3].strip).to_i
+        assets = strip_tags(lines[offset+4].strip).to_i
         status = strip_tags(lines[offset+5].strip)
         action = strip_tags(lines[offset+6].strip)
-        runs << Run.new(self, id, status, action)
+        runs << Run.new(self, id, status, action, start_time, end_time, units, assets)
         offset = offset + 7
       end
       return runs
@@ -204,9 +212,14 @@ end
 
 
 if __FILE__ == $0
-  dg = UltraLog::DataGrabber.new("u180")
+  dg = UltraLog::DataGrabber.new("localhost")
   run = dg.new_run
   puts "Waiting for datagrabber..."
   run.wait_for_completion
   puts "Final status: #{run.status}"
+  runs = dg.get_runs
+  puts "got runs"
+  runs.each do |run|
+    puts "RUN: #{run.id} assets: #{run.assets} units: #{run.units} start: #{run.start_time} end: #{run.end_time}\n"
+  end
 end
