@@ -1,29 +1,3 @@
-=begin
- * <copyright>  
- *  Copyright 2001-2004 InfoEther LLC  
- *  Copyright 2001-2004 BBN Technologies
- *
- *  under sponsorship of the Defense Advanced Research Projects  
- *  Agency (DARPA).  
- *   
- *  You can redistribute this software and/or modify it under the 
- *  terms of the Cougaar Open Source License as published on the 
- *  Cougaar Open Source Website (www.cougaar.org <www.cougaar.org> ).   
- *   
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
- *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
- *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR 
- *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
- *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
- *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
- *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
- *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
- *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
- *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
- * </copyright>  
-=end
-
 module ACME; module Plugins
 
   class TICScheduler
@@ -78,7 +52,8 @@ module ACME; module Plugins
     def disable_queue
       return if @queue_status=="disabled"
       @plugin.properties['queue_status'] = "disabled"
-      stop_queue
+#      Commented out because we don't want to set the queue_thread to nil
+#      stop_queue
       load_properties
     end
     
@@ -96,19 +71,23 @@ module ACME; module Plugins
       @queue_thread = Thread.new do
         dirpath = File.join(@experiment_path, "experiment-*")
         while(true)
-          next_experiment = Dir.glob(dirpath).sort.first
-          if next_experiment
-            data = File.read(next_experiment)
-            File.delete(next_experiment)
-            begin
-              run_experiment(File.basename(next_experiment), data)
-            rescue Exception => e
-              @plugin.log_error << "Exception running experiment #{next_experiment}"
-              @plugin.log_error <<  e.to_s
-              @plugin.log_error <<  e.backtrace.join("\n")
+          if queue_enabled?
+            next_experiment = Dir.glob(dirpath).sort.first
+            if next_experiment
+              data = File.read(next_experiment)
+              File.delete(next_experiment)
+              begin
+                run_experiment(File.basename(next_experiment), data)
+              rescue Exception => e
+                @plugin.log_error << "Exception running experiment #{next_experiment}"
+                @plugin.log_error <<  e.to_s
+                @plugin.log_error <<  e.backtrace.join("\n")
+              end
+            else
+              sleep 5
             end
           else
-            sleep 5
+            sleep 10
           end
         end
       end
