@@ -8,27 +8,76 @@
 #    https://cvs.ultralog.net/ultralog/AspectConfiguration
 #
 # aspectRecord=[className, loadOrder]
-className=0
-loadOrder=1
+aspectIP = "Node.AgentManager.Agent.MessageTransport.Aspect"
+metricIP = "Node.AgentManager.Agent.MetricsServices.Component"
+mtsIP = "Node.AgentManager.Agent.MessageTransport.Component"
+
+# define helper methods to add aspects
+def add_component(agent, component)
+  agent.add_component do |c|
+    if component.kind_of? String
+      c.classname = component
+    elsif component.kind_of? Hash
+      classname = component["classname"]
+      c.classname = classname
+      order = component["order"]
+      c.order = order.to_i unless (order.nil? || !(defined? c.order))
+      priority = component["priority"]
+      c.priority = priority unless priority.nil?
+      ip = component["ip"]
+      c.insertionpoint = ip  unless ip.nil?
+      params = component["params"]
+      unless params.nil?
+	if params.kind_of? Array
+	  params.each { |param|
+	    c.add_argument(param)
+	  }
+	elsif params.kind_of? Hash
+	  params.each_pair {|key, value|
+	    c.add_argument("#{key}=#{value}")
+	  }
+	else
+	  raise "Unknown params type: #{params}"
+	end
+      end
+    else
+      raise "Unknown type: #{component}"
+    end
+  end
+end
+def add_components(components_to_add)
+  society.each_node_agent() do |node_agent|
+    components_to_add.each { |component| 
+      add_component(node_agent, component)
+    }
+  end
+end
+
 
 # Detect if message has not been delivered for 10 seconds
-deliver = ["org.cougaar.core.mts.DeliveryVerificationAspect",220]
+deliver = {
+  "classname" =>"org.cougaar.core.mts.DeliveryVerificationAspect",
+  "order" =>"220",
+  "ip" => aspectIP,
+  "params" => {"warn-time" => "99",
+               "info-time" => "9"
+              }
+}
+
 # Detect if agent to agent messages are out of sequence, dropped, or duplicated
-sequence= ["org.cougaar.core.mts.SequenceAspect.java", 222]
+sequence= {
+  "classname" =>"org.cougaar.core.mts.SequenceAspect.java",
+  "order" =>"222",
+  "ip" => aspectIP,
+}
+
 # Single step through messages with gui
-step= ["org.cougaar.core.mts.StepperAspect.java",224]
+step= {
+  "classname" =>"org.cougaar.core.mts.StepperAspect.java",
+  "order" =>224,
+  "ip" => aspectIP,
+}
 
 components_to_add = [deliver]
 
-# Add Components to MTS Aspects insertion point
-society.each_node_agent() do |node_agent|
-  components_to_add.each { |comp|
-    node_agent.add_component do |c|
-      c.classname = comp[className]
-      if defined? c.order
-	c.order = comp[loadOrder]
-      end
-      c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
-    end
-  }
-end
+add_components(components_to_add)
