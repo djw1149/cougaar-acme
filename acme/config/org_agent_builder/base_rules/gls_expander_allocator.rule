@@ -2,8 +2,14 @@
 # Rule to insert GLSExpander and GLSAllocator Plugins with arguments
 # plugin = org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin
 # plugin = org.cougaar.mlm.plugin.organization.GLSExpanderPlugin
-### OLD-FORM:  plugin = org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,ClassISubsistence,Consumable,MaintainInventory,PackagedPOL,StrategicTransportation)
-### NEW-FORM:  plugin = org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,Consumable,MaintainInventory,PackagedPOL,StrategicTransportation,Subsistence)
+# If the agent is a UA agent, do not include the arguments:
+#  -- Ammunition
+#  -- PackagePOL
+#  -- Consumable
+# If the agent has a Role == FuelSupplyProvider and a mechanism == TruckScheduler,
+# do not insert the arguments: BulkPOL and MaintainInventory.  This is because
+# the FSB Agent (only agent that matches the requirements above) does not handle
+# these Requirements.
 
 gls_allocator_plugin = "org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin"
 gls_expander_plugin = "org.cougaar.mlm.plugin.organization.GLSExpanderPlugin"
