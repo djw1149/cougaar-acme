@@ -86,14 +86,13 @@ module Cougaar
       end
       
       def process
-        @reg = @run.comms.on_cougaar_event do |event| 
+        loop = true
+        while loop
+          event = @run.get_next_event
           if event.event_type=="STATUS" && event.cluster_identifier=="NCA" && event.component=="OPlanDetector"
-            @run.comms.remove_on_cougaar_event(@reg)
-            @currentThread.wakeup if @currentThread
+            loop = false
           end
         end
-        @currentThread = Thread.current
-        Thread.stop
         gls_client = ::UltraLog::GLSClient.new(run)
         @run['gls_client'] = gls_client
         until gls_client.can_send_oplan?
@@ -116,14 +115,13 @@ module Cougaar
       end
       
       def process
-        @reg = @run.comms.on_cougaar_event do |event| 
+        loop = true
+        while loop
+          event = @run.get_next_event
           if event.event_type=="STATUS" && event.cluster_identifier=="5-CORPS" && event.component=="OPlanDetector"
-            @run.comms.remove_on_cougaar_event(@reg)
-            @currentThread.wakeup if @currentThread
+            loop = false
           end
         end
-        @currentThread = Thread.current
-        Thread.stop
         gls_client = @run['gls_client']
         until gls_client.gls_connected?
           sleep 2
@@ -145,14 +143,13 @@ module Cougaar
       end
       
       def process
-        @reg = @run.comms.on_cougaar_event do |event| 
+        loop = true
+        while loop
+          event = @run.get_next_event
           if event.data.include?("Planning Complete")
-            @run.comms.remove_on_cougaar_event(@reg)
-            @currentThread.wakeup if @currentThread
+            loop = false
           end
         end
-        @currentThread = Thread.current
-        Thread.stop
       end
       
       def unhandled_timeout

@@ -19,6 +19,8 @@
 # </copyright>
 #
 
+require 'thread'
+
 module Cougaar
 
   def self.new_experiment(name, society=nil)
@@ -150,12 +152,43 @@ module Cougaar
     end
   end
   
+  class CougaarEventQueue
+    def initialize()
+      @q     = []
+      @mutex = Mutex.new
+      @cond  = ConditionVariable.new
+    end
+  
+    def enqueue(*elems)
+      @mutex.synchronize do
+        @q.push *elems
+        @cond.signal
+      end
+    end
+  
+    def dequeue()
+      @mutex.synchronize do
+        while @q.empty? do
+          @cond.wait(@mutex)
+        end
+  
+        return @q.shift
+      end
+    end
+  
+    def empty?()
+      @mutex.synchronize do
+        return @q.empty?
+      end
+    end
+  end
+  
   class Run
     STOPPED = 1
     STARTED = 2
     
-    attr_reader :experiment, :count, :sequence, :name
-    attr_accessor :comms, :society
+    attr_reader :experiment, :count, :sequence, :name, :comms
+    attr_accessor :society
     
     def initialize(multirun, count)
       @count = count
@@ -166,6 +199,18 @@ module Cougaar
       @state = STOPPED
       @properties = {}
       @name = "#{@experiment.name}-#{count+1}of#{@multirun.run_count}"
+      @event_queue = CougaarEventQueue.new
+    end
+    
+    def comms=(comms)
+      @comms = comms
+      @comms.on_cougaar_event do |event|
+        @event_queue.enqueue(event)
+      end
+    end
+    
+    def get_next_event
+      @event_queue.dequeue
     end
     
     def [](property)
