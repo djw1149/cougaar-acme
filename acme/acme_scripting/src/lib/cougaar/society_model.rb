@@ -374,6 +374,17 @@ module Cougaar
       end
 
       ##
+      # Returns the total number of nodes in the society
+      #
+      def num_nodes
+        count = 0
+        @hostList.each { |host| 
+          count += host.nodes.size
+        }
+        return count
+      end
+
+      ##
       # Clones this society/hosts/nodes/agents/plugins
       #
       # return:: [Cougaar::Society] The newly cloned society

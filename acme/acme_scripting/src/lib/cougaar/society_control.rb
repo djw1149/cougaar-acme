@@ -248,9 +248,10 @@ module Cougaar
 
       def advance_and_wait(time_in_seconds)
         result = true
+        change_time = Time.now + 5 * @run.society.num_nodes  # add 5 sec per node
         @run.society.each_node do |node|
 	  next unless node.active?
-          myuri = node.agent.uri+"/timeControl?timeAdvance=#{time_in_seconds*1000}&executionRate=#{@execution_rate}"
+          myuri = node.agent.uri+"/timeControl?timeAdvance=#{time_in_seconds*1000}&executionRate=#{@execution_rate}&changeTime=#{change_time.to_i * 1000}"
           @run.info_message "URI: #{myuri}" if @debug
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           md = @scenario_time.match(data)
@@ -280,6 +281,10 @@ module Cougaar
             result = comp.wait_for_change_to_state("COMPLETE", @timeout)
           end
         end
+
+        # make sure we don't progress until the time we've told the society to put the new time into effect
+        sleep (change_time - Time.now).ceil 
+
         @run.info_message "Society time advanced to #{get_society_time}"
         return result
       end
