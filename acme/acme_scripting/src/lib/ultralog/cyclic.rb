@@ -28,8 +28,6 @@ module Cougaar; module Actions
 
     @@threads = {}
 
-    attr_accessor :pid
-
     def initialize( run, name, on_time, off_time ) 
       @run = run
       super( run )
@@ -38,24 +36,28 @@ module Cougaar; module Actions
       @off_time = off_time
     end
 
+    def self.threads
+      @@threads
+    end
+
+    def to_s
+      "#{super.to_s}"
+    end
+
+    def stop
+      @running = false
+      @thread.join
+    end
+
     def perform
       @running = true
-      trap ("SIGUSR1") {
-        @running = false
-      }
-
-      @pid = fork {
-         i = 0 
+   
+      @thread = Thread.new {
          while (@running) do
            stress_on
            sleep( @on_time )
            stress_off
            sleep( @off_time )
-           i += 1
-           if (i > 20) then
-             @run.error_message("WARNING!  Killing the thread because it hasn't stopped.")
-             @running = false
-           end 
          end
       }
     end
@@ -80,10 +82,13 @@ module Cougaar; module Actions
       @name = name
     end
 
+    def to_s
+      "#{super.to_s}(#{@name})"
+    end
+
     def perform
       cs = CyclicStress.threads[@name]
-      Process.kill( "SIGUSR1", cs.pid )
-      Process.waitpid( cs.pid )
+      cs.stop
     end
   end
 

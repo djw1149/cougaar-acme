@@ -374,11 +374,19 @@ module Cougaar; module Actions
     }
     def initialize(run, handle, on_time, off_time, router, target)
       super(run, handle, on_time, off_time)
+      @on_time = on_time
+      @off_time = off_time
+      @handle = handle
       @router = router
       @target = target
     end
 
+    def to_s
+       "#{super.to_s}(#{@on_time}, #{@off_time}, #{@handle}, #{@router}, #{@target})"
+    end
+
     def perform
+      net = @run['network']
       @run.society.each_service_host( @router ) { |host|
          case (host.get_facet(:host_type))
            when "standard":
@@ -388,30 +396,89 @@ module Cougaar; module Actions
            when "router":
              subnet = net.subnet[ host.get_facet(:subnet) ]
              klink = subnet.klink[ @target ]
-             @run.error_message("WARNING!  Router #{host.name} has no K-Link to #{@target}")
+             @run.error_message("WARNING!  Router #{host.name} has no K-Link to #{@target}") if klink.nil?
          end
       }
-      super.perform
+      super
     end
 
     def stress_on
+      net = @run['network']
       @run.society.each_service_host( @router ) { |host|
          case (host.get_facet(:host_type))
            when "router":
              subnet = net.subnet[ host.get_facet(:subnet) ]
              klink = subnet.klink[ @target ]
-             @run.comms.new_message(host).set_body("command[net]disable(#{klink.interface})").send
+             @run.info_message("Disabling #{host.name}:#{klink.interface} network interface")
+             rc = @run.comms.new_message(host).set_body("command[net]disable(#{klink.interface})").send(true)
          end
      }          
     end
 
     def stress_off
+      net = @run['network']
       @run.society.each_service_host( @router ) { |host|
          case (host.get_facet(:host_type))
            when "router":
              subnet = net.subnet[ host.get_facet(:subnet) ]
              klink = subnet.klink[ @target ]
-             @run.comms.new_message(host).set_body("command[net]enable(#{klink.interface})").send
+             @run.info_message("Enabling #{host.name}:#{klink.interface} network interface")
+             rc = @run.comms.new_message(host).set_body("command[net]enable(#{klink.interface})").send(true)
+         end
+      }          
+    end
+  end
+
+  class IntermittentCLinks < CyclicStress
+    DOCUMENATION = Cougaar.document {
+      @description = "Cyclicly deactivates and re-activates a network interface."
+      @parameters = [
+        {:handle => "required, Handle to refer to the intermittent thread.",
+         :on_time => "required, Amount of time stressor is on.",
+         :off_time => "required, Amount of time stressor is off.",
+         :facet => "required, Facet on hosts to disable C-Link on."}
+      ]
+      @example = "do_action 'IntermittentCLinks', 'IN-C-001', 4.minutes, 4.minutes, 'C-LINK-KILLS'"
+    }
+
+    def initialize(run, handle, on_time, off_time, facet)
+      super(run, handle, on_time, off_time)
+      @facet = facet
+    end
+
+    def perform
+      net = @run['network']
+      @run.society.each_service_host( @facet ) { |host|
+         case (host.get_facet(:host_type))
+           when "migratory":
+             @run.error_message("WARNING!  Migratory Host #{host.name} not supported until after the PAD.")
+           when "router":
+             subnet = net.subnet[ host.get_facet(:subnet) ]
+             klink = subnet.klink[ @target ]
+             @run.error_message("WARNING!  Must kill C-Links on standard hosts.")
+         end
+      }
+      super
+    end
+
+    def stress_on
+      net = @run['network']
+      @run.society.each_service_host( @facet ) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+             @run.info_message("Disabling #{host.name}:#{host.get_facet(:interface)} network interface")
+             @run.comms.new_message(host).set_body("command[net]disable(#{host.get_facet(:interface)})").send()
+         end
+     }          
+    end
+
+    def stress_off
+      net = @run['network']
+      @run.society.each_service_host( @facet ) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+             @run.info_message("Enabling #{host.name}:#{host.get_facet(:interface)} network interface")
+             @run.comms.new_message(host).set_body("command[net]enable(#{host.get_facet(:interface)})").send
          end
       }          
     end
