@@ -64,27 +64,35 @@ module ACME
         @ikko = ikko
       end
       
-      def perform
+      def perform=
         comp_files = @archive.files_with_description(/completion/)
         baseline_name = @archive.group_baseline
-        puts "!!! #{baseline_name}"
         baseline = @archive.open_prior_archive(baseline_name)
-        puts "*** #{baseline}"
         baseline_name = "Missing Baseline" if baseline.nil?
-        comp_files.uniq.each do |comp_file|
-          benchmark_pattern = Regexp.new(File.basename(comp_file.name))
-          benchmark_file = nil
-          benchmark_file = baseline.files_with_name(benchmark_pattern)[0] unless baseline.nil?
-          report_name = "C-" + File.basename(comp_file.name, ".xml").gsub(/[^A-Z0-9]/, "")
-
-          @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
-            data = get_file_data(File.new(comp_file.name))
-            next if data.agents.empty?
+    
+        if comp_files.size > 0 then
+          @archive.add_report("COMP", @plugin.plugin_configuration.name) do |report|
+            result = SUCCESS
+            comp_files.uniq.each do |comp_file|
+              benchmark_pattern = Regexp.new(File.basename(comp_file.name))
+              benchmark_file = nil
+              benchmark_file = baseline.files_with_name(benchmark_pattern)[0] unless baseline.nil?
+              data = get_file_data(File.new(comp_file.name))
+              next if data.agents.empty?
+              
+              benchmark_data = nil
+              benchmark_data = get_file_data(File.new(benchmark_file.name)) unless benchmark_file.nil?
             
-            benchmark_data = nil
-            benchmark_data = get_file_data(File.new(benchmark_file.name)) unless benchmark_file.nil?
-            result = analyze(data, benchmark_data)
-        
+              r = analyze(data, benchmark_data)
+              result = r if result < r           
+
+              outfile = "C-#{File.basename(comp_file.name, ".xml").gsub(/[^A-Z0-9]/, "")}"
+              outfile += "-#{result_string(result)}.html"
+              output = html_output(data, outfile, baseline_name)
+              report.open_file(outfile, "text/html", "Agent completion test") do |file|
+                file.puts output
+              end
+            end
             if result == SUCCESS then
               report.success
             elsif result == PARTIAL then
@@ -92,18 +100,22 @@ module ACME
             else
               report.failure
             end
-            output = html_output(data, report_name, baseline_name)
-            outfile = "#{report_name}.html"
-            report.open_file(outfile, "text/html", "Agent completion tests for #{report_name}") do |file|
-              file.puts output
-            end
-
             output = create_description
             report.open_file("comp_description.html", "text/html", "Completion Report Description") do |file|
               file.puts output
             end
           end
         end
+      end
+
+      def result_string(r)
+        str = "FAIL"
+        if r == SUCCESS
+          str = "SUCCESS"
+        elsif r == PARTIAL
+          str == "PARTIAL_SUCCESS"
+        end
+        return str
       end
   
       def get_file_data(file)
