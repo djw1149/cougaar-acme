@@ -1,4 +1,4 @@
-require 'ultralog/communities'
+require "cougaar/communities'
 require 'ultralog/enclaves'
 
 timeouts = {"REAR"=>"300000", "FWD"=>"300000", "CONUS"=>"30000", "TRANS"=>"300000"}
