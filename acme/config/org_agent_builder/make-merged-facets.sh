@@ -25,5 +25,6 @@ echo "Merge the 1AD and UA facet files"
 ../../bin/SocietyMerger.sh $ADFACETS/small-1ad-tc20.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/small-tc20-17a12v.facets.xml
 ../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/160a147v.facets.xml $UADIR/full-tc20-160a147v.facets.xml
 ../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/160a208v.facets.xml $UADIR/full-tc20-160a208v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/232a703v.facets.xml $UADIR/full-tc20-232a703v.facets.xml
 echo "Done"
 
