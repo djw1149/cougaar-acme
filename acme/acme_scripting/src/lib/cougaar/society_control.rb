@@ -350,7 +350,7 @@ module Cougaar
       }
       def perform
         @run.comms.on_cougaar_event do |event|
-          if event.component=="SimpleAgent" || event.component=="ClusterImpl"
+          if event.component=="SimpleAgent" || event.component=="ClusterImpl" || event.component=="Events"
             match = /.*AgentLifecycle\(([^\)]*)\) Agent\(([^\)]*)\) Node\(([^\)]*)\) Host\(([^\)]*)\)/.match(event.data)
             if match
               cycle, agent_name, node_name, host_name = match[1,4]
@@ -394,8 +394,12 @@ module Cougaar
         @example = "do_action 'CleanupSociety'"
       }
       
+      
       def perform
-        @run.society.each_service_host("acme") do |host|
+        society = @run.society
+        society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
+        
+        society.each_service_host("acme") do |host|
           @run.info_message "Shutting down acme on #{host}\n" if @debug
           @run.comms.new_message(host).set_body("command[nic]reset").send
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
@@ -405,7 +409,7 @@ module Cougaar
           @run.comms.new_message(host).set_body("command[shutdown]").send()
         end
  
-        @run.society.each_service_host("operator") do |host|
+        society.each_service_host("operator") do |host|
           @run.info_message "Shutting down acme on #{host}\n" if @debug
           @run.comms.new_message(host).set_body("command[nic]reset").send
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)

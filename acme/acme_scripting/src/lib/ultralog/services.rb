@@ -26,7 +26,11 @@ module Cougaar
       def each_service_host(service)
         each_host do |host| 
           host.each_facet(:service) do |facet|
-            yield host if facet[:service]==service
+            if service.respond_to?(:to_str)
+              yield host if facet[:service]==service
+            else
+              yield host if facet[:service]=~service
+            end
           end
         end
         

@@ -76,15 +76,18 @@ module Cougaar
   module Actions
   
     class StartCommunications < Cougaar::Action
-      PRIOR_STATES = ["SocietyLoaded"]
       RESULTANT_STATE = "CommunicationsRunning"
       DOCUMENTATION = Cougaar.document {
         @description = "Starts either the jabber or message router communications subsystem."
         @example = "do_action 'StartCommunications'"
       }
+
       
       def perform
-        if @run.society.get_service_host("message-router")
+        society = @run.society
+        society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
+        
+        if society.get_service_host("message-router")
           @run.do_action "StartMessageRouterCommunications"
         else
           @run.do_action "StartJabberCommunications"
@@ -96,7 +99,6 @@ module Cougaar
     end
   
     class StartMessageRouterCommunications < Cougaar::Action
-      PRIOR_STATES = ["SocietyLoaded"]
       RESULTANT_STATE = "CommunicationsRunning"
       DOCUMENTATION = Cougaar.document {
         @description = "Starts the message router communications subsystem."
@@ -120,9 +122,12 @@ module Cougaar
       
       def perform
         unless @server
-          ohost = @run.society.get_service_host("message-router")
+          society = @run.society
+          society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
+
+          ohost = society.get_service_host("message-router")
           if ohost==nil
-            ohost = @run.society.get_service_host("jabber")
+            ohost = society.get_service_host("jabber")
           end
           if ohost==nil
             @run.info_message "Could not locate message router service host (host with <facet service='message-router|jabber'/>)...defaulting to 'acme'"
@@ -139,7 +144,6 @@ module Cougaar
     end
   
     class StartJabberCommunications < Cougaar::Action
-      PRIOR_STATES = ["SocietyLoaded"]
       RESULTANT_STATE = "CommunicationsRunning"
       DOCUMENTATION = Cougaar.document {
         @description = "Starts the Jabber communications subsystem and connects to the Jabber server."
@@ -167,7 +171,10 @@ module Cougaar
       
       def perform
         unless @server
-          ohost = @run.society.get_service_host("jabber")
+          society = @run.society
+          society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
+
+          ohost = society.get_service_host("jabber")
           if ohost==nil
             @run.info_message "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
             @server = 'acme'
@@ -281,15 +288,14 @@ module Cougaar
       def perform
         begin
           @run.comms.verify
+          
+          society = @run.society
+          society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
          
-          @run.society.each_active_host do |host|
+          society.each_service_host('acme') do |host|
             test_ntp_synch(host)
           end 	  
-         
-          @run.society.each_service_host("operator") do |host|
-            test_ntp_synch(host)
-          end
-
+          test_ntp_synch(society.get_service_host('operator'))
         rescue
           @run.error_message "Could not verify Society: #{$!}"
           @sequence.interrupt
@@ -346,10 +352,24 @@ module Cougaar
       end
       
       def verify
-        @run.society.each_active_host do |host|
+        society = @run.society
+        society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
+        
+        # check acme (node) hosts
+        society.each_service_host('acme') do |host|
           result = new_message(host).set_body("command[help]").request(10)
           if result.nil?
             raise "Could not access host: #{host.host_name}"
+          end
+        end
+        
+        # check router (bandwidth shaping) hosts
+        society.each_host do |host|
+          if host.get_facet(:host_type) == "router"
+            result = new_message(host).set_body("command[help]").request(10)
+            if result.nil?
+              raise "Could not access router host: #{host.host_name}"
+            end
           end
         end
       end
