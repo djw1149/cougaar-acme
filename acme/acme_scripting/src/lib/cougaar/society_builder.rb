@@ -1,32 +1,40 @@
 require 'rexml/document'
 require 'cougaar/experiment'
+require 'cougaar/society_model'
 
 module Cougaar
   
   class SocietyBuilder
     attr_reader :doc
+    attr_accessor :filename
     def initialize(doc)
       @doc = doc
     end
     
-    def self.from_xml_file(file)
-      file = File.new(file)
-      SocietyBuilder.new(REXML::Document.new(file))
+    def self.from_xml_file(filename)
+      file = File.new(filename)
+      builder = SocietyBuilder.new(REXML::Document.new(file))
+      builder.filename = filename
+      builder
     end
     
-    def self.from_ruby_file(file)
-      SocietyBuilder.new(file)
+    def self.from_ruby_file(filename)
+      builder = SocietyBuilder.new(filename)
+      builder.filename = filename
+      builder
     end
     
     def self.from_string(str)
       SocietyBuilder.new(REXML::Document.new(str))
     end
     
-    def to_xml_file(filename)
+    def to_xml_file(filename=nil)
+      filename = @filename if filename.nil?
       File.open(filename, "wb") {|file| file.puts(self.society.to_xml)}
     end
     
-    def to_ruby_file(filename)
+    def to_ruby_file(filename=nil)
+      filename = @filename if filename.nil?
       File.open(filename, "wb") {|file| file.puts(self.society.to_ruby)}
     end
     
@@ -49,14 +57,7 @@ module Cougaar
     end
     
     def load_ruby
-      name = "M_#{Time.now.to_i}"
-      t_mod = eval <<-EOS
-        module #{name}
-          load '#{@doc}'
-        end
-        #{name}
-      EOS
-      @society = t_mod::SOCIETY
+      @society = eval File.new(@doc).read
     end
     
     def parse_xml
