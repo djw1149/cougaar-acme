@@ -96,7 +96,7 @@ module UltraLog
     #
     def self.status(agent)
       data = Cougaar::Communications::HTTP.get("#{agent.uri}/completion?format=xml", 60)[0]
-      return Statistics.new(data)
+      return Statistics.new(agent.name, data)
     end
     
     ##
@@ -108,23 +108,24 @@ module UltraLog
     #
     def self.query(host, agent, port)
       data = Cougaar::Communications::HTTP.get("http://#{host}:#{port}/$#{agent}/completion?format=xml", 60)[0]
-      return Statistics.new(data)
+      return Statistics.new(agent, data)
     end
     
     ##
     # The statistics class holds the results of a completion query
     #
     class Statistics
-      attr_reader :time, :total, :unplanned, :unestimated, :unconfident, :failed
+      attr_reader :agent, :time, :total, :unplanned, :unestimated, :unconfident, :failed
       
       ##
       # Parses the supplied XML data into the statistics attributed
       #
       # data:: [String] A completion XML query
       #
-      def initialize(data)
+      def initialize(agent, data)
         xml = REXML::Document.new(data)
         root = xml.root
+        @agent = agent
         @time = root.elements["TimeMillis"].text.to_i
         @total = root.elements["NumTasks"].text.to_i
         @unplanned = root.elements["NumUnplannedTasks"].text.to_i
@@ -152,7 +153,7 @@ module UltraLog
       end
       
       def to_s
-        s =  "<SimpleCompletion>\n"
+        s =  "<SimpleCompletion agent='#{@agent}'>\n"
         s << "  <TimeMillis>#{@time}</TimeMillis>\n"
         s << "  <NumTasks>#{@total}</NumTasks>\n"
         s << "  <NumUnplannedTasks>#{@unplanned}</NumUnplannedTasks>\n"
