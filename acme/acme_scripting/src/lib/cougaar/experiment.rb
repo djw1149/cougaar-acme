@@ -812,6 +812,9 @@ module Cougaar
         super(run)
         @seconds = seconds
       end
+      def to_s
+        return super.to_s + "(#{@seconds/60.0} minutes)"
+      end
       def perform
         sleep @seconds
       end
