@@ -44,6 +44,8 @@ module ACME
         puts "INV"
         DataGrabberTest.new(archive, @plugin, @ikko).perform
         puts "GRAB"
+        Nameservers.new(archive, @plugin, @ikko).perform
+        puts "NS"
       end
       
       def run_log_test(archive)
