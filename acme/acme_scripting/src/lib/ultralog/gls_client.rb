@@ -281,7 +281,7 @@ module Cougaar
       }
       def perform
         begin
-          result = Cougaar::Communications::HTTP.get("http://#{@run.society.agents['NCA'].uri}/glsinit?command=sendoplan")
+          result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=sendoplan")
           raise_failure "Error sending OPlan" unless result
         rescue
           raise_failure "Could not send OPlan", $!
