@@ -7,6 +7,6 @@ society.each_agent(true) do |agent|
   agent.add_component do |c|
     c.classname = cmrDomain
     c.add_argument("cmr")
-    c.insertpoint = "Node.AgentManager.Agent.DomainManager.Domain"
+    c.insertionpoint = "Node.AgentManager.Agent.DomainManager.Domain"
   end
 end
