@@ -1,4 +1,5 @@
 require 'csv'
+require 'getoptlong'
 
 class Role
   attr_accessor :role_id, :echelon_of_support, :mechanism, :note
@@ -80,32 +81,33 @@ class Organization
     @subordinates.each { |sub| sub.hierarchy_to_xml(indent) }
   end
 
-  def to_xml(indent=0)
-    puts " "*indent + "<agent name='#{org_id}'"
-    puts " "*indent + "       class='org.cougaar.core.agent.SimpleAgent'>"
-    puts " "*indent + "  <facet org_id='#{org_id}' />"
-    puts " "*indent + "  <facet superior_org_id='#{superior.to_s}' />"
-    @subordinates.each { |sub| puts " "*indent + "  <facet subordinate_org_id='#{sub.to_s}' />"}
-    puts " "*indent + "  <facet home_location='#{home_location}' />" if home_location
-    puts " "*indent + "  <facet uic='#{uic}' />" if uic
-    puts " "*indent + "  <facet combat_support='#{combat_support}' />" if combat_support
-    puts " "*indent + "  <facet echelon='#{echelon}' />" if echelon
-    puts " "*indent + "  <facet echelon_group='#{echelon_group}' />" if echelon_group
-    puts " "*indent + "  <facet is_deployable='#{is_deployable}' />" if is_deployable
-    puts " "*indent + "  <facet has_physical_assets='#{has_physical_assets}' />" if has_physical_assets
-    puts " "*indent + "  <facet has_equipment_assets='#{has_equipment_assets}' />" if has_equipment_assets
-    puts " "*indent + "  <facet has_personnel_assets='#{has_personnel_assets}' />" if has_personnel_assets
+  def to_xml(indent=0, output=$stdout)
+    output.puts " "*indent + "<agent name='#{org_id}'"
+    output.puts " "*indent + "       class='org.cougaar.core.agent.SimpleAgent'>"
+    output.puts " "*indent + "  <facet org_id='#{org_id}' />"
+    output.puts " "*indent + "  <facet orig_org_id='#{orig_org_id}' />"
+    output.puts " "*indent + "  <facet superior_org_id='#{superior.to_s}' />"
+    @subordinates.each { |sub| output.puts " "*indent + "  <facet subordinate_org_id='#{sub.to_s}' />"}
+    output.puts " "*indent + "  <facet home_location='#{home_location}' />" if home_location
+    output.puts " "*indent + "  <facet uic='#{uic}' />" if uic
+    output.puts " "*indent + "  <facet combat_support='#{combat_support}' />" if combat_support
+    output.puts " "*indent + "  <facet echelon='#{echelon}' />" if echelon
+    output.puts " "*indent + "  <facet echelon_group='#{echelon_group}' />" if echelon_group
+    output.puts " "*indent + "  <facet is_deployable='#{is_deployable}' />" if is_deployable
+    output.puts " "*indent + "  <facet has_physical_assets='#{has_physical_assets}' />" if has_physical_assets
+    output.puts " "*indent + "  <facet has_equipment_assets='#{has_equipment_assets}' />" if has_equipment_assets
+    output.puts " "*indent + "  <facet has_personnel_assets='#{has_personnel_assets}' />" if has_personnel_assets
     @roles.each { |role|
-      puts " "*indent + "  <facet role='#{role.role_id}'"
-      puts " "*indent + "         echelon_of_support='#{role.echelon_of_support}'" if role.echelon_of_support
-      puts " "*indent + "         mechanism='#{role.mechanism}'" if role.mechanism
-      puts " "*indent + "         note='#{role.note}'" if role.note
-      puts " "*indent + "  />" }
+      output.puts " "*indent + "  <facet role='#{role.role_id}'"
+      output.puts " "*indent + "         echelon_of_support='#{role.echelon_of_support}'" if role.echelon_of_support
+      output.puts " "*indent + "         mechanism='#{role.mechanism}'" if role.mechanism
+      output.puts " "*indent + "         note='#{role.note}'" if role.note
+      output.puts " "*indent + "  />" }
     @support_command_assignments.each { |sca|
-      puts " "*indent + "  <facet sca_supported_org='#{sca.supported_org}'"
-      puts " "*indent + "         sca_echelon_of_support='#{sca.echelon_of_support}'"
-      puts " "*indent + "  />" }
-    puts " "*indent + "</agent>"
+      output.puts " "*indent + "  <facet sca_supported_org='#{sca.supported_org}'"
+      output.puts " "*indent + "         sca_echelon_of_support='#{sca.echelon_of_support}'"
+      output.puts " "*indent + "  />" }
+    output.puts " "*indent + "</agent>"
   end
 
   def big_cheese
@@ -144,15 +146,59 @@ class SocietyGenerator
 </society>
   }
   
-  attr_reader :organizations, :org_id_list
+  attr_reader :organizations, :org_id_list, :society_member_file, :society_member, :society_file
   
   def initialize  
     @organizations = Hash.new
     @org_id_list = Array.new
+    @society_member_file = nil
+    @society_member_list = Array.new
+    @society_file = nil
+    opts = GetoptLong.new( [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
+                           [ '--society',  '-s', GetoptLong::OPTIONAL_ARGUMENT],
+						   [ '--help',    '-h', GetoptLong::NO_ARGUMENT])
+
+    opts.each do |opt, arg|
+      case opt
+      when '--society-member'
+        @society_member_file = "org_data/" + arg
+      when '--society'
+        @society_file = arg
+      when '--help'
+        help
+        exit 0
+      end
+    end
+
+    if @society_member_file
+      unless File.exist?(@society_member_file)
+        raise "Cannot find Society member input file: #{@society_member_file}"
+        exit
+      end
+      unless (File.basename(@society_member_file)!=File.basename(@society_member_file, ".csv"))
+        raise "Society member file type must be .csv: #{@society_member_file}"
+      end
+    end
+
+    if @society_file
+      unless (File.basename(@society_file)!=File.basename(@society_file, ".xml"))
+        raise "Society file type must be .xml: #{@society_file}"
+      end
+    end
   end
   
+  def help
+    puts "Reads org_data/org_attribute.csv, org_data/org_hierarchy.csv, org_data/org_role.csv, and org_data/org_sca.csv and writes society.xml"
+    puts "If society_member_file is specified, just the orgs in org_data/@society_member_file are included in the society."
+    puts "If output file is specified society.xml is written there, otherwise society.xml is written to stdout."
+    puts "Usage:\n\t#$0 [-m <society member file>] [-s <society file>] [-h]"
+    puts "\t-m --society-member..  The SocietyMember file (.csv)."
+    puts "\t-s --society.........  The society file (.xml)."
+    puts "\t-h --help............  Prints this help message."
+  end
+
   def parse
-    first = true
+    first = true                                # Process org_attribute.csv
     CSV.open('org_data/org_attribute.csv',"r") do |row|
       if first
         first = false
@@ -172,9 +218,29 @@ class SocietyGenerator
       org.has_personnel_assets = 'T' if list[11] =~ /^[yYtT]/
       org.uic = list[12]
       org.home_location = list[13]
-      @organizations[org.org_id] = org           # Puts the org in the @organizations hash keyed by the org_id
+      @organizations[org.org_id] = org            # Puts the org in the @organizations hash keyed by the org_id
     end
+    @org_id_list = @organizations.keys            # Make a list of the org_ids
     
+    if @society_member_file
+      first = true                                # Process society_member_file (Subset of the orgs to be output)
+      CSV.open(@society_member_file,"r") do |row|
+        if first
+          first = false
+          next
+        end
+        list = row.to_a
+        org_id = list[2] + '.' + list[3]
+        org = @organizations[org_id]
+        raise "Unknown organization #{org_id}" unless org
+        @society_member_list<<org_id
+      end
+    else
+      @society_member_list = @org_id_list          # if no society_member_file, all orgs are members
+    end
+
+    # @organizations.delete_if { |org_id, org| !@society_member_list.include?(org_id) } # Don't do it this way
+
     first = true                                # Process org_hierarchy.csv
     CSV.open('org_data/org_hierarchy.csv',"r") do |row|
       if first
@@ -184,10 +250,15 @@ class SocietyGenerator
       list = row.to_a
       org_id = list[2] + '.' + list[3]
       if list[5]
-         sup_org_id = list[5] + '.' + list[6]
-         org = @organizations[org_id]
-         raise "Unknown organization #{org_id}" unless org
-         @organizations[org_id].superior=@organizations[sup_org_id]       # orgs know their superior
+        sup_org_id = list[5] + '.' + list[6]
+        org = @organizations[org_id]
+        raise "Unknown organization #{org_id}" unless org
+        sup_org = @organizations[sup_org_id]
+        raise "Unknown superior organization #{sup_org_id}" unless sup_org
+        if (@society_member_list.include?(org_id) &&
+            @society_member_list.include?(sup_org_id))                  # Make sure org and sup_org are members
+          @organizations[org_id].superior=@organizations[sup_org_id]    # orgs know their superior
+        end
       end
     end
     
@@ -204,8 +275,8 @@ class SocietyGenerator
       org.roles<<Role.new(list[3],list[4],list[5],list[6])
     end
     
-    first = true                                # Process org_support_cmd_assign.csv
-    CSV.open('org_data/org_support_cmd_assign.csv',"r") do |row|
+    first = true                                # Process org_sca.csv (Support Command Assignments)
+    CSV.open('org_data/org_sca.csv',"r") do |row|
       if first
         first = false
         next
@@ -215,10 +286,15 @@ class SocietyGenerator
       org = @organizations[org_id]
       raise "Unknown organization #{org_id}" unless org
       supported_org_id = list[5] + '.' + list[6]
+      echelon_of_support = list[7]
       supported_org = @organizations[supported_org_id]
       raise "Unknown supported organization #{supported_org_id}" unless supported_org
-      org.support_command_assignments<<SupportCommandAssignment.new(supported_org,list[7])
+      if (@society_member_list.include?(org_id) &&
+          @society_member_list.include?(supported_org_id))            # Make sure org and supported_org are members
+        org.support_command_assignments<<SupportCommandAssignment.new(supported_org,echelon_of_support)
+      end
     end
+
   end
   
   def print_hierarchy
@@ -228,23 +304,35 @@ class SocietyGenerator
 
   def xml_hierarchy
     # Output the orgs and facets in xml
-      puts XML_HEADER
-      @organizations.values[0].big_cheese.hierarchy_to_xml(6)
-      puts XML_FOOTER
+    puts XML_HEADER
+    @organizations.values[0].big_cheese.hierarchy_to_xml(6)
+    puts XML_FOOTER
   end
 
   def xml_list
-    # Output the orgs and facets in xml
-      puts XML_HEADER
-      @org_id_list = @organizations.keys                      # Make a list of the org_ids
-      @org_id_list.sort!                                      # Sort the list
-      @org_id_list.each { |org_id| @organizations[org_id].to_xml(6) }
-      puts XML_FOOTER
+    # Open the output and write the orgs and facets in xml
+    if @society_file
+      output = File.open(@society_file, "w")
+    else
+      output = $stdout
+    end
+    output.puts XML_HEADER
+    @org_id_list = @organizations.keys                      # Make a list of the org_ids
+    if @society_member_file
+      xml_list = @org_id_list && @society_member_list
+    else
+      xml_list = @org_id_list
+    end
+    xml_list.sort!
+    xml_list.each { |org_id| @organizations[org_id].to_xml(6,output) }
+    output.puts XML_FOOTER
   end
+
 end
 
 if __FILE__==$0
-  #this only executes if you run this file alone (ruby hnac_generator.rb)
+  # This only executes if you run this file alone (ruby hnac_generator.rb)
+
   gen = SocietyGenerator.new
   gen.parse
   #gen.print_hierarchy
