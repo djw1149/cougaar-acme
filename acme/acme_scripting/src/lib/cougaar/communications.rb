@@ -376,7 +376,7 @@ module Cougaar
         hosts = []
         society.each_service_host('acme') { |host| hosts << host }
         hosts.each_parallel do |host|
-          result = new_message(host).set_body("command[help]").request(10)
+          result = new_message(host).set_body("command[help]").request(30)
           if result.nil?
             raise "Could not access host: #{host.host_name}"
           end
@@ -387,7 +387,7 @@ module Cougaar
         society.each_host { |host| hosts << host }
         hosts.each_parallel do |host|
           if host.get_facet(:host_type) == "router"
-            result = new_message(host).set_body("command[help]").request(10)
+            result = new_message(host).set_body("command[help]").request(30)
             if result.nil?
               raise "Could not access host: #{host.host_name}"
             end
