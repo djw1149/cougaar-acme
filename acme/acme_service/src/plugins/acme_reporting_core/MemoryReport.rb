@@ -58,7 +58,7 @@ module ACME
         end
         file = IO.readlines(filename)
         data.node_name = file[0]
-        memory = file[2].gsub(/VmSize:/, "").strip #VmSize
+        memory = file[4].gsub(/VmRSS:/, "").strip 
         memory =~ /([0-9]+)/
         memory = $1.to_i
         memory = memory / 1024 #convert to MB
