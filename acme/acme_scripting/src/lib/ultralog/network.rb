@@ -267,7 +267,7 @@ module Cougaar; module Actions
   class ActivateNIC < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Turns a NIC back on.  A facet is passed to determine which hosts NIC are to be restored.  An optional network is also provided to identify which NIC."
-      @example = "do_action 'ActivateNIC', 'sv190', 'CONUS-REAR'"
+      @example = "do_action 'ActivateNIC', 'sv190-facet', 'CONUS-REAR'"
     }
 
     def initialize( run, facet, target=nil )
@@ -313,7 +313,7 @@ module Cougaar; module Actions
   class DeactivateNIC < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Disable a specified network interface.  A facet is passed in to determine which hosts to disable, and an optional target for hosts with multiple network interfaces."
-      @example = "do_action 'DeactivateNIC', 'sv190', 'CONUS-REAR'"
+      @example = "do_action 'DeactivateNIC', 'sv190-facet', 'CONUS-REAR'"
     }
 
     def initialize( run, facet, target=nil )
