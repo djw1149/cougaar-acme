@@ -378,7 +378,7 @@ module Cougaar
           if host.get_facet(:host_type) == "router"
             result = new_message(host).set_body("command[help]").request(10)
             if result.nil?
-              raise "Could not access router host: #{host.host_name}"
+              raise "Could not access host: #{host.host_name}"
             end
           end
         end
