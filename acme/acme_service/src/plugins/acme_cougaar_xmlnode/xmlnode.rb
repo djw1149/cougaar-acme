@@ -191,7 +191,6 @@ class XMLCougaarNode
           response.body = "Communities.xml file written."
           response['Content-Type'] = "text/plain"
         end
-        File.chmod(0644, filename)
       else
         response.body = "<html>Communities.xml File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
