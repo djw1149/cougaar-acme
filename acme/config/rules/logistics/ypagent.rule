@@ -1,0 +1,16 @@
+####################################################
+# Specify that the YP server is at the LogCommanderInChief
+
+ypAg = nil
+
+society.each_agent do |agent|
+        if agent.get_facet(:role) == "LogisticsCommanderInChief"
+                ypAg = agent.name.to_s
+                break
+        end
+end
+
+society.each_node do |node|
+   node.override_parameter("-Dorg.cougaar.yp.ypAgent",ypAg)
+end
+
