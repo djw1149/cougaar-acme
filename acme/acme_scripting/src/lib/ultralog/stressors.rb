@@ -35,9 +35,12 @@ module Cougaar
         @nodes = nodes
       end
       def perform
-        @run.error_messages("WARNING:  DisableNetworkInterfaces is deprecated.  Use DeactivateNIC.")
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
+          cougaar_host = cougaar_node.host
+          node_names = cougaar_host.nodes.collect { |node| node.name }
+                    
+          @run.info_message "Taking down network for host #{cougaar_host.name} that has nodes #{node_names.join(', ')}"
           if cougaar_node
             @run.comms.new_message(cougaar_node.host).set_body("command[nic]trigger").send
           else
@@ -118,7 +121,6 @@ module Cougaar
         @nodes = nodes
       end
       def perform
-        @run.error_messages("WARNING:  EnableNetworkInterfaces is deprecated.  Use ActivateNIC.")
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
           if cougaar_node
