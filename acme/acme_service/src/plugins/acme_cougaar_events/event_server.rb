@@ -64,7 +64,7 @@ module Cougaar
     end
     
     def run 
-      puts "starting cougaar event service on port: #{@port}"
+      puts "Cougaar Event Service started on port: #{@port}"
       server = TCPServer.new('0.0.0.0', @port)
       while(true)
         socket = server.accept
