@@ -18,7 +18,7 @@ society.each_agent do |agent|
 	# additionally, the parent of such agents must
 	# get an additional argument listing all the vehicle types
 	# that have been excluded, as in:
-	# exclude_types=Type1&Type2
+	# exclude_types=Type1;Type2
 	if agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
 	  c.add_argument('fcs_equip.q')	  
 	elsif agent.get_facet(:equip_type_id)
