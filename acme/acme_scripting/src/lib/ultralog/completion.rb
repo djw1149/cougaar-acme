@@ -156,8 +156,12 @@ module UltraLog
         s =  "<SimpleCompletion agent='#{@agent}'>\n"
         s << "  <TimeMillis>#{@time}</TimeMillis>\n"
         s << "  <NumTasks>#{@total}</NumTasks>\n"
-	pct = (@total - @unplanned - @unestimated - @unconfident - @failed) * 100 / @total
-	s << "  <PercentComplete>#{pct}</PercentComplete>\n"
+        if @total==0
+          pct = 0
+        else
+          pct = (@total - @unplanned - @unestimated - @unconfident - @failed) * 100 / @total
+        end§
+        s << "  <PercentComplete>#{pct}</PercentComplete>\n"
         s << "  <NumUnplannedTasks>#{@unplanned}</NumUnplannedTasks>\n"
         s << "  <NumUnestimatedTasks>#{@unestimated}</NumUnestimatedTasks>\n"
         s << "  <NumUnconfidentTasks>#{@unconfident}</NumUnconfidentTasks>\n"
