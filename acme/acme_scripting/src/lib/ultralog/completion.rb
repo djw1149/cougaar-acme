@@ -79,7 +79,76 @@ module Cougaar
         end
       end
     end
-  end
+
+
+    class InstallCompletionMonitor < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = ""
+        @parameters = []
+        @example = " do_action 'InstallCompletionMonitor' "
+      }
+      def initialize(run)
+        super(run)
+      end
+      def perform
+        @monitor = UltraLog::SocietyCompletionMonitor.new(run)
+        run["completion_monitor"] = @monitor
+      end
+    end
+
+  end  # Module Actions
+
+  module States
+    class MyPlanningComplete < Cougaar::State
+      DEFAULT_TIMEOUT = 60.minutes
+      PRIOR_STATES = ["SocietyPlanning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the Planning Complete Cougaar Event."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
+        ]
+        @example = "
+          wait_for 'MyPlanningComplete', 2.hours do
+            puts 'Did not get Planning Complete!!!'
+            do_action 'StopSociety'
+            do_action 'StopCommunications'
+          end
+        "
+      }
+      
+      def initialize(run, timeout=nil, &block)
+        super(run, timeout, &block)
+      end
+      
+      def process
+        comp = @run["completion_monitor"] 
+
+        loop = true
+        while loop
+          sleep 10
+          state = comp.getSocietyStatus
+          puts comp.printIncomplete
+          if state == "COMPLETE"
+            # We get some momentary "complete" states, make sure it stays complete
+            sleep 10
+            if comp.getSocietyStatus == "COMPLETE"
+              loop = false
+            end
+          end
+        end
+      end
+      
+      def unhandled_timeout
+        @run.do_action "StopSociety"
+        @run.do_action "StopCommunications"
+      end
+    end
+
+
+
+  end  # Module States
 end
 
 module UltraLog
@@ -127,6 +196,7 @@ module UltraLog
         root = xml.root
         @agent = agent
         @time = root.elements["TimeMillis"].text.to_i
+        @ratio = root.elements["Ratio"].text.to_f
         @total = root.elements["NumTasks"].text.to_i
         @unplanned = root.elements["NumUnplannedTasks"].text.to_i
         @unestimated = root.elements["NumUnestimatedTasks"].text.to_i
@@ -161,6 +231,7 @@ module UltraLog
         else
           pct = (@total - @unplanned - @unestimated - @unconfident - @failed) * 100 / @total
         end
+        s << "  <Ratio>#{@ratio}</Ratio>\n"
         s << "  <PercentComplete>#{pct}</PercentComplete>\n"
         s << "  <NumUnplannedTasks>#{@unplanned}</NumUnplannedTasks>\n"
         s << "  <NumUnestimatedTasks>#{@unestimated}</NumUnestimatedTasks>\n"
@@ -170,6 +241,56 @@ module UltraLog
       end
       
     end
+
   end 
+
+  class SocietyCompletionMonitor
+    def initialize(run)
+      @run = run
+      @society = run.society;
+      @society_status = "INCOMPLETE"
+      @run["completion_agent_status"] = {}
+   	  @run.comms.on_cougaar_event do |event|
+	      handleEvent(event) if (event.component == "SimpleCompletionPlugin")
+	    end
+    end
+
+    def handleEvent(event)
+      comp = @run["completion_agent_status"] 
+      data = event.data.split(":")
+      new_state = data[1].strip
+      comp[event.cluster_identifier] = new_state
+      update_society_status()
+    end
+
+    def update_society_status()
+      comp = @run["completion_agent_status"] 
+      soc_status = "COMPLETE"
+      @society.each_agent do |agent|
+        agent_status = comp[agent.name]
+        soc_status = "INCOMPLETE" if agent_status == "INCOMPLETE"
+      end
+      unless @society_status == soc_status
+        @society_status = soc_status
+        puts "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
+      end
+    end
+  
+    def getSocietyStatus()
+      return @society_status
+    end
+ 
+    def printIncomplete()
+      line = "### Incomplete: " 
+      comp = @run["completion_agent_status"] 
+      comp.each do |agent, status|
+        if status == "INCOMPLETE"
+          line << "#{agent},"
+        end
+      end
+      return line
+    end
+
+  end
 end
 
