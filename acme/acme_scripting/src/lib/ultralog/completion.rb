@@ -116,9 +116,9 @@ module Cougaar
   module States
     class SocietyQuiesced < Cougaar::State
       DEFAULT_TIMEOUT = 60.minutes
-      PRIOR_STATES = ["SocietyPlanning"]
+      PRIOR_STATES = ["SocietyRunning"]
       DOCUMENTATION = Cougaar.document {
-        @description = "Waits for the Planning Complete Cougaar Event."
+        @description = "Waits for ACME to report that the society has quiesced ."
         @parameters = [
           {:timeout => "default=nil, Amount of time to wait in seconds."},
           {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
@@ -138,19 +138,7 @@ module Cougaar
       
       def process
         comp = @run["completion_monitor"] 
-
-        loop = true
-        while loop
-          sleep 10
-          state = comp.getSocietyStatus
-          if state == "COMPLETE"
-            # We get some momentary "complete" states, make sure it stays complete
-            sleep 10
-            if comp.getSocietyStatus == "COMPLETE"
-              loop = false
-            end
-          end
-        end
+        comp.wait_for_change_to_state("COMPLETE")
       end
       
       def unhandled_timeout
@@ -324,6 +312,23 @@ module UltraLog
       return msgs
     end
 
+    def wait_for_change_to_state(wait_for_state)
+      last_state = @society_status
+      while true
+        sleep 10
+        if @society_status != last_state
+          # We get some momentary state changes, make sure it stays changed
+          sleep 10
+          if @society_status != last_state
+            last_state = @society_status
+            if last_state == wait_for_state
+              break
+            end
+          end
+        end
+      end
+    end
+      
     # Very verbose.  Only call if you really want to see this stuff
     def print_current_comp(comp)
       ::Cougaar.logger.info "*********************************************************"
