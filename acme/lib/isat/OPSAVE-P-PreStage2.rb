@@ -19,9 +19,9 @@ include_scripts:
   - script: $CIP/csmart/lib/isat/clearPnLogs.rb
   - script: $CIP/csmart/lib/isat/network_shaping.rb
   - script: $CIP/csmart/lib/isat/datagrabber_include.rb
-  - script: $CIP/csmart/assessment/lib/assess/inbound_aggagent_include.rb
-  - script: $CIP/csmart/assessment/lib/assess/outofbound_aggagent_include.rb
-  - script: $CIP/csmart/assessment/lib/assess/cnccalc_include.rb
+  - script: $CIP/csmart/assessment/assess/inbound_aggagent_include.rb
+  - script: $CIP/csmart/assessment/assess/outofbound_aggagent_include.rb
+  - script: $CIP/csmart/assessment/assess/cnccalc_include.rb
   - script: $CIP/csmart/lib/isat/save_snapshot.rb
     parameters:
       - snapshot_name: $CIP/SAVE-PreStage2.tgz
