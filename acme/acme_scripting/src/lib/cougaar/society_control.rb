@@ -20,91 +20,170 @@
 #
 
 module Cougaar
-  
-  module Actions
+  class NodeController
+    def initialize(run, debug)
+      @run = run
+      @debug = debug
+      @pids = {}
+      @run['pids'] = @pids
+    end
+    
+    def add_cougaar_event_params
+      @xml_model = @run["loader"] == "XML"
+      @node_type = ""
+      @node_type = "xml_" if @xml_model
+      @run.society.each_active_host do |host|
+        host.each_node do |node|
+          node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
+          node.add_parameter("-Dorg.cougaar.event.port=5300")
+          node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
+        end
+      end
+    end
+    
+    def start_all_nodes
+      @run.society.each_active_host do |host|
+        host.each_node do |node|
+          if @xml_model
+            post_node_xml(node)
+            msg_body = launch_xml_node(node)
+          else
+            msg_body = launch_db_node(node)
+          end
+          puts "Sending message to #{host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
+          result = @run.comms.new_message(host).set_body("command[start_#{@node_type}node]#{msg_body}").request(120)
+          if result.nil?
+            raise_failure "Could not start node #{node.name} on host #{host.host_name}"
+          end
+          @pids[node.name] = result.body
+        end
+      end
+    end
+    
+    def stop_all_nodes
+      @run.society.each_host do |host|
+        host.each_node do |node|
+          puts "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
+          result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
+          if result.nil?
+            raise_failure "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+          end
+        end
+      end
+      @pids.clear
+    end
+    
+    def restart_node(node)
+      if @xml_model
+        msg_body = launch_xml_node(node, "xml")
+      else
+        msg_body = launch_db_node(node)
+      end
+      puts "RESTART: Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
+      result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(120)
+      if result.nil?
+        raise_failure "Could not start node #{node.name} on host #{node.host.host_name}"
+      end
+      @pids[node.name] = result.body
+    end
+    
+    def kill_node(node)
+      pid = @pids[node.name]
+      if pid
+        @pids.delete(node.name)
+        puts "KILL: Sending message to #{node.host.name} -- command[stop_#{@node_type}node]#{pid} \n" if @debug
+        result = @run.comms.new_message(node.host).set_body("command[stop_#{@node_type}node]#{pid}").request(60)
+        if result.nil?
+          puts "Could not kill node #{node.name}(#{pid}) on host #{node.host.host_name}"
+        end
+      else
+        puts "Could not kill node #{node.name}...node does not have an active PID."
+      end
+    end
+    
+    def launch_db_node(node)
+      return node.parameters.join("\n")
+    end
+    
+    def launch_xml_node(node, kind='rb')
+      return node.name+".#{kind}"
+    end
+    
+    def post_node_xml(node)
+      node_society = Cougaar::Model::Society.new( "society-for-#{node.name}" ) do |society|
+        society.add_host( node.host.name ) do |host|
+          host.add_node( node.clone(host) )
+        end
+      end
+      node_society.remove_all_facets
+      result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:9444/xmlnode/#{node.name}.rb", node_society.to_ruby, "x-application/ruby")
+      puts result if @debug
+    end
+    
+  end
 
+  module Actions
+  
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
-		  @debug = true
+      
       def initialize(run, debug=false)
         super(run)
-        @debug = debug
+        @run['node_controller'] = ::Cougaar::NodeController.new(run, debug)
       end
       
       def perform
-        pids = {}
-        xml_model = @run["loader"] == "XML"
-        node_type = ""
-        node_type = "xml_" if xml_model
-        @run.society.each_active_host do |host|
-          host.each_node do |node|
-            node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
-            node.add_parameter("-Dorg.cougaar.event.port=5300")
-            node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
-            if xml_model
-              post_node_xml(node)
-            end
-          end
-        end
-        @run.society.each_active_host do |host|
-          host.each_node do |node|
-						if xml_model
-						  msg_body = launch_xml_node(node)
-						else
-						  msg_body = launch_db_node(node)
-						end
-		        puts "Sending message to #{host.name} -- [command[start_#{node_type}node]#{msg_body}] \n" if @debug
-            result = @run.comms.new_message(host).set_body("command[start_#{node_type}node]#{msg_body}").request(120)
-            if result.nil?
-              raise_failure "Could not start node #{node.name} on host #{host.host_name}"
-            end
-            pids[node.name] = result.body
-          end
-        end
-        @run['pids'] = pids
+        @run['node_controller'].add_cougaar_event_params
+        @run['node_controller'].start_all_nodes
       end
 
-      def launch_db_node(node)
-        return node.parameters.join("\n")
-      end
-      
-      def launch_xml_node(node)
-        return node.name+".rb"
-      end
-      
-      def post_node_xml(node)
-        node_society = Cougaar::Model::Society.new( "society-for-#{node.name}" ) do |society|
-          society.add_host( node.host.name ) do |host|
-            host.add_node( node.clone(host) )
-          end
-        end
-        node_society.remove_all_facets
-        result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:9444/xmlnode/#{node.name}.rb", node_society.to_ruby, "x-application/ruby")
-        puts result if @debug
-      end
     end
     
     class StopSociety <  Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = "SocietyStopped"
       def perform
-        xml_model = @run["loader"] == "XML"
-        node_type = ""
-        if xml_model
-          node_type = "xml_"
-        end
-        pids = @run['pids']
-        @run.society.each_host do |host|
-          host.each_node do |node|
-            result = @run.comms.new_message(host).set_body("command[stop_#{node_type}node]#{pids[node.name]}").request(60)
-            if result.nil?
-              raise_failure "Could not stop node #{node.name}(#{pids[node.name]}) on host #{host.host_name}"
-            end
+        @run['node_controller'].stop_all_nodes
+      end
+    end
+  
+    class RestartNodes < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+      def initialize(run, *nodes)
+        super(run)
+        @nodes = nodes
+      end
+      def perform
+        @nodes.each do |node|
+          cougaar_node = @run.society.nodes[node]
+          if cougaar_node
+            @run['node_controller'].restart_node(cougaar_node)
+          else
+            raise_failure "Cannot restart node #{node}, node unknown."
           end
         end
       end
     end
+
+    class KillNodes < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+      def initialize(run, *nodes)
+        super(run)
+        @nodes = nodes
+      end
+      def perform
+        @nodes.each do |node|
+          cougaar_node = @run.society.nodes[node]
+          if cougaar_node
+            @run['node_controller'].kill_node(cougaar_node)
+          else
+            puts "Cannot kill node #{node}, node unknown."
+          end
+        end
+      end
+    end
+    
   end
   
   module States
