@@ -133,56 +133,56 @@ module Cougaar
       def host_added(host)
         return unless host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @hosts_added += 1
       end
       
       def host_removed(host)
         return unless host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @hosts_removed += 1
       end
       
       def node_added(node)
         return unless node.host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @nodes_added += 1
       end
       
       def node_removed(node)
         return unless node.host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @nodes_removed += 1
       end
       
       def agent_added(agent)
         return unless agent.node.host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @agents_added += 1
       end
       
       def agent_removed(agent)
         return unless agent.node.host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @agents_removed += 1
       end
       
       def component_added(component)
         return unless component.agent.node.host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @components_added += 1
       end
       
       def component_removed(component)
         return unless component.agent.node.host.society = @society
         @modified = true
-        @current_rule.modified_society = true
+        @current_rule.modified_society = true if @current_rule
         @components_removed += 1
       end
       
