@@ -50,7 +50,7 @@ module Cougaar
       end
       
       def to_xml
-        xml = []
+        xml = [Community::PREAMBLE]
         xml << "<Communities>"
         each do |community|
           community.to_xml(xml)
@@ -60,6 +60,20 @@ module Cougaar
       end
       
       class Community
+        PREAMBLE = '<?xml version="1.0" encoding="UTF-8"?>\n'+
+          '<!DOCTYPE Communities [\n'+
+          '<!ELEMENT Communities (Community+)>\n'+
+          '<!ELEMENT Community (Attribute+, Entity*)>\n'+
+          '<!ATTLIST Community Name CDATA #REQUIRED>\n'+
+          '<!ELEMENT AttributeID EMPTY>\n'+
+          '<!ATTLIST AttributeID ID CDATA #REQUIRED>\n'+
+          '<!ATTLIST AttributeID Access (manager|member|associate|world) #IMPLIED>\n'+
+          '<!ELEMENT Entity (Attribute*)>\n'+
+          '<!ATTLIST Entity Name CDATA #REQUIRED>\n'+
+          '<!ELEMENT Attribute EMPTY>\n'+
+          '<!ATTLIST Attribute ID CDATA #REQUIRED>\n'+
+          '<!ATTLIST Attribute Value CDATA #REQUIRED>\n'+
+          ']>\n'
         include Enumerable
         attr_accessor :name, :validate
         
