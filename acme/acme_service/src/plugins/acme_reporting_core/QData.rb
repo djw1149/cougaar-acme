@@ -71,6 +71,7 @@ module ACME
             quiescence_files = @archive.files_with_description(/Log4j node log/)
             data = get_quiescence_times(quiescence_files)
             status = analyze(data)
+            data.sort!
             if (status == 0) then
               report.success
             else
@@ -129,7 +130,7 @@ module ACME
           end
           data << new_node
         end
-        return data.sort
+        return data
       end
 
       def get_run_stages
