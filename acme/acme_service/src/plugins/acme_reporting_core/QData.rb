@@ -135,7 +135,7 @@ module ACME
 
       def get_run_stages
         stages = @run_times.headers
-        stages -= ["Total", "Load Time", "Start Time"]
+        stages -= ["Total", "Load Time"]
         return stages
       end
 
