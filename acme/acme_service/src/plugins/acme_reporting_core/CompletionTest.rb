@@ -19,7 +19,6 @@ module ACME
         comp_files = @archive.files_with_description(/completion/)
         comp_files.each do |comp_file|
           benchmark_file = benchmark_filename(comp_file)
-          next if benchmark_file.nil?
           report_name = File.basename(comp_file.name, ".xml")
           report_name.gsub!(/comp_/, "")
           report_name.gsub!(/Restore-/, "")
@@ -27,8 +26,10 @@ module ACME
           @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
             data = get_file_data(File.new(comp_file.name))
 
-            benchmark_data = get_file_data(File.new(benchmark_file))
+            benchmark_data = nil
+            benchmark_data = get_file_data(File.new(benchmark_file)) unless benchmark_file.nil?
             result = analyze(data, benchmark_data)
+            
             if result == SUCCESS then
               report.success
             elsif result == PARTIAL then
@@ -99,12 +100,14 @@ module ACME
       end
 
       def analyze(data, benchmark)
-        error = SUCCESS
+        error = (benchmark.nil? ? PARTIAL : SUCCESS)
         e = ratio_test(data)
         error = (error > e ? error : e)
-        e = task_test(data, benchmark)
-        error = (error > e ? error : e)
-
+        if (!benchmark.nil?) then
+          e = task_test(data, benchmark)
+          error = (error > e ? error : e)
+        end
+        
         return error
       end
      
@@ -136,6 +139,17 @@ module ACME
         return error
       end
 
+      def get_fields(keys)
+        fields = []
+        fields << "NumTasks"
+        fields << "Ratio"
+        keys.sort.each do |field|
+          fields << field unless fields.include?(field)
+        end
+        return fields
+      end
+
+
       def html_output(data, stage)
         ikko_data = {}
         ikko_data["description_link"] = "comp_description.html"
@@ -145,7 +159,8 @@ module ACME
           ikko_data["totals"] << "#{key}:  #{data.totals[key]}"        
         end
         headers = ["Agent Name"]
-        headers << data.agents[0].comp_data.keys.sort
+        fields = get_fields(data.agents[0].comp_data.keys)
+        headers << fields
         headers.flatten!
         header_row = ""
         headers.each do |header|
@@ -155,7 +170,7 @@ module ACME
         table_string = @ikko["row_template.html", {"data"=>header_row,"options"=>""}]
         data.agents.each do |agent|
           agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>""}]
-          agent.comp_data.keys.sort.each do |key|
+          fields.each do |key|
             agent_row << @ikko["cell_template.html", {"data"=>agent.comp_data[key],"options"=>""}]
           end
           options = ""
@@ -180,9 +195,12 @@ module ACME
         ikko_data["description"] << " is based on the tasks and ratio fields.  A node is green if it has a ratio of 1.0 and "
         ikko_data["description"] << "is within 10% of the baseline number of tasks.  A node is yellow is it has a ratio of"
         ikko_data["description"] << " at least 0.95 and is within 10% of the baseline tasks.  A node is red otherwise."
+        ikko_data["description"] << " If the appropriate benchmark file can not be found because the subject file is named"
+        ikko_data["description"] << "in a nonstandard way, then the number of tasks test will not be run.  In this case"
+        ikko_data["description"] << " the report will be at most PARTIAL SUCCESS."
 
         success_table = {"success"=>"Every node has a ratio of 1.0 and is within 10% of the baseline",
-                         "partial"=>"At least one node is yellow as described above and none are red",
+                         "partial"=>"Baseline missing or at least one node is yellow as described above and none are red",
                          "fail"=>"At least one node has a ratio less than 0.90 or is not within 10% of the baseline"}
         ikko_data["table"] = @ikko["success_template.html", success_table]
         return @ikko["description.html", ikko_data]
