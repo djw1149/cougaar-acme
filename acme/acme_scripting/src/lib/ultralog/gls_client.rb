@@ -34,7 +34,6 @@ module UltraLog
     def close
       begin
         @gls_connection.finish
-        @gls_connection.close
         @gls_thread.kill if @gls_thread
       rescue
         Cougaar.logger.error "Error shutting down gls connection: #{$!}"
