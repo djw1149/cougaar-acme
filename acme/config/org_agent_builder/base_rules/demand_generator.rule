@@ -13,16 +13,19 @@ ua_demand_generator_plugin = "com.bbn.fcss.plugin.demand.FcsDemandGeneratorPlugi
 society.each_agent do |agent|
   if agent.get_facet(:has_equipment_assets) 
     agent.add_component do |c|
-      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') &&
-	  agent.get_facet(:is_ua) }
-	c.classname = ua_demand_generator_plugin
-	c.add_argument('SUPPLY_TYPE=BulkPOL')
+      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
 	if agent.get_facet(:is_ua)
+	  c.classname = ua_demand_generator_plugin
+	  c.add_argument('SUPPLY_TYPE=BulkPOL')
 	  c.add_argument('GENERATE_PERIOD=86400000')
 	end
       end
     end
     unless agent.get_facet(:is_ua)      
+      agent.add_component do |c| 
+	c.classname = demand_generator_plugin
+	c.add_argument('SUPPLY_TYPE=BulkPOL')
+      end
       agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=PackagedPOL')
