@@ -1,14 +1,33 @@
 #!/usr/bin/ruby
 
 #
-# This script reads the XML file which defines the
-# network, and will set up the Router to route
-# between each VLAN.
+# This script provides network services on each host to ACME.
 #
-require "rexml/document"
-require "acme_net_shape/vlan.rb"
 
 module ACME; module Plugins
+
+class Interface
+  attr_accessor :name
+  def initialize( name )
+    @name = name
+  end
+
+  def state
+    `cat /proc/net/PRO_LAN_Adapters/#{@name}/State`.strip!
+  end
+
+  def rate
+    rate_RE = /rate (\S*)/
+    qdisc = `/sbin/tc qdisc show dev eth0`
+
+    rate_match = rate_RE.match( qdisc )
+    
+    rc = nil
+    rc = rate_RE.match(qdisc)[1] unless rate_match.nil?
+
+    rc 
+  end
+end
 
 class Shaper
   extend FreeBASE::StandardPlugin
@@ -21,7 +40,7 @@ class Shaper
   end
 
   def self.stop(plugin)
-    plugin["instance"].data.reset()
+    plugin["instance"].data.reset
     plugin['log/info'] << "ACME::Plugin::Shaper[stop]"
 
     plugin.transition(FreeBASE::LOADED)
@@ -32,11 +51,12 @@ class Shaper
   def initialize( plugin )
     super( )
     @plugin = plugin
-#     @network = VlanSupport::Network.new( plugin.properties["config"] )
 
     cmd = @plugin.properties["command"]
     desc = @plugin.properties["description"]
- 
+    
+    @interfaces = Hash.new
+
     @plugin["/plugins/acme_host_communications/commands/#{cmd}/description"].data = desc
     @plugin["/plugins/acme_host_communications/commands/#{cmd}"].set_proc do |msg, cmd|
        case cmd
@@ -44,37 +64,52 @@ class Shaper
          # interface.
          when /shape\((.*),(.*)\)/
            plugin['log/info'] << "Shaping interface #{$1} to #{$2}Kbps"
+           @interfaces[$1] = Interface.new( $1 ) unless @interfaces[$1]
            do_shape( $1, $2 )
 
-           reply = "Interface #{$1} shaped to #{$2}Kbps"
+           reply = info($1)
 
          # unshape( interface ) - This method removes shaping on the specified
          # interface
          when /unshape\((.*)\)/
            plugin['log/info'] << "Removing shaping on interface #{$1}"
+           @interfaces[$1] = Interface.new( $1 ) unless @interfaces[$1]
            do_unshape( $1 )
 
-           reply = "Interface #{$1} no longer shaped"
+           reply = info($1)
 
          # reset( interface ) - This method will completely reset an interface
          # so it is enabled/not shaped.
          when /reset\((.*)\)/
            plugin['log/info'] << "Resetting interface #{$1}"
+           @interfaces[$1] = Interface.new( $1 ) unless @interfaces[$1]
            do_reset( $1 )
 
-           reply = "Interface #{$1} reset"
+           reply = info($1)
 
          # enable( interface ) - This method will enable a network interface.
          when /enable\((.*)\)/
            plugin['log/info'] << "Enabling Interface #{$1}"
+           @interfaces[$1] = Interface.new( $1 ) unless @interfaces[$1]
            do_enable( $1 )
-           reply = "Enabled Interface #{$1}"
+           reply = info($1)
 
          # disable( interface ) - This method will disable a network interface.
          when /disable\((.*)\)/
            plugin['log/info'] << "Disabling Interface #{$1}"
+           @interfaces[$1] = Interface.new( $1 ) unless @interfaces[$1]
            do_disable( $1 )
-           reply = "Disabled Interface #{$1}"
+           reply = info($1)
+       
+         # info( interface ) - This returns information about the specific interface.
+         when /info\((.*)\)/
+           @interfaces[$1] = Interface.new( $1 ) unless @interfaces[$1]
+           reply = info($1)
+
+         # iperf( host ) - Runs iperf to a specific host.  Returns its output.
+         when /iperf\((.*)\)/
+          plugin['log/info'] << "Measuring bandwidth to host #{$1}" 
+          reply = "#{do_iperf($1)}"
          else 
            reply = "#{cmd} unknown-#{command}"
        end
@@ -83,7 +118,10 @@ class Shaper
   end
 
   def do_shape( interface, bandwidth )
-      `/sbin/tc qdisc add dev #{interface} root handle 1:0 tbf limit #{bandwidth}Kbit rate #{bandwidth} burst 5k`
+      ifs = @interfaces[interface]
+
+      do_unshape( interface ) unless ifs.rate.nil?
+      `/sbin/tc qdisc add dev #{interface} root handle 1:0 tbf limit #{bandwidth} rate #{bandwidth} burst 1k`
   end 
 
   def do_unshape( interface )
@@ -102,6 +140,33 @@ class Shaper
       do_enable( interface )
       do_unshape( interface )
   end
+
+  def do_iperf( host )
+    `/usr/local/bin/iperf -c #{host} -t 70 -i 10 -f k`
+  end
+
+  def info( interface )
+    ifs = @interfaces[interface]
+    "<interface name=\"#{ifs.name}\" state=\"#{ifs.state}\" rate=\"#{ifs.rate}\" />"
+  end
+
+  def info_all
+     rc = "<interfaces>"
+     @interfaces.each_key { |if_name|
+        rc += info( if_name )
+     }
+     rc += "</interfaces>"
+  end
+
+  def reset
+    plugin['log/info'] << "Resetting Network Interfaces at ACME shutdown" 
+    @plugin.properties["interfaces"].each { |iface|
+      plugin['log/info'] << "Resetting: #{iface}" 
+      do_reset( iface )
+    }
+  end
+
+
 end
 
 end; end
