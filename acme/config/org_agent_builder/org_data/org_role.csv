@@ -1,0 +1,82 @@
+orig_org_id,base_org_id,suffix,role,echelon_of_support,role_mechanism,notes
+102-POL-SUPPLYCO,102-POL-SUPPLYCO,16-CSG.5-CORPS.ARMY.MIL,FuelSupplyProvider,Corps,,
+102-POL-SUPPLYCO,102-POL-SUPPLYCO,16-CSG.5-CORPS.ARMY.MIL,PackagedPOLSupplyProvider,Corps,,
+106-TCBN,106-TCBN,16-CSG.5-CORPS.ARMY.MIL,FuelTransportProvider,Corps,,Not Used Now
+106-TCBN,106-TCBN,16-CSG.5-CORPS.ARMY.MIL,MaterielTransportProvider,Corps,,Not Used Now
+110-POL-SUPPLYCO,110-POL-SUPPLYCO,37-TRANSGP.21-TSC.ARMY.MIL,FuelSupplyProvider,Theater,,
+110-POL-SUPPLYCO,110-POL-SUPPLYCO,37-TRANSGP.21-TSC.ARMY.MIL,PackagedPOLSupplyProvider,Theater,,
+123-MSB,123-MSB,DISCOM.1-AD.ARMY.MIL,AmmunitionProvider,Division,,
+123-MSB,123-MSB,DISCOM.1-AD.ARMY.MIL,FuelSupplyProvider,Division,,
+123-MSB,123-MSB,DISCOM.1-AD.ARMY.MIL,PackagedPOLSupplyProvider,Division,,
+123-MSB,123-MSB,DISCOM.1-AD.ARMY.MIL,SparePartsProvider,Division,,
+123-MSB,123-MSB,DISCOM.1-AD.ARMY.MIL,SubsistenceSupplyProvider,Division,,
+125-FSB,125-FSB,DISCOM.1-AD.ARMY.MIL,AmmunitionProvider,Brigade,,
+125-FSB,125-FSB,DISCOM.1-AD.ARMY.MIL,FuelSupplyProvider,Brigade,,
+125-FSB,125-FSB,DISCOM.1-AD.ARMY.MIL,PackagedPOLSupplyProvider,Brigade,,
+125-FSB,125-FSB,DISCOM.1-AD.ARMY.MIL,SparePartsProvider,Brigade,,
+125-FSB,125-FSB,DISCOM.1-AD.ARMY.MIL,SubsistenceSupplyProvider,Brigade,,
+125-ORDBN,125-ORDBN,7-CSG.5-CORPS.ARMY.MIL,AmmunitionProvider,Corps,,
+127-DASB,127-DASB,DISCOM.1-AD.ARMY.MIL,AmmunitionProvider,Brigade,,
+127-DASB,127-DASB,DISCOM.1-AD.ARMY.MIL,FuelSupplyProvider,Brigade,,
+127-DASB,127-DASB,DISCOM.1-AD.ARMY.MIL,PackagedPOLSupplyProvider,Brigade,,
+127-DASB,127-DASB,DISCOM.1-AD.ARMY.MIL,SparePartsProvider,Brigade,,
+127-DASB,127-DASB,DISCOM.1-AD.ARMY.MIL,SubsistenceSupplyProvider,Brigade,,
+181-TCBN,181-TCBN,7-CSG.5-CORPS.ARMY.MIL,MaterielTransportProvider,Corps,,Not Used Now
+191-ORDBN,191-ORDBN,29-SPTGP.21-TSC.ARMY.MIL,AmmunitionProvider,Theater,,
+1-AD,1-AD,ARMY.MIL,StrategicTransportationProvider,Division,PassThrough,
+200-MMC,200-MMC,21-TSC.ARMY.MIL,SparePartsProvider,Theater,,Add
+21-TSC-HQ,21-TSC-HQ,ARMY.MIL,StrategicTransportationProvider,Theater,PassThrough,
+226-MAINTCO,226-MAINTCO,16-CSG.5-CORPS.ARMY.MIL,SparePartsProvider,Division,,Add
+227-SUPPLYCO,227-SUPPLYCO,16-CSG.5-CORPS.ARMY.MIL,SubsistenceSupplyProvider,Corps,,
+240-SSCO,240-SSCO,7-CSG.5-CORPS.ARMY.MIL,FuelSupplyProvider,Division,,Add
+240-SSCO,240-SSCO,7-CSG.5-CORPS.ARMY.MIL,PackagedPOLSupplyProvider,Division,,Add
+240-SSCO,240-SSCO,7-CSG.5-CORPS.ARMY.MIL,SubsistenceSupplyProvider,Division,,Add
+26-SSCO,26-SSCO,16-CSG.5-CORPS.ARMY.MIL,FuelSupplyProvider,Division,,Add
+26-SSCO,26-SSCO,16-CSG.5-CORPS.ARMY.MIL,PackagedPOLSupplyProvider,Division,,Add
+26-SSCO,26-SSCO,16-CSG.5-CORPS.ARMY.MIL,SubsistenceSupplyProvider,Division,,Add
+28-TCBN,28-TCBN,37-TRANSGP.21-TSC.ARMY.MIL,MaterielTransportProvider,Theater,,Not Used Now
+316-POL-SUPPLYBN,316-POL-SUPPLYBN,7-CSG.5-CORPS.ARMY.MIL,FuelTransportProvider,Corps,,Not Used Now
+343-SUPPLYCO,343-SUPPLYCO,29-SPTGP.21-TSC.ARMY.MIL,SubsistenceSupplyProvider,Theater,,
+3-SUPCOM-HQ,3-SUPCOM-HQ,5-CORPS.ARMY.MIL,StrategicTransportationProvider,Corps,PassThrough,
+406-SUPPLYCO,406-SUPPLYCO,7-CSG.5-CORPS.ARMY.MIL,SubsistenceSupplyProvider,Corps,,Add
+47-FSB,47-FSB,DISCOM.1-AD.ARMY.MIL,AmmunitionProvider,Brigade,,
+47-FSB,47-FSB,DISCOM.1-AD.ARMY.MIL,FuelSupplyProvider,Brigade,,
+47-FSB,47-FSB,DISCOM.1-AD.ARMY.MIL,PackagedPOLSupplyProvider,Brigade,,
+47-FSB,47-FSB,DISCOM.1-AD.ARMY.MIL,SparePartsProvider,Brigade,,
+47-FSB,47-FSB,DISCOM.1-AD.ARMY.MIL,SubsistenceSupplyProvider,Brigade,,
+501-FSB,501-FSB,DISCOM.1-AD.ARMY.MIL,AmmunitionProvider,Brigade,,
+501-FSB,501-FSB,DISCOM.1-AD.ARMY.MIL,FuelSupplyProvider,Brigade,,
+501-FSB,501-FSB,DISCOM.1-AD.ARMY.MIL,PackagedPOLSupplyProvider,Brigade,,
+501-FSB,501-FSB,DISCOM.1-AD.ARMY.MIL,SparePartsProvider,Brigade,,
+501-FSB,501-FSB,DISCOM.1-AD.ARMY.MIL,SubsistenceSupplyProvider,Brigade,,
+52-ENGBN-CBTHVY,52-ENGBN-CBTHVY,5-CORPS.ARMY.MIL,ConstructionProvider,Corps,,Remove
+565-RPRPTCO,565-RPRPTCO,7-CSG.5-CORPS.ARMY.MIL,SparePartsProvider,Corps,,
+574-SSCO,574-SSCO,29-SPTGP.21-TSC.ARMY.MIL,FuelSupplyProvider,Division,,Add
+574-SSCO,574-SSCO,29-SPTGP.21-TSC.ARMY.MIL,PackagedPOLSupplyProvider,Division,,Add
+574-SSCO,574-SSCO,29-SPTGP.21-TSC.ARMY.MIL,SubsistenceSupplyProvider,Division,,Add
+592-ORDCO,592-ORDCO,16-CSG.5-CORPS.ARMY.MIL,AmmunitionProvider,Corps,,
+597-MAINTCO,597-MAINTCO,7-CSG.5-CORPS.ARMY.MIL,SparePartsProvider,Division,,
+5-CORPS-ARTY,CORPS-ARTY,5-CORPS.ARMY.MIL,StrategicTransportationProvider,Corps,PassThrough,
+5-CORPS-REAR,CORPS-REAR,5-CORPS.ARMY.MIL,StrategicTransportationProvider,Corps,PassThrough,
+632-MAINTCO,632-MAINTCO,37-TRANSGP.21-TSC.ARMY.MIL,SparePartsProvider,Division,,Add
+6-TCBN,6-TCBN,37-TRANSGP.21-TSC.ARMY.MIL,FuelTransportProvider,Theater,,Not Used Now
+900-POL-SUPPLYCO,900-POL-SUPPLYCO,7-CSG.5-CORPS.ARMY.MIL,FuelSupplyProvider,Corps,,
+900-POL-SUPPLYCO,900-POL-SUPPLYCO,7-CSG.5-CORPS.ARMY.MIL,PackagedPOLSupplyProvider,Corps,,
+AWR-2,AWR-2,21-TSC.ARMY.MIL,AmmunitionProvider,Joint,TerminalInventoryManager,C < 30
+AWR-2,AWR-2,21-TSC.ARMY.MIL,SparePartsProvider,Joint,TerminalInventoryManager,C < 30
+AWR-2,AWR-2,21-TSC.ARMY.MIL,SubsistenceSupplyProvider,Joint,TerminalInventoryManager,C < 30
+CONUSGround,CONUSGround,TRANSCOM.MIL,CONUSGroundTransportationProvider,Joint,,
+DLAHQ,DLAHQ,MIL,ConstructionSupplyProvider,Joint,TerminalInventoryManager,Remove
+DLAHQ,DLAHQ,MIL,SparePartsProvider,Joint,TerminalInventoryManager,C > 30
+DLAHQ,DLAHQ,MIL,SubsistenceSupplyProvider,Joint,TerminalInventoryManager,C > 30
+GlobalAir,AMC,TRANSCOM.MIL,AirTransportationProvider,Joint,,
+GlobalSea,MSC,TRANSCOM.MIL,SeaTransportationProvider,Joint,,
+HNS,HNS,MIL,FuelSupplyProvider,Joint,TerminalInventoryManager,
+HNS,HNS,MIL,PackagedPOLSupplyProvider,Joint,TerminalInventoryManager,
+OSC,OSC,MIL,AmmunitionProvider,Joint,TerminalAmmunitionPacker,C > 30
+PlanePacker,PlanePacker,TRANSCOM.MIL,OrganicAirTransportationProvider,Joint,,
+ShipPacker,ShipPacker,TRANSCOM.MIL,ShipPackingTransportationProvider,Joint,,
+TheaterGround,TheaterGround,TRANSCOM.MIL,TheaterStrategicTransportationProvider,Joint,,
+TRANSCOM,TRANSCOM,MIL,StrategicTransportationProvider,Joint,ModeSelector,
+NCA,OSD,GOV,LogisticsCommanderInChief,Joint
+NCA,OSD,GOV,OperationalCommanderInChief,Joint
