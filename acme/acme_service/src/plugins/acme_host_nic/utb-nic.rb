@@ -23,17 +23,11 @@ class NIC < UTB::Failure
   end
 
   def trigger()
-     if (!@isOn) then
-      `ifdown #{@interface}`
-       @isOn = true
-     end
+    `ifdown #{@interface}`
   end
 
   def reset()
-    if (@isOn) then
-      `ifup  #{@interface}`
-      @isOn = false
-    end
+    `ifup  #{@interface}`
   end
   
 end
