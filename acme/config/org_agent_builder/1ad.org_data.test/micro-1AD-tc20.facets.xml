@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<society name="micro-1AD-tc20-v2.facets" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
+  <host name="localhost">
+    <node name="localnode">
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-35-ARBN">
+        <facet org_id="1-35-ARBN"/>
+        <facet orig_org_id="1-35-ARBN"/>
+        <facet superior_org_id="2-BDE-1-AD"/>
+        <facet home_location="VTYA"/>
+        <facet uic="WAPYAA"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="BATTALION"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-6-INFBN">
+        <facet org_id="1-6-INFBN"/>
+        <facet orig_org_id="1-6-INFBN"/>
+        <facet superior_org_id="2-BDE-1-AD"/>
+        <facet home_location="VTYA"/>
+        <facet uic="WAPSAA"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="BATTALION"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-AD">
+        <facet org_id="1-AD"/>
+        <facet orig_org_id="1-AD"/>
+        <facet superior_org_id="5-CORPS"/>
+        <facet home_location="ULRK"/>
+        <facet uic="WAPBAA"/>
+        <facet combat_support="CMD"/>
+        <facet echelon="DIVISION"/>
+        <facet echelon_group="Division"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+        <facet subordinate_org_id="2-BDE-1-AD"/>
+        <facet subordinate_org_id="3-BDE-1-AD"/>
+        <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
+        <facet sca_echelon_of_support="CORPS" sca_supported_org="1-AD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="125-FSB">
+        <facet org_id="125-FSB"/>
+        <facet orig_org_id="125-FSB"/>
+        <facet superior_org_id="3-BDE-1-AD"/>
+        <facet home_location="HKBN"/>
+        <facet uic="WJA0AA"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="BATTALION"/>
+        <facet echelon_group="Division"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="AmmunitionProvider"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="FuelSupplyProvider"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="PackagedPOLSupplyProvider"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="SparePartsProvider"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="SubsistenceSupplyProvider"/>
+        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="3-BDE-1-AD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-70-ARBN">
+        <facet org_id="2-70-ARBN"/>
+        <facet orig_org_id="2-70-ARBN"/>
+        <facet superior_org_id="3-BDE-1-AD"/>
+        <facet home_location="HKBN"/>
+        <facet uic="WAZBAA"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="BATTALION"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-BDE-1-AD">
+        <facet org_id="2-BDE-1-AD"/>
+        <facet orig_org_id="2-BDE-1-AD"/>
+        <facet superior_org_id="1-AD"/>
+        <facet home_location="VTYA"/>
+        <facet uic="WAPGAA"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="BRIGADE"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+        <facet subordinate_org_id="1-6-INFBN"/>
+        <facet subordinate_org_id="1-35-ARBN"/>
+        <facet subordinate_org_id="47-FSB"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-BDE-1-AD">
+        <facet org_id="3-BDE-1-AD"/>
+        <facet orig_org_id="3-BDE-1-AD"/>
+        <facet superior_org_id="1-AD"/>
+        <facet home_location="HKBN"/>
+        <facet uic="WAHEAA"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="BRIGADE"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+        <facet subordinate_org_id="2-70-ARBN"/>
+        <facet subordinate_org_id="125-FSB"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="47-FSB">
+        <facet org_id="47-FSB"/>
+        <facet orig_org_id="47-FSB"/>
+        <facet superior_org_id="2-BDE-1-AD"/>
+        <facet home_location="VTYA"/>
+        <facet uic="WH98AA"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="BATTALION"/>
+        <facet echelon_group="Division"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="AmmunitionProvider"/>
+        <facet echelon_of_support="BRIGADE" mechanism="" role="FuelSupplyProvider"/>
+        <facet echelon_of_support="BRIGADE" role="PackagedPOLSupplyProvider"/>
+        <facet echelon_of_support="BRIGADE" role="SparePartsProvider"/>
+        <facet echelon_of_support="BRIGADE" role="SubsistenceSupplyProvider"/>
+        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="2-BDE-1-AD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="5-CORPS">
+        <facet org_id="5-CORPS"/>
+        <facet orig_org_id="5-CORPS"/>
+        <facet superior_org_id="USAEUR"/>
+        <facet home_location="CYWK"/>
+        <facet uic="WAT6AA"/>
+        <facet combat_support="CMD"/>
+        <facet echelon="CORPS"/>
+        <facet echelon_group="Corps"/>
+        <facet is_deployable="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet has_personnel_assets="T"/>
+        <facet subordinate_org_id="1-AD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="AmmoConusGround">
+        <facet org_id="AmmoConusGround"/>
+        <facet orig_org_id="AmmoConusGround"/>
+        <facet superior_org_id="AmmoSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="ToPOEGroundTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="AmmoSea">
+        <facet org_id="AmmoSea"/>
+        <facet orig_org_id="AmmoSea"/>
+        <facet superior_org_id="AmmoTRANSCOM"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="AmmoShipPacker"/>
+        <facet subordinate_org_id="AmmoConusGround"/>
+        <facet subordinate_org_id="AmmoTheaterGround"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="SeaTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="AmmoShipPacker">
+        <facet org_id="AmmoShipPacker"/>
+        <facet orig_org_id="AmmoShipPacker"/>
+        <facet superior_org_id="AmmoSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="ShipPackingTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="AmmoTRANSCOM">
+        <facet org_id="AmmoTRANSCOM"/>
+        <facet orig_org_id="AmmoTRANSCOM"/>
+        <facet superior_org_id="TRANSCOM-20"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="AmmoSea"/>
+        <facet echelon_of_support="JOINT" mechanism="ModeSelector" role="AmmoStrategicTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="AmmoTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="AmmoTheaterGround">
+        <facet org_id="AmmoTheaterGround"/>
+        <facet orig_org_id="AmmoTheaterGround"/>
+        <facet superior_org_id="AmmoSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="FromPODGroundTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="ConusAir">
+        <facet org_id="ConusAir"/>
+        <facet orig_org_id="ConusAir"/>
+        <facet superior_org_id="ConusTRANSCOM"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="PlanePackerA"/>
+        <facet subordinate_org_id="PlanePackerB"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="AirTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="ConusGroundA">
+        <facet org_id="ConusGroundA"/>
+        <facet orig_org_id="ConusGroundA"/>
+        <facet superior_org_id="ConusSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="ToPOEGroundTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="ConusSea">
+        <facet org_id="ConusSea"/>
+        <facet orig_org_id="ConusSea"/>
+        <facet superior_org_id="ConusTRANSCOM"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="ConusShipPacker"/>
+        <facet subordinate_org_id="ConusGroundA"/>
+        <facet subordinate_org_id="TheaterGroundA"/>
+        <facet subordinate_org_id="TheaterGroundB"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="SeaTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="ConusShipPacker">
+        <facet org_id="ConusShipPacker"/>
+        <facet orig_org_id="ConusShipPacker"/>
+        <facet superior_org_id="ConusSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="ShipPackingTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="ConusTRANSCOM">
+        <facet org_id="ConusTRANSCOM"/>
+        <facet orig_org_id="ConusTRANSCOM"/>
+        <facet superior_org_id="TRANSCOM-20"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="ConusAir"/>
+        <facet subordinate_org_id="ConusSea"/>
+        <facet echelon_of_support="JOINT" mechanism="ModeSelector" role="ConusStrategicTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="ConusTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="DLAHQ">
+        <facet org_id="DLAHQ"/>
+        <facet orig_org_id="DLAHQ"/>
+        <facet superior_org_id="NCA"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Conus"/>
+        <facet echelon_of_support="JOINT" mechanism="TerminalInventoryManager" role="ConstructionSupplyProvider"/>
+        <facet echelon_of_support="JOINT" mechanism="TerminalInventoryManager" role="SparePartsProvider"/>
+        <facet echelon_of_support="JOINT" mechanism="TerminalInventoryManager" role="SubsistenceSupplyProvider"/>
+        <facet sca_echelon_of_support="JOINT" sca_supported_org="NCA"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="EuroAir">
+        <facet org_id="EuroAir"/>
+        <facet orig_org_id="EuroAir"/>
+        <facet superior_org_id="EuroTRANSCOM"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="AirTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="EuroGround">
+        <facet org_id="EuroGround"/>
+        <facet orig_org_id="EuroGround"/>
+        <facet superior_org_id="EuroSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="ToPOEGroundTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="EuroSea">
+        <facet org_id="EuroSea"/>
+        <facet orig_org_id="EuroSea"/>
+        <facet superior_org_id="EuroTRANSCOM"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="EuroShipPacker"/>
+        <facet subordinate_org_id="EuroGround"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="SeaTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="EuroShipPacker">
+        <facet org_id="EuroShipPacker"/>
+        <facet orig_org_id="EuroShipPacker"/>
+        <facet superior_org_id="EuroSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="ShipPackingTransportationProvider"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="EuroTRANSCOM">
+        <facet org_id="EuroTRANSCOM"/>
+        <facet orig_org_id="EuroTRANSCOM"/>
+        <facet superior_org_id="TRANSCOM-20"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="EuroSea"/>
+        <facet subordinate_org_id="EuroAir"/>
+        <facet echelon_of_support="JOINT" mechanism="ModeSelector" role="EuroStrategicTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="EuroTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="HNS">
+        <facet org_id="HNS"/>
+        <facet orig_org_id="HNS"/>
+        <facet superior_org_id="NCA"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Conus"/>
+        <facet echelon_of_support="JOINT" mechanism="TerminalInventoryManager" role="FuelSupplyProvider"/>
+        <facet echelon_of_support="JOINT" mechanism="TerminalInventoryManager" role="PackagedPOLSupplyProvider"/>
+        <facet sca_echelon_of_support="JOINT" sca_supported_org="NCA"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NCA">
+        <facet org_id="NCA"/>
+        <facet orig_org_id="NCA"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CMD"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Conus"/>
+        <facet subordinate_org_id="TRANSCOM-20"/>
+        <facet subordinate_org_id="HNS"/>
+        <facet subordinate_org_id="DLAHQ"/>
+        <facet subordinate_org_id="OSC"/>
+        <facet subordinate_org_id="USEUCOM"/>
+        <facet echelon_of_support="JOINT" role="LogisticsCommanderInChief"/>
+        <facet echelon_of_support="JOINT" role="OperationalCommanderInChief"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="OSC">
+        <facet org_id="OSC"/>
+        <facet orig_org_id="OSC"/>
+        <facet superior_org_id="NCA"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Conus"/>
+        <facet echelon_of_support="JOINT" mechanism="TerminalAmmunitionPacker" role="AmmunitionProvider"/>
+        <facet sca_echelon_of_support="JOINT" sca_supported_org="NCA"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="PlanePackerA">
+        <facet org_id="PlanePackerA"/>
+        <facet orig_org_id="PlanePackerA"/>
+        <facet superior_org_id="ConusAir"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="OrganicAirTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="EuroTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="PlanePackerB">
+        <facet org_id="PlanePackerB"/>
+        <facet orig_org_id="PlanePackerB"/>
+        <facet superior_org_id="ConusAir"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="OrganicAirTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="EuroTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="TRANSCOM-20">
+        <facet org_id="TRANSCOM-20"/>
+        <facet orig_org_id="TRANSCOM-20"/>
+        <facet superior_org_id="NCA"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet subordinate_org_id="EuroTRANSCOM"/>
+        <facet subordinate_org_id="ConusTRANSCOM"/>
+        <facet subordinate_org_id="AmmoTRANSCOM"/>
+        <facet echelon_of_support="JOINT" mechanism="TaskSorter" role="StrategicTransportationProvider"/>
+        <facet sca_echelon_of_support="JOINT" sca_supported_org="NCA"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="TheaterGroundA">
+        <facet org_id="TheaterGroundA"/>
+        <facet orig_org_id="TheaterGroundA"/>
+        <facet superior_org_id="ConusSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="FromPODGroundTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="EuroTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="TheaterGroundB">
+        <facet org_id="TheaterGroundB"/>
+        <facet orig_org_id="TheaterGroundB"/>
+        <facet superior_org_id="ConusSea"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CSS"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Transcom"/>
+        <facet echelon_of_support="JOINT" mechanism="" role="FromPODGroundTransportationProvider"/>
+        <facet sca_echelon_of_support="" sca_supported_org="EuroTRANSCOM"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="USAEUR">
+        <facet org_id="USAEUR"/>
+        <facet orig_org_id="USAEUR"/>
+        <facet superior_org_id="USEUCOM"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CMD"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Conus"/>
+        <facet subordinate_org_id="5-CORPS"/>
+        <facet echelon_of_support="US-ARMY" mechanism="" role="ArmyCommander"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="USEUCOM">
+        <facet org_id="USEUCOM"/>
+        <facet orig_org_id="USEUCOM"/>
+        <facet superior_org_id="NCA"/>
+        <facet home_location="VDYD"/>
+        <facet combat_support="CMD"/>
+        <facet echelon="JOINT"/>
+        <facet echelon_group="Conus"/>
+        <facet subordinate_org_id="USAEUR"/>
+      </agent>
+    </node>
+  </host>
+</society>
