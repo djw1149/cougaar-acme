@@ -88,16 +88,16 @@ module Cougaar
         @username = username
         @server = server
         @pwd = pwd
-        @run.comms = Cougaar::Communications::JabberMessagingService.new(@run) do |jabber|
-          jabber.username = username
-          jabber.password = pwd
-          jabber.jabber_server = server
-        end
       end
       def to_s
         return super.to_s + "('#{@username}', '#{@server}', '#{@pwd}')"
       end
       def perform
+        @run.comms = Cougaar::Communications::JabberMessagingService.new(@run) do |jabber|
+          jabber.username = @username
+          jabber.password = @pwd
+          jabber.jabber_server = @server
+        end
         begin
           @run.comms.start
         rescue
