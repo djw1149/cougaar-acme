@@ -277,7 +277,7 @@ class SocietyGenerator
         org_id = list['base_org_id'] + '.' + list['suffix']
         org = @organizations[org_id]
         raise "Unknown organization #{org_id}" unless org
-        @society_member_list<<org_id
+        @society_member_list<<org_id unless @society_member_list.include?(org_id) # avoid dups
       end
     else
       @society_member_list = @org_id_list          # if no society_member_file, all orgs are members
