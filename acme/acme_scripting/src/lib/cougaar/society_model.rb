@@ -19,67 +19,12 @@
 # </copyright>
 #
 
+require 'cougaar/society_utils'
+
 $debug_society_model = false
 
 module Cougaar
-
   module Model
-  
-    class SocietyMonitor
-      
-      @@monitors = []
-      def self.add(monitor)
-        @@monitors << monitor
-      end
-      
-      def self.each_monitor
-        @@monitors.each {|monitor| yield monitor}
-      end
-    
-      def initialize
-        SocietyMonitor.add(self)
-      end
-      
-      def host_added(host) ; end
-      def host_removed(host) ; end
-      
-      def node_added(node) ; end
-      def node_removed(node) ; end
-      
-      def agent_added(agent) ; end
-      def agent_removed(agent) ; end
-      
-      def component_added(component) ; end
-      def component_removed(component) ; end
-      
-      def self.enable_stdout
-        m = SocietyMonitor.new
-        def m.host_added(host)
-          puts "Host added        #{host.host_name} < #{host.society.name}"
-        end
-        def m.host_removed(host)
-          puts "Host removed      #{host.host_name} < #{host.society.name}"
-        end
-        def m.node_added(node)
-          puts "Node added        #{node.name} < #{node.host.host_name} < #{node.host.society.name}"
-        end
-        def m.node_removed(node)
-          puts "Node removed      #{node.name} < #{node.host.host_name} < #{node.host.society.name}"
-        end
-        def m.agent_added(agent)
-          puts "Agent added       #{agent.name} < #{agent.node.name} < #{agent.node.host.host_name} < #{agent.node.host.society.name}"
-        end
-        def m.agent_removed(agent)
-          puts "Agent removed     #{agent.name} < #{agnet.node.name} on #{agent.node.host.host_name} < #{agent.node.host.society.name}"
-        end
-        def m.component_added(component)
-          puts "Component added   #{component.name} < #{component.agent.name} < #{component.agent.node.name} < #{component.agent.node.host.host_name} < #{component.agent.node.host.society.name}"
-        end
-        def m.agent_removed(agent)
-          puts "Component removed #{component.name} < #{component.agent.name} < #{component.agent.node.name} < #{component.agent.node.host.host_name} < #{component.agent.node.host.society.name}"
-        end
-      end
-    end
     
     ##
     # The Cougaar::Society class is the root of the model of the society
@@ -414,6 +359,16 @@ module Cougaar
       end
       
       ##
+      # Does this component have a component of the given name
+      #
+      # name:: [String | Symbol] The facet key
+      # return:: [Boolean] True if it has a facet
+      #
+      def has_facet?(name)
+        get_facet(name) ? true : false
+      end
+      
+      ##
       # Returns the first facet that contains the specified key name
       #
       # name:: [String | Symbol] The facet key
@@ -422,6 +377,7 @@ module Cougaar
       def get_facet(name)
         return nil unless @facets
         each_facet(name) { | facet | return facet[name] }
+        return nil
       end
       
       ##
