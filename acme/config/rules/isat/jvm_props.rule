@@ -10,20 +10,13 @@ society.each_host do |host|
       host_mem = host.get_facet(:memory).to_i
     end
 
-
     if (host.nodes.size == 1)
       xms = host_mem * 0.25
-      xmx = host_mem * 0.75
-    elsif (host.nodes.size == 2)
-      xms = host_mem * 0.125
-      xmx = host_mem * 0.375
-    elsif (host.nodes.size == 3)
-      xms = host_mem * 0.125
-      xmx = host_mem * 0.3125
     else
       xms = host_mem * 0.125
-      xmx = host_mem * 0.25
     end
+
+    xmx = (host_mem * 0.75) / host.nodes.size
     xms = xms.floor
     xmx = xmx.floor
     
