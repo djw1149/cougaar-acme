@@ -49,6 +49,8 @@ public class MemoryWasterPlugin
 		public MWServlet( AlarmService alarmSvc, int freq, int std ) {
 			this.current = new RefreshAlarm( new byte[0], freq, std );
 			this.alarmSvc = alarmSvc;	
+			this.freq = freq;
+			this.stddev = std;
 		}
 		
 		public void wasteMemory() {
