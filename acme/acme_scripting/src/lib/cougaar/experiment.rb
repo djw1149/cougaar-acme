@@ -89,6 +89,8 @@ module Cougaar
   class ExperimentMonitor
   
     @@monitors = []
+    
+=begin    
     @@notification_queue = EventQueue.new
     
     Thread.new do 
@@ -103,12 +105,12 @@ module Cougaar
         end
       end
     end
-    
     def self.wait_for_notifications
       until @@notification_queue.empty?
         sleep 1
       end
     end
+=end
     
     ExperimentNotification = Struct.new(:experiment, :begin_flag)
     RunNotification = Struct.new(:run, :begin_flag)
@@ -136,7 +138,14 @@ module Cougaar
     end
     
     def self.notify(notification)
-      @@notification_queue.enqueue(notification)
+      @@monitors.each do |monitor| 
+        begin
+          monitor.notify(notification)
+        rescue
+          #ignore notification failures
+        end
+      end
+      #@@notification_queue.enqueue(notification)
     end
   
     def self.enable_stdout
@@ -144,78 +153,49 @@ module Cougaar
         $StdOutMonitor = ExperimentMonitor.new
       
         def $StdOutMonitor.on_experiment_begin(experiment)
-          m = "[#{Time.now.gmtime}] Experiment: #{experiment.name} started."
-          puts m
+          puts "[#{Time.now.gmtime}] Experiment: #{experiment.name} started."
         end
         def $StdOutMonitor.on_experiment_end(experiment)
-          m = "[#{Time.now.gmtime}] Experiment: #{experiment.name} finished."
-          puts m
+          puts "[#{Time.now.gmtime}] Experiment: #{experiment.name} finished."
         end
       
         def $StdOutMonitor.on_run_begin(run)
-          m = "[#{Time.now.gmtime}]   Run: #{run.name} started."
-          puts m
+          puts "[#{Time.now.gmtime}]   Run: #{run.name} started."
         end
         def $StdOutMonitor.on_run_end(run)
-          m = "[#{Time.now.gmtime}]   Run: #{run.name} finished."
-          puts m
+          puts "[#{Time.now.gmtime}]   Run: #{run.name} finished."
         end
       
         def $StdOutMonitor.on_state_begin(state)
-          t = Time.now.gmtime
-          @state_times = {} if @state_times.nil?
-          @state_times[state] = t
-          m = "[#{t}]     Waiting for: #{state}"
-          puts m
+          puts "[#{Time.now.gmtime}]     Waiting for: #{state}"
         end
 
         def $StdOutMonitor.on_state_end(state)
-          if (!@state_times.nil? && !@state_times[state].nil?) then
-            t = Time.now.gmtime
-            sec = (t - @state_times[state])
-            m = "[#{t}]     Done: #{state} in #{sec} seconds"
-          else
-            m= "[#{Time.now.gmtime}]     Done: #{state}"
-          end
-          puts m
+          puts "[#{Time.now.gmtime}]     Done: #{state} in #{(Time.now - state._start_time).to_i} seconds"
         end
       
         def $StdOutMonitor.on_action_begin(action)
-          t = Time.now.gmtime
-          @action_times = {} if @action_times.nil?
-          @action_times[action] = t
-          m = "[#{t}]     Starting: #{action}"
-          puts m
+          puts "[#{Time.now.gmtime}]     Starting: #{action}"
         end
+        
         def $StdOutMonitor.on_action_end(action)
-          if (!@action_times.nil? && !@action_times[action].nil?) then
-            t = Time.now.gmtime
-            sec = (t - @action_times[action])
-            m = "[#{t}]     Finished: #{action} in #{sec} seconds" 
-         else
-            m= "[#{Time.now.gmtime}]     Finished: #{action}" 
-          end
-          puts m
+          puts "[#{Time.now.gmtime}]     Finished: #{action} in #{(Time.now - action._start_time).to_i} seconds" 
         end
       
         def $StdOutMonitor.on_state_interrupt(state)
-          m = "[#{Time.now.gmtime}]      ** INTERRUPT ** #{state}"
-          puts m
+          puts "[#{Time.now.gmtime}]      ** INTERRUPT ** #{state}"
         end
       
         def $StdOutMonitor.on_action_interrupt(action)
-          m = "[#{Time.now.gmtime}]      ** INTERRUPT ** #{action}"
-          puts m
+          puts "[#{Time.now.gmtime}]      ** INTERRUPT ** #{action}"
         end
       
         def $StdOutMonitor.on_info_message(message)
-          m = "[#{Time.now.gmtime}]      INFO: #{message}"
-          puts m
+          puts "[#{Time.now.gmtime}]      INFO: #{message}"
         end
       
         def $StdOutMonitor.on_error_message(message)
-          m = "[#{Time.now.gmtime}]      ERROR: #{message}"
-          puts m
+          puts "[#{Time.now.gmtime}]      ERROR: #{message}"
         end
       end
     end
@@ -238,37 +218,19 @@ module Cougaar
       end
       
       def monitor.on_state_begin(state)
-        t = Time.now.gmtime
-        @state_times = {} if @state_times.nil?
-        @state_times[state] = t
         Cougaar.logger.info  "    Waiting for: #{state}"
       end
 
       def monitor.on_state_end(state)
-        if (!@state_times.nil? && !@state_times[state].nil?) then
-          t = Time.now.gmtime
-          sec = (t - @state_times[state])
-          Cougaar.logger.info  "    Done: #{state} in #{sec} seconds"
-        else
-          Cougaar.logger.info  "    Done: #{state}"
-        end
+        Cougaar.logger.info  "    Done: #{state} in #{(Time.now - state._start_time).to_i} seconds"
       end
       
       def monitor.on_action_begin(action)
-        t = Time.now.gmtime
-        @action_times = {} if @action_times.nil?
-        @action_times[action] = t
         Cougaar.logger.info  "    Starting: #{action}"
       end
 
       def monitor.on_action_end(action)
-        if (!@action_times.nil? && !@action_times[action].nil?) then
-          t = Time.now.gmtime
-          sec = (t - @action_times[action])
-          Cougaar.logger.info  "    Finished: #{action} in #{sec} seconds"
-        else
-          Cougaar.logger.info  "    Finished: #{action}"
-        end
+        Cougaar.logger.info  "    Finished: #{action} in #{(Time.now - action._start_time).to_i} seconds"
       end
       
       def monitor.on_state_interrupt(state)
@@ -531,7 +493,7 @@ module Cougaar
       ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, true)) if ExperimentMonitor.active?
       MultiRun.start(self, runcount, &block)
       ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, false)) if ExperimentMonitor.active?
-      ExperimentMonitor.wait_for_notifications
+      #ExperimentMonitor.wait_for_notifications if ExperimentMonitor.active?
     end
   end
   
@@ -549,6 +511,9 @@ module Cougaar
         run = Run.new(self, count)
         run.define_run &block
         run.start
+        run = nil
+        #ExperimentMonitor.wait_for_notifications if ExperimentMonitor.active?
+        ObjectSpace.garbage_collect
         return if interrupted?
       end
     end
@@ -966,6 +931,11 @@ module Cougaar
           rescue ActionFailure => failure
             ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{failure}"))
             interrupt
+          rescue Exception => exception
+            ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Exception received in #{@definitions[@current_definition].class}'s perform method"))
+            ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception}"))
+            ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception.backtrace.join("\n")}"))
+            interrupt
           ensure
             ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
           end
@@ -1084,10 +1054,11 @@ module Cougaar
         end
         begin
           process
-        rescue
+        rescue Exception => exception
           ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Exception received in #{self.class}'s process method"))
-          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!}"))
-          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!.backtrace}"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception}"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception.backtrace.join("\n")}"))
+          @sequence.interrupt
         end
         @timer.exit if @timer.status
       end
@@ -1099,10 +1070,11 @@ module Cougaar
       @process_thread = Thread.new do 
         begin
           process
-        rescue
+        rescue Exception => exception
           ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Exception received in #{self.class}'s process method"))
-          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!}"))
-          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!.backtrace}"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception}"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception.backtrace.join("\n")}"))
+          @sequence.interrupt
         end
       end
       @process_thread.join
