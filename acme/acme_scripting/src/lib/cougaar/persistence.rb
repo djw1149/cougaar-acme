@@ -32,19 +32,35 @@ module Cougaar
         @description = "Load a society from a persistence snapshot file."
         @parameters = [
           {:filename => "required, The persistence snapshot filename"},
-          {:debug => "boolean=false, True to print out debug messages"}
+          {:remote_restore => "boolean=false, Use a remote restore via ssh to nfs-shared service host"}
         ]
         @example = "do_action 'LoadSocietyFromPersistenceSnapshot', '~/snapshot.tgz''"
       }
-      def initialize(run, filename, debug = false)
+      def initialize(run, filename, remote_restore = false)
         super(run)
         @filename = filename
-        @debug = debug
+        @remote_restore = remote_restore
       end
 
       def perform()
         `cd #{ENV['CIP']}/workspace;rm -rf P;rm -rf security`
-        `cd #{ENV['CIP']}/workspace;tar -xzf #{@filename}`
+        # untar archive...
+        untar_command = "cd #{ENV['CIP']}/workspace;tar -xzf #{@filename}"
+        if @remote_restore
+          host_society = Ultralog::OperatorUtils::HostManager.new.load_society
+          raise_failure "Could not load host society" unless host_society
+          host = host_society.get_service_host('nfs-shared')
+          raise_failure "Could not find service host with nfs-shared for remote restore" unless host
+          @run.info_message "ssh #{host.host_name} '#{untar_command.gsub(/mnt\/shared/, 'export/shared')}'"
+          timer = Time.now
+          @run.info_message `ssh #{host.host_name} '#{untar_command.gsub(/mnt\/shared/, 'export/shared')}'`
+          @run.info_message "Untar time: #{Time.now - timer}"
+        else
+          timer = Time.now
+          `#{untar_command}`
+          @run.info_message "Untar time: #{Time.now - timer}"
+        end
+        
         if File.exists?("#{ENV['CIP']}/workspace/P/securityservices_config.jar")
           `cp #{ENV['CIP']}/workspace/P/securityservices_config.jar #{ENV['CIP']}/configs/security/securityservices_config.jar`
         end
