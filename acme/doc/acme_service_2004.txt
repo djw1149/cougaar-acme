@@ -1,0 +1,88 @@
+= ACME Service Capabilities in 2004 =
+
+The ACME capabilities in 2004 remain largely what existing in the 2003
+ACME infrastructure with the notable exception of the new experiment
+definition format (see experiment_definition.html) and three new ACME service capabilities (documented here).
+
+The three new/enhanced ACME service plugins are:
+
+* acme_host_communications - Router & Jabber communications
+* acme_tic_scheduler - Stack up (schedule) experiments to run
+* acme_reporting_service - Automated reporting framework
+
+== Updated Communications (acme_host_communications) ==
+
+In 2003 the method of communicating between an experiment script and the ACME service was the Jabber communications protocol.  For the most part this communications infrastructure met the need of the TIC for large societies (although there were reporting failures).  What this choice of communications protocols did not meet was the need of individual developers due to the complexity of having to set up Cougaar, ACME, the ACME service and a Jabber server, usually all within one machine.  Few ventured in to use this in anything but multi-machine configurations.  
+
+To meet this need, and a known need to scale beyond last years messaging stresses which cause intermittent failures of Jabber, the ISAT team created a new communication protocol/service which obviates the need for Jabber.  The new capability, known as the '''Message Router''' is embodied in both the scripting side of the ACME framework, and in the acme_host_communications service.  The Ruby code for the Message Router is located in the cougaar/message_router.rb.  This file embodies a network based client, server and protocol.
+
+=== Using the Message Router ===
+
+With this new communications service, each ACME Service can be used as a communications hub (as the Jabber service was in 2003).  Within a society, only one service ''needs'' to be a service, but the capability exists in each one.  To activate the Message Router in the ACME service you need to modify the following file:
+
+  /usr/local/acme/plugins/acme_host_communications/properties.yaml 
+
+An example shown here:
+
+  #### Properties: acme_host_communications - Version: 1.0
+  properties: ~
+  "|": 
+    - host: aramis 
+    - service_type: router 
+    - port: 6667
+
+In this example, the...
+
+  host: <host> 
+
+...represents ''either'' the Jabber host or the Message Router host.  Which is used is dependent on the...
+
+  service_type: <router|jabber>
+
+setting.  To change to the Message Router, you set this to 'router' (as shown here), or to 'jabber' to choose that message transport.  If you want to run this on a single machine, the host can be set to 'localhost' and the service_type to 'router'.
+
+To use this communications transport from the scripting side of ACME, you modify your scripts which, in 2003, used the action:
+
+  do_action "StartJabberCommunications"
+
+In 2004, that action is still present, but to use the Message Router you need to use the following action (with 'localhost' replaced by the router service host)
+
+  do_action "StartMessageRouterCommunications", 'localhost'
+
+The hostname can be left off if you have a host layout xml file and have the following facet defined.
+
+  <facet service="message-router"/>
+
+Actually, if you already have a service="jabber" facet, the Message Router will use that, but as will be seen, it is better to put in the service="message-router".  The main issue here is that if you want your script to run on societies that use Jabber -or- Message Router communications, then you can use the aforementioned facets and the following action:
+
+  do_action "StartCommunications"
+
+This action will use the facets (exclusively) to identify the host and communications protocol to use for communications based on the facets.  If a service="message-router" is found, it performs a StartMessageRouterCommunications, if not, it uses StartJabberCommunications.  This is the preferred way to write scripts and manage the communications configurations if your scripts need to run in the TIC.
+
+=== Scalable Message Router Services ===
+
+As mentioned above, the new Message Router communications architecture allows each ACME Service to be a communications hub, but for larger societies, this does not scale.  The pure-Ruby service (integrated into the ACME Service) will likely scale to 10-20 machines, but with higher numbers of machines, there is a need for a standalone server process.  To meet the communications needs of the TIC 1000 agent societies (100+ machines) ISAT developed a C++ based service that executes on Linux, and a C# based service that executes on Win32.  The RPM/MSI files for these services are available at http://cougaar.org/projects/message-router 
+
+== 2004 ACME Scheduling Service (acme_tic_scheduler) ==
+
+The 2004 method of scheduling runs for execution of the societies within the TIC will utilize the new ACME Service plugin '''acme_tic_scheduler'''.  This plugin manages a queue of '''Experiment Definition''' format files to execute on a particular society.  This plugin should only be started on the ACME service that you identify as the '''operator''' service, or can be started on a standalone machine's ACME Service for single machine operations.  
+
+This plugin is installed with the ACME Service, but is installed to not start by default.  To start the Scheduler service plugin, edit the following file:
+
+  /usr/local/acme/plugins/acme_tic_scheduler/plugin.yaml
+
+An example of this file would be:
+
+  --- !ruby/object:FreeBASE::PluginConfiguration 
+  name: acme_tic_scheduler
+  version: 1.0
+  autoload: false
+  require_path: acme_tic_scheduler/scheduler
+  startup_module: ACME::Plugins::TICScheduler
+  properties_path: properties.yaml
+  start_dependencies: 
+    raa_webrick: "*"
+
+The key thing to change to start this service is the '''autoload: false''' to autoload: true.  This will start the Scheduler service when ACME restarts.
+
+=== Scheduling experiments to run ===
