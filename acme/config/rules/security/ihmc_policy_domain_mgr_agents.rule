@@ -16,7 +16,9 @@ enclaves.each do |this_enclave|
     end
     agent.add_component do |c|
       c.classname = "safe.policyManager.DomainManagerPlugin"
-      c.add_argument(policy_domain_mgr + "Domain")
+      c.add_argument("domainName=PolicyDomainManager" + this_enclave.to_s + "Domain")
+      c.add_argument("useJTP=true")
+      c.add_argument("ontologySet=ultralog")
     end
     agent.add_component do |c|
       c.classname = "safe.policyManager.ConditionMonitorPlugin"

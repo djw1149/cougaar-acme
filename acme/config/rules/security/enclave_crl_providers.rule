@@ -1,0 +1,15 @@
+####################################################
+# enclave_crl_providers.rule
+
+node = nil
+society.each_node {|n| node = n}
+enclaves = 1..4 # there are 4 enclaves...do this once per enclave
+enclaves.each do |this_enclave|
+  enclave_sec_mgr = "Enclave" + this_enclave.to_s + "CRLProvider"
+  node.add_agent(enclave_sec_mgr) do |agent|
+    agent.add_component do |c|
+      c.classname = "org.cougaar.core.security.crypto.crl.plugin.CrlAgentRegistrationPlugin"
+      c.add_argument("60")
+    end
+  end
+end

@@ -56,14 +56,5 @@ enclaves.each do |this_enclave|
       c.classname = "org.cougaar.core.security.monitoring.servlet.MnRRegistrationViewerComponent"
       c.add_argument("/monitoringRegistrationViewer")
     end
-    agent.add_component do |c|
-      c.classname = "org.cougaar.core.servlet.BlackboardServletComponent"
-      c.add_argument("org.cougaar.core.adaptivity.AEViewerServlet")
-      c.add_argument("/aeviewer")
-    end
-    agent.add_component do |c|
-      c.classname = "org.cougaar.core.security.monitoring.servlet.MnRResponseViewerComponent"
-      c.add_argument("/monitoringQueryViewer")
-    end
   end
 end
