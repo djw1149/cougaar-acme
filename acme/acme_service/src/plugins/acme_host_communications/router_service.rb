@@ -57,6 +57,7 @@ class RouterService
   
   def start_client
     @client = InfoEther::MessageRouter::Client.new(@account, @host, @port)
+    @client.start_and_reconnect
     @client.add_message_listener do |message|
       dispatch_command(message) unless message.from.nil?
     end
