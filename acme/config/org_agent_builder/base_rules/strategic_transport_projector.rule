@@ -2,7 +2,7 @@
 # Rule to insert StrategicTransportProjectorPlugin
 # plugin = org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)
 
-strategic_transport_projector_plugin = "org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin"
+strategic_transport_projector_plugin = "org.cougaar.logistics.plugin.strattrans.StrategicTransportProjectorPlugin"
 society.each_agent do |agent|
   if agent.get_facet(:is_deployable)
     agent.add_component do |c|
