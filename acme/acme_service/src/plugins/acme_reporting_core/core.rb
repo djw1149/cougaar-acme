@@ -33,14 +33,14 @@ module ACME
         run_log(archive)
         RunTimeTest.new(archive, @plugin, @ikko).perform
         CompletionTest.new(archive, @plugin, @ikko).perform
-	QData.new(archive, @plugin, @ikko).perform
+        QData.new(archive, @plugin, @ikko).perform
       end
       
       def run_log(archive)
         archive.add_report("Run Log", @plugin.plugin_configuration.name) do |report|
           run_data = nil
           archive.files_with_name(/run\.log/).each do |f|
-            run_data = File.read(f.name)
+            run_data = File.read(f.name).gsub(/\&/, "&amp;").gsub(/\</, "&lt;").gsub(/\>/, "&gt;")
           end
           if run_data
             report.open_file("run_report.html", "text/html", "Full Run Log") do |file|
