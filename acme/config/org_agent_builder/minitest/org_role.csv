@@ -1,7 +1,0 @@
-orig_org_id,base_org_id,org_id_suffix,role,echelon_of_support,role_mechanism,notes
-3ID,3ID,ARMY.MIL,StrategicTransportationProvider,DIVISION,PassThrough,
-3ID,3ID,ARMY.MIL,LogisticsCommanderInChief,DIVISION,,
-1BDE,1BDE,3ID.ARMY.MIL,Headquarters,BRIGADE,,
-3-69-ARBN,3-69-ARBN,1BDE.3ID.ARMY.MIL,Combat,BRIGADE,,
-MCCGlobalMode,MCCGlobalMode,MIL,TransportationProvider,JOINT,ModeSelector,
-MCCGlobalMode,MCCGlobalMode,MIL,StrategicTransportationProvider,JOINT,ModeSelector,

@@ -1,5 +1,0 @@
-org_order,orig_org_id,base_org_id,suffix,superior_orig_org_id,superior_base_org_id,superior_suffix,is_rollup,society_group,alias_org_id,,2ndorig_org_id
-1,3ID,3ID,ARMY.MIL,,,,N,3ID,3ID,,
-2,1BDE,1BDE,3ID.ARMY.MIL,3ID,3ID,ARMY.MIL,N,3ID,1BDE,,
-3,3-69-ARBN,3-69-ARBN,1BDE.3ID.ARMY.MIL,1BDE,1BDE,3ID.ARMY.MIL,N,3ID,3-69-ARBN,,
-4,MCCGlobalMode,MCCGlobalMode,MIL,,,,N,3ID,MCCGlobalMode,,

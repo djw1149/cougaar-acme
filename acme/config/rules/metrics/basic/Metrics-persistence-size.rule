@@ -1,7 +1,0 @@
-######################################
-# Rule to insert Persistence sensors into all agents
-
-# Add all Persistence sensor to all Agents in society
-society.each_agent() do |agent| 
-     agent.add_component("org.cougaar.core.qos.metrics.PersistenceAdapterPlugin")
-end
