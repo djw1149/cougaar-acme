@@ -23,3 +23,4 @@ society.each_node_agent() do |node_agent|
        c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
      end
     }
+end

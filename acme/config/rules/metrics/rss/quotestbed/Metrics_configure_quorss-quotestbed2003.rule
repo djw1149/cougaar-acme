@@ -5,7 +5,7 @@
 sitesFeedLoader = "org.cougaar.core.qos.metrics.FeedLoader"
 hostsFeedLoader = "org.cougaar.core.qos.metrics.FeedLoader"
 
-sitesArgs = ["name=sites","class=com.bbn.quo.data.PropertiesDataFeed","args=-url http://stout.bbn.com/~statusquo/QuoTestbedSites.conf"]
+sitesArgs = ["name=sites","class=com.bbn.quo.data.PropertiesDataFeed","args=-url http://stout.bbn.com/~statusquo/QuoTestbed-Sites.conf"]
 hostsArgs = ["name=hosts","class=com.bbn.quo.data.PropertiesDataFeed","args=-url http://stout.bbn.com/~statusquo/QuoTestbed-Hosts.conf"]
 
  society.each_node do |node|
