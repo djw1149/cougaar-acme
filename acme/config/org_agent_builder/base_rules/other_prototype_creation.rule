@@ -1,0 +1,29 @@
+####################################################
+# Rule to insert other prototype creation Plugins
+# plugin = org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogMEILDMPlugin(icisMEI.q,+PrototypeProvider)
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogPartsLDMPlugin(icisParts.q,+PrototypeProvider)
+
+xml_prototype_provider_plugin = "org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin"
+log_mei_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogMEILDMPlugin"
+log_parts_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogPartsLDMPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:has_physical_assets)
+    agent.add_component do |c|
+      c.classname = xml_prototype_provider_plugin
+    end
+  end
+  if agent.get_facet(:has_equipment_assets)
+    agent.add_component do |c|
+      c.classname = log_mei_ldm_plugin
+      c.add_argument("icisMEI.q")
+      c.add_argument("+PrototypeProvider")
+    end
+    agent.add_component do |c|
+      c.classname = log_parts_ldm_plugin
+      c.add_argument("icisParts.q")
+      c.add_argument("+PrototypeProvider")
+    end
+  end
+end

@@ -1,0 +1,19 @@
+####################################################
+# Rule to insert SequentialGlobalAirPlugin
+# Just at AMC.TRANSCOM.MIL (formerly GlobalAir): (echelon_group = "Transcom") && (role = "AirTransportationProvider")
+# plugin = org.cougaar.logistics.plugin.trans.SequentialGlobalAirPlugin
+
+sequential_global_air_plugin = "org.cougaar.logistics.plugin.trans.SequentialGlobalAirPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:echelon_group) == "Transcom"
+    agent.each_facet(:role) do |facet|
+      if facet[:role] == "AirTransportationProvider"
+        agent.add_component do |c|
+          c.classname = sequential_global_air_plugin
+          c.add_argument("envFile=GLMT.TRANSCOM.env.xml")
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+####################################################
+# Rule to insert Plane Packer Plugins
+# Just at PlanePacker: (echelon_group = "Transcom") && (role = "OrganicAirTransportationProvider")
+# plugin = org.cougaar.logistics.plugin.trans.GenericVishnuPlugin(envFile=GLMT.Transport.env.xml)
+# plugin = org.cougaar.logistics.plugin.trans.TransportAllocatorPlugin(envFile=GLMT.SimpleTransport.env.xml)
+# plugin = org.cougaar.logistics.plugin.trans.TransportExpanderPlugin(envFile=GLMT.SimpleTransport.env.xml)
+
+generic_vishnu_plugin = "org.cougaar.logistics.plugin.trans.GenericVishnuPlugin"
+transport_allocator_plugin = "org.cougaar.logistics.plugin.trans.TransportAllocatorPlugin"
+transport_expander_plugin = "org.cougaar.logistics.plugin.trans.TransportExpanderPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:echelon_group) == "Transcom"
+    agent.each_facet(:role) do |facet|
+      if facet[:role] == "OrganicAirTransportationProvider"
+        agent.add_component do |c|
+          c.classname = generic_vishnu_plugin
+          c.add_argument("envFile=GLMT.Transport.env.xml")
+        end
+        agent.add_component do |c|
+          c.classname = transport_allocator_plugin
+          c.add_argument("envFile=GLMT.SimpleTransport.env.xml")
+        end
+        agent.add_component do |c|
+          c.classname = transport_expander_plugin
+          c.add_argument("envFile=GLMT.SimpleTransport.env.xml")
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+####################################################
+# Rule to insert GetOplanPlugin
+# plugin = org.cougaar.mlm.plugin.ldm.GetOplanPlugin
+
+get_oplan_plugin = "org.cougaar.mlm.plugin.ldm.GetOplanPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:is_deployable)
+    agent.add_component do |c|
+      c.classname = get_oplan_plugin
+    end
+  end
+end

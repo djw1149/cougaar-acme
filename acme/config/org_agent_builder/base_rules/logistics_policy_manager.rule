@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert LogisticsPolicyManagerPlugin everywhere
+# plugin = org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin
+
+logistics_policy_manager_plugin = "org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin"
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = logistics_policy_manager_plugin
+  end
+end

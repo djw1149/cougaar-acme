@@ -1,0 +1,24 @@
+####################################################
+# Rule to insert Ammo Packer Plugins at supply chain orgs with a mechanism of TerminalInventoryManager
+# plugin = org.cougaar.logistics.plugin.trans.AmmoLowFidelityExpanderPlugin
+# plugin = org.cougaar.logistics.plugin.packer.ALAmmoPacker
+# plugin = org.cougaar.logistics.plugin.trans.AmmoProjectionExpanderPlugin
+
+ammo_low_fidelity_expander_plugin = "org.cougaar.logistics.plugin.trans.AmmoLowFidelityExpanderPlugin"
+al_ammo_packer = "org.cougaar.logistics.plugin.packer.ALAmmoPacker"
+ammo_projection_expander_plugin = "org.cougaar.logistics.plugin.trans.AmmoProjectionExpanderPlugin"
+
+society.each_agent do |agent|
+    if agent.name == "OSC" 
+      agent.add_component do |c|
+        c.classname = ammo_low_fidelity_expander_plugin
+      end
+      agent.add_component do |c|
+        c.classname = al_ammo_packer
+      end
+      agent.add_component do |c|
+        c.classname = ammo_projection_expander_plugin
+      end
+    end
+end
+

@@ -1,0 +1,23 @@
+####################################################
+# Rule to insert UTILLdmXMLPlugin
+# It only is used by the GLMT orgs (echelon_group = "Transcom")
+# It only gets the arg at TRANSCOM ??? (role = 'StrategicTransportationProvider')
+# plugin = org.cougaar.lib.plugin.UTILLdmXMLPlugin(ldmFile=GLMT.TRANSCOM.ldm.xml)
+# plugin = org.cougaar.lib.plugin.UTILLdmXMLPlugin
+
+util_ldm_xml_plugin = "org.cougaar.lib.plugin.UTILLdmXMLPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:echelon_group) == "Transcom"
+    strategic_transportation_provider = false
+    agent.each_facet(:role) do |facet|
+      strategic_transportation_provider = true if facet[:role] == "StrategicTransportationProvider"
+    end
+    agent.add_component do |c|
+      c.classname = util_ldm_xml_plugin
+      if strategic_transportation_provider
+        c.add_argument("ldmFile=GLMT.TRANSCOM.ldm.xml")
+      end
+    end
+  end
+end

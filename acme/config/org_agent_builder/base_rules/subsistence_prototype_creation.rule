@@ -1,0 +1,21 @@
+####################################################
+# Rule to insert subsistence prototype creation Plugins
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogClassIConsumerLDMPlugin(subsistence.q)
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogClassILDMPlugin(subsistence.q,+PrototypeProvider)
+
+subsistence_consumer_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogClassIConsumerLDMPlugin"
+subsistence_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogClassILDMPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:has_personnel_assets)
+    agent.add_component do |c|
+      c.classname = subsistence_consumer_ldm_plugin
+      c.add_argument("subsistence.q")
+    end
+    agent.add_component do |c|
+      c.classname = subsistence_ldm_plugin
+      c.add_argument("subsistence.q")
+      c.add_argument("+PrototypeProvider")
+    end
+  end
+end

@@ -1,0 +1,36 @@
+####################################################
+# Rule to insert LogProjectionPlugin
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=Ammunition)
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=BulkPOL)
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=PackagedPOL)
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=Consumable)
+# plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=Subsistence)
+
+log_projection_plugin = "org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:has_equipment_assets)
+    agent.add_component do |c|
+      c.classname = log_projection_plugin
+      c.add_argument('SUPPLY_TYPE=Ammunition')
+    end
+    agent.add_component do |c|
+      c.classname = log_projection_plugin
+      c.add_argument('SUPPLY_TYPE=BulkPOL')
+    end
+    agent.add_component do |c|
+      c.classname = log_projection_plugin
+      c.add_argument('SUPPLY_TYPE=PackagedPOL')
+    end
+    agent.add_component do |c|
+      c.classname = log_projection_plugin
+      c.add_argument('SUPPLY_TYPE=Consumable')
+    end
+  end
+  if agent.get_facet(:has_personnel_assets)
+    agent.add_component do |c|
+      c.classname = log_projection_plugin
+      c.add_argument('SUPPLY_TYPE=Subsistence')
+    end
+  end
+end

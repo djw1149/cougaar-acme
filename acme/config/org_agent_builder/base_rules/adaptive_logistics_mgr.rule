@@ -1,0 +1,18 @@
+####################################################
+# adaptive_logistics_mgr.rule
+# Adds LogisticsManagerPlugin recipe to 5-CORPS and TRANSCOM
+
+log_mgr_plugin = "org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin"
+
+agent = society.agents["5-CORPS"]
+unless agent == nil
+  agent.add_component do |c|
+    c.classname = log_mgr_plugin
+  end
+end
+agent = society.agents["TRANSCOM"]
+unless agent == nil
+  agent.add_component do |c|
+    c.classname = log_mgr_plugin
+  end
+end

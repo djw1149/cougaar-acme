@@ -1,0 +1,18 @@
+####################################################
+# Rule to insert UniversalAllocatorPlugin at supply chain orgs with a mechanism of TerminalInventoryManager
+# The Universal Allocator should get a new Argument to differentiate different SupplyTypes (Later)
+# plugin = org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin(ProjectSupply,Supply)
+
+universal_allocator_plugin = "org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin"
+
+society.each_agent do |agent|
+  agent.each_facet(:role) do |facet|
+    if facet[:mechanism] == "TerminalInventoryManager"
+      agent.add_component do |c|
+        c.classname = universal_allocator_plugin
+        c.add_argument('ProjectSupply')
+        c.add_argument('Supply')
+      end
+    end
+  end
+end
