@@ -271,11 +271,7 @@ module Cougaar
       def start
         @retry_count.times do |i|
           begin
-            if ($POLARIS) then
-              @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/p#{$POLARIS_MONITOR.runId}-#{@run.name}", @password)
-            else
-              @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/expt-#{@run.name}", @password)
-            end
+            @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/expt-#{@run.name}", @password)
             @acme_session.on_session_failure do
               Cougaar.logger.error "Session to Jabber interrupted...preparing to retry connection"
               @acme_session.close
