@@ -23,6 +23,13 @@ module Cougaar
   module Actions
     class DisableNetworkInterfaces < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Disables the NIC one or more nodes' hosts."
+        @parameters = [
+          {:nodes=> "required, List of node names."}
+        ]
+        @example = "do_action 'DisableNetworkInterfaces', 'TRANSCOM-NODE', 'CONUS-NODE'"
+      }
       def initialize(run, *nodes)
         super(run)
         @nodes = nodes
@@ -40,6 +47,13 @@ module Cougaar
     end
     class EnableNetworkInterfaces < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Enables the NIC one or more nodes' hosts."
+        @parameters = [
+          {:nodes=> "required, List of node names."}
+        ]
+        @example = "do_action 'EnableNetworkInterfaces', 'TRANSCOM-NODE', 'CONUS-NODE'"
+      }
       def initialize(run, *nodes)
         super(run)
         @nodes = nodes
