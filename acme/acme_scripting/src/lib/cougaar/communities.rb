@@ -21,6 +21,43 @@
 
 module Cougaar
 
+  module Actions
+    class DeployCommunitiesFile < Cougaar::Action
+      PRIOR_STATES = ["CommunicationsRunning"]
+      RESULTANT_STATE = "SocietyRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Write the society's communities.xml file."
+        @parameters = [
+          {:destination => "[default='operator', 'operator'|'all'], Host to write communities.xml file to.  If this is not specified its writes to all."},
+          {:debug => "default=false, If true, outputs messages sent to deploy communities.xml file."}
+        ]
+        @example = "do_action 'DeployCommunitiesFile'"
+      }
+      
+      def initialize(run, destination='operator', debug=false)
+        super(run)
+        @destination = destination
+        @debug = debug
+      end
+      
+      def perform
+        communities_xml = @society.communities.to_xml
+        if @destination == 'operator'
+          @society.each_service_host("operator") do |host|
+            result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:9444/communities", communities_xml, "text/xml")
+            puts result if @debug
+          end
+        else
+          @society.each_service_host("acme") do |host|
+            result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:9444/communities", communities_xml, "text/xml")
+            puts result if @debug
+          end
+        end
+      end
+
+    end
+  end
+
   module Model
   
     class Society
