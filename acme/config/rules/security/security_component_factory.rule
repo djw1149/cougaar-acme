@@ -1,0 +1,36 @@
+####################################################
+# SecurityComponentFactory Enclaves 1-4
+
+
+compFactory = "org.cougaar.core.security.provider.SecurityComponentFactory"
+
+society.each_agent do |agent|
+  if agent.name == "Enclave1SecurityMnRManager"
+    agent.add_component do |c|
+      c.classname = compFactory
+      c.insertionpoint = "Node.AgentManager.Agent.SecurityComponent"
+      c.add_argument("Enclave1Security-COMM")
+    end
+  end
+  if agent.name == "Enclave2SecurityMnRManager"
+    agent.add_component do |c|
+      c.classname = compFactory
+      c.insertionpoint = "Node.AgentManager.Agent.SecurityComponent"
+      c.add_argument("Enclave2Security-COMM")
+    end
+  end
+  if agent.name == "Enclave3SecurityMnRManager"
+    agent.add_component do |c|
+      c.classname = compFactory
+      c.insertionpoint = "Node.AgentManager.Agent.SecurityComponent"
+      c.add_argument("Enclave3Security-COMM")
+    end
+  end
+  if agent.name == "Enclave4SecurityMnRManager"
+    agent.add_component do |c|
+      c.classname = compFactory
+      c.insertionpoint = "Node.AgentManager.Agent.SecurityComponent"
+      c.add_argument("Enclave4Security-COMM")
+    end
+  end
+end
