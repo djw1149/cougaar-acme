@@ -179,7 +179,7 @@ module UltraLog
       resp = c.get("/controller/listruns")
       resp = resp.body
       lines = resp.split("\n")
-      offset = 25
+      offset = 26
       runs = []
       while lines[offset].strip=="<TR>"
         offset = offset + 1
@@ -191,7 +191,7 @@ module UltraLog
         status = strip_tags(lines[offset+5].strip)
         action = strip_tags(lines[offset+6].strip)
         runs << Run.new(self, id, status, action, start_time, end_time, units, assets)
-        offset = offset + 7
+        offset = offset + 9
       end
       return runs
     end
