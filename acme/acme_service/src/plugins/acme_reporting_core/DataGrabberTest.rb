@@ -38,9 +38,11 @@ module ACME
         if pattern.match(line)
           match_vars = $~[1..-1] #save $1, $2, ...
           line =~ /\](.*)::/ #extract the date from the line
-          pd = ParseDate.parsedate($1)
-          time = Time.mktime(*pd)
-          ts = [time, match_vars]
+          if $1 then
+            pd = ParseDate.parsedate($1)
+            time = Time.mktime(*pd)
+            ts = [time, match_vars]
+          end
         end
         return ts
       end
