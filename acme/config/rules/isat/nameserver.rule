@@ -1,0 +1,17 @@
+ns_node = nil
+society.each_node do |node|
+  node.each_facet(:role) do |facet|
+    ns_node = node if facet[:role]=='NameServer'
+  end
+end
+
+if ns_node
+  society.each_node do |node|
+    if node==ns_node
+      node.override_parameter("-Dorg.cougaar.name.server", "#{node.host.host_name}:8888:5555")
+      node.override_parameter("-Dorg.cougaar.nameserver.auto", "true")
+    else
+      node.override_parameter("-Dorg.cougaar.nameserver.auto", "false")
+    end
+  end
+end
