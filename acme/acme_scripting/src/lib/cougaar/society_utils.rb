@@ -176,7 +176,7 @@ module Cougaar
           @society_hosts.each_host do |host|
             target = false
             host.each_facet(:service) do |facet|
-              target = true if facet[:service]=='ACME'
+              target = true if facet[:service]=='acme'
             end
             if target
               hostlist << host

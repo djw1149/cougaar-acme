@@ -19,18 +19,24 @@
 # </copyright>
 #
 
-require 'ultralog/aggagent'
-require 'ultralog/aggagent_actions'
-require 'ultralog/completion_control'
-require 'ultralog/completion'
-require 'ultralog/datagrabber'
-require 'ultralog/freeze'
-require 'ultralog/glm_stimulator'
-require 'ultralog/operator'
-require 'ultralog/oplan_editor'
-require 'ultralog/gls_client'
-require 'ultralog/inventory'
-require 'ultralog/verify'
-require 'ultralog/services'
-
-require 'ultralog/debug/relations'
+module Cougaar
+  module Model
+  
+    class Society
+      def each_service_host(service)
+        each_host do |host| 
+          host.each_facet(:service) do |facet|
+            yield host if facet[:service]==service
+          end
+        end
+        
+      end
+      def get_service_host(service)
+        result = nil
+        each_service_host(service) { |host| result = host }
+        return result
+      end
+    end
+    
+  end
+end
