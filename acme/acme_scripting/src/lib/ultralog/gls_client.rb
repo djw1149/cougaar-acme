@@ -19,9 +19,21 @@
 # </copyright>
 #
 
+require 'uri'
+
 module UltraLog
   class GLSClient
     attr_reader :oplan_name, :oplan_id, :c0_date
+    
+    def initialize(run)
+      @run = run
+      @gls_connected = false
+      @can_send_oplan = false
+      @oplan_name = nil
+      @oplan_id = nil
+      @c0_date=nil
+      connect
+    end
     
     def can_send_oplan?
       @can_send_oplan
@@ -36,24 +48,22 @@ module UltraLog
         @gls_connection.finish
         @gls_thread.kill if @gls_thread
       rescue
-        Cougaar.logger.error "Error shutting down gls connection: #{$!}"
+        Cougaar.logger.error "Error shutting down gls connection"
+        Cougaar.logger.error $!
+        Cougaar.logger.error $!.backtrace.join("\n")
       end
     end
     
-    def initialize(run)
-      @run = run
-      @gls_connected = false
-      @can_send_oplan = false
-      @oplan_name = nil
-      @oplan_id = nil
-      @c0_date=nil
-      
-      @gls_connection = Net::HTTP.new(@run.society.agents['NCA'].node.host.host_name, @run.society.cougaar_port)
+    def connect(uri = nil)
+      uri = @run.society.agents['NCA'].uri unless uri
+      uri = URI.parse(uri)
+      @gls_connection = Net::HTTP.new(uri.host, uri.port)
       @gls_thread = Thread.new do
         begin
           req = Net::HTTP::Get.new("/$NCA/glsreply?command=connect")
           Cougaar::Communications::HTTP.authenticate_request(req)
           @gls_connection.request(req) do |resp|
+            return connect(resp['location']) if resp.code=='302'
             resp.read_body do |data|
               case data.strip
               when /^<oplan name=.* id=[0-9A-F]*>/
