@@ -1,0 +1,16 @@
+CHANGES
+MANIFEST
+README
+extconf.rb
+
+doc/process.rd
+doc/process.txt
+doc/examples/test_create.rb
+doc/examples/test1.rb
+doc/examples/test2.rb
+
+lib/win32/process.c
+lib/win32/pipedprocess.cpp
+lib/win32/process.h
+
+test/tc_process.rb

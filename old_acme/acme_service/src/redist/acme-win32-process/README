@@ -1,0 +1,26 @@
+Prerequisites
+=============
+Ruby 1.8.0 or later.
+
+This code is supported on Windows NT, Windows 2000 or Windows XP Pro only.  It
+may work on Windows XP Home, but it is not officially supported for that
+platform.
+
+To run the test suite, you will need the sys-proctable package, found at
+http://ruby-sysutils.sf.net.
+
+Installation Instructions
+=========================
+ruby extconf.rb
+nmake
+ruby test.rb        # optional
+nmake site-install
+
+How does fork on Win32 work exactly?
+====================================
+See the "Details" section of the documentation for how this bit of magic was
+accomplished.
+
+Sample code
+===========
+You can find examples for fork() and create() under doc/examples.
