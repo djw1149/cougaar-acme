@@ -157,36 +157,45 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Waits for the GLS connection."
         @parameters = [
-          {:await_oplan => "default=true, true to await oplan cougaar event prior to connecting to GLS."},
+          {:await_event => "default=true, true to await ReportChainReady Cougaar Event prior to connecting to GLSInit Servlet."},
           {:timeout => "default=nil, Amount of time to wait in seconds."},
           {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
         ]
         @example = "
           wait_for 'GLSConnection' # connect immediately
             or
-          wait_for 'GLSConnection', true # wait for OPlan event
+          wait_for 'GLSConnection', true # wait for ReportChainReady event
         "
       }
-      def initialize(run, await_oplan=true, timeout=nil, &block)
+      def initialize(run, await_event=true, timeout=nil, &block)
         super(run, timeout, &block)
-        @await_oplan = await_oplan
+        @await_event = await_event
       end
       
       def process
-        if @await_oplan
+        if @await_event
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
-          @run.info_message "Waiting for OPlan Cougaar Event"
+          @run.info_message "Waiting for ReportChainReady Cougaar Event"
+
+	  evt_src = nil
+	  @run.society.each_agent do |agent|
+	    if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+	      evt_src = agent.name.to_s
+	      break
+	    end
+	  end
+
           loop = true
           while loop
             event = @run.get_next_event
-            if event.event_type=="STATUS" && event.cluster_identifier=="NCA" && event.component=="OPlanDetector"
+            if event.event_type=="STATUS" && event.cluster_identifier==evt_src && event.component=="ReportChainDetectorPlugin"
               loop = false
             end
           end
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
-	  @run.info_message "Got OPlan Cougaar Event"
+	  @run.info_message "Got ReportChainReady Cougaar Event"
         end
 
         gls_client = ::UltraLog::GLSClient.new(run)
