@@ -24,7 +24,7 @@ orig_org_id,base_org_id,suffix,role,echelon_of_support,role_mechanism,notes
 181-TCBN,181-TCBN,7-CSG.5-CORPS.ARMY.MIL,MaterielTransportProvider,CORPS,,Not Used Now
 191-ORDBN,191-ORDBN,29-SPTGP.21-TSC.ARMY.MIL,AmmunitionProvider,THEATER,,
 1-AD,1-AD,ARMY.MIL,StrategicTransportationProvider,DIVISION,PassThrough,
-200-MMC,200-MMC,21-TSC.ARMY.MIL,SparePartsProvider,THEATER,,Add
+200-MMC,200-MMC,21-TSC.ARMY.MIL,SparePartsProvider,CORPS,,Add
 21-TSC-HQ,21-TSC-HQ,ARMY.MIL,StrategicTransportationProvider,THEATER,PassThrough,
 226-MAINTCO,226-MAINTCO,16-CSG.5-CORPS.ARMY.MIL,SparePartsProvider,DIVISION,,Add
 227-SUPPLYCO,227-SUPPLYCO,16-CSG.5-CORPS.ARMY.MIL,SubsistenceSupplyProvider,CORPS,,
