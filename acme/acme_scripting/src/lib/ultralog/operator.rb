@@ -48,6 +48,7 @@ module Cougaar
         result = operator.test
         if result =~ /ERROR SENDING/ || result =~ /Unregistered command/
           puts "Invalid Operator Service #{@host}\n#{result}"
+          Cougaar.logger.error "Invalid Operator Service #{@host}\n#{result}"
         else
           @run['operator'] = operator
         end
@@ -165,8 +166,10 @@ module UltraLog
     private
     
     def send_command(command, timeout, params="")
+      Cougaar.logger.info "Sending Operator Command: command[#{command}]#{params}"
       reply = @run.comms.new_message("#{@host}@#{@run.comms.jabber_server}/acme").set_body("command[#{command}]#{params}").request(timeout)
-      return "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
+      Cougaar.logger.error "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
+      Cougaar.logger.info "Result: #{reply.body}"
       return reply.body
     end
     
