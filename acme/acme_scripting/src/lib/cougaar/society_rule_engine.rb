@@ -62,17 +62,33 @@ module Cougaar
           loop = @monitor.modified?
           count += 1
         end
+        if count >= @max_loop
+          raise "Detected endless loop in rule applciation."
+        end
+        unused_rules = []
+        @rules.each do |rule|
+          unused_rules << rule.name unless rule.modified_society?
+        end
+        if unused_rules.size > 0
+          raise "Transformation exception\nThe rule(s)s: #{unused_rules.join(', ')} did not modify the society."
+        end
       end
     end
     
     class Rule
-      attr_accessor :name, :description, :fire_count
+      attr_accessor :name, :description, :fire_count, :modified_society
       
       def initialize(name, proc=nil, &block)
         @name = name
         proc = block unless proc
         @rule = proc
+        @modified_society = false
       end
+      
+      def modified_society?
+        @modified_society
+      end
+      
       def execute(society)
         begin
           @rule.call(self, society)
@@ -111,42 +127,58 @@ module Cougaar
         clear
       end
       def host_added(host)
-        @modified = true if host.society == @society
+        return unless host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @hosts_added += 1
       end
       
       def host_removed(host)
-        @modified = true if host.society == @society
+        return unless host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @hosts_removed += 1
       end
       
       def node_added(node)
-        @modified = true if node.host.society == @society
+        return unless node.host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @nodes_added += 1
       end
       
       def node_removed(node)
-        @modified = true if node.host.society == @society
+        return unless node.host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @nodes_removed += 1
       end
       
       def agent_added(agent)
-        @modified = true if agent.node.host.society == @society
+        return unless agent.node.host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @agents_added += 1
       end
       
       def agent_removed(agent)
-        @modified = true if agent.node.host.society == @society
+        return unless agent.node.host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @agents_removed += 1
       end
       
       def component_added(component)
-        @modified = true if component.agent.node.host.society == @society
+        return unless component.agent.node.host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @components_added += 1
       end
       
       def component_removed(component)
-        @modified = true if component.agent.node.host.society == @society
+        return unless component.agent.node.host.society = @society
+        @modified = true
+        @current_rule.modified_society = true
         @components_removed += 1
       end
       
