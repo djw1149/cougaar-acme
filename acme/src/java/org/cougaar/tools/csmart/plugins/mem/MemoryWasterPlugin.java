@@ -52,7 +52,7 @@ public class MemoryWasterPlugin
 		}
 		
 		public void wasteMemory() {
-			current.setData( new byte[size]);
+			current.setData( new byte[size * 1024]);
 		}	
 		
 		public void execute( HttpServletRequest request,
