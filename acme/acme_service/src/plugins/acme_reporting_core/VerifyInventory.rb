@@ -2,6 +2,7 @@
 ##Inventory Verifier
 ##Compares Inventory XML files with benchmarks 
 
+require 'parsedate'
 
 module ACME
   module Plugins
@@ -82,36 +83,38 @@ module ACME
     class TagData
       attr_reader :tag, :data
 
-      def initialize(tag, convert, scale_to_day)
+      def initialize(tag, scale_to_day)
         @tag = tag
         @data = []
-        @convert = convert
         @scale = scale_to_day
       end
 
       def add_record(start_time, end_time, value)
         new_recs = []
-        value = (@convert ? value.hex : value.to_f) #set value to 0 if it is nil
-        value = convert_hex(value) if @convert
+        numeric_value = value.to_f
+
+        start_time = Time.gm(*ParseDate.parsedate(start_time)).to_i # convert time in strings to integer
+        end_time = Time.gm(*ParseDate.parsedate(end_time)).to_i
+
 
         if @scale then 
           if (start_time % ONE_DAY != 0) then
             new_recs.push(InventoryRecord.new(round_to_day(start_time, false), 
                                 round_to_day(start_time, true), 
-                                get_fraction_of_day(start_time, false) * value))
+                                get_fraction_of_day(start_time, false) * numeric_value))
           end
           if (round_to_day(start_time, true) != round_to_day(end_time, false)) then
             new_recs.push(InventoryRecord.new(round_to_day(start_time, true),
-                                round_to_day(end_time, false), value))
+                                round_to_day(end_time, false), numeric_value))
           end
           if (end_time % ONE_DAY != 0) then
             new_recs.push(InventoryRecord.new(round_to_day(end_time, false), 
                               round_to_day(end_time, true), 
-                              get_fraction_of_day(end_time, true) * value))
+                              get_fraction_of_day(end_time, true) * numeric_value))
           end
         else
           new_recs.push(InventoryRecord.new(round_to_day(end_time, false),
-                                  round_to_day(end_time, true), value))
+                                  round_to_day(end_time, true), numeric_value))
         end
         new_recs.each do |rec|
           add_one_record(rec)
@@ -155,14 +158,6 @@ module ACME
           return rec.value_at(time)
         end
         return 0
-      end
-
-      #Converts the machine readable hex fromat back to base 10 real numbers
-      def convert_hex(hex_val)
-        ipart = hex_val >> 13*4
-        fpart = (hex_val & 0xfffffffffffff).to_f / 16**13
-        dec_val= 2**(ipart - 0x3ff)
-        dec_val *= (1 + fpart)
       end
 
       def round_to_day(time, up)
@@ -244,21 +239,18 @@ module ACME
           info[0]["end time"] = 2
           info[0]["data"] = 3
           info[0]["type"] = "levels"
-          info[0]["convert"] = false
           info[0]["success"] = false
           info[1]["tag"] = "LEVELS_INVENTORY"
           info[1]["start time"] = 1
           info[1]["end time"] = 2
           info[1]["data"] = 4
           info[1]["type"] = "levels"
-          info[1]["convert"] = false
           info[1]["success"] = false
           info[2]["tag"] = "LEVELS_TARGET"
           info[2]["start time"] = 1
           info[2]["end time"] = 2
           info[2]["data"] = 5
           info[2]["type"] = "levels"
-          info[2]["convert"] = false
           info[2]["success"] = false
 
         elsif [REFILL_PROJECTION_RESPONSE, REFILL_REQUISITION_RESPONSE, DEMAND_PROJECTION_RESPONSE, DEMAND_REQUISITION_RESPONSE].include?(key) then
@@ -269,7 +261,6 @@ module ACME
           info[0]["end time"] = 8
           info[0]["data"] = 9
           info[0]["type"] = (key =~ /PROJECT/) ? "projection" : "requisition"
-          info[0]["convert"] = true
         elsif  [REFILL_PROJECTION, REFILL_REQUISITION, DEMAND_PROJECTION, DEMAND_REQUISITION].include?(key) then
           info[0] = {}
           info[0]["tag"] = key
@@ -278,7 +269,6 @@ module ACME
           info[0]["end time"] = 6
           info[0]["data"] = 7
           info[0]["type"] = (key =~ /PROJECT/) ?  "projection" : "requisition"
-          info[0]["convert"] = true
         else
           info = nil
         end
@@ -289,14 +279,15 @@ module ACME
         file = IO.readlines(@filename)
         tag = nil
         tag_info = nil
-        machine_readable = false
+        readable = false
         last = {}
      
         file.each do |line|
           line.chomp!        
+
             
-          if (line  =~ /<INVENTORY_HEADER_GUI/) then
-            machine_readable = true
+          if (line  =~ /<INVENTORY_HEADER_READABLE/) then
+            readable = true
             file_info = line.split(/ \w+=/)
             @org = file_info[1]
             @item = file_info[2]
@@ -304,9 +295,14 @@ module ACME
             @nomenclature = file_info[4]
             next
           end
-            
-          next if !machine_readable
-            
+
+          next if line =~ /<PARENT/            
+          next unless readable
+
+          if (line =~ /INVENTORY_HEADER_GUI/) then
+            break
+          end
+
           if line[0..1] == "</" then
             tag = info = nil
           elsif line[0..0] == "<" then
@@ -316,15 +312,15 @@ module ACME
             next if tag_info.nil?
             tag_info.each do |info|
               @tags.push(info["tag"])
-              @data[info["tag"]] = TagData.new(info["tag"], info["convert"], info["type"] == "projection")
+              @data[info["tag"]] = TagData.new(info["tag"],  info["type"] == "projection")
             end
             last = {}
           else
             next if (tag_info.nil? || tag.nil?)
             fields = line.split(/,/)
             tag_info.each do |info|
-              start_time = fields[info["start time"]].to_i / 1000
-              end_time = fields[info["end time"]].to_i / 1000
+              start_time = fields[info["start time"]]
+              end_time = fields[info["end time"]]
               data = fields[info["data"]]
               if data.nil? then
                 data = last[info["tag"]]
@@ -332,6 +328,7 @@ module ACME
                 last[info["tag"]] = data
               end
               success = (info["success"] ? fields[info["success"]] : "SUCCESS")
+              start_time = end_time if start_time.size == 0
               @data[info["tag"]].add_record(start_time, end_time, data) if success == "SUCCESS"
             end
           end

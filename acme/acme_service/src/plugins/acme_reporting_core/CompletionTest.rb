@@ -64,7 +64,7 @@ module ACME
         @ikko = ikko
       end
       
-      def perform=
+      def perform
         comp_files = @archive.files_with_description(/completion/)
         baseline_name = @archive.group_baseline
         baseline = @archive.open_prior_archive(baseline_name)

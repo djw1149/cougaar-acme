@@ -6,7 +6,7 @@ module ACME
     
     class DataGrabberTest
 
-      UNITS = 1056
+      UNITS = 1060
       ASSETS = 22000      
 
       DataGrabberData = Struct.new("DataGrabberData", :run, :assets, :units, :time)  
@@ -130,8 +130,8 @@ module ACME
         ikko_data["name"]="Data Grabber Test"
         ikko_data["title"] = "Data Grabber Test Description"
         ikko_data["description"] = "Displays how much time the data grabber took along with the number of assets and units."
-        success_table = {"success"=>"Exactly 1056 units and Assets within 5% of 22000",
-                         "partial"=>"Units within 5% of 1056 and Assets within 10% of 22000",
+        success_table = {"success"=>"Exactly #{UNITS} units and Assets within 5% of #{ASSETS}",
+                         "partial"=>"Units within 5% of #{UNITS} and Assets within 10% of #{ASSETS}",
                          "fail"=>"All other cases"}
         ikko_data["table"] = @ikko["success_template.html", success_table]
         return @ikko["description.html", ikko_data]
