@@ -77,7 +77,7 @@ module Cougaar
       
       def perform
         communities_xml = @run.society.communities.to_xml
-        File.open(@file, "w") { |file| puts communities_xml }
+        File.open(@file, "w") { |file| file.puts communities_xml }
       end
     end
   end
