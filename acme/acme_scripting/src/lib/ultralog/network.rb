@@ -33,6 +33,7 @@ module Cougaar; module Actions
       super( run )
 
       run['network'] = NetworkModel.discover(File.join(ENV['CIP'], "operator"), "*-net.xml")
+      run.archive_file( run['network'].net_file )
     end
 
     def perform

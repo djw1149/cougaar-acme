@@ -49,7 +49,7 @@ module Cougaar
   end
       
   class NetworkModel
-    attr_accessor :operator, :subnet
+    attr_accessor :operator, :subnet, :net_file
 
     def initialize
        @subnet = Hash.new
@@ -58,7 +58,10 @@ module Cougaar
     def self.discover( operator, mask )
       Dir[File.join(operator, mask)].each { |filename|
          netModel = NetworkModel.from_xml_file( filename )
-         return netModel if (netModel.operator == `hostname`.chomp!)
+         if (netModel.operator == `hostname`.chomp!) then
+           @net_file = filename
+           return netModel
+         end
       }
 
       throw Exception.new("Unable to find apropriate network description file.")
