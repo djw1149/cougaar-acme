@@ -110,7 +110,8 @@ module Debug
           puts "#{agent} has relation #{relation.rel} with #{relation.org} but #{relation.org} does not exist" if @show_missing
           found = true
         end
-        puts "#{agent} is #{relation.rel} for #{relation.org} but #{relation.org} is not #{conv} for #{agent}" unless found
+        puts "#{relation.org} is #{relation.rel} for #{agent} but #{agent} is not #{conv} for #{relation.org}" unless found
+        #puts "#{relation.org} is #{relation.rel} for #{agent} and #{agent} is #{conv} for #{relation.org}" 
       end
     end
 
