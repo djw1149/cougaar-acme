@@ -23,7 +23,7 @@ require 'cougaar/scripting'
 module Cougaar
   module Actions
   
-    class UA-Inventory < Cougaar::Action
+    class UAInventory < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
 
       # Take the asset to get the inventory for at this agent
