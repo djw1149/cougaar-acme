@@ -1,4 +1,4 @@
-orig_org_id,base_org_id,suffix,role,echelon_of_support,role_mechanism,notes
+orig_org_id,base_org_id,org_id_suffix,role,echelon_of_support,role_mechanism,notes
 102-POL-SUPPLYCO,102-POL-SUPPLYCO,16-CSG.5-CORPS.ARMY.MIL,FuelSupplyProvider,CORPS,,
 102-POL-SUPPLYCO,102-POL-SUPPLYCO,16-CSG.5-CORPS.ARMY.MIL,PackagedPOLSupplyProvider,CORPS,,
 106-TCBN,106-TCBN,16-CSG.5-CORPS.ARMY.MIL,FuelTransportProvider,CORPS,,Not Used Now
