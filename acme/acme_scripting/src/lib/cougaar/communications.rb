@@ -239,7 +239,7 @@ module Cougaar
     class JabberMessagingService
       JABBER_RETRY_COUNT = 5
       JABBER_RETRY_DELAY = 5 # seconds
-      attr_reader :acme_session, :pids
+      attr_reader :acme_session, :pids, :local_hostname
       attr_writer :password
       attr_accessor :username, :jabber_server
       
@@ -250,8 +250,8 @@ module Cougaar
         @retry_count = JABBER_RETRY_COUNT unless @retry_count
         @event_listeners = {}
         @listener_count = 0
-        hostname = `hostname`.strip
-        @resource_id = "expt-#{hostname}-#{@run.name}"
+        @local_hostname = `hostname`.strip
+        @resource_id = "expt-#{@local_hostname}-#{@run.name}"
       end
       
       def stop
@@ -326,7 +326,7 @@ module Cougaar
         @commands = {}
         @command_help = {}
         add_command("hostname", "Return hostname") do |message, params|
-          message.reply.set_body(`hostname`.strip).send
+          message.reply.set_body(@local_hostname).send
         end
         add_command("script_content", "Return content of active script") do |message, params|
           message.reply.set_body([File.read($0)].pack("m")).send

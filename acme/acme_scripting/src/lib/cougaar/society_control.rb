@@ -30,7 +30,6 @@ module Cougaar
     end
     
     def add_cougaar_event_params
-      hostname = `hostname`.strip
       @xml_model = @run["loader"] == "XML"
       @node_type = ""
       @node_type = "xml_" if @xml_model
@@ -38,7 +37,7 @@ module Cougaar
         host.each_node do |node|
           node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
           node.add_parameter("-Dorg.cougaar.event.port=5300")
-          node.add_parameter("-Dorg.cougaar.event.experiment=#{hostname}-#{@run.name}")
+          node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.comms.local_hostname}-#{@run.name}")
         end
       end
     end
