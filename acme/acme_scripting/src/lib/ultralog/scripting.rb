@@ -31,3 +31,4 @@ require 'ultralog/operator'
 require 'ultralog/oplan_editor'
 require 'ultralog/gls_client'
 
+require 'ultralog/debug/relations'
