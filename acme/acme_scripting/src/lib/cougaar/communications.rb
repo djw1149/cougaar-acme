@@ -138,7 +138,12 @@ module Cougaar
         end
      
         @run.comms = Cougaar::Communications::MessageRouterClient.new(@run, @server, @port)
-        @run.comms.start
+        begin
+          @run.comms.start
+        rescue
+          @run.error_message "Could not connect to message router server: '#{@server}:#{@port}'"
+          @sequence.interrupt
+        end
       end
       
     end
