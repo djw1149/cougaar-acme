@@ -11,40 +11,19 @@
 # Note that most configuration combinations are commented out
 # Also note that some configurations are generated as .rb files
 
+ADFACETS=1ad.facets/
+UAFACETS=1ua.facets/
 UADIR=../societies/ua
 
 if [ ! -d $UADIR ]; then
     mkdir $UADIR
 fi
 
-echo "Making All the 1AD facet files for UA configurations"
-ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad-trans-stub.member.csv -s $UADIR/tiny-1ad-trans-stub.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad.member.csv -s $UADIR/tiny-1ad.facets.xml -o
-#ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad-trans-stub.member.csv -s $UADIR/small-1ad-trans-stub.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad.member.csv -s $UADIR/small-1ad.facets.xml -o
-#ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad-trans-stub.member.csv -s $UADIR/full-1ad-trans-stub.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad.member.csv -s $UADIR/full-1ad.facets.xml -o
-echo "Done making 1AD facets"
-
 echo "Merge the 1AD and UA facet files"
-../../bin/SocietyMerger.sh $UADIR/tiny-1ad-trans-stub.facets.xml ./1ua/17a12v.facets.xml $UADIR/tiny-trans-stub-17a12v.facets.xml
-
-../../bin/SocietyMerger.sh $UADIR/tiny-1ad.facets.xml ./1ua/17a12v.facets.xml $UADIR/tiny-17a12v.facets.xml
-
-#../../bin/SocietyMerger.sh $UADIR/tiny-1ad-trans-stub.facets.xml ./1ua/160a237v.facets.xml $UADIR/tiny-trans-stub-160a237v.facets.xml
-
-#../../bin/SocietyMerger.sh $UADIR/tiny-1ad.facets.xml ./1ua/160a237v.facets.xml $UADIR/tiny-160a237v.facets.xml
-
-#../../bin/SocietyMerger.sh $UADIR/small-1ad-trans-stub.facets.xml ./1ua/17a12v.facets.xml $UADIR/small-trans-stub-17a12v.facets.xml
-
-../../bin/SocietyMerger.sh $UADIR/small-1ad.facets.xml ./1ua/17a12v.facets.xml $UADIR/small-17a12v.facets.xml
-
-#../../bin/SocietyMerger.sh $UADIR/small-1ad-trans-stub.facets.xml ./1ua/160a237v.facets.xml $UADIR/small-trans-stub-160a237v.facets.xml
-
-#../../bin/SocietyMerger.sh $UADIR/small-1ad.facets.xml ./1ua/160a237v.facets.xml $UADIR/small-160a237v.facets.xml
-
-#../../bin/SocietyMerger.sh $UADIR/full-1ad-trans-stub.facets.xml ./1ua/160a237v.facets.xml $UADIR/full-trans-stub-160a237v.facets.xml
-../../bin/SocietyMerger.sh $UADIR/full-1ad.facets.xml ./1ua/160a237v.facets.xml $UADIR/full-160a237v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/tiny-1ad-tc1.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/tiny-tc1-17a12v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/tiny-1ad-tc7.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/tiny-tc7-17a12v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/small-1ad-tc20.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/small-tc20-17a12v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/160a237v.facets.xml $UADIR/full-tc20-160a237v.facets.xml
 echo "Done"
 
 echo "Sorting the rules and writing to base_rules/temp..."
@@ -52,26 +31,13 @@ echo "Sorting the rules and writing to base_rules/temp..."
 echo "Done"
 
 echo "Making the UA societies"
-ruby ../bin/transform_society.rb -i $UADIR/tiny-trans-stub-17a12v.facets.xml -r base_rules/temp -o $UADIR/tiny-trans-stub-17a12v.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/tiny-tc1-17a12v.facets.xml -r base_rules/temp -o $UADIR/tiny-tc1-17a12v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/tiny-17a12v.facets.xml -r base_rules/temp -o $UADIR/tiny-17a12v.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/tiny-tc7-17a12v.facets.xml -r base_rules/temp -o $UADIR/tiny-tc7-17a12v.plugins.xml
 
-#ruby ../bin/transform_society.rb -i $UADIR/tiny-trans-stub-160a237v.facets.xml -r base_rules/temp -o $UADIR/tiny-trans-stub-160a237v.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/small-tc20-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-tc20-17a12v.plugins.rb
 
-#ruby ../bin/transform_society.rb -i $UADIR/tiny-160a237v.facets.xml -r base_rules/temp -o $UADIR/tiny-160a237v.plugins.xml
-
-#ruby ../bin/transform_society.rb -i $UADIR/small-trans-stub-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-trans-stub-17a12v.plugins.xml
-
-ruby ../bin/transform_society.rb -i $UADIR/small-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-17a12v.plugins.rb
-
-#ruby ../bin/transform_society.rb -i $UADIR/small-trans-stub-160a237v.facets.xml -r base_rules/temp -o $UADIR/small-trans-stub-160a237v.plugins.xml
-
-#ruby ../bin/transform_society.rb -i $UADIR/small-160a237v.facets.xml -r base_rules/temp -o $UADIR/small-160a237v.plugins.xml
-
-#ruby ../bin/transform_society.rb -i $UADIR/full-trans-stub-160a237v.facets.xml -r base_rules/temp -o $UADIR/full-trans-stub-160a237v.plugins.xml
-
-ruby ../bin/transform_society.rb -i $UADIR/full-160a237v.facets.xml -r base_rules/temp -o $UADIR/full-160a237v.plugins.rb
-
+ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a237v.facets.xml -r base_rules/temp -o $UADIR/full-tc-20-160a237v.plugins.rb
 echo "Done"
 
 if [ "x$1" = "x" ]; then
