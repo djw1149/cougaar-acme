@@ -3,7 +3,7 @@
 # Make eight plugin societies
 # First put the rules in order
 echo "Sorting the rules and writing to base_rules/temp..."
-./rule.sort.sh base_rules
+./rule.sort.sh base_rules ../rules/metrics/basic
 ls base_rules/temp
 echo "Done"
 # 
