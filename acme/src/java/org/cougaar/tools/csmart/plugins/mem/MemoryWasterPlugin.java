@@ -125,11 +125,15 @@ public class MemoryWasterPlugin
 	}
 	
 	protected void setupSubscriptions() {
-		ServiceBroker broker = getBindingSite().getServiceBroker();
-		ServletService srv =
-			(ServletService) broker.getService(this, ServletService.class, null);
+		try {
+			ServiceBroker broker = getBindingSite().getServiceBroker();
+			ServletService srv =
+				(ServletService) broker.getService(this, ServletService.class, null);
 			
-		srv.register("/mem-waster", new MWServlet( getAlarmService()));
+			srv.register("/mem-waster", new MWServlet( getAlarmService()));
+		} catch (Exception e) {
+			throw new RuntimeException(e);	
+		}
 	}
 	
 	/**
