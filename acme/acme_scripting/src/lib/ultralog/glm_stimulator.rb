@@ -35,7 +35,7 @@ module Cougaar
           {:stimulator => "The GLMStimulator instance (UltraLog::GLMStimulator)."}
         ]
         @example = "
-          do_action 'GLMStimulator', '1-35-ARBN' do |stimulator|
+          do_action 'GLMStimulator', '1-35-ARBN' do |glms|
             glms.inputFileName = 'Supply.dat.xml'
             glms.update
           end
