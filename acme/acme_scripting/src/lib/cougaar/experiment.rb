@@ -350,7 +350,7 @@ module Cougaar
   end
   
   class ExperimentDefinition
-    attr_accessor :name, :description, :script, :include_scripts, :use_cases, :metadata
+    attr_accessor :name, :description, :script, :include_scripts, :use_cases, :metadata, :type, :group
     
     @@current = nil
     @@debug = false
@@ -366,6 +366,13 @@ module Cougaar
       require 'yaml'
       map = YAML.load(yaml)
       expt = ExperimentDefinition.new(map['name'], map['description'])
+      expt_type = map['type'] || 'baseline'
+      expt_type = expt_type.downcase
+      if expt_type != "baseline" && expt_type != "stressed"
+        raise "ERROR type must be- type: <baseline|stressed> not #{expt_type}."
+      end
+      expt.type = expt_type
+      expt.group = map['group'] || 'nogroup'
       expt.script = ScriptDefinition.new(map['script'])
       params = map['parameters']
       if params
@@ -413,12 +420,16 @@ module Cougaar
           opts.on('--schedule', "installation directory for the Gem") {|options[:schedule]|}
           opts.on('--priority=PRIORITY', "Priority (1=high, 2=normal, 3=low)") {|options[:priority]|}
           opts.on('--host=HOST', "host to schedule on, default 'localhost'") {|options[:host]|}
+          opts.on('--group=GROUP', "override the group id from the command line") {|options[:group]|}
           opts.on('--debug', "output a  list of actions and states based on included subscripts") {|options[:debug]|}
           opts.parse!
         end
 
         schedule = options[:schedule]
         host = options[:host] || 'localhost'
+        if options[:group]
+          expt.group = options[:group]
+        end
         priority = (options[:priority] || 2).to_i
         @@debug = options[:debug]
         if schedule
@@ -486,7 +497,7 @@ module Cougaar
     def initialize(name=nil)
       @name = name
       if ExperimentDefinition.current
-        @name = ExperimentDefinition.current.name
+        @name = "#{ExperimentDefinition.current.type}-#{ExperimentDefinition.current.group}-#{ExperimentDefinition.current.name}"
       end
     end
     
@@ -590,7 +601,7 @@ module Cougaar
     def archive
       if @archive_path
         t = Time.now
-        archive_filename = File.join(@archive_path, @name+"-#{Time.now.strftime('%Y%m%d-%H%M%S')}")
+        archive_filename = File.join(@archive_path, "#{@name}-#{Time.now.strftime('%Y%m%d-%H%M%S')}")
         
         #archive files
         filelist = []
