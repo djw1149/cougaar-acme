@@ -34,7 +34,7 @@ module Cougaar
 	@file = file
 	@asset = asset
 	@agent = agent
-	@protocol = "http" # it would be nice to support https
+	@protocol = "http" 
       end
 
       def save(result)
@@ -48,18 +48,9 @@ module Cougaar
 	@runport = @run.society.cougaar_port 
 	# find the host this agent is running on (at config time)
 	@runhost = @run.society.agents[@agent].node.host.host_name
-
-	#puts "using port #{@runport}"
-	#puts "and host #{@runhost}"
-
-	puts "SampleInventory: About to do put to: #{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory   of #{@asset}"
+	puts "SampleInventory: About to do put to: #{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory for #{@asset}"
 	resp = Cougaar::Communications::HTTP.put("#{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory", @asset)
-
-	# FIXME: Perhaps we need to handle redirects?
-
-	# do something with the response - write to a file?
-	puts "Response: " + resp
-
+	#puts "Response: " + resp
 	save(resp)
       end
     end
