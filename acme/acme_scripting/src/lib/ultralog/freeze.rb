@@ -41,9 +41,13 @@ module Cougaar
       end
       def perform
         freezeControl = ::UltraLog::FreezeControl.new(@run.society)
-        freezeControl.freeze
-        freezeControl.wait_until_frozen(@timeout)
-        @action.call(freezeControl) if @action
+        begin
+          freezeControl.freeze
+          freezeControl.wait_until_frozen(@timeout)
+          @action.call(freezeControl) if @action
+        rescue
+          @run.error_message "Could not freeze society in #{@timeout} seconds"
+        end
       end
    end
 
@@ -59,9 +63,13 @@ module Cougaar
       end
       def perform
         freezeControl = ::UltraLog::FreezeControl.new(@run.society)
-        freezeControl.thaw
-        freezeControl.wait_until_running
-        @action.call(freezeControl) if @action
+        begin
+          freezeControl.thaw
+          freezeControl.wait_until_running
+          @action.call(freezeControl) if @action
+        rescue
+          @run.error_message "Could not thaw society"
+        end
       end
 
     end
