@@ -44,7 +44,11 @@ module Cougaar
           end
         end
       end
+      def to_s
+        return super.to_s + "(#{@nodes.join(', ')})"
+      end
     end
+    
     class EnableNetworkInterfaces < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
       DOCUMENTATION = Cougaar.document {
@@ -67,6 +71,9 @@ module Cougaar
             raise_failure "Cannot enable nic on node #{node}, node unknown."
           end
         end
+      end
+      def to_s
+        return super.to_s + "(#{@nodes.join(', ')})"
       end
     end
 
