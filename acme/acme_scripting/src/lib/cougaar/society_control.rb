@@ -265,7 +265,7 @@ module Cougaar
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           md = @scenario_time.match(data)
           if md
-            @run.info_message "OLD TIME: #{md[1]}" if @debug
+            @run.info_message "#{node.name} OLD TIME: #{md[1]}" if @debug
           else
             @run.error_message "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
           end
