@@ -40,8 +40,8 @@ module Cougaar
         @layout = layout
         @hosts = hosts
         @layout = ::Cougaar::Model::SocietyLayout.new
-        @layout.layout_file = layout_file
-        @layout.hosts_file = hosts_file
+        @layout.layout_file = file
+        @layout.hosts_file = hosts
         @layout.load_files
       end
       
