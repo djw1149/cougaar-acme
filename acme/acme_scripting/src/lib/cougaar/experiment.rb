@@ -35,7 +35,8 @@ module Cougaar
     RunNotification = Struct.new(:run, :begin_flag)
     StateNotification = Struct.new(:state, :begin_flag)
     ActionNotification = Struct.new(:action, :begin_flag)
-    InterruptNotification = Struct.new(:state)
+    StateInterruptNotification = Struct.new(:state)
+    ActionInterruptNotification = Struct.new(:action)
     InfoNotification = Struct.new(:message)
     ErrorNotification = Struct.new(:message)
     
@@ -86,6 +87,10 @@ module Cougaar
         puts  "[#{Time.now}]      ** INTERRUPT ** #{state}"
       end
       
+      def monitor.on_action_interrupt(action)
+        puts  "[#{Time.now}]      ** INTERRUPT ** #{action}"
+      end
+      
       def monitor.on_info_message(message)
         puts  "[#{Time.now}]      INFO: #{message}"
       end
@@ -129,6 +134,9 @@ module Cougaar
       def monitor.on_state_interrupt(state)
         Cougaar.logger.info  "[#{Time.now}]      ** INTERRUPT ** #{state}"
       end
+      def monitor.on_action_interrupt(action)
+        Cougaar.logger.info  "[#{Time.now}]      ** INTERRUPT ** #{action}"
+      end
       def monitor.on_info_message(message)
         Cougaar.logger.info  "[#{Time.now}]      INFO: #{message}"
       end
@@ -151,8 +159,10 @@ module Cougaar
         n.begin_flag ? on_state_begin(n.state) : on_state_end(n.state)
       elsif n.kind_of? ActionNotification
         n.begin_flag ? on_action_begin(n.action) : on_action_end(n.action)
-      elsif n.kind_of? InterruptNotification
+      elsif n.kind_of? StateInterruptNotification
         on_state_interrupt(n.state)
+      elsif n.kind_of? ActionInterruptNotification
+        on_action_interrupt(n.action)
       elsif n.kind_of? InfoNotification
         on_info_message(n.message)
       elsif n.kind_of? ErrorNotification
@@ -190,6 +200,9 @@ module Cougaar
     end
     
     def on_state_interrupt(state)
+    end
+    
+    def on_action_interrupt(action)
     end
     
     def on_info_message(message)
@@ -435,11 +448,20 @@ module Cougaar
     def interrupt
       if @continue_after_timeout
         @continue_after_timeout = false
-        ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Continuing from failed state #{@definitions[@current_definition].name}...")) if ExperimentMonitor.active?
+        current = @definitions[@current_definition]
+        if current.kind_of?(Cougaar::Action)
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Continuing from failed Action: #{current.name}...")) if ExperimentMonitor.active?
+        else
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Continuing from failed State: #{current.name}...")) if ExperimentMonitor.active?
+        end
         return
       end
-      state = @definitions[@current_definition]
-      ExperimentMonitor.notify(ExperimentMonitor::InterruptNotification.new(state)) if ExperimentMonitor.active?
+      current = @definitions[@current_definition]
+      if current.kind_of?(Cougaar::Action)
+        ExperimentMonitor.notify(ExperimentMonitor::ActionInterruptNotification.new(current)) if ExperimentMonitor.active?
+      else
+        ExperimentMonitor.notify(ExperimentMonitor::StateInterruptNotification.new(current)) if ExperimentMonitor.active?
+      end
       @definitions = @definitions[0..@insert_index] 
     end
     
@@ -778,7 +800,12 @@ module Cougaar
         @action = block
       end
       def perform
-        @action.call(@run)
+        begin
+          @action.call(@run)
+        rescue
+          @run.error_message "Exception in GenericAction: #{$!}"
+          @sequence.interrupt
+        end
       end
     end
     

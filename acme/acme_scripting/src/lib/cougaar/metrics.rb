@@ -47,13 +47,17 @@ module Cougaar
       end
       
       def perform
-        @run.society.each_active_host do |host|
-          ms = Cougaar::MtsStats.new(@run.society)
-          d = ms.getAllData()
-          puts d if @debug
-          File.open(@filename, File::CREAT|File::WRONLY) do |f|
-            f.write(d)
+        begin
+          @run.society.each_active_host do |host|
+            ms = Cougaar::MtsStats.new(@run.society)
+            d = ms.getAllData()
+            puts d if @debug
+            File.open(@filename, File::CREAT|File::WRONLY) do |f|
+              f.write(d)
+            end
           end
+        rescue
+          @run.error_message "Exception in CollectMtsMetrics action: #{$!}"
         end
       end
 

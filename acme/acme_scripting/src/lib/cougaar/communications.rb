@@ -23,6 +23,7 @@ require 'jabber4r/jabber4r'
 require 'uri'
 require 'net/http'
 require 'rexml/document'
+require 'jabber4r/rexml_1.8_patch'
 require 'cougaar/curl'
 
 module Cougaar
@@ -97,10 +98,10 @@ module Cougaar
         unless @server
           ohost = @run.society.get_service_host("jabber")
           if ohost==nil
-	    ohost = @run.society.get_service_host("Jabber")
-	  end
-	  if ohost==nil
-            puts "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
+            ohost = @run.society.get_service_host("Jabber")
+          end
+          if ohost==nil
+            @run.info_message "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
             @server = 'acme'
           else
             @server = ohost.host_name
@@ -114,7 +115,8 @@ module Cougaar
         begin
           @run.comms.start
         rescue
-          raise_failure "Could not start Jabber Communications", $!
+          @run.error_message "Could not start Jabber Communications:\n#{$!}"
+          @sequence.interrupt
         end
       end
     end
@@ -126,7 +128,7 @@ module Cougaar
         @example = "do_action 'StopCommunications'"
       }
       def perform
-        @run.comms.stop
+        @run.comms.stop if @run.comms
       end
     end
     
@@ -182,7 +184,8 @@ module Cougaar
         begin
           @run.comms.verify
         rescue
-          raise_failure "Could not verify society", $!
+          @run.error_message "Could not verify Society: #{$!}"
+          @sequence.interrupt
         end
       end
     end
@@ -279,10 +282,19 @@ module Cougaar
             @acme_session.add_message_listener do |message|
               if message.subject=="COUGAAR_EVENT"
                 event = Cougaar::CougaarEvent.new
-                event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("\n")
-                @event_listeners.each_value {|listener| listener.call(event)}
+                event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("`")
+                event.data = event.data.unpack("m")[0].gsub(/\&amp\;/, '&').gsub(/\&lt\;/, "<").gsub(/\&quot\;/, '"').gsub(/\&gt\;/, ">")
+                @event_listeners.each_value do |listener| 
+                  begin
+                    listener.call(event)
+                  rescue
+                    @run.error_message "Exception in Cougaar Event listener: #{$!}"
+                  end
+                end
               end
             end
+            # Listen for command[cmd] messages
+            add_command_listener
             return
           rescue
             Cougaar.logger.error "Cannot connect to Jabber...retrying #{JABBER_RETRY_COUNT-i+1} more time(s)\n#{$!}\n#{$!.backtrace}"
@@ -290,6 +302,40 @@ module Cougaar
           end
         end
         raise "Could not connect to Jabber server"
+      end
+      
+      def add_command(command, help=nil, &block)
+        @commands[command] = block
+      end
+      
+      def remove_command(command)
+        @commands.delete(command)
+      end
+      
+      def add_command_listener
+        @commands = {}
+        add_command("hostname", "Return hostname") do |message, params|
+          message.reply.set_body(`hostname`.strip).send
+        end
+        add_command("script_content", "Return content of active script") do |message, params|
+          message.reply.set_body([File.read($0)].pack("m")).send
+        end
+        add_command("script_name", "Return fill name of active script") do |message, params|
+          message.reply.set_body(File.expane_path($0)).send
+        end
+
+        @acme_session.add_message_listener do |message|
+          md = /command\[([^\]]*)\](.*)/.match(message.body)
+          if md
+            command = md[1]
+            params = md[2]
+            if @commands.has_key? command
+              @commands[command].call(message, params)
+            else
+              message.reply.set_body("Unknown command [#{command}]").send
+            end
+          end
+        end
       end
       
       def new_message(to)
