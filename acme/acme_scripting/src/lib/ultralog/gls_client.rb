@@ -46,14 +46,15 @@ module UltraLog
           @gls_connection.request(req) do |resp|
             return connect(resp['location']) if resp.code=='302'
             resp.read_body do |data|
+	      puts data.strip
               case data.strip
               when /^<oplan name=.* id=[0-9A-F]*>/
                 match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
                 @oplan_name = match[1]
                 @oplan_id = match[2]
                 @gls_connected = true
-              when /^<oplan name=.* id=[0-9A-F]* c0_date=.*>/
-                match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=(.*)>/.match(data)
+              when /^<oplan name=.* id=[0-9A-F]*\s*c0_date=.*>/
+                match = /^<oplan name=(.*) id=([0-9A-F]*)\s*c0_date=(.*)>/.match(data)
                 @oplan_name = match[1]
                 @oplan_id = match[2]
                 @c0_date = match[3]
