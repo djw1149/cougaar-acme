@@ -390,20 +390,20 @@ module Cougaar
           {:action=> "add or remove"}, 
           {:component=>"the component"}
         ]
-        @example = "do_action 'LoadComponent', '1-AD', 'add', Component.new('org.cougaar.logistics.plugin.trans.RescindWatcher')}"
+        @example = "do_action 'LoadComponent', '1-AD', 'add', 'org.cougaar.logistics.plugin.trans.RescindWatcher'"
         }
 
-        def initialize(run, agentname, action, component)
+        def initialize(run, agentname, action, classname)
             super(run)
             @agentname = agentname
             @action = action
-            @component = component
+            @classname = classname
         end
         
         def perform
             @run.society.each_agent do |agent|
                 if @agentname == agent.name then
-                    data, uri = Cougaar::Communications::HTTP.get("#{agent.uri}/load?action=#{action}&classname={@component.classname}", 60)
+                    data, uri = Cougaar::Communications::HTTP.get("#{agent.uri}/load?op=#{@action}&insertionPoint=Node.AgentManager.Agent.PluginManager.Plugin&classname=#{@classname}", 60)
                 end
             end
         end
