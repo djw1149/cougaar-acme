@@ -1,0 +1,27 @@
+#########################################
+### QuO RSS configuration 
+### for TIC 2003 using config finder
+
+sitesFeedLoader = "org.cougaar.core.qos.metrics.ConfigFinderDataFeedComponent"
+hostsFeedLoader = "org.cougaar.core.qos.metrics.ConfigFinderDataFeedComponent"
+
+sitesArgs = ["name=sites","url=cougaarconfig:TIC-Sites.conf"]
+hostsArgs = ["name=hosts","url=cougaarconfig:TIC-Hosts.conf"]
+
+ society.each_node do |node|
+   node.add_component do |c|
+    c.classname = sitesFeedLoader
+    c.insertionpoint = "Node.AgentManager.Agent.MetricsServices.Component"
+     sitesArgs.each { |arg|
+      c.add_argument(arg)
+     }
+   end
+   node.add_component do |d|
+    d.classname = hostsFeedLoader
+    d.insertionpoint = "Node.AgentManager.Agent.MetricsServices.Component"
+     hostsArgs.each { |arg|
+      d.add_argument(arg)
+     }
+   end
+ end 
+

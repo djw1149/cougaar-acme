@@ -1,0 +1,31 @@
+###############################################
+# Message Serialization 
+# Rule to insert order-dependent, metrics Robustness UC3 aspects, Security
+# Insertion point: Node.AgentManager.Agent.MessageTransport.Aspect
+
+# Define serialization aspect in order to be loaded
+# Measure bandwidth on wire (Robustness UC3)
+bandwidthAspect = "org.cougaar.robustness.dos.quo.BandwidthAspect" 
+# Encrypt or Sign (Security)
+messageProtect = "org.cougaar.core.mts.MessageProtectionAspect"
+# Compress (Robustness UC3)
+compressingStreamsAspect =
+"org.cougaar.robustness.dos.quo.CompressingStreamsAspect" 
+# Measure length of message (metrics service)
+statisticsAspect = "org.cougaar.core.mts.StatisticsAspect"
+
+#Aug 2003 order
+#[bandwidthAspect, messageProtect, compressingStreamsAspect,  statisticsAspect]
+# Metrics service support only
+ordered_aspects_to_add = [statisticsAspect] 
+
+
+# Add all ordered aspects, at specfific insertion point
+society.each_node_agent() do |node_agent|
+   ordered_aspects_to_add.each { |comp| 
+     node_agent.add_component do |c|
+     c.classname = comp
+     c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+     end
+    }
+end

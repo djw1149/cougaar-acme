@@ -1,0 +1,25 @@
+# Aspects that verify that  MTS is working correctly
+# These aspects check the consistency  the of MTS and its handling of
+# messages. These checks represent extra overhead and may not be
+# compatible with other MTS aspects
+
+# Message Transport Aspects
+# insertion point: Node.AgentManager.Agent.MessageTransport.Aspect
+
+# Detect if message has not been delivered for 10 seconds
+deliver = "org.cougaar.core.mts.DeliveryVerificationAspect"
+# Detect if agent to agent messages are out of sequence, dropped, or duplicated
+sequence= "org.cougaar.core.mts.SequenceAspect.java"
+# Single step through messages with gui
+step= "org.cougaar.core.mts.StepperAspect.java"
+
+components_to_add = [deliver]
+
+# Add Components to MTS Aspects insertion point
+society.each_node_agent() do |node_agent|
+  components_to_add.each { |comp|
+     node_agent.add_component do |c|
+       c.classname = comp
+       c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+     end
+    }
