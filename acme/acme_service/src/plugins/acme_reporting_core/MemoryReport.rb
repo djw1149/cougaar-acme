@@ -8,8 +8,10 @@ module ACME
       end
 
       def []=(stage, node, value)
-        @data[stage] = {} if @data[stage].nil?
-        @data[stage][node] = value
+        if !(stage.nil? || node.nil?) then 
+	  @data[stage] = {} if @data[stage].nil?
+          @data[stage][node] = value
+        end
       end
       
       def [](stage, node)
