@@ -425,6 +425,9 @@ module InfoEther
           Thread.stop
           watcher.kill if watcher && watcher.alive?
           @socket_handler.remove_listener(listener)
+          if reply && (reply.from.nil? || reply.from=="") && reply.body.include?("Unknown client")
+            reply = nil
+          end
           return reply
         else
           @socket_handler << self
