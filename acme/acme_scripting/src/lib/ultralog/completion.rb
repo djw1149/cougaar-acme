@@ -337,17 +337,44 @@ module UltraLog
     end
 
     def print_messages(msgs)
-      msgs.each_key do |agent|
-        puts "    #{agent} => #{msgs[agent]}"
+      msgs.each do |agent, msg|
+        puts "    #{agent} => #{msg}"
       end
     end
 
     def update_society_status()
       comp = @run["completion_agent_status"] 
       soc_status = "COMPLETE"
-      @society.each_agent do |agent|
-        agent_status = comp[agent.name]
-        soc_status = "INCOMPLETE" if agent_status == "INCOMPLETE"
+      if @society.num_agents(true) > comp.size
+        soc_status = "INCOMPLETE"
+      else
+        # before doing the exhaustive check, see if every node is currently
+        # reporting quiescence.  Since this is reported at the node level, it'll
+        # be the same for all agents on each node.
+        @society.each_node_agent do |node|
+          if !comp[node.name]
+            soc_status = "INCOMPLETE"
+            break
+          end
+        end
+        if !soc_status == "INCOMPLETE"
+          @society.each_agent(true) do |agent|
+            agentHash = comp[agent.name]
+            # This goes through all receiver messages and compares to sender messages
+            # on the other side.  Is that valid?  Can I assume that if I loop through
+            # everybody that thinks they sent a message, and not through everybody that
+            # thinks they received a message, I'll hit everything?  The only way this would break
+            # is if agentB thinks it received a message from agentA, but agentA doesn't think it
+            # sent any message to agentB.
+            agentHash["receivers"].each do |agent, msg|
+              if (srcMsg = comp[agent]["senders"][agent.name] && srcMsg != msg
+                soc_status = "INCOMPLETE"
+                break
+              end
+            end
+            break if soc_status == "INCOMPLETE"
+          end
+        end
       end
       unless @society_status == soc_status
         @society_status = soc_status
