@@ -30,6 +30,11 @@ module Cougaar
         `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
 				@run["loader"] = "XML"
       end
+      
+      def to_s
+        super.to_s+"(#{@filename})"
+      end
+      
     end
     
     class SavePersistenceSnapshot <  Cougaar::Action
@@ -37,6 +42,10 @@ module Cougaar
         super(run)
         @filename = filename
         @debug = debug
+      end
+      
+      def to_s
+        super.to_s+"(#{@filename})"
       end
 
       def perform()
