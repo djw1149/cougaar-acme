@@ -324,7 +324,7 @@ module UltraLog
         sleep 10
         if @society_status != last_state
           # We get some momentary state changes, make sure it stays changed
-          sleep 10
+          sleep 60
           if @society_status != last_state
             last_state = @society_status
             if last_state == wait_for_state
