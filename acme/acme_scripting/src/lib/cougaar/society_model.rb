@@ -193,7 +193,7 @@ module Cougaar
       #
       def clone
         society = Society.new(@name)
-        each_host {|host| society.add_host host.clone}
+        each_host {|host| society.add_host host.clone(society)}
         society
       end
       
@@ -490,12 +490,18 @@ module Cougaar
       #
       def add_node(node, &block)
         if node.kind_of? Node
+          if @society.nodes[node.name]
+            return nil # node names must be unique society wide
+          end
           @nodeIndex[node.name] = node
           @nodes << node
           node.host = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.node_added(node) }
           return node
         else
+          if @society.nodes[node]
+            return nil # node names must be unique society wide
+          end
           newNode = Node.new(node)
           @nodeIndex[node] = newNode
           newNode.host = self
@@ -530,9 +536,10 @@ module Cougaar
       #
       # return:: [Cougaar::Host] The newly cloned host
       #
-      def clone
+      def clone(society)
         host = Host.new(@name)
-        each_node { |node| host.add_node(node.clone) }
+        host.society = society
+        each_node { |node| host.add_node(node.clone(host)) }
         each_facet { |facet| host.add_facet(facet.clone) }
         host
       end
@@ -591,6 +598,7 @@ module Cougaar
       def initialize(name=nil)
         @name = name
         @agent = Agent.new(@name)
+        @agent.node = self
         @agents = []
         @agentIndex = {}
         @env_parameters = []
@@ -612,12 +620,18 @@ module Cougaar
       #
       def add_agent(agent, &block)
         if agent.kind_of? Agent
+          if @host.society.agents[agent.name]
+            return nil # agent name must be unique society wide
+          end
           @agentIndex[agent.name] = agent
           @agents << agent
           agent.node = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_added(newAgent) }
           agent
         else
+          if @host.society.agents[agent]
+            return nil # agent name must be unique society wide
+          end
           newAgent = Agent.new(agent)
           @agentIndex[agent] = newAgent
           @agents << newAgent
@@ -746,15 +760,16 @@ module Cougaar
       #
       # return:: [Cougaar::Node] The newly cloned node
       #
-      def clone
+      def clone(host)
         node = Node.new(@name)
-        each_agent {|agent| node.add_agent agent.clone}
+        node.host = host
+        each_agent {|agent| node.add_agent agent.clone(host)}
         each_facet { |facet| node.add_facet(facet.clone) }
         node.parameters.concat @parameters
         node.env_parameters.concat @env_parameters
         node.prog_parameters.concat @prog_parameters
         node.classname = @classname
-        node.agent = @agent.clone
+        node.agent = @agent.clone(host)
         node
       end
       
@@ -835,7 +850,7 @@ module Cougaar
       # array:: [Array] The array of components to add
       #
       def add_components(array)
-        @components = @components.concat array
+        array.each {|comp| add_component(comp)}
       end
       
       ##
@@ -846,14 +861,22 @@ module Cougaar
       #
       def add_component(component=nil, &block)
         if component.kind_of? Component
+          if has_component?(component.name)
+            return nil # components must have unique names agent wide
+          end
           component.agent = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_added(component) }
           @components << component
+          component
         else
           comp = Component.new(component, &block)
+          if has_component?(comp.name)
+            return nil # components must have unique names agent wide
+          end
           comp.agent = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_added(comp) }
           @components << comp
+          comp
         end
       end
 
@@ -875,7 +898,13 @@ module Cougaar
         @components.each {|comp| yield comp}
       end
       
-      def has_component?(&block)
+      def has_component?(name=nil, &block)
+        if name
+          each_component do |comp|
+            return true if comp.name == name
+          end
+          return false
+        end
         return false unless block_given?
         each_component do |comp|
           return true if block.call(comp)
@@ -901,12 +930,13 @@ module Cougaar
       #
       # return:: [Cougaar::Node] The newly cloned node
       #
-      def clone
+      def clone(node)
         agent = Agent.new(@name)
+        agent.node = node
         agent.classname = @classname
         agent.cloned = @cloned
         agent.uic = @uic
-        agent.add_components @components.collect {|component| component.clone}
+        agent.add_components @components.collect {|component| component.clone(agent)}
         each_facet { |facet| agent.add_facet(facet.clone) }
         agent
       end
@@ -1022,8 +1052,9 @@ module Cougaar
       #
       # return:: [Cougaar::Component] The new component clone
       #
-      def clone
+      def clone(agent)
         c = Component.new(@name)
+        c.agent = agent
         c.classname = @classname
         c.priority = @priority
         c.order = @order
