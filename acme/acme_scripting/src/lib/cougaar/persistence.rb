@@ -25,6 +25,7 @@ module Cougaar
          raise_failure "Could not build society from Ruby file: #{ENV['CIP']}/workspace/P/society.rb", $!
         end
         `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
+        `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
         @run.society = builder.society
         @run.society.communities = Cougaar::Model::Communities.from_xml_file("#{ENV['CIP']}/workspace/P/communities.xml")
 				@run["loader"] = "XML"
@@ -58,6 +59,7 @@ module Cougaar
         end
         `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P`
         `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
+        `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
       end
     end
   end
