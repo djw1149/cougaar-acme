@@ -23,7 +23,8 @@ echo "Merge the 1AD and UA facet files"
 ../../bin/SocietyMerger.sh $ADFACETS/tiny-1ad-tc1.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/tiny-tc1-17a12v.facets.xml
 ../../bin/SocietyMerger.sh $ADFACETS/tiny-1ad-tc7.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/tiny-tc7-17a12v.facets.xml
 ../../bin/SocietyMerger.sh $ADFACETS/small-1ad-tc20.facets.xml $UAFACETS/17a12v.facets.xml $UADIR/small-tc20-17a12v.facets.xml
-../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/160a237v.facets.xml $UADIR/full-tc20-160a237v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/160a147v.facets.xml $UADIR/full-tc20-160a147v.facets.xml
+../../bin/SocietyMerger.sh $ADFACETS/full-1ad-tc20.facets.xml $UAFACETS/160a208v.facets.xml $UADIR/full-tc20-160a208v.facets.xml
 echo "Done"
 
 echo "Sorting the rules and writing to base_rules/temp..."
@@ -37,7 +38,9 @@ ruby ../bin/transform_society.rb -i $UADIR/tiny-tc7-17a12v.facets.xml -r base_ru
 
 ruby ../bin/transform_society.rb -i $UADIR/small-tc20-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-tc20-17a12v.plugins.rb
 
-ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a237v.facets.xml -r base_rules/temp -o $UADIR/full-tc-20-160a237v.plugins.rb
+ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a147v.facets.xml -r base_rules/temp -o $UADIR/full-tc-20-160a147v.plugins.rb
+
+ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a208v.facets.xml -r base_rules/temp -o $UADIR/full-tc-20-160a208v.plugins.rb
 echo "Done"
 
 if [ "x$1" = "x" ]; then
