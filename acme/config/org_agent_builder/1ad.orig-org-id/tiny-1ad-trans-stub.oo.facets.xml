@@ -780,7 +780,7 @@
         <facet org_id='NCA' />
         <facet orig_org_id='NCA' />
         <facet superior_org_id='' />
-        <facet subordinate_org_id='TRANSCOM-STUB' />
+        <facet subordinate_org_id='TRANSCOM' />
         <facet subordinate_org_id='HNS' />
         <facet subordinate_org_id='DLAHQ' />
         <facet subordinate_org_id='OSC' />
@@ -796,10 +796,10 @@
                echelon_of_support='JOINT'
         />
       </agent>
-      <agent name='TRANSCOM-STUB'
+      <agent name='TRANSCOM'
              class='org.cougaar.core.agent.SimpleAgent'>
-        <facet org_id='TRANSCOM-STUB' />
-        <facet orig_org_id='TRANSCOM-STUB' />
+        <facet org_id='TRANSCOM' />
+        <facet orig_org_id='TRANSCOM' />
         <facet superior_org_id='NCA' />
         <facet home_location='VDYD' />
         <facet combat_support='CSS' />

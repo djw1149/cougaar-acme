@@ -3,12 +3,12 @@
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:noNamespaceSchemaLocation='http://www.cougaar.org/2003/society.xsd'>
   <host name='localhost'>
-    <node name='nca-node'>
+    <node name='ncanode'>
       <agent name='NCA' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='NCA'  />
         <facet orig_org_id='NCA'  />
         <facet superior_org_id=''  />
-        <facet subordinate_org_id='TRANSCOM-STUB'  />
+        <facet subordinate_org_id='TRANSCOM'  />
         <facet subordinate_org_id='HNS'  />
         <facet subordinate_org_id='DLAHQ'  />
         <facet subordinate_org_id='OSC'  />
@@ -23,7 +23,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.yp.YPServer()'
@@ -286,13 +286,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -338,7 +338,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -366,7 +366,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -794,13 +794,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -883,7 +883,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -911,7 +911,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -1339,13 +1339,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1431,7 +1431,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1459,7 +1459,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -1887,13 +1887,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1982,7 +1982,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2010,7 +2010,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -2438,13 +2438,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2535,7 +2535,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2563,7 +2563,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -2991,13 +2991,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3089,7 +3089,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3117,7 +3117,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -3545,13 +3545,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3646,7 +3646,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3674,7 +3674,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -4102,13 +4102,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4210,7 +4210,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4238,7 +4238,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -4666,13 +4666,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4757,7 +4757,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4785,7 +4785,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -5213,13 +5213,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5304,7 +5304,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5332,7 +5332,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -5760,13 +5760,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5854,7 +5854,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5882,7 +5882,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -6310,13 +6310,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6401,7 +6401,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6429,7 +6429,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -6857,13 +6857,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6955,7 +6955,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6983,7 +6983,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -7411,13 +7411,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7505,7 +7505,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7533,7 +7533,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -7961,13 +7961,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8054,7 +8054,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8082,7 +8082,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -8510,13 +8510,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8603,7 +8603,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8631,7 +8631,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -9059,13 +9059,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9153,7 +9153,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9181,7 +9181,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -9609,13 +9609,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9701,7 +9701,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9729,7 +9729,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -10157,13 +10157,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10251,7 +10251,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10279,7 +10279,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -10707,13 +10707,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10801,7 +10801,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10829,7 +10829,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -11257,13 +11257,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11348,7 +11348,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11376,7 +11376,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -11804,13 +11804,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11902,7 +11902,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11930,7 +11930,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -12358,13 +12358,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12464,7 +12464,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12492,7 +12492,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -12920,13 +12920,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13011,7 +13011,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13039,7 +13039,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin()'
@@ -13473,13 +13473,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13563,7 +13563,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13591,7 +13591,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -14019,13 +14019,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14109,7 +14109,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14137,7 +14137,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -14565,13 +14565,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14657,7 +14657,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14685,7 +14685,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -15113,13 +15113,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15207,7 +15207,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15235,7 +15235,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -15663,13 +15663,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15758,7 +15758,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15786,7 +15786,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -16214,13 +16214,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16308,7 +16308,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16336,7 +16336,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -16764,13 +16764,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16859,7 +16859,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16887,7 +16887,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -17315,13 +17315,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17405,7 +17405,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17433,7 +17433,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -17861,13 +17861,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17950,7 +17950,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -18192,13 +18192,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18259,7 +18259,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18287,7 +18287,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -18715,13 +18715,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18804,7 +18804,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -19046,13 +19046,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19110,7 +19110,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -19352,13 +19352,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19412,7 +19412,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -19672,13 +19672,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19706,9 +19706,9 @@
           </argument>
         </component>
       </agent>
-      <agent name='TRANSCOM-STUB' class='org.cougaar.core.agent.SimpleAgent'>
-        <facet org_id='TRANSCOM-STUB'  />
-        <facet orig_org_id='TRANSCOM-STUB'  />
+      <agent name='TRANSCOM' class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='TRANSCOM'  />
+        <facet orig_org_id='TRANSCOM'  />
         <facet superior_org_id='NCA'  />
         <facet home_location='VDYD'  />
         <facet combat_support='CSS'  />
@@ -19719,6 +19719,12 @@
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin()'
+          class='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -19971,13 +19977,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -20017,7 +20023,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -20265,13 +20271,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -20309,7 +20315,7 @@
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          insertionpoint='Node.AgentManager.Agent.YPService'>
         </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -20551,13 +20557,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='COMPONENT'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component

@@ -18,6 +18,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -279,12 +312,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -414,6 +441,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -424,33 +457,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -465,6 +471,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -545,6 +563,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -806,12 +857,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -941,6 +986,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -951,33 +1002,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -992,6 +1016,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1075,6 +1111,39 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='DIVISION' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -1336,12 +1405,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -1471,6 +1534,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -1481,33 +1550,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -1522,6 +1564,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1608,6 +1662,39 @@
         <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -1867,12 +1954,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -2004,6 +2085,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -2014,33 +2101,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -2055,6 +2115,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2142,6 +2214,39 @@
         <facet has_personnel_assets='T'  />
         <facet note='Not Used Now' echelon_of_support='CORPS' role='FuelTransportProvider'  />
         <facet note='Not Used Now' echelon_of_support='CORPS' role='MaterielTransportProvider'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -2402,12 +2507,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -2539,6 +2638,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -2549,33 +2654,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -2590,6 +2668,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2678,6 +2768,39 @@
         <facet echelon_of_support='THEATER' role='FuelSupplyProvider'  />
         <facet echelon_of_support='THEATER' role='PackagedPOLSupplyProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -2938,12 +3061,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -3075,6 +3192,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -3085,33 +3208,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -3126,6 +3222,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3217,6 +3325,39 @@
         <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3477,12 +3618,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -3614,6 +3749,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -3624,33 +3765,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -3665,6 +3779,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3764,6 +3890,39 @@
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -4025,12 +4184,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -4160,6 +4313,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -4170,33 +4329,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -4211,6 +4343,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4293,6 +4437,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -4552,12 +4729,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -4689,6 +4860,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -4699,33 +4876,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -4740,6 +4890,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4821,6 +4983,39 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='AmmunitionProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -5081,12 +5276,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -5218,6 +5407,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -5228,33 +5423,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -5269,6 +5437,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5353,6 +5533,39 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -5613,12 +5826,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -5750,6 +5957,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -5760,33 +5973,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -5801,6 +5987,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5882,6 +6080,39 @@
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6142,12 +6373,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -6279,6 +6504,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -6289,33 +6520,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -6330,6 +6534,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6418,6 +6634,39 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6678,12 +6927,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -6815,6 +7058,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -6825,33 +7074,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -6866,6 +7088,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6950,6 +7184,39 @@
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='16-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -7210,12 +7477,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -7347,6 +7608,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -7357,33 +7624,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -7398,6 +7638,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7481,6 +7733,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -7741,12 +8026,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -7878,6 +8157,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -7888,33 +8173,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -7929,6 +8187,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8012,6 +8282,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Not Used Now' echelon_of_support='THEATER' role='MaterielTransportProvider'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -8274,12 +8577,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -8409,6 +8706,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -8419,33 +8722,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -8460,6 +8736,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8545,6 +8833,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -8806,12 +9127,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -8941,6 +9256,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -8951,33 +9272,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -8992,6 +9286,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9075,6 +9381,39 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -9336,12 +9675,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -9471,6 +9804,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -9481,33 +9820,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -9522,6 +9834,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9607,6 +9931,39 @@
         <facet echelon_of_support='THEATER' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -9866,12 +10223,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -10003,6 +10354,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -10013,33 +10370,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -10054,6 +10384,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10138,6 +10480,39 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10398,12 +10773,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -10535,6 +10904,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -10545,33 +10920,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -10586,6 +10934,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10667,6 +11027,39 @@
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10927,12 +11320,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -11064,6 +11451,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -11074,33 +11467,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -11115,6 +11481,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11203,6 +11581,39 @@
         <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
         <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE-1-AD'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -11463,12 +11874,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -11600,6 +12005,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -11610,33 +12021,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -11651,6 +12035,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11747,6 +12143,39 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12009,12 +12438,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -12144,6 +12567,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -12154,33 +12583,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -12195,6 +12597,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12276,6 +12690,39 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin()'
           class='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin'
@@ -12544,12 +12991,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -12679,6 +13120,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -12689,33 +13136,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -12730,6 +13150,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12811,6 +13243,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -13072,12 +13537,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -13207,6 +13666,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -13217,33 +13682,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -13258,6 +13696,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13339,6 +13789,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -13600,12 +14083,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -13735,6 +14212,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -13745,33 +14228,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -13786,6 +14242,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13869,6 +14337,39 @@
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -14128,12 +14629,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -14265,6 +14760,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -14275,33 +14776,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -14316,6 +14790,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14400,6 +14886,39 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14660,12 +15179,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -14797,6 +15310,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -14807,33 +15326,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -14848,6 +15340,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14933,6 +15437,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Not Used Now' echelon_of_support='THEATER' role='FuelTransportProvider'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -15193,12 +15730,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -15330,6 +15861,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -15340,33 +15877,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -15381,6 +15891,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15465,6 +15987,39 @@
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -15725,12 +16280,6 @@
           <argument>
             default_allocation_rules.xml
           </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
@@ -15862,6 +16411,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -15872,33 +16427,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -15913,6 +16441,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15999,6 +16539,39 @@
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -16260,12 +16833,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -16395,6 +16962,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -16405,33 +16978,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -16446,6 +16992,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16527,6 +17085,39 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -16788,12 +17379,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -16923,6 +17508,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -16933,33 +17524,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -16974,6 +17538,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17053,6 +17629,12 @@
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -17257,6 +17839,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -17281,6 +17869,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17338,6 +17938,39 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17600,12 +18233,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -17735,6 +18362,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -17745,33 +18378,6 @@
           class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
@@ -17786,6 +18392,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17865,6 +18483,12 @@
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -18069,6 +18693,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -18093,6 +18723,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18147,6 +18789,12 @@
         <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
           priority='COMPONENT'
@@ -18351,6 +18999,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -18375,6 +19029,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18424,6 +19090,12 @@
         <facet echelon_group='Conus'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -18647,6 +19319,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -18671,6 +19349,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18702,7 +19392,7 @@
         <facet org_id='NCA'  />
         <facet orig_org_id='NCA'  />
         <facet superior_org_id=''  />
-        <facet subordinate_org_id='TRANSCOM-STUB'  />
+        <facet subordinate_org_id='TRANSCOM'  />
         <facet subordinate_org_id='HNS'  />
         <facet subordinate_org_id='DLAHQ'  />
         <facet subordinate_org_id='OSC'  />
@@ -18713,6 +19403,24 @@
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='JOINT' role='LogisticsCommanderInChief'  />
         <facet echelon_of_support='JOINT' role='OperationalCommanderInChief'  />
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
+          name='org.cougaar.yp.YPServer()'
+          class='org.cougaar.yp.YPServer'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.util.yp.PublishTaxonomy()'
+          class='org.cougaar.servicediscovery.util.yp.PublishTaxonomy'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -18882,12 +19590,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF.oplan.noncsmart.q)'
+          name='org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF.oplan.q)'
           class='org.cougaar.mlm.plugin.organization.GLSInitServlet'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            093FF.oplan.noncsmart.q
+            093FF.oplan.q
           </argument>
         </component>
         <component
@@ -18927,6 +19635,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -18954,6 +19668,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
@@ -18978,9 +19704,9 @@
           </argument>
         </component>
       </agent>
-      <agent name='TRANSCOM-STUB' class='org.cougaar.core.agent.SimpleAgent'>
-        <facet org_id='TRANSCOM-STUB'  />
-        <facet orig_org_id='TRANSCOM-STUB'  />
+      <agent name='TRANSCOM' class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='TRANSCOM'  />
+        <facet orig_org_id='TRANSCOM'  />
         <facet superior_org_id='NCA'  />
         <facet home_location='VDYD'  />
         <facet combat_support='CSS'  />
@@ -18988,6 +19714,18 @@
         <facet echelon_group='Transcom'  />
         <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='StubTransportationProvider'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin()'
+          class='org.cougaar.logistics.plugin.manager.LogisticsManagerPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -19211,6 +19949,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -19226,6 +19970,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19261,6 +20017,12 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='US-ARMY' role='ArmyCommander'  />
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -19472,6 +20234,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -19496,6 +20264,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19529,6 +20309,12 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -19734,6 +20520,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -19758,6 +20550,18 @@
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='BINDER'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='BINDER'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
