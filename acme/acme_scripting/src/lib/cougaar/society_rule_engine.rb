@@ -6,7 +6,7 @@ module Cougaar
 
     class RuleEngine
       MAXLOOP = 300
-      attr_accessor :max_loop, :society
+      attr_accessor :max_loop, :society, :abort_on_warning
       attr_reader :monitor
       
       def initialize(society, max_loop = MAXLOOP)
@@ -15,6 +15,7 @@ module Cougaar
         @max_loop = max_loop
         @rules = []
         @stdout_enabled = false
+        @abort_on_warning = false
       end
       
       def enable_stdout
@@ -31,11 +32,8 @@ module Cougaar
                 add_rule('#{rule_file}') do |rule, society|
                 #{rule}
                 end)
-            rescue
-              puts "Error loading rule #{rule_file}"
-              puts $!
-              puts $!.backtrace
-              exit
+            rescue Exception => error
+              output_warning "Error loading rule #{rule_file}: #{error}\n#{error.backtrace.join("\n")}"
             end
           end
         end
@@ -55,7 +53,7 @@ module Cougaar
           @rules.each do |rule|
             @monitor.current_rule = rule
             puts "Executing rule: #{rule.name}." if @stdout_enabled
-            rule.execute(@society)
+            rule.execute(self, @society)
             @monitor.report if @stdout_enabled
             @monitor.clear_counters if @stdout_enabled
           end
@@ -63,14 +61,23 @@ module Cougaar
           count += 1
         end
         if count >= @max_loop
-          raise "Detected endless loop in rule applciation."
+          output_warning "Detected endless loop in rule applciation."
         end
         unused_rules = []
         @rules.each do |rule|
           unused_rules << rule.name unless rule.modified_society?
         end
         if unused_rules.size > 0
-          raise "Transformation exception\nThe rule(s)s: #{unused_rules.join(', ')} did not modify the society."
+          output_warning "The rule(s)s: #{unused_rules.join(', ')} did not modify the society."
+        end
+      end
+      
+      def output_warning(message)
+        message = "Rule Engine Warning: #{message}"
+        if abort_on_warning
+          raise "\n#{message}"
+        else
+          puts message
         end
       end
     end
@@ -89,14 +96,11 @@ module Cougaar
         @modified_society
       end
       
-      def execute(society)
+      def execute(engine, society)
         begin
           @rule.call(self, society)
-        rescue
-          puts "Error executing rule #{@name}"
-          puts $!
-          puts $!.backtrace
-          exit
+        rescue Exception => error
+          engine.output_warning "Error executing rule #{@name}: #{error}\n#{error.backtrace.join("\n")}"
         end
       end
     end
