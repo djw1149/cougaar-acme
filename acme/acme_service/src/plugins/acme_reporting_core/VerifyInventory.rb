@@ -422,31 +422,33 @@ module ACME
         data = []
         baseline_name = @archive.group_baseline
         baseline = @archive.open_prior_archive(baseline_name)
-
+        baseline_name = "Missing Baseline" if baseline.nil?
+          
         @archive.add_report("INV", @plugin.plugin_configuration.name) do |report|
           inv_files = @archive.files_with_description(/Inventory/).sort{|x, y| x.name <=> y.name}
-          inv_files.each do |inv_file|
-            subject = inv_file.name
-            benchmark_pattern = Regexp.new(File.basename(subject))
-            benchmark_file = baseline.files_with_name(benchmark_pattern)[0]
-            subject =~ /(fcs-)?(ua-)?(Stage.*?)-/
-            stage = "#{$1}#{$2}#{$3}"
-            if (!benchmark_file.nil?) then
-              data << InventoryTestData.new(subject, benchmark_file.name, stage, [], 0)
-              data.last.errors = FileVerifier.new(subject, benchmark_file.name, abs_tol, rel_tol).verify
-            else
-              data << InventoryTestData.new(subject, "MISSING", stage, [], 0)
-              data.last.errors = [InventoryTestCriticalError.new("Benchmark not found")]
-            end  
+          if (!baseline.nil?) then
+            inv_files.each do |inv_file|
+              subject = inv_file.name
+              benchmark_pattern = Regexp.new(File.basename(subject))
+              benchmark_file = baseline.files_with_name(benchmark_pattern)[0]
+              subject =~ /(fcs-)?(ua-)?(Stage.*?)-/
+              stage = "#{$1}#{$2}#{$3}"
+              if (!benchmark_file.nil?) then
+                data << InventoryTestData.new(subject, benchmark_file.name, stage, [], 0)
+                data.last.errors = FileVerifier.new(subject, benchmark_file.name, abs_tol, rel_tol).verify
+              else
+                data << InventoryTestData.new(subject, "MISSING", stage, [], 0)
+                data.last.errors = [InventoryTestCriticalError.new("Benchmark not found")]
+              end  
+            end
           end
-
           error_level = analyze(data)
           if (error_level == SUCCESS) then
             report.success
           else
             report.failure
           end
-          output = html_output(data, baseline)
+          output = html_output(data, baseline_name)
           report.open_file("Inventory.html", "text/html", "Inventory comparison") do |file|
             file.puts output
           end
@@ -457,16 +459,17 @@ module ACME
           end
 
         end
-        baseline.cleanup
+        baseline.cleanup unless baseline.nil?
       end
        
       def analyze(data)
-        error_level = 0
+        error_level = SUCCESS
         data.each do |file_data|
           e = analyze_file(file_data)
           file_data.error_level = e
           error_level = (error_level > e ? error_level : e)
         end
+        error_level = FAIL if data.empty?
         return error_level
       end
       
@@ -488,7 +491,7 @@ module ACME
 	data_by_stage = collect_by_stage(data)
         ikko_hash = {}
         ikko_hash["id"] = @archive.base_name
-        ikko_hash["baseline"] = baseline.base_name
+        ikko_hash["baseline"] = baseline
         ikko_hash["description_link"] = "inv_description.html"
         table_string = ""
         row = 0        
