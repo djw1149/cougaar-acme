@@ -191,7 +191,7 @@ class XMLCougaarNode
           response.body = "Communities.xml file written."
           response['Content-Type'] = "text/plain"
         end
-        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 400 $CIP/configs/common/communities.xml')}`
+        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 644 $CIP/configs/common/communities.xml')}`
       else
         response.body = "<html>Communities.xml File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
