@@ -1,15 +1,16 @@
-#!/usr/bin/ruby
+#!/usr/bin/ruby -W0
 
 $CIP = ENV['CIP']
 
 if $0 == __FILE__
   $:.unshift File.dirname( __FILE__ )
-#  $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
-#  $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
   $:.unshift File.join( $CIP, "csmart", "acme_service", "src", "redist" )
   $:.unshift File.join( $CIP, "csmart", "acme_scripting", "src", "lib" )
+  $:.unshift File.join( $CIP, "csmart", "assessment", "scripts" )
+  $:.unshift File.join( $CIP, "csmart", "assessment", "lib" )
+  $:.unshift File.join( $CIP, "csmart", "config", "lib" )
+
 end
-$stdout.sync = true
 
 require "p-config"
 
@@ -58,10 +59,11 @@ while (@@is_OK) do
 
     $POLARIS_CONFIG.update if ($POLARIS_UPDATE)
     
-    $POLARIS_CONFIG.versions.append( scriptInfo.version )
-    $POLARIS_CONFIG.versions.append( configInfo.version )
+    $POLARIS_CONFIG.versions << scriptInfo.version 
+    $POLARIS_CONFIG.versions << configInfo.version 
 
-    ARGV[0] = $POLARIS_CONFIG.transform_script
+    Cougaar.in_memory_society = $POLARIS_CONFIG.make_society
+#    ARGV[0] = $POLARIS_CONFIG.transform_script
 
     logs = Polaris::Logs.new("#{ENV['COUGAAR_INSTALL_PATH']}/workspace/log4jlogs")
     
