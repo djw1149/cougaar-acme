@@ -29,8 +29,8 @@ if( parameters[:duration] != nil && parameters[:duration] >0 )
   insert_before parameters[:end_tag] do
     do_action "SleepFrom", :network_stress_start, parameters[:duration]
 
-    parameters[:ks_to_stress].each { |parameter|
-       do_action "RestoreHost", parameter[:router], parameter[:target]
+    parameters[:ks_to_stress].each { |link|
+       do_action "RestoreHost", link['router'], link['target']
     }
   end
 end
