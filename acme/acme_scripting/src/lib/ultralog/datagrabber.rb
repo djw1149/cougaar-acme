@@ -26,15 +26,16 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Starts the Jabber communications subsystem and connects to the Jabber server."
         @parameters = [
-          {:host => "required, The host running datagrabber."}
+          {:host => "[default=operator host], The host running datagrabber."}
         ]
         @example = "do_action 'StartDatagrabber', 'sb022'"
       }
-      def initialize(run, host)
+      def initialize(run, host=nil)
         super(run)
         @host = host
       end
       def perform
+        @host = @run.society.get_service_host("operator") unless @host
         ::UltraLog::DataGrabber.new(@host).new_run
       end
     end
@@ -42,7 +43,7 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Establishes a connection to a datagrabber service."
         @parameters = [
-          {:host => "required, The host running datagrabber."}
+          {:host => "[default=operator host], The host running datagrabber."}
         ]
         @block_yields = [
           {:datagrabber => "The datagrabber object (UltraLog::Datagrabber)."}
@@ -54,12 +55,13 @@ module Cougaar
           end
         "
       }
-      def initialize(run, host, &block)
+      def initialize(run, host=nil, &block)
         super(run)
         @host = host
         @action = block if block_given?
       end
       def perform
+        @host = @run.society.get_service_host("operator") unless @host
         @action.call(::UltraLog::DataGrabber.new(@host))
       end
     end
