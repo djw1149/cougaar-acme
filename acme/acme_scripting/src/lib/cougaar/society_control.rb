@@ -26,16 +26,26 @@ module Cougaar
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
+		  @debug = true
+      def initialize(run, debug=false)
+        super(run)
+        @debug = debug
+      end
+ 
       def perform
         pids = {}
         xml_model = @run["loader"] == "XML"
         @run.society.each_active_host do |host|
           host.each_node do |node|
+            node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
+            node.add_parameter("-Dorg.cougaar.event.port=5300")
+            node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
 						if xml_model
 						  msg_body = launch_xml_node(node)
 						else
 						  msg_body = launch_db_node(node)
 						end
+		        puts "Sending message to #{host.name} -- [command[start_node]#{msg_body}] \n" if @debug
             result = @run.comms.new_message(host).set_body("command[start_node]#{msg_body}").request(120)
             if result.nil?
               raise_failure "Could not start node #{node.name} on host #{host.host_name}"
@@ -47,33 +57,31 @@ module Cougaar
       end
 
 		def launch_db_node(node)
-       node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
-       node.add_parameter("-Dorg.cougaar.event.port=5300")
-       node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
 			 return node.parameters.join("\n")
 		end
 
-		@debug = false
     class ConfigServer 
 			attr_reader :port
+		  @debug = false
 			@@port = 12345
 				
-      def initialize(config)
+      def initialize(config, debug)
+        @debug = debug
 	      @config = config
-				@ready = false
+				ready = false
+				@port = @@port = @@port + 1
+				while (not ready)
+					begin
+            @server = TCPServer.new(@port)
+						ready = true
+					  rescue
+							@port = @port + 1
+					end
+				end
 	      Thread.new(config) {|config|serveup(config)}
       end
 
       def serveup(config) 
-				@port = @@port = @@port + 1
-				while (not @ready)
-					begin
-            @server = TCPServer.new(@port)
-						@ready = true
-					  rescue
-							@port = @port + 1
-						end
-				end
 				puts "Connection waiting on #{@port}\n" if @debug 
 		    session = @server.accept
 		    puts "Connection from #{session.addr} on #{@port}\n" if @debug
@@ -90,12 +98,17 @@ module Cougaar
 	    #node.add_parameter("-Dorg.cougaar.nameserver.verbosity=2")
 		
 	    node_society = Cougaar::Model::Society.new("society-for-#{node.name}")
-	    node_host = Cougaar::Model::Host.new("host-for-#{node.name}")
+	    node_host = Cougaar::Model::Host.new(node.host.name)
 	    node_host.add_node(node)
 	    node_society.add_host(node_host)
 
-      cfg = ConfigServer.new(node_society.to_xml)
-      text = "#{Socket.gethostname()}:#{cfg.port}\n"
+      cfg = ConfigServer.new(node_society.to_xml, @debug)
+			ipinfo = Socket.getaddrinfo(Socket.gethostname(), cfg.port)
+			ipaddr = ipinfo[0][3] # gets IP address
+			text = "#{Socket.gethostname()}:#{cfg.port}\n"
+
+      # Use this line if the nodes can't DNS back to the script (DHCP)
+      #text = "#{ipaddr}:#{cfg.port}\n"
 
 			return text
 		end
