@@ -21,7 +21,7 @@
 
 module UltraLog
   class GLSClient
-    attr_reader :oplan_name, :oplan_id
+    attr_reader :oplan_name, :oplan_id, :c0_date
     
     def can_send_oplan?
       @can_send_oplan
@@ -46,6 +46,7 @@ module UltraLog
       @can_send_oplan = false
       @oplan_name = nil
       @oplan_id = nil
+      @c0_date=nil
       
       @gls_connection = Net::HTTP.new(@run.society.agents['NCA'].node.host.host_name, @run.society.cougaar_port)
       @gls_thread = Thread.new do
@@ -59,6 +60,12 @@ module UltraLog
                 match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
                 @oplan_name = match[1]
                 @oplan_id = match[2]
+                @gls_connected = true
+              when /^<oplan name=.* id=[0-9A-F]* c0_date=.*>/
+                match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=(.*)>/.match(data)
+                @oplan_name = match[1]
+                @oplan_id = match[2]
+                @c0_date = match[3]
                 @gls_connected = true
               when /^<GLS .*>/
                 @can_send_oplan = true
@@ -292,7 +299,12 @@ module Cougaar
       def perform
         gls_client = @run['gls_client']
         begin
-          result = Cougaar::Communications::HTTP.get("http://#{@run.society.agents['NCA'].node.host.host_name}:#{@run.society.cougaar_port}/$NCA/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}")
+          host_uri = "http://#{@run.society.agents['NCA'].node.host.host_name}:#{@run.society.cougaar_port}"
+          if gls_client.c0_date
+            result = Cougaar::Communications::HTTP.get("#{host_uri}/$NCA/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
+          else
+            result = Cougaar::Communications::HTTP.get("#{host_uri}/$NCA/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}")
+          end
           raise_failure "Error publishing OPlan" unless result
         rescue
           raise_failure "Could not publish OPlan", $!
