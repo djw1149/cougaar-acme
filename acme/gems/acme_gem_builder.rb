@@ -57,6 +57,8 @@ CONTROL_BIN_FILE_LIST = [
 
 require 'fileutils'
 
+# BUILD acme-configuration gem
+
 FileUtils.rm_rf("lib") if File.exist?("lib")
 FileUtils.rm_rf("bin") if File.exist?("bin")
 
@@ -129,6 +131,8 @@ Gem::Builder.new(spec).build
 FileUtils.rm_rf("lib") if File.exist?("lib")
 FileUtils.rm_rf("bin") if File.exist?("bin")
 
+# BUILD acme-control gem
+
 FileUtils.mkdir_p("lib/cougaar")
 FileUtils.mkdir_p("lib/ultralog")
 FileUtils.mkdir_p("bin")
@@ -178,3 +182,61 @@ Gem::Builder.new(spec).build
 
 FileUtils.rm_rf("lib") if File.exist?("lib")
 FileUtils.rm_rf("bin") if File.exist?("bin")
+
+# BUILD ACME SERVICE GEM
+
+FileUtils.rm_rf("plugins")
+FileUtils.rm_rf("redist")
+FileUtils.mkdir_p("bin")
+
+SERVICE_PLUGINS_FILE_LIST = Dir.glob(File.join("../acme_service/src/plugins/**/*")).delete_if {|file| file.include?("CVS") || File.directory?(file)}
+SERVICE_REDIST_FILE_LIST = Dir.glob(File.join("../acme_service/src/redist/**/*")).delete_if {|file| file.include?("CVS") || File.directory?(file)}
+
+SERVICE_PLUGINS_FILE_LIST.each do |file|
+  dest_file = file[20..-1]
+  FileUtils.mkdir_p(File.dirname(dest_file))
+  FileUtils.cp(file, dest_file)
+end
+
+SERVICE_REDIST_FILE_LIST.each do |file|
+  dest_file = file[20..-1]
+  FileUtils.mkdir_p(File.dirname(dest_file))
+  FileUtils.cp(file, dest_file)
+end
+
+FileUtils.cp("../acme_service/src/acme-service", "bin/acme-service")
+FileUtils.cp("../acme_service/src/acme.rb", "redist/acme.rb")
+FileUtils.cp("../acme_service/src/default.yaml", "default.yaml")
+
+spec = Gem::Specification.new do |s|
+  s.name = 'acme-service'
+  s.version = ACME_VERSION
+  s.summary = "Service that manages Cougaar agent nodes"
+  s.description = <<-EOF
+    ACME is a framework to configure and control Cougaar multiagent societies. 
+    This gem provides the control subset of that functionality and depends on 
+    the configuration gem.
+  EOF
+
+  s.has_rdoc = false
+
+  s.files = Dir.glob("plugins/**/*") + Dir.glob("redist/**/*") + ["default.yaml"]
+  s.require_path = 'redist'
+  s.autorequire = 'acme'
+
+  s.bindir = "bin"
+  s.executables = ["acme-service"]
+  
+  s.add_dependency(%q<acme-configuration>, [">= 1.6.0"])
+
+  s.author = "Richard Kilmer"
+  s.email = "rich@infoether.com"
+  s.homepage = "http://acme.cougaar.org"
+end
+
+Gem::Builder.new(spec).build
+
+FileUtils.rm_rf("plugins")
+FileUtils.rm_rf("redist")
+FileUtils.rm_rf("bin")
+FileUtils.rm_f("default.yaml")
