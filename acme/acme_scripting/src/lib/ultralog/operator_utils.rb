@@ -50,7 +50,7 @@ module Ultralog
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
           return file if ts.get_service_host("operator") && ts.get_service_host("operator").host_name.downcase==host.downcase
-          localhost_file = file if ts.get_service_host("operator").host_name.downcase=="localhost"
+          localhost_file = file if ts.get_service_host("operator") && ts.get_service_host("operator").host_name.downcase=="localhost"
         end
         return localhost_file # may be nil
       end
@@ -63,7 +63,7 @@ module Ultralog
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
           society = ts if ts.get_service_host("operator") && ts.get_service_host("operator").host_name.downcase==host.downcase
-          localhost_society = ts if ts.get_service_host("operator").host_name.downcase=="localhost"
+          localhost_society = ts if ts.get_service_host("operator") && ts.get_service_host("operator").host_name.downcase=="localhost"
         end
         society = localhost_society unless society
         unless society
