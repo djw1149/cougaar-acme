@@ -11,6 +11,11 @@ org_report_plugin = "org.cougaar.mlm.plugin.organization.OrgReportPlugin"
 society.each_agent do |agent|
   agent.add_component do |c|
     c.classname = org_data_plugin
+    if agent.get_facet(:is_ua)
+      org_id = agent.get_facet(:org_id).to_s
+      org_type_id = agent.get_facet(:org_type_id).to_s
+      c.add_argument("MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=COMING_SOON,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+    end
   end
   agent.add_component do |c|
     c.classname = org_report_plugin
