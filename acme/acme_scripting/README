@@ -40,6 +40,7 @@ Files:
   bin/install.rb - Install the ACME Scripting library in the site_ruby directory
   bin/acme_doc.rb - Generate text documentation for States and Actions
   bin/html_doc.rb - Generate html documentation for States and Actions
+  bin/DOC_README - Usage instructions for acme_doc and html_doc.
   bin/install_lib - Install redistributed libraries in site_ruby directory
   
   regress/tutorial - Tutorial files
