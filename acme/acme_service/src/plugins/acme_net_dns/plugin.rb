@@ -32,8 +32,8 @@ class DNS
     cmd = @plugin.properties["command"]
     desc = @plugin.properties["description"]
     
-    @zones = @plugin.properties["zone"]
-    @backup = @plugin.properties["zone.bk"]
+    @db = @plugin.properties["db"]
+    @backup = @plugin.properties["db.bk"]
 
     @plugin["/plugins/acme_host_communications/commands/#{cmd}/description"].data = desc
     @plugin["/plugins/acme_host_communications/commands/#{cmd}"].set_proc do |msg, cmd|
@@ -63,14 +63,22 @@ class DNS
 
   def do_move( hostname, ipaddress )
     @plugin['log/info'] << "Changing #{hostname} to #{ipaddress}"
+    ip = do_lookup( hostname )
+
+    `sed '/#{hostname}/d' < #{@db} > #{@db}.work`
+    `echo \"#{hostname}	A	#{ipaddress}\" >> #{@db}.work`
+    `/sbin/service named stop`
+    `mv #{@db}.work #{@db}`
+    `/sbin/service named start`
+
     do_lookup( hostname )
   end
 
   def do_reset
     @plugin['log/info'] << "Resetting DNS to known state."
-    @plugin['log/info'] << "cp #{@backup} to #{@zones}"
+    @plugin['log/info'] << "cp #{@backup} to #{@db}"
     `/sbin/service named stop`
-    @plugin['log/info'] << `cp #{@backup} #{@zones}`
+    @plugin['log/info'] << `cp #{@backup} #{@db}`
     `/sbin/service named start`
     `nslookup sv191 -silent | grep Address | grep -v \\# | cut -d: -f2`.strip!
   end
