@@ -380,7 +380,36 @@ module Cougaar
         end
       end
     end
-    
+  
+    class LoadComponent < Cougaar::Action
+        PRIOR_STATES = ["SocietyRunning"]
+        DOCUMENTATION = Cougaar.document {
+        @description = "Adds or removes a component to/from an agent"
+        @parameters = [
+          {:agentname=> "Name of the agent to add the component to"},
+          {:action=> "add or remove"}, 
+          {:component=>"the component"}
+        ]
+        @example = "do_action 'LoadComponent', '1-AD', 'add', Component.new('org.cougaar.logistics.plugin.trans.RescindWatcher')}"
+        }
+
+        def initialize(run, agentname, action, component)
+            super(run)
+            @agentname = agentname
+            @action = action
+            @component = component
+        end
+        
+        def perform
+            @run.society.each_agent do |agent|
+                if @agentname == agent.name then
+                    data, uri = Cougaar::Communications::HTTP.get("#{agent.uri}/load?action=#{action}&classname={@component.classname}", 60)
+                end
+            end
+        end
+    end
+
+
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
