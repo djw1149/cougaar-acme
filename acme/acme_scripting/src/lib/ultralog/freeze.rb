@@ -50,7 +50,7 @@ module Cougaar
         @description = "Freeze the society using the 2003 version of the Freeze servlet. This action blocks until the freeze is complete."
         @example = "do_action 'FreezeSociety'"
       }
-      def initialize(run, timeout, &block)
+      def initialize(run, timeout=nil, &block)
         super(run)
         @timeout = timeout
         @timeout = 3600 if @timeout.nil?
