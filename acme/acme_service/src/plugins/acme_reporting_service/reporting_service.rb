@@ -53,11 +53,11 @@ class ReportingService
   end
   
   def post_reports(archive)
-    File.open(File.join(@temp_path, @report_path, 'report_summary.html'), "w") do |f| 
+    File.open(File.join(archive.root_path, @report_path, 'report_summary.html'), "w") do |f| 
       f.puts generate_archive_summary(archive)
     end
     archive.compress_reports
-    data = File.read(File.join(@temp_path, "reports.tgz"))
+    data = File.read(File.join(archive.root_path, "reports.tgz"))
     Net::HTTP.start(@report_host_name, @report_host_port) do |http|
       response = http.post("/post_report.rb/#{@society_name}/#{archive.base_name}", 
                  data, 
