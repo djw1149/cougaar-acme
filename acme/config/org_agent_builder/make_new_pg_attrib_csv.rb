@@ -43,7 +43,7 @@ class Organization
     writer << ["#{self.to_s}","MilitaryOrgPG|HomeLocation","GeoLocCode=#{home_location}","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
     writer << ["#{self.to_s}","ItemIdentificationPG|Nomenclature","#{self.to_s}","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
     writer << ["#{self.to_s}","ItemIdentificationPG|ItemIdentification","#{self.to_s}","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
-    @roles.each { |role| role.to_csv(writer) }
+    @roles.each { |role| role.to_csv(writer, self.to_s) }
   end
 
   def to_orgs(writer)
@@ -73,8 +73,8 @@ class Role
     str
   end
 
-  def to_csv(writer)
-    writer << ["#{self.to_s}","OrganizationPG|Roles","#{role_id}","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
+  def to_csv(writer, org)
+    writer << ["#{org}","OrganizationPG|Roles","#{role_id}","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
   end
 end
 
