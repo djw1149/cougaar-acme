@@ -38,9 +38,9 @@ ruby ../bin/transform_society.rb -i $UADIR/tiny-tc7-17a12v.facets.xml -r base_ru
 
 ruby ../bin/transform_society.rb -i $UADIR/small-tc20-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-tc20-17a12v.plugins.rb
 
-ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a147v.facets.xml -r base_rules/temp -o $UADIR/full-tc-20-160a147v.plugins.rb
+ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a147v.facets.xml -r base_rules/temp -o $UADIR/full-tc20-160a147v.plugins.rb
 
-ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a208v.facets.xml -r base_rules/temp -o $UADIR/full-tc-20-160a208v.plugins.rb
+ruby ../bin/transform_society.rb -i $UADIR/full-tc20-160a208v.facets.xml -r base_rules/temp -o $UADIR/full-tc20-160a208v.plugins.rb
 echo "Done"
 
 if [ "x$1" = "x" ]; then
