@@ -68,8 +68,8 @@ module Cougaar
         begin
           @host = ::UltraLog::DataGrabber.get_host_from_society(@run.society) unless @host
           @action.call(::UltraLog::DataGrabber.new(@host))
-        rescue
-          @run.error_message "DataGrabber error #{$!}\n#{$!.backtrace.join("\n")}"
+        rescue Exception => failure
+          @run.error_message "DataGrabber error #{failure}\n#{failure.backtrace.join("\n")}"
         end
       end
     end
