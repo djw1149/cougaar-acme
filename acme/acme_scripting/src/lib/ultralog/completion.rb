@@ -140,7 +140,6 @@ module Cougaar
         while loop
           sleep 10
           state = comp.getSocietyStatus
-          puts comp.printIncomplete
           if state == "COMPLETE"
             # We get some momentary "complete" states, make sure it stays complete
             sleep 10
