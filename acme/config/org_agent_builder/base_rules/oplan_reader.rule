@@ -2,13 +2,19 @@
 # Rule to insert OplanReader
 #   at every agent
 #
-# plugin = org.cougaar.mlm.plugin.ldm.OplanReaderPlugin
+# 1AD: plugin = org.cougaar.mlm.plugin.ldm.OplanReaderPlugin
+# UA:  plugin = org.cougaar.mlm.plugin.ldm.GetOplanPlugin
 # Replaces GetOplanPlugin
 
 oplan_reader_plugin = "org.cougaar.mlm.plugin.ldm.OplanReaderPlugin"
+get_oplan_plugin = "org.cougaar.mlm.plugin.ldm.GetOplanPlugin"
 
 society.each_agent do |agent|
   agent.add_component do |c|
-    c.classname = oplan_reader_plugin
+    unless agent.get_facet(:is_ua)     	
+      c.classname = oplan_reader_plugin
+    else
+      c.classname = get_oplan_plugin
+    end
   end
 end

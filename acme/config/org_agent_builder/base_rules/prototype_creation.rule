@@ -1,58 +1,57 @@
 ####################################################
 # Rule to insert other prototype creation Plugins
 # plugin = org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin
-### OLD: plugin = org.cougaar.logistics.plugin.demand.projection.LogMEILDMPlugin(icisMEI.q,+PrototypeProvider)
-### NEW: plugin = org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)
-### OLD: plugin = org.cougaar.logistics.plugin.demand.projection.LogPartsLDMPlugin(icisParts.q,+PrototypeProvider)
-### NEW: plugin = org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)
-#
+# 1_AD: plugin = org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)
+# UA: plugin = com.bbn.fcss.ldm.UAPrototypeProvider(fcsMEI.q,+PrototypeProvider)
+# plugin = org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)
+# UA: plugin = org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q,+PrototypeProvider)
+# 
 # Must be loaded before asset providers, so name changed to aaa_prototype_createion.rule
 
 xml_prototype_provider_plugin = "org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin"
 mei_prototype_provider = "org.cougaar.logistics.ldm.MEIPrototypeProvider"
 parts_prototype_provider = "org.cougaar.logistics.ldm.PartsPrototypeProvider"
-
-# First iterate over agents, collecting the provided_roles, mechanisms, and echelons of support
+ua_prototype_provider = "com.bbn.fcss.ldm.UAPrototypeProvider"
+   
+# Iterate over agents.
 society.each_agent do |agent|
-  provided_roles = Hash.new
-  agent.each_facet(:role) do |facet|
-    my_role = facet[:role].to_s
-    my_mechanism = facet[:mechanism].to_s
-    my_echelon_of_support= facet[:echelon_of_support].to_s
-    provided_roles[my_role] = [my_mechanism,my_echelon_of_support]
-  end
 #
-# Then check if agent has physical assets
+# Check if agent has physical assets
   if agent.get_facet(:has_physical_assets)
     agent.add_component do |c|
       c.classname = xml_prototype_provider_plugin
       # Make the XMLPrototypeProvider loaded at BINDER priority
-	  # so LDMSQLPlugin always has it - see Bug #1411
-	  # Comment out for now c.priority = "BINDER"
+      # so LDMSQLPlugin always has it - see Bug #1411
+      # Comment out for now c.priority = "BINDER"
     end
   end
-#
-# Then check if agent has equipment assets
+  #
+  # Then check if agent has equipment assets
   if agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
-      c.classname = mei_prototype_provider
-      c.add_argument("MEI.q")
-      c.add_argument("-PrototypeProvider")
+      unless agent.get_facet(:is_ua)     	
+	c.classname = mei_prototype_provider
+	c.add_argument("MEI.q")
+	c.add_argument("-PrototypeProvider")
+      else 
+	c.classname = ua_prototype_provider
+	c.add_argument("MEI.q")
+	c.add_argument("+PrototypeProvider")
+      end
     end
     agent.add_component do |c|
       c.classname = parts_prototype_provider
       c.add_argument("Parts.q")
+      c.add_argument("+PrototypeProvider") if agent.get_facet(:is_ua)
     end
   end
-#
-# Then check if agent has a role of "AmmunitionProvider" with a mechanism of "TerminalAmmunitionPacker"
-# This would be the OSC agent which needs the XMLPrototypeProviderPlugin  
-# if agent.get_facet(:role) == "AmmunitionProvider" && agent.get_facet(:mechanism) == "TerminalAmmunitionPacker"
-  provided_roles.each do |my_role, m_e| 
-    if my_role == "AmmunitionProvider" && m_e[0] == "TerminalAmmunitionPacker"
-      agent.add_component do |c|
-        c.classname = xml_prototype_provider_plugin
-      end
+  #
+  # Then check if agent has a role of "AmmunitionProvider" with a mechanism of "TerminalAmmunitionPacker"
+  # This would be the OSC agent which needs the XMLPrototypeProviderPlugin  
+  # if agent.get_facet(:role) == "AmmunitionProvider" && agent.get_facet(:mechanism) == "TerminalAmmunitionPacker"
+  if agent.has_facet? { |facet| facet[:role]=='AmmunitionProvider' && (facet[:mechanism] == 'TerminalAmmunitionPacker') }
+    agent.add_component do |c|
+      c.classname = xml_prototype_provider_plugin
     end    
-  end 
+  end
 end

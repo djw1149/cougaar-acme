@@ -10,13 +10,15 @@ subsistence_parts_prototype_provider = "org.cougaar.logistics.ldm.ClassIPartsPro
 
 society.each_agent do |agent|
   if agent.get_facet(:has_personnel_assets)
-    agent.add_component do |c|
-      c.classname = subsistence_consumer_prototype_provider
-      c.add_argument("subsistence.q")
-    end
-    agent.add_component do |c|
-      c.classname = subsistence_parts_prototype_provider
-      c.add_argument("subsistence.q")
+    unless agent.get_facet(:is_ua)
+      agent.add_component do |c|
+	c.classname = subsistence_consumer_prototype_provider
+	c.add_argument("subsistence.q")
+      end
+      agent.add_component do |c|
+	c.classname = subsistence_parts_prototype_provider
+	c.add_argument("subsistence.q")
+      end
     end
   end
 end

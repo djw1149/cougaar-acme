@@ -1,6 +1,9 @@
 ####################################################
 # Rule to insert DemandForecastPlugin (Formerly LogProjectionPlugin)
 #   at consumers.
+#
+#   For UA Org's, only create demand for BulkPOL.
+#
 #   Consumers:
 #     - orgs which have equipment are considered potential consumers of Ammunition, BulkPOL, PackagedPOL,
 #       and RepairParts (Consumable).
@@ -16,32 +19,47 @@ demand_forecast_plugin = "org.cougaar.logistics.plugin.demand.DemandForecastPlug
 
 society.each_agent do |agent|
   if agent.get_facet(:has_equipment_assets)
-    agent.add_component do |c|
-      c.classname = demand_forecast_plugin
-      c.add_argument('SUPPLY_TYPE=Ammunition')
-      c.add_argument('SUPPLY_PG_CLASS=AmmoConsumerPG')
+    agent.add_component do |c| 
+      unless agent.get_facet(:is_ua)
+	c.classname = demand_forecast_plugin
+	c.add_argument('SUPPLY_TYPE=Ammunition')
+	c.add_argument('SUPPLY_PG_CLASS=AmmoConsumerPG')
+      end 
     end
     agent.add_component do |c|
-      c.classname = demand_forecast_plugin
-      c.add_argument('SUPPLY_TYPE=BulkPOL')
-      c.add_argument('SUPPLY_PG_CLASS=FuelConsumerPG')
+      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') && 
+	agent.get_facet(:is_ua) }
+	c.classname = demand_forecast_plugin
+	c.add_argument('SUPPLY_TYPE=BulkPOL')
+	unless agent.get_facet(:is_ua)	
+	c.add_argument('SUPPLY_PG_CLASS=FuelConsumerPG')
+	else
+	  c.add_argument('SUPPLY_PG_CLASS=com.bbn.fcss.ldm.asset.FuelConsumerPG')
+	end
+      end
     end
-    agent.add_component do |c|
-      c.classname = demand_forecast_plugin
-      c.add_argument('SUPPLY_TYPE=PackagedPOL')
-      c.add_argument('SUPPLY_PG_CLASS=PackagedPOLConsumerPG')
+    agent.add_component do |c| 
+      unless agent.get_facet(:is_ua)
+	c.classname = demand_forecast_plugin
+	c.add_argument('SUPPLY_TYPE=PackagedPOL')
+	c.add_argument('SUPPLY_PG_CLASS=PackagedPOLConsumerPG')
+      end
     end
-    agent.add_component do |c|
-      c.classname = demand_forecast_plugin
-      c.add_argument('SUPPLY_TYPE=Consumable')
-      c.add_argument('SUPPLY_PG_CLASS=RepairPartConsumerPG')
+    agent.add_component do |c| 
+      unless agent.get_facet(:is_ua)
+	c.classname = demand_forecast_plugin
+	c.add_argument('SUPPLY_TYPE=Consumable')
+	c.add_argument('SUPPLY_PG_CLASS=RepairPartConsumerPG')
+      end
     end
   end
   if agent.get_facet(:has_personnel_assets)
-    agent.add_component do |c|
-      c.classname = demand_forecast_plugin
-      c.add_argument('SUPPLY_TYPE=Subsistence')
-      c.add_argument('SUPPLY_PG_CLASS=SubsistenceConsumerPG')
+    agent.add_component do |c| 
+      unless agent.get_facet(:is_ua)
+	c.classname = demand_forecast_plugin
+	c.add_argument('SUPPLY_TYPE=Subsistence')
+	c.add_argument('SUPPLY_PG_CLASS=SubsistenceConsumerPG')
+      end
     end
   end
 end
