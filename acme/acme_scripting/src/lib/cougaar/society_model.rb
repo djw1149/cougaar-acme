@@ -1311,8 +1311,12 @@ module Cougaar
         xml << "#{' '*i}  name='#{@name}'\n"
         xml << "#{' '*i}  class='#{@classname}'\n"
         xml << "#{' '*i}  priority='#{@priority}'\n" if @priority
-        xml << "#{' '*i}  order=#{@order}\n" if @order > -1
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
+        if @order > -1
+          xml << "#{' '*i}  <order>\n"
+          xml << "#{' '*i}    #{@order}\n"
+          xml << "#{' '*i}  </order>\n"
+        end
         each_argument do |arg|
           xml << "#{' '*i}  <argument>\n"
           xml << "#{' '*i}    #{REXML::Text.normalize(arg.value)}\n"
