@@ -13,6 +13,8 @@ society.each_node do |node|
     node.override_parameter("-Dorg.cougaar.core.persistence.enable","true")
     node.override_parameter("-Dorg.cougaar.core.persistence.clear","false")
     node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
+    node.override_parameter("-Dorg.cougaar.mlm.plugin.organization.GLSInitServlet.manualAdvance","true")
+
     
     # Add start time/timezone if startTime parameter is not present
     start_time = nil
