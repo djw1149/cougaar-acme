@@ -82,7 +82,7 @@ module Cougaar
     
     def stop_node(node)
       host = node.host
-      puts "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
+      @run.info_message "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
       result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
       if result.nil?
         puts "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
@@ -95,10 +95,10 @@ module Cougaar
       else
         msg_body = launch_db_node(node)
       end
-      puts "RESTART: Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
+      @run.info_message "RESTART: Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
       result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
       if result.nil?
-        puts "Could not start node #{node.name} on host #{node.host.host_name}"
+        @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
       end
       @pids[node.name] = result.body
     end
@@ -107,13 +107,13 @@ module Cougaar
       pid = @pids[node.name]
       if pid
         @pids.delete(node.name)
-        puts "KILL: Sending message to #{node.host.name} -- command[stop_#{@node_type}node]#{pid} \n" if @debug
+        @run.info_message "KILL: Sending message to #{node.host.name} -- command[stop_#{@node_type}node]#{pid} \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[stop_#{@node_type}node]#{pid}").request(60)
         if result.nil?
-          puts "Could not kill node #{node.name}(#{pid}) on host #{node.host.host_name}"
+          @run.error_message "Could not kill node #{node.name}(#{pid}) on host #{node.host.host_name}"
         end
       else
-        puts "Could not kill node #{node.name}...node does not have an active PID."
+        @run.error_message "Could not kill node #{node.name}...node does not have an active PID."
       end
     end
     
@@ -369,7 +369,7 @@ module Cougaar
           if cougaar_node
             @run['node_controller'].restart_node(self, cougaar_node)
           else
-            raise_failure "Cannot restart node #{node}, node unknown."
+            @run.error_message "Cannot restart node #{node}, node unknown."
           end
         end
       end
@@ -399,7 +399,7 @@ module Cougaar
           if cougaar_node
             @run['node_controller'].kill_node(self, cougaar_node)
           else
-            puts "Cannot kill node #{node}, node unknown."
+            @run.error_message "Cannot kill node #{node}, node unknown."
           end
         end
       end
@@ -425,9 +425,9 @@ module Cougaar
         begin
           uri = "#{@run.society.agents[@agent].uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
           result = Cougaar::Communications::HTTP.get(uri)
-          raise_failure "Error moving agent" unless result
+          @run.error_message "Error moving agent" unless result
         rescue
-          raise_failure "Could not move agent via HTTP", $!
+          @run.error_message "Could not move agent via HTTP", $!
         end
        #http://sv116:8800/$1-35-ARBN/move?op=Move&mobileAgent=1-35-ARBN&originNode=&destNode=FWD-D&isForceRestart=false&action=Add
       end
