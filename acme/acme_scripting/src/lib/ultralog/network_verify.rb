@@ -214,5 +214,85 @@ module Cougaar; module Actions
     end
   end
 
+  class AssertOnlyActive < Cougaar::Action
+    def initialize( run, host, subnet )
+      super( run )
+      @hostname = host
+      @subnet_name = subnet
+    end
+ 
+    def perform
+      host = @run.society.hosts[@hostname]
+      net = @run['network']
+
+      case (host.get_facet(:host_type))
+        when "router":
+          @run.error_message("WARNING:  AssertOnlyActive not implemented for hosts of type router.")
+        when "standard":
+          @run.error_message("WARNING:  AssertOnlyActive does not make sense for hosts of type standard.")
+        when "migratory"
+          active = []
+          host.get_facet(:subnet).split(/,/).each do |subnet_name|
+            subnet = net.subnet[ subnet_name ]
+            ifcfg = @run.comms.new_message(host).set_body("command[rexec]ifconfig #{subnet.make_interface(host.get_facet(:interface))}").send(30)
+
+            ifcfg.body.each_line do |line|
+              active << subnet_name if line["UP BROADCAST"]
+            end
+          end
+
+          @run.error_message "Multiple interfaces active for #{@hostname}/Active Interfaces: #{active.join(',')}" if (active.size > 1)
+          @run.error_message "No active interfaces for #{@hostname}" if (active.size == 0)
+          @run.error_message "Wrong interface active for #{@hostname}/Active Interface: #{active[0]}" if ((active.size == 1) && (active[0] != @subnet_name))
+      end
+    end
+  end
+
+  class AssertInactive < Cougaar::Action
+    def initialize( run, host, *interfaces )
+      super( run )
+      @hostname = host
+      @interfaces = interfaces
+    end
+
+    def perform
+      host = @run.society.hosts[host]
+      @interfaces.each do |iface|
+        ifcfg = @run.comms.new_message(host).set_body("command[rexec]ifconfig #{@interface}")
+        ifcfg.body.each_line do |line|
+          case line
+            when /UP BROADCAST/
+              @run.error_message("ERROR: Host #{@host}/Interface #{iface} is active.")
+          end
+        end 
+      end
+    end
+  end
+
+  class AssertIPAddress < Cougaar::Action
+    def initialize( run, host, ipaddr )
+      super( run )
+      @host = host
+      @ipaddr = ipaddr
+    end
+
+    def perform
+      nslookup = `nslookup -sil #{@host}`
+      addr = nil
+      nslookup.each_line do |line|
+        case line
+          when /Address: /
+            addr = /Address: (.*)/.match( line )[1]
+        end
+      end
+
+      if (addr.nil?) then
+        @run.error_message "No Address Found for host #{@host}" if addr.nil?
+      else
+        @run.error_message "Wrong Address Found for host #{@host}.  Found: #{addr}.  Expected #{@ipaddr}" unless addr == @ipaddr
+      end
+    end
+  end
+
 end; end
 

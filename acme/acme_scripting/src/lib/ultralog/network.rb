@@ -22,6 +22,52 @@
 require 'ultralog/network_model'
 
 module Cougaar; module Actions
+  class MigratoryHelper
+    def initialize( run, net, host )
+      @run = run
+      @net = net
+      @host = host
+    end
+
+    def lookup( hostname )
+      nslookup = `nslookup -sil #{hostname}`
+      addr = nil
+      nslookup.each_line do |line|
+        case line
+          when /Address: /
+            addr = /Address: (.*)/.match( line )[1]
+        end
+      end
+      addr
+    end
+
+    def switch_to( subnet )
+      # Next, we manipulate DNS
+      new_subnet = @net.subnet[ subnet ]
+      old_ip = lookup( @host.name )
+      new_ip = new_subnet.make_ip_address( old_ip )
+
+      @run.info_message "Changing host #{@host.name} to use subnet #{subnet}/New IP: #{new_ip}"
+
+      # First, we disable all of the subnets.
+      @host.get_facet(:subnet).split(/,/).each { |subnet_name|
+                
+        t_subnet = @net.subnet[ subnet_name ]
+        @run.comms.new_message(@host).set_body("command[net]reset(#{t_subnet.make_interface(@host.get_facet(:interface))})").send()
+        @run.comms.new_message(@host).set_body("command[net]disable(#{t_subnet.make_interface(@host.get_facet(:interface))})").send()
+      }
+
+      # Trigger the DNS changes
+      @run.society.each_service_host('dns') do |dns_host|
+        result = @run.comms.new_message(dns_host).set_body("command[dns]move(#{@host.name},#{new_ip})").send(30)
+        @run.error_message("Unable to update IP Address.") if result.nil?
+      end
+
+      # Now, we activate the apropriate subnet.
+      @run.comms.new_message(@host).set_body("command[net]enable(#{new_subnet.make_interface(@host.get_facet(:interface))})").send()
+    end
+  end
+
   class RouterInformation < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Gather i nformation on all routers in the system.  Writes the results out to an XML file specified by the parameters."
@@ -85,12 +131,19 @@ module Cougaar; module Actions
 
     def perform
       net = @run['network']
+      @run.society.each_service_host("dns") do |dns_host|
+         result = @run.comms.new_message( dns_host ).set_body("command[dns]reset").request(60)
+         @run.error_message "WARNING! Unable to reset DNS to a known state." if result.nil?
+      end
 
       @run.society.each_host { |host|
          case (host.get_facet(:host_type))
+           # Standard Host
            when "standard":
               result = @run.comms.new_message(host).set_body("command[net]reset(#{host.get_facet(:interface)})").request(30)
               @run.error_message "WARNING!  Unable to reset standard host: #{host.name}" if result.nil?
+
+           # Router Host
            when "router":
               subnet = net.subnet[ host.get_facet(:subnet) ]
 
@@ -104,17 +157,11 @@ module Cougaar; module Actions
               subnet.klink.each_value { |klink|
                  @run.comms.new_message(host).set_body("command[net]reset(#{klink.interface})").send()
               }
+
+           # Migratory Host
            when "migratory":
-              host.each_facet(:subnet) { |facet|
-                subnet = net.subnet[ facet.data ]
-                @run.comms.new_message(host).set_body("command[net]reset(#{subnet.make_interface(host.get_facet(:interface))})").send()
-                @run.comms.new_message(host).set_body("command[net]disable(#{subnet.make_interface(host.get_facet(:interface))})").send()
-              }
-
-              subnet = net.subnet[ host.get_facet(:default_subnet) ]
-              @run.comms.new_message(host).set_body("command[net]enable(#{subnet.make_interface(host.get_facet(:interface))})").send()
-
-              @run.error_message( "WARNING!  Migratory Hosts will not be fully implemented until after the PAD assessment." )
+              helper = MigratoryHelper.new( @run, net, host )
+              helper.switch_to( host.get_facet(:default_subnet) )
          end
       }
     end
@@ -153,15 +200,13 @@ module Cougaar; module Actions
               }
            when "migratory":
               host.each_facet(:subnet) { |facet|
-                 subnet = net.subnet[ facet.data ]
+                 subnet = net.subnet[ facet.cdata ]
                  @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))})").send()
               }
-              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
   end
-
 
   class ShapeHost < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
@@ -197,7 +242,6 @@ module Cougaar; module Actions
               raise Exception.new( "Target subnet must be specified when shaping migratory hosts." ) if @target.nil?
               subnet = net.subnet[ @target ]
               @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))},#{@bw})").send()
-              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
@@ -239,7 +283,7 @@ module Cougaar; module Actions
            when "migratory":
               if (@target.nil?) then
                 host.each_facet(:subnet) { |facet|
-                  subnet = net.subnet[ facet.data ]
+                  subnet = net.subnet[ facet.cdata ]
                   @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))},#{subnet.bw})").send()
                 }
               else 
@@ -247,7 +291,6 @@ module Cougaar; module Actions
                 @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))},#{subnet.bw})").send()
               end
 
-              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
@@ -529,5 +572,19 @@ module Cougaar; module Actions
       }
     end
   end
+
+  class Migrate < Cougaar::Action
+    def initialize( run, hostname, subnet )
+      super( run )
+      @hostname = hostname
+      @subnet = subnet 
+    end
+
+    def perform
+      helper = MigratoryHelper.new( @run, @run['network'], @run.society.hosts[@hostname] )
+      helper.switch_to( @subnet )
+    end
+  end
+
 end; end
 

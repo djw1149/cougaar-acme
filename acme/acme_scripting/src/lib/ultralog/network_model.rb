@@ -46,6 +46,14 @@ module Cougaar
     def make_interface( interface="eth0" )
        "#{interface}.#{vlan}"
     end
+
+    def make_ip_address( old_ip )
+       host_RE = /\d*\.\d*\.\d*\.(\d*)/
+       subnet_RE = /(\d*\.\d*\.\d*)/
+       host_num = host_RE.match( old_ip )[1]
+       subnet = subnet_RE.match( @ip )[1]
+       "#{subnet}.#{host_num}"
+    end
   end
       
   class NetworkModel
