@@ -125,6 +125,29 @@ module Cougaar
   
   module Actions
   
+    class KeepSocietySynchronized < Cougaar::Action
+      PRIOR_STATES = ["CommunicationsRunning"]
+      RESULTANT_STATE = "SocietyRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Maintain a synchronization of Agents-Nodes-Hosts from Lifecycle CougaarEvents."
+        @example = "do_action 'KeepSocietySynchronized'"
+      }
+      def perform
+        @run.comms.on_cougaar_event do |event|
+          if event.component=="SimpleAgent"
+            match = /.*AgentLifecycle\(([^\)]*)\) Agent\(([^\)]*)\) Node\(([^\)]*)\) Host\(([^\)]*)\)/.match(event.data)
+            if match
+              cycle, agent, node, host = match[1,4]
+              unless node == @run.society.agents[agent].node.name
+                @run.society.agents[agent].move_to(node)
+                puts "Moving agent: #{agent} to node: #{node}"
+              end
+            end
+          end
+        end
+      end
+    end
+  
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
