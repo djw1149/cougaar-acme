@@ -1140,7 +1140,7 @@
       <agent name='TRANSCOM-STUB.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='TRANSCOM-STUB.MIL' />
-        <facet orig_org_id='TRANSCOM-STUB' />
+        <facet orig_org_id='TRANSCOM' />
         <facet superior_org_id='OSD.GOV' />
         <facet home_location='VDYD' />
         <facet combat_support='CSS' />
