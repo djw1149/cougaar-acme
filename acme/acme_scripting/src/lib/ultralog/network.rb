@@ -92,6 +92,10 @@ module Cougaar; module Actions
       noc = nil
       @run.society.each_service_host("BW-router") {|h| noc = h }
 
+      if (noc.nil?) then
+          @run.info_message "WARN: Could not find a host with the facet 'BW-router'"
+      end
+
       wl = WANLink.new( @run, noc, @from_vlan, @to_vlan)
       WANLink.store( @name, wl )
     end
@@ -132,7 +136,7 @@ module Cougaar; module Actions
         if @nocname
           @run.error_message "Could not find host '#{@nocname}'"
         else
-          @run.error_message "Could not find a host with the facet 'BW-router'"
+          @run.info_message "WARN: Could not find a host with the facet 'BW-router'"
         end
       else
         @run.comms.new_message(host).set_body("command[shape]reset").send
@@ -173,7 +177,7 @@ module Cougaar; module Actions
        @run.society.each_service_host("BW-router") {|h| host = h}
       end
       if host.nil?
-        @run.error_message "Could not find a host with the facet 'BW-router'"
+        @run.info_message "WARN: Could not find a host with the facet 'BW-router'"
       else
         @run.comms.new_message(host).set_body("command[shape]reset").send
       end
