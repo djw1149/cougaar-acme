@@ -44,8 +44,8 @@ module Cougaar
 
         # Get some inventory charts
         get_inventory "FUEL-WATER-SECTION.FSB.1-UA.ARMY.MIL", "ALL TRUCKS:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-ALL-TRUCKS-JP8.xml"
-        get_inventory "FTTS-MS-0.FUEL-WATER-SECTION.FSB.1-UA.ARMY.MIL", "FTTS-MS-Fuel-0:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
-        get_inventory "FTTS-MS-10.FUEL-WATER-SECTION.FSB.1-UA.ARMY.MIL", "FTTS-MS-Fuel-10:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
+        get_inventory "FUEL-WATER-SECTION.FSB.1-UA.ARMY.MIL", "FTTS-MS-Fuel-0:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
+        get_inventory "FUEL-WATER-SECTION.FSB.1-UA.ARMY.MIL", "FTTS-MS-Fuel-10:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
 
       end
 
