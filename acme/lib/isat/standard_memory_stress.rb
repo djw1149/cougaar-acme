@@ -6,7 +6,7 @@ description: This is a standard memory stressor which would take six parameters.
              start_delay - delay after start tag.
              end_tag - tag symbol before which to stop stress.
              duration - duration of stress
-             memory - Amount of memory to waste.
+             memory - Amount of memory to waste in "K".
              nodes - Array of nodes to stress.
 =end
 
