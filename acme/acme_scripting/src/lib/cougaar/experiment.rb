@@ -100,7 +100,7 @@ module Cougaar
       elsif n.kind_of? ActionNotification
         n.begin_flag ? on_action_begin(n.action) : on_action_end(n.action)
       elsif n.kind_of? InterruptNotification
-        n.on_state_interrupt(n.state)
+        on_state_interrupt(n.state)
       end
     end
     
