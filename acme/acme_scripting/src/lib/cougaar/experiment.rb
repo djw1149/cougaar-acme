@@ -585,6 +585,18 @@ module Cougaar
         t = Time.now
         archive_filename = File.join(@archive_path, @name+"-#{Time.now.strftime('%Y%m%d-%H%M%S')}")
         
+        #archive files
+        filelist = []
+        @archive_entries.each do |entry| 
+          if  entry.file.kind_of? Proc
+            entry.file.call.each {|file| filelist << file}
+          else
+            filelist <<  entry.file
+          end
+        end
+        File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
+        `tar -czf #{archive_filename+".tgz"} -T #{archive_filename+".filelist"} &> /dev/null`
+
         #write description xml file
         descriptor = "<run directory='#{Dir.pwd}'>\n"
         @archive_entries.each do |entry|
@@ -600,17 +612,6 @@ module Cougaar
         descriptor << "</run>\n"
         File.open(archive_filename+".xml", "w") { |file| file.puts descriptor }
         
-        #archive files
-        filelist = []
-        @archive_entries.each do |entry| 
-          if  entry.file.kind_of? Proc
-            entry.file.call.each {|file| filelist << file}
-          else
-            filelist <<  entry.file
-          end
-        end
-        File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
-        `tar -czf #{archive_filename+".tgz"} -T #{archive_filename+".filelist"} &> /dev/null`
         #cleanup
         @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove &&  File.exist?(entry.file)}
         File.delete archive_filename+".filelist"
