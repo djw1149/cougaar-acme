@@ -1,3 +1,5 @@
+require "parsedate"
+
 module ACME
   module Plugins
     QuiescenceData = Struct.new("QuiescenceData", :node, :stage_data, :goodnode)
@@ -52,6 +54,12 @@ module ACME
               report.open_file("qdata.html", "text/html", "Quiescence Time Report") do |file|
                 file.puts output
               end
+
+              output = create_description
+              report.open_file("qdata_description.html", "text/html", "Quiescence Time Report Description") do |file|
+                file.puts output
+              end
+
             end
           else
             report.failure
@@ -59,40 +67,25 @@ module ACME
         end
       end
 
-      def get_timestamp(line, gm = true)
-        line =~ /([0-9][0-9]):([0-9][0-9]):([0-9][0-9])/
-        ts = Time.at($1.to_i*3600 + $2.to_i*60 + $3.to_i).gmtime
-        if !gm then
-          if (ts.hour < 19) then
-            ts += 5*3600 unless gm #convert to gmtime if not already
-          else
-            ts -= 19*3600 #don't want conversion to change the day
-          end
+      def get_timestamp(line)
+        pd = nil
+        if (line =~ /\](.*)::/) then #run.log format
+          pd = ParseDate.parsedate($1)
+        elsif (line =~ /^(.*),/) then #log4jlog format
+          pd = ParseDate.parsedate($1)
         end
-        return ts 
+        return Time.mktime(*pd)
       end
 
-      def adjust_hours(stage_times)
-        stage_times.each do |stage_time|
-          if !stage_time.nil? then
-            stage_time.start_time += 24*60*60 if stage_time.start_time.hour <= 10
-            stage_time.end_time += 24*60*60 if (stage_time.end_time.hour <= 10 || stage_time.start_time.hour <= 10)
-            stage_time.range = (stage_time.start_time .. stage_time.end_time) 
-          end
-        end
-      end
-  
       def get_stage_times(run_log)
         stage_times = []
-        @nightrun = false
         curr = nil
         stage = nil
         run_log.each do |line|
           if line =~ /Run.*Started/ then
             stage_times = []
           elsif (stage.nil? && line =~ /Starting: PublishNextStage/) then
-            curr = get_timestamp(line, false)
-            @nightrun = true if curr.hour >= 22
+            curr = get_timestamp(line)
           elsif line =~ /Published stage Stage ([0-9]+)/ then
             stage = $1.to_i
             stage_times[stage] = StageTime.new
@@ -102,15 +95,13 @@ module ACME
               stage -= 1
             end
           elsif (!stage.nil? && line =~ /Done: SocietyQuiesced/) then
-            curr = get_timestamp(line, false)
-            @nightrun = true if curr.hour >= 22
+            curr = get_timestamp(line)
             stage_times[stage].end_time = curr
             stage_times[stage].range = (stage_times[stage].start_time .. stage_times[stage].end_time) 
             stage = nil 
           end
         end
         stage_times.collect!{|x| (x.nil? || x.range.nil?) ? nil : x}
-        adjust_hours(stage_times) if @nightrun
         stage_times[4] = stage_times[3] unless stage_times[3].nil?
         stage_times[6] = stage_times[5] unless stage_times[5].nil?
         return stage_times
@@ -153,8 +144,7 @@ module ACME
           File.new(qfile.name).each do |line|
             next unless line =~ /quiescent="(false|true)"/
             quiescent = ($1 == "true")
-            ts = get_timestamp(line, true)
-            ts += 24*60*60 if (@nightrun && ts.hour <= 10)
+            ts = get_timestamp(line)
             stage = get_stage(ts)
             if (new_node.stage_data[stage].nil?)
               create_new_stage(new_node, stage)
@@ -197,6 +187,7 @@ module ACME
         run_stages = get_run_stages
         ikko_data = {}
         ikko_data["id"]= @archive.base_name
+        ikko_data["description_link"] = "qdata_description.html"
         header_string = @ikko["header_template.html", {"data"=>"Agent Name", "option"=>""}]
         run_stages.each do |s|
           stage = ((s == 3) || (s == 5) ? "#{s}#{s+1}" : s.to_s)
@@ -227,6 +218,23 @@ module ACME
         ikko_data["table"] = table_string
         return @ikko["qdata_report.html", ikko_data]
       end
+
+      def create_description
+        ikko_data = {}
+        ikko_data["name"]="Quiescence Data Report"
+        ikko_data["title"] = "Quiescence Data Description"
+        ikko_data["description"] = "Creates a table showing the time that each node spent unquiescent at each stage.  An entry"
+        ikko_data["description"] << " in the table is red if the node did not quiesce at the end of that stage.  An entry in the "
+        ikko_data["description"] << "node column is red if that node did not quiesce at the end of any stage.  If the node did"
+        ikko_data["description"] << " not quiesce by the end of the stage then the time will be underreported."
+
+        success_table = {"success"=>"Each node is quiescent at the end of each stage",
+                         "partial"=>"not used",
+                         "fail"=>"At least one node is not quiescent at the end of at least one stage"}
+        ikko_data["table"] = @ikko["success_template.html", success_table]
+        return @ikko["description.html", ikko_data]
+      end
+
     end
   end
 end

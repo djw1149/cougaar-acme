@@ -1,4 +1,4 @@
-#RunTimeTist.rb
+require "parsedate"
 
 module ACME
   module Plugins
@@ -20,6 +20,12 @@ module ACME
             report.open_file("run_times.html", "text/html", "Run time statistics") do |file|
               file.puts output
             end
+
+            output = create_description
+            report.open_file("run_times_description.html", "text/html", "Run time test description") do |file|
+              file.puts output
+            end
+
             report.success
           else
             report.failure
@@ -31,8 +37,9 @@ module ACME
         ts = nil
         if pattern.match(line)
           match_vars = $~[1..-1] #save $1, $2, ...
-          line =~ /([0-9]+)-([0-9]+)-([0-9]+) ([0-9]+):([0-9]+):([0-9]+)/
-          time = Time.local($1.to_i, $2.to_i, $3.to_i, $4.to_i, $5.to_i, $6.to_i).to_i
+          line =~ /\](.*)::/ #extract the date from the line
+          pd = ParseDate.parsedate($1)
+          time = Time.mktime(*pd)
           ts = [time, match_vars]
         end
         return ts
@@ -72,21 +79,21 @@ module ACME
               start = ts[0]
               current.type = ts[1][0]
             elsif (target == :load_time_end) then
-              current.load_time = Time.at(ts[0] - start).gmtime
+              current.load_time = ts[0] - start
             elsif (target == :start_time_start) then
               start = ts[0]
             elsif (target == :start_time_persistance_end || target == :start_time_scratch_end) then
-              current.start_time = Time.at(ts[0] - start).gmtime
+              current.start_time = ts[0] - start
             elsif (target == :stage_time_start)
               start = ts[0]
             elsif (target == :stage_time_end) then
-              current.stage_times << Time.at(ts[0] - start).gmtime
+              current.stage_times << ts[0] - start
             end
             target = next_target(target, current.type)
           elsif (ts = get_timestamp(line, /INTERRUPT/)) then 
             current.interrupted = true
             if (target == :stage_time_end)
-              current.stage_times << Time.at(ts[0] - start).gmtime
+              current.stage_times << ts[0] - start
             end
             all_data << current
             target = :start_run
@@ -158,6 +165,7 @@ module ACME
             
       def html_output(all_data)
         ikko_data = {}
+        ikko_data["description_link"]="run_times_description.html"
         ikko_data["id"] = @archive.base_name
         headers = ["Run", "Load Time", "Start Time", "Stage Time[s]"]
         header_string = ""
@@ -247,6 +255,19 @@ module ACME
         end
         str << "\n"
         return str
+      end
+  
+      def create_description
+        ikko_data = {}
+        ikko_data["name"]="Run Time Test"
+        ikko_data["title"] = "Run Time Test Description"
+        ikko_data["description"] = "Creates a table showing the time the society took for loading, starting, and each stage"
+        ikko_data["description"] << " for each run in the run.log."
+        success_table = {"success"=>"Run.log present",
+                         "partial"=>"not used",
+                         "fail"=>"run.log not found"}
+        ikko_data["table"] = @ikko["success_template.html", success_table]
+        return @ikko["description.html", ikko_data]
       end
     end
   end

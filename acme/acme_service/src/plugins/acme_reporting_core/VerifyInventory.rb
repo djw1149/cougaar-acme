@@ -420,7 +420,7 @@ module ACME
       
       def perform(abs_tol, rel_tol)
         data = []
-        @archive.add_report("Inventory Comparison", @plugin.plugin_configuration.name) do |report|
+        @archive.add_report("INV", @plugin.plugin_configuration.name) do |report|
           inv_files = @archive.files_with_description(/Inventory/).sort{|x, y| x.name <=> y.name}
           inv_files.each do |inv_file|
             subject = inv_file.name
@@ -443,9 +443,15 @@ module ACME
             report.failure
           end
           output = html_output(data)
-          report.open_file("Inventory.html", "text/html", "Inventory Comparison") do |file|
+          report.open_file("Inventory.html", "text/html", "Inventory comparison") do |file|
             file.puts output
           end
+
+          output = create_description
+          report.open_file("inv_description.html", "text/html", "Inventory comparison description") do |file|
+            file.puts output
+          end
+
         end
       end
        
@@ -489,6 +495,7 @@ module ACME
 	data_by_stage = collect_by_stage(data)
         ikko_hash = {}
         ikko_hash["id"] = @archive.base_name
+        ikko_hash["description_link"] = "inv_description.html"
         table_string = ""
         row = 0        
  
@@ -560,7 +567,23 @@ module ACME
         end
         return @ikko["cell_template.html", {"data"=>data, "options"=>color}]
       end
-    end
+
+      def create_description
+        ikko_data = {}
+        ikko_data["name"]="Inventory Report"
+        ikko_data["title"] = "Inventory Report Description"
+        ikko_data["description"] = "Verifies the inventory files with the baselines in the goldeninv directory."
+        ikko_data["description"] << "Each file is compared with the corresponding baseline file on all dates"
+        ikko_data["description"] << "where the inventory levels change.  If the subject and baseline are not"
+        ikko_data["description"] << " within 10% of each other there is an error.  Critical errors occur if the"
+        ikko_data["description"] << " baseline cannot be found or if there are missing or extraneous xml tags."
+        success_table = {"success"=>"Every file is within 10% of the baseline file for every date tested",
+                         "partial"=>"not used",
+                         "fail"=>"At least one error or critical error."}
+        ikko_data["table"] = @ikko["success_template.html", success_table]
+        return @ikko["description.html", ikko_data]
+      end
+   end
   end
 end
 
