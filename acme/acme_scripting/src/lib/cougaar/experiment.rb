@@ -250,6 +250,8 @@ module Cougaar
   class ExperimentDefinition
     attr_accessor :name, :description, :script, :include_scripts, :use_cases
     
+    @@current=nil
+    
     def initialize(name, description=nil)
       @name = name
       @description = description
