@@ -33,7 +33,7 @@ society.each_agent do |agent|
       #MilitaryOrgPG:UIC:String:#{org_code}
       #MilitaryOrgPG:IsReserve:boolean:FIXME
       #OrganizationPG:Service:Service:#{service}
-      #OrganizationPG:Agent:Agancy:#{agency}
+      #OrganizationPG:Agent:Agency:#{agency}
 
       # Note that relationships are added below
     else
@@ -49,7 +49,7 @@ society.each_agent do |agent|
 	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
 	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
 	else
-	  puts("WARNING: Superior not defined for: #{org_id}")
+	  puts("WARNING: Agent #{agent.name} had superior_org #{org_id} that could not be found!")
 	end
       end
       # Also supply SCAs as arguments
@@ -60,7 +60,7 @@ society.each_agent do |agent|
 	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
 	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
 	else
-	  puts("WARNING: Superior not defined for: #{org_id}")
+	  puts("WARNING: Agent #{agent.name} had sca_supported_org #{org_id} that could not be found!")
 	end
       end
     end
