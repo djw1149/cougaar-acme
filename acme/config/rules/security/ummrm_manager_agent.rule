@@ -1,0 +1,36 @@
+####################################################
+# Adds SCmrmanager agent
+#
+
+aggregationKeepAlive = "edu.memphis.issrl.mrmanager.SCAggregationKeepAliveComponent"
+aggregation = "edu.memphis.issrl.mrmanager.SCAggregationComponent"
+orgData = "org.cougaar.mlm.plugin.organization.OrgDataPlugin"
+orgReport = "org.cougaar.mlm.plugin.organization.OrgReportPlugin"
+aggregationPlugin = "org.cougaar.lib.aggagent.plugin.AggregationPlugin"
+alert = "org.cougaar.lib.aggagent.plugin.AlertPlugin"
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("SCmrmanager") do |agent|
+  agent.add_component do |c|
+	c.classname = aggregationKeepAlive
+	c.add_argument("/keepalivemanager")
+  end
+  agent.add_component do |c|
+	c.classname = aggregation
+	c.add_argument("/manager")
+  end
+  agent.add_component do |c|
+	c.classname = orgData
+  end
+  agent.add_component do |c|
+	c.classname = orgReport
+  end
+  agent.add_component do |c|
+	c.classname = aggregationPlugin
+  end
+  agent.add_component do |c|
+	c.classname = alert
+  end
+end
+

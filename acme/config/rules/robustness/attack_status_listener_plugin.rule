@@ -1,0 +1,8 @@
+# attack_status_listener_plugin.rule
+# Adds AttackStatusListenerPlugin to all nodes
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = "org.cougaar.robustness.dos.node.AttackStatusListenerPlugin"
+  end
+end

@@ -1,0 +1,60 @@
+####################################################
+# Adds PolicyDomainManagerServlets
+#
+
+orgDataPlugin = "org.cougaar.mlm.plugin.organization.OrgDataPlugin"
+orgReportPlugin = "org.cougaar.mlm.plugin.organization.OrgReportPlugin"
+paServlet = "safe.policyManager.PolicyAdminServletComponent"
+
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("PolicyDomainManager1ServletAgent") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = paServlet
+	c.add_argument("PolicyDomainManager1")
+  end
+end
+node.add_agent("PolicyDomainManager2ServletAgent") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = paServlet
+	c.add_argument("PolicyDomainManager2")
+  end
+end
+  node.add_agent("PolicyDomainManager3ServletAgent") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = paServlet
+	c.add_argument("PolicyDomainManager3")
+  end
+end
+  node.add_agent("PolicyDomainManager4ServletAgent") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = paServlet
+	c.add_argument("PolicyDomainManager4")
+  end
+end
+

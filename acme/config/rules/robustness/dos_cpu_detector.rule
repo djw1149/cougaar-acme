@@ -1,0 +1,8 @@
+# dos_cpu_detector.rule
+# Adds DosCPUDetectorPlugin to all nodes
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = "org.cougaar.robustness.dos.node.DosCPUDetectorPlugin"
+  end
+end

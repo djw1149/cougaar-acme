@@ -1,0 +1,13 @@
+####################################################
+# Rule to insert EventQueryPlugin to all node agents
+# plugin = org.cougaar.core.security.monitoring.plugin.EventQueryPlugin
+
+plugin = "org.cougaar.core.security.monitoring.plugin.EventQueryPlugin"
+
+society.each_node_agent() do |node_agent|
+   node_agent.add_component do |c|
+      c.classname = plugin
+      c.add_argument("SocietySecurityMnRManagerAgent")
+      c.add_argument("org.cougaar.core.security.monitoring.plugin.AllLoginFailures")
+   end
+end

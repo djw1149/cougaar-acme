@@ -1,0 +1,64 @@
+####################################################
+# Adds UserAdminAgents
+#
+
+orgDataPlugin = "org.cougaar.mlm.plugin.organization.OrgDataPlugin"
+orgReportPlugin = "org.cougaar.mlm.plugin.organization.OrgReportPlugin"
+caServlet = "org.cougaar.core.security.certauthority.CaServletComponent"
+
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("UserAdminAgent1") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = caServlet
+	c.add_argument("org.cougaar.core.security.crypto.ldap.admin.UserAdminServlet")
+	c.add_argument("/useradmin")
+  end
+end
+node.add_agent("UserAdminAgent2") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = caServlet
+	c.add_argument("org.cougaar.core.security.crypto.ldap.admin.UserAdminServlet")
+	c.add_argument("/useradmin")
+  end
+end
+  node.add_agent("UserAdminAgent3") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = caServlet
+	c.add_argument("org.cougaar.core.security.crypto.ldap.admin.UserAdminServlet")
+	c.add_argument("/useradmin")
+  end
+end
+  node.add_agent("UserAdminAgent4") do |agent|
+  agent.add_component do |c|
+	c.classname = orgDataPlugin
+  end
+  agent.add_component do |c|
+	c.classname = orgReportPlugin
+  end
+  agent.add_component do |c|
+	c.classname = caServlet
+	c.add_argument("org.cougaar.core.security.crypto.ldap.admin.UserAdminServlet")
+	c.add_argument("/useradmin")
+  end
+end
+

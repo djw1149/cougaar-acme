@@ -1,0 +1,11 @@
+####################################################
+# agent_msg_rate.rule
+# Rule to insert the AgentMsgRatePlugin into 
+# all agents
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = "com.stdc.CnCcalc.plugin.AgentMsgRatePlugin"
+    c.add_argument("30")
+  end
+end

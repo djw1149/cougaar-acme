@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert MessageFailureSensor to all node agents
+# plugin = org.cougaar.core.security.monitoring.plugin.MessageFailureSensor 
+
+plugin = "org.cougaar.core.security.monitoring.plugin.MessageFailureSensor"
+
+society.each_node_agent() do |node_agent|
+   node_agent.add_component do |c|
+      c.classname = plugin
+   end
+end

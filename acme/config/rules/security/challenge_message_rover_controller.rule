@@ -1,0 +1,25 @@
+####################################################
+# Adds ChallengeMsgRoverController agent
+#
+
+message_controllerPlugin = "org.cougaar.lib.rover.sensors.message.Message_ControllerPlugin"
+roverControlUIServlet = "org.cougaar.lib.rover.ui.RoverControlUIServlet"
+roverLocationPlugin = "org.cougaar.lib.rover.ui.components.RoverLocationPlugin"
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("ChallengeMsgRoverController") do |agent|
+  agent.add_component do |c|
+	c.classname = message_controllerPlugin
+	c.add_argument("RoverName=ChallengeMsgRover")
+	c.add_argument("RemoveIncomingReports=false")
+  end
+  agent.add_component do |c|
+	c.classname = roverControlUIServlet
+  end
+  agent.add_component do |c|
+	c.classname = roverLocationPlugin
+	c.add_argument("RoverName=ChallengeMsgRover")
+  end
+end
+

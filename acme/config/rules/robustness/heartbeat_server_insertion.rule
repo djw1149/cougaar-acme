@@ -1,0 +1,11 @@
+# heartbeat_server_insertion.rule
+# Adds HeartbeatServerPlugin to all agents except RobustnessManagers
+
+
+society.each_agent do |agent|
+  unless agent.name =~ /.*RobustnessManager/
+    agent.add_component do |c|
+      c.classname = "org.cougaar.tools.robustness.sensors.HeartbeatServerPlugin"
+    end
+  end
+end

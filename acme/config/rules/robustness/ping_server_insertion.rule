@@ -1,0 +1,10 @@
+####################################################
+# ping_server_insertion.rule
+# Rule to insert the PingServerPlugin into 
+# all agents and node agents
+
+society.each_agent(true) do |agent|
+  agent.add_component do |c|
+    c.classname = "org.cougaar.tools.robustness.sensors.PingServerPlugin"
+  end
+end

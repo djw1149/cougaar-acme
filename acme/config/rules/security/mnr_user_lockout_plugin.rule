@@ -1,0 +1,13 @@
+#######################################################################
+# Rule to insert MnRUserLockoutPlugin to SocietySecurityMnRManagerAgent
+# plugin = org.cougaar.core.security.monitoring.plugin.UserLockoutPlugin 
+
+userLockout = "org.cougaar.core.security.monitoring.plugin.UserLockoutPlugin"
+   if(!society.agents["SocietySecurityMnRManagerAgent"].nil?)	
+      society.agents["SocietySecurityMnRManagerAgent"].add_component do |c|
+         c.classname = userLockout
+         c.add_argument("600")
+         c.add_argument("86400")
+         c.add_argument("org.cougaar.core.security.monitoring.MAX_LOGIN_FAILURES")
+      end
+   end

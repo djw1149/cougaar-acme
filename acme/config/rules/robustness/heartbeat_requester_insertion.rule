@@ -1,0 +1,12 @@
+####################################################
+# heartbeat_requester_insertion.rule
+# Rule to insert the HeartbeatRequesterPlugin into 
+# Robustness Management nodes and agents
+
+society.each_agent(true) do |agent|
+  if agent.name =~ /.*RobustnessManager/
+    agent.add_component do |c|
+      c.classname = "org.cougaar.tools.robustness.sensors.HeartbeatRequesterPlugin"
+    end
+  end
+end

@@ -1,0 +1,13 @@
+####################################################
+# restart_locator_insertion.rule
+# Rule to insert the RestartLocatorPlugin into 
+# Robustness Management nodes and agents
+
+society.each_agent(true) do |agent|
+  if agent.name =~ /.*RobustnessManager/
+    agent.add_component do |c|
+      c.classname = "org.cougaar.tools.robustness.ma.plugins.RestartLocatorPlugin"
+      c.add_argument("pingTimeout=360000")
+    end
+  end
+end

@@ -1,0 +1,29 @@
+####################################################
+# Rule to insert PSUFBSensor3Plugin to 47-FSB, 123-MSB, 110-POL-SUPPLYCO,
+#   102-POL-SUPPLYCO, 191-ORDBN, 565-RPRPTCO, 592-ORDCO
+# plugin = org.cougaar.tools.alf.sensor.plugin.PSUFBSensor3Plugin
+
+plugin = "org.cougaar.tools.alf.sensor.plugin.PSUFBSensor3Plugin"
+
+  society.agents["47-FSB"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["123-MSB"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["110-POL-SUPPLYCO"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["102-POL-SUPPLYCO"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["191-ORDBN"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["565-RPRPTCO"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["592-ORDCO"].add_component do |c|
+      c.classname = plugin
+  end
+

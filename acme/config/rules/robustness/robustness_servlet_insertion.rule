@@ -1,0 +1,12 @@
+####################################################
+# robustness_servlet_insertion.rule
+# Rule to insert the RobustnessServlet into 
+# Robustness Management nodes and agents
+
+society.each_agent(true) do |agent|
+  if agent.name =~ /.*RobustnessManager/
+    agent.add_component do |c|
+      c.classname = "org.cougaar.tools.robustness.ma.ui.RobustnessServlet"
+    end
+  end
+end

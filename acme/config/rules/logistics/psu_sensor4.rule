@@ -1,0 +1,29 @@
+####################################################
+# Rule to insert PSUFBSensor4Plugin to TRANSCOM, CONUSGround, GlobalAir,
+#   GlobalSea, PlanePacker, ShipPacker, TheaterGround
+# plugin = org.cougaar.tools.alf.sensor.plugin.PSUFBSensor4Plugin
+
+plugin = "org.cougaar.tools.alf.sensor.plugin.PSUFBSensor4Plugin"
+
+  society.agents["TRANSCOM"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["CONUSGround"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["GlobalAir"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["GlobalSea"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["PlanePacker"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["ShipPacker"].add_component do |c|
+      c.classname = plugin
+  end
+  society.agents["TheaterGround"].add_component do |c|
+      c.classname = plugin
+  end
+

@@ -1,0 +1,24 @@
+####################################################
+# Adds ChallengeMsgRover agent
+#
+
+message_pilotPlugin = "org.cougaar.lib.rover.sensors.message.Message_PilotPlugin"
+message_auditorPlugin = "org.cougaar.lib.rover.sensors.message.Message_AuditorPlugin"
+message_tapInspectorPlugin = "org.cougaar.lib.rover.sensors.message.Message_TapInspectorPlugin"
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("ChallengeMsgRover") do |agent|
+  agent.add_component do |c|
+	c.classname = message_pilotPlugin
+	c.add_argument("MoveByAgent=true")
+	c.add_argument("Visit=1-4-ADABN+141-SIGBN+501-MIBN-CEWI+501-MPCO+69-CHEMCO+1-94-FABN+25-FABTRY-TGTACQ+1-36-INFBN+1-37-ARBN+16-ENGBN+2-3-FABN+2-37-ARBN+1-35-ARBN+1-6-INFBN+2-6-INFBN+4-27-FABN+40-ENGBN+1-41-INFBN+2-70-ARBN+4-1-FABN+26-SSC")
+  end
+  agent.add_component do |c|
+	c.classname = message_auditorPlugin
+  end
+  agent.add_component do |c|
+	c.classname = message_tapInspectorPlugin
+  end
+end
+

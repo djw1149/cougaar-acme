@@ -1,0 +1,8 @@
+# node_mobility_plugin.rule
+# Adds RootMobilityPlugin to all nodes
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = "org.cougaar.core.mobility.service.RootMobilityPlugin"
+  end
+end

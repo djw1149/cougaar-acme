@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert PolicyViewerServlet to all node agents
+# plugin = safe.guard.PolicyViewerServletComponent
+
+plugin = "safe.guard.PolicyViewerServletComponent"
+
+society.each_node_agent() do |node_agent|
+   node_agent.add_component do |c|
+      c.classname = plugin
+    end
+end

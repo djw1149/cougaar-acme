@@ -1,0 +1,50 @@
+####################################################
+# society_security_mnr_mgr.rule
+# Adds SocietySecurityMnRManager complete agent recipe
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("SocietySecurityMnRManagerAgent") do |agent|
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.plugin.RateCalculatorPlugin"
+    c.add_argument("20")
+    c.add_argument("1200")
+    c.add_argument("org.cougaar.core.security.monitoring.LOGIN_FAILURE")
+    c.add_argument("org.cougaar.core.security.monitoring.LOGIN_FAILURE_RATE")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.plugin.CapabilitiesProcessingPlugin"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.plugin.MnRQueryReceiverPlugin"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.plugin.MnRQueryResponderPlugin"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.servlet.BlackboardServletComponent"
+    c.add_argument("org.cougaar.core.adaptivity.AEViewerServlet")
+    c.add_argument("/aeviewer")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.AdaptivityEngine"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.ConditionServiceProvider"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.OperatingModeServiceProvider"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.PlaybookManager"
+    c.add_argument("AMnRPlaysSocietyManager.txt")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.servlet.MnRRegistrationViewerComponent"
+    c.add_argument("/monitoringRegistrationViewer")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.servlet.MnRResponseViewerComponent"
+    c.add_argument("/monitoringQueryViewer")
+  end
+end

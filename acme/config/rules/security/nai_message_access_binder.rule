@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert NAIMsgAccessBinder to all node agents
+# plugin = org.cougaar.core.security.access.AccessAgentBinderFactory 
+
+plugin = "org.cougaar.core.security.access.AccessAgentBinderFactory"
+
+society.each_node_agent() do |node_agent|
+   node_agent.add_component do |c|
+      c.classname = plugin
+   end
+end

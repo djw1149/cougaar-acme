@@ -1,0 +1,8 @@
+# agent_status_rate.rule
+# Adds AgentStatusRatePlugin to all nodes
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = "org.cougaar.core.qos.metrics.AgentStatusRatePlugin"
+  end
+end
