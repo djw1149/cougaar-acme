@@ -1,0 +1,34 @@
+require 'ultralog/enclaves'
+
+timeouts = {"REAR"=>"300000", "FWD"=>"300000", "CONUS"=>"30000", "TRANS"=>"300000"}
+society.each_enclave do |enclave|
+  society.communities.add("1AD-#{enclave}-COMM") do |community|
+    community.add_attribute("CommunityType", "Robustness")
+    community.add_attribute("CommunityManager", "1AD-#{enclave}-ARManager")
+    community.add_attribute("hbFreq", timeouts[enclave])
+    community.add_attribute("hbTimeout", timeouts[enclave])
+    community.add_attribute("hbPctLate", "90.0")
+    community.add_attribute("pingRetries", "0")
+    community.add_attribute("pingTimeout", timeouts[enclave])
+    
+    community.add_agent("1AD-#{enclave}-ARManager") do |entity|
+      entity.add_role("ManagementAgent")
+      entity.add_role("HealthReportConsumer")
+    end
+    num_agents = 0
+    society.each_enclave_node(enclave) do |node|
+      unless node.has_facet?(:role)
+        community.add_node(node.name) do |entity|
+          entity.add_role("Member")
+        end
+        node.each_agent do |agent|
+          num_agents += 1
+          community.add_agent(agent.name) do |entity|
+            entity.add_role("Member")
+          end
+        end
+      end
+    end
+    community.add_attribute("numAgents", num_agents.to_s)
+  end
+end
