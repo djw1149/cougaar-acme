@@ -5,4 +5,4 @@ autoload: true
 require_path: acme_cougaar_events/events
 startup_module: ACME::Plugins::Events
 start_dependencies: 
-  acme_host_jabber_service: "*"
+  acme_host_communications: "*"

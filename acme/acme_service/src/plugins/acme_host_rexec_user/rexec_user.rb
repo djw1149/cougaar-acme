@@ -13,9 +13,9 @@ module ACME; module Plugins
       @plugin = plugin
       @config_mgr = plugin['/cougaar/config'].manager      
       
-      @plugin["/plugins/acme_host_jabber_service/commands/rexec_user/description"].data = 
+      @plugin["/plugins/acme_host_communications/commands/rexec_user/description"].data = 
         "Executes host command as the acme_config user. Params: host_command"
-      @plugin["/plugins/acme_host_jabber_service/commands/rexec_user"].set_proc do |message, command| 
+      @plugin["/plugins/acme_host_communications/commands/rexec_user"].set_proc do |message, command| 
         status = "\n"
         command = command.gsub(/\&quot;/, '"').gsub(/\&apos;/, "'")
         command = @config_mgr.cmd_wrap(command)

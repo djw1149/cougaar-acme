@@ -6,4 +6,4 @@ require_path: acme_host_power/utb-power
 startup_module: ACME::Plugins::Power
 properties_path: properties.yaml
 start_dependencies: 
-  acme_host_jabber_service: "*"
+  acme_host_communications: "*"

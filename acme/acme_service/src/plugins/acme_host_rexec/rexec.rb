@@ -12,9 +12,9 @@ module ACME; module Plugins
     def initialize(plugin)
       @plugin = plugin
       
-      @plugin["/plugins/acme_host_jabber_service/commands/rexec/description"].data = 
+      @plugin["/plugins/acme_host_communications/commands/rexec/description"].data = 
         "Executes host command. Params: host_command"
-      @plugin["/plugins/acme_host_jabber_service/commands/rexec"].set_proc do |message, command| 
+      @plugin["/plugins/acme_host_communications/commands/rexec"].set_proc do |message, command| 
         status = "\n"
         command = command.gsub(/\&quot;/, '"').gsub(/\&apos;/, "'")
         status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")

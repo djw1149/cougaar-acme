@@ -5,5 +5,5 @@ autoload: true
 require_path: acme_tic_operator/operator
 startup_module: ACME::Plugins::Operator
 start_dependencies: 
-  acme_host_jabber_service: "*"
+  acme_host_communications: "*"
   acme_cougaar_config: "*"

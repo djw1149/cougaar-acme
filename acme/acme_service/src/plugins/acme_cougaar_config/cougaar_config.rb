@@ -56,9 +56,9 @@ class CougaarConfig
     load_properties
     @plugin['/cougaar/config'].manager = Facet.new(self, :cougaar_install_path, :jvm_path, :cmd_wrap, :tmp_dir)
     #Show Params
-    @plugin["/plugins/acme_host_jabber_service/commands/show_cougaar_config/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/show_cougaar_config/description"].data = 
       "Show parameters for starting Cougaar nodes."
-    @plugin["/plugins/acme_host_jabber_service/commands/show_cougaar_config"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/show_cougaar_config"].set_proc do |message, command| 
 			txt = "\n"
       txt << "cougaar_install_path = #{@cougaar_install_path} \n"
       txt << "jvm_path=#{@jvm_path}\n"

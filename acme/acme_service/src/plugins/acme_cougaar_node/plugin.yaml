@@ -1,10 +1,10 @@
 --- !ruby/object:FreeBASE::PluginConfiguration 
 name: acme_cougaar_node
 version: 1.0
-autoload: true
+autoload: false
 require_path: acme_cougaar_node/node
 startup_module: ACME::Plugins::CougaarNode
 properties_path: properties.yaml
 start_dependencies: 
-  acme_host_jabber_service: "*"
+  acme_host_communications: "*"
   acme_cougaar_config: "*"

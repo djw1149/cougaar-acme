@@ -37,8 +37,8 @@ class Shaper
     cmd = @plugin.properties["command"]
     desc = @plugin.properties["description"]
  
-    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}/description"].data = desc
-    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}"].set_proc do |msg, cmd|
+    @plugin["/plugins/acme_host_communications/commands/#{cmd}/description"].data = desc
+    @plugin["/plugins/acme_host_communications/commands/#{cmd}"].set_proc do |msg, cmd|
        case cmd
          when "trigger"
            trigger()

@@ -50,7 +50,7 @@ class XMLCougaarNode
   end
 
   def jabber
-    return @plugin["/plugins/acme_host_jabber_service/session"].data
+    return @plugin["/plugins/acme_host_communications/session"].data
   end
 
   def makeFileName(basename)
@@ -72,9 +72,9 @@ class XMLCougaarNode
     @config_mgr = plugin['/cougaar/config'].manager
     
     #START NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: filename (previously posted to /xmlnode) "
-    @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/start_xml_node"].set_proc do |message, command| 
       node = NodeConfig.new(self, @plugin, command)
       pid = node.start
       puts "STARTED: #{pid}"
@@ -83,9 +83,9 @@ class XMLCougaarNode
     end
     
     #STOP NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_xml_node/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/stop_xml_node/description"].data = 
       "Stops Cougaar node. Params: PID"
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_xml_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/stop_xml_node"].set_proc do |message, command| 
       pid = command
       node = running_nodes[pid]
       if node
@@ -98,9 +98,9 @@ class XMLCougaarNode
     end
     
     # Stack dump node
-    @plugin["/plugins/acme_host_jabber_service/commands/stack/description"].data =
+    @plugin["/plugins/acme_host_communications/commands/stack/description"].data =
       "Dump the Java stack of Cougaar a node. Params: PID"
-    @plugin["/plugins/acme_host_jabber_service/commands/stack"].set_proc do |message, command|
+    @plugin["/plugins/acme_host_communications/commands/stack"].set_proc do |message, command|
       found = false
       running_nodes.each do |pid, node|
         if pid == command
@@ -112,9 +112,9 @@ class XMLCougaarNode
     end
 
     # Monitor Node stdio
-    @plugin["/plugins/acme_host_jabber_service/commands/stdio/description"].data =
+    @plugin["/plugins/acme_host_communications/commands/stdio/description"].data =
       "Monitor stdout/stderr of Cougaar nodes. Params: PID"
-    @plugin["/plugins/acme_host_jabber_service/commands/stdio"].set_proc do |message, command|
+    @plugin["/plugins/acme_host_communications/commands/stdio"].set_proc do |message, command|
       found = false
       running_nodes.each do |pid, node|
         if pid == command
@@ -126,9 +126,9 @@ class XMLCougaarNode
     end
 
     # SHOW NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_node/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/show_xml_node/description"].data = 
       "Show details about a running Cougaar node. Params: PID"
-    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/show_xml_node"].set_proc do |message, command| 
       pid = command
       node = running_nodes[pid]
       if node
@@ -141,20 +141,35 @@ class XMLCougaarNode
     end
 
     #LIST NODES
-    @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/list_xml_nodes/description"].data = 
       "List Running Cougaar nodes."
-    @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/list_xml_nodes"].set_proc do |message, command| 
       txt = "Current Nodes:\n"
       running_nodes.each do |pid, node| 
         txt << "#{node.get_description}\n"
       end
       message.reply.set_body(txt).send
     end
+    
+    #LIST JAVA PIDS
+    @plugin["/plugins/acme_host_communications/commands/list_java_pids/description"].data = 
+      "List the java pids for each node -- node1(pid1),node2(pid2)."
+    @plugin["/plugins/acme_host_communications/commands/list_java_pids"].set_proc do |message, command| 
+      list = []
+      proc_list = `pstree -pl`
+      running_nodes.each do |pid, node| 
+        md = /su\(#{pid}\)([^j]*)java\(([^\)]*)\)/.match(proc_list)
+        if md
+          list << "#{node.name}(#{md[2]})"
+        end
+      end
+      message.reply.set_body(list.join(",")).send
+    end
 
     #Show Params
-    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_params/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/show_xml_params/description"].data = 
       "Show parameters for starting Cougaar nodes."
-    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_params"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/show_xml_params"].set_proc do |message, command| 
 			txt = "\n"
       conference=@plugin.properties['conference']
       txt << "conference=#{conference}\n"
@@ -204,9 +219,9 @@ class XMLCougaarNode
     end
 
     #LIST JAVA PIDS
-    @plugin["/plugins/acme_host_jabber_service/commands/list_java_pids/description"].data =
+    @plugin["/plugins/acme_host_communications/commands/list_java_pids/description"].data =
       "List the java pids for each node -- node1(pid1),node2(pid2)."
-    @plugin["/plugins/acme_host_jabber_service/commands/list_java_pids"].set_proc do |message, command|
+    @plugin["/plugins/acme_host_communications/commands/list_java_pids"].set_proc do |message, command|
       list = []
       proc_list = `pstree -pl`
       running_nodes.each do |pid, node|

@@ -23,12 +23,12 @@ class CougaarNode
       message.reply.set_body(pid).send
     end
     
-    @plugin["/plugins/acme_host_jabber_service/commands/start_db_node/description"].data = start_desc
-    @plugin["/plugins/acme_host_jabber_service/commands/start_db_node"].set_proc(start_proc)
+    @plugin["/plugins/acme_host_communications/commands/start_db_node/description"].data = start_desc
+    @plugin["/plugins/acme_host_communications/commands/start_db_node"].set_proc(start_proc)
     
     # The following two are for backward compatability
-    @plugin["/plugins/acme_host_jabber_service/commands/start_node/description"].data = start_desc
-    @plugin["/plugins/acme_host_jabber_service/commands/start_node"].set_proc(start_proc)
+    @plugin["/plugins/acme_host_communications/commands/start_node/description"].data = start_desc
+    @plugin["/plugins/acme_host_communications/commands/start_node"].set_proc(start_proc)
     
     #STOP NODE
     stop_desc = "Stops Cougaar node. Params: PID"
@@ -44,12 +44,12 @@ class CougaarNode
       end
     end
 
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_db_node/description"].data = stop_desc
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_db_node"].set_proc(stop_proc)
+    @plugin["/plugins/acme_host_communications/commands/stop_db_node/description"].data = stop_desc
+    @plugin["/plugins/acme_host_communications/commands/stop_db_node"].set_proc(stop_proc)
     
     # The following two are for backward compatability
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_node/description"].data = stop_desc
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_node"].set_proc(stop_proc)
+    @plugin["/plugins/acme_host_communications/commands/stop_node/description"].data = stop_desc
+    @plugin["/plugins/acme_host_communications/commands/stop_node"].set_proc(stop_proc)
   end
   
   class NodeConfig

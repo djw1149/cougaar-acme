@@ -11,9 +11,9 @@ class UpdateRPM
   attr_reader :plugin
   def initialize(plugin)
     @plugin = plugin
-    @plugin["/plugins/acme_host_jabber_service/commands/rpm/description"].data=
+    @plugin["/plugins/acme_host_communications/commands/rpm/description"].data=
       "Reinstalls RPM.  Params: none"
-    @plugin["/plugins/acme_host_jabber_service/commands/rpm"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/rpm"].set_proc do |message, command| 
           exec "nohup /mnt/software/AcmeRPM/update_rpm_acme &>/dev/null &"
     end
   end

@@ -65,8 +65,8 @@ module ACME; module Plugins
     end
     
     def register_command(name, desc, &block)
-      @plugin["/plugins/acme_host_jabber_service/commands/#{name}/description"].data = desc
-      @plugin["/plugins/acme_host_jabber_service/commands/#{name}"].set_proc do |message, command|
+      @plugin["/plugins/acme_host_communications/commands/#{name}/description"].data = desc
+      @plugin["/plugins/acme_host_communications/commands/#{name}"].set_proc do |message, command|
         begin
           block.call(message, command)
         rescue Exception => e

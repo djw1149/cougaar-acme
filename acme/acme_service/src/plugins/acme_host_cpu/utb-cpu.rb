@@ -19,9 +19,9 @@ class CPU
     @plugin = plugin
     @current_load = 0
     @cmd = @plugin.properties['command']
-    @plugin["/plugins/acme_host_jabber_service/commands/cpu/description"].data = 
+    @plugin["/plugins/acme_host_communications/commands/cpu/description"].data = 
       "Start a CPU cycle waster at the given percentage load.  PARAM: %load (0 - 99)"
-    @plugin["/plugins/acme_host_jabber_service/commands/cpu"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/cpu"].set_proc do |message, command| 
       set_waster(command)
       message.reply.set_body("CPU Load set to #{get_waster()}").send
     end

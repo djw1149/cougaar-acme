@@ -5,5 +5,5 @@ autoload: true
 require_path: acme_host_rexec_user/rexec_user
 startup_module: ACME::Plugins::RExecUser
 start_dependencies: 
-  acme_host_jabber_service: "*"
+  acme_host_communications: "*"
   acme_cougaar_config: "*"

@@ -11,9 +11,9 @@ class Kickstart
   attr_reader :plugin
   def initialize(plugin)
     @plugin = plugin
-    @plugin["/plugins/acme_host_jabber_service/commands/kickstart/description"].data=
+    @plugin["/plugins/acme_host_communications/commands/kickstart/description"].data=
       "Rebuilds machine.  Params: kickstartFile.cfg rebootTime"
-    @plugin["/plugins/acme_host_jabber_service/commands/kickstart"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/kickstart"].set_proc do |message, command| 
           file, minutes = command.split(" ")
           begin
             minutes = minutes.to_i

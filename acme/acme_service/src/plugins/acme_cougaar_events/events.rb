@@ -19,7 +19,7 @@ module ACME; module Plugins
     
     def initialize(plugin)
       @plugin = plugin
-      @jabber =  @plugin["/plugins/acme_host_jabber_service/session"]
+      @comm_service =  @plugin["/plugins/acme_host_communications/client"].data
 
       @plugin["instance"].data=self
       @plugin["event"].queue
@@ -39,12 +39,12 @@ module ACME; module Plugins
     
     def send_event(event)
       begin
-        message = @jabber.data.new_chat_message("acme_console@#{@jabber.data.host}/expt-#{event.experiment}")
-        message.subject="COUGAAR_EVENT"
-        message.set_body("#{event.node}`#{event.event_type}`#{event.cluster_identifier}`#{event.component}`#{event.data}")
+        message = @comm_service.new_message(event.experiment)
+        message.subject = "COUGAAR_EVENT"
+        message.body = "#{event.node}`#{event.event_type}`#{event.cluster_identifier}`#{event.component}`#{event.data}"
         message.send
       rescue
-        @plugin['log/info']  << "Lost a CougaarEvent.  Failed talking to Jabber: #{message}"
+        @plugin.log_info  << "Lost a CougaarEvent.  Failed talking to Jabber: #{message}"
       end
     end
     

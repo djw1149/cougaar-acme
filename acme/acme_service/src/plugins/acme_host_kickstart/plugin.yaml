@@ -5,4 +5,4 @@ autoload: true
 require_path: acme_host_kickstart/kickstart
 startup_module: ACME::Plugins::Kickstart
 start_dependencies: 
-  acme_host_jabber_service: "*"
+  acme_host_communications: "*"
