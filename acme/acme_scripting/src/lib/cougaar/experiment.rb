@@ -34,7 +34,7 @@ module Cougaar
     end
     
     def self.notify_interrupt(state)
-      @@monitors.each {|monitor| monitor.notify_interrupt(state_action)}
+      @@monitors.each {|monitor| monitor.notify_interrupt(state)}
     end
     
     def self.notify(state_action, begin_flag)
@@ -323,7 +323,12 @@ module Cougaar
           sleep @timeout
           @timed_out = true
           @sequence.interrupt(self)
-          handle_timeout
+          begin
+            handle_timeout
+          rescue
+            Cougaar.logger.error $!
+            Cougaar.logger.error $!.backtrace.join("\n")
+          end
           process_thread.exit if process_thread.status
         end
         begin
@@ -344,7 +349,7 @@ module Cougaar
     
     def handle_timeout
       if @failure_proc
-        @failure_proc.call
+        @failure_proc.call(self)
       else
         unhandled_timeout
       end
