@@ -35,25 +35,6 @@ module UltraLog
       connect
     end
     
-    def can_send_oplan?
-      @can_send_oplan
-    end
-    
-    def gls_connected?
-      @gls_connected
-    end
-    
-    def close
-      begin
-        @gls_connection.finish
-        @gls_thread.kill if @gls_thread
-      rescue
-        Cougaar.logger.error "Error shutting down gls connection"
-        Cougaar.logger.error $!
-        Cougaar.logger.error $!.backtrace.join("\n")
-      end
-    end
-    
     def connect(uri = nil)
       uri = @run.society.agents['NCA'].uri unless uri
       uri = URI.parse(uri)
@@ -89,6 +70,26 @@ module UltraLog
         end
       end
     end
+
+    def can_send_oplan?
+      @can_send_oplan
+    end
+    
+    def gls_connected?
+      @gls_connected
+    end
+    
+    def close
+      begin
+        @gls_connection.finish
+        @gls_thread.kill if @gls_thread
+      rescue
+        Cougaar.logger.error "Error shutting down gls connection"
+        Cougaar.logger.error $!
+        Cougaar.logger.error $!.backtrace.join("\n")
+      end
+    end
+
   end
 end
 
