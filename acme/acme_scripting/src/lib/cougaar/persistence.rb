@@ -25,7 +25,7 @@ module Cougaar
          raise_failure "Could not build society from Ruby file: #{ENV['CIP']}/workspace/P/society.rb", $!
         end
         @run.society = builder.society
-        @run.society.communities = Cougaar::Model::Communities.from_xml_file("#{ENV['CIP']}/workspace/P/communities.xml")
+        @run.society.communities = Cougaar::Model::Communities.from_xml_file(@run.society, "#{ENV['CIP']}/workspace/P/communities.xml")
         `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
         `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
 				@run["loader"] = "XML"
@@ -41,25 +41,31 @@ module Cougaar
       end
 
       def perform()
-        snapshot_society = @run.society.clone
-        nca = snapshot_society.agents['NCA']
-        result = Cougaar::Communications::HTTP.get(nca.uri+"/timeControl")
-        md = /Scenario Time<\/td><td>([^\s]*) (.*)<\/td>/.match(result)
-        if md
-          date = md[1]
-          snapshot_society.each_node do |node|
-            node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=#{date}")
+        begin
+          snapshot_society = @run.society.clone
+          nca = snapshot_society.agents['NCA']
+          result, uri = Cougaar::Communications::HTTP.get(nca.uri+"/timeControl")
+          md = /Scenario Time<\/td><td>([^\s]*) (.*)<\/td>/.match(result)
+          if md
+            date = md[1]
+            snapshot_society.each_node do |node|
+              node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=#{date}")
+            end
           end
+          File.open("#{ENV['CIP']}/workspace/P/society.rb", "w") do |file|
+            file.puts snapshot_society.to_ruby
+          end
+          File.open("#{ENV['CIP']}/workspace/P/communities.xml", "w") do |file|
+            file.puts @run.society.communities.to_xml
+          end
+          `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P`
+          `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
+          `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
+        rescue
+          @run.error_message "Error saving persistence snapshot to #{@filename}."
+          @run.error_message $!
+          @run.error_message $!.backtrace.join("\n")
         end
-        File.open("#{ENV['CIP']}/workspace/P/society.rb", "w") do |file|
-          file.puts snapshot_society.to_ruby
-        end
-        File.open("#{ENV['CIP']}/workspace/P/communities.xml", "w") do |file|
-          file.puts @run.society.communities.to_xml
-        end
-        `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P`
-        `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
-        `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
       end
     end
   end
