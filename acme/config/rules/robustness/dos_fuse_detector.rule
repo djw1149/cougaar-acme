@@ -1,8 +1,0 @@
-# dos_fuse_detector.rule
-# Adds DosSocketDetectorPlugin to all nodes
-
-society.each_node_agent do |node_agent|
-  node_agent.add_component do |c|
-    c.classname = "org.cougaar.robustness.dos.node.DosFuseDetectorPlugin"
-  end
-end
