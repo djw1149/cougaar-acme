@@ -205,6 +205,7 @@ module Cougaar
          raise_failure "Could not build society from Ruby file: #{@filename}", $!
         end
         @run.society = builder.society
+				@run["loader"] = "XML"
       end
       def to_s
         return super.to_s + "('#{@filename}')"
@@ -224,6 +225,7 @@ module Cougaar
          raise_failure "Could not build society from XML file: #{@filename}", $!
         end
         @run.society = builder.society
+				@run["loader"] = "XML"
       end
       def to_s
         return super.to_s + "('#{@filename}')"

@@ -22,17 +22,21 @@
 module Cougaar
   
   module Actions
+
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
       def perform
         pids = {}
+        xml_model = @run["loader"] == "XML"
         @run.society.each_active_host do |host|
           host.each_node do |node|
-            node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
-            node.add_parameter("-Dorg.cougaar.event.port=5300")
-            node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
-            result = @run.comms.new_message(host).set_body("command[start_node]#{node.parameters.join("\n")}").request(30)
+						if xml_model
+						  msg_body = launch_xml_node(node)
+						else
+						  msg_body = launch_db_node(node)
+						end
+            result = @run.comms.new_message(host).set_body("command[start_node]#{msg_body}").request(120)
             if result.nil?
               raise_failure "Could not start node #{node.name} on host #{host.host_name}"
             end
@@ -41,6 +45,60 @@ module Cougaar
         end
         @run['pids'] = pids
       end
+
+		def launch_db_node(node)
+       node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
+       node.add_parameter("-Dorg.cougaar.event.port=5300")
+       node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
+			 return node.parameters.join("\n")
+		end
+
+		@debug = false
+    class ConfigServer 
+			attr_reader :port
+			@@port = 12345
+				
+      def initialize(config)
+	      @config = config
+				@ready = false
+	      Thread.new(config) {|config|serveup(config)}
+      end
+
+      def serveup(config) 
+				@port = @@port = @@port + 1
+				while (not @ready)
+					begin
+            @server = TCPServer.new(@port)
+						@ready = true
+					  rescue
+							@port = @port + 1
+						end
+				end
+				puts "Connection waiting on #{@port}\n" if @debug 
+		    session = @server.accept
+		    puts "Connection from #{session.addr} on #{@port}\n" if @debug
+		    session.print(config)
+		    session.close
+		    puts "Connection closed on #{@port}. \n" if @debug
+		    puts "Thread exiting\n" if @debug
+				@server.close()
+      end
+    end
+
+		def launch_xml_node(node)
+	    #node.add_parameter("-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=9001,suspend=n")
+	    #node.add_parameter("-Dorg.cougaar.nameserver.verbosity=2")
+		
+	    node_society = Cougaar::Model::Society.new("society-for-#{node.name}")
+	    node_host = Cougaar::Model::Host.new("host-for-#{node.name}")
+	    node_host.add_node(node)
+	    node_society.add_host(node_host)
+
+      cfg = ConfigServer.new(node_society.to_xml)
+      text = "#{Socket.gethostname()}:#{cfg.port}\n"
+
+			return text
+		end
     end
     
     class StopSociety <  Cougaar::Action

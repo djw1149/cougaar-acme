@@ -230,6 +230,7 @@ module Cougaar
           raise_failure "Could not locate CSmart experiment: #{@csmart_experiment}"
         end
         @run.society = society
+				@run["loader"] = "DB"
       end
     end
   end
