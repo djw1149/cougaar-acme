@@ -68,7 +68,7 @@ module Cougaar
           msgs[node] = launch_db_node(node)
         end
       end
-      nodes.each do |node|
+      nodes.each_parallel do |node|
         @run.info_message "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msgs[node]}").request(@timeout)
         if result.nil?
@@ -408,7 +408,11 @@ module Cougaar
         society = @run.society
         society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
         
+        hosts = []
         society.each_service_host("acme") do |host|
+          hosts << host
+        end
+        hosts.each_parallel do |host|
           @run.info_message "Shutting down acme on #{host}\n" if @debug
           @run.comms.new_message(host).set_body("command[nic]reset").send
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)

@@ -28,6 +28,18 @@ require 'thread'
 
 $stdout.sync = true
 
+module Enumerable
+  def each_parallel
+    threads = []
+    each do |object|
+      threads << Thread.new do
+        yield object
+      end
+    end
+    threads.each { |aThread|  aThread.join }
+  end
+end
+
 class Integer
   def seconds(value=0)
     return to_i+value

@@ -307,7 +307,9 @@ module Cougaar
           society = @run.society
           society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
          
-          society.each_service_host('acme') do |host|
+          hosts = []
+          society.each_service_host('acme') { |host| hosts << host }
+          hosts.each_parallel do |host|
             test_ntp_synch(host)
           end 	  
           test_ntp_synch(society.get_service_host('operator'))
@@ -371,7 +373,9 @@ module Cougaar
         society = Ultralog::OperatorUtils::HostManager.new.load_society unless society
         
         # check acme (node) hosts
-        society.each_service_host('acme') do |host|
+        hosts = []
+        society.each_service_host('acme') { |host| hosts << host }
+        hosts.each_parallel do |host|
           result = new_message(host).set_body("command[help]").request(10)
           if result.nil?
             raise "Could not access host: #{host.host_name}"
@@ -379,7 +383,9 @@ module Cougaar
         end
         
         # check router (bandwidth shaping) hosts
-        society.each_host do |host|
+        hosts = []
+        society.each_host { |host| hosts << host }
+        hosts.each_parallel do |host|
           if host.get_facet(:host_type) == "router"
             result = new_message(host).set_body("command[help]").request(10)
             if result.nil?
