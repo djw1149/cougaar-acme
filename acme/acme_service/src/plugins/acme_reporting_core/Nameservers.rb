@@ -32,37 +32,33 @@ module ACME; module Plugins
            log_files = @archive.files_with_description(/Log4j/)
 
            log_files.each do |rk_file|
-             begin
-               file = File.new( rk_file.name )
-               node = node_RE.match( rk_file.name )[1]
-               last_ns = nil
+             file = File.new( rk_file.name )
+             node = node_RE.match( rk_file.name )[1]
+             last_ns = nil
                  
-               file.each_line do |line|
-                 if (line_RE.match( line )) then
-                   time = time_RE.match( line )[1]
-                   addr = addr_RE.match( line )[1]
-                   ave = ave_RE.match( line )[1]
-                   dev = dev_RE.match( line )[1]
-                   score = score_RE.match( line )[1]
-                   paddr = paddr_RE.match( line )[1]
+             file.each_line do |line|
+               if (line_RE.match( line )) then
+                 time = time_RE.match( line )[1]
+                 addr = addr_RE.match( line )[1]
+                 ave = ave_RE.match( line )[1]
+                 dev = dev_RE.match( line )[1]
+                 score = score_RE.match( line )[1]
+                 paddr = paddr_RE.match( line )[1]
                          
-                   last_ns = addr
+                 last_ns = addr
                        
-                   detail_html << "<TR>"
-                   detail_html << "<TD>#{node}</TD>"
-                   detail_html << "<TD>#{addr}</TD>"
-                   detail_html << "<TD>#{score}</TD>"
-                   detail_html << "<TD>#{time}</TD>"
-                   detail_html << "</TR>"
-                 end
+                 detail_html << "<TR>"
+                 detail_html << "<TD>#{node}</TD>"
+                 detail_html << "<TD>#{addr}</TD>"
+                 detail_html << "<TD>#{score}</TD>"
+                 detail_html << "<TD>#{time}</TD>"
+                 detail_html << "</TR>"
                end
+             end
 
-               unless (last_ns.nil?) then
-                 nameservers[last_ns] = [] if nameservers[last_ns].nil?
-                 nameservers[last_ns] << node
-               end
-             rescue Exception => e
-               puts "#{e}"
+             unless (last_ns.nil?) then
+               nameservers[last_ns] = [] if nameservers[last_ns].nil?
+               nameservers[last_ns] << node
              end
            end  
  
