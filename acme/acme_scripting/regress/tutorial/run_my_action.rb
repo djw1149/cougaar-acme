@@ -4,20 +4,31 @@ require "cougaar/scripting"
 require "my_action"
 require "my_state"
 
-def testThis(name)
-  puts "Test #{name}"
-end
+require 'cougaar/message_router'
+@port = 5555
+@service = InfoEther::MessageRouter::Service.new(@port)
+@service.start
 
 Cougaar::ExperimentMonitor.enable_stdout
+Cougaar::ExperimentMonitor.enable_logging
 
 Cougaar.new_experiment("RunMyAction").run {
-  do_action "MyFirstAction", "Richard"
-  do_action "GenericAction" do
-    testThis("Foobar")
-  end
-  wait_for "MyFirstState", 3.seconds do
-    do_action "ExperimentFailed", "Timed out in my first state"
-  end
+
+  #set_archive_path(".")
+  
+  do_action "StartMessageRouterCommunications", "localhost", 5555
+
+  wait_for "Command", "shutdown"
+  
+  do_action "MyFirstAction", "alpha"
+
+  at :stage_1_ready
+
+  do_action "MySecondAction", "beta"
+
+  at :stage_2_ready
+  
   do_action "ExperimentSucceeded"
+  
 }
 
