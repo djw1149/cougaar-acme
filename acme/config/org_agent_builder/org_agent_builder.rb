@@ -67,7 +67,7 @@ end
  
 class Organization
   attr_accessor :base_org_id, :suffix, :orig_org_id, :org_code, :combat_support, :echelon, :echelon_group,
-                :is_deployable, :has_physical_assets, :has_equipment_assets, :has_personnel_assets,
+                :is_ua, :is_deployable, :has_physical_assets, :has_equipment_assets, :has_personnel_assets,
                 :uic, :home_location, :use_full_org_id
   attr_reader   :roles, :superior, :subordinates, :support_command_assignments
 
@@ -92,6 +92,7 @@ class Organization
 
   def hierarchy_to_s(indent=0)
     puts " "*indent + self.to_s
+    puts " "*indent + " is_ua" if is_ua
     puts " "*indent + " is_deployable" if is_deployable
     puts " "*indent + " has_physical_assets" if has_physical_assets
     puts " "*indent + " has_equipment_assets" if has_equipment_assets
@@ -120,6 +121,7 @@ class Organization
     output.puts " "*indent + "  <facet combat_support='#{combat_support}' />" if combat_support
     output.puts " "*indent + "  <facet echelon='#{echelon}' />" if echelon
     output.puts " "*indent + "  <facet echelon_group='#{echelon_group}' />" if echelon_group
+    output.puts " "*indent + "  <facet is_ua='#{is_ua}' />" if is_ua
     output.puts " "*indent + "  <facet is_deployable='#{is_deployable}' />" if is_deployable
     output.puts " "*indent + "  <facet has_physical_assets='#{has_physical_assets}' />" if has_physical_assets
     output.puts " "*indent + "  <facet has_equipment_assets='#{has_equipment_assets}' />" if has_equipment_assets
@@ -252,6 +254,7 @@ class SocietyGenerator
       org.combat_support = list['combat_support']
       org.echelon = list['echelon']
       org.echelon_group = list['echelon_group']
+      org.is_ua = 'T' if list['is_ua'] =~ /^[yYtT]/
       org.is_deployable = 'T' if list['is_deployable'] =~ /^[yYtT]/
       org.has_physical_assets = 'T' if list['has_physical_assets'] =~ /^[yYtT]/
       org.has_equipment_assets = 'T' if list['has_equipment_assets'] =~ /^[yYtT]/
@@ -290,9 +293,9 @@ class SocietyGenerator
         next
       end
       list = header.list_for(row)
-      org_id = list['base_orig_id'] + '.' + list['suffix']
-      if list['parent_base_org_id']
-        sup_org_id = list['parent_base_org_id'] + '.' + list['parent_org_id_suffix']
+      org_id = list['base_org_id'] + '.' + list['suffix']
+      if list['superior_base_org_id']
+        sup_org_id = list['superior_base_org_id'] + '.' + list['superior_suffix']
         org = @organizations[org_id]
         raise "Unknown organization #{org_id}" unless org
         sup_org = @organizations[sup_org_id]
