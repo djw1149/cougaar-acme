@@ -1,6 +1,31 @@
+=begin
+/* 
+ * <copyright>
+ *  Copyright 2002-2003 BBNT Solutions, LLC
+ *  under sponsorship of the Defense Advanced Research Projects Agency (DARPA).
+ * 
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the Cougaar Open Source License as published by
+ *  DARPA on the Cougaar Open Source Website (www.cougaar.org).
+ * 
+ *  THE COUGAAR SOFTWARE AND ANY DERIVATIVE SUPPLIED BY LICENSOR IS
+ *  PROVIDED 'AS IS' WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR
+ *  IMPLIED, INCLUDING (BUT NOT LIMITED TO) ALL IMPLIED WARRANTIES OF
+ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND WITHOUT
+ *  ANY WARRANTIES AS TO NON-INFRINGEMENT.  IN NO EVENT SHALL COPYRIGHT
+ *  HOLDER BE LIABLE FOR ANY DIRECT, SPECIAL, INDIRECT OR CONSEQUENTIAL
+ *  DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE OF DATA OR PROFITS,
+ *  TORTIOUS CONDUCT, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ *  PERFORMANCE OF THE COUGAAR SOFTWARE.
+ * </copyright>
+ */
+=end
+
 
 require 'cougaar/scripting'
 require 'cougaar/society_builder'
+require 'acme_cougaar_xmlnode/monitoredproc.rb'
+require 'acme_cougaar_xmlnode/groupchat.rb'
 
 module ACME ; module Plugins
 
@@ -9,22 +34,31 @@ class XMLCougaarNode
 
   def XMLCougaarNode.start(plugin)
     XMLCougaarNode.new(plugin)
-    system("rm -f society*.?") # clean up temp files
     plugin.transition(FreeBASE::RUNNING)
   end
   
   attr_reader :plugin
+  def running_nodes() 
+    nodes = @nodes_hash.clone()
+    nodes.each do |pid, node| 
+      if (! node.alive())
+        @nodes_hash.delete(pid)
+      end
+    end
+    return @nodes_hash
+  end
+
   def initialize(plugin)
     @plugin = plugin
-    @running_nodes = {}
+    @nodes_hash = {}
     
     #START NODE
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: host:port (of XML document server)"
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
-      node = NodeConfig.new(@plugin, command)
+      node = NodeConfig.new(@plugin, command, message.session)
       pid = node.start
-      @running_nodes[pid] = node
+      running_nodes[pid] = node
       message.reply.set_body(pid).send
     end
     
@@ -33,10 +67,10 @@ class XMLCougaarNode
       "Stops Cougaar node. Params: PID"
     @plugin["/plugins/acme_host_jabber_service/commands/stop_xml_node"].set_proc do |message, command| 
       pid = command
-      node = @running_nodes[pid]
+      node = running_nodes[pid]
       if node
         node.stop
-        @running_nodes.delete(pid)
+        running_nodes.delete(pid)
         message.reply.set_body("SUCCESS: Node stopped").send
       else
         message.reply.set_body("FAILURE: Unknown node: #{pid}").send
@@ -52,7 +86,7 @@ class XMLCougaarNode
       unless pid and interval
         message.reply.set_body("FAILURE: Invalid params: PID,interval")
       end
-      node = @running_nodes[pid.strip]
+      node = running_nodes[pid.strip]
       if node
         begin
           interval = interval.strip.to_i
@@ -69,12 +103,42 @@ class XMLCougaarNode
     end
 =end
 
+    # Stack dump node
+    @plugin["/plugins/acme_host_jabber_service/commands/stack/description"].data =
+      "Dump the Java stack of Cougaar a node. Params: PID"
+    @plugin["/plugins/acme_host_jabber_service/commands/stack"].set_proc do |message, command|
+      found = false
+      running_nodes.each do |pid, node|
+        if pid == command
+          found = true
+          node.dumpStack()
+        end
+      end
+      message.reply.set_body("FAILURE: Unknown node: #{command}").send unless found
+    end
+
+    # Monitor Node stdio
+    @plugin["/plugins/acme_host_jabber_service/commands/stdio/description"].data =
+      "Monitor stdout/stderr of Cougaar nodes. Params: PID"
+    @plugin["/plugins/acme_host_jabber_service/commands/stdio"].set_proc do |message, command|
+      found = false
+      running_nodes.each do |pid, node|
+        if pid == command
+          found = true
+          XMLCougaarNode.monitorStdio(message, node)
+        end
+      end
+      message.reply.set_body("FAILURE: Unknown node: #{command}").send unless found
+    end
+
+
+
     #LIST NODES
     @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes/description"].data = 
       "List Running Cougaar nodes."
     @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes"].set_proc do |message, command| 
       txt = "Current Nodes:\n"
-      @running_nodes.each do |pid, node| 
+      running_nodes.each do |pid, node| 
         txt << "PID:#{pid}\n#{node.to_s}\n"
       end
       message.reply.set_body(txt).send
@@ -93,6 +157,8 @@ class XMLCougaarNode
       txt << "cmd_prefix=#{cmd_prefix}\n"
       cmd_suffix=@plugin.properties['cmd_suffix']
       txt << "cmd_suffix=#{cmd_suffix}\n"
+      conference=@plugin.properties['conference']
+      txt << "conference=#{conference}\n"
       message.reply.set_body(txt).send
     end
     
@@ -120,12 +186,32 @@ class XMLCougaarNode
       filename = File.join(".", basename)
     end
   end
+
+  def XMLCougaarNode.monitorStdio(message, node)
+    remove = false
+    node.listeners.each do |msg|
+      if msg.thread == message.thread # unregister for stdio
+        node.listeners.delete(msg)
+        message.reply.set_body("Un-Registered for Stdio").send
+        remove = true
+      end
+    end
+    if (! remove)
+      node.listeners << message
+      message.reply.set_body("Registered for Stdio").send
+    end
+  end
+
   end
   
   class NodeConfig
   
     attr_accessor :pid, :jvm, :arguments, :env, :jvm_props, :java_class, :society_doc
-    attr_reader :name
+    attr_reader :name, :mproc, :listeners
+
+    def alive()
+      return @mproc && @mproc.alive()
+    end
 
 		def get_node_name(society) 
 			society.each_host do |host|
@@ -183,10 +269,12 @@ class XMLCougaarNode
 			end
 		end
 
-    def initialize(plugin, node_config)
+    def initialize(plugin, node_config, session)
       begin
         @plugin = plugin
-        
+        @listeners = []
+        @session = session
+
         @filename = XMLCougaarNode.makeFileName(node_config)
         if @filename=~/.xml/
           @xml_filename = @filename
@@ -206,6 +294,15 @@ class XMLCougaarNode
   
         @jvm = plugin.properties['jvm_path']
   
+        @conference = plugin.properties['conference']
+        if @conference
+          presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
+          @session.connection.send(presence)
+          iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference)
+          @session.connection.send(iq)
+        end
+        
+
         @cmd_prefix = plugin.properties['cmd_prefix']
         if (!@cmd_prefix) 
           @cmd_prefix = ""
@@ -241,11 +338,11 @@ class XMLCougaarNode
 			cmd = build_command
       @plugin.log_info << "Starting command:\n#{cmd}"
 
-      @pipe = IO.popen(cmd)
-      if @cip.index(":") == nil
-			  Thread.new(@pipe) {|pipe|stdio(pipe)}
-      end
-			@pid = @pipe.pid.to_s
+      @mproc = MonitoredProcess.new(cmd)
+      @mproc.addStdioListener(self)
+      @mproc.start
+
+			@pid = @mproc.pid.to_s
       if @pid == ''
         @society.each_host do |host|
 					host.each_node do |node|
@@ -259,44 +356,52 @@ class XMLCougaarNode
 			return @pid
     end
 
-		def stdio(pipe)
-      require "timeout"
-			begin
-				while (true) do
-          begin
-            timeout(5) do
-					    s = pipe.getc
-						  if s == nil 
-							  break
-			  		  end
-						  putc s
-            end
-            rescue TimeoutError
-              puts "T"
-          end
-				end
-			rescue
-			  @plugin['log/info'] << "DONE WITH NODE exception: #{$!}"
-			end
-			@plugin['log/info'] << "DONE WITH NODE read thread"
+    def sendMsg(s) 
+      @listeners.each do |msg|
+        msg.reply.set_body(s).send
+      end
+
+      if (@conference)
+        chatmsg = Jabber::Protocol::Message.new(@conference, "groupchat")
+        chatmsg.set_body(s)
+        @session.connection.send(chatmsg)
+      end
+
     end
-    
+
+    def stdoutCB(s)
+      if s.include?("\n")
+        msg = "OUT: \n#{s}"
+      else
+        msg = "OUT: #{s}"
+      end
+      #puts msg
+      sendMsg(msg)
+    end
+    def stderrCB(s)
+      if s.include?("\n")
+        msg = "ERR: \n#{s}"
+      else
+        msg = "ERR: #{s}"
+      end
+  
+      #puts msg
+      sendMsg(msg)
+    end
+    def exitCB()
+			@plugin['log/info'] << "DONE WITH NODE read thread. Process exited"
+      sendMsg("Process Exited")
+      if @conference
+        presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
+        presence.type = "unavailable"
+        @session.connection.send(presence)
+      end
+    end
+
     def stop
       @monitors.each {|thread| thread.kill}
-      @plugin['log/info'] << "Stopping process: #{@pipe.id}"
-      if @pipe
-				if (@pipe.pid)
-          a = `ps -falx`.split("\n")
-          pidlist = [@pid]
-          a.each do |line|
-            pidlist << line[10,5].strip if pidlist.include? line[16,5].strip
-          end
-          `kill -9 #{pidlist[2]}`
-          sleep 2
-          `kill -9 #{@pid}` 
-				end
-				@pipe.close
-      end
+      @plugin['log/info'] << "Stopping process: #{@mproc.pid}"
+      @mproc.kill
       @plugin['log/info'] << "Stopped process."
     end
     
@@ -314,6 +419,10 @@ class XMLCougaarNode
           sleep interval
         end
       end
+    end
+
+    def dumpStack()
+      @mproc.signal(3) #SIGQUIT
     end
     
     def get_cpu
