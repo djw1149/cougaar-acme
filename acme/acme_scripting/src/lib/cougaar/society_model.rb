@@ -943,14 +943,18 @@ module Cougaar
 
       # Remove a parameter specifically on this node
       #
-      # param:: [String] the -D param to remove
+      # param:: [String|Regexp] the -D param to remove if String, or pattern if regexp
       #
       def remove_parameter(param)
-        o = nil
-        @parameters.each do |orig|
-          o = orig if orig[0..(param.size)]=="#{param}="
+        if param.kind_of?(String)
+          o = nil
+          @parameters.each do |orig|
+            o = orig if orig[0..(param.size)]=="#{param}="
+          end
+          @parameters.delete(o) if o
+        elsif param.kind_of?(Regexp)
+          @parameters.delete_if {|p| p =~ param}
         end
-        @parameters.delete(o) if o
       end
       
       ##
