@@ -19,6 +19,7 @@
 # </copyright>
 #
 
+require 'ultralog/enclaves'
 require 'ultralog/aggagent'
 require 'ultralog/aggagent_actions'
 require 'ultralog/completion'
