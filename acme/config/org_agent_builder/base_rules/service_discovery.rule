@@ -83,10 +83,7 @@ society.each_agent do |agent|
 # Add the required strat_trans_role if the agent is deployable with either equipment or personnel
   if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
     if agent.get_facet(:is_deployable)
-      # Exclude UA Agents for now
-      unless agent.get_facet(:is_ua)
-	required_roles << strat_trans_role
-      end
+      required_roles << strat_trans_role
     end
   end
 #
