@@ -18,7 +18,7 @@ society.each_agent do |agent|
   if agent.name == "NCA"  or agent.name == "OSD.GOV"
     agent.add_component do |c|
       c.classname = glm_compl_society_plugin
-      c.add_argument("DEAD_NODE_TIMEOUT1200000")
+      c.add_argument("DEAD_NODE_TIMEOUT=1200000")
       c.add_argument("NORMAL_TIME_ADVANCE_DELAY=120000")
     end
   end
