@@ -27,6 +27,7 @@ require 'cougaar/communications'
 module Cougaar
   module Actions
     class CompletionControl < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = 'SocietyPlanning'
       def initialize(run, &block)
         super(run)

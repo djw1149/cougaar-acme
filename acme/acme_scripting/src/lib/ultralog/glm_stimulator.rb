@@ -28,6 +28,7 @@ require 'cougaar/state_action'
 module Cougaar
   module Actions
     class GLMStimulator < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = 'SocietyPlanning'
       def initialize(run, agent, &block)
         super(run)

@@ -23,6 +23,7 @@
 module Cougaar
   module Actions
     class EditOplan < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = 'SocietyPlanning'
       def initialize(run, &block)
         super(run)
