@@ -21,6 +21,39 @@
 
 module Cougaar
   module Actions
-    #Location for stressors
+    class DisableNetworkInterfaces < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      def initialize(run, *nodes)
+        super(run)
+        @nodes = nodes
+      end
+      def perform
+        @nodes.each do |node|
+          cougaar_node = @run.society.nodes[node]
+          if cougaar_node
+            @run.comms.new_message(cougaar_node.host).set_body("command[nic]trigger").send
+          else
+            raise_failure "Cannot disable nic on node #{node}, node unknown."
+          end
+        end
+      end
+    end
+    class EnableNetworkInterfaces < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      def initialize(run, *nodes)
+        super(run)
+        @nodes = nodes
+      end
+      def perform
+        @nodes.each do |node|
+          cougaar_node = @run.society.nodes[node]
+          if cougaar_node
+            @run.comms.new_message(cougaar_node.host).set_body("command[nic]reset").send
+          else
+            raise_failure "Cannot enable nic on node #{node}, node unknown."
+          end
+        end
+      end
+    end
   end
 end
