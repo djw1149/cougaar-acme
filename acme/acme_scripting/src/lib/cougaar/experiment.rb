@@ -1079,6 +1079,36 @@ module Cougaar
         @run.error_message "#{@message}"
       end
     end
+
+    class MarkForArchive < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Marks a directory of contents for archive (archive happens after a run)"
+        @parameters = [
+          {:directory => "Directory name"},
+          {:pattern => "The file matching pattern"},
+          {:description => "The description of each archived file"}
+        ]
+        @example = 'do_action "MarkForArchive", "#{ENV["CIP"]}/workspace/log4jlogs", "*.log", "Log4j node log"'
+      }
+      
+      def initialize(run, directory, pattern, description)
+        super(run)
+        @directory = directory
+        @pattern = pattern
+        @description = description
+      end
+      
+      def perform
+        unless File.exist?(@directory)
+          @run.error_message "Could not mark directory #{@directory} for archival ... Directory not found."
+          return
+        end
+        Dir.glob(File.expand_path(File.join(@directory, @pattern))).each do |file|
+          @run.archive_file(file, @description)
+        end
+      end
+      
+    end
     
     class Sleep < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
@@ -1119,6 +1149,7 @@ module Cougaar
       def perform
       end
     end
+    
     class ExperimentFailed < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
         @description = "Marker action to document that the experiment failed."
