@@ -72,6 +72,7 @@ society.each_agent do |agent|
     c.classname = logistics_inventory_servlet_component_loader
     c.add_argument(logistics_inventory_servlet)
     c.add_argument("/log_inventory")
+    c.add_argument("PRINT_ORG_ACTIVITIES=true")
   end
   agent.add_component do |c|                       # loader_servlet_component
     c.classname = loader_servlet_component
