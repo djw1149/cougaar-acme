@@ -5,31 +5,27 @@ society.each_host do |host|
 
 
     host_mem = 2048
+    num_nodes = (host.nodes.size).to_i
 
     if host.has_facet?(:memory)
       host_mem = host.get_facet(:memory).to_i
     end
 
-
     if (host.nodes.size == 1)
       xms = host_mem * 0.25
       xmx = host_mem * 0.75
-    elsif (host.nodes.size == 2)
+    elsif (host.nodes.size > 1)
       xms = host_mem * 0.125
-      xmx = host_mem * 0.375
-    elsif (host.nodes.size == 3)
-      xms = host_mem * 0.125
-      xmx = host_mem * 0.3125
+      xmx = (host_mem * 0.75) / num_nodes
     else
       xms = host_mem * 0.125
       xmx = host_mem * 0.25
-    end
+    end  
     xms = xms.floor
     xmx = xmx.floor
     
     xmx = 1536 if xmx >= 1536
 
-    
     host.each_node do |node|
       node.replace_parameter(/\-XX\:ThreadStackSize/, "-XX:ThreadStackSize=256")
       node.replace_parameter(/\-Xms/, "-Xms#{xms}m")
