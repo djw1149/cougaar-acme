@@ -1,2 +1,4 @@
 
+$POLARIS=true
 $POLARIS_HOST="u180"
+$POLARIS_UPDATE=false
