@@ -51,7 +51,7 @@ include_scripts:
         - 123-MSB-PARTS-NODE
         - 123-MSB-ORD-NODE
 
-  - script: $CIP/csmart/assessment/assess/standard_memory_stress.rb
+  - script: $CIP/csmart/assessment/assess/standard_mem_stress.rb
     parameters:
       - start_tag: society_restored
       - start_delay: 0
