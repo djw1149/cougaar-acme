@@ -48,6 +48,7 @@ module Cougaar
         get_inventory  "1-35-ARBN.2-BDE.1-AD.ARMY.MIL", "120MM HEAT-MP-T M830:DODIC/C787", "INV/#{@modifier}/INV#{@modifier}-1-35-ARBN-DODIC-C787.xml"
         get_inventory  "1-35-ARBN.2-BDE.1-AD.ARMY.MIL", "MEAL READY-TO-EAT  :NSN/8970001491094", "INV/#{@modifier}/INV#{@modifier}-1-35-ARBN-MRE.xml"
         get_inventory  "1-35-ARBN.2-BDE.1-AD.ARMY.MIL", "FRESH FRUITS  :NSN/891501F768439", "INV/#{@modifier}/INV#{@modifier}-1-35-ARBN-FRUIT.xml"
+        get_inventory  "1-35-ARBN.2-BDE.1-AD.ARMY.MIL", "Level2Ammunition:Ammunition", "INV/#{@modifier}/INV#{@modifier}-1-35-ARBN-Level2Ammunition.xml"
       #  get_inventory  "1-35-ARBN.2-BDE.1-AD.ARMY.MIL", "UNITIZED GROUP RATION - HEAT AND SERVE BREAKFAST :NSN/897UGRHSBRKXX", "INV/#{@modifier}/INV#{@modifier}-1-35-ARBN-BREAKFAST.xml"
 
         # 1-36-INFBN inventories
@@ -144,7 +145,7 @@ module Cougaar
         # 191-ORDBN Inventory
         get_inventory  "191-ORDBN.29-SPTGP.21-TSC.ARMY.MIL", "120MM APFSDS-T M829A1:DODIC/C380", "INV/#{@modifier}/INV#{@modifier}-191-ORDBN-DODIC-C380.xml"
         get_inventory  "191-ORDBN.29-SPTGP.21-TSC.ARMY.MIL", "120MM HEAT-MP-T M830:DODIC/C787", "INV/#{@modifier}/INV#{@modifier}-191-ORDBN-DODIC-C787.xml"
-        get_inventory  "191-ORDBN.29-SPTGP.21-TSC.ARMY.MIL", "Level2Ammunition:Ammunition", "INV/#{@modifier}/INV#{@modifier}-191-Level2Ammunition.xml"
+        get_inventory  "191-ORDBN.29-SPTGP.21-TSC.ARMY.MIL", "Level2Ammunition:Ammunition", "INV/#{@modifier}/INV#{@modifier}-191-ORDBN-Level2Ammunition.xml"
       
         # 592-ORDCO Inventory
         get_inventory  "592-ORDCO.16-CSG.5-CORPS.ARMY.MIL", "120MM APFSDS-T M829A1:DODIC/C380", "INV/#{@modifier}/INV#{@modifier}-592-ORDCO-DODIC-C380.xml"
