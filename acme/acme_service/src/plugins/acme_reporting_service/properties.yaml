@@ -4,6 +4,6 @@ properties: ~
   - archive_path: "./archives"
   - temp_path: "./temp"
   - report_path: "reports"
-  - report_host_name: "ultralog.net"
-  - report_host_port: 9444
+  - report_host_name: "reports.ultralog.net"
+  - report_host_port: 80
   - society_name: socM1
