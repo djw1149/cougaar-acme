@@ -17,7 +17,9 @@ society.each_agent do |agent|
 	c.add_argument("PackagedPOL")
 	c.add_argument("Consumable")	
       end
-      c.add_argument("BulkPOL")
+      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }      
+	c.add_argument("BulkPOL")
+      end
     end
     if agent.get_facet(:has_personnel_assets)
       unless agent.get_facet(:is_ua)
@@ -25,7 +27,9 @@ society.each_agent do |agent|
       end
     end
     if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
-      c.add_argument("MaintainInventory")
+      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
+	c.add_argument("MaintainInventory")
+      end
       if agent.get_facet(:is_deployable)
 	c.add_argument("StrategicTransportation")
       end
