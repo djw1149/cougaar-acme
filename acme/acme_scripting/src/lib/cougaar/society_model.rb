@@ -786,7 +786,7 @@ module Cougaar
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_removed(agent) }
         end
       end
-      
+
       ##
       # Iterates over each agent in this node
       #
@@ -1099,7 +1099,7 @@ module Cougaar
           end
           component.agent = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_added(component) }
-          @components << component
+          insert_component(component)
           component
         else
           comp = Component.new(component, &block)
@@ -1108,7 +1108,7 @@ module Cougaar
           end
           comp.agent = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_added(comp) }
-          @components << comp
+          insert_component(comp)
           comp
         end
       end
@@ -1208,6 +1208,31 @@ module Cougaar
         @node.agents.delete(self)
         newNode.add_agent(self)
       end
+
+      private
+      
+      def insert_component(component)
+        i = 0
+        found_ip = false
+        @components.each { |comp|
+          if comp.insertionpoint == component.insertionpoint
+            found_ip = true
+            if component.order >= 0 && (comp.order < 0 || component.order < comp.order)
+              break
+            end
+          elsif found_ip
+            break
+          end
+          i = i + 1
+        }
+        if i == @components.length
+          @components << component
+        elsif i <= 0
+          @components.unshift(component)
+        else
+          @components = @components[0..i-1] + [component] + @components[i..@components.length-1]
+        end
+      end
       
     end
     
@@ -1220,7 +1245,7 @@ module Cougaar
       
       PRIORITY_COMPONENT = "COMPONENT"
       
-      attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments
+      attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments, :order
       
       ##
       # Construct a component
@@ -1231,6 +1256,7 @@ module Cougaar
         @name = name
         @classname = name
         @arguments = []
+        @order = -1
         yield self if block_given?
         if @name.nil?
           @name = self.comparison_name
@@ -1258,7 +1284,7 @@ module Cougaar
       def ==(component)
         return component.comparison_name == self.comparison_name
       end
-      
+
       def comparison_name
         "#{@classname}(#{@arguments.join(',')})"
       end
@@ -1296,6 +1322,7 @@ module Cougaar
         c.agent = agent
         c.classname = @classname
         c.priority = @priority
+        c.order = @order
         c.insertionpoint = @insertionpoint
         each_argument {|arg| c.add_argument(arg.value)}
         return c
@@ -1307,6 +1334,11 @@ module Cougaar
         xml << "#{' '*i}  class='#{@classname}'\n"
         xml << "#{' '*i}  priority='#{@priority}'\n" if @priority
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
+        if @order > -1
+          xml << "#{' '*i}  <order>\n"
+          xml << "#{' '*i}    #{@order}\n"
+          xml << "#{' '*i}  </order>\n"
+        end
         each_argument do |arg|
           xml << "#{' '*i}  <argument>\n"
           xml << "#{' '*i}    #{REXML::Text.normalize(arg.value)}\n"
@@ -1320,6 +1352,7 @@ module Cougaar
         ruby =  "#{' '*i}#{parent.kind_of?(Node) ? 'node.agent' : 'agent'}.add_component('#{@name}') do |c|\n"
         ruby << "#{' '*i}  c.classname = '#{@classname}'\n"
         ruby << "#{' '*i}  c.priority = '#{@priority}'\n"
+        ruby << "#{' '*i}  c.order = #{@order}\n" if @order > -1
         ruby << "#{' '*i}  c.insertionpoint = '#{@insertionpoint}'\n"
         each_argument do |arg|
           ruby << "#{' '*i}  c.add_argument('#{arg.value}')\n"
