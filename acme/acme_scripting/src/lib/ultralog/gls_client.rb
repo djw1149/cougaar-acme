@@ -34,7 +34,7 @@ module UltraLog
       @c0_date=nil
       @next_stage = nil
       @next_stage_count = 0
-      @stage = []
+      @stages = []
       connect
     end
     
