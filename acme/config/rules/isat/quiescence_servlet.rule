@@ -1,0 +1,11 @@
+# Rule to add the /agentQuiescenceState servlet to each Node
+# Used to see the quiescence state of the agents / Node, and to mark an Agent as Dead
+# to ignore it in quiescence calculations
+
+society.each_node do |node|
+  node.add_component do |c|
+    c.classname = "org.cougaar.core.node.QuiescenceStateServlet"
+    c.insertionpoint = "Node.AgentManager.Agent.PluginManager.Servlet"
+    c.priority = "BINDER"
+  end
+end
