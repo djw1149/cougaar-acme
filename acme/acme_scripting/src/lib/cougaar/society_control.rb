@@ -159,18 +159,20 @@ module Cougaar
           {:time_step => "default=86400000 (1 day) millisecs to advance the cougaar clock each step."},
           {:wait_for_quiescence => "default=true if false, will return without waiting for quiescence after final step."},
           {:execution_rate => "default=1.0, The new execution rate (1.0 = real time, 2.0 = 2X real time)"},
+          {:timeout => "default=60.minutes, Timeout for waiting for quiesence"},
           {:debug => "default=false, Set 'true' to debug action"}
         ]
         @example = "do_action 'AdvanceTime', 3600000, 60000, true, 1.0, false"
       }
 
-      def initialize(run, time_to_advance=86400000, time_step=86400000, wait_for_quiescence=true, execution_rate=1.0, debug=false)
+      def initialize(run, time_to_advance=86400000, time_step=86400000, wait_for_quiescence=true, execution_rate=1.0, timeout=60.minutes, debug=false)
         super(run)
         @debug = debug
         @time_to_advance = time_to_advance
         @time_step = time_step
         @wait_for_quiescence = wait_for_quiescence
         @execution_rate = execution_rate
+        @timeout = timeout
         @expected_result = Regexp.new("Scenario Time");
       end
       
@@ -195,11 +197,15 @@ module Cougaar
           if @debug
             ::Cougaar.logger.info "About to step forward #{seconds_to_advance} seconds"
           end
-          advance_and_wait(1000 * seconds_to_advance)
+          unless advance_and_wait(1000 * seconds_to_advance)
+            @run.error_message "Timed out advancing time...society not quiescent."
+            return
+          end
         end
       end
 
       def advance_and_wait(time)
+        result = true
         @run.society.each_node do |node|
           myuri = node.agent.uri+"/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
           #myuri = "http://#{node.host.uri_name}:#{@run.society.cougaar_port}/$#{node.name}/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
@@ -222,16 +228,17 @@ module Cougaar
           if !comp
             ::Cougaar.logger.error "Completion Monitor not installed.  Cannot wait for quiescence"
             puts "Completion Monitor not installed.  Cannot wait for quiescence"
-            return
+            return false
           end
           if @debug
             ::Cougaar.logger.info "About to wait for quiescence"
           end
           sleep 20.seconds
           if comp.getSocietyStatus() == "INCOMPLETE"
-            comp.wait_for_change_to_state("COMPLETE")
+            result = comp.wait_for_change_to_state("COMPLETE", @timeout)
           end
         end
+        return result
       end
 
     end # class
@@ -271,8 +278,11 @@ module Cougaar
           @run.society.each_service_host(service) do |host|
             @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
             @run.comms.new_message(host).set_body("command[cpu]0").send()
+            @run.comms.new_message(host).set_body("command[shutdown]").send() 
           end
         end
+        @run.info_message "Waiting for ACME services to restart"
+        sleep 20 # wait for all acme servers to start back up
       end
     end
     
