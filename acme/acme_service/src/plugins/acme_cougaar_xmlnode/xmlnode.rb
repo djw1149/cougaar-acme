@@ -295,7 +295,10 @@ class XMLCougaarNode
 					#node.override_parameter("-Dorg.cougaar.system.path","#{@config_mgr.cougaar_install_path}/sys")
 					#node.override_parameter("-Djava.class.path","#{@config_mgr.cougaar_install_path}/lib/bootstrap.jar")
 					#node.override_parameter("-Dorg.cougaar.core.node.XML","true")
-					node.override_parameter("-Dorg.cougaar.society.file", @xml_filename)
+                                        # Set just the filename, not the path
+					node.override_parameter("-Dorg.cougaar.society.file", @xml_filename.split(File::SEPARATOR)[-1])
+                                        # Set just the path, not the filename
+					node.append_value_on_parameter("-Dorg.cougaar.config.path", @xml_filename[0..(@xml_filename.rindex(File::SEPARATOR))-1])
 					#node.add_parameter("-Xbootclasspath/p:#{@config_mgr.cougaar_install_path}/lib/javaiopatch.jar")
 				end
 			end
