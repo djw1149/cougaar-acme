@@ -68,7 +68,7 @@ module Cougaar
           msgs[node] = launch_db_node(node)
         end
       end
-      nodes.each do |each_node|
+      nodes.each do |node|
         @run.info_message "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msgs[node]}").request(@timeout)
         if result.nil?
