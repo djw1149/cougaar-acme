@@ -38,6 +38,9 @@ public class RefreshAlarm implements PeriodicAlarm {
 		return expiry;
 	}
 
+	public void free() {
+		data = null;
+	}
 	/**
 	 * @see org.cougaar.core.agent.service.alarm.Alarm#expire()
 	 */
