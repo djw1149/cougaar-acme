@@ -117,6 +117,27 @@ module Cougaar
       end
     end
     
+    class SetHTTPBasicAuth <  Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sets the userid and password for basic HTTP authentication."
+        @parameters = [
+          {:username => "required, The username for basic HTTP authentication."},
+          {:pwd => "required, The password for basic HTTP authentication."}
+        ]
+        @example = "do_action 'SetHTTPBasicAuth', 'rich', 'password'"
+      }
+      
+      def initialize(run, username, pwd)
+        super(run)
+        @username = username
+        @pwd = pwd
+      end
+      
+      def perform
+        ::Cougaar::Communications::HTTP.set_auth(@username, @pwd)
+      end
+    end
+    
     class VerifyHosts < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       DOCUMENTATION = Cougaar.document {
