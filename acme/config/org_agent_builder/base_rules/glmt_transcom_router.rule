@@ -12,6 +12,7 @@ society.each_agent do |agent|
     if agent.has_facet? { |facet| facet[:role]=='StrategicTransportationProvider' && (facet[:mechanism] == 'TaskSorter') }
       agent.add_component do |c|
         c.classname = transcom_router_vishnu_plugin
+        c.add_argument('envFile=TRANSCOM-20.env.xml')
       end
     end
   end
