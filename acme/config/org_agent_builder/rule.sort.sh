@@ -33,11 +33,13 @@ fi
 RULE_FILE=$METRICS_RULEDIR/rules.txt
 echo $RULE_FILE
 if [ -f $RULE_FILE ]; then
-    while read rulefilename; do
-      if [ -z $rulefilename ]; then
+    while read rulefilecomplete; do
+      if [ -z $rulefilecomplete ]; then
 	  break
       fi
-      cp -v $METRICS_RULEDIR/$rulefilename $TEMPDIR/$i.$rulefilename
+      # The rule may be in a sub directory, parse it to be safe.
+      rulefile=`echo "$rulefilecomplete" | awk '{z=split($1,a,"/"); print (a[z])}'`
+      cp $METRICS_RULEDIR/$rulefilecomplete $TEMPDIR/$i.$rulefile
       i=`expr $i + 1`
     done < $RULE_FILE
 fi
