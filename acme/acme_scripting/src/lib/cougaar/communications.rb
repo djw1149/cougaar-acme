@@ -259,6 +259,31 @@ module Cougaar
       def perform
         begin
           @run.comms.verify
+         
+          @run.society.each_active_host do |host|
+            output = @run.comms.new_message(host).set_body("command[rexec_user]ntpstat").request(60)
+            output = output.body
+            unless output =~ /^synch/ then
+              @run.error_message "Clock on #{host.name} not synchronised with ntp server"
+            end
+          end 	  
+         
+          @run.society.each_service_host("operator") do |host|
+            output = @run.comms.new_message(host).set_body("command[rexec_user]ntpstat").request(60)
+            output = output.body
+            unless output =~ /^synch/ then
+              @run.error_message "Clock on #{host.name} not synchronised with ntp server"
+            end
+          end
+
+          @run.society.each_service_host("acme") do |host|
+            output = @run.comms.new_message(host).set_body("command[rexec_user]ntpstat").request(60)
+            output = output.body
+            unless output =~ /^synch/ then
+              @run.error_message "Clock on #{host.name} not synchronised with ntp server"
+            end
+          end
+        
         rescue
           @run.error_message "Could not verify Society: #{$!}"
           @sequence.interrupt
