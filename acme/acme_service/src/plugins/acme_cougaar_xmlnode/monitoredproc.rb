@@ -29,7 +29,9 @@ class MonitoredProcess
 
   def MonitoredProcess.guessPlatform()
     begin
-      fork {exit!}
+      pid = fork {exit!}
+      Process.waitpid(pid)
+   
       platform = "unix"
     rescue NotImplementedError
       platform = "windows"
@@ -132,7 +134,7 @@ class MonitoredProcess
   def windows_start()
     @pipe = IO.popen(@cmd)
     @procactive = true
-		@pid = @pipe.pid.to_s
+    @pid = @pipe.pid.to_s
     if @pid == ''
       @@last_pid = @@last_pid + 1
       @pid = @@last_pid.to_s
@@ -142,15 +144,31 @@ class MonitoredProcess
 
 
   def alive() 
+    #puts "ALIVE: #{@procactive} || #{@erractive} || #{@outactive} || #{(@stdoutstr.length > 0)} || #{(@stderrstr.length > 0)}"
     return @procactive || @erractive || @outactive || (@stdoutstr.length > 0) || (@stderrstr.length > 0)
   end
 
   def signal(sig)
     if (@@platform == "unix")
-      Process.kill(sig, @pid)
+      real_pid = find_java(@pid)
+      puts "Kill(#{sig}, ${real_pid})"
+      Process.kill(sig, real_pid.to_i)
     else
       @stderrstr << "Unable to signal process on this platform"
     end
+  end
+
+  # Unabashedly linux-specific
+  def find_java(parent)
+    ret = parent
+    ps = `pstree -pl`
+
+    if ps =~ /java\(#{parent}\)/
+      ret = parent
+    elsif ps =~ /\(#{parent}\)[^j]*java\((\d+)\)/
+      ret =  $1
+    end
+    return ret
   end
 
   def listenerThread()
@@ -158,6 +176,7 @@ class MonitoredProcess
     while alive do
       begin
         if (@stdoutstr.length > 0)
+          #puts "STDOUT: #{@stdoutstr}"
           stdout = @stdoutstr
           @stdoutstr = ""
           @listeners.each do |listener|
@@ -165,6 +184,7 @@ class MonitoredProcess
           end
         end
         if (@stderrstr.length > 0)
+          #puts "STDERR: #{@stderrstr}"
           stderr = @stderrstr
           @stderrstr = ""
           @listeners.each do |listener|
@@ -172,7 +192,7 @@ class MonitoredProcess
           end
         end
    
-        sleep 5
+        sleep 15
       rescue
         puts "exception #{$!}"
         puts $!.backtrace.join("\n")
@@ -187,7 +207,7 @@ class MonitoredProcess
   
   def kill
     if (@@platform == "unix")
-      Process.kill("SIGKILL", @pid)
+      signal(9)
     else
       @pipe.close()
       @procactive = false

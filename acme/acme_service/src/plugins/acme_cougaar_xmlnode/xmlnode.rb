@@ -58,6 +58,7 @@ class XMLCougaarNode
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
       node = NodeConfig.new(@plugin, command, message.session)
       pid = node.start
+      puts "STARTED: #{pid}"
       running_nodes[pid] = node
       message.reply.set_body(pid).send
     end
@@ -139,7 +140,7 @@ class XMLCougaarNode
     @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes"].set_proc do |message, command| 
       txt = "Current Nodes:\n"
       running_nodes.each do |pid, node| 
-        txt << "PID:#{pid}\n#{node.to_s}\n"
+        txt << "PID:#{pid} Name:#{node.name}\n"
       end
       message.reply.set_body(txt).send
     end
@@ -298,7 +299,7 @@ class XMLCougaarNode
         if @conference
           presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
           @session.connection.send(presence)
-          iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference)
+          iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference, "#{get_node_name(@society)}")
           @session.connection.send(iq)
         end
         
