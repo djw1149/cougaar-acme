@@ -22,7 +22,7 @@ module ACME; module Plugins
         result = ""
         result += call_cmd('echo $CIP').strip
         #result += `su -l -c 'echo $CIP' asmt`
-        message.reply.set_body("CIP=[#{result}]").send
+        message.reply.set_body(result).send
       end
       register_command("reset_crypto", "Reset the crypto service") do |message, command|
         result = "\n"
