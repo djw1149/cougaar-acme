@@ -75,21 +75,18 @@ module ACME
           @cache_manager.prune(500*1024*1024) #500 MB cache limit for now
 
         rescue
-          @plugin.log_error << $!
-          @plugin.log_error << $!.backtrace
-
-          puts $!
-          puts $!.backtrace
-          archive.add_report("Exception", @plugin.plugin_configuration.name) do |report|
+          error_str =  "#{$!}<BR>\n#{$!.backtrace.join("<BR>\n")}"
+          puts error_str
+          @plugin.log_error << error_str
+            archive.add_report("Exception", @plugin.plugin_configuration.name) do |report|
             report.open_file("Exception.html", "text/html", "Exception") do |out|
-              out.puts "<html>"
+                out.puts "<html>"
               out.puts "<title>Exception</title>"
-              out.puts "#{$!} <BR>"
-              out.puts $!.backtrace.collect{|x| x.gsub(/&/, "&amp;").gsub(/</, "&lt;").gsub(/>/,"&gt;")}.join("<BR>")
+              out.puts error_str
               out.puts "</html>"
-            end
+              end
             report.failure
-          end
+          end          
         end
       end
       
