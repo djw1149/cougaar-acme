@@ -605,17 +605,25 @@ module Cougaar
       # name:: [String=nil] The name of the node
       #
       def initialize(name=nil)
-        @name = name
-        @agent = Agent.new(@name)
-        @agent.node = self
         @agents = []
         @agentIndex = {}
         @env_parameters = []
         @prog_parameters = []
         @parameters = []
+        self.name = name
+        @agent = Agent.new(@name)
+        @agent.node = self
         yield self if block_given?
+        unless @classname
+          @classname = 'org.cougaar.bootstrap.Bootstrapper'
+        end
       end
       
+      def name=(name)
+        @name = name
+        replace_parameter(/\-Dorg\.cougaar\.node\.name/, "-Dorg.cougaar.node.name=#{@name}")
+      end
+        
       def cougaar_port
         found = nil
         port = nil
