@@ -771,7 +771,7 @@ module Cougaar
       index = nil
       count = 0
       @definitions.each_with_index do |definition, current|
-        if definition.name == action_state_name || definition.tag == action_state_name
+        if definition.name == action_state_name || definition.tag.to_s == action_state_name.to_s
           count += 1
           if count == ordinality
             index = current 
@@ -829,6 +829,12 @@ module Cougaar
       @definitions = @definitions[0...@insert_index] 
     end
     
+    def stop_run_now
+      current = @definitions[@current_definition]
+      ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Run stopping now due to request")) if ExperimentMonitor.active?
+      @definitions = @definitions[0...@insert_index] 
+    end
+
     def start
       @current_definition = 0
       @started = true
@@ -1322,6 +1328,21 @@ module Cougaar
       end
     end
 
+    class StopRun < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "End a Run immediately - needs to be used with care"
+        @parameters = []
+        @example = "do_action 'StopRun'"
+      }
+      attr_reader :message
+      def initialize(run)
+        super(run)
+      end
+      
+      def perform
+        @sequence.stop_run_now
+      end
+    end
  
   end
 end
