@@ -399,6 +399,7 @@ module Cougaar
         ]
         @example = "do_action 'MoveAgent', '1-35-ARBN', 'FWD-B'"
       }
+
       def initialize(run, agent, node)
         super(run)
         @agent = agent
@@ -407,11 +408,23 @@ module Cougaar
       
       def perform
         begin
-          uri = "#{@run.society.agents[@agent].uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
-          result = Cougaar::Communications::HTTP.get(uri)
-          @run.error_message "Error moving agent" unless result
+	  # First do a bunch of error checking
+	  if (@run.society.nodes[@node] == nil)
+	    @run.info_message "No node #{@node} to move #{@agent} to!"
+	  elsif (@run.society.agents[@agent] == nil)
+	    @run.info_message "No agent #{@agent} in society to move to #{@node} !"
+	  else
+	    # Could (should?) also check if the agent is already on the named node
+	    uri = "#{@run.society.agents[@agent].uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
+	    result = Cougaar::Communications::HTTP.get(uri)
+	    unless result
+	      @run.error_message "Error moving agent #{@agent} using uri #{uri}" 
+	      return
+	    end
+	  end
         rescue
-          @run.error_message "Could not move agent via HTTP\n#{$!.to_s}"
+          @run.error_message "Could not move agent #{@agent} to #{@node} via HTTP\n#{$!.to_s}"
+	  return
         end
        #http://sv116:8800/$1-35-ARBN/move?op=Move&mobileAgent=1-35-ARBN&originNode=&destNode=FWD-D&isForceRestart=false&action=Add
       end
