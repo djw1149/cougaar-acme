@@ -40,4 +40,5 @@ require 'ultralog/stressors'
 require 'ultralog/network'
 require 'ultralog/mgen'
 
+require 'ultralog/kill_wait'
 require 'ultralog/debug/relations'
