@@ -32,7 +32,6 @@
  glmt_plane_packer.rule
  glmt_ship_packer.rule
  root_mobility_plugin.rule
- persistence_enable.rule
- locate_agent.rule
+
 
  
