@@ -47,7 +47,7 @@
         </facet>
         <facet subordinate="FSB">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-HHC.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-HHC">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-CO">
@@ -81,7 +81,7 @@
         </facet>
         <facet agency="FORSCOM">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="BIC-CO.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-BIC-CO">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-HHC">
@@ -127,7 +127,7 @@
         </facet>
         <facet subordinate="1-CA-BN-MORTAR-BTY">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="BN-HHC.1-CABN.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="1-CA-BN-HHC">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-HQ">
@@ -455,7 +455,7 @@
         </facet>
         <facet agency="FORSCOM">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="2-CA-BN.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="2-CA-BN">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN">
@@ -489,7 +489,7 @@
         </facet>
         <facet agency="FORSCOM">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="3-CA-BN.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="3-CA-BN">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="AVN-DET">
@@ -523,7 +523,7 @@
         </facet>
         <facet agency="FORSCOM">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="AVN-DET.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="AVN-DET">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN">
@@ -557,7 +557,7 @@
         </facet>
         <facet agency="FORSCOM">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="NLOS-BN.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="NLOS-BN">
         </facet>
       </agent>
       <agent classname="org.cougaar.core.agent.SimpleAgent" name="FSB">
@@ -595,11 +595,11 @@
         </facet>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider">
         </facet>
-        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="UA-HHC.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="UA-HHC">
         </facet>
-        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="MCG1.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="BRIGADE" sca_supported_org="UA-MCG1">
         </facet>
-        <facet sca_echelon_of_support="DIVISION" sca_supported_org="FSB.1-UA.ARMY.MIL">
+        <facet sca_echelon_of_support="DIVISION" sca_supported_org="FSB">
         </facet>
       </agent>
     </node>
