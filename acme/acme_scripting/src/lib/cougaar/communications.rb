@@ -23,6 +23,7 @@ require 'jabber4r/jabber4r'
 require 'uri'
 require 'net/http'
 require 'rexml/document'
+require 'coguaar/curl'
 
 module Cougaar
 
@@ -147,6 +148,27 @@ module Cougaar
       
       def perform
         ::Cougaar::Communications::HTTP.set_auth(@username, @pwd)
+      end
+    end
+    
+    class SetHTTPSCertificateFile <  Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sets the certificate file and password for HTTPS authentication."
+        @parameters = [
+          {:file => "required, The certificate file (in .PEM format)."},
+          {:pwd => "required, The password for basic HTTP authentication."}
+        ]
+        @example = "do_action 'SetHTTPSCertificateFile', 'my_cert.pem', 'password'"
+      }
+      
+      def initialize(run, file, pwd)
+        super(run)
+        @file = file
+        @pwd = pwd
+      end
+      
+      def perform
+        ::Cougaar::Communications::HTTP.set_cert(@file, @pwd)
       end
     end
     
@@ -298,9 +320,17 @@ module Cougaar
       @@user = "mbarger"
       @@password = "mbarger"
       
+      @@certfile = nil
+      @@certpassword = nil
+      
       def self.set_auth(user, password)
         @@user = user
         @@password = password
+      end
+      
+      def self.set_cert(file, password)
+        @@certfile = file
+        @@certpassword = password
       end
       
       def self.authenticate_request(request)
@@ -318,6 +348,7 @@ module Cougaar
       def self.get(uri, timeout=1800)
         return nil if uri.nil?
         return nil unless uri[0,4]=='http'
+        return CURL.get(uri, @@user, @@password, @@certfile, @@certpassword, timeout) if uri[0,5]=='https'
         uri = URI.parse(uri)
         "HTTP GET: [#{uri.to_s}]" if $COUGAAR_DEBUG
         begin
@@ -347,6 +378,7 @@ module Cougaar
       # return:: [String | REXML::Document] The body test returned as a String or XML document
       #
       def self.put(uri, data, format=:as_string)
+        return CURL.put(uri, data, @@user, @@password, @@certfile, @@certpassword) if uri[0,5]=='https'
         uri = URI.parse(uri)
         c = Net::HTTP.new(uri.host, uri.port)
         c.read_timeout = 60*30 # per bill wright
@@ -375,6 +407,7 @@ module Cougaar
       # return:: [String | REXML::Document] The body test returned as a String or XML document
       #
       def self.post(uri, data, content_type="application/x-www-form-urlencoded")
+        return CURL.post(uri, data, @@user, @@password, @@certfile, @@certpassword, content_type) if uri[0,5]=='https'
         uri = URI.parse(uri)
         c = Net::HTTP.new(uri.host, uri.port)
         c.read_timeout = 60*30 # per bill wright
