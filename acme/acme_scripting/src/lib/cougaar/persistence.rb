@@ -25,6 +25,12 @@ module Cougaar
          raise_failure "Could not build society from Ruby file: #{ENV['CIP']}/workspace/P/society.rb", $!
         end
         @run.society = builder.society
+
+        time = Time.now.gmtime
+        @run.society.each_node do |node|
+          node.replace_parameter(/Dorg.cougaar.core.society.startTime/, "-Dorg.cougaar.core.society.startTime=\"#{time.strftime('%m/%d/%Y %H:%M:%S')}\"")
+        end
+
         @run.society.communities = Cougaar::Model::Communities.from_xml_file(@run.society, "#{ENV['CIP']}/workspace/P/communities.xml")
         `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
         `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
@@ -53,13 +59,14 @@ module Cougaar
           snapshot_society = @run.society.clone
           nca_node = snapshot_society.agents['NCA'].node.agent
           result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
-          md = /Scenario Time<\/td><td>([^\s]*) (.*)<\/td>/.match(result)
+          md = /Scenario Time<\/td><td>([^\s]*) (.*):(.*):(.*)<\/td>/.match(result)
           if md
             date = md[1]
+            socHour = md[2]
             date = date.split("/")
             date = (date << (date.shift)).join("/")
             snapshot_society.each_node do |node|
-              node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=#{date}")
+              node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=\"#{date} #{socHour}:00:00\"")
             end
           end
           File.open("#{ENV['CIP']}/workspace/P/society.rb", "w") do |file|
