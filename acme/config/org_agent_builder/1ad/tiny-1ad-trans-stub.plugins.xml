@@ -468,6 +468,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -955,6 +967,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -1453,6 +1477,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -1495,7 +1531,7 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='FuelSupplyProvider'  />
         <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -1943,6 +1979,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -2440,6 +2488,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -2482,7 +2542,7 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='FuelSupplyProvider'  />
         <facet echelon_of_support='THEATER' role='PackagedPOLSupplyProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -2934,6 +2994,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -2979,7 +3051,7 @@
         <facet echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
-        <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD.ARMY.MIL'  />
+        <facet sca_supported_org='1-AD.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3431,6 +3503,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -3474,7 +3558,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD.ARMY.MIL'  />
+        <facet sca_supported_org='1-AD.ARMY.MIL' sca_echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3922,6 +4006,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -4419,6 +4515,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -4460,7 +4568,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='AmmunitionProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -4908,6 +5016,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -5405,6 +5525,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -5445,8 +5577,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Add' echelon_of_support='THEATER' role='SparePartsProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
+        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -5808,7 +5940,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-THEATER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CORPS-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -5831,7 +5963,7 @@
             DESTINATION=none
           </argument>
           <argument>
-            POLICY=InventoryPolicy-THEATER-Consumable.ldm.xml
+            POLICY=InventoryPolicy-CORPS-Consumable.ldm.xml
           </argument>
           <argument>
             DESTINATION=none
@@ -5898,6 +6030,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -5943,7 +6087,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR.MIL'  />
+        <facet sca_supported_org='USAEUR.MIL' sca_echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6395,6 +6539,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -6436,7 +6592,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
-        <facet sca_echelon_of_support='DIVISION' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6884,6 +7040,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -7380,6 +7548,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -7868,6 +8048,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -8361,6 +8553,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -8859,6 +9063,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -8900,7 +9116,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='SubsistenceSupplyProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -9348,6 +9564,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -9845,6 +10073,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -9886,7 +10126,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10338,6 +10578,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -10383,7 +10635,7 @@
         <facet echelon_of_support='BRIGADE' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
         <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
-        <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE.1-AD.ARMY.MIL'  />
+        <facet sca_supported_org='2-BDE.1-AD.ARMY.MIL' sca_echelon_of_support='BRIGADE'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10831,6 +11083,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -11328,6 +11592,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -11817,6 +12093,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -12313,6 +12601,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -12805,6 +13105,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -12846,8 +13158,8 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='SparePartsProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -13299,6 +13611,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -13340,7 +13664,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -13788,6 +14112,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -14286,6 +14622,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -14327,7 +14675,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
-        <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14779,6 +15127,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -14821,7 +15181,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS.ARMY.MIL'  />
+        <facet sca_supported_org='5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -15269,6 +15629,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -15765,6 +16137,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -15803,7 +16187,7 @@
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
+        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -16032,6 +16416,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -16514,6 +16910,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
           class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
           priority='COMPONENT'
@@ -16552,7 +16960,7 @@
         <facet note='Remove' echelon_of_support='JOINT' role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
+        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -16781,6 +17189,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -16807,7 +17227,7 @@
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='JOINT' role='FuelSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
+        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17040,6 +17460,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin(ProjectSupply,Supply)'
           class='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin'
           priority='COMPONENT'
@@ -17061,7 +17493,7 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
-        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
+        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17308,6 +17740,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17567,6 +18011,18 @@
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
       </agent>
       <agent name='TRANSCOM-STUB.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='TRANSCOM-STUB.MIL'  />
@@ -17577,7 +18033,7 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
         <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='StubTransportationProvider'  />
-        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
+        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17815,6 +18271,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -18067,6 +18535,18 @@
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
       </agent>
       <agent name='USEUCOM.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='USEUCOM.MIL'  />
@@ -18305,6 +18785,18 @@
         <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>

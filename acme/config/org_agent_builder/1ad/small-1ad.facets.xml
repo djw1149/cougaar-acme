@@ -336,7 +336,7 @@
         <facet has_equipment_assets='T' />
         <facet has_personnel_assets='T' />
         <facet role='SparePartsProvider'
-               echelon_of_support='THEATER'
+               echelon_of_support='CORPS'
                note='Add'
         />
         <facet sca_supported_org='21-TSC-HQ.ARMY.MIL'
