@@ -189,7 +189,7 @@ module ACME
 
       def get_class(val, mean, stddev)
         return "#00DD00" if stddev.nil?
-        return val <= (mean + 2 * stddev) ? "#00DD00" : "#FF0000"
+        return val.to_f <= (mean + 2 * stddev) ? "#00DD00" : "#FF0000"
       end
 
       def row_output(row, data, mean, stddev)
