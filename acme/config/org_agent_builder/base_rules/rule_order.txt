@@ -20,6 +20,7 @@
  logistics_policy_manager.rule
  propagation_plugin.rule
  ldm_from_sql.rule
+ fsb_fuel_transport.rule
  glmt_util_ldm_xml.rule
  glmt_transcom.rule
  glmt_global_air.rule
