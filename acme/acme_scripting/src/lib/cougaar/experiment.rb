@@ -804,7 +804,7 @@ module Cougaar
     
     def insert_index=(value)
       value = 0 if value < 0
-      value = defintions.size+1 if value > definitions.size+1
+      value = definitions.size+1 if value > definitions.size+1
       @insert_index = value
     end
     
