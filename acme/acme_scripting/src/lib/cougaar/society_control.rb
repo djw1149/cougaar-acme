@@ -62,21 +62,18 @@ module Cougaar
     end
     
     def stop_all_nodes(action)
-      last_node = nil
+      nameserver_nodes = []
       @run.society.each_host do |host|
         host.each_node do |node|
           nameserver = false
-          host.each_facet(:service) do |facet|
-            nameserver = true if facet[:service]=="nameserver"
+          host.each_facet(:role) do |facet|
+            nameserver_nodes << node if facet[:role].downcase=="nameserver"
+            nameserver = true
           end
-          if nameserver
-            last_node = node
-          else
-            stop_node(node)
-          end
+          stop_node(node) unless nameserver
         end
       end
-      stop_node(last_node) if last_node
+      nameserver_nodes.each { |node| stop_node(node) }
       @pids.clear
     end
     
