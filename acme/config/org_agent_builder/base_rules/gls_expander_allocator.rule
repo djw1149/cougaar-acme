@@ -19,17 +19,17 @@ society.each_agent do |agent|
     c.classname = gls_expander_plugin
     if agent.get_facet(:has_equipment_assets)
       unless agent.get_facet(:is_ua)
-	c.add_argument("Ammunition")
-	c.add_argument("PackagedPOL")
-	c.add_argument("Consumable")	
+	c.add_argument("Ammunition") unless society.get_facet(:exclude_ammunition)
+	c.add_argument("PackagedPOL") unless society.get_facet(:exclude_packaged_pol)
+	c.add_argument("Consumable") unless society.get_facet(:exclude_spare_parts)	
       end
       unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }      
-	c.add_argument("BulkPOL")
+	c.add_argument("BulkPOL") unless society.get_facet(:exclude_bulk_pol)
       end
     end
     if agent.get_facet(:has_personnel_assets)
       unless agent.get_facet(:is_ua)
-	c.add_argument("Subsistence")
+	c.add_argument("Subsistence") unless society.get_facet(:exclude_subsistence)
       end
     end
     if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
@@ -37,7 +37,7 @@ society.each_agent do |agent|
 	c.add_argument("MaintainInventory")
       end
       if agent.get_facet(:is_deployable)
-	c.add_argument("StrategicTransportation")
+	c.add_argument("StrategicTransportation") unless society.get_facet(:exclude_strategic_transportation)
       end
     end
   end
