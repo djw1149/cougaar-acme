@@ -399,10 +399,12 @@ class XMLCougaarNode
 
     def start(script_name)
       @status = STARTING
-      cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} >& #{@config_mgr.cougaar_install_path}/workspace/nodelogs/#{@name}.log")
+      #cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} >& #{@config_mgr.cougaar_install_path}/workspace/nodelogs/#{@name}.log")
+      #
+      # wwright: use the line above to send stdio to a file
       # wwright: use the line below to allow stdio to go to message clients 
-      #          instead of a file
-      # cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} ")
+      #
+      cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} ")
       
       @plugin.log_info << "Starting command:\n#{cmd}"
 

@@ -152,22 +152,40 @@ class MonitoredProcess
     pi
   end
 
-  @@last_pid = 0
   def windows_start()
-    @pipe = IO.popen(@cmd)
+    require "win32/process"
+    @pipe = Process.create_piped("app_name" => @cmd)
     @procactive = true
-    @pid = @pipe.pid.to_s
-    if @pid == ''
-      @@last_pid = @@last_pid + 1
-      @pid = @@last_pid.to_s
+    @pid = @pipe.to_s
+    @erractive = true
+    @outactive = true
+    Thread.new(@pipe) do |pipe|
+      begin
+        while Process.is_active(@pipe)
+          s = Process.get_stdout(@pipe)
+          @stdoutstr << s if (s.length() > 0) 
+          s = Process.get_stderr(@pipe)
+          @stderrstr << s if (s.length() > 0)
+          sleep (1)
+        end
+        @outactive = false
+        @erractive = false
+      rescue
+        puts $!
+        puts $!.backtrace.join("\n")
+      end
     end
 	  return @pid
   end
 
 
   def alive() 
-    #puts "ALIVE: #{@procactive} || #{@erractive} || #{@outactive} || #{(@stdoutstr.length > 0)} || #{(@stderrstr.length > 0)}"
-    return @procactive || @erractive || @outactive || (@stdoutstr.length > 0) || (@stderrstr.length > 0)
+    ret = @procactive || @erractive || @outactive || (@stdoutstr.length > 0) || (@stderrstr.length > 0)
+    if (@@platform == "windows")
+      require "win32/process"
+      ret = ret & Process.is_active(@pipe) if @pipe
+    end
+    return ret
   end
 
   def signal(sig)
@@ -239,11 +257,15 @@ class MonitoredProcess
           end
         end
    
-        sleep 15
+        sleep 5
       rescue
         puts "exception #{$!}"
         puts $!.backtrace.join("\n")
       end
+    end
+    puts "EXIT: \n";
+    if (@@platform == "windows")
+      Process.free(@pipe)
     end
     @listeners.each do |listener|
       listener.exitCB()
@@ -256,7 +278,7 @@ class MonitoredProcess
     if (@@platform == "unix")
       signal(9)
     else
-      @pipe.close()
+      Process.free(@pipe)
       @procactive = false
     end
   end
