@@ -1,0 +1,35 @@
+<?xml version="1.0"  encoding="US-ASCII"?>
+<!DOCTYPE Policy SYSTEM "Policy.ldm.dtd" []>
+<Policies>
+<!-- Inventory Policy for Subsistence at CORPSechelon of support -->
+ <Policy name = "SubsistenceInventoryPolicy" type="org.cougaar.logistics.plugin.inventory.InventoryPolicy">
+    <RuleParam name="TransportTime">
+        <Integer value = "1" min="0" max="1000">
+        </Integer>
+    </RuleParam>
+    <RuleParam name="ResourceType">
+        <String value = "Subsistence">
+        </String>
+    </RuleParam>
+    <RuleParam name="OrderShipTime">
+        <Integer value = "3" min="0" max="1000">
+        </Integer>
+    </RuleParam>
+    <RuleParam name="SupplierAdvanceNoticeTime">
+        <Integer value = "97" min="0" max="1000">
+        </Integer>
+    </RuleParam>
+    <RuleParam name="HandlingTime">
+        <Integer value = "2" min="0" max="1000">
+        </Integer>
+    </RuleParam>
+    <RuleParam name="CriticalLevel">
+        <Integer value = "5" min="0" max="1000">
+        </Integer>
+    </RuleParam>
+    <RuleParam name="ReorderPeriod">
+        <Integer value = "2" min="0" max="1000">
+        </Integer>
+    </RuleParam>
+ </Policy>
+</Policies>
