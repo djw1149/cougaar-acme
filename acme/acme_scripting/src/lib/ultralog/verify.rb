@@ -17,7 +17,7 @@ module Cougaar
 
     def process
       host = @run.society.agents[@agent].node.host
-      port = 8800
+      port = @run.society.agents[@agent].node.cougaar_port
       tasks = 0
 
       server = Net::HTTP.new( host.uri_name, port )
@@ -28,7 +28,7 @@ module Cougaar
          tasks = element.text.to_i         
       }
 
-      @run.info "Checking #{@agent} for #{@tasks} tasks.  Found #{tasks}"
+      @run.info_message "Checking #{@agent} for #{@tasks} tasks.  Found #{tasks}"
       if (tasks < @tasks) 
         handle_timeout
         @sequence.interrupt
