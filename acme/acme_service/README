@@ -4,7 +4,6 @@ hosts that will run a Cougaar node.
 Linux Requirments:
 
   Ruby 1.6.8 ( see http://www.ruby-lang.org )
-  MySQL Ruby extension ( see http://www.tmtm.org/en/mysql/ruby )
 
 Windows Requirements:
 
