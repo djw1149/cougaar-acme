@@ -67,13 +67,15 @@ module ACME
       def perform
         comp_files = @archive.files_with_description(/completion/)
         baseline_name = @archive.group_baseline
+        puts "!!! #{baseline_name}"
         baseline = @archive.open_prior_archive(baseline_name)
+        puts "*** #{baseline}"
         baseline_name = "Missing Baseline" if baseline.nil?
         comp_files.uniq.each do |comp_file|
           benchmark_pattern = Regexp.new(File.basename(comp_file.name))
           benchmark_file = nil
           benchmark_file = baseline.files_with_name(benchmark_pattern)[0] unless baseline.nil?
-          report_name = File.basename(comp_file.name, ".xml")
+          report_name = "C-" + File.basename(comp_file.name, ".xml").gsub(/[^A-Z0-9]/, "")
 
           @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
             data = get_file_data(File.new(comp_file.name))

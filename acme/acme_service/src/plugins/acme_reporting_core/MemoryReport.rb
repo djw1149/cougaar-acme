@@ -53,7 +53,7 @@ module ACME
       def perform
         memory_files = @archive.files_with_description(/Memory usage file/)
         if (!memory_files.empty?) then
-          @archive.add_report("Memory", @plugin.plugin_configuration.name) do |report|
+          @archive.add_report("Mem", @plugin.plugin_configuration.name) do |report|
             all_data = []
             #get run data from the cache manager for the current run
             all_data <<  @cm.load(@archive.base_name, ArchiveMemoryData) do |name|
@@ -89,7 +89,9 @@ module ACME
               report.success
             else
               report.open_file("out_of_memory.html", "text", "List of out of memory nodes") do |file|
-                file.puts(bad_nodes)
+                bad_nodes.each do |node| 
+                  file.puts(node)
+                end
               end
               report.failure
             end
@@ -215,7 +217,7 @@ module ACME
         ikko_data["description"] = "Displays how much memory each node is using at each stage.  The top entry is the usage for the current run."
         ikko_data["description"] <<"  The bottome entry is the average usage over all runs in the group."
 
-        success_table = {"success"=>"All log4j logfiles free of out of memory errors",
+        success_table = {"success"=>"No out of memory errors detected",
                          "partial"=>"not used",
                          "fail"=>"At least one out of memory error"}
         ikko_data["table"] = @ikko["success_template.html", success_table]

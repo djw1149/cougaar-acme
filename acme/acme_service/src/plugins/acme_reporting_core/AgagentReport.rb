@@ -3,7 +3,7 @@ module ACME
     
     class AgagentReport
       
-      AgagentData = Struct.new("AgagentData", :name, :time)
+      AggQueryData = Struct.new("AgagentData", :name, :time)
 
       def initialize(archive, plugin, ikko)
         @archive = archive
@@ -15,7 +15,7 @@ module ACME
         run_log = @archive.files_with_name(/run\.log/)
         all_data = get_agagent_data(run_log[0].name)
         if (!all_data.empty?) then
-          @archive.add_report("Agagent", @plugin.plugin_configuration.name) do |report|
+          @archive.add_report("Agg", @plugin.plugin_configuration.name) do |report|
             output = html_output(all_data)
             report.open_file("agagent.html", "text/html", "Agagent Report") do |file|
               file.puts output
@@ -34,15 +34,13 @@ module ACME
         return [] unless File.exist?(run_log)
         data = []
         IO.readlines(run_log).each do |line|
-          if line =~ /Starting: AggQuery/
-            data << AgagentData.new
-          elsif line =~ /Sending Aggagent Query .* to (.+)/
-            data.last.name = $1
-          elsif line =~ /Finished: AggQuery.* in ([0-9]+) seconds/
-            data.last.time = $1.to_i
+          if (line =~ /AggQuery(.*?) in ([0-9]+) seconds/) then
+            data << AggQueryData.new($1, $2.to_i)
+          elsif (line =~ /DoParalellAggQueries in ([0-9]+)/) then
+            data << AggQueryData.new("Paralell Queries", $1.to_i)
           end
         end
-        return data.sort {|x, y| y.time <=> x.time}
+        return data
       end
 
       def total_time(all_data)

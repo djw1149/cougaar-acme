@@ -9,7 +9,7 @@ module ACME; module Plugins
     end
 
     def perform
-      @archive.add_report("Definition", @plugin.plugin_configuration.name) do |report|
+      @archive.add_report("Def", @plugin.plugin_configuration.name) do |report|
          report.open_file( "scripts.html", "text/html", "Scripts" ) do |wn_html|
            def_files = @archive.files_with_description(/Experiment/)
            def_files.each do |rk_file|

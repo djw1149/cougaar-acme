@@ -24,7 +24,7 @@ module ACME
           data = grabber_data(run_log.name)
         end
         if (!data.empty?) then
-          @archive.add_report("Grabber", @plugin.plugin_configuration.name) do |report|
+          @archive.add_report("GbbR", @plugin.plugin_configuration.name) do |report|
 
             result = analyze(data.last)
             if result == 0 then
