@@ -33,7 +33,7 @@ module Ultralog
         @hostaddress = IPSocket.getaddress(@hostname) 
       end
       
-      def get_society_file(host=nil)
+      def get_hosts_file(host=nil)
         host = @hostname unless host
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
