@@ -25,7 +25,7 @@ public class RefreshAlarm implements PeriodicAlarm {
 		
 	public RefreshAlarm( byte data[], int freq, int stddev ) {
 		this.data = data;
-		this.period = period;
+		this.period = freq;
 		this.stddev = stddev;
 	}
 	

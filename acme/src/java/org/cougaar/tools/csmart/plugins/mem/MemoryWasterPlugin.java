@@ -1,9 +1,7 @@
 package org.cougaar.tools.csmart.plugins.mem;
 
 
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,7 +14,6 @@ import org.cougaar.core.service.EventService;
 import org.cougaar.core.service.ServletService;
 import org.cougaar.tools.csmart.plugins.LAlarm;
 import org.cougaar.core.component.ServiceBroker;
-import org.cougaar.core.component.ServiceRevokedListener;
 import org.cougaar.core.plugin.ComponentPlugin;
 
 /**
