@@ -1,5 +1,5 @@
 # :nodoc:
-# Version:: $Id: fileoutputter.rb,v 1.1 2003-02-19 03:17:09 rich Exp $
+# Version:: $Id: fileoutputter.rb,v 1.2 2003-08-20 13:54:20 rich Exp $
 
 require "log4r/outputter/iooutputter"
 require "log4r/staticlogger"
@@ -18,7 +18,7 @@ module Log4r
       _filename = (hash[:filename] or hash['filename'])
       @trunc = Log4rTools.decode_bool(hash, :trunc, true)
       raise TypeError, "Filename must be specified" if _filename.nil?
-      if _filename.type != String
+      if _filename.class != String
         raise TypeError, "Argument 'filename' must be a String", caller
       end
 
