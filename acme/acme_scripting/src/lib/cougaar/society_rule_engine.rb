@@ -10,6 +10,7 @@ module Cougaar
         ]
         @example = "do_action 'TransformSociety', true, 'config/rules/isat/tic_env.rule', 'config/rules/logistics'"
       }
+      
       def initialize(run, verbose, *rules)
         super(run)
         raise "Must supply rules to transform society" if rules.size==0
@@ -69,10 +70,7 @@ module Cougaar
             File.open(rule_file) do |file|
               rule = file.read
               begin
-                instance_eval %Q(
-                  add_rule('#{rule_file}') do |rule, society|
-                  #{rule}
-                  end)
+                @rules << Rule.new(rule_file, rule)
               rescue Exception => error
                 output_warning "Error loading rule #{rule_file}: #{error}\n#{error.backtrace.join("\n")}"
               end
@@ -130,6 +128,7 @@ module Cougaar
     
     class Rule
       attr_accessor :name, :description, :fire_count, :modified_society
+      attr_reader :society
       
       def initialize(name, proc=nil, &block)
         @name = name
@@ -143,8 +142,13 @@ module Cougaar
       end
       
       def execute(engine, society)
+        @society = society
         begin
-          @rule.call(self, society)
+          if @rule.kind_of?(String)
+            instance_eval(@rule)
+          else
+            @rule.call(self, society)
+          end
         rescue Exception => error
           engine.output_warning "Error executing rule #{@name}: #{error}\n#{error.backtrace.join("\n")}"
         end
@@ -234,13 +238,13 @@ module Cougaar
       
       def report
         ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@hosts_added} hosts.")) if @hosts_added > 0
-	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@hosts_removed} hosts.")) if @hosts_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@hosts_removed} hosts.")) if @hosts_removed > 0
         ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@nodes_added} nodes.")) if @nodes_added > 0
-	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@nodes_removed} nodes.")) if @nodes_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@nodes_removed} nodes.")) if @nodes_removed > 0
         ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@agents_added} agents.")) if @agents_added > 0
-	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@agents_removed} agents.")) if @agents_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@agents_removed} agents.")) if @agents_removed > 0
         ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@components_added} components.")) if @components_added > 0
-	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@components_removed} components.")) if @components_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@components_removed} components.")) if @components_removed > 0
       end
     end  
   end
