@@ -15,7 +15,7 @@ freeze_society_plugin = "org.cougaar.core.plugin.freeze.FreezeSocietyPlugin"
 remote_subscription_plugin = "org.cougaar.lib.aggagent.plugin.RemoteSubscriptionPlugin"
 alert_plugin = "org.cougaar.lib.aggagent.plugin.AlertPlugin"
 aggregation_plugin = "org.cougaar.lib.aggagent.plugin.AggregationPlugin"
-aggregation_component = "org.cougaar.lib.aggagent.plugin.AggregationComponent"
+aggregation_component = "org.cougaar.lib.aggagent.servlet.AggregationComponent"
 cnc_calc_plugin = "com.stdc.CnCcalc.plugin.CnCcalcPlugin"
 
 society.each_agent do |agent|
