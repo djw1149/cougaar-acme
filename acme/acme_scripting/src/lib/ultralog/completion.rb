@@ -320,7 +320,13 @@ module UltraLog
         root.each_element do |elem|
           agent_name = elem.attributes["name"]
           if agent_name != node_name
-            @comp_status[agent_name] = get_agent_data(elem)
+            if @society.agents[agent_name].node.name != node_name
+              # Got quiescence data for agent from bad (old?) Node
+              # Bug 13539
+              print "Got quiescence report for #{agent_name} from Node #{node_name} when it should be on #{@society.agents[agent_name].node.name} - ignoring this report"
+            else
+              @comp_status[agent_name] = get_agent_data(elem)
+            end
           end
         end
       else
