@@ -185,6 +185,36 @@ module Cougaar
       end
     end
     
+    class LoadSocietyFromPersistenceSnapshot <  Cougaar::Action
+      RESULTANT_STATE = "SocietyLoaded"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Load a society from a persistence snapshot file."
+        @parameters = [
+          {:filename => "required, The persistence snapshot filename"},
+          {:debug => "boolean=false, True to print out debug messages"}
+        ]
+        @example = "do_action 'LoadSocietyFromPersistenceSnapshot', '~/snapshot.tgz''"
+      }
+      def initialize(run, filename, debug = false)
+        super(run)
+        @filename = filename
+        @debug = debug
+      end
+
+      def perform()
+        `cd #{ENV['CIP']}/workspace;rm -rf P`
+        `cd #{ENV['CIP']}/workspace;tar -xzf #{@filename}`
+        begin
+          builder = Cougaar::SocietyBuilder.from_ruby_file("#{ENV['CIP']}/workspace/P/society.rb")
+        rescue
+         raise_failure "Could not build society from Ruby file: #{ENV['CIP']}/workspace/P/society.rb", $!
+        end
+        `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
+        @run.society = builder.society
+				@run["loader"] = "XML"
+      end
+    end    
+    
     class SaveCurrentSociety < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
       DOCUMENTATION = Cougaar.document {
