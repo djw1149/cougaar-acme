@@ -39,10 +39,13 @@ society.each_agent do |agent|
 	c.add_argument("+PrototypeProvider")
       end
     end
-    agent.add_component do |c|
-      c.classname = parts_prototype_provider
-      c.add_argument("Parts.q")
-      c.add_argument("+PrototypeProvider") if agent.get_facet(:is_ua)
+    # Will this fail for any no UA agents?  Should we add an extra check?
+    unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
+      agent.add_component do |c|
+	c.classname = parts_prototype_provider
+	c.add_argument("Parts.q")
+	c.add_argument("+PrototypeProvider") if agent.get_facet(:is_ua)
+      end
     end
   end
   #

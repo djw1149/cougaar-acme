@@ -47,9 +47,11 @@ society.each_agent do |agent|
     unless role_and_mechanisms.include?("FuelSupplyProvider.TerminalInventoryManager")
       agent.add_component do |c|
 	if is_ua
-	  c.classname = ua_inventory_plugin
-	  c.add_argument('SUPPLY_TYPE=BulkPOL')
-	  c.add_argument('INVENTORY_FILE=UA-Consumer-bulkpol.inv')
+	  unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
+	    c.classname = ua_inventory_plugin
+	    c.add_argument('SUPPLY_TYPE=BulkPOL')
+	    c.add_argument('INVENTORY_FILE=UA-Consumer-bulkpol.inv')
+	  end
 	else
 	  c.classname = inventory_plugin
 	  c.add_argument('SUPPLY_TYPE=BulkPOL')
