@@ -69,5 +69,9 @@ society.each_agent(true) do |agent|
   agent.add_component do |c|
     c.classname = "org.cougaar.core.mobility.servlet.MoveAgentServlet"
   end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.persist.PersistenceMetricsServlet"
+  end
+
 end
 
