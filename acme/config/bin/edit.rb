@@ -77,7 +77,12 @@ society.each_host do |host|
 			agent.remove_component("org.cougaar.core.topology.TopologyReaderServlet")
 			agent.each_component do |comp|
 				if comp.classname == "org.cougaar.mlm.plugin.ldm.LDMSQLPlugin"
+				  # 10.4 and earlier used fdm_equip from DB,
+				  # and fdm_equip_ref from XML.
+				  # 10.4.1+ uses fdm_equipment for both
+				  if comp.arguments[0].value == "fdm_equip.q"
 					comp.arguments[0].value = "fdm_equip_ref.q"
+				  end
 				end
 				if comp.classname == "org.cougaar.mlm.plugin.organization.GLSInitServlet"
 					if comp.arguments[0].value == "093FF.oplan.q"

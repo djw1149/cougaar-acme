@@ -49,7 +49,11 @@ society.each_node do |node|
         agent.remove_component("org.cougaar.core.topology.TopologyReaderServlet")
         agent.each_component do |comp|
             if comp.classname == "org.cougaar.mlm.plugin.ldm.LDMSQLPlugin"
-                comp.arguments[0].value = "fdm_equip_ref.q"
+		# Only edit fdm_equip to fdm_equip_ref for 10.4 and earlier
+		# 10.4.1+ uses fdm_equipment
+		if comp.arguments[0].value == "fdm_equip.q"
+                  comp.arguments[0].value = "fdm_equip_ref.q"
+		end
             end
             if comp.classname == "org.cougaar.mlm.plugin.organization.GLSInitServlet"
 		if comp.arguments[0].value == "093FF.oplan.q"
