@@ -594,9 +594,9 @@ module Cougaar
         filelist = []
         @archive_entries.each do |entry| 
           if  entry.file.kind_of? Proc
-            entry.file.call.each {|file| filelist << file}
+            entry.file.call.each {|file| filelist << file if File.exist?(file)}
           else
-            filelist <<  entry.file
+            filelist << entry.file if File.exist?(entry.file)
           end
         end
         File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
@@ -607,10 +607,14 @@ module Cougaar
         @archive_entries.each do |entry|
           if entry.file.kind_of? Proc
             entry.file.call.each do |file| 
-              descriptor << "<file name='#{file}' description='#{entry.description}'/>\n"
+              if File.exist?(file)
+                descriptor << "<file name='#{file}' description='#{entry.description}'/>\n"
+              end
             end
           else
-            descriptor << "<file name='#{entry.file}' description='#{entry.description}'/>\n"
+            if File.exist?(entry.file)
+              descriptor << "<file name='#{entry.file}' description='#{entry.description}'/>\n"
+            end
           end
           
         end
@@ -736,6 +740,7 @@ module Cougaar
         @sequence.start
         archive
       end
+      stop
       ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, false)) if ExperimentMonitor.active?
       #TODO: logging end
     end
@@ -749,7 +754,12 @@ module Cougaar
     end
     
     def stop
-      @stop_listeners.each {|listener| listener.call}
+      @stop_listeners.each do |listener| 
+        begin
+          listener.call
+        rescue Exception => e
+        end
+      end
       @state = STOPPED
     end
     
