@@ -22,7 +22,7 @@ society.each_node do |node|
 
     node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
 
-    node.override_parameter("-Dorg.cougaar.core.wp.resolver.select.defaultScore","1000")
+#    node.override_parameter("-Dorg.cougaar.core.wp.resolver.select.defaultScore","1000")
 
     node.override_parameter("-Dorg.cougaar.core.service.SuicideService.enable","true")
 
@@ -43,6 +43,7 @@ society.each_node do |node|
 #         assume wp server messages take 20 seconds instead of 0.75 seconds,
 #         to reduce server switching when comms are slow
      node.override_parameter("-Dorg.cougaar.core.wp.resolver.select.defaultScore","20000")
+     node.override_parameter("-Dorg.cougaar.core.wp.resolver.select.lousyScore","80000"")
 ################################    
     # Add start time/timezone if startTime parameter is not present
     start_time = nil
