@@ -1,6 +1,6 @@
 ####################################################
 # Rule to insert GLSInitServlet
-# plugin = org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF.oplan.q)
+# plugin = org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF)
 
 gls_init_servlet = "org.cougaar.mlm.plugin.organization.GLSInitServlet"
 
