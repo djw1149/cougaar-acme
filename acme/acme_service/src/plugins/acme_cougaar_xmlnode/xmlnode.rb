@@ -50,7 +50,7 @@ class XMLCougaarNode
   end
 
   def jabber
-    return @plugin["/plugins/acme_host_communications/session"].data
+    return @plugin["/plugins/acme_host_communications/client"].data
   end
 
   def makeFileName(basename)
@@ -403,6 +403,9 @@ class XMLCougaarNode
 
     def start
       cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} >& #{@config_mgr.cougaar_install_path}/workspace/nodelogs/#{@name}.log")
+      # wwright: use the line below to allow stdio to go to message clients 
+      #          instead of a file
+      # cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} ")
       
       @plugin.log_info << "Starting command:\n#{cmd}"
 
@@ -427,7 +430,15 @@ class XMLCougaarNode
     def sendMsg(s) 
       begin
         @listeners.each do |msg|
-          @xml_cougaar_node.jabber.connection.send(msg.reply.set_body(s))
+          # we will re-connect to jabber, so don't assume that
+          # the session is the same as the original message
+          if (@xml_cougaar_node.jabber.respond_to?(:connection))
+            @xml_cougaar_node.jabber.connection.send(msg.reply.set_body(s))
+          else
+            # we don't have the same kind of handle to the
+            # message router service so just reply to the orig message
+            msg.reply.set_body(s).send
+          end
         end
 
         if (@conference)
