@@ -85,6 +85,42 @@ module Cougaar
       end
     end
   
+    def self.enable_logging
+      monitor = ExperimentMonitor.new
+      
+      def monitor.on_experiment_begin(experiment)
+        Cougaar.logger.info "[#{Time.now}] Experiment: #{experiment.name} started."
+      end
+      def monitor.on_experiment_end(experiment)
+        Cougaar.logger.info  "[#{Time.now}] Experiment: #{experiment.name} finished."
+      end
+      
+      def monitor.on_run_begin(run)
+        Cougaar.logger.info  "[#{Time.now}]   Run: #{run.name} started."
+      end
+      def monitor.on_run_end(run)
+        Cougaar.logger.info  "[#{Time.now}]   Run: #{run.name} finished."
+      end
+      
+      def monitor.on_state_begin(state)
+        Cougaar.logger.info  "[#{Time.now}]     Waiting for: #{state}"
+      end
+      def monitor.on_state_end(state)
+        Cougaar.logger.info  "[#{Time.now}]     Done: #{state}"
+      end
+      
+      def monitor.on_action_begin(action)
+        Cougaar.logger.info  "[#{Time.now}]     Starting: #{action}"
+      end
+      def monitor.on_action_end(action)
+          Cougaar.logger.info  "[#{Time.now}]     Finished: #{action}"
+      end
+      
+      def monitor.on_state_interrupt(state)
+        Cougaar.logger.info   "[#{Time.now}]     ** INTERRUPT ** #{state}"
+      end
+    end
+  
     def initialize
       ExperimentMonitor.add(self)
     end
