@@ -56,6 +56,14 @@ module ACME; module Plugins
         list
       end
       
+      def group
+        base_name.split(/-/)[1]
+      end
+      
+      def group_baseline
+        @service.group_baseline(group)
+      end
+      
       def open_prior_archive(prior_archive)
         archive = @service.open_prior_archive(self, prior_archive)
         @prior_archives << archive if archive
@@ -141,7 +149,7 @@ module ACME; module Plugins
         @prior_archives.each do |prior_archive|
           prior_archive.cleanup
         end
-        `cd #{@root_path}; tar -czf #{File.expand_path(@archive_file)+".new"} *`
+        `cd #{@root_path}; tar -czf #{File.expand_path(@archive_file)} *`
       end
 
       def compress_reports

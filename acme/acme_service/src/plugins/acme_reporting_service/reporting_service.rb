@@ -67,9 +67,24 @@ class ReportingService
     @report_verifiers = []
     @hostname = `hostname`.strip
     @processing_queue = ProcessingQueue.new
-    load_template_engine
+    @groups_file = File.join(@plugin.plugin_configuration.base_path, 'groups.yaml')
+    #load_template_engine
+    #mount_web_services
     start_threads
     monitor_path
+  end
+  
+  def mount_web_services
+    @plugin['/protocols/http/reporting'].set_proc do |request, response| 
+      if request.request_method=="POST"
+        data = request.query
+        response['Content-Type'] = "text/html"
+        response.body = @ikko["schedule_complete.html", {'filename'=>filename, 'footer'=>@footer}]
+      else
+        response['Content-Type'] = "text/html"
+        response.body = @ikko["schedule_run.html", {'footer'=>@footer}]
+      end
+    end
   end
   
   def load_template_engine
@@ -152,6 +167,50 @@ class ReportingService
     prior_archive = ArchiveStructure.new(self, prior_file, current.root_path, @report_path)
     prior_archive.expand
     return prior_archive
+  end
+  
+  def groups
+    groups = {}
+    files = []
+    Dir.glob(File.join(@archive_path, "*.xml")).each do |file|
+      if File.basename(file) =~ /^baseline.*/
+        files << File.basename(file)[0...-4]
+      end
+    end
+    files.sort {|a,b| parse_time(b)<=>parse_time(a)}
+    files.each do |file|
+      group = file.split(/-/)[1]
+      group_entries = groups[group]
+      unless group_entries
+        group_entries = []
+        groups[group] = group_entries
+      end
+      group_entries << file
+    end
+    groups
+  end  
+  
+  def group_baseline(group_name)
+    group = self.groups[group_name]
+    return nil if group.nil? || group.size == 0
+    if File.exist?(@groups_file)
+      begin
+        set_groups = YAML.load(File.read(@groups_file))
+        if set_groups.kind_of?(Hash) &&
+         set_groups.has_key?(group_name)
+          if group.include?(set_groups[group_name])
+            return set_groups[group_name]
+          else
+            @plugin.log_error << "Baseline does not exist: group: #{group_name} - baseline: #{set_groups[group_name]}\nDefaulting to last baseline"
+            return nil
+          end
+        end
+      rescue
+        @plugin.log_error << "Could not parse YAML group file: #{File.expand_path(@groups_file)}"
+        return nil
+      end
+    end
+    return group.last
   end
   
   def parse_time(name)
