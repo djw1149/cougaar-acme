@@ -11,7 +11,7 @@ description: This is a standard network stressor which would take six parameters
              nodes - Array of nodes to stress.
 =end
 
-$IntermittentCLink = 0 unless $IntermittentCLink > 0
+$IntermittentCLink = 0 if $IntermittentCLink.nil?
 
 insert_after parameters[:start_tag] do
   if( parameters[:start_delay] != nil && parameters[:start_delay] > 0 )
