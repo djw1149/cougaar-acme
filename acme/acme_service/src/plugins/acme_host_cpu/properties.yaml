@@ -1,0 +1,8 @@
+#### Properties: acme_node_cpu - Version: 1.0
+properties: ~
+"|": 
+  - command: "cpu"
+  - description: "Eliminate CPU Cycles. Params: red|yellow|green|stop"
+  - green: "25"
+  - yellow: "50"
+  - red: "80"

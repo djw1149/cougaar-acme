@@ -1,0 +1,5 @@
+#### Properties: acme_cougaar_node - Version: 1.0
+properties: ~
+"|": 
+  - props_path: "/mnt/shared/acme_config/Linux.props"
+  - jvm_path: "/usr/java/j2sdk1.4.1/bin/java"

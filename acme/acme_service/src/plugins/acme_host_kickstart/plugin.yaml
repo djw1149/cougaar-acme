@@ -1,0 +1,8 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_host_kickstart
+version: 1.0
+autoload: (true)
+require_path: acme_host_kickstart/kickstart
+startup_module: ACME::Plugins::Kickstart
+start_dependencies: 
+  acme_host_jabber_service: "*"

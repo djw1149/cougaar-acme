@@ -1,0 +1,6 @@
+#### Properties: acme_node_nic - Version: 1.0
+properties: ~
+"|": 
+  - command: "nic"
+  - description: "Disable Network Interfaces. Params: trigger|reset|info"
+  - interface: "eth0"

@@ -1,0 +1,8 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_tic_update_rpm
+version: 1.0
+autoload: (true)
+require_path: acme_tic_update_rpm/update_rpm
+startup_module: ACME::Plugins::UpdateRPM
+start_dependencies: 
+  acme_host_jabber_service: "*"

@@ -1,0 +1,5 @@
+#### Properties: acme_node_power - Version: 1.0
+properties: ~
+"|": 
+  - command: "poweroff"
+  - description: "Physical Power Off the node, no shutdown Params: trigger|info"
