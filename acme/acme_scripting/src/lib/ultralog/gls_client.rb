@@ -69,8 +69,10 @@ puts "DATA: #{line.strip}"
                   @oplan_name = match[1]
                   @oplan_id = match[2]
                   @c0_date = match[3]
-                  @next_stage = match[4]
-                  @stages << @next_stage
+                  unless match[4]==@next_stage
+                    @next_stage = match[4]
+                    @stages << @next_stage
+                  end
                 when /^<GLS .*>/
                   @can_send_oplan = true
                 end
