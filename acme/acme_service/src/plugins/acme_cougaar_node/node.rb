@@ -65,6 +65,7 @@ class CougaarNode
       elsif !@props_file.include?('/') && !@props_file.include?("\\")
         @props_file = File.join(@config_mgr.cougaar_install_path, "server", "bin", @props_file)
       end
+      @plugin.log_info << "Props file: #{@props_file}"
       @java_class = nil
       @arguments = nil
       @env = []
