@@ -136,7 +136,7 @@ module Cougaar
         @run.info_message "KILL: Sending message to #{node.host.name} -- command[stop_#{@node_type}node]#{pid} \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[stop_#{@node_type}node]#{pid}").request(60)
         if result.nil?
-          @run.error_message "Could not kill node #{node.name}(#{pid}) on host #{node.host.host_name}"
+          @run.info_message "Could not kill node #{node.name}(#{pid}) on host #{node.host.host_name}"
         else
           node.active = false
           node.agents.each do |agent|
