@@ -10,7 +10,7 @@ module ACME; module Plugins
 
     def perform
       stages = []
-      stages << "stage"
+      stages << "stage_restore"
       stages << "stage_1"
       stages << "stage_2"
       stages << "stage_3"
