@@ -1,0 +1,11 @@
+# This rule enables GC logging.  
+# The output will be lost unless Mark's modified xmlnode.rb 
+# is loaded on the hosts of interest to reroute it to $CIP/workspace/nodelogs/
+
+society.each_host do |host|
+    host.each_node do |node|
+      node.replace_parameter(/\-verbose\:gc/, "-verbose:gc")
+      node.replace_parameter(/\-XX\:+PrintGCTimeStamps/, "-XX:+PrintGCTimeStamps")
+      node.replace_parameter(/\-XX\:+PrintGCDetails/, "-XX:+PrintGCDetails")
+    end
+end
