@@ -53,9 +53,7 @@ module Cougaar
       
       def perform
         begin
-          hosts = []
-          @run.society.each_active_host { |host| hosts << host }
-          hosts.each_parallel do |host|
+          @run.society.each_active_host do |host|
             begin
               ms = Cougaar::MtsStats.new(@run.society)
               d = ms.getAllData()
