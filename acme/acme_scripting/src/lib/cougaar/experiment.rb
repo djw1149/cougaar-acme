@@ -906,6 +906,7 @@ module Cougaar
       @started = true
       last_state = nil
       while @definitions[@current_definition]
+        @definitions[@current_definition]._start_time = Time.now
         @insert_index = @current_definition + 1
         if @definitions[@current_definition].kind_of? State
           ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@current_definition], true)) if ExperimentMonitor.active?
@@ -923,18 +924,19 @@ module Cougaar
             @definitions[@current_definition].perform
           rescue ActionFailure => failure
             ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{failure}"))
-            exit
+            interrupt
           ensure
             ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
           end
         end
+        @definitions[@current_definition]._end_time = Time.now
         @current_definition += 1
       end
     end
   end
   
   class State
-    attr_accessor :timeout, :failure_proc, :tag
+    attr_accessor :timeout, :failure_proc, :tag, :_start_time, :_end_time
     attr_reader :experiment, :run
     def initialize(run, timeout=nil, &block)
       timeout = timeout.to_i if timeout && timeout.respond_to?(:to_i)
@@ -1091,7 +1093,7 @@ module Cougaar
   end
   
   class Action
-    attr_accessor :sequence, :tag
+    attr_accessor :sequence, :tag, :_start_time, :_end_time
     attr_reader :run, :experiment
     def initialize(run)
       @run = run
@@ -1329,6 +1331,46 @@ module Cougaar
         sleep @seconds
       end
     end
+
+    class SleepFrom < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sleep the script for the specified number of seconds from the indicated location."
+        @parameters = [
+          {:location => "Location to sleep from (eg. at :location)"},
+          {:seconds => "Number of seconds to sleep (Numeric)"}
+        ]
+        @example = "do_action 'SleepFrom', :start_society, 5.minutes"
+      }
+      def initialize(run, location, seconds)
+        super(run)
+        @location = location
+        @seconds = seconds
+        index = @sequence.index_of(@location)
+        raise "Unknown location in SleepFrom: #{@location}" unless index
+      end
+      def to_s
+        return super.to_s + "(#{@seconds/60.0} minutes past #{@location})"
+      end
+      def perform
+        begin
+          index = @sequence.index_of(@location)
+          if index
+            et = @sequence.definitions[index]._end_time
+            tts = @seconds - (Time.now - et)
+            if tts < 0
+              @run.info_message "WARNING: Already past sleep time #{tts} seconds, not sleeping."
+            else
+              sleep tts
+            end
+          else
+            @run.error_message "Could not find location: #{@location}."
+          end
+        rescue
+          @run.error_message "Error sleeping from #{@location} for #{@time/60.0} minutes."
+        end
+      end
+    end
+    
     class ExperimentSucceeded < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
         @description = "Marker action to document that the experiment succeeded."
