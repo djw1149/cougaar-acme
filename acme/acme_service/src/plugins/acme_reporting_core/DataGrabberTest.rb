@@ -105,8 +105,6 @@ module ACME
           asset_error_lvl = 2
         end
 
-        puts unit_error_lvl
-        puts asset_error_lvl
         return [unit_error_lvl, asset_error_lvl].max
       end
        
