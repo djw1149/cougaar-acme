@@ -40,17 +40,19 @@ end
 
 puts "[#{Time.now}] Starting Registered Test: #{scriptInfo.file_name}/#{testId}"
 
-config = Polaris::CougaarConfig.new configFile, ENV["COUGAAR_INSTALL_PATH"]
+$POLARIS_CONFIG = Polaris::CougaarConfig.new configFile, ENV["COUGAAR_INSTALL_PATH"]
 if ($POLARIS_UPDATE)
   puts "[#{Time.now}] Begining cougaar.update"
-  config.update
+  $POLARIS_CONFIG.update
   puts "[#{Time.now}] cougaar.update Finished"
 else
   puts "[#{Time.now}] Skipping cougaar.update"
 end
 
+$POLARIS_CONFIG.update_versions
+
 puts "[#{Time.now}] Transforming . . ."
-ARGV[0] = config.transform_script
+ARGV[0] = $POLARIS_CONFIG.transform_script
 
 puts "[#{Time.now}] . . . Done.  Results in #{ARGV[0]}"
 
@@ -68,15 +70,23 @@ begin
   $POLARIS_MONITOR = monitor
 
   load scriptFile
+
   puts "[#{Time.now}] Experiment Finished"
 
 rescue XMLRPC::FaultException => e
   puts "Code: #{e.faultCode}"
   puts "Msg: #{e.faultString}"
+  monitor.polaris_failure( e )
   throw e
 rescue Exception => exc
   puts "Caught ACME Exception: #{exc}"
-  monitor.acme_failure( exc )
+  begin
+    monitor.acme_failure( exc )
+  rescue XMLRPC::FaultException => fe
+    puts "Code: #{fe.faultCode}"
+    puts "Msg: #{fe.faultString}"
+    throw fe
+  end
   throw exc
 end
 
