@@ -10,12 +10,14 @@
 #     - orgs which have personnel are consumers of Subsistence
 #
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Ammunition)
-# plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=BulkPOL)
+# 1AD: plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=BulkPOL)
+# UA: plugin = com.bbn.fcss.plugin.inventory.UAInventoryPlugin(SUPPLY_TYPE=BulkPOL, INVENTORY_FILE=CA_BN_bulkpol.inv)
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=PackagedPOL)
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Consumable)
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Subsistence)
 
 inventory_plugin = "org.cougaar.logistics.plugin.inventory.InventoryPlugin"
+ua_inventory_plugin = "com.bbn.fcss.plugin.inventory.UAInventoryPlugin"
 
 society.each_agent do |agent|
   roles = []
@@ -28,44 +30,60 @@ society.each_agent do |agent|
   end
   has_equipment = agent.get_facet(:has_equipment_assets)
   has_personnel = agent.get_facet(:has_personnel_assets)
-  if roles.include?("AmmunitionProvider") || has_equipment
-    unless (role_and_mechanisms.include?("AmmunitionProvider.TerminalAmmunitionPacker") ||     # OSC
-            role_and_mechanisms.include?("AmmunitionProvider.TerminalInventoryManager"))       # AWR-2
-      agent.add_component do |c|
-        c.classname = inventory_plugin
-        c.add_argument('SUPPLY_TYPE=Ammunition')
+  is_ua = agent.get_facet(:is_ua)
+
+  unless is_ua
+    if roles.include?("AmmunitionProvider") || has_equipment 
+      unless (role_and_mechanisms.include?("AmmunitionProvider.TerminalAmmunitionPacker") ||     # OSC
+	      role_and_mechanisms.include?("AmmunitionProvider.TerminalInventoryManager"))       # AWR-2
+	agent.add_component do |c|
+	  c.classname = inventory_plugin
+	  c.add_argument('SUPPLY_TYPE=Ammunition')
+	end
       end
     end
   end
   if roles.include?("FuelSupplyProvider") || has_equipment
     unless role_and_mechanisms.include?("FuelSupplyProvider.TerminalInventoryManager")
       agent.add_component do |c|
-        c.classname = inventory_plugin
-        c.add_argument('SUPPLY_TYPE=BulkPOL')
+	if is_ua
+	  c.classname = ua_inventory_plugin
+	  c.add_argument('SUPPLY_TYPE=BulkPOL')
+	  c.add_argument('INVENTORY_FILE=CA_BN_bulkpol.inv')
+	else
+	  c.classname = inventory_plugin
+	  c.add_argument('SUPPLY_TYPE=BulkPOL')
+	end
       end
     end
   end
-  if roles.include?("PackagedPOLSupplyProvider") || has_equipment
-    unless role_and_mechanisms.include?("PackagedPOLSupplyProvider.TerminalInventoryManager")
-      agent.add_component do |c|
-        c.classname = inventory_plugin
-        c.add_argument('SUPPLY_TYPE=PackagedPOL')
+  unless is_ua
+    if roles.include?("PackagedPOLSupplyProvider") || has_equipment
+      unless role_and_mechanisms.include?("PackagedPOLSupplyProvider.TerminalInventoryManager")
+	agent.add_component do |c|
+	  c.classname = inventory_plugin
+	  c.add_argument('SUPPLY_TYPE=PackagedPOL')
+	end
       end
     end
   end
-  if roles.include?("SparePartsProvider") || has_equipment
-    unless role_and_mechanisms.include?("SparePartsProvider.TerminalInventoryManager")
-      agent.add_component do |c|
-        c.classname = inventory_plugin
-        c.add_argument('SUPPLY_TYPE=Consumable')
+  unless is_ua
+    if roles.include?("SparePartsProvider") || has_equipment
+      unless role_and_mechanisms.include?("SparePartsProvider.TerminalInventoryManager")
+	agent.add_component do |c|
+	  c.classname = inventory_plugin
+	  c.add_argument('SUPPLY_TYPE=Consumable')
+	end
       end
     end
   end
-  if roles.include?("SubsistenceSupplyProvider") || has_personnel
-    unless role_and_mechanisms.include?("SubsistenceSupplyProvider.TerminalInventoryManager")
-      agent.add_component do |c|
-        c.classname = inventory_plugin
-        c.add_argument('SUPPLY_TYPE=Subsistence')
+  unless is_ua
+    if roles.include?("SubsistenceSupplyProvider") || has_personnel
+      unless role_and_mechanisms.include?("SubsistenceSupplyProvider.TerminalInventoryManager")
+	agent.add_component do |c|
+	  c.classname = inventory_plugin
+	  c.add_argument('SUPPLY_TYPE=Subsistence')
+	end
       end
     end
   end

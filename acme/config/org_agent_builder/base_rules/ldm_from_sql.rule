@@ -1,15 +1,22 @@
 ####################################################
 # Rule to insert LDMSQLPlugin
 # This Plugin gets equipment (and personnel???) from fdm database tables
-# plugin = org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)
+# 1AD: plugin = org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)
+# UA: plugin = com.bbn.fcss.ldm.FCSLDMSQLPlugin(fcs_indiv_equip.q)
 
 ldm_sql_plugin = "org.cougaar.mlm.plugin.ldm.LDMSQLPlugin"
+fcs_ldm_sql_plugin = "com.bbn.fcss.ldm.FCSLDMSQLPlugin"
 
 society.each_agent do |agent|
   if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
-      c.classname = ldm_sql_plugin
-      c.add_argument("fdm_equipment.q")
+      if agent.get_facet(:is_ua)
+	c.classname = fcs_ldm_sql_plugin
+	c.add_argument('fsc_indiv_equip.q')
+      else
+	c.classname = ldm_sql_plugin
+	c.add_argument("fdm_equipment.q")
+      end
     end
   end
 end

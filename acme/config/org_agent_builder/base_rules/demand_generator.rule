@@ -8,43 +8,38 @@
 # plugin = org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Subsistence)
 
 demand_generator_plugin = "org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin"
+ua_demand_generator_plugin = "com.bbn.fcss.plugin.demand.FcsDemandGeneratorPlugin"
 
 society.each_agent do |agent|
   if agent.get_facet(:has_equipment_assets) 
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
-	c.classname = demand_generator_plugin
-	c.add_argument('SUPPLY_TYPE=Ammunition')
-      end
-    end
-      agent.add_component do |c|
+    agent.add_component do |c|
       unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') &&
-	agent.get_facet(:is_ua) }
-	c.classname = demand_generator_plugin
+	  agent.get_facet(:is_ua) }
+	c.classname = ua_demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=BulkPOL')
 	if agent.get_facet(:is_ua)
-	  c.add_argument('GENERATE_PERIOD=3600000')
+	  c.add_argument('GENERATE_PERIOD=86400000')
 	end
       end
     end
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+    unless agent.get_facet(:is_ua)      
+      agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=PackagedPOL')
       end
-    end
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+      agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=Consumable')
       end
-    end
-  end
-  if agent.get_facet(:has_personnel_assets)
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+      agent.add_component do |c| 
 	c.classname = demand_generator_plugin
-	c.add_argument('SUPPLY_TYPE=Subsistence')
+	c.add_argument('SUPPLY_TYPE=Ammunition')
+      end
+      if agent.get_facet(:has_personnel_assets)
+	agent.add_component do |c| 
+	  c.classname = demand_generator_plugin
+	  c.add_argument('SUPPLY_TYPE=Subsistence')
+	end
       end
     end
   end

@@ -12,18 +12,27 @@ society.each_agent do |agent|
   agent.add_component do |c|
     c.classname = gls_expander_plugin
     if agent.get_facet(:has_equipment_assets)
-      c.add_argument("Ammunition")
-      c.add_argument("BulkPOL")
-      c.add_argument("PackagedPOL")
-      c.add_argument("Consumable")
+      unless agent.get_facet(:is_ua)
+	c.add_argument("Ammunition")
+	c.add_argument("PackagedPOL")
+	c.add_argument("Consumable")	
+      end
+	c.add_argument("BulkPOL")
     end
     if agent.get_facet(:has_personnel_assets)
-      c.add_argument("Subsistence")
+      unless agent.get_facet(:is_ua)
+	c.add_argument("Subsistence")
+      end
     end
-    if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
+    # Will UA agents pass the has_personnel and has equipment tests?
+    if agent.get_facet(:is_ua)
       c.add_argument("MaintainInventory")
-      if agent.get_facet(:is_deployable)
-        c.add_argument("StrategicTransportation")
+    else
+      if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
+	c.add_argument("MaintainInventory")
+	if agent.get_facet(:is_deployable)
+	  c.add_argument("StrategicTransportation")
+	end
       end
     end
   end

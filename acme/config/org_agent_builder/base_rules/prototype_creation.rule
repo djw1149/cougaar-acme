@@ -35,7 +35,7 @@ society.each_agent do |agent|
 	c.add_argument("-PrototypeProvider")
       else 
 	c.classname = ua_prototype_provider
-	c.add_argument("MEI.q")
+	c.add_argument("fcsMEI.q")
 	c.add_argument("+PrototypeProvider")
       end
     end

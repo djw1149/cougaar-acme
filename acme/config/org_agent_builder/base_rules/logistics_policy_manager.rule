@@ -48,70 +48,75 @@ society.each_agent do |agent|
 #
 # Then insert policy arguments
 # AmmunitionProvider
-    my_role = "AmmunitionProvider"
-    my_commodity = "Ammunition"
-    if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
-      my_echelon_of_support = roles[my_role][1]
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+    if agent.get_facet(:is_ua)
+      c.add_argument("POLICY=InventoryPolicy-HOW_DO_I_GET_THIS.ldm.xml")
       c.add_argument(no_destination)
     else
-      my_echelon_of_support = "CONSUMER"
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    end
-# FuelSupplyProvider
-    my_role = "FuelSupplyProvider"
-    my_commodity = "BulkPOL"
-    if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
-      my_echelon_of_support = roles[my_role][1]
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    else
-      my_echelon_of_support = "CONSUMER"
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    end
-# PackagedPOLSupplyProvider
-    my_role = "PackagedPOLSupplyProvider"
-    my_commodity = "PackagedPOL"
-    if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
-      my_echelon_of_support = roles[my_role][1]
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    else
-      my_echelon_of_support = "CONSUMER"
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    end
-# SparePartsProvider
-    my_role = "SparePartsProvider"
-    my_commodity = "Consumable"
-    if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
-      my_echelon_of_support = roles[my_role][1]
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    else
-      my_echelon_of_support = "CONSUMER"
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    end
-# SubsistenceSupplyProvider
-    my_role = "SubsistenceSupplyProvider"
-    my_commodity = "Subsistence"
-    if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
-      my_echelon_of_support = roles[my_role][1]
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    else
-      my_echelon_of_support = "CONSUMER"
-      c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
-      c.add_argument(no_destination)
-    end
-# ArmyFeedingPolicy
-    my_role = "ArmyCommander"
-    if (roles.has_key?(my_role))
-      c.add_argument("POLICY=ArmyFeedingPolicy.ldm.xml")
-      c.add_argument(subordinate_destination)
+      my_role = "AmmunitionProvider"
+      my_commodity = "Ammunition"
+      if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
+	my_echelon_of_support = roles[my_role][1]
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      else
+	my_echelon_of_support = "CONSUMER"
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      end
+      # FuelSupplyProvider
+      my_role = "FuelSupplyProvider"
+      my_commodity = "BulkPOL"
+      if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
+	my_echelon_of_support = roles[my_role][1]
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      else
+	my_echelon_of_support = "CONSUMER"
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      end
+      # PackagedPOLSupplyProvider
+      my_role = "PackagedPOLSupplyProvider"
+      my_commodity = "PackagedPOL"
+      if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
+	my_echelon_of_support = roles[my_role][1]
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      else
+	my_echelon_of_support = "CONSUMER"
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      end
+      # SparePartsProvider
+      my_role = "SparePartsProvider"
+      my_commodity = "Consumable"
+      if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
+	my_echelon_of_support = roles[my_role][1]
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      else
+	my_echelon_of_support = "CONSUMER"
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      end
+      # SubsistenceSupplyProvider
+      my_role = "SubsistenceSupplyProvider"
+      my_commodity = "Subsistence"
+      if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
+	my_echelon_of_support = roles[my_role][1]
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      else
+	my_echelon_of_support = "CONSUMER"
+	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument(no_destination)
+      end
+      # ArmyFeedingPolicy
+      my_role = "ArmyCommander"
+      if (roles.has_key?(my_role))
+	c.add_argument("POLICY=ArmyFeedingPolicy.ldm.xml")
+	c.add_argument(subordinate_destination)
+      end
     end
   end
 end
