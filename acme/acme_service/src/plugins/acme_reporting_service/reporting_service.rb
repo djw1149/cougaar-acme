@@ -151,6 +151,7 @@ class ReportingService
       while true
         files = Dir.glob(File.join(@archive_path, "*.xml"))
         new_files = files - last
+        new_files.delete_if {|file| !is_cougaar_archive?(file)}
         new_files.each do |file|
           archive = ArchiveStructure.new(self, file, @temp_path, @report_path)
           @processing_queue.enqueue(archive)
@@ -172,7 +173,9 @@ class ReportingService
   def groups
     groups = {}
     files = []
-    Dir.glob(File.join(@archive_path, "*.xml")).each do |file|
+    xml_files = Dir.glob(File.join(@archive_path, "*.xml"))
+    xml_files.delete_if {|file| !is_cougaar_archive?(file)}
+    xml_files.each do |file|
       if File.basename(file) =~ /^baseline.*/
         files << File.basename(file)[0...-4]
       end
@@ -224,7 +227,9 @@ class ReportingService
   def get_prior_archives(current, time=nil, name_pattern=/.*/)
     base_time = parse_time(File.basename(current.xml_file))
     files = []
-    Dir.glob(File.join(@archive_path, "*.xml")).each do |file|
+    xml_files = Dir.glob(File.join(@archive_path, "*.xml"))
+    xml_files.delete_if {|file| !is_cougaar_archive?(file)}
+    xml_files.each do |file|
       ftime = parse_time(File.basename(file))
       if (base_time - ftime) > 0
         if (time==nil || (base_time - ftime) < time) && name_pattern =~ File.basename(file)
@@ -265,6 +270,16 @@ class ReportingService
       end
     end
     return rerun_reports
+  end
+
+  def is_cougaar_archive?(xml_file)
+    ret = false
+    begin
+      doc = REXML::Document.new(File.new(xml_file))
+      ret = (doc.root.name == "run")
+    rescue #catch any malformed xml exceptions and return false
+    end
+    ret
   end
 end
 
