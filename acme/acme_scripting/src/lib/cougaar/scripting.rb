@@ -19,6 +19,8 @@
 # </copyright>
 #
 
+$stdout.sync = true
+
 class Integer
   def seconds(value=0)
     return to_i+value
