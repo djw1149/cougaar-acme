@@ -261,16 +261,16 @@ module Cougaar
           else
             @run.error_message "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
           end
+
+          society_request_time = (change_time - Time.now).ceil
+          if (society_request_time <= 0.0)
+            @run.error_message "ERROR: #{node.name} did not receive Advance Time message before sync time (late by #{society_request_time})"
+          end
         end
 
         if @debug
           @run.info_message "Servlet requests took #{Time.now.to_i - request_start_time.to_i} seconds"
         end
-
-	society_request_time = (change_time - Time.now).ceil
-	if (society_request_time <= 0.0)
-	  @run.error_message "ERROR: All nodes did not receive Advance Time message before sync time"
-	end
 
         # make sure we don't progress until the time we've told the society to put the new time into effect
 	sleep_time = (change_time - Time.now).ceil
