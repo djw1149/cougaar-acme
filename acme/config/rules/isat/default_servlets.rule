@@ -3,7 +3,7 @@
 
 simple_servlet_comp = "org.cougaar.core.servlet.SimpleServletComponent"
 
-society.each_node_agent do |agent|
+society.each_agent(true) do |agent|
   agent.add_component do |c|
     c.classname = simple_servlet_comp
     c.add_argument("org.cougaar.planning.servlet.PlanViewServlet")
