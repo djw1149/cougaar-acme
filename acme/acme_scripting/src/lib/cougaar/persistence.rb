@@ -68,7 +68,7 @@ module Cougaar
           File.open("#{ENV['CIP']}/workspace/P/communities.xml", "w") do |file|
             file.puts @run.society.communities.to_xml
           end
-          `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P`
+          `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P security`
           `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
           `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
         rescue
