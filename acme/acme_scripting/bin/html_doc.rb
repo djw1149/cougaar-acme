@@ -17,7 +17,7 @@ def output_action(action)
   result << "<td valign='top'><b>Description: </b>#{docs ? docs.description : 'undocumented'}</td>"
   result << "<td valign='top'><b>Resultant State: </b>#{action.resultant_state ? action.resultant_state : 'None'}<br><b>Prior States: </b>#{action.prior_states ? action.prior_states.join(', ') : 'None'}</td>"
   result << "</tr><tr>"
-  result << "<td valign='top'><b><U>Paramters:</U></b>"
+  result << "<td valign='top'><b><U>Parameters:</U></b>"
   if docs
     if docs.has_parameters?
       docs.each_parameter do |param, desc|
@@ -60,7 +60,7 @@ def output_state(state)
   result << "</tr>"
   return result if state.is_noop?
   result << "<tr>"
-  result << "<td valign='top'><b><U>Paramters:</U></b>"
+  result << "<td valign='top'><b><U>Parameters:</U></b>"
   if docs
     if docs.has_parameters?
       docs.each_parameter do |param, desc|
