@@ -6,7 +6,6 @@
 # between each VLAN.
 #
 require "rexml/document"
-#require "utb/failure.rb"
 
 module VlanSupport
   class WANLink
@@ -70,7 +69,7 @@ module VlanSupport
       @vlans = Array.new
       vlan_names = Hash.new
 
-      vlan_config = REXML::Document.new File.new xml_file
+      vlan_config = REXML::Document.new(File.new(xml_file))
       @name = vlan_config.elements["network"].attributes["name"]
       @device = vlan_config.elements["network"].attributes["device"]
 
