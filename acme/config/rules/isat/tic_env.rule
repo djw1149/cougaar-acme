@@ -13,11 +13,11 @@ society.each_node do |node|
     node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
     
     # Preferred log file name
-    node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","$COUGAAR_INSTALL_PATH/workspace/log4jlogs/$HOSTNAME.log")
+    node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","$COUGAAR_INSTALL_PATH/workspace/log4jlogs/#{node.name}.log")
     
     # To run most societies, you need configs/common and configs/glmtrans
     # on the path. 
-    node.override_parameter("-Dorg.cougaar.config.path","$COUGAAR_INSTALL_PATH/configs/common\\\;$COUGAAR_INSTALL_PATH/configs/glmtrans\\\;")
+    node.override_parameter("-Dorg.cougaar.config.path","$COUGAAR_INSTALL_PATH/configs/common\\\;$COUGAAR_INSTALL_PATH/configs/glmtrans\\\;$COUGAAR_INSTALL_PATH/configs/CnCCalc\\\;")
     
     # ACME Service will replace $COUGAAR_INSTALL_PATH with platform specific path
     node.override_parameter("-Dorg.cougaar.install.path","$COUGAAR_INSTALL_PATH")
