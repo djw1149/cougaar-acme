@@ -223,7 +223,7 @@ module Cougaar
           end
           @run.archive_and_remove_file(@filename, "Saved instance of society in memory")
         rescue
-          @run.error "Could not write society to #{@filename}"
+          @run.error_message "Could not write society to #{@filename}"
         end
       end
     end
