@@ -83,12 +83,7 @@
         <facet agency='FORSCOM'  />
         <facet org_type_id='UA-HHC'  />
         <facet org_code='AA'  />
-        <facet subordinate_org_id='UA-BIC-CO'  />
         <facet subordinate_org_id='1-CA-BN-HHC'  />
-        <facet subordinate_org_id='2-CA-BN'  />
-        <facet subordinate_org_id='3-CA-BN'  />
-        <facet subordinate_org_id='AVN-DET'  />
-        <facet subordinate_org_id='NLOS-BN'  />
         <facet subordinate_org_id='FSB'  />
         <facet role='StrategicTransportationProvider' echelon_of_support='DIVISION' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='UA-HHC'  />
@@ -112,11 +107,7 @@
         <facet org_type_id='CA-BN-HHC'  />
         <facet org_code='ACA'  />
         <facet subordinate_org_id='1-CA-BN-INF-CO-A'  />
-        <facet subordinate_org_id='1-CA-BN-INF-CO-B'  />
         <facet subordinate_org_id='1-CA-BN-MCS-CO-A-HQ'  />
-        <facet subordinate_org_id='1-CA-BN-MCS-CO-B'  />
-        <facet subordinate_org_id='1-CA-BN-RECON-DET'  />
-        <facet subordinate_org_id='1-CA-BN-MORTAR-BTY'  />
         <facet role='StrategicTransportationProvider' echelon_of_support='DIVISION' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-CA-BN-HHC'  />
       </agent>
