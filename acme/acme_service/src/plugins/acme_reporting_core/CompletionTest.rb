@@ -54,18 +54,24 @@ module ACME
       end
       
       def perform
+        puts "Starting Comp"
         comp_files = @archive.files_with_description(/completion/)
+        baseline_name = @archive.group_baseline
+        puts baseline_name
+        baseline = @archive.open_prior_archive(baseline_name)
         comp_files.each do |comp_file|
-          benchmark_file = benchmark_filename(comp_file)
+          benchmark_pattern = Regexp.new(File.basename(comp_file.name))
+          puts benchmark_pattern
+          benchmark_file = baseline.files_with_name(benchmark_pattern)[0]
+          puts benchmark_file
           report_name = File.basename(comp_file.name, ".xml")
-          report_name.gsub!(/comp_/, "")
-          report_name.gsub!(/Restore-/, "")
-          
+
           @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
             data = get_file_data(File.new(comp_file.name))
-
+            next if data.agents.empty?
+            
             benchmark_data = nil
-            benchmark_data = get_file_data(File.new(benchmark_file)) unless benchmark_file.nil?
+            benchmark_data = get_file_data(File.new(benchmark_file.name)) unless benchmark_file.nil?
             result = analyze(data, benchmark_data)
             data.agents.sort! #analyze function may change ordering if agents fail
         
@@ -76,7 +82,7 @@ module ACME
             else
               report.failure
             end
-            output = html_output(data, report_name)
+            output = html_output(data, report_name, baseline_name)
             outfile = "Comp-#{report_name}.html"
             report.open_file(outfile, "text/html", "Agent completion tests for #{report_name}") do |file|
               file.puts output
@@ -90,24 +96,6 @@ module ACME
         end
       end
   
-      def benchmark_filename(compfile)
-        basename = File.basename(compfile.name)
-        old = Dir.pwd
-        Dir.chdir("/usr/local/acme/plugins/acme_reporting_core/goldencomp")
-        filename = nil
-        files = Dir[basename]
-        if (!files.empty?) then
-          filename = Dir.pwd + "/" + files[0]
-        else
-          files = Dir[basename.gsub(/Restored-/, "")]
-          if (!files.empty?) then
-            filename =  Dir.pwd + "/" + files[0]
-          end
-        end
-        Dir.chdir(old)
-        return filename
-      end
-
       def get_file_data(file)
         data = FileData.new([], {})
         curr_agent = nil
@@ -177,10 +165,12 @@ module ACME
         return error
       end
 
-      def html_output(data, stage)
+      def html_output(data, stage, baseline)
         ikko_data = {}
         ikko_data["description_link"] = "comp_description.html"
         ikko_data["stage"] = stage
+        ikko_data["baseline"] = baseline
+        ikko_data["id"] = @archive.base_name
         ikko_data["totals"] = []
         data.totals.each_key do |key|
           ikko_data["totals"] << "#{key}:  #{data.totals[key]}"        
