@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.cougaar.core.service.AlarmService;
 import org.cougaar.core.service.EventService;
 import org.cougaar.core.service.ServletService;
+import org.cougaar.core.component.ServiceBroker;
+import org.cougaar.core.component.ServiceRevokedListener;
 import org.cougaar.core.plugin.ComponentPlugin;
 
 /**
@@ -24,9 +26,9 @@ import org.cougaar.core.plugin.ComponentPlugin;
  */
 public class MemoryWasterPlugin 
 	extends ComponentPlugin
+	implements ServiceRevokedListener
 {
 	private EventService evt;
-	private ServletService srv;
 	
 	private int size = 0;
 	private int frequency = 0;
@@ -123,15 +125,11 @@ public class MemoryWasterPlugin
 		return this.evt;
 	}
 	
-	public void setServletService( ServletService srv ) {
-		this.srv = srv;
-	}
-	
-	public ServletService getServletService() {
-		return srv;
-	}
-	
 	protected void setupSubscriptions() {
+		ServiceBroker broker = getBindingSite().getServiceBroker();
+		ServletService srv =
+			(ServletService) broker.getService(this, ServletService.class, null);
+			
 		srv.register("/mem-waster", new MWServlet( getAlarmService()));
 	}
 	
