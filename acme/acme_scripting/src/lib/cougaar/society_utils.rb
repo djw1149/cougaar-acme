@@ -204,6 +204,10 @@ module Cougaar
           end
         end
         
+        # copy layout and host society's facets to the society...
+        @society_layout.each_facet { |facet| @society.add_facet(facet.clone) }
+        @society_hosts.each_facet { |facet| @society.add_facet(facet.clone) } if @society_hosts
+        
         # perform layout
         @society_layout.each_host do |host|
           if @society_hosts
@@ -236,6 +240,8 @@ module Cougaar
                 to_move = @society.agents[agent.name]
                 if to_move
                   to_move.move_to(node.name)
+                  # add layout society's agent facets to the agent
+                  agent.each_facet {|facet| to_move.add_facet(facet.clone)}
                 else
                   puts "Layout specifies agent '#{agent.name}' that is not defined in the society"
                 end
