@@ -2,32 +2,15 @@
 # Rule to insert ReportChainDetectorPlugin
 # plugin = org.cougaar.mlm.plugin.organization.ReportChainDetectorPlugin
 
-opd_classname='org.cougaar.mlm.plugin.organization.ReportChainDetectorPlugin'
-
-# Loop through agents in the society, finding those with a superior_org_id
-# use that string to keep counters of the number of agents reporting that as their
-# superior
-@sups = Hash.new
-@subs = []
 society.each_agent do |agent|
-  sup = agent.get_facet(:superior_org_id)
-  if (sup && sup != nil && sup != "")
-    @subs << agent.name.to_s
-    if @sups.has_key?(sup)
-      @sups[sup] = @sups[sup] + 1
-    else
-      @sups[sup] = 1
-    end
-  end
-end
-
-# Now use this Hash to find each such named agent in the society, and give
-# it this plugin if it does not already have it.
-@sups.keys.each do |sup|
-  agent = society.agents[sup]
-  if agent 
+  opd_classname='org.cougaar.mlm.plugin.organization.ReportChainDetectorPlugin'
+  
+  # Add this component to every agent with a superior, plus the agent
+  # that is the Log Chief -- the head of the ReportChain
+  if (agent.get_facet(:superior_org_id) || (agent.get_facet(:role) == "LogisticsCommanderInChief"))
     unless agent.has_component? { |c| c.classname == opd_classname }
-      count = @sups[sup]
+      count = 0
+      agent.each_facet(:subordinate_org_id) { |facet| count += 1 }
       
       agent.add_component do |c|
         c.classname = opd_classname
@@ -36,22 +19,4 @@ end
       end # add_component
     end # unless
   end # if
-end # each superior we found
-
-# Now go thru each subordinate 
-# If it is not one of the superiors, then give it the plugin with 0 arg
-@subs.each do |sub|
-  unless @sups.has_key?(sub)
-    agent = society.agents[sub]
-    if agent 
-      unless agent.has_component? { |c| c.classname == opd_classname }
-        agent.add_component do |c|
-          c.classname = opd_classname
-          # It has no subs
-          c.add_argument("0")
-        end # add_component
-      end # unless
-    end # if
-  end # unless is a superior
-end # for each subordinate
-
+end # each_agent
