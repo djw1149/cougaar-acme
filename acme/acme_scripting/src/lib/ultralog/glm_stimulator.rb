@@ -64,9 +64,10 @@ module UltraLog
                   :interval, :waitBefore, :waitAfter, :rescindAfterComplete, 
                   :useConfidence, :format
                   
-    def initialize(agent, host)
+    def initialize(agent, host, port)
       @agent = agent
       @host = host
+      @port = port
       @inputFileName = ""
       @forPrep = ""
       @format = "html"
@@ -74,18 +75,18 @@ module UltraLog
       yield self if block_given?
     end
     
-    def self.for_agent_on_host(agent, host)
-      return self.new(agent, host)
+    def self.for_agent_on_host(agent, host, port)
+      return self.new(agent, host, port)
     end
     
     def self.for_cougaar_agent(agent)
-      return self.new(agent.name, agent.node.host.host_name)
+      return self.new(agent.name, agent.node.host.host_name, agent.node.host.society.cougaar_port)
     end
     
     def update(format = nil)
       @format = format.to_s if format
       params = get_params
-      result = Cougaar::Communications::HTTP.get("http://#{@host}:8800/$#{@agent}/stimulator?#{params.join('&')}", 300)
+      result = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/$#{@agent}/stimulator?#{params.join('&')}", 300)
       raise "Unable to update values in GLMStimulator" unless result
       return result[0]
     end
@@ -114,7 +115,7 @@ module UltraLog
     
     def query_defaults
       value = /VALUE="(\w+)"/
-      data = Cougaar::Communications::HTTP.get("http://#{@host}:8800/$#{@agent}/stimulator", 300)
+      data = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/$#{@agent}/stimulator", 300)
       raise "Unable to query default values in GLMStimulator" unless data
       values = data[0].scan(value)
       @numberOfBatches = values[0][0].to_i
@@ -131,7 +132,7 @@ module UltraLog
 end
 
 if $0==__FILE__
-  stimulator = UltraLog::GLMStimulator.for_agent_on_host("1-35-ARBN", "u073")
+  stimulator = UltraLog::GLMStimulator.for_agent_on_host("1-35-ARBN", "u073", 8800) # test code
   stimulator.inputFileName="Supply.dat.xml"
   puts stimulator.update(:xml)
 end

@@ -80,7 +80,7 @@ module UltraLog
         end
         
         def self.from_society(society)
-          OPlan.new(society.agents['NCA'].node.host.host_name)
+          OPlan.new(society.agents['NCA'].node.host.host_name, society.cougaar_port)
         end
         
       private

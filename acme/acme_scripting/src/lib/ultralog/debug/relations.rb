@@ -147,7 +147,7 @@ module Debug
           begin
             this_agent = []
             @agents[agent.name] = this_agent
-            myuri = "http://#{node.host.name}:8800/$#{agent.name}/hierarchy?recurse=false&allRelationships=true&format=xml&Display=Submit+Query"
+            myuri = "http://#{node.host.name}:#{@society.cougaar_port}/$#{agent.name}/hierarchy?recurse=false&allRelationships=true&format=xml&Display=Submit+Query"
             data, uri = Cougaar::Communications::HTTP.get(myuri)
             doc = REXML::Document.new(data)
             doc.elements.each("Hierarchy/Org/Rel") do |element|

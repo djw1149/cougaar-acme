@@ -95,7 +95,7 @@ module UltraLog
     # return:: [UltraLog::Completion::Statistics] The results of the query
     #
     def self.status(agent)
-      query(agent.host.host_name, agent.name)
+      query(agent.host.host_name, agent.name, agent.node.host.society.cougaar_port)
     end
     
     ##
@@ -105,7 +105,7 @@ module UltraLog
     # agent:: [String] Agent name
     # return:: [UltraLog::Completion::Statistics] The results of the query
     #
-    def self.query(host, agent, port=8800)
+    def self.query(host, agent, port)
       data = Cougaar::Communications::HTTP.get("http://#{host}:#{port}/$#{agent}/completion?format=xml", 60)[0]
       return Statistics.new(data)
     end

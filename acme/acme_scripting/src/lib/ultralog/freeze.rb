@@ -66,7 +66,7 @@ module UltraLog
     #
     def initialize(society)
       nca = society.agents['NCA']
-      data, uri = Cougaar::Communications::HTTP.get("http://#{nca.host.host_name}:8800#{FREEZE_SERVLET}")
+      data, uri = Cougaar::Communications::HTTP.get("http://#{nca.host.host_name}:#{society.cougaar_port}#{FREEZE_SERVLET}")
       raise "FreezeControl cannot access society" unless data
       @uri = uri
     end

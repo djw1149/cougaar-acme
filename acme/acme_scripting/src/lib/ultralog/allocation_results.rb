@@ -15,6 +15,7 @@ class AllocationResults
     def initialize(host, agent, port=8800)
       if host.kind_of? Cougaar::Society
         society=host
+        port = society.cougaar_port
         host = society.agents['AGG-Agent'].node.host.host_name
       end
       @host  = host
@@ -41,5 +42,5 @@ end # class AllocationResults
 end # module
 
 if __FILE__ == $0
-  puts Cougaar::AllocationResults.new('192.168.120.214', '1-501-AVNBN', 8800).query
+  puts Cougaar::AllocationResults.new('192.168.120.214', '1-501-AVNBN').query
 end
