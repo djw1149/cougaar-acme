@@ -9,7 +9,7 @@ society.each_agent do |agent|
     if facet[:role] == 'LogisticsCommanderInChief'
       agent.add_component do |c|
         c.classname = gls_init_servlet
-        c.add_argument("093FF.oplan.noncsmart.q")
+        c.add_argument("093FF.oplan.q")
       end
     end
   end

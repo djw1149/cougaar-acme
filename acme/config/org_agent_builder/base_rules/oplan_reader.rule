@@ -1,0 +1,14 @@
+####################################################
+# Rule to insert OplanReader
+#   at every agent
+#
+# plugin = org.cougaar.mlm.plugin.ldm.OplanReaderPlugin
+# Replaces GetOplanPlugin
+
+oplan_reader_plugin = "org.cougaar.mlm.plugin.ldm.OplanReaderPlugin"
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = oplan_reader_plugin
+  end
+end

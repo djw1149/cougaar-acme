@@ -5,6 +5,8 @@
 # plugin = org.cougaar.servicediscovery.plugin.SDRegistrationPlugin
 # plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin(NeededRole,NeededRole,...)
 # plugin = org.cougaar.servicediscovery.plugin.SDProviderPlugin(ProvidedRole,ProvidedRole,...)
+# plugin = org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent
+# plugin = org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent
 #
 # Roles
 # AmmunitionProvider
@@ -16,6 +18,8 @@
 sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
 sd_client_plugin = "org.cougaar.servicediscovery.plugin.SDClientPlugin"
 sd_provider_plugin = "org.cougaar.servicediscovery.plugin.SDProviderPlugin"
+uddi4j_registration_service = "org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent"
+uddi4j_registry_query_service = "org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent"
 supply_roles = Array ["AmmunitionProvider",
                       "FuelSupplyProvider",
                       "PackagedPOLSupplyProvider",
@@ -70,7 +74,13 @@ society.each_agent do |agent|
   required_roles = required_roles.sort
   required_roles = required_roles.uniq 
 #
-# Then insert the SDRegistrationPlugin with no arguments
+# Then insert the UDDI4JRegistrationService, UDDI4JRegistryQueryService, and SDRegistrationPlugin with no arguments
+  agent.add_component do |c|
+    c.classname = uddi4j_registration_service
+  end
+  agent.add_component do |c|
+    c.classname = uddi4j_registry_query_service
+  end
   agent.add_component do |c|
     c.classname = sd_registration_plugin
   end
