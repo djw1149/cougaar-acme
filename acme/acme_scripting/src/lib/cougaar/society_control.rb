@@ -111,6 +111,8 @@ module Cougaar
     end
     
     def restart_node(action, node)
+      time = Time.now.gmtime
+      node.replace_parameter(/Dorg.cougaar.core.society.startTime/, "-Dorg.cougaar.core.society.startTime=\"#{time.strftime('%m/%d/%Y %H:%M:%S')}\"")
       if @xml_model
         msg_body = launch_xml_node(node, "xml")
       else
