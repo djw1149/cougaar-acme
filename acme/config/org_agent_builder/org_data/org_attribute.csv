@@ -1,12 +1,4 @@
-order,orig_org_id,base_org_id,suffix,,combat_support,echelon,echelon_group,"is_
-deployable","has_
-physical_
-assets","has_
-equipment_
-assets","has_
-personnel_
-assets",uic,"home_
-location"
+order,orig_org_id,base_org_id,suffix,,combat_support,echelon,echelon_group,"is_deployable","has_physical_assets","has_equipment_assets","has_personnel_assets",uic,"home_location"
 1,NCA,OSD,GOV,,CMD,JOINT,Conus,N,N,N,N,,VDYD
 2,TRANSCOM-STUB,TRANSCOM-STUB,MIL,,CSS,JOINT,Transcom,N,N,N,N,,VDYD
 3,TRANSCOM,TRANSCOM,MIL,,CSS,JOINT,Transcom,N,N,N,N,,VDYD

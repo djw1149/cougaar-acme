@@ -1,8 +1,4 @@
-order,orig_org_id,base_org_id,suffix,,"supported_
-base_org_id","supported_
-suffix","echelon
-_of_
-support",space
+order,orig_org_id,base_org_id,suffix,,"supported_base_org_id","supported_suffix","echelon_of_support",space
 2,TRANSCOM-STUB,TRANSCOM-STUB,MIL,,OSD,GOV,JOINT,
 3,TRANSCOM,TRANSCOM,MIL,,OSD,GOV,JOINT, 
 11,HNS,HNS,MIL,,OSD,GOV,JOINT, 
