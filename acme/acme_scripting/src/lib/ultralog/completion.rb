@@ -78,9 +78,9 @@ module Cougaar
               xml += "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
               @run.error_message "Error accessing completion data for Agent #{agent}."
             end
-          rescue
+          rescue Exception => failure
             xml += "<SimpleCompletion agent='#{agent}' status='Error: Parse exception.'\>\n"
-            @run.error_message "Error parsing completion data for Agent #{agent}."
+            @run.error_message "Error parsing completion data for Agent #{agent}: #{failure}."
           end
         end
         xml += "<TotalSocietyTasks>" + total_tasks.to_s + "</TotalSocietyTasks>\n"
@@ -149,7 +149,6 @@ module Cougaar
         comp = @run["completion_monitor"] 
 	if (comp.getSocietyStatus() == "COMPLETE")
 	  # Put this in the log file only...
-#	  @run.info_message "Society is already quiescent. About to block waiting for society to go non-quiescent, then quiescent again...."
 	  Cougaar.logger.info  "[#{Time.now}]      INFO: Society is already quiescent. About to block waiting for society to go non-quiescent, then quiescent again...."
 	end
         comp.wait_for_change_to_state("COMPLETE")
@@ -299,7 +298,7 @@ module UltraLog
         root.each_element do |elem|
           agent_name = elem.attributes["name"]
           if agent_name != node_name
-            comp[agent_name] = get_agent_data(elem, node_name)
+            comp[agent_name] = get_agent_data(elem)
           end
         end
       else
@@ -311,18 +310,19 @@ module UltraLog
       update_society_status()
     end
 
-    def get_agent_data (data, node_name)
+    def get_agent_data (data)
       agents = {}
-      agents["receivers"] = get_messages(data.elements["receivers"], node_name)
-      agents["senders"] = get_messages(data.elements["senders"], node_name)
+      agents["receivers"] = get_messages(data.elements["receivers"])
+      agents["senders"] = get_messages(data.elements["senders"])
       return agents
     end
       
-    def get_messages (data, node_name)
+    def get_messages (data)
       msgs = {}
       data.each_element do |elem|
         agent_name = elem.attributes["agent"]
-        if agent_name != node_name
+        # throw out any message ids that are to/from node agents
+        if @run.society.nodes[agent_name].nil?
           msgs[agent_name] = elem.attributes["msgnum"]
         end
       end
