@@ -423,7 +423,7 @@ class XMLCougaarNode
       @mproc.start do 
         # called on process death
         if @status == RUNNING
-          event = CougaarEvent.new
+          event = Cougaar::CougaarEvent.new
           event.node = name
           event.experiment = script_name
           event.event_type = "NODE_DEATH"

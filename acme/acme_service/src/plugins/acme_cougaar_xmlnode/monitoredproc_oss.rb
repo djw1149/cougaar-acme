@@ -180,17 +180,42 @@ class MonitoredProcess
     end
   end
 
-  # Unabashedly linux-specific
   def find_java(parent)
-    ret = parent
-    ps = `pstree -pl`
-
-    if ps =~ /java\(#{parent}\)/
-      ret = parent
-    elsif ps =~ /\(#{parent}\)[^j]*java\((\d+)\)/
-      ret =  $1
+    ret = find_child_process_id('java', parent.to_i)
+    ret = parent unless ret
+    return ret.to_s
+  end
+          
+  def get_processes
+    structure = `ps -alxc`
+    lines = []
+    structure.each_line {|line| lines << line}
+    lines = lines.collect { |line| line.split}
+    entries = lines[1..-1].collect do |line| 
+      map = { :children => [] }
+      line.each_with_index {|item, i| map[lines[0][i]]=item}
+      map
     end
-    return ret
+    entries.each {|entry| entry['PID'] = entry['PID'].to_i;entry['PPID'] = entry['PPID'].to_i}
+    structure = {0=>{'PID'=>0, :children=>[]}}
+    entries.each {|entry| structure[entry['PID']] = entry}
+    structure.each do  |pid, entry| 
+      next if pid == 0
+      structure[entry['PPID']][:children] << entry
+    end
+    structure.each {|pid, entry| entry[:children].sort! {|a, b| a['PID'].to_i<=>b['PID'].to_i}}
+    structure
+  end
+
+  def get_process(pid=Process.pid)
+    get_processes[pid]
+  end
+
+  def find_child_process_id(name, process = nil)
+    process = get_process unless process
+    return process['PID'] if process['COMMAND'] == name
+    process[:children].each {|child| return find_child_process_id(name, child)}
+    return nil
   end
 
   def listenerThread()
@@ -276,3 +301,4 @@ if $0 == __FILE__
   sleep 30
 
 end
+
