@@ -277,7 +277,21 @@ module Cougaar
         @run.do_action "StopCommunications"
       end
     end
-    
+
+     class ReportChainReady < Cougaar::State
+       DEFAULT_TIMEOUT = 20.minutes
+       PRIOR_STATES = ["SocietyRunning"]
+       def process
+         while (!@run['ReportChainReady'])
+           sleep 10.seconds
+         end
+       end
+       def unhandled_timeout
+         @run.do_action "StopSociety"
+         @run.do_action "StopCommunications"
+       end
+     end
+
     class SocietyPlanning < Cougaar::NOOPState
       DOCUMENTATION = Cougaar.document {
         @description = "Indicates that the society is planning."
@@ -327,5 +341,25 @@ module Cougaar
         end
       end
     end
+    
+     class InstallReportChainWatcher < Cougaar::Action
+       def perform
+         @run['ReportChainReady'] = false
+	  evt_src = nil
+	  @run.society.each_agent do |agent|
+	    if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+	      evt_src = agent.name.to_s
+	      break
+	    end
+	  end
+
+         listener = @run.comms.on_cougaar_event { |event|
+           if event.event_type=="STATUS" && event.cluster_identifier==evt_src && event.component=="ReportChainDetectorPlugin"
+             @run['ReportChainReady'] = true
+             @run.comms.remove_on_cougaar_event(listener)
+           end
+         }
+       end
+     end
   end
 end
