@@ -346,8 +346,18 @@ module Cougaar
       end
       
       def perform
-        puts "#{@run.society.agents[agent].uri}/move?op=Move&mobileAgent=#{agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
+        begin
+          uri = "#{@run.society.agents[@agent].uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
+          result = Cougaar::Communications::HTTP.get(uri)
+          raise_failure "Error moving agent" unless result
+        rescue
+          raise_failure "Could not move agent via HTTP", $!
+        end
        #http://sv116:8800/$1-35-ARBN/move?op=Move&mobileAgent=1-35-ARBN&originNode=&destNode=FWD-D&isForceRestart=false&action=Add
+      end
+      
+      def to_s
+        super.to_s+"('#{@agent}', '#{@node}')"
       end
     end      
     
