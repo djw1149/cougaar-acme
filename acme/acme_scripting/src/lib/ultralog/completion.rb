@@ -71,7 +71,7 @@ module Cougaar
         @run.society.each_agent {|agent| agent_list << agent.name}
         agent_list.sort!
         xml = "<CompletionSnapshot>\n"
-        agent_list.each do |agent|
+        agent_list.each_parallel do |agent|
           begin
             stats = ::UltraLog::Completion.status(@run.society.agents[agent])
             if stats
