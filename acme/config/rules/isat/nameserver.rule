@@ -11,10 +11,25 @@ ns_facet = "NameServer"
 port = "8888"
 prop_server = "org.cougaar.name.server"
 
+# should we limit client WP selection to UA v.s. CONUS group?
+group_only = true
+ua_groups = {
+  "102" => true,
+  "104" => true,
+  "106" => true,
+  "108" => true} if group_only
+
+# should we limit client WP selection to the local enclave?
+enclave_only = false
+
+# should we set a primary WP based upon enclaves?
+set_primary = false
+prop_primary = "org.cougaar.core.wp.resolver.select.primary"
+
 # should we explicitly load the server on just the agents running
 # servers?  If false then all node-agents will load a server, which
 # is wasteful
-explicit_plugin=true
+explicit_plugin = true
 plugin = "org.cougaar.core.wp.server.Server"
 ipoint = "Node.AgentManager.Agent.WPServer"
 prop_implicit_plugin = "org.cougaar.core.load.wp.server"
@@ -26,10 +41,17 @@ allow_host_servers=true
 puts "finding facets" if debug
 
 # find all HNAs with the NameServer facet
-addrs = Array.new
+wps = Array.new
 objs = Array.new if explicit_plugin
+
+# I'd like to define utility functions here, such as
+# "has_ns_facet" and "record_wp", but these functions can't
+# access the above variables.
+
+# search hosts
 if allow_host_servers
   society.each_host do |host|
+    # check for ns facet
     has_facet = false
     host.each_facet(:role) do |facet|
       if facet[:role] == ns_facet
@@ -37,15 +59,22 @@ if allow_host_servers
         break
       end
     end
-    if has_facet
-      puts "adding host #{host.name}" if debug
-      objs.push(host) if explicit_plugin
-      addrs.push("#{host.name}:#{port}")
-    end
+    next unless has_facet
+
+    # record this ns
+    puts "adding host #{host.name}" if debug
+    objs.push(host) if explicit_plugin
+    wps.push({
+      :group => host.get_facet(:group),
+      :enclave => host.enclave,
+      :host => host.name})
   end
 end
+
+# search nodes
 # can't use "each_agent(true)" due to ACME bug 13190
 society.each_node do |node|
+   # check for ns facet
   has_facet = false
   node.each_facet(:role) do |facet|
     if facet[:role] == ns_facet
@@ -55,13 +84,22 @@ society.each_node do |node|
   end
   if has_facet
     objs.push(node.agent) if explicit_plugin
-  else 
+  else
     next unless node.has_component?(plugin)
   end
+  # record this ns
   puts "adding node #{node.name} on #{node.host.name}" if debug
-  addrs.push("#{node.name}@#{node.host.name}:#{port}")
+  wps.push({
+     :group => node.host.get_facet(:group),
+     :enclave => node.host.enclave,
+     :host => node.host.name,
+     :node => node.name,
+     :agent => node.name})
 end
+
+# search agents
 society.each_agent(false) do |agent|
+  # check for ns facet
   has_facet = false
   agent.each_facet(:role) do |facet|
     if facet[:role] == ns_facet
@@ -71,54 +109,200 @@ society.each_agent(false) do |agent|
   end
   if has_facet
     objs.push(agent) if explicit_plugin
-  else 
+  else
     next unless agent.has_component?(plugin)
   end
+
+  # record this ns
   puts "adding agent #{agent.name} on #{agent.node.host.name}" if debug
-  addrs.push("#{agent.name}@#{agent.node.host.name}:#{port}")
+  wps.push({
+    :group => agent.node.host.get_facet(:group),
+    :enclave => agent.node.host.enclave,
+    :host => agent.node.host.name,
+    :node => agent.node.name,
+    :agent => agent.name})
 end
 
-puts "found servers[#{addrs.size}]=#{addrs}" if debug
+if debug
+  puts "found wps[#{wps.size}]=\{"
+  wps.each_index do |idx|
+    wp_info = wps[idx]
+    puts "  idx=#{idx}"
+    wp_group = wp_info[:group]
+    puts "    group=#{wp_group}"
+    if group_only
+      wp_in_ua = !wp_group.nil? && !ua_groups[wp_group].nil?
+      puts "    in_ua=#{wp_in_ua}"
+    end
+    puts "    enclave=#{wp_info[:enclave]}"
+    puts "    host=#{wp_info[:host]}"
+    puts "    node=#{wp_info[:node]}"
+    puts "    agent=#{wp_info[:agent]}"
+  end
+  puts "\}"
+end
 
 # add server components to the above hosts and agents
 #
 # this may change to set the servers as an argument, so we
 # do this in a separate loop
 if explicit_plugin
-  objs.each {|obj| 
-   if obj.kind_of? Agent
-     obj.add_component do |c|
-       c.classname = plugin
-       c.insertionpoint = ipoint
-     end
-   elsif obj.kind_of? Host
-     obj.each_node do |node|
-       node.add_component do |c|
-         c.classname = plugin
-         c.insertionpoint = ipoint
+  objs.each {|obj|
+    if obj.kind_of? Agent
+      obj.add_component do |c|
+        c.classname = plugin
+        c.insertionpoint = ipoint
       end
-     end
-   else 
-     raise "Invalid array object: #{obj}"
-   end
+    elsif obj.kind_of? Host
+      obj.each_node do |node|
+        node.add_component do |c|
+          c.classname = plugin
+          c.insertionpoint = ipoint
+       end
+      end
+    else
+      raise "Invalid array object: #{obj}"
+    end
   }
 end
 
 puts "adding properties" if debug
 
 # set the system properties in all nodes
-if !addrs.empty?
-  society.each_node do |node|
-    addrs.each_index {|idx| 
-      name = (idx == 0 ? "" : ".WP-#{idx+1}")
-      name = "-D#{prop_server}#{name}"
-      value = addrs[idx]
-      node.override_parameter(name, value)
-      puts "set #{node.name}  #{name}=#{value}" if debug
-    }
-    if explicit_plugin
-      node.override_parameter("-D#{prop_implicit_plugin}", "false")
+if !wps.empty?
+  # create map of node => true_if_wp
+  wp_nodes = Hash.new
+  wps.each_index do |idx|
+    wp_info = wps[idx]
+    node = wp_info[:node]
+    if !node.nil?
+      wp_nodes[node] = true
+      next
     end
+    host = wp_info[:host]
+    next if host.nil?
+    society.hosts[host].each_node do |n|
+      wp_nodes[n.name] = true
+    end
+  end
+
+  society.each_node do |node|
+    is_wp = !wp_nodes[node.name].nil?
+    group = node.host.get_facet(:group) if group_only
+    in_ua = group_only && !group.nil? && !ua_groups[group].nil?
+    enclave = node.host.enclave if enclave_only
+    puts "node #{node.name} is_wp=#{is_wp}"+
+      (group_only ? " group=#{group} in_ua=#{in_ua}" : "")+
+      (enclave_only ? " enclave=#{enclave}" : "") if debug
+    has_wp = false
+    wps.each_index do |idx|
+      wp_name = (idx == 0 ? "" : ".WP-#{idx+1}")
+      wp_info = wps[idx]
+      unless is_wp
+        if group_only && !group.nil?
+          wp_group = wp_info[:group]
+          wp_in_ua = !wp_group.nil? && !ua_groups[wp_group].nil?
+          if in_ua != wp_in_ua
+            puts "  skip #{wp_name},"+
+              " in_ua=#{in_ua} != wp_in_ua=#{wp_in_ua},"+
+              " group=#{group}, wp_group=#{wp_group}" if debug
+            next
+          end
+        end
+        if enclave_only && !enclave.nil?
+          wp_enclave = wp_info[:enclave]
+          if enclave != wp_enclave
+            puts "  skip #{wp_name},"+
+              " enclave=#{enclave} != wp_enclave=#{wp_enclave}" if debug
+            next
+          end
+        end
+      end
+      wp_agent = wp_info[:agent]
+      wp_agent = "" if wp_agent.nil?
+      wp_host = wp_info[:host]
+      wp_uri = wp_host.nil? ? "" : "#{wp_host}:#{port}"
+      name = "-D#{prop_server}#{wp_name}"
+      value = "#{wp_agent}@#{wp_uri}"
+      node.override_parameter(name, value)
+      puts "  add  #{wp_name}  #{name}=#{value}" if debug
+      has_wp = true
+    end
+    unless has_wp
+      msg = "\nNo WP for node #{node.name}:\n"
+      msg += "  group=#{group}\n"
+      msg += "  in_ua=#{in_ua}\n" if group_only
+      msg += "  enclave=#{enclave}\n" if enclave_only
+      msg += "  host=#{node.host.name}\n"
+      msg += "wps[#{wps.size}]=\{\n"
+      wps.each_index do |idx|
+        wp_info = wps[idx]
+        msg += "  idx=#{idx}\n"
+        wp_group = wp_info[:group]
+        msg += "    group=#{wp_group}\n"
+        if group_only
+          wp_in_ua = !wp_group.nil? && !ua_groups[wp_group].nil?
+          msg += "    in_ua=#{wp_in_ua}\n"
+        end
+        msg += "    enclave=#{wp_info[:enclave]}\n"
+        msg += "    host=#{wp_info[:host]}\n"
+        msg += "    node=#{wp_info[:node]}\n"
+        msg += "    agent=#{wp_info[:agent]}\n"
+      end
+      msg += "\}"
+      puts msg
+      raise msg
+    end
+  end
+end
+
+# disable default server
+if explicit_plugin && !wps.empty?
+  society.each_node do |node|
+    node.override_parameter("-D#{prop_implicit_plugin}", "false")
+  end
+end
+
+if set_primary && !wps.empty?
+  # create map of enclave => {.., wp_idx => true, ..}
+  enclave_to_wps = Hash.new
+  wps.each_index do |idx|
+    enclave = wps[idx][:enclave]
+    next if enclave.nil?
+    enclave_wps = enclave_to_wps[enclave]
+    if enclave_wps.nil?
+      enclave_wps = Hash.new
+      enclave_to_wps[enclave] = enclave_wps
+    end
+    enclave_wps[idx] = true
+  end
+
+  # for each node, set the primary wp by selecting a wp
+  # in the same enclave
+  society.each_node do |node|
+    enclave = node.host.enclave
+    next if enclave.nil?
+    enclave_wps = enclave_to_wps[enclave]
+    next if enclave_wps.nil?
+    idx = nil
+    # select a WP in our enclave,  If there are many,
+    # use the node's hashCode to maintain balance.
+    hc = 0
+    if enclave_wps.length > 1
+      # does ruby have string.hashcode ?
+      node.name.each_byte do |ch|
+        # mod by "n" early, or at least by (2^32), otherwise
+        # ruby keeps all the bits (Bignum!)
+        hc = (31*hc + ch.to_i) % enclave_wps.length
+      end
+    end
+    idx = enclave_wps[hc]
+    name = "-D#{prop_primary}"
+    value =
+      "WP"+(idx == 0 ? "" : "-#{idx}") +
+      (wps[idx] =~ /^([^@]*)@.*$/ ? ":#{$1}" : "")
+    node.override_parameter(name, value)
+    puts "set #{node.name}  #{name}=#{value}" if debug
   end
 end
 
