@@ -9,7 +9,7 @@ description: This is a standard kill nodes stressor which would take three param
 =end
 
 insert_after parameters[:start_tag] do
-  if (parameters[:start_tag] == :during_stage_1)
+  if (parameters[:start_tag] == "during_stage_1")
     wait_for "NodesPersistedFindProviders", *parameters[:nodes_to_kill]
   end
   if( parameters[:start_delay] != nil && parameters[:start_delay] > 0)
