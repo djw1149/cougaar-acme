@@ -19,296 +19,220 @@
 # </copyright>
 #
 
+require 'ultralog/network_model'
+
 module Cougaar; module Actions
-  class WANLink
-    @@links = Hash.new
-    attr_accessor :noc, :from_vlan, :to_vlan
+  class InitializeNetwork < Cougaar::Action
+    DOCUMENTATION = Cougaar.document {
+      @description = "Initialize network.  All interfaces up and unshaped."
+      @example = "do_action 'InitializeNetwork'"
+    }
 
-    def initialize( run, noc, from_vlan, to_vlan )
-       @run = run
-       @noc = noc
-       @from_vlan = from_vlan
-       @to_vlan = to_vlan
+    def initialize( run )
+      @run = run
+      super( run )
+
+      run['network'] = NetworkModel.discover(File.join(ENV['CIP'], "operator"), "*-net.xml")
     end
 
-    def disable
-      @run.comms.new_message( @noc ).set_body("command[shape]disable_link(#{@from_vlan},#{@to_vlan})").request(30)
-    end
+    def perform
+      net = @run['network']
 
-    def enable
-      @run.comms.new_message( @noc ).set_body("command[shape]enable_link(#{@from_vlan},#{to_vlan})").request(30)
-    end
+      @run.society.each_host { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              @run.comms.new_message(host).set_body("command[net]reset(#{host.get_facet(:interface)})").send()
+           when "router":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
 
-    def set_bandwidth( bw )
-       @run.info_message "SEND: #{@noc.host_name}/command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})"
-       @run.comms.new_message( @noc ).set_body("command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})").request(30)
-
-#       @run.comms.new_message( @noc ).set_body("command[rexec]/sbin/tc class change dev eth0.#{@to_vlan} parent 1:1 classid 1:#{@from_vlan} htb rate #{bw}Mbit burst 15k ceil #{bw}Mbit").request( 30 )
-    end
-
-    def start_intermittent( on_time, off_time )
-      @intermit = Thread.new {
-         while( true ) 
-           sleep( on_time )
-           disable
-           sleep( off_time )
-           enable
+              # Reset the C-Link on the Router (Trunk!  Not Standard!)
+              @run.comms.new_message(host).set_body("command[net]reset(#{subnet.make_interface(host.get_facet(:interface))})").send()
+              
+              # Each K-Link interface includes the VLAN already.  This is
+              # because the VLAN ids are not the same.
+              subnet.klink.each_value { |klink|
+                 @run.comms.new_message(host).set_body("command[net]reset(#{klink.interface})").send()
+              }
+           when "migratory":
+             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
-
-    def stop_intermittent
-      @intermit.kill
-      enable
-    end
-
-    def WANLink.find( name )
-      @@links[name]
-    end
-
-    def WANLink.store( name, wl ) 
-      @@links[name] = wl
-    end
-
   end
 
-  class DefineWANLink < Cougaar::Action
+
+  class ShapeNetwork < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Define a WAN Link for further actions."
-      @parameters = [
-        {:name=>"required, Name of the WAN Link.",
-         :from_vlan=>"required, VLAN which originates traffic.",
-         :to_vlan=>"required, VLAN which is the target of the traffic."}]
-      @example = "do_action 'DefineWANLink', 'link.2.3', 2, 3"
+      @description = "Shape network to default configuration.  All K-Links and C-Links are up and shaped."
+      @example = "do_action 'ShapeNetwork'"
     }
 
-    def initialize( run, name, from_vlan, to_vlan )
+    def initialize( run )
+      @run = run
       super( run )
-
-      @name = name; @from_vlan = from_vlan; @to_vlan = to_vlan
     end
 
     def perform
-      noc = nil
-      @run.society.each_service_host("BW-router") {|h| noc = h }
+      net = @run['network']
 
-      if (noc.nil?) then
-          @run.info_message "WARN: Could not find a host with the facet 'BW-router'"
-      end
+      @run.society.each_host { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
 
-      wl = WANLink.new( @run, noc, @from_vlan, @to_vlan)
-      WANLink.store( @name, wl )
+              @run.comms.new_message(host).set_body("command[net]shape(#{host.get_facet(:interface)},#{subnet.bw})").send()
+           when "router":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
+
+              # DO NOT SHAPE the C-Link on the Router!!!
+              
+              # Each K-Link interface includes the VLAN already.  This is
+              # because the VLAN ids are not the same.
+              subnet.klink.each_value { |klink|
+                 @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{klink.bw})").send()
+              }
+           when "migratory":
+             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
     end
-
-    def to_s
-      return super.to_s+"('#{@name}', '#{@from_vlan}', '#{@to_vlan}')"
-    end
-    
   end
 
-  class EnableNetworkShaping < Cougaar::Action
+
+  class ShapeHost < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Enable network shaping at the K level."
-      @parameters = [
-         {:noc=>"nocname=nil, Optional hostname which contains the router."}
-      ]
-      @example = "do_action 'EnableNetworkShaping', 'sv023'"
+      @description = "Shape host to a specified bandwidth.  All C-Links or K-Links shaped as desired."
+      @example = "do_action 'ShapeHost', 'REAR-CONUS-ROUTER', '56kbit', 'DIVISION'"
     }
 
-    def initialize( run, nocname=nil )
+    def initialize( run, facet, bw, target = nil )
+      @run = run
       super( run )
-      @nocname = nocname
-    end
-
-    def to_s
-      hostname="unknown"
-      if @nocname
-       hostname = @nocname
-      else
-       @run.society.each_service_host("BW-router") {|h| hostname = h.host_name}
-      end
-      return super.to_s+"('#{hostname}')"
+      
+      @facet = facet
+      @bw = bw
+      @target = target
     end
 
     def perform
-      host = nil
-      if @nocname
-       host = @run.society.hosts[@nocname]
-      else
-       @run.society.each_service_host("BW-router") {|h| host = h}
-      end
-      if host.nil?
-        if @nocname
-          @run.error_message "Could not find host '#{@nocname}'"
-        else
-          @run.info_message "WARN: Could not find a host with the facet 'BW-router'"
-        end
-      else
-        @run.comms.new_message(host).set_body("command[shape]reset").send
-        @run.comms.new_message(host).set_body("command[shape]trigger").send
-      end 
-   end
+      net = @run['network']
+
+      @run.society.each_service_host(@facet) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              @run.comms.new_message(host).set_body("command[net]shape(#{host.get_facet(:interface)},#{@bw})").send()
+           when "router":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
+              klink = subnet.klink[ @target ]
+
+              @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{@bw})").send
+           when "migratory":
+             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
+    end
   end
 
-  class DisableNetworkShaping < Cougaar::Action
+  class RestoreHost < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Disable network shaping at the K level."
-      @parameters = [
-         {:noc=>"nocname=nil, Optional hostname which contains the router."}
-      ]
-      @example = "do_action 'DisableNetworkShaping', 'sv023'"
-    }
-                                                                                                                                                     
-    def initialize( run, nocname=nil )
-      super( run )
-      @nocname = nocname
-    end
-
-    def to_s
-      hostname="unknown"
-      if @nocname
-       hostname = @nocname
-      else
-       @run.society.each_service_host("BW-router") {|h| hostname = h.host_name}
-      end
-      return super.to_s+"('#{hostname}')"
-    end
-                                                                                                              
-    def perform
-      host = nil
-      if @nocname
-       host = @run.society.hosts[@nocname]
-      else
-       @run.society.each_service_host("BW-router") {|h| host = h}
-      end
-      if host.nil?
-        @run.info_message "WARN: Could not find a host with the facet 'BW-router'"
-      else
-        @run.comms.new_message(host).set_body("command[shape]reset").send
-      end
-   end
-  end
-
-
-
-
-  class DisableWANLink < Cougaar::Action
-    DOCUMENTATION = Cougaar.document {
-      @description = "Disable a WAN link between two VLANs."
-      @parameters = [
-         {:wan_link=>"required, Name of previously defined WAN Link."}
-      ]
-      @example = "do_action 'DisableWANLink', 'link.2.3'"
+      @description = "Shape host to a specified bandwidth.  All C-Links or K-Links shaped as desired."
+      @example = "do_action 'RestoreHost', 'REAR-CONUS-ROUTER', 'DIVISION'"
     }
 
-    def initialize( run, wan_link )
+    def initialize( run, facet, target = nil )
+      @run = run
       super( run )
-      @wan_link = wan_link
+      
+      @facet = facet
+      @target = target
     end
 
     def perform
-      WANLink.find( @wan_link ).disable
-    end
-    
-    def to_s
-      return super.to_s+"('#{@wan_link}')"
+      net = @run['network']
+
+      @run.society.each_service_host(@facet) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
+              @run.comms.new_message(host).set_body("command[net]shape(#{host.get_facet(:interface)},#{subnet.bw})").send()
+           when "router":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
+              if (@target.nil?) then
+                 subnet.klink.each_value { |klink|
+                   @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{klink.bw})").send
+                 }
+              else
+                klink = subnet.klink[ @target ]
+
+                @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{klink.bw})").send
+              end
+           when "migratory":
+             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
     end
   end
 
-  class RenableWANLink < Cougaar::Action
+  class ShapeSubnet < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Disable a WAN link between two VLANs."
-      @parameters = [
-         {:wan_link=>"required, Name of previously defined WAN Link."}
-      ]
-      @example = "do_action 'RenableWANLink', 'link.2.3'"
+      @description = "Shape an entire subnet to a specified bandwidth.  All C-Links shaped as desired."
+      @example = "do_action 'ShapeSubnet', 'CONUS-REAR', '56kbit'"
     }
 
-    def initialize( run, wan_link )
+    def initialize( run, subnet, bw )
+      @run = run
       super( run )
-      @wan_link = wan_link
+      
+      @subnet = subnet
+      @bw = bw
     end
 
     def perform
-      WANLink.find( @wan_link ).enable
+      net = @run['network']
+
+      @run.society.each_host { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              if (host.get_facet(:subnet) == @subnet) then
+                @run.comms.new_message(host).set_body("command[net]shape(#{host.get_facet(:interface)},#{@bw})").send()
+              end
+           # DON'T SHAPE ROUTERS!
+           when "migratory":
+             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
     end
   end
 
-  class StartIntermitWANLink < Cougaar::Action
+  class RestoreSubnet < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Make a WAN link between two VLANs intermittent."
-      @parameters = [
-         {:wan_link=>"required, Name of previously defined WAN Link.",
-          :on_time=>"required, Amount of time for the link to be ON.",
-          :off_time=>"required, Amount of time for the link to be OFF."}
-      ]
-      @example = "do_action 'StartIntermitWANLink', 'link.2.3'"
+      @description = "Reshape entire subnet to default bandwidth."
+      @example = "do_action 'RestoreSubnet', 'CONUS-REAR'"
     }
 
-    def initialize( run, wan_link, on_time, off_time )
+    def initialize( run, subnet )
+      @run = run
       super( run )
-      @wan_link = wan_link
-      @on_time = on_time
-      @off_time = off_time
+      
+      @subnet = subnet
     end
 
     def perform
-      WANLink.find( @wan_link ).start_intermittent( @on_time, @off_time )
-    end
-    
-    def to_s
-      return super.to_s+"('#{@wan_link}', '#{@on_time}', '#{@off_time}')"
-    end
-  end
+      net = @run['network']
+      subnet = net.subnet[ @subnet ]
 
-  class StopIntermitWANLink < Cougaar::Action
-    DOCUMENTATION = Cougaar.document {
-      @description = "Makes a WAN link constant two VLANs."
-      @parameters = [
-         {:wan_link=>"required, Name of previously defined WAN Link."}
-      ]
-      @example = "do_action 'StopIntermitWANLink', 'link.2.3'"
-    }
-
-    def initialize( run, wan_link )
-      super( run )
-      @wan_link = wan_link
-    end
-
-    def perform
-      WANLink.find( @wan_link ).stop_intermittent
-    end
-    
-    def to_s
-      return super.to_s+"('#{@wan_link}')"
-    end
-
-  end
-
-  class SetBandwidth < Cougaar::Action
-    DOCUMENTATION = Cougaar.document {
-      @description = "Changes bandwidth on a WAN Link."
-      @parameters = [
-         {:wan_link=>"required, Name of previously defined WAN Link.",
-          :bandwidth=>"required, New bandwidth on link."}
-      ]
-      @example = "do_action 'SetBandwidth', 'link.2.3', 0.25"
-    }
-
-    def initialize( run, wan_link, bandwidth )
-      super( run )
-      @wan_link = wan_link
-      @bandwidth = bandwidth
-    end
-
-    def perform
-      WANLink.find( @wan_link ).set_bandwidth( @bandwidth )
-    end
-    
-    def to_s
-      return super.to_s+"('#{@wan_link}', '#{@bandwidth}')"
+      @run.society.each_host { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              if (host.get_facet(:subnet) == @subnet) then
+                @run.comms.new_message(host).set_body("command[net]shape(#{host.get_facet(:interface)},#{subnet.bw})").send()
+              end
+           # DON'T SHAPE THE ROUTERS!
+           when "migratory":
+             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
     end
   end
-
 end; end
 
