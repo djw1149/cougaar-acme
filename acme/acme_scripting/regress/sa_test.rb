@@ -20,6 +20,7 @@
 #
 
 $:.unshift "../src/lib"
+$:.unshift "../../acme_service/src/redist"
 
 require 'cougaar/scripting'
 require 'ultralog/scripting'
