@@ -1,0 +1,23 @@
+####################################################
+# Rule to reduce "RogueThreadDetector" logging
+#
+
+top_plugin="org.cougaar.core.thread.TopPlugin"
+log_period="period=30000"      # default is 5000
+
+society.each_node do |node|
+  found = false
+  node.each_component do |c|
+    next unless c.classname == top_plugin
+    c.add_argument(log_period) unless c.has_argument?(log_period)
+    c.name = c.comparison_name
+    found = true
+    break
+  end
+  unless found
+    node.add_component do |c|
+      c.classname = top_plugin
+      c.add_argument(log_period)
+    end
+  end
+end
