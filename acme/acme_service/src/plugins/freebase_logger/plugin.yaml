@@ -1,6 +1,6 @@
 --- !ruby/object:FreeBASE::PluginConfiguration 
 name: freebase_logger
 version: 1.0
-autoload: (true)
+autoload: true
 require_path: freebase/logger
 startup_module: FreeBASE::Plugins::Logger
