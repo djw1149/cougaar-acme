@@ -236,6 +236,6 @@ begin
       end
     end
   end
-rescue 
-  puts "LoadSocietyFromCSmart was not loaded because mysql extension not found"
+rescue LoadError
+  puts "NOTICE: LoadSocietyFromCSmart was not loaded because mysql extension not found"
 end
