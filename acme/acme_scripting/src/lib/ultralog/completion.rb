@@ -363,6 +363,8 @@ module UltraLog
       while true
         return false if timeout && (Time.now - start) > timeout
         sleep 5
+        # we won't report quiescence if all the agents aren't currently running
+        next if !@society.all_agents_running?
         if @society_status != last_state
           # We get some momentary state changes, make sure it stays changed
           sleep 10
