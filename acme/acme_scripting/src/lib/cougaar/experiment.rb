@@ -26,6 +26,34 @@ module Cougaar
   def self.new_experiment(name=nil)
     return Experiment.new(name)
   end
+  
+  def self.parameters
+    if ExperimentDefinition.current
+      return ExperimentDefinition.current.script.parameter_map
+    else
+      return {}
+    end
+  end
+  
+  def self.metadata
+    if ExperimentDefinition.current
+      return ExperimentDefinition.current.script.metadata
+    else
+      return {}
+    end
+  end
+  
+  def new_experiment(name=nil)
+    return Cougaar.new_experiment(name)
+  end
+  
+  def parameters
+    return Cougaar.parameters
+  end
+  
+  def metadata
+    return Cougaar.metadata
+  end
 
   class EventQueue
     def initialize()
@@ -319,7 +347,7 @@ module Cougaar
   end
   
   class ExperimentDefinition
-    attr_accessor :name, :description, :script, :include_scripts, :use_cases
+    attr_accessor :name, :description, :script, :include_scripts, :use_cases, :metadata
     
     @@current=nil
     
@@ -353,6 +381,7 @@ module Cougaar
       end
       use_cases = map['use_cases']
       use_cases.each {|uc| expt.use_cases << uc} if use_cases
+      expt.metadata = map
       expt
     end
     
@@ -367,11 +396,17 @@ module Cougaar
         raise "Could not find =end in file" unless eindex
         yaml = data[(index+18)...eindex]
         index += 18
-        expt = from_yaml(yaml)
+        expt = from_yaml(replace_tokens(yaml))
         @@experiments ||= {}
         @@experiments[expt.name] = expt
       end
       expt.start if expt && file==$0
+    end
+    
+    def self.replace_tokens(yaml)
+      yaml = yaml.gsub(/\$CIP/, ENV['CIP'])
+      yaml = yaml.gsub(/\$COUGAAR_INSTALL_PATH/, ENV['COUGAAR_INSTALL_PATH'])
+      yaml
     end
     
     def self.[](name)
@@ -545,7 +580,6 @@ module Cougaar
     end
     private :archive
     
-    
     def comms=(comms)
       @comms = comms
       @comms.on_cougaar_event do |event|
@@ -553,8 +587,14 @@ module Cougaar
       end
     end
     
-    def include_args
+    def parameters
       @include_stack.last
+    end
+    
+    alias_method :include_args, :parameters
+    
+    def metadata
+      ::Cougaar.metadata
     end
     
     def get_next_event
@@ -590,6 +630,7 @@ module Cougaar
     
     def at(tag)
       @sequence.tag = tag
+      do_action "AtLocation", tag
     end
     
     def include(file, *include_args)
@@ -1253,6 +1294,28 @@ module Cougaar
       
       def to_s
         return super.to_s+"('#{@message}')"
+      end
+      
+      def perform
+      end
+    end
+
+    class AtLocation < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Mark location within a script (use the 'at')."
+        @parameters = [
+          :location => "required, the location"
+        ]
+        @example = "do_action 'AtLocation', :foo"
+      }
+      attr_reader :message
+      def initialize(run, location)
+        super(run)
+        @location = location
+      end
+      
+      def to_s
+        return super.to_s+"('#{@location}')"
       end
       
       def perform
