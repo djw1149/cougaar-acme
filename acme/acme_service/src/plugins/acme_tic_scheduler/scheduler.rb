@@ -116,7 +116,7 @@ module ACME; module Plugins
       path_redist = File.join(@cougaar_config.manager.cougaar_install_path, "csmart", "acme_service", "src", "redist")
       out_log = File.join(@script_dir, 'scheduledRun.log')
       File.open(@current, 'w') { |f| f.puts(data)}
-      cmd = @cougaar_config.manager.cmd_wrap("ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0 >& #{out_log}")
+      cmd = @cougaar_config.manager.cmd_wrap("ruby -w0 -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} >& #{out_log}")
       if @log_file
         @log_file.puts "Starting experiment at #{Time.now}"
         @log_file.puts data
