@@ -62,6 +62,8 @@ public class MemoryWasterPlugin
 			throws ServletException
 		{
 			try {
+				response.setContentType("text/xml");
+				
 				String sizeStr = request.getParameter("size");
 				if (sizeStr != null) 
 					size = Integer.parseInt(sizeStr);
@@ -69,20 +71,18 @@ public class MemoryWasterPlugin
 				wasteMemory();
 					
 				PrintWriter out = response.getWriter();
-				out.println("<HTML><HEAD>");
+				out.println("<?xml version=\"1.0\"?>");
 				
-				out.println("<TABLE>");
-				out.println("<TR><TD>FREE: </TD><TD>" + 
-					Runtime.getRuntime().freeMemory() + "</TD></TR>");
-				out.println("<TR><TD>TOTAL: </TD><TD>" + 
-					Runtime.getRuntime().totalMemory() + "</TD></TR>");
-				out.println("<TR><TD>SIZE: </TD><TD>" + size + " k</TD></TR>");
-				out.println("<TR><TD>FREQ: </TD><TD>" + freq + "</TD></TR>");
-				out.println("<TR><TD>STDDEV: </TD><TD>" + stddev + "</TD></TR>");
-				out.println("</TABLE>");
-				
-				out.println("</HEAD></HTML>");
-				
+				out.println("<memory-waster time=\"" + 
+					System.currentTimeMillis() + "\">");
+				out.println("\t<jvm-memory " +
+								" free=\"" + Runtime.getRuntime().freeMemory() + "\"" +
+								" total=\"" + Runtime.getRuntime().totalMemory() + "\"" + 
+								" max=\"" + Runtime.getRuntime().maxMemory() + "\"/>");
+				out.println("\t<wasted size=\"" + size * 1024 + "\" />");
+				out.println("\t<refresh period=\"" + freq + "\"" +
+									  " deviation=\"" + stddev + "\"/>");
+				out.println("</memory-waster>");
 			} catch (Exception e) {
 				throw new ServletException(e);
 			}		
