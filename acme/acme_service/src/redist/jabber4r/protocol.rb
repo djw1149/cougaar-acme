@@ -681,7 +681,7 @@ module Jabber
       # return:: [Jabber::Protocol::Message] The current Message object
       #
       def set_body(body)
-        @body = body.sub(/[&]/, '&amp;').sub(/[<]/, '&lt;')
+        @body = body.gsub(/[&]/, '&amp;').gsub(/[<]/, '&lt;')
         self
       end
       
@@ -692,7 +692,7 @@ module Jabber
       # return:: [Jabber::Protocol::Message] The current Message object
       #
       def set_subject(subject)
-        @subject = subject.sub(/[&]/, '&amp;').sub(/[<]/, '&lt;')
+        @subject = subject.gsub(/[&]/, '&amp;').gsub(/[<]/, '&lt;')
         self
       end
       
