@@ -1,0 +1,13 @@
+######################################
+# Rule to enable persistence
+
+# robustness/bbn/csmart/rules/debug/persistence.rule
+# Add to all Nodes
+
+society.each_node do |node|
+    
+node.override_parameter("-Dorg.cougaar.core.persistence.enable","true")
+   node.override_parameter("-Dorg.cougaar.core.persistence.clear","true")
+    
+node.override_parameter("-Dorg.cougaar.core.persistence.lazyInterval","60000")
+end

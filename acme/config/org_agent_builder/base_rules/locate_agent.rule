@@ -1,0 +1,8 @@
+# LocateAgentServlet for finding what Node/Host has an Agent
+# Requires Cougaar core 10.4.5+
+society.each_agent(true) do |agent|
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.util.LocateAgentServlet"
+    c.add_argument("/locate_agent")
+  end
+end
