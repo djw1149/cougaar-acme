@@ -3,11 +3,11 @@ hosts that will run a Cougaar node.
 
 Linux Requirments:
 
-  Ruby 1.6.8 ( see http://www.ruby-lang.org )
+  Ruby 1.8.1 ( see http://www.ruby-lang.org or http://rubymirror.rubyforge.org )
 
 Windows Requirements:
 
-  Ruby 1.6.8 Installer ( see http://rubyinstaller.sourceforge.net )
+  Ruby 1.8.1 Installer ( see http://rubyinstaller.rubyforge.org )
 
 Installation:
 
@@ -40,8 +40,3 @@ Which will remove the ACME Service.  You also need to remove the working directo
   rm -rf ~/.acme
 
 This will ensure that the ACME Service does not use old data when trying to start up.  
-
-Questions:
-
-If you need help with installation or configuration of the ACME Service, please contact 
-ISAT personnel at <ul-isat@bbn.com> or report bugs to the UltraLog Bugzilla system.
