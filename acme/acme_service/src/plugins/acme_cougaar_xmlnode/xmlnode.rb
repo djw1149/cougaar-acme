@@ -49,15 +49,26 @@ class XMLCougaarNode
     return @nodes_hash
   end
 
+  def makeFileName(basename)
+    tmpdir = @config_mgr.tmp_dir
+    if (File.exist?(tmpdir) && File.ftype(tmpdir) == "directory")
+      filename = File.join(tmpdir, basename)
+    else
+      filename = File.join(".", basename)
+    end
+    filename
+  end
+
   def initialize(plugin)
     @plugin = plugin
     @nodes_hash = {}
+    @config_mgr = plugin['/cougaar/config'].manager
     
     #START NODE
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: host:port (of XML document server)"
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
-      node = NodeConfig.new(@plugin, command, message.session)
+      node = NodeConfig.new(self, @plugin, command, message.session)
       pid = node.start
       puts "STARTED: #{pid}"
       running_nodes[pid] = node
@@ -79,32 +90,6 @@ class XMLCougaarNode
       end
     end
     
-=begin # This is untested
-    # MONITOR NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/monitor_node/description"].data = 
-      "Sends back CougaarEvent messages of the proc (PID) every (interval) seconds. Params: PID,interval"
-    @plugin["/plugins/acme_host_jabber_service/commands/monitor_node"].set_proc do |message, command| 
-      pid, interval = command.split(",")
-      unless pid and interval
-        message.reply.set_body("FAILURE: Invalid params: PID,interval")
-      end
-      node = running_nodes[pid.strip]
-      if node
-        begin
-          interval = interval.strip.to_i
-        rescue
-          message.reply.set_body("FAILURE: Interval not a number")
-        end
-        jid = message.from.to_s
-        experiment = jid[(jid.index("expt-")+5)..-1]
-        node.monitor(experiment, interval)
-        message.reply.set_body("SUCCESS: Monitoring node: #{pid}").send
-      else
-        message.reply.set_body("FAILURE: Unknown node: #{pid}").send
-      end
-    end
-=end
-
     # Stack dump node
     @plugin["/plugins/acme_host_jabber_service/commands/stack/description"].data =
       "Dump the Java stack of Cougaar a node. Params: PID"
@@ -157,7 +142,7 @@ class XMLCougaarNode
     # Mount handler for receiving file via HTTP
     @plugin['/protocols/http/xmlnode'].set_proc do |request, response|
       if request.request_method=="POST"
-        filename = XMLCougaarNode.makeFileName(request.path[9..-1])
+        filename = makeFileName(request.path[9..-1])
         #search and replace $COUGAAR_INSTALL_PATH
         data = request.body
         data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
@@ -172,15 +157,6 @@ class XMLCougaarNode
         response.body = "<html>XMLNode File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
       end
-    end
-  end
-
-  def XMLCougaarNode.makeFileName(basename)
-    tmpdir = File.join("", "tmp")
-    if (File.exist?(tmpdir) && File.ftype(tmpdir) == "directory")
-      filename = File.join(tmpdir, basename)
-    else
-      filename = File.join(".", basename)
     end
   end
 
@@ -264,13 +240,17 @@ class XMLCougaarNode
 			end
 		end
 
-    def initialize(plugin, node_config, session)
+    def initialize(xml_cougaar_node, plugin, node_config, session)
       begin
         @plugin = plugin
+        @xml_cougaar_node = xml_cougaar_node
+
         @listeners = []
         @session = session
+        @config_mgr = plugin['/cougaar/config'].manager
+  
 
-        @filename = XMLCougaarNode.makeFileName(node_config)
+        @filename = xml_cougaar_node.makeFileName(node_config)
         if @filename=~/.xml/
           @xml_filename = @filename
         else
@@ -287,8 +267,6 @@ class XMLCougaarNode
         
         @society = @builder.society
         
-        @config_mgr = plugin['/cougaar/config'].manager
-  
         @conference = plugin.properties['conference']
         if @conference and @conference!=""
           presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
