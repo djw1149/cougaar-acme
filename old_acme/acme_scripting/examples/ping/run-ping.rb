@@ -18,7 +18,7 @@ require 'rexml/document'
 Cougaar::ExperimentMonitor.enable_stdout
 Cougaar::ExperimentMonitor.enable_logging
 
-Cougaar.new_experiment("MiniPing-Test").run(1) {
+Cougaar.new_experiment("MiniPing-Test").run(10) {
 
   # read the basic society definition
   #
@@ -75,7 +75,8 @@ Cougaar.new_experiment("MiniPing-Test").run(1) {
   do_action "StartSociety"
 
   # however long you want to run
-  do_action "Sleep", 5.minutes
+  #do_action "Sleep", 1.minutes
+  do_action "Sleep", 20.seconds
 
   do_action "StopSociety"
   do_action "StopCommunications"
