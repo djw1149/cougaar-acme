@@ -144,36 +144,75 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Advances the scenario time and sets the execution rate."
         @parameters = [
-          {:time_to_advance => "default=86400000 (1 day) millisecs to advance the cougaar clock."},
+          {:time_to_advance => "default=86400000 (1 day) millisecs to advance the cougaar clock total."},
+          {:time_step => "default=86400000 (1 day) millisecs to advance the cougaar clock each step."},
           {:execution_rate => "default=1.0, The new execution rate (1.0 = real time, 2.0 = 2X real time)"},
           {:debug => "default=false, Set 'true' to debug action"}
         ]
-        @example = "do_action 'AdvanceTime', 10000, 1.0, false"
+        @example = "do_action 'AdvanceTime', 3600000, 60000, 1.0, false"
       }
-		  @debug = true
-      def initialize(run, time_to_advance=86400000, execution_rate=1.0, debug=false)
+
+      def initialize(run, time_to_advance=86400000, time_step=86400000, execution_rate=1.0, debug=false)
         super(run)
         @debug = debug
         @time_to_advance = time_to_advance
+        @time_step = time_step
         @execution_rate = execution_rate
         @expected_result = Regexp.new("Scenario Time");
       end
       
       def perform
         # true => include the node agent
-        puts "Advancing time: #{@time_to_advance} Rate: #{@execution_rate}" if @debug
-        @run.society.each_node_agent do |agent|
-          myuri = "http://#{agent.node.host.name}:#{@run.society.cougaar_port}/$#{agent.name}/timeControl?timeAdvance=#{@time_to_advance}&executionRate=#{@execution_rate}"
+        puts "Advancing time: #{@time_to_advance} Step: #{@time_step} Rate: #{@execution_rate}" if @debug
+
+        # We'll advance step by step, then by the remaining seconds
+        steps_to_advance = (@time_to_advance / @time_step).floor
+        seconds_to_advance = @time_to_advance % @time_step
+        if @debug
+          ::Cougaar.logger.info "going to step forward #{steps_to_advance} steps and #{seconds_to_advance} seconds"
+        end
+
+        steps_to_advance.times do
+          if @debug
+            ::Cougaar.logger.info "About to step forward one step (#{@time_step / 1000} seconds)"
+          end
+          advance_and_wait(@time_step)
+        end
+        if seconds_to_advance > 0
+          if @debug
+            ::Cougaar.logger.info "About to step forward #{seconds_to_advance} seconds"
+          end
+          advance_and_wait(1000 * seconds_to_advance)
+        end
+      end
+
+      def advance_and_wait(time)
+        @run.society.each_node do |node|
+          myuri = "http://#{node.host.name}:#{@run.society.cougaar_port}/$#{node.name}/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
           puts "URI: #{myuri}" if @debug
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           puts data if @debug
           if (@expected_result.match(data) == nil)
-            puts "ERROR Accessing timeControl Servlet at node #{agent.name}"
-            raise Exception.exception("ERROR Accessing timeControl Servlet at node #{agent.name}");
-
+            puts "ERROR Accessing timeControl Servlet at node #{node.name}"
+            raise Exception.exception("ERROR Accessing timeControl Servlet at node #{node.name}");
           end
         end
+
+        # now wait for quiescence
+        comp = @run["completion_monitor"]
+        if !comp
+          ::Cougaar.logger.error "Completion Monitor not installed.  Cannot wait for quiescence"
+          puts "Completion Monitor not installed.  Cannot wait for quiescence"
+        end
+        if @debug
+          ::Cougaar.logger.info "Finished sending servlet requests; about to wait for quiescence"
+        end
+        sleep 20.seconds
+        if comp.getSocietyStatus() == "INCOMPLETE"
+          comp.wait_for_change_to_state("COMPLETE")
+        end
       end
+
     end # class
  
     class KeepSocietySynchronized < Cougaar::Action
