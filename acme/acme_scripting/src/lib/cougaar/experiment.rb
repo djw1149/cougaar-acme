@@ -161,12 +161,22 @@ module Cougaar
     
     def initialize(experiment, run_count, &block)
       @run_count = run_count
+      @interrupted = false
       @experiment = experiment
       @run_count.times do |count|
         run = Run.new(self, count)
         run.define_run &block
         run.start
+        return if interrupted?
       end
+    end
+    
+    def interrupted?
+      @interrupted
+    end
+    
+    def interrupt
+      @interrupted = true
     end
   end
   
@@ -253,6 +263,10 @@ module Cougaar
       action.new(self, *args, &block)
     end
     
+    def continue
+      @sequence.continue
+    end
+    
     def start
       ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, true)) if ExperimentMonitor.active?
       @state = STARTED
@@ -260,6 +274,10 @@ module Cougaar
       @sequence.start
       ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, false)) if ExperimentMonitor.active?
       #TODO: logging end
+    end
+    
+    def interrupt
+      @multirun.interrupt
     end
     
     def started?
@@ -285,17 +303,28 @@ module Cougaar
     def initialize
       @definitions = []
       @current_definition = 0
-      @run_states = []
+      @started = false
+      @insert_index = 0
     end
     
     def add_state(state)
-      state.validate
-      @definitions << state
+      if @started
+        @definitions = @definitions[0..@insert_index]+[state]+@definitions[(@insert_index+1)..-1]
+        @insert_index += 1
+      else
+        state.validate
+        @definitions << state
+      end
     end
     
     def add_action(action)
-      action.validate
-      @definitions << action
+      if @started
+        @definitions = @definitions[0..@insert_index]+[action]+@definitions[(@insert_index+1)..-1]
+        @insert_index += 1
+      else
+        action.validate
+        @definitions << action
+      end
     end
     
     def last_state?(state)
@@ -313,38 +342,48 @@ module Cougaar
       return false
     end
     
+    def continue
+      @continue_after_timeout = true
+    end
+    
     def interrupt
-      state = @definitions[@count]
+      if @continue_after_timeout
+        @continue_after_timeout = false
+        return
+      end
+      state = @definitions[@current_definition]
       ExperimentMonitor.notify(ExperimentMonitor::InterruptNotification.new(state)) if ExperimentMonitor.active?
-      @definitions = @definitions[0..@count]
+      @definitions = @definitions[0..@insert_index] 
     end
     
     def start
-      @count = 0
+      @current_definition = 0
+      @started = true
       last_state = nil
-      while @definitions[@count]
-        if @definitions[@count].kind_of? State
-          ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@count], true)) if ExperimentMonitor.active?
-          last_state = @definitions[@count]
+      while @definitions[@current_definition]
+        @insert_index = @current_definition
+        if @definitions[@current_definition].kind_of? State
+          ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@current_definition], true)) if ExperimentMonitor.active?
+          last_state = @definitions[@current_definition]
           last_state.prepare
           if last_state.timed_process?
             last_state.timed_process
           else
             last_state.untimed_process
           end
-          ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@count], false)) if ExperimentMonitor.active?
+          ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
         else
-          ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@count], true)) if ExperimentMonitor.active?
+          ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], true)) if ExperimentMonitor.active?
           begin
-            @definitions[@count].perform
+            @definitions[@current_definition].perform
           rescue ActionFailure => failure
             puts failure
             exit
           ensure
-            ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@count], false)) if ExperimentMonitor.active?
+            ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
           end
         end
-        @count += 1
+        @current_definition += 1
       end
     end
   end
@@ -413,6 +452,7 @@ module Cougaar
       @timer = nil
       trap("SIGINT") {
         @sequence.interrupt
+        @run.interrupt
         begin
           on_interrupt
           handle_timeout
@@ -435,7 +475,6 @@ module Cougaar
         @timer = Thread.new do
           sleep @timeout
           @timed_out = true
-          @sequence.interrupt
           begin
             on_interrupt
             handle_timeout
@@ -443,6 +482,7 @@ module Cougaar
             Cougaar.logger.error $!
             Cougaar.logger.error $!.backtrace.join("\n")
           end
+          @sequence.interrupt
           @process_thread.exit if @process_thread.status
         end
         begin
