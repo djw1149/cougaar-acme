@@ -68,7 +68,9 @@ module Cougaar
           msgs[node] = launch_db_node(node)
         end
       end
-      nodes.each do |node|
+      threads = []
+      nodes.each do |each_node|
+	threads << Thread.new(each_node) { |node| 
         @run.info_message "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
         result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msgs[node]}").request(@timeout)
         if result.nil?
@@ -77,7 +79,10 @@ module Cougaar
           @pids[node.name] = result.body
           node.active=true
         end
+        }
       end
+
+	threads.each { |aThread|  aThread.join }
     end
     
     def stop_all_nodes(action)
@@ -186,6 +191,8 @@ module Cougaar
         @wait_for_quiescence = wait_for_quiescence
         @execution_rate = execution_rate
         @timeout = timeout
+        @seconds_in_future_time_advance_occurs = 10
+        @seconds_to_wait_for_reaction_to_time_advance = 5
         @scenario_time = /Scenario Time<\/td><td>([^<]*)<\/td>/
       end
       
@@ -248,12 +255,17 @@ module Cougaar
 
       def advance_and_wait(time_in_seconds)
         result = true
-        change_time = Time.now + 20 + 0.5 * @run.society.num_nodes  # add 20 sec + .5 sec per node
+        change_time = Time.now + @seconds_in_future_time_advance_occurs + 0.5 * @run.society.num_nodes  # add 20 sec + .5 sec per node
         request_start_time = Time.now
-        @run.society.each_node do |node|
+
+	threads=[]
+        
+	@run.society.each_node do |each_node|
+	  threads << Thread.new(each_node) { |node|
+
 	  next unless node.active?
           myuri = node.agent.uri+"/timeControl?timeAdvance=#{time_in_seconds*1000}&executionRate=#{@execution_rate}&changeTime=#{change_time.to_i * 1000}"
-          @run.info_message "URI: #{myuri}" if @debug
+          @run.info_message "URI: #{myuri}\n" if @debug
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           md = @scenario_time.match(data)
           if md
@@ -266,16 +278,23 @@ module Cougaar
           if (society_request_time <= 0.0)
             @run.error_message "ERROR: #{node.name} did not receive Advance Time message before sync time (late by #{society_request_time})"
           end
+          }
         end
+         
+	threads.each { |aThread|  aThread.join }
 
         if @debug
+        #if true
           @run.info_message "Servlet requests took #{Time.now.to_i - request_start_time.to_i} seconds"
         end
 
         # make sure we don't progress until the time we've told the society to put the new time into effect
 	sleep_time = (change_time - Time.now).ceil
 	if (sleep_time > 0.0)
-          sleep sleep_time
+            if @debug
+              @run.info_message "sleeping #{sleep_time.to_i} seconds"
+            end
+            sleep sleep_time
 	end
 
         # now wait for quiescence
@@ -288,13 +307,14 @@ module Cougaar
           if @debug
             @run.info_message "About to wait for quiescence"
           end
-          sleep 20.seconds
+          sleep @seconds_to_wait_for_reaction_to_time_advance.seconds
+
           if comp.getSocietyStatus() == "INCOMPLETE"
             result = comp.wait_for_change_to_state("COMPLETE", @timeout)
           end
         end
 
-        @run.info_message "Society time advanced to #{get_society_time}"
+        @run.info_message "Society time advanced to #{get_society_time} in #{Time.now.to_i - request_start_time.to_i} seconds"
         return result
       end
 
@@ -353,22 +373,36 @@ module Cougaar
       }
       
       def perform
-        @run.society.each_service_host("acme") do |host|
-          @run.comms.new_message(host).set_body("command[nic]reset").send
+        threads = []
+        @run.society.each_service_host("acme") do |each_host|
+          threads << Thread.new(each_host) { |host| 
+          @run.info_message "Shutting down acme on #{host}\n" if @debug
+	    @run.comms.new_message(host).set_body("command[nic]reset").send
 	  @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           # kills don't always work first time, try again to be sure
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           @run.comms.new_message(host).set_body("command[cpu]0").send()
           @run.comms.new_message(host).set_body("command[shutdown]").send()
-        end 
-        @run.society.each_service_host("operator") do |host|
+          }
+        end
+        threads.each { |aThread|  aThread.join }
+ 
+        threads = []
+        @run.society.each_service_host("operator") do |each_host|
+         
+          threads << Thread.new(each_host) { |host| 
+          @run.info_message "Shutting down acme on #{host}\n" if @debug
           @run.comms.new_message(host).set_body("command[nic]reset").send
 	  @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           # kills don't always work first time, try again to be sure
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
           @run.comms.new_message(host).set_body("command[cpu]0").send()
+          }
         end         
         @run.info_message "Waiting for ACME services to restart"
+	
+	threads.each { |aThread|  aThread.join }
+
         sleep 20 # wait for all acme servers to start back up
       end
     end

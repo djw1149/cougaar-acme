@@ -71,24 +71,65 @@ module Cougaar
         @run.society.each_agent {|agent| agent_list << agent.name}
         agent_list.sort!
         xml = "<CompletionSnapshot>\n"
-        agent_list.each do |agent|
+        
+        results={}
+        tasks={}
+        root_PS={}
+        root_supply={}
+        root_trans={}
+        threads=[]
+        numThreadsUsed = 0
+        agent_list.each do |each_agent|
+          threads << Thread.new(each_agent) { |agent|
           begin
+            @run.info_message "Getting stats for #{agent}\n" if @debug
             stats = ::UltraLog::Completion.status(@run.society.agents[agent])
             if stats
-              xml += stats.to_s
-              total_tasks = total_tasks + stats.total.to_i
-              total_root_PS = total_root_PS + stats.rootPS.to_i
-              total_root_supply = total_root_supply + stats.rootSupply.to_i
-              total_root_trans = total_root_trans + stats.rootTransport.to_i
+              #xml += stats.to_s
+              #total_tasks = total_tasks + stats.total.to_i
+              #total_root_PS = total_root_PS + stats.rootPS.to_i
+              #total_root_supply = total_root_supply + stats.rootSupply.to_i
+              #total_root_trans = total_root_trans + stats.rootTransport.to_i
+              results[agent]     = stats.to_s
+              tasks  [agent]     = stats.total.to_i
+              root_PS[agent]     = stats.rootPS.to_i
+              root_supply[agent] = stats.rootSupply.to_i
+              root_trans [agent] = stats.rootTransport.to_i
             else
-              xml += "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
+              #xml += "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
+              results[agent] = "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
               @run.error_message "Error accessing completion data for Agent #{agent}."
             end
           rescue Exception => failure
-            xml += "<SimpleCompletion agent='#{agent}' status='Error: Parse exception.'\>\n"
+            #xml += "<SimpleCompletion agent='#{agent}' status='Error: Parse exception.'\>\n"
+            results[agent] = "<SimpleCompletion agent='#{agent}' status='Error: Parse exception.'\>\n"
             @run.error_message "Error parsing completion data for Agent #{agent}: #{failure}."
           end
+          }
+
+          numThreadsUsed = numThreadsUsed + 1
+
+          if (numThreadsUsed == 50) 
+            @run.info_message "Did 50 completions...\n" if @debug
+            @run.info_message "Waiting for all threads to join...\n" if @debug
+	    threads.each { |aThread| aThread.join }
+            numThreadsUsed = 0 
+            threads = []
+	  end 
+	
         end
+
+        @run.info_message "Waiting for all threads to join...\n" if @debug
+        threads.each { |aThread|  aThread.join }
+
+        agent_list.each do |agent|
+         xml += results[agent];
+         total_tasks       = total_tasks + tasks[agent];
+         total_root_PS     = total_root_PS + root_PS[agent];	 
+         total_root_supply = total_root_supply + root_supply[agent];	 
+         total_root_trans  = total_root_trans + root_trans[agent];	 
+        end
+
         xml += "<TotalSocietyTasks>" + total_tasks.to_s + "</TotalSocietyTasks>\n"
         xml += "<TotalRootPSTasks>" + total_root_PS.to_s + "</TotalRootPSTasks>\n"
         xml += "<TotalRootSupplyTasks>" + total_root_supply.to_s + "</TotalRootSupplyTasks>\n"
@@ -356,7 +397,7 @@ module UltraLog
       start = Time.now
       while true
         return false if timeout && (Time.now - start) > timeout
-        sleep 10
+        sleep 5
         if @society_status != last_state
           # We get some momentary state changes, make sure it stays changed
           sleep 10
