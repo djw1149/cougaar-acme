@@ -207,49 +207,50 @@ module Cougaar
   
     def self.enable_logging
       return if ExperimentDefinition.debug?
+      return unless $LoggerMonitor.nil?
+
+      $LoggerMonitor = ExperimentMonitor.new
       
-      monitor = ExperimentMonitor.new
-      
-      def monitor.on_experiment_begin(experiment)
+      def $LoggerMonitor.on_experiment_begin(experiment)
         Cougaar.logger.info "Experiment: #{experiment.name} started."
       end
-      def monitor.on_experiment_end(experiment)
+      def $LoggerMonitor.on_experiment_end(experiment)
         Cougaar.logger.info  "Experiment: #{experiment.name} finished."
       end
       
-      def monitor.on_run_begin(run)
+      def $LoggerMonitor.on_run_begin(run)
         Cougaar.logger.info  "  Run: #{run.name} started."
       end
-      def monitor.on_run_end(run)
+      def $LoggerMonitor.on_run_end(run)
         Cougaar.logger.info  "  Run: #{run.name} finished."
       end
       
-      def monitor.on_state_begin(state)
+      def $LoggerMonitor.on_state_begin(state)
         Cougaar.logger.info  "    Waiting for: #{state}"
       end
 
-      def monitor.on_state_end(state)
+      def $LoggerMonitor.on_state_end(state)
         Cougaar.logger.info  "    Done: #{state} in #{(Time.now - state._start_time).to_i} seconds"
       end
       
-      def monitor.on_action_begin(action)
+      def $LoggerMonitor.on_action_begin(action)
         Cougaar.logger.info  "    Starting: #{action}"
       end
 
-      def monitor.on_action_end(action)
+      def $LoggerMonitor.on_action_end(action)
         Cougaar.logger.info  "    Finished: #{action} in #{(Time.now - action._start_time).to_i} seconds"
       end
       
-      def monitor.on_state_interrupt(state)
+      def $LoggerMonitor.on_state_interrupt(state)
         Cougaar.logger.info  "     ** INTERRUPT ** #{state}"
       end
-      def monitor.on_action_interrupt(action)
+      def $LoggerMonitor.on_action_interrupt(action)
         Cougaar.logger.info  "     ** INTERRUPT ** #{action}"
       end
-      def monitor.on_info_message(message)
+      def $LoggerMonitor.on_info_message(message)
         Cougaar.logger.info  "     INFO: #{message}"
       end
-      def monitor.on_error_message(message)
+      def $LoggerMonitor.on_error_message(message)
         Cougaar.logger.error "     ERROR: #{message}"
       end
     end
@@ -917,7 +918,9 @@ module Cougaar
       index = nil
       count = 0
       @definitions.each_with_index do |definition, current|
-        if definition.name == action_state_name || definition.tag.to_s == action_state_name.to_s
+        if (definition.name == action_state_name) or 
+           (!definition.tag.nil? and 
+            (definition.tag.to_s == action_state_name.to_s))
           count += 1
           if count == ordinality
             index = current 
