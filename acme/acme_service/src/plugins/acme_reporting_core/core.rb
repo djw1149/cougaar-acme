@@ -3,6 +3,7 @@ require "RunTimeTest"
 require "CompletionTest"
 require "QData"
 require "VerifyInventory"
+require "DataGrabberTest"
 
 module ACME
   module Plugins
@@ -30,7 +31,7 @@ module ACME
       end
 
       def process_archive(archive)
-        puts "Processing an archive"
+        puts "Processing an archive #{archive.base_name}"
         run_log_test(archive)
         puts "Run log"
         RunTimeTest.new(archive, @plugin, @ikko).perform
@@ -41,6 +42,8 @@ module ACME
         puts "Q"
         VerifyInventory.new(archive, @plugin, @ikko).perform(0.10, 0.10)
         puts "INV"
+        DataGrabberTest.new(archive, @plugin, @ikko).perform
+        puts "GRAB"
       end
       
       def run_log_test(archive)
