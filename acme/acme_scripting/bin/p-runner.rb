@@ -1,9 +1,13 @@
 #!/usr/bin/ruby
 
+$CIP = ENV['CIP']
+
 if $0 == __FILE__
   $:.unshift File.dirname( __FILE__ )
-  $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
-  $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
+#  $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
+#  $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
+  $:.unshift File.join( $CIP, "csmart", "acme_service", "src", "redist" )
+  $:.unshift File.join( $CIP, "csmart", "acme_scripting", "src", "lib" )
 end
 $stdout.sync = true
 
@@ -24,7 +28,7 @@ server = XMLRPC::Client.new( $POLARIS_HOST, "/servlet/xml-rpc" )
 server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
 $POLARIS_MONITOR = Polaris::Monitor.new( server )
-Cougaar::ExperimentMonitor.add monitor
+Cougaar::ExperimentMonitor.add $POLARIS_MONITOR
 
 playground = CVSPlayground.new
 
@@ -49,7 +53,7 @@ while (@@is_OK) do
     scriptFile = playground.get_file( scriptInfo )
     configFile = playground.get_file( configInfo )
 
-    monitor.scriptId = scriptId.to_i
+    $POLARIS_MONITOR.scriptId = scriptId.to_i
     $POLARIS_CONFIG = Polaris::CougaarConfig.new configFile, ENV["COUGAAR_INSTALL_PATH"]
 
     $POLARIS_CONFIG.update if ($POLARIS_UPDATE)
@@ -66,11 +70,11 @@ while (@@is_OK) do
     rescue XMLRPC::FaultException => e
       puts "Code: #{e.faultCode}"
       puts "Msg: #{e.faultString}"
-      monitor.polaris_failure( e )
+      $POLARIS_MONITOR.polaris_failure( e )
       throw e
     rescue Exception => exc
       puts "Caught ACME Exception: #{exc}"
-      monitor.acme_failure( exc )
+      $POLARIS_MONITOR.acme_failure( exc )
       throw exc
     end
 

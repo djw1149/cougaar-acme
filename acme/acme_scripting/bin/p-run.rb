@@ -1,9 +1,13 @@
 #!/usr/bin/ruby
 
+$CIP = ENV['CIP']
+
 if $0 == __FILE__
   $:.unshift File.dirname( __FILE__ )
-  $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
-  $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
+#  $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
+#  $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
+  $:.unshift File.join( $CIP, "csmart", "acme_service", "src", "redist" )
+  $:.unshift File.join( $CIP, "csmart", "acme_scripting", "src", "lib" )
 end
 
 $stdout.sync = true
