@@ -1,3 +1,21 @@
+This information pulled from Network Setup.sxd -
+To retrieve the full document, in a readable form, 
+"unzip 'Network Setup.sxd'"  Look for content.xml
+
+----------------------------------------
+ACME Setup
+
+ACME contains all of the software needed to run the Router (beyond kernel and the “tc” update.)  It will control the router in conjunction with an ACME script.
+Before ACME can be run however, the network configuration needs to be setup.  In the ACME install, there are two XML files in the “/usr/local/acme/plugins/acme_net_shape” directory.  You can use either of these XML files as a template for a new configuration, or symlink the file to “network.xml”
+After setup, it is required that the file “/usr/local/acme/plugins/acme_net_shape/network.xml” is available.
+Finally, edit the “plugin.yaml” file and change “auto-load” to true.
+
+Init.d Setup
+
+The Startup scripts are provided as part of the ACME service installation.  Installing ACME will enable automation to manipulate the network, but it does not install the startup scripts to enable the VLAN.
+
+-----------------------------------------
+
 This plugin expects the "network.xml" file to be located
 in the /etc directory.  On installation, either provide
 a symlink or physically copy this file.
@@ -7,3 +25,5 @@ as well as into the /root directory.
 
 The Linux Kernel must be at least:
   linux-smp-2.4.20-18.9
+
+
