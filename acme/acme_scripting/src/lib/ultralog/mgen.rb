@@ -19,44 +19,58 @@
 # </copyright>
 #
 
-module Cougaar
-  module Actions
-     class StartMessageGenerator < Cougaar::Action
-       PRIOR_STATES = ["SocietyLoaded"]
-       DOCUMENTATION = Cougaar.document {
+module Cougaar; module Actions
+  class StartMessageGenerator < Cougaar::Action
+    DOCUMENTATION = Cougaar.document {
         @description = "Starts the Message Generator with specified nodes, rate, and size."
         @parameters = [
-          {:Sendnode=> "node from which to send messages."},
-          {:Recvnode=> "node which receives messages"},
-	  {:Rate=> "number of UDP packets/second"},
-          {:Size=> "size of UDP packet in bytes"},
-          {:Duration=> "duration in seconds"}
+          {:send=> "Host which sends messages" },
+          {:recv=> "Host which receives messages"},
+          {:rate=> "Number of UDP packets/second" }
         ]
-        @example = "do_action 'StartMessageGenerator', 'FWD-A', 'REAR-A', 1.0, 100, 10"
-      }
+        @example = "do_action 'StartMessageGenerator', 'sv036', 'sv024', 10"
+    }
 
-       def initialize(run, sendNode, recvNode, rate, size, duration)
-        super(run)
- 	@sendNode = sendNode
-        @recvNode = recvNode
-        @rate = rate
-        @size = size
-        @duration = duration
-        end
+    def initialize(run, sendHost, recvHost, rate)
+      super(run)
+      @sendHostName = sendHost
+      @recvHostName = recvHost
+      @rate = rate
+    end
 
-        def perform
-	@recvHost = @run.society.nodes[@recvNode].host
-        cougaar_node = @run.society.nodes[@sendNode]
-        if cougaar_node
-            puts "/usr/local/bin/mgen -q -b #{@recvHost.ip}:5281 -s #{@size} -r #{@rate} -d #{@duration}&"
-            @run.comms.new_message(cougaar_node.host).set_body("command[rexec]/usr/local/bin/mgen -q -b #{@recvHost.ip}:5281 -s #{@size} -r #{@rate} -d #{@duration}&").send
-        else
-          raise_failure "Cannot start MGEN on #{@sendNode}."
-        end
+    def perform
+      recvHost = @run.society.hosts[@recvHostName]
+      sendHost = @run.society.hosts[@sendHostName]
+      if sendHost
+        puts "MGEN: #{recvHost.ip} => #{sendHost.ip} @ #{@rate} msg/sec"
+        @run.comms.new_message(sendHost).set_body("command[mgen]go(#{recvHost.ip},#{@rate})").send
+      else
+        raise_failure "Cannot start MGEN on #{@sendHost}."
       end
     end
   end
-end
+
+  class StopMessageGenerator < Cougaar::Action
+    DOCUMENTATION = Cougaar.document {
+      @description = "Stop traffic generation."
+      @parameters = [
+         {:host=>"required, Hostname which is initiating the traffic."}
+      ]
+      @example = "do_action 'StopMessageGenerator', 'sv023'"
+    }
+
+    def initialize( run, hostname )
+      super( run )
+      @hostname = hostname
+    end
+
+    def perform
+      host = @run.society.hosts[@hostname]
+      @run.comms.new_message(host).set_body("command[mgen]stop").send
+    end
+  end
+
+end; end
 
  
 
