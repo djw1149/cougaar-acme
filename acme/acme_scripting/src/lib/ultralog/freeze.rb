@@ -26,10 +26,28 @@ require 'net/http'
 
 module Cougaar
   module Actions
+    class OldFreezeSociety < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Freeze the society using the 2002 version of the Freeze servlet."
+        @example = "do_action 'OldFreezeSociety'"
+      }
+      def initialize(run, &block)
+        super(run)
+        @action = block if block_given?
+      end
+      def perform
+        freezeControl = ::UltraLog::OldFreezeControl.new(@run.society)
+        freezeControl.freeze
+        @action.call(freezeControl) if @action
+      end
+    end
+
+
     class FreezeSociety < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       DOCUMENTATION = Cougaar.document {
-        @description = "Freeze the society using the Freeze servlet."
+        @description = "Freeze the society using the 2003 version of the Freeze servlet. This action blocks until the freeze is complete."
         @example = "do_action 'FreezeSociety'"
       }
       def initialize(run, &block)
@@ -39,8 +57,30 @@ module Cougaar
       def perform
         freezeControl = ::UltraLog::FreezeControl.new(@run.society)
         freezeControl.freeze
+        freezeControl.wait_until_frozen
         @action.call(freezeControl) if @action
       end
+   end
+
+    class ThawSociety < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Thaw the society using the 2003 version of the Freeze servlet. This action blocks until the thaw is complete."
+        @example = "do_action 'ThawSociety'"
+      }
+      def initialize(run, &block)
+        super(run)
+        @action = block if block_given?
+      end
+      def perform
+        freezeControl = ::UltraLog::FreezeControl.new(@run.society)
+        freezeControl.thaw
+        freezeControl.wait_until_running
+        @action.call(freezeControl) if @action
+      end
+
+
+
     end
   end
 end
@@ -48,15 +88,15 @@ end
 module UltraLog
 
   ##
-  # Wraps the behavior of the UltraLog Freeze servlet exposing its
+  # Wraps the behavior of the UltraLog 2002 Freeze servlet exposing its
   # capabilities through a simple OO API:
   #
   #  Usage: 
-  #  fc = UltraLog::FreezeControl.new(society)
+  #  fc = UltraLog::OldFreezeControl.new(society)
   #  fc.freeze #Freeze the society
   #  fc.wait_until_frozen #Will not return until all nodes report frozen
   #
-  class FreezeControl
+  class OldFreezeControl
     FREEZE_SERVLET = "/$NCA/freezeControl"
     
     ##
@@ -173,6 +213,208 @@ module UltraLog
         raise "Could not thaw society" if maxtime && count > maxtime
       end
       return self
+    end
+  end
+
+
+
+################################################################################
+
+  ##
+  # Wraps the behavior of the UltraLog 2003 Freeze servlet exposing its
+  # capabilities through a simple OO API:
+  #
+  #  Usage: 
+  #  fc = UltraLog::FreezeControl.new(society)
+  #  fc.freeze #Freeze the society
+  #  fc.wait_until_frozen #Will not return until all agents are frozen
+  #
+  # This leaves the node agent(s) un-frozen.
+  #
+  class FreezeControl
+    FREEZE_SERVLET = "/freezeControl"
+    RUNNING = "running"
+    FREEZING = "freezing"
+    FROZEN = "frozen"
+    THAWING = "thawing"
+    INCONSISTENT = "inconsistent"
+    
+    
+    
+    ##
+    # Constructs a FreezeControl instance, verifying existence of society.
+    #
+    # society:: [Cougaar::Model::Society] The society to be frozen
+    #
+    def initialize(society, debug=false)
+      @debug = debug
+      @society_state = RUNNING
+      @agent_state = {}
+      @society = society
+      @society.each_agent do |agent|
+        @agent_state[agent] = RUNNING
+      end
+    end
+    
+    ##
+    # Issues a freeze command to the Cougaar society
+    #
+    # return:: [UltraLog::FreezeControl] Reference to 'self' for chaining
+    #
+    def freeze
+      return if frozen?
+      return unless running?
+      begin
+        puts "Freezing starts" if @debug
+        start = Time.now
+        @society.each_agent do |agent|
+          freeze_agent(agent)
+        end
+        done = Time.now
+        puts "Freezing initiated in #{done - start} seconds" if @debug
+      rescue
+        puts "Warning...could not freeze: #{$!}"
+      end
+      @society_state = FREEZING
+      return self
+    end
+    
+    ##
+    # Issues a thaw command to the Cougaar society
+    #
+    # return:: [UltraLog::FreezeControl] Reference to 'self' for chaining
+    #
+    def thaw
+      return if running?
+      return unless frozen?
+      begin
+        @society.each_agent do |agent|
+          thaw_agent(agent)
+        end
+      rescue
+        puts "Warning...could not thaw: #{$!}"
+      end
+      @society_state = THAWING
+      return self
+    end
+    
+    ##
+    # Checks if the society is frozen
+    #
+    # return:: [Boolean] true if society if frozen, otherwise false
+    #
+    def frozen?
+      update_state()
+      return @society_state == FROZEN
+    end
+    
+    ##
+    # Checks if the society is running
+    #
+    # return:: [Boolean] true if society if running, otherwise false
+    #
+    def running?
+      update_state()
+      return @society_state == RUNNING
+    end
+    
+    ##
+    # Polls up to (maxtime) seconds checking if the society is frozen
+    #
+    # maxtime:: [Integer=nil] Maximum poll time in seconds
+    #
+    def wait_until_frozen(maxtime=nil)
+      count = 0
+      until frozen?
+        sleep 10 unless frozen?
+        count += 10
+        raise "Could not freeze society" if maxtime && count > maxtime
+      end
+      return self
+    end
+    
+    ##
+    # Polls up to (maxtime) seconds checking if the society is running
+    #
+    # maxtime:: [Integer=nil] Maximum poll time in seconds
+    #
+    def wait_until_running(maxtime=nil)
+      count = 0
+      until running?
+        sleep 10 unless running?
+        count += 10
+        raise "Could not thaw society" if maxtime && count > maxtime
+      end
+      return self
+    end
+
+    ##
+    # Freeze one agent
+    #private
+    def freeze_agent(agent)
+      agent_uri = "#{agent.uri}#{FREEZE_SERVLET}?action=freeze"
+      data, uri = Cougaar::Communications::HTTP.get(agent_uri)
+      unless data.index("Freezing initiated")
+        puts "Error freezing agent #{agent.name}.  Data recvd: #{data}"
+        raise "Could not freeze agent #{agent.name}" 
+      end
+      @agent_state[agent] = FREEZING
+    end
+
+    ##
+    # Thaw one agent
+    private
+    def thaw_agent(agent)
+      agent_uri = "#{agent.uri}#{FREEZE_SERVLET}?action=thaw"
+      data, uri = Cougaar::Communications::HTTP.get(agent_uri)
+      unless data.index("Thawing initiated")
+        puts "Error thawing agent #{agent.name}.  Data recvd: #{data}"
+        raise "Could not thaw agent #{agent.name}" 
+      end
+      @agent_state[agent] = THAWING
+    end
+
+    ##
+    # Check one agent's state
+    private
+    def check_agent(agent)
+      agent_uri = "#{agent.uri}#{FREEZE_SERVLET}"
+      data, uri = Cougaar::Communications::HTTP.get(agent_uri)
+      ret = RUNNING if data.index("Thawed")
+      ret = FROZEN if data.index("Frozen")
+      ret = FREEZING if data.index("Freezing")
+      ret = THAWING if data.index("Thawing")
+      puts "Agent #{agent.name} is #{ret}" if @debug
+      unless ret 
+        puts "Error checking agent #{agent.name}.  Data recvd: #{data}"
+        raise "Could not check agent #{agent.name}" 
+      end
+      @agent_state[agent] = ret
+      return ret
+    end
+
+    ##
+    # Poll all agents and update society state
+    private 
+    def update_state()
+      expected_state = nil
+      tmp_state = INCONSISTENT
+      @society.each_agent do |agent|
+        check_agent(agent)
+
+        # init expected_state to agent[0] state
+        expected_state = @agent_state[agent] unless expected_state 
+
+        # if this agent state != the first agent state, society is inconsistent
+        unless expected_state == @agent_state[agent]
+          tmp_state = INCONSISTENT
+          break
+        end
+
+        tmp_state = @agent_state[agent]
+      end
+      puts "**** Society state is #{tmp_state}" if @debug
+      @society_state = tmp_state
     end
   end
 end
