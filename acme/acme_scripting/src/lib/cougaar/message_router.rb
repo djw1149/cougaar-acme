@@ -93,20 +93,38 @@ module InfoEther
       def receive_messages
         @receive_thread = Thread.new {
           while(true)
-            begin
-              data = @socket.recv(8)
-            rescue
-              data = nil
-            end
-            if data.nil? || data.size==0
+            header = fully_read(8)
+            unless header
               @on_close.call(self) if @on_close
               stop
+              break
             end
-            sizes = data.unpack("CCCCN")
-            data += socket.recv(sizes[0]+sizes[1]+sizes[2]+sizes[3]+sizes[4])
-            notify_listeners(Message.new(self, data))
+            sizes = header.unpack("CCCCN")
+            body = fully_read(sizes[0]+sizes[1]+sizes[2]+sizes[3]+sizes[4])
+            unless body
+              @on_close.call(self) if @on_close
+              stop
+              break
+            end
+            notify_listeners(Message.new(self, header+body))
           end
         }
+      end
+      
+      def fully_read(length)
+        read = 0
+        result = ""
+        begin
+          while (length-read) > 0
+            data = @socket.recv(length-read)
+            return nil if data.nil?
+            read += data.size
+            result << data
+          end
+        rescue
+          return nil
+        end
+        result
       end
       
       def <<(message)
