@@ -12,7 +12,8 @@ on_archive do |run, archive_fiile|
   art = '7039196618@vtext.com'
   mark = '5716431333@vtext.com'
   rich = '5713326896@voicestream.net'
-  phonelist = [art, mark, rich]
+  joe = '7038696710@messaging.sprintpcs.com'
+  phonelist = [art, mark, rich, joe]
 
   #error checking
   error = nil
