@@ -119,7 +119,7 @@ class CougaarNode
       prefix = '' unless prefix
       suffix = @plugin.properties['node_start_suffix']
       suffix = '' unless suffix
-      result = prefix
+      result = prefix.clone
       @env.each {|var| result << "set #{var};"}
       result << %Q[#{@jvm} #{@options.join(" ")} #{@java_class} #{@arguments}]
       result << suffix
