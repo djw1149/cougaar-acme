@@ -1,4 +1,3 @@
-require 'cougaar/society_model.rb'
 require 'rexml/document'
 
 module Cougaar

@@ -20,7 +20,6 @@
 #
 
 require 'mysql'
-require 'cougaar/model'
 
 module Cougaar
   module CSmart
