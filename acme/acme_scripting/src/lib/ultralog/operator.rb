@@ -174,7 +174,7 @@ module UltraLog
   
     def initialize(host)
       @host = host
-      @baseName = Time.now.strftime('%y-%m-%d_%H')
+      @baseName = Time.now.strftime('%y-%m-%d_%H_%M')
     end
     
     def self.from_run(run, host)
