@@ -273,7 +273,7 @@ module UltraLog
       @society_status = "INCOMPLETE"
       @run["completion_agent_status"] = {}
    	  @run.comms.on_cougaar_event do |event|
-	      handleEvent(event) if (event.component == "SimpleCompletionPlugin")
+	      handleEvent(event) if (event.component == "QuiescenceReportServiceProvider")
 	    end
     end
 
@@ -281,8 +281,65 @@ module UltraLog
       comp = @run["completion_agent_status"] 
       data = event.data.split(":")
       new_state = data[1].strip
-      comp[event.cluster_identifier] = new_state
+      begin
+        xml = REXML::Document.new(new_state)
+      rescue REXML::ParseException
+        ::Cougaar.logger.error "Invalid xml Quiesence message: #{new_state}"
+        return
+      end
+      root = xml.root
+      node = root.attributes["name"]
+      quiescent = (root.attributes["quiescent"] == "true")
+      if quiescent
+        root.each_element do |elem|
+          agent = elem.attributes["name"]
+          comp[agent] = get_agent_data(elem)
+        end
+      else
+        comp[node] = nil
+        node = @run.society.nodes[node]
+        node.each_agent do |agent|
+          comp[agent.name] = nil
+        end
+      end
       update_society_status()
+    end
+
+    def get_agent_data (data)
+      agents = {}
+      agents["receivers"] = get_messages(data.elements["receivers"])
+      agents["senders"] = get_messages(data.elements["senders"])
+      return agents
+    end
+      
+    def get_messages (data)
+      msgs = {}
+      data.each_element do |elem|
+        msgs[elem.attributes["agent"]] = elem.attributes["msgnum"]
+      end
+      return msgs
+    end
+
+    # Very verbose.  Only call if you really want to see this stuff
+    def print_current_comp(comp)
+      puts "*********************************************************"
+      puts "PRINTING COMP INFO"
+      puts "*********************************************************"
+      comp.each_key do |agent|
+        puts "Agent: #{agent}"
+        info = comp[agent]
+        next if !info
+        puts "  Receivers:"
+        print_messages(info["receivers"])
+        puts "  Senders:"
+        print_messages(info["senders"])
+      end
+    end
+
+    def print_messages(msgs)
+      msgs.each_key do |agent|
+        puts "    #{agent} => #{msgs[agent]}"
+      end
     end
 
     def update_society_status()
