@@ -1070,11 +1070,11 @@ module Cougaar
       end
       
       def uri
-        return @node.uri+"/$#{@name}"
+        return @node.uri[0...-3]+"/$#{@name}"
       end
       
       def secure_uri
-        return @node.secure_uri+"/$#{@name}"
+        return @node.secure_uri[0...-3]+"/$#{@name}"
       end
       
       ##
