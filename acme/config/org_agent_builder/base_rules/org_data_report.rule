@@ -24,11 +24,12 @@ society.each_agent do |agent|
       agency = agent.get_facet(:agency).to_s
       service = agent.get_facet(:service).to_s
       is_reserve = agent.get_facet(:is_reserve).to_s
+      equip_type_id = agent.get_facet(:equip_type_id).to_s
       c.add_argument("ClusterPG:MessageAddress:MessageAddress:#{org_id}")
       c.add_argument("ItemIdentificationPG:ItemIdentification:String:UIC/#{org_id}")
       c.add_argument("ItemIdentificationPG:Nomenclature:String:#{org_id}")
       c.add_argument("ItemIdentificationPG:AlternateItemIdentification:String:OrgCode/#{org_code}")
-      c.add_argument("TypeIdentificationPG:TypeIdentification:String:UAType/#{org_type_id}")
+      c.add_argument("TypeIdentificationPG:TypeIdentification:String:#{equip_type_id}")
       c.add_argument("TypeIdentificationPG:Nomenclature:String:#{org_type_id}")
       c.add_argument("MilitaryOrgPG:HomeLocation:queryGeolocLocation:GeolocCode=#{home_location}")
       c.add_argument("MilitaryOrgPG:UTC:String:#{org_type_id}")
