@@ -308,6 +308,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -826,6 +838,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -1383,6 +1407,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -1943,6 +1979,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -2506,6 +2554,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -3073,6 +3133,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -3637,6 +3709,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -4206,6 +4290,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -4784,6 +4880,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -5343,6 +5451,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -5900,6 +6020,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -6464,6 +6596,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -7021,6 +7165,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -7589,6 +7745,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -8149,6 +8317,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -8712,6 +8892,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -9271,6 +9463,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -9835,6 +10039,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -10393,6 +10609,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -10957,6 +11185,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -11519,6 +11759,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -12076,6 +12328,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -12642,6 +12906,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -13218,6 +13494,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -13783,6 +14071,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -14341,6 +14641,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -14897,6 +15209,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -15459,6 +15783,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -16019,6 +16355,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -16584,6 +16932,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -17144,6 +17504,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -17709,6 +18081,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -18267,6 +18651,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -18608,6 +19004,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -19145,6 +19553,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -19488,6 +19908,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -19804,6 +20236,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
@@ -20138,6 +20582,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -20446,6 +20902,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -20752,6 +21220,18 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
           class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
@@ -21048,6 +21528,18 @@
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
