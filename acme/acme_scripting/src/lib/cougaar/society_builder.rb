@@ -97,12 +97,11 @@ module Cougaar
                   node.agent.add_component(comp_element.attributes['name']) do |comp|
                     comp.classname = comp_element.attributes['class']
                     comp.priority = comp_element.attributes['priority']
-                    comp.order = comp_element.attributes['order']
                     comp.insertionpoint = comp_element.attributes['insertionpoint']
                     
                     #add arguments to component
                     comp_element.elements.each("argument") do |arg_element|
-                      comp.add_argument(arg_element.text.strip, arg_element.attributes['order'].to_f)
+                      comp.add_argument(arg_element.text.strip)
                     end #arg_element
                   end #comp
                 end #comp_element
@@ -124,12 +123,11 @@ module Cougaar
                       agent.add_component(comp_element.attributes['name']) do |comp|
                         comp.classname = comp_element.attributes['class']
                         comp.priority = comp_element.attributes['priority']
-                        comp.order = comp_element.attributes['order']
                         comp.insertionpoint = comp_element.attributes['insertionpoint']
                         
                         #add arguments to component
                         comp_element.elements.each("argument") do |arg_element|
-                          comp.add_argument(arg_element.text.strip, arg_element.attributes['order'].to_f)
+                          comp.add_argument(arg_element.text.strip)
                         end
                       end #comp
                     end #comp_element

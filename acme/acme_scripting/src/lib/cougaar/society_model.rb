@@ -941,7 +941,6 @@ module Cougaar
       PRIORITY_COMPONENT = "COMPONENT"
       
       attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments
-      attr_reader :order
       
       ##
       # Construct a component
@@ -950,7 +949,6 @@ module Cougaar
       #
       def initialize(name=nil, &block)
         @name = name
-        @order = 1.0
         @arguments = []
         yield self if block_given?
         if @name.nil?
@@ -982,22 +980,8 @@ module Cougaar
       #
       # argument:: [String] the argument string
       #
-      def add_argument(value, order=nil)
-        unless order
-          order = 0
-          @arguments.each do |arg|
-            order = arg.order if arg.order > order
-          end
-          order = (order + 1).to_f
-        end
-        @arguments << Argument.new(value, order)
-      end
-      
-      def order=(value)
-        begin
-          @order = value.to_f if value
-        rescue
-        end
+      def add_argument(value)
+        @arguments << Argument.new(value)
       end
       
       ##
@@ -1014,10 +998,6 @@ module Cougaar
         return false
       end
       
-      def <=>(other)
-        return @order <=> other.order
-      end
-      
       ##
       # Creates a new component with this component's data
       #
@@ -1028,9 +1008,8 @@ module Cougaar
         c.agent = agent
         c.classname = @classname
         c.priority = @priority
-        c.order = @order
         c.insertionpoint = @insertionpoint
-        each_argument {|arg| c.add_argument(arg.value, arg.order)}
+        each_argument {|arg| c.add_argument(arg.value)}
         return c
       end
       
@@ -1039,10 +1018,9 @@ module Cougaar
         xml << "#{' '*i}  name='#{@name}'\n"
         xml << "#{' '*i}  class='#{@classname}'\n"
         xml << "#{' '*i}  priority='#{@priority}'\n" if @priority
-        xml << "#{' '*i}  order='#{@order}'\n" if @order
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
         each_argument do |arg|
-          xml << "#{' '*i}  <argument order='#{arg.order}'>\n"
+          xml << "#{' '*i}  <argument>\n"
           xml << "#{' '*i}    #{REXML::Text.normalize(arg.value)}\n"
           xml << "#{' '*i}  </argument>\n"
         end
@@ -1054,10 +1032,9 @@ module Cougaar
         ruby =  "#{' '*i}#{parent.kind_of?(Node) ? 'node.agent' : 'agent'}.add_component('#{@name}') do |c|\n"
         ruby << "#{' '*i}  c.classname = '#{@classname}'\n"
         ruby << "#{' '*i}  c.priority = '#{@priority}'\n"
-        ruby << "#{' '*i}  c.order = #{@order}\n"
         ruby << "#{' '*i}  c.insertionpoint = '#{@insertionpoint}'\n"
         each_argument do |arg|
-          ruby << "#{' '*i}  c.add_argument('#{arg.value}', #{arg.order})\n"
+          ruby << "#{' '*i}  c.add_argument('#{arg.value}')\n"
         end
         ruby << "#{' '*i}end\n"
         ruby
@@ -1067,18 +1044,9 @@ module Cougaar
     
     class Argument
       attr_accessor :value
-      attr_reader :order
       
-      def initialize(value, order)
+      def initialize(value)
         @value = value
-        self.order = order
-      end
-      
-      def order=(value)
-        begin
-          @order = value.to_f if value
-        rescue
-        end
       end
       
       def to_s
