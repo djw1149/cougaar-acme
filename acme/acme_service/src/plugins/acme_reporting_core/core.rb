@@ -7,6 +7,7 @@ require "./plugins/acme_reporting_core/Nameservers"
 require "./plugins/acme_reporting_core/Scripts"
 require "./plugins/acme_reporting_core/BWUsage"
 require "./plugins/acme_reporting_core/MemoryReport"
+require "./plugins/acme_reporting_core/AgagentReport"
 
 module ACME
   module Plugins
@@ -36,6 +37,7 @@ module ACME
       def process_archive(archive)
         puts "Processing an archive #{archive.base_name}"
         begin
+=begin
           run_log_test(archive)
           puts "Run log"
           RunTimeTest.new(archive, @plugin, @ikko).perform
@@ -56,6 +58,9 @@ module ACME
           puts "BWUsage"
           MemoryReport.new(archive, @plugin, @ikko).perform
           puts "MEM"
+=end
+          AgagentReport.new(archive, @plugin, @ikko).perform
+          puts "AG"
         rescue
           puts $!
           puts $!.backtrace
