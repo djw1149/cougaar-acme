@@ -994,6 +994,7 @@ module Cougaar
       #
       def initialize(name=nil, &block)
         @name = name
+        @order = 1.0
         @arguments = []
         yield self if block_given?
         if @name.nil?
