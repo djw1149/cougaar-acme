@@ -330,7 +330,7 @@ class XMLCougaarNode
     end
 
     def start
-			cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments}")
+			cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')}")
       
       @plugin.log_info << "Starting command:\n#{cmd}"
 
