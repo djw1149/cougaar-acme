@@ -987,13 +987,13 @@ module Cougaar
       def clone(host)
         node = Node.new(@name)
         node.host = host
-        each_agent {|agent| node.add_agent agent.clone(host)}
+        each_agent {|agent| node.add_agent agent.clone(node)}
         each_facet { |facet| node.add_facet(facet.clone) }
         node.parameters.concat @parameters
         node.env_parameters.concat @env_parameters
         node.prog_parameters.concat @prog_parameters
         node.classname = @classname
-        node.agent = @agent.clone(host)
+        node.agent = @agent.clone(node)
         node
       end
       
