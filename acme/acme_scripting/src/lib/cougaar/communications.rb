@@ -304,16 +304,19 @@ module Cougaar
         raise "Could not connect to Jabber server"
       end
       
-      def add_command(command, help=nil, &block)
+      def add_command(command, help="No help available", &block)
         @commands[command] = block
+        @command_help[command] = help
       end
       
       def remove_command(command)
         @commands.delete(command)
+        @command_help.delete(command)
       end
       
       def add_command_listener
         @commands = {}
+        @command_help = {}
         add_command("hostname", "Return hostname") do |message, params|
           message.reply.set_body(`hostname`.strip).send
         end
@@ -322,6 +325,11 @@ module Cougaar
         end
         add_command("script_name", "Return fill name of active script") do |message, params|
           message.reply.set_body(File.expand_path($0)).send
+        end
+        add_command("help", "Display this help list") do |message, params|
+          result = "Command List:\n"
+          @commands.keys.sort.each { |cmd| result << "command[#{cmd}] #{@command_help[cmd]}\n" }
+          message.reply.set_body(result)
         end
 
         @acme_session.add_message_listener do |message|
