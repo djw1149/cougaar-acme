@@ -176,7 +176,7 @@ end
 
 
 if __FILE__ == $0
-  dg = UltraLog::DataGrabber.new("u093")
+  dg = UltraLog::DataGrabber.new("u180")
   run = dg.new_run
   puts "Waiting for datagrabber..."
   run.wait_for_completion
