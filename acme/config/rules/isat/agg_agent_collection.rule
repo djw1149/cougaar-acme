@@ -36,12 +36,10 @@ node.add_agent("AGG-Agent") do |agent|
   end
 end
 
-#According to the old recipeQuery.q, "Both 'Agg-agent' and the UofM manager are aggregators"
-society.each_agent do |agent|
-  unless agent.name == "AGG-Agent" or agent.name == "UMmrmanager"
-    agent.add_component do |c|
-      c.classname = remote_subscription_plugin
-    end
+# Add RemoteSubscriptionPlugin to all agents and node agents
+society.each_agent(true) do |agent|
+  agent.add_component do |c|
+    c.classname = remote_subscription_plugin
   end
 end
 
