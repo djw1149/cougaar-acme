@@ -131,6 +131,9 @@ module Cougaar
       
       def initialize(run, timeout=120, debug=false)
         super(run)
+        unless timeout.kind_of?(Numeric) && (debug==true || debug==false)
+            raise_failure "StartSociety usage: do_action 'StartSociety', timeout (default 120), debug (default false)"
+        end
         @run['node_controller'] = ::Cougaar::NodeController.new(run, timeout, debug)
       end
       
