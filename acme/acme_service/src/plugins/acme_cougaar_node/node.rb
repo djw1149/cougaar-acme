@@ -1,4 +1,3 @@
-require 'cougaar/event_server'
 
 module ACME ; module Plugins
 
@@ -40,29 +39,6 @@ class CougaarNode
       end
     end
     
-    # MONITOR NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/monitor_node/description"].data = 
-      "Sends back CougaarEvent messages of the proc (PID) every (interval) seconds. Params: PID,interval"
-    @plugin["/plugins/acme_host_jabber_service/commands/monitor_node"].set_proc do |message, command| 
-      pid, interval = command.split(",")
-      unless pid and interval
-        message.reply.set_body("FAILURE: Invalid params: PID,interval")
-      end
-      node = @running_nodes[pid.strip]
-      if node
-        begin
-          interval = interval.strip.to_i
-        rescue
-          message.reply.set_body("FAILURE: Interval not a number")
-        end
-        jid = message.from.to_s
-        experiment = jid[(jid.index("expt-")+5)..-1]
-        node.monitor(experiment, interval)
-        message.reply.set_body("SUCCESS: Monitoring node: #{pid}").send
-      else
-        message.reply.set_body("FAILURE: Unknown node: #{pid}").send
-      end
-    end
   end
   
   class NodeConfig
@@ -78,7 +54,6 @@ class CougaarNode
       @options = []
       configure read_props(initial_props)
       @monitors = []
-      @event_queue = plugin["/plugins/acme_cougaar_events/event"]
     end
     
     def start
@@ -103,22 +78,6 @@ class CougaarNode
         @pipe.close
       end
       puts "Stopping process"
-    end
-    
-    def monitor(experiment, interval)
-      @monitors << Thread.new do
-        while true
-          begin
-            @event_queue << Cougaar::CougaarEvent.new do |event|
-              event.experiment = experiment
-              event.event_type = "MONITOR_NODE"
-              event.data = get_cpu
-            end
-          rescue
-          end
-          sleep interval
-        end
-      end
     end
     
     def get_cpu
@@ -207,6 +166,3 @@ class CougaarNode
 end
       
 end ; end
-
-#a = ACME::Plugins::CougaarNode::NodeConfig.new("Linux.props", "-DCommand$Arguments=test\n-DDISPLAY=foo")
-#a.to_s
