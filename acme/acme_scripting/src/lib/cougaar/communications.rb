@@ -23,7 +23,7 @@ require 'jabber4r/jabber4r'
 require 'uri'
 require 'net/http'
 require 'rexml/document'
-require 'coguaar/curl'
+require 'cougaar/curl'
 
 module Cougaar
 
