@@ -18,39 +18,39 @@ module ACME; module Plugins
     
     def register_commands
       register_command("test_cip", "return the $CIP") do |message, command|
-        result = "\n"
+        result = ""
         result += `su -l -c 'echo $CIP' asmt`
-        message.reply.set_body("CIP=#{result}").send
+        message.reply.set_body("CIP=[#{result}]").send
       end
       register_command("reset_crypto", "Reset the crypto service") do |message, command|
         result = "\n"
         result += `su -l -c 'cd $CIP/ldap; ./resetCrypto' asmt`
-        message.reply.set_body(result).send
+        message.reply.set_body("Done").send
       end
       register_command("clear_pnlogs", "Clear persistence and log data") do |message, command|
         result = "\n"
         result += `su -l -c 'cd $CIP/operator; ./clrPnLogs.csh' asmt`
-        message.reply.set_body(result).send
+        message.reply.set_body("Done").send
       end
       register_command("clear_persistence", "Clear persistence data") do |message, command|
         result = "\n"
         result += `su -l -c 'cd $CIP/operator; ./clrP.csh' asmt`
-        message.reply.set_body(result).send
+        message.reply.set_body("Done").send
       end
       register_command("clear_logs", "Clear log data") do |message, command|
         result = "\n"
         result += `su -l -c 'cd $CIP/operator; ./clrLogs.csh' asmt`
-        message.reply.set_body(result).send
+        message.reply.set_body("Done").send
       end
       register_command("archive_logs", "Archive the log data. param: archiveDir") do |message, command|
         result = "\n"
         result += `su -l -c 'cd $CIP/operator; ./archiveLogs.csh #{command}' asmt`
-        message.reply.set_body(result).send
+        message.reply.set_body("Done").send
       end
       register_command("archive_db", "Archive the database data. param: archiveDir") do |message, command|
         result = "\n"
         result += `su -l -c 'cd $CIP/operator; ./archiveDB.csh #{command}' asmt`
-        message.reply.set_body(result).send
+        message.reply.set_body("Done").send
       end
     end
     
