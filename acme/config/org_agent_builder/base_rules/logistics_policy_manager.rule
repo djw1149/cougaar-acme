@@ -49,7 +49,11 @@ society.each_agent do |agent|
 # Then insert policy arguments
 # AmmunitionProvider
     if agent.get_facet(:is_ua)
-      c.add_argument("POLICY=InventoryPolicy-HOW_DO_I_GET_THIS.ldm.xml")
+      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
+	c.add_argument("POLICY=InventoryPolicy-UA-Consumer-BulkPOL.ldm.xml")
+      else
+	c.add_argument("POLICY=InventoryPolicy-UA-FSB-FWS-BulkPOL.ldm.xml")
+      end
       c.add_argument(no_destination)
     else
       my_role = "AmmunitionProvider"
