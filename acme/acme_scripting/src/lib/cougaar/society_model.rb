@@ -112,7 +112,7 @@ module Cougaar
         xml = "<?xml version='1.0'?>\n" +
               "<society name='#{@name}'\n" +
               "  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'\n" + 
-              "  xsi:noNamespaceSchemaLocation='society.xsd'>\n"
+              "  xsi:noNamespaceSchemaLocation='http://www.cougaar.org/2003/society.xsd'>\n"
         each_host {|host| xml << host.to_xml}
         xml << "</society>"
         return xml
