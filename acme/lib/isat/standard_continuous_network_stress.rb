@@ -7,7 +7,7 @@ description: This is a standard network stressor which would take six parameters
              end_tag - tag symbol before which to stop stress.
              duration - duration of stress
              bandwidth - value to which K's bandwidth will be set.
-             ks_to_stress - array of k's to stress (default=null i.e. all)
+             ks_to_stress - array of k's to stress (no default)
 
 =end
 
@@ -15,13 +15,21 @@ insert_after parameters[:start_tag] do
   if( parameters[:start_delay] != nil && parameters[:start_delay] > 0 )
     do_action "SleepFrom", parameters[:start_tag], parameters[:start_delay]
   end
-#  do_action "DegradeKs", parameters[:bandwidth], parameters[:ks_to_stress]
-  do_action "DegradeKs", parameters[:ks_to_stress]
-at :network_stress_start
+
+  parameters[:ks_to_stress].each { |link|
+     do_action "ShapeHost", link[:router], link[:bandwidth], link[:target]
+  }
+
+  at :network_stress_start
+
 end
+
 if( parameters[:duration] != nil && parameters[:duration] >0 )
   insert_before parameters[:end_tag] do
     do_action "SleepFrom", :network_stress_start, parameters[:duration]
-    do_action "ResetDegradeKs", parameters[:ks_to_stress]
+
+    parameters[:ks_to_stress].each { |parameter|
+       do_action "RestoreHost", parameter[:router], parameter[:target]
+    }
   end
 end
