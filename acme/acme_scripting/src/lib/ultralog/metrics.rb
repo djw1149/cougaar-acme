@@ -53,16 +53,20 @@ module Cougaar
       
       def perform
         begin
-          @run.society.each_active_host do |host|
-            ms = Cougaar::MtsStats.new(@run.society)
-            d = ms.getAllData()
-            @run.info_message d if @debug
-            File.open(@filename, File::CREAT|File::WRONLY) do |f|
-              f.write(d)
+          hosts = []
+          @run.society.each_active_host { |host| hosts << host }
+          hosts.each_parallel do |host|
+            begin
+              ms = Cougaar::MtsStats.new(@run.society)
+              d = ms.getAllData()
+              @run.info_message d if @debug
+              File.open(@filename, File::CREAT|File::WRONLY) do |f|
+                f.write(d)
+              end
+            rescue
+              @run.error_message "Exception in CollectMtsMetrics action: #{$!}"
             end
           end
-        rescue
-          @run.error_message "Exception in CollectMtsMetrics action: #{$!}"
         end
       end
 
@@ -87,27 +91,31 @@ module Cougaar
       def perform
         begin
           `mkdir -p #{@directory}` unless File.exist?(@directory)
-	  @run.society.each_active_host do |host|
-            results = @run.comms.new_message(host).set_body("command[list_java_pids]").request(60)
-            next if (results.nil? || results.body.nil?)
-            results = results.body.split(",")
-            results.each do|result|
-              result = result.split('=')
-              node = result[0]
-              pid = result[1]
-              next if pid.nil?
-              out_file = File.open("#{@directory}/#{node}-procinfo", "w") 
-              #output = @run.comms.new_message(host).set_body("command[rexec_user]ps -o size -o pid -C java | grep #{pid}").request(60)
-              output = @run.comms.new_message(host).set_body("command[rexec_user]cat /proc/#{pid}/status | grep Vm").request(60)
-              next if output.nil?
-              output = output.body
-              out_file.print("#{node}\n#{output}\n")
-              out_file.close
-              @run.archive_and_remove_file("#{@directory}/#{node}-procinfo", "Memory usage file")
-            end          
+          hosts = []
+	  @run.society.each_active_host { |host| hosts << host }
+          hosts.each_parallel do |host|
+            begin
+              results = @run.comms.new_message(host).set_body("command[list_java_pids]").request(60)
+              next if (results.nil? || results.body.nil?)
+              results = results.body.split(",")
+              results.each do|result|
+                result = result.split('=')
+                node = result[0]
+                pid = result[1]
+                next if pid.nil?
+                out_file = File.open("#{@directory}/#{node}-procinfo", "w") 
+                #output = @run.comms.new_message(host).set_body("command[rexec_user]ps -o size -o pid -C java | grep #{pid}").request(60)
+                output = @run.comms.new_message(host).set_body("command[rexec_user]cat /proc/#{pid}/status | grep Vm").request(60)
+                next if output.nil?
+                output = output.body
+                out_file.print("#{node}\n#{output}\n")
+                out_file.close
+                @run.archive_and_remove_file("#{@directory}/#{node}-procinfo", "Memory usage file")
+              end          
+            rescue
+              @run.error_message "Exception in CollectMemoryData action: #{$!}"
+            end
           end
-        rescue
-          @run.error_message "Exception in CollectMemoryData action: #{$!}"
         end
       end
 
