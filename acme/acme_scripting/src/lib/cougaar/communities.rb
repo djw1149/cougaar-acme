@@ -19,6 +19,8 @@
 # </copyright>
 #
 
+require 'rexml/document'
+
 module Cougaar
 
   module Actions
@@ -80,6 +82,30 @@ module Cougaar
         File.open(@file, "w") { |file| file.puts communities_xml }
       end
     end
+    
+    class LoadCommunitiesFromXML < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Load a communities file from XML into the current society."
+        @parameters = [
+          {:file => "filename, File to read communities from (in xml format)."}
+        ]
+        @example = "do_action 'LoadCommunitiesFromXML', 'myCommunities.xml'"
+      }
+      
+      def initialize(run, filename)
+        super(run)
+        @filename = filename
+      end
+      
+      def to_s
+        return super.to_s+"('#{@filename}')"
+      end
+      
+      def perform
+        Cougaar::Model::Communities.from_xml(@run.society, @filename)
+      end
+    end
   end
 
   module Model
@@ -88,10 +114,28 @@ module Cougaar
       def communities
         @communities ||= Communities.new(self)
       end
+      
+      def communities=(communities)
+        @communities = communities
+        @communities.society = self
+      end
     end
   
     class Communities
       include Enumerable
+      
+      attr_accessor :society
+      
+      def Communities.from_xml_file(society, filename)
+        communities = Communities.new(society)
+        doc = REXML::Document.new(File.new(filename))
+        doc.root.elements.each("Community") do |community_element|
+          communities.add(community_element.attributes['Name']) do |community|
+            community.initialize_from_rexml_element(community_element)
+          end
+        end
+        communities
+      end
       
       def initialize(society)
         @society = society
@@ -135,6 +179,7 @@ module Cougaar
           '<!ATTLIST Attribute ID CDATA #REQUIRED>',
           '<!ATTLIST Attribute Value CDATA #REQUIRED>',
           ']>']
+          
         include Enumerable
         attr_accessor :name, :validate
         
@@ -144,6 +189,35 @@ module Cougaar
           @entities = []
           @attributes = []
           @subcommunities = []
+        end
+        
+        def initialize_from_rexml_element(community_element)
+          community_element.elements.each("Attribute") do |attribute_element|
+            add_attribute(attribute_element.attributes['ID'], attribute_element.attributes['Value'])
+          end
+          community_element.elements.each("Entity") do |entity_element|
+            entity_name = entity_element.attributes['Name']
+            et_element = entity_element.elements['Attribute[@ID="EntityType"]']
+            entity_type = et_element ?  et_element.attributes['Value'] : nil
+            
+            add_entity(entity_name, entity_type) do |entity|
+              entity_element.elements.each("Attribute") do |attribute_element|
+                id = attribute_element.attributes['ID']
+                value = attribute_element.attributes['Value']
+                if id=='Role'
+                  entity.add_role(value)
+                elsif id!='EntityType'
+                  entity.add_attribute(id, value)
+                end
+              end
+            end
+          end
+          community_element.elements.each("Community") do |subcommunity_element|
+            puts community_element.attributes['Name']
+            add_subcommunity(community_element.attributes['Name']) do |subcommunity|
+              subcommunity.initialize_from_rexml_element(subcommunity_element)
+            end
+          end
         end
 
         def add_subcommunity(name)
@@ -235,7 +309,7 @@ module Cougaar
           end
         end
         
-        def add_entity(name, entity_type, &block)
+        def add_entity(name, entity_type=nil, &block)
           entity = Entity.new(name, entity_type)
           @entities << entity
           yield entity if block_given?
@@ -251,7 +325,7 @@ module Cougaar
         class Entity
           attr_accessor :name, :entity_type
           
-          def initialize(name, entity_type)
+          def initialize(name, entity_type=nil)
             @name = name
             @entity_type = entity_type
             @roles = []
@@ -286,7 +360,7 @@ module Cougaar
           def to_xml(xml=nil, indent = 0)
             xml ||= []
             xml << " "*indent+"<Entity Name='#{@name}' >"
-            xml << " "*indent+"  <Attribute ID='EntityType' Value='#{@entity_type}' />"
+            xml << " "*indent+"  <Attribute ID='EntityType' Value='#{@entity_type}' />" if @entity_type
             @roles.each do |role|
               xml << " "*indent+"  <Attribute ID='Role' Value='#{role}' />"
             end

@@ -301,32 +301,6 @@ module Cougaar
         @run['node_controller'].start_all_nodes(self)
       end
     end
-    
-    class SavePersistenceSnapshot <  Cougaar::Action
-      def initialize(run, filename, debug = false)
-        super(run)
-        @filename = filename
-        @debug = debug
-      end
-
-      def perform()
-        snapshot_society = @run.society.clone
-        nca = snapshot_society.agents['NCA']
-        result = Cougaar::Communications::HTTP.get(nca.uri+"/timeControl")
-        md = /Scenario Time<\/td><td>([^\s]*) (.*)<\/td>/.match(result)
-        if md
-          date = md[1]
-          snapshot_society.each_node do |node|
-            node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=#{date}")
-          end
-        end
-        File.open("#{ENV['CIP']}/workspace/P/society.rb", "w") do |file|
-          file.puts snapshot_society.to_ruby
-        end
-        `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P`
-        `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
-      end
-    end
 
     class StopSociety <  Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
