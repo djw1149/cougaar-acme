@@ -28,11 +28,6 @@ $FREEBASE_APPLICATION = "acme"
 
 require 'rbconfig'
 
-at_exit {
-  puts "WARNING: Exit called within ACME Service"
-  puts caller
-  puts "-------"
-}
 
 module ACME
   class Service
@@ -46,7 +41,7 @@ module ACME
     #
     # dir:: [String] The directory which holds the properties.xml and/or default.xml
     #
-    def self.startup(dir)
+    def self.startup(dir, plugin_path=nil)
     
       #make sure architecture specific directory is in the include path and before
       #all system standard path
@@ -68,7 +63,7 @@ module ACME
       end
       
       #This method will not return until ACME is closed (shut down)
-      FreeBASE::Core.startup("acme.yaml", "default.yaml")
+      FreeBASE::Core.startup("acme.yaml", "default.yaml", plugin_path)
     end
   end
 end

@@ -1,6 +1,6 @@
 # Purpose: FreeBASE Core module. Starts all plugins
 #    
-# $Id: core.rb,v 1.1 2003-02-19 03:17:04 rich Exp $
+# $Id: core.rb,v 1.2 2005-04-03 18:45:21 rich Exp $
 #
 # Authors:  Rich Kilmer <rich@infoether.com>
 # Contributors:
@@ -30,9 +30,9 @@ module FreeBASE
     ##
     # Starts the Core service.  This method blocks until shutdown.
     #
-    def Core.startup(propertiesFile, defaultPropertiesFile)
+    def Core.startup(propertiesFile, defaultPropertiesFile, plugin_dir = nil)
       Thread.abort_on_exception = true
-      core = Core.new(propertiesFile, defaultPropertiesFile)
+      core = Core.new(propertiesFile, defaultPropertiesFile, plugin_dir)
       yield core if block_given?
       sleep
     end
@@ -46,7 +46,7 @@ module FreeBASE
     ##
     # Constructs a new Core, loads the setup.rb, and loads the plugins
     #
-    def initialize(propertiesFile, defaultPropertiesFile)
+    def initialize(propertiesFile, defaultPropertiesFile, plugin_dir = nil)
       @propertiesFile = propertiesFile
       @defaultPropertiesFile = defaultPropertiesFile
       init_bus
@@ -55,9 +55,15 @@ module FreeBASE
       #push all plugin paths into the require path
       @properties["config/plugin_path"].split(";").each {|path| $:.push path}
       
+      plugin_path = @properties["config/plugin_path"]
+      if plugin_dir
+        $:.push plugin_dir
+        plugin_path += ";" + plugin_dir
+      end
+      
       @bus["/log/info"] << "--- #{@properties['config/product_name']} Started on #{Time.now.to_s}"
       @bus["/system/state/all_plugins_loaded"].data = false;
-      @plugin_config = Configuration.new(self, @properties["config/plugin_path"])
+      @plugin_config = Configuration.new(self, plugin_path)
       @plugin_config.load_plugins
       @plugin_config.start_plugins
       @bus["/system/state/all_plugins_loaded"].data = true;

@@ -30,6 +30,32 @@ acme_service_gem = Gem.cache.search("acme-service").last
 raise "No installed acme-service rubygem...cannot run this file directly" unless acme_service_gem
 require_gem 'acme-service' unless acme_service_gem.loaded?
 
+require 'getoptlong'
+
+opts = GetoptLong.new( [ '--plugin-dir',	'-p',		GetoptLong::REQUIRED_ARGUMENT],
+											[ '--help', '-h', GetoptLong::NO_ARGUMENT])
+
+plugin_dir = nil
+
+def help
+  puts "Starts the ACME Service.\nUsage:\n\tacme-service -p <plugin dir> [-h]"
+  puts "\t-p --plugin-dir\tThe plugin dir to add to the path (in addition to the core plugin dir)."
+end
+
+opts.each do |opt, arg|
+	case opt
+  when '--plugin-dir'
+    plugin_dir = arg
+  when '--help'
+    help
+    exit 0
+	end
+end
+
+if plugin_dir
+  plugin_dir = File.expand_path(plugin_dir)
+end
+
 Dir.chdir acme_service_gem.full_gem_path
 
-ACME::Service.startup(acme_service_gem.full_gem_path)
+ACME::Service.startup(acme_service_gem.full_gem_path, plugin_dir)
