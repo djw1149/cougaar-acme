@@ -202,6 +202,21 @@ class XMLCougaarNode
         response['Content-Type'] = "text/html"
       end
     end
+
+    #LIST JAVA PIDS
+    @plugin["/plugins/acme_host_jabber_service/commands/list_java_pids/description"].data =
+      "List the java pids for each node -- node1(pid1),node2(pid2)."
+    @plugin["/plugins/acme_host_jabber_service/commands/list_java_pids"].set_proc do |message, command|
+      list = []
+      proc_list = `pstree -pl`
+      running_nodes.each do |pid, node|
+        md = /su\(#{pid}\)([^j]*)java\(([^\)]*)\)/.match(proc_list)
+        if md
+          list << "#{node.name}=#{md[2]}"
+        end
+      end
+      message.reply.set_body(list.join(",")).send
+    end 
   end
   
   def XMLCougaarNode.jarAndSign(plugin, filepath)
