@@ -1,0 +1,9 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_host_rexec_user
+version: 1.0
+autoload: true
+require_path: acme_host_rexec_user/rexec_user
+startup_module: ACME::Plugins::RExecUser
+start_dependencies: 
+  acme_host_jabber_service: "*"
+  acme_cougaar_config: "*"
