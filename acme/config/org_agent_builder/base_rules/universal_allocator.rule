@@ -9,6 +9,7 @@ society.each_agent do |agent|
   if agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
     agent.add_component do |c|
       c.classname = universal_allocator_plugin
+      # Fail ProjectSupply at FSB in UA so the inventories drop
       c.add_argument('-ProjectSupply')
     end      
   elsif agent.has_facet? { |facet| facet[:mechanism] == "TerminalInventoryManager" } 
