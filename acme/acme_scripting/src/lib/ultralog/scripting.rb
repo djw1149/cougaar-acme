@@ -39,6 +39,7 @@ require 'ultralog/relationship_servlet'
 require 'ultralog/verify'
 require 'ultralog/services'
 require 'ultralog/stressors'
+require 'ultralog/memory'
 require 'ultralog/network'
 require 'ultralog/mgen'
 
