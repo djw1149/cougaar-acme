@@ -25,7 +25,7 @@
 # Usage:
 # do_action "WatchAgentPersists" before you do StartSociety
 # Note that this sets the necessary -D argument
-# Then, you can do: wait_for "ReadyToKillNodes" <node name>, <node name>
+# Then, you can do: wait_for "NodesPersistedFindProviders" <node name>, <node name>
 # Alternately, supply no Node names to wait for all Nodes to be ready.
 
 # Also note that a Node is ready when all of its agents which
@@ -132,16 +132,16 @@ module Cougaar
   module States
     
     # Wait for this state to ensure given nodes can be killed
-    class ReadyToKillNodes < Cougaar::State
+    class NodesPersistedFindProviders < Cougaar::State
       DEFAULT_TIMEOUT = 30.minutes
       PRIOR_STATES = ["SocietyRunning"]
       DOCUMENTATION = Cougaar.document {
-        @description = "Waits for named Nodes to be ready to kill -- all agents must have persisted after FindProviders."
+        @description = "Waits for named Nodes to be ready to have persisted -- all agents must have persisted after FindProviders."
         @parameters = [
-          {:nodes => "Nodes we want to kill. If not given, use all in the society."}
+          {:nodes => "Nodes we want to wait for. If not given, use all in the society."}
         ]
         @example = "
-          wait_for 'ReadyToKillNodes', 'FWD-A'
+          wait_for 'NodesPersistedFindProviders', 'FWD-A'
         "
       }
       
@@ -164,16 +164,16 @@ module Cougaar
 	  @run['agent_p_watcher'] = ::Ultralog::AgentPersistWatcher.new(run)
 	end
 
-	@run.info_message("Waiting for #{@nodes.size} nodes to be ready to kill.")
+	@run.info_message("Waiting for #{@nodes.size} nodes to persist after finding providers.")
 	while (@ready_nodes.size < @nodes.size)
 	  @nodes.each do |node|
 	    if ! @ready_nodes.include?(node)
 	      if @run['agent_p_watcher'].isNodeReady(node) 
 		@ready_nodes << node
 		if (node.kind_of?(String))
-		  @run.info_message("Node #{node} is ready to kill.")
+		  @run.info_message("Node #{node} has persisted after finding providers.")
 		else
-		  @run.info_message("Node #{node.name} is ready to kill.")
+		  @run.info_message("Node #{node.name} has persisted after finding providers.")
 		end
 	      end # node was ready -- add it block
 	    end # block to only look if not done
@@ -186,7 +186,7 @@ module Cougaar
 	  end
 	end # end while loop waiting for all needed nodes
 	# Done with the wait_for -- all needed nodes reported in
-	@run.info_message("All needed nodes are ready to kill.")
+	@run.info_message("All needed nodes have persisted after finding providers.")
       end
       
       def unhandled_timeout
