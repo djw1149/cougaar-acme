@@ -140,7 +140,7 @@ module Cougaar
           end
         end
         parser.listen( :end_element ) do  |uri, localname, qname|
-          case name
+          case qname
           when "CougaarEvents"
             @node = nil
             @started = false
