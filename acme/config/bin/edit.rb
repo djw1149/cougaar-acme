@@ -80,7 +80,9 @@ society.each_host do |host|
 					comp.arguments[0].value = "fdm_equip_ref.q"
 				end
 				if comp.classname == "org.cougaar.mlm.plugin.organization.GLSInitServlet"
-					comp.arguments[0].value = "093FF.oplan.noncsmart.q"
+					if comp.arguments[0].value == "093FF.oplan.q"
+					  comp.arguments[0].value = "093FF.oplan.noncsmart.q"
+					end
 				end
 			end
 		end
