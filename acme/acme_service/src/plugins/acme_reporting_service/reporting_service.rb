@@ -64,6 +64,7 @@ class ReportingService
     @thread_count ||= 1
     @plugin['/acme/reporting'].manager = self
     @listeners = []
+    @report_verifiers = []
     @hostname = `hostname`.strip
     @processing_queue = ProcessingQueue.new
     load_template_engine
@@ -106,14 +107,14 @@ class ReportingService
       Thread.new do
         while true
           archive = @processing_queue.dequeue
-          unless archive.processed?
+          if !archive.processed? || rerun_reports?(archive)
             archive.expand
             if archive.is_valid?
               notify(archive) # notify all plugins
               archive.rebuild_index
               archive.build_index_page
               archive.compress
-              post_reports(archive) # send results to service
+              #post_reports(archive) # send results to service
             else
               puts "Errors: Skipping archive file: #{archive.xml_file}"
             end
@@ -188,6 +189,23 @@ class ReportingService
         @plugin.log_error << e.backtrace.join("\n")
       end
     end
+  end
+  
+  def add_report_verifier(&block)
+    @report_verifiers << block
+  end
+  
+  def rerun_reports?(struct)
+    rerun_reports = false
+    @report_verifiers.each do |listener|
+      begin
+        rerun_reports = true if listener.call(struct)
+      rescue Exception => e
+        @plugin.log_error << e.to_s
+        @plugin.log_error << e.backtrace.join("\n")
+      end
+    end
+    return rerun_reports
   end
 end
 
