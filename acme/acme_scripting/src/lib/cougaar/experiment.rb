@@ -79,6 +79,12 @@ module Cougaar
       end
     end
     
+    def self.wait_for_notifications
+      until @@notification_queue.empty?
+        sleep 1
+      end
+    end
+    
     ExperimentNotification = Struct.new(:experiment, :begin_flag)
     RunNotification = Struct.new(:run, :begin_flag)
     StateNotification = Struct.new(:state, :begin_flag)
@@ -390,6 +396,7 @@ module Cougaar
       ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, true)) if ExperimentMonitor.active?
       MultiRun.start(self, runcount, &block)
       ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, false)) if ExperimentMonitor.active?
+      ExperimentMonitor.wait_for_notifications
     end
   end
   
