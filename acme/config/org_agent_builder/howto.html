@@ -25,8 +25,39 @@ agent within that configuration.  The information contained in each agent is use
 Facets are broken up into two seperate sections, the 1AD facets and the UA facets, however
 both facet files look similar.</p>
 <h3>1AD Facets</h3>
-<p>A script to generate a single 1AD facet file does not exist.  Currently the base set of
-facet files are located in the <tt>1ad</tt> directory in <tt>configs/org_agent_builder</tt>.  The
+<p>Currently, there are two seperate scripts for generating a 1AD facets file.<br>
+<h3>gen-facets-xml.sh</h3>
+This file generates a single facets file based on the given parameter(s).
+The script takes one required parameter, the partial name of the members file.  And one optional
+parameter, the thread or threads to exclude for the society.<br>
+When excluding threads you can use the following options: <br>
+<ul>
+<li>1 - Excludes Subsistence</li>
+<li>3 - Excludes Bulk POL</li>
+<li>P - Exculdes Packaged POL</li>
+<li>5 - Excludes Ammo</li>
+<li>9 - Excludes Spare Parts</li>
+<li>S - Excludes Strategic Transportation</li>
+</ul>
+When specifying these parameters, do not place a space between them.  For example:
+<pre>
+% gen-facets-xml.sh micro-1ad 1PS
+</pre>
+A list of current member files that can be used to generate facets are:
+<ul>
+<li>single-1ad</li>
+<li>micro-1ad</li>
+<li>micro-1ad-trans-stub</li>
+<li>tiny-1ad</li>
+<li>tiny-1ad-trans-stub</li>
+<li>small-1ad</li>
+<li>small-1ad-trans-stub</li>
+<li>full-1ad</li>
+<li>full-1ad-trans-stub</li>
+</ul>
+<h3>make-facet-societies.sh</h3>
+This script makes all of the basic facet societies, including all of the threads.<br>
+Currently the base set of facet files are located in the <tt>1ad</tt> directory in <tt>configs/org_agent_builder</tt>.  The
 only reason these configurations would need to be re-generated would be if the CSV files changed.
 If that happens, running the script: <tt>make-facet-societies.sh</tt> will re-generate all of the
 facet configuration files.</p>
