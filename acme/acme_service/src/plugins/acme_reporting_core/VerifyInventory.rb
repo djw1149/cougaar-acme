@@ -425,7 +425,6 @@ module ACME
           inv_files.each do |inv_file|
             subject = inv_file.name
             stage = find_stage(subject)
-            puts "Stage:  #{stage}"
             next if stage.nil?
             benchmark_dir = "/usr/local/acme/plugins/acme_reporting_core/goldeninv/INV/#{stage}"
             benchmark = ("#{benchmark_dir}/#{File.basename(inv_file.name).gsub(/Restored-/, "")}")
@@ -457,7 +456,6 @@ module ACME
       end
        
       def find_stage(pathname)
-        puts pathname
         old = Dir.pwd
         Dir.chdir("plugins/acme_reporting_core/goldeninv/INV")
         stages = Dir["*"]

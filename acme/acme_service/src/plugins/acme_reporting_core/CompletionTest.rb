@@ -28,7 +28,6 @@ module ACME
             data = get_file_data(File.new(comp_file.name))
 
             benchmark_data = get_file_data(File.new(benchmark_file))
-            puts benchmark_filename(comp_file)
             result = analyze(data, benchmark_data)
             if result == SUCCESS then
               report.success
