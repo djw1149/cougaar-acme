@@ -94,9 +94,6 @@ module Cougaar
       
       
         # 127-DASB inventories
-        get_inventory  "127-DASB.DISCOM.1-AD.ARMY.MIL", "120MM APFSDS-T M829A1:DODIC/C380", "INV/#{@modifier}/INV#{@modifier}-127-DASB-DODIC-C380.xml"
-        get_inventory  "127-DASB.DISCOM.1-AD.ARMY.MIL", "120MM HEAT-MP-T M830:DODIC/C787", "INV/#{@modifier}/INV#{@modifier}-127-DASB-DODIC-C787.xml"
-      
         get_inventory  "127-DASB.DISCOM.1-AD.ARMY.MIL", "MEAL READY-TO-EAT  :NSN/8970001491094", "INV/#{@modifier}/INV#{@modifier}-127-DASB-MRE.xml"
         get_inventory  "127-DASB.DISCOM.1-AD.ARMY.MIL", "FRESH FRUITS  :NSN/891501F768439", "INV/#{@modifier}/INV#{@modifier}-127-DASB-FRUIT.xml"
       #  get_inventory  "127-DASB.DISCOM.1-AD.ARMY.MIL", "UNITIZED GROUP RATION - HEAT AND SERVE BREAKFAST :NSN/897UGRHSBRKXX", "INV/#{@modifier}/INV#{@modifier}-127-DASB-BREAKFAST.xml"
