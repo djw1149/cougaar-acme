@@ -8,12 +8,15 @@ node.add_agent("SocietySecurityMnRManagerAgent") do |agent|
   agent.add_component do |c|
     c.classname = "org.cougaar.core.security.monitoring.plugin.RateCalculatorPlugin"
     c.add_argument("20")
-    c.add_argument("1200")
+    c.add_argument("3600")
     c.add_argument("org.cougaar.core.security.monitoring.LOGIN_FAILURE")
     c.add_argument("org.cougaar.core.security.monitoring.LOGIN_FAILURE_RATE")
   end
   agent.add_component do |c|
     c.classname = "org.cougaar.core.security.monitoring.plugin.CapabilitiesProcessingPlugin"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.security.monitoring.plugin.CapabilitiesConsolidationPlugin"
   end
   agent.add_component do |c|
     c.classname = "org.cougaar.core.security.monitoring.plugin.MnRQueryReceiverPlugin"
