@@ -6,9 +6,9 @@ class Failure
 
   def update_status
     if @isOn
-      @plugin["/plugins/JabberService/status/add"].call(@plugin.properties["command"], "off")
+      @plugin["/plugins/acme_host_jabber_service/status/add"].call(@plugin.properties["command"], "off")
     else
-      @plugin["/plugins/JabberService/status/delete"].call(@plugin.properties["command"])
+      @plugin["/plugins/acme_host_jabber_service/status/delete"].call(@plugin.properties["command"])
     end
   end
 
@@ -18,10 +18,10 @@ class Failure
     cmd = @plugin.properties["command"]
     desc = @plugin.properties["description"]
 
-    @plugin["/plugins/JabberService/commands/#{cmd}/description"].data=desc +
+    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}/description"].data=desc +
          " Param=trigger,reset"
 
-    @plugin["/plugins/JabberService/commands/#{cmd}"].set_proc do |msg,command|
+    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}"].set_proc do |msg,command|
       case command
         when "reset"
           reset()
