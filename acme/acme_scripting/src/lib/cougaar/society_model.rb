@@ -865,7 +865,9 @@ module Cougaar
         if !o
           @parameters << "#{param}=#{value}"
         else
-          if !o.include? value
+          # value could be parent dir of already included dir
+          # so include ugly condition here to check for that
+          if (o[-value.length..-1] != value) and !o.include? value+"\\;"
             @parameters.delete(o)
             if o.index(';', -1).nil?
               @parameters << "#{o}\\;#{value}"
@@ -895,7 +897,9 @@ module Cougaar
         if !o
           @parameters << "#{param}=#{value}"
         else
-          if !o.include? value
+          # value could be parent dir of already included dir
+          # so include ugly condition here to check for that
+          if (o[-value.length..-1] != value) and !o.include? value+"\\;"
             property = o.split("=")
             values = property[1].split(/[\\;]/)
             values.delete_if {|v| v.empty?}
