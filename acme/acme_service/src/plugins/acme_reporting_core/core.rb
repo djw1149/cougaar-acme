@@ -84,6 +84,9 @@ module ACME
       end
       
       def run_log_test(archive)
+        #if a run contains kills and a line matches any regexp in this array then it is not an error
+        acceptable_kill_errors = [/Error accessing .*PersistenceManager/, 
+                                  /Error accessing .*-CA-/]
         archive.add_report("Log", @plugin.plugin_configuration.name) do |report|
           run_log = nil
           archive.files_with_name(/run\.log/).each do |f|
@@ -104,7 +107,8 @@ module ACME
               kills = true if (line =~ /KillNodes/)
               error = 1 if (line =~ /INTERRUPT/ && error == 0)
               if (line =~ /\[ERROR\]/) then
-                if (!kills || !line =~ /Error accessing .*Manager/) then
+                #check if this is an acceptable kill error, === used to get true/false answer for matching
+                unless (kills && acceptable_kill_errors.collect{|re| re === line}.include?(true)) then
                   error = 2
                 end
               end
