@@ -185,12 +185,13 @@ class XMLCougaarNode
         #search and replace $COUGAAR_INSTALL_PATH
         data = request.body
         data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
-
+        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common/communities.xml')}`
         File.open(filename, "w") do |file|
           file.write(data)
           response.body = "Communities.xml file written."
           response['Content-Type'] = "text/plain"
         end
+        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 400 $CIP/configs/common/communities.xml')}`
       else
         response.body = "<html>Communities.xml File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
