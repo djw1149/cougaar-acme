@@ -3,13 +3,15 @@ require 'getoptlong'
 
 class Make_NewPG
 
-  attr_reader :base_org_id, :suffix, :org_code, :home_location, :nomenclature, :org_type
+  attr_reader :base_org_id, :suffix, :org_code, :home_location, :nomenclature, :org_type, :role
   attr_accessor :writer
 
   def initialize 
+    @strip = false
     opts = GetoptLong.new( [ '--org-attribute-csv', '-o', GetoptLong::REQUIRED_ARGUMENT],
                            [ '--new-pg-attr', '-n', GetoptLong::REQUIRED_ARGUMENT],
-                           [ '---org-role-csv', '-r', GetoptLong::REQUIRED_ARGUMENT],
+                           [ '--org-role-csv', '-r', GetoptLong::REQUIRED_ARGUMENT],
+                           [ '--strip-headers', '-s', GetoptLong::NO_ARGUMENT],
 			   [ '--help', '-h', GetoptLong::NO_ARGUMENT])
 
     opts.each do |opt, arg|
@@ -20,6 +22,8 @@ class Make_NewPG
           @new_csv = arg
         when '--org-role-csv'
           @org_role = arg
+        when '--strip-headers'
+          @strip = true
         when '--help'
           help
           exit 0
@@ -43,6 +47,7 @@ class Make_NewPG
       @nomenclature = list[14]
       @org_type = list[15]
       write
+      writeroles
     end
     @writer.close();
   end
@@ -55,8 +60,9 @@ class Make_NewPG
 	next
       end
       list2 = row2.to_a
-      if @base_org_id = list2[1]
-	@writer << [@base_org_id,"OrganizationPG|Roles","#$list2[3]","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
+      @role = list2[3]
+      if @base_org_id == list2[1]
+	@writer << [@base_org_id,"OrganizationPG|Roles","#@role","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
       end
     end
   end
@@ -68,11 +74,14 @@ class Make_NewPG
     puts "\t-o --org-attribute-csv.....   The org_attribute.csv file"
     puts "\t-n --new-pg-attr...........   The newly created csv file"
     puts "\t-n --org-role-csv..........   The org_role.csv file"
+    puts "\t-n --strip-headers.........   Don't write a header in the csv file."
     puts "\t-h --help..................   Prints this help message"
   end
 
   def write
-    @writer << ["ORG_ID", "PG_ATTRIBUTE_LIB_ID", "ATTRIBUTE_VALUE", "ATTRIBUTE_ORDER", "START_DATE", "END_DATE", "BLANK"]
+    if ! @strip
+      @writer << ["ORG_ID", "PG_ATTRIBUTE_LIB_ID", "ATTRIBUTE_VALUE", "ATTRIBUTE_ORDER", "START_DATE", "END_DATE", "BLANK"]
+    end
     @writer << [@base_org_id,"ItemIdentificationPG|AlternateItemIdentification","UIC/#@org_code","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"ClusterPG|MessageAddress","#@base_org_id","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"TypeIdentificationPG|TypeIdentification","UTC/#@org_type","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
