@@ -69,11 +69,6 @@ unless File.exist?(input)
   exit
 end
 
-unless File.directory?(rules)
-  puts "Cannot find rules directory: #{rules}"
-  exit
-end
-
 # TRANSFORM SOCIETY
 
 print "Loading #{input}..."
