@@ -21,6 +21,7 @@
 
 require 'jabber4r/jabber4r'
 require 'uri'
+require 'timeout'
 require 'net/http'
 require 'rexml/document'
 require 'jabber4r/rexml_1.8_patch'
@@ -85,6 +86,9 @@ module Cougaar
         ]
         @example = "do_action 'StartJabberCommunications', 'acme_console', 'myjabberserver'"
       }
+      
+      JABBER_TIMEOUT = 5.minutes
+      
       def initialize(run, username="acme_console", server=nil, pwd="c0ns0le")
         super(run)
         @username = username
@@ -113,7 +117,12 @@ module Cougaar
           jabber.jabber_server = @server
         end
         begin
-          @run.comms.start
+          timeout(JABBER_TIMEOUT) {
+            @run.comms.start
+          }
+        rescue TimeoutError
+          @run.error_message "Timed out connecting to Jabber."
+          @sequence.interrupt
         rescue
           @run.error_message "Could not start Jabber Communications:\n#{$!}"
           @sequence.interrupt
