@@ -50,13 +50,17 @@ puts "[#{Time.now}] Watching Log Files"
 logs = Polaris::Logs.new("#{ENV['COUGAAR_INSTALL_PATH']}/workspace/log4jlogs")
 
 puts "[#{Time.now}] Adding Polaris Monitor"
-monitor = Polaris::Monitor.new testId, server
+monitor = Polaris::Monitor.new server
+monitor.scriptId = testId
+
 Cougaar::ExperimentMonitor.add monitor
 
 begin
   puts "[#{Time.now}] Starting Experiment"
   load scriptFile
   puts "[#{Time.now}] Experiment Finished"
+rescue Exception => exc
+  monitor.acme_failure( exc )
 end
 
 

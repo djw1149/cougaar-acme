@@ -10,6 +10,11 @@ require "p-config"
 
 require "xmlrpc/client"
 require "rexml/document"
+
+require "cougaar/scripting"
+require "ultralog/scripting"
+require "polaris/tools"
+
 require "cvs-info"
 
 queue = ARGV[0].to_i
@@ -17,29 +22,63 @@ queue = ARGV[0].to_i
 server = XMLRPC::Client.new( $POLARIS_HOST, "/servlet/xml-rpc" )
 server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
+monitor = Polaris::Monitor.new( server )
+Cougaar::ExperimentMonitor.add monitor
+
 playground = CVSPlayground.new
 
-begin
-  taskDescription = server.call("remote.startNextTask", queue)
+@@is_OK = true
 
-  taskDoc = REXML::Document.new( taskDescription )
-  scriptId = taskDoc.elements["task/script"].attributes["id"]
-  configId = taskDoc.elements["task/config"].attributes["id"]
+while (@@is_OK) do
+  trap("SIGINT") {
+    exit
+  }
 
-  scriptInfo = CVSInfo.new( taskDoc.elements["task/script/cvs"] )
-  configInfo = CVSInfo.new( taskDoc.elements["task/config/cvs"] )
+  sleep 30 # Sleep for 1 minute.
+  begin
+    taskDescription = server.call("remote.startNextTask", queue)
 
-  ARGV[0] = playground.get_file( scriptInfo )
-  ARGV[1] = playground.get_file( configInfo )
+    taskDoc = REXML::Document.new( taskDescription )
+    scriptId = taskDoc.elements["task/script"].attributes["id"]
+    configId = taskDoc.elements["task/config"].attributes["id"]
 
-  puts ARGV[0]
-  puts ARGV[1]
+    scriptInfo = CVSInfo.new( taskDoc.elements["task/script/cvs"] )
+    configInfo = CVSInfo.new( taskDoc.elements["task/config/cvs"] )
 
-  load File.join( File.dirname( __FILE__ ), "p-run.rb" )
+    scriptFile = playground.get_file( scriptInfo )
+    configFile = playground.get_file( configInfo )
 
-rescue XMLRPC::FaultException => e
-  puts "Error: "
-  puts e.faultCode
-  puts e.faultString
+    monitor.scriptId = scriptId.to_i
+    config = Polaris::CougaarConfig.new configFile, ENV["COUGAAR_INSTALL_PATH"]
+
+    config.update if ($POLARIS_UPDATE)
+     
+    ARGV[0] = config.transform_script
+
+    logs = Polaris::Logs.new("#{ENV['COUGAAR_INSTALL_PATH']}/workspace/log4jlogs")
+    
+    begin
+      load scriptFile
+    rescue XMLRPC::FaultException => e
+      puts "Code: #{e.faultCode}"
+      puts "Msg: #{e.faultString}"
+      throw e
+    rescue Exception => exc
+      puts "Caught ACME Exception: #{exc}"
+      monitor.acme_failure( exc )
+      throw exc
+    end
+
+  rescue XMLRPC::FaultException => e
+    match = /NoSuchElementException/.match( e.faultString )
+    raise e if (match.nil?)
+
+    trap("SIGINT") {
+	exit
+    }
+
+    sleep 1*60
+  end
 end
+
 

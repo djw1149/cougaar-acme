@@ -3,7 +3,7 @@ require "p-config"
 
 class CVSPlayground
   def initialize
-    `rm -rf #{$POLARIS_CVS_HOME}/*`
+#    `rm -rf #{$POLARIS_CVS_HOME}/*`
     @updates = Hash.new
   end
 
