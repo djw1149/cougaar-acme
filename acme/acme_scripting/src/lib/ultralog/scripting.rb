@@ -22,6 +22,7 @@
 require 'ultralog/metrics'
 require 'ultralog/society_cleanup'
 require 'ultralog/time_control'
+require 'ultralog/enclaves'
 require 'ultralog/cyclic'
 require 'ultralog/aggagent'
 require 'ultralog/aggagent_actions'
