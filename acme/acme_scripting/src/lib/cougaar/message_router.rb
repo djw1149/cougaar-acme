@@ -357,7 +357,7 @@ module InfoEther
       end
       
       def stop
-        @server.kill
+        @thread.kill
       end
       
       def wait_until_done
