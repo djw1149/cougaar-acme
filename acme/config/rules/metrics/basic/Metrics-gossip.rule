@@ -13,14 +13,14 @@
 className=0
 loadOrder=1
 
-gossipAspect = ["org.cougaar.mts.std.GossipAspect",230]
-statisticsService = ["org.cougaar.mts.std.GossipStatisticsServiceAspect",240]
-simpleGossipQualifier = ["org.cougaar.mts.std.SimpleGossipQualifierComponent",250]
+gossipAspect = ["org.cougaar.core.qos.gossip.GossipAspect",230]
+statisticsService = ["org.cougaar.core.qos.gossip.GossipStatisticsServiceAspect",240]
+simpleGossipQualifier = ["org.cougaar.core.qos.gossip.SimpleGossipQualifierComponent",250]
 
 gossip_components_to_add = [gossipAspect, statisticsService, simpleGossipQualifier]
 
 # RSS components
-gossipfeed = "org.cougaar.core.qos.rss.GossipFeedComponent"
+gossipfeed = "org.cougaar.core.qos.gossip.GossipFeedComponent"
 
 # Add Gossip Components to a MTS insertion point
 society.each_node_agent() do |node_agent|
@@ -41,9 +41,11 @@ society.each_node_agent() do |node_agent|
     c.classname = gossipfeed
     c.insertionpoint = "Node.AgentManager.Agent.MetricsServices.Component"
   end
+
+
+  # Gossip Monitoring servlet
+  #  servlet = org.cougaar.core.qos.gossip.GossipServlet
+  node_agent.add_component("org.cougaar.core.qos.gossip.GossipStatisticsPlugin")
+
 end
 
-
-# Gossip Monitoring servlet
-#  servlet = org.cougaar.mts.std.GossipServlet
-# Added as part of the mts.statisticsPlugin
