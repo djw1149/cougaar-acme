@@ -44,7 +44,7 @@ module ACME; module Plugins
           begin
             message = jabber.data.new_chat_message("acme_console@#{jabber.data.host}/expt-#{event.experiment}")
             message.subject="COUGAAR_EVENT"
-            message.body="#{event.node}\n#{event.event_type}\n#{event.cluster_identifier}\n#{event.component}\n#{event.data}"
+            message.set_body("#{event.node}\n#{event.event_type}\n#{event.cluster_identifier}\n#{event.component}\n#{event.data}")
             message.send
           rescue
             @plugin['log/info']  << "Lost a CougaarEvent.  Failed talking to Jabber: #{message}"
