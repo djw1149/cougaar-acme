@@ -1,0 +1,26 @@
+####################################################
+# Adaptivity Support rule
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.AEViewerServlet"
+    c.add_argument("/aeviewer")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.PlaybookManager"
+    c.add_argument("AL-plays.txt")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.AdaptivityEngine"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.ConditionServiceProvider"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.OperatingModeServiceProvider"
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.adaptivity.OperatingModePolicyManager"
+  end
+end
+
