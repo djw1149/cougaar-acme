@@ -31,7 +31,7 @@ module ACME
       end
       
       def sorted_nodes
-        return @data[stages.last].keys.sort{|x, y| @data[stages.last][y] <=> @data[stages.last][x]}
+        return @data[stages.last].keys.sort
       end
   
       def nodes
@@ -135,7 +135,7 @@ module ACME
         return data
       end
 
-      def compile_memory_data(memory_files, node_files)
+      def compile_memory_data(memory_files, node_files = [])
         archive_data = ArchiveMemoryData.new
         memory_files.each do |file|
 	  data = read_memory_file(file.name)
