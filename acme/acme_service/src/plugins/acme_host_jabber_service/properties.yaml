@@ -1,6 +1,0 @@
-#### Properties: acme_host_communications - Version: 1.0
-properties: ~
-"|": 
-  - host: acme
-  - service_type: router
-  - port: 6667
