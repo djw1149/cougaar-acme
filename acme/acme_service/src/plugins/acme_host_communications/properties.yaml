@@ -1,6 +1,6 @@
 #### Properties: acme_host_communications - Version: 1.0
 properties: ~
 "|": 
-  - host: aramis 
+  - host: localhost 
   - service_type: router 
   - port: 6667
