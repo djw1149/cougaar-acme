@@ -11,7 +11,7 @@ start() {
 
   cd /usr/local/acme
   /usr/local/bin/ruby &> /dev/null acme.rb &
-  echo "$!" > /var/run/acme.pid
+  echo "$!" > acme.pid
 
 	RETVAL=0
 	echo
@@ -20,17 +20,17 @@ start() {
 }
 
 stop() {
-
-  if [ -f /var/run/acme.pid ] ; then
+  cd /usr/local/acme
+  if [ -f acme.pid ] ; then
     local line p pid=
-    read line < /var/run/acme.pid
+    read line < acme.pid
     for p in $line ; do
       [ -z "${p//[0-9]/}" -a -d /proc/$p ] &&
       pid="$pid $p"
     done
     if [ -n "${pid-:}" ] ; then
       kill -9 $pid
-      rm -rf /var/run/acme.pid
+      rm -rf acme.pid
       return 0
     fi
   fi  
