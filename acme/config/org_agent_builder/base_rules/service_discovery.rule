@@ -35,7 +35,7 @@ supply_roles = Array ["AmmunitionProvider",
                       "SubsistenceSupplyProvider"]
 strat_trans_role = "StrategicTransportationProvider"                      
 
-# First iterate over agents, getting the provided_roles, mechanisms, and echelons of support
+# First iterate over agents, collecting the provided_roles, mechanisms, and echelons of support
 society.each_agent do |agent|
   provided_roles = Hash.new
   agent.each_facet(:role) do |facet|
@@ -75,6 +75,38 @@ society.each_agent do |agent|
   if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
     if agent.get_facet(:is_deployable)
       required_roles << strat_trans_role
+    end
+  end
+#
+# Add the required roles for the Transcom Community
+  if agent.get_facet(:echelon_group) == "Transcom"
+    provided_roles.each do |my_role, m_e|
+#
+# TRANSCOM needs AirTransportationProvider
+# TRANSCOM needs SeaTransportationProvider
+      if my_role == strat_trans_role && m_e[0] == "ModeSelector"   # That makes this org TRANSCOM
+        required_roles << "AirTransportationProvider"
+        required_roles << "SeaTransportationProvider"
+      end
+#
+# GlobalAir needs CONUSGroundTransportationProvider
+# GlobalAir needs OrganicAirTransportationprovider
+# GlobalAir needs TheaterStrategicTransportationProvider
+      if my_role == "AirTransportationProvider"                   # That makes this org GlobalAir
+        required_roles << "CONUSGroundTransportationProvider"
+        required_roles << "OrganicAirTransportationProvider"
+        required_roles << "TheaterStrategicTransportationProvider"
+      end
+#
+# GlobalSea needs CONUSGroundTransportationProvider
+# GlobalSea needs ShipPackingTransportationProvider
+# GlobalSea needs TheaterStrategicTransportationProvider
+      if my_role == "SeaTransportationProvider"                   # That makes this org GlobalSea
+        required_roles << "CONUSGroundTransportationProvider"
+        required_roles << "ShipPackingTransportationProvider"
+        required_roles << "TheaterStrategicTransportationProvider"
+      end
+#
     end
   end
 #

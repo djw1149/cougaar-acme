@@ -66677,10 +66677,19 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(CONUSGroundTransportationProvider,OrganicAirTransportationProvider,TheaterStrategicTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            CONUSGroundTransportationProvider
+          </argument>
+          <argument>
+            OrganicAirTransportationProvider
+          </argument>
+          <argument>
+            TheaterStrategicTransportationProvider
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(AirTransportationProvider)'
@@ -71836,10 +71845,19 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(CONUSGroundTransportationProvider,ShipPackingTransportationProvider,TheaterStrategicTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            CONUSGroundTransportationProvider
+          </argument>
+          <argument>
+            ShipPackingTransportationProvider
+          </argument>
+          <argument>
+            TheaterStrategicTransportationProvider
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SeaTransportationProvider)'
@@ -74104,10 +74122,16 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AirTransportationProvider,SeaTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            AirTransportationProvider
+          </argument>
+          <argument>
+            SeaTransportationProvider
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(StrategicTransportationProvider)'

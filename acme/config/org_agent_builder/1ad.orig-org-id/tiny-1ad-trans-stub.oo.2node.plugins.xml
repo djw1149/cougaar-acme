@@ -16906,16 +16906,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AirTransportationProvider,SeaTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AirTransportationProvider
-          </argument>
-          <argument>
-            SeaTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(StrategicTransportationProvider)'
