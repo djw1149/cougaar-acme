@@ -21,9 +21,14 @@ module ACME
     ONE_HOUR = 3600 # = 60 * 60
     ONE_DAY = ONE_HOUR * 24
 
-    InventoryTestData = Struct.new("InventoryTestData", :subject_file, :benchmark_file, :errors, :error_level)
+    InventoryTestData = Struct.new("InventoryTestData", :subject_file, :benchmark_file, :stage, :errors, :error_level)
     InventoryTestError = Struct.new("InventoryTestError", :day, :tag, :subject_value, :benchmark_value, :tolerance)
     InventoryTestCriticalError = Struct.new("InventoryTestCriticalError", :msg)
+    
+    SUCCESS = 0
+    PARTIAL = 1
+    FAIL = 2
+
 
     class InventoryRecord
       attr_reader :start_time, :end_time, :value
@@ -419,16 +424,20 @@ module ACME
           inv_files = @archive.files_with_description(/Inventory/).sort{|x, y| x.name <=> y.name}
           inv_files.each do |inv_file|
             subject = inv_file.name
-            next if (subject =~/Reconciliation/ || subject =~ /Restore/)
-            inv_file.name =~ /INV\/(.*)\//
-            benchmark_dir = "/usr/local/acme/plugins/acme_reporting_core/goldeninv/INV/#{$1}"
-            benchmark_dir.gsub!(/Stage-/, "Stage")
-            benchmark = ("#{benchmark_dir}/#{inv_file.name.split(/\//).last.gsub(/Stage-/, "Stage")}")
-            data << InventoryTestData.new(subject, benchmark, [])
-            data.last.errors = FileVerifier.new(subject, benchmark, abs_tol, rel_tol).verify
+            stage = find_stage(subject)
+            next if stage.nil?
+            benchmark_dir = "/usr/local/acme/plugins/acme_reporting_core/goldeninv/INV/#{stage}"
+            benchmark = ("#{benchmark_dir}/#{File.basename(inv_file.name)}")
+            data << InventoryTestData.new(subject, benchmark, stage, [], 0)
+            if File.exists?(benchmark) then
+              data.last.errors = FileVerifier.new(subject, benchmark, abs_tol, rel_tol).verify
+            else
+              data.last.errors = [InventoryTestCriticalError.new("Benchmark not found")]
+            end  
           end
+
           error_level = analyze(data)
-          if (error_level == 0) then
+          if (error_level == SUCCESS) then
             report.success
           else
             report.failure
@@ -439,78 +448,119 @@ module ACME
           end
         end
       end
-      
+       
+      def find_stage(pathname)
+        old = Dir.pwd
+        Dir.chdir("plugins/acme_reporting_core/goldeninv/INV")
+        stages = Dir["*"]
+        Dir.chdir(old)
+        stages.each do |stage|
+          pattern = Regexp.new(stage)
+          return stage if pattern.match(pathname)
+        end
+        return stage
+      end
+
       def analyze(data)
         error_level = 0
         data.each do |file_data|
           e = analyze_file(file_data)
+          file_data.error_level = e
           error_level = (error_level > e ? error_level : e)
         end
         return error_level
       end
       
       def analyze_file(file_data)
-        return file_data.errors.empty? ? 0 : 1
+        return file_data.errors.empty? ? SUCCESS : FAIL
       end
       
+      def collect_by_stage(data)
+        collection = {}
+        data.each do |rec|
+          collection[rec.stage] = [] if collection[rec.stage].nil?
+          collection[rec.stage] << rec
+        end
+        return collection
+      end
+
+
       def html_output(data)
-        str = ""
-        str << "<HTML>\n"
-        str << "<TABLE>\n"
-        str << "<CAPTION>Inventory Test Results</CAPTION>\n"
-        str << "<TR><TH>Agent\n"
-        data.each do |agent|
-          str <<"<TR>"
-          error = analyze_file(agent)
-          agent_name = agent.subject_file.split(/\//).last.split(/\./)[0]
-          if (error == 0) then
-            str <<"<TD BGCOLOR = #00DD00>#{agent_name}"
-          else
-            str <<"<TD BGCOLOR=#FF0000 ROWSPAN=5>#{agent_name}"
-            str << error_html(agent, 1)
-            str << error_html(agent, 2)
-            str << error_html(agent, 3)
-            str << error_html(agent, 4)
-            str << error_html(agent, 5)
-          end
-          
-          str <<"\n"
-        end
-        str <<"</TABLE>\n"
-        str <<"</HTML>\n"
-        return str
-      end
-      
-      def error_html(agent, row)
-        return unless [1, 2, 3, 4, 5].include?(row)
-        str = ""
-        str << "<TR>" unless row == 1
-        agent.errors.each do |error|
-          if error.class.to_s =~ /Critical/ then
-            if (row == 1) then
-              str << "<TD BGCOLOR=#FF0000>Critical error"
-            elsif (row == 2)
-              str << "<TD BGCOLOR=#FF0000>#{error.msg}"
+	data_by_stage = collect_by_stage(data)
+        ikko_hash = {}
+        ikko_hash["id"] = @archive.base_name
+        table_string = ""
+        row = 0        
+ 
+        data_by_stage.keys.sort.each do |stage|
+          row_string = @ikko["header_template.html", {"data"=>stage,}]
+          table_string << @ikko["row_template.html", {"data"=>row_string, "options"=>"BGCOLOR=#888888"}]
+          row += 1
+          data_by_stage[stage].each do |agent| 
+            row_string = ""
+            if (agent.error_level == SUCCESS) then
+              row_string << @ikko["cell_template.html", {"data"=>File.basename(agent.subject_file), "options"=>"BGCOLOR=#00DD00"}]
+              table_string << @ikko["row_template.html", {"data"=>row_string}]
             else
-              str << "<TD BGCOLOR=#FF0000>&nbsp;"
+              table_string << error_html(agent, row)
             end
+            row += 1
+          end
+        end 
+        ikko_hash["table"] = table_string
+        return @ikko["inv_report.html", ikko_hash]
+      end
+
+      def error_html(agent, row)
+        error_string = ""
+        row_string = @ikko["cell_template.html", {"data"=>agent.subject_file.split(/\//).last.split(/\./)[0], "options"=>"ROWSPAN=5 BGCOLOR=#FF0000"}]
+        1.upto 5 do |i|
+           col = 0
+           agent.errors.each do |error|
+             row_string << error_row_html(error, i, col, row)
+             col += 1
+           end
+          error_string << @ikko["row_template.html", {"data"=>row_string}]
+          row_string = ""
+        end
+        return error_string
+      end
+
+      def error_row_html(error, index, col, row)
+        color = nil
+        data = nil
+        if error.class.to_s =~ /Critical/ then
+          color = "BGCOLOR=#FF0000"
+        elsif (col + row) % 2 == 0 then
+          color = "BGCOLOR=#BBBBBB"
+        else
+          color = "BGCOLOR=#DDDDDD"
+        end
+                
+        if error.class.to_s =~ /Critical/ then
+          if (index == 1) then
+            data = "Critical error"
+          elsif (index == 2) then
+            data = error.msg
           else
-            if (row == 1) then
-              str << "<TD>Day:  #{error.day}"
-            elsif (row == 2)
-              str << "<TD>Tag:  #{error.tag}"
-            elsif (row == 3)
-              str << "<TD>Subject:  #{error.subject_value}"
-            elsif (row == 4)
-              str << "<TD>Benchmark:  #{error.benchmark_value}"
-            elsif (row == 5)
-              str << "<TD>Tolerance:  #{error.tolerance}"
-            end
+            data = "&nbsp;"
+          end
+        else
+          if (index == 1) then
+            data = "Day:  #{error.day}"
+          elsif(index == 2) then
+            data = "Tag:  #{error.tag}"
+          elsif(index == 3) then
+            data = "Subject:  #{error.subject_value}"
+          elsif(index == 4) then
+            data = "Benchmark:  #{error.benchmark_value}"
+          else
+            data = "Tolerance:  #{error.tolerance}"
           end
         end
-        str << "\n"
-        return str
+        return @ikko["cell_template.html", {"data"=>data, "options"=>color}]
       end
     end
   end
 end
+

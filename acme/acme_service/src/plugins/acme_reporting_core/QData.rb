@@ -33,7 +33,7 @@ module ACME
       end
       
       def perform
-        @archive.add_report("Quiescence Data", @plugin.plugin_configuration.name) do |report|
+        @archive.add_report("Q", @plugin.plugin_configuration.name) do |report|
           run_log = @archive.files_with_name(/run\.log/)[0]
           if (run_log) then
             @stage_times = get_stage_times(File.new(run_log.name))
@@ -147,6 +147,7 @@ module ACME
       def get_quiescence_times(qfiles)
         data = []
         qfiles.each do |qfile|
+          next unless qfile.name =~ /\.log/ #don't want cnclogs
           new_node = QuiescenceData.new(qfile.name.split(/\//).last.split(/\./)[0], [], true)
           quiescent = false
           File.new(qfile.name).each do |line|
@@ -194,36 +195,37 @@ module ACME
       
       def html_output(data)
         run_stages = get_run_stages
-        str = ""
-        str << "<HTML>\n"
-        str << "<TABLE border=\"1\">\n"
-        str << "<CAPTION>Total time unquiesced by stage</CAPTION>\n"
-        str << "<TR><TH>Node"
+        ikko_data = {}
+        ikko_data["id"]= @archive.base_name
+        header_string = @ikko["header_template.html", {"data"=>"Agent Name", "option"=>""}]
         run_stages.each do |s|
           stage = ((s == 3) || (s == 5) ? "#{s}#{s+1}" : s.to_s)
-          str << "<TH>Stage #{stage}"
+          header_string << @ikko["header_template.html", {"data"=>"Stage #{stage}"}]
         end
-        str << "\n"
+        table_string = @ikko["row_template.html", {"data"=>header_string}]
         data.each do |node|
+          row_string = ""
           if node.goodnode then
-            str << "<TR><TD BGCOLOR=#00DD00>#{node.node}"
+            row_string << @ikko["cell_template.html", {"data"=>node.node, "options"=>"BGCOLOR=00DD00"}]
           else
-            str << "<TR><TD BGCOLOR=#FF0000>#{node.node}"
+            row_string << @ikko["cell_template.html", {"data"=>node.node, "options"=>"BGCOLOR=FF0000"}]
           end
           run_stages.each do |stage|
+            #Some agents may have no quiescent data for a stage
+            #espescially if the run was bad
+            #so default total to 0 and be careful with node.stage_data[stage]
             total = Time.at(0).gmtime
             total = node.stage_data[stage].total if (!node.stage_data[stage].nil?)
             if (node.stage_data[stage].nil? || node.stage_data[stage].quiesced) then
-              str << "<TD BGCOLOR=#00DD00>#{format_time(total)}"
+              row_string <<@ikko["cell_template.html", {"data"=>format_time(total), "options"=>"BGCOLOR=00DD00"}]
             else
-              str << "<TD BGCOLOR=#FF0000>#{format_time(total)}"
+              row_string <<@ikko["cell_template.html", {"data"=>format_time(total), "options"=>"BGCOLOR=FF0000"}]
             end
           end
-          str <<"\n"
+          table_string << @ikko["row_template.html", {"data"=>row_string, "option"=>""}]
         end
-        str << "</TABLE>\n"
-        str << "</HTML>\n"
-        return str
+        ikko_data["table"] = table_string
+        return @ikko["qdata_report.html", ikko_data]
       end
     end
   end

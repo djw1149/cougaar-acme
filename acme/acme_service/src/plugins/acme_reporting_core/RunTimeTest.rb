@@ -10,7 +10,7 @@ module ACME
       end
       
       def perform
-        @archive.add_report("Run Time", @plugin.plugin_configuration.name) do |report|
+        @archive.add_report("Time", @plugin.plugin_configuration.name) do |report|
           run_log = @archive.files_with_name(/run\.log/)[0]
           if run_log
             times = read_run_times(File.new(run_log.name))
@@ -85,9 +85,7 @@ module ACME
             current.interrupted = true
             if (target == :stage_time_end)
               current.stage_times << Time.at(ts[0] - start).gmtime
-#            elsif (target == :start_time_end || target == :load_time_end)
-#              current[target] = Time.at(ts[0] - start).gmtime
-#            end
+            end
             all_data << current
             target = :start_run
           elsif (target != :start_run && ts = get_timestamp(line, /Run:.*finished/)) then
@@ -155,25 +153,25 @@ module ACME
         end
         return str
       end
-      
-      def get_html_string(data, i)
-        str = "<TR><TD>#{data.interrupted ? "#{i+1}INT" : (i+1).to_s}<TD>#{data.load_time.strftime("%H:%M:%S")}<TD>#{data.start_time.strftime("%H:%M:%S")}"
-        data.stage_times.each do |stage_time|
-          str << "<TD>#{stage_time.strftime("%H:%M:%S")}"
-        end
-        str << "\n"
-        return str
-      end
-      
+            
       def html_output(all_data)
-        str = "<HTML>\n"
-        str << "<TABLE border=1>\n"
-        str << "<CAPTION>\n"
-        str << "Run times by stage\n"
-        str << "</CAPTION>\n"
-        str << "<TR><TH><B>Run<TH>Load Time<TH>Start Time<TH>Stage Time[s]</B>\n"
+        ikko_data = {}
+        ikko_data["id"] = @archive.base_name
+        headers = ["Run", "Load Time", "Start Time", "Stage Time[s]"]
+        header_string = ""
+        headers.each do |h|
+          header_string << @ikko["header_template.html", {"data"=>h}]
+        end
+        table_string = @ikko["row_template.html", {"data"=>header_string}]
+        
         all_data.each_index do |i|
-          str << get_html_string(all_data[i], i)
+          row_string = @ikko["cell_template.html", {"data"=>(i+1)}]
+          row_string <<  @ikko["cell_template.html", {"data"=>format_time(all_data[i].load_time)}]
+          row_string <<  @ikko["cell_template.html", {"data"=>format_time(all_data[i].start_time)}]
+          all_data[i].stage_times.each do |stage_time|
+            row_string <<  @ikko["cell_template.html", {"data"=>format_time(stage_time)}]
+          end
+          table_string << @ikko["row_template.html", {"data"=>row_string}]
         end
 
         load_times = collect_elements(all_data, "load_time")
@@ -184,33 +182,33 @@ module ACME
           stage_times << collect_elements(all_stage_times, i)
         end
         
-        str << "<TR><TD>MEAN<TD>#{format_time(mean(load_times))}<TD>#{format_time(mean(start_times))}"
+        row_string = @ikko["cell_template.html", {"data"=>"MEAN"}]
+        row_string << @ikko["cell_template.html", {"data"=>format_time(mean(load_times))}]
+        row_string << @ikko["cell_template.html", {"data"=>format_time(mean(start_times))}]
         stage_times.each do |stage|
-          str << "<TD>#{format_time(mean(stage))}"
+          row_string << @ikko["cell_template.html", {"data"=>format_time(mean(stage))}]
         end
-        str << "\n"
-        
-        str << "<TR><TD>STDDEV<TD>#{format_time(standard_deviation(load_times))}<TD>#{format_time(standard_deviation(start_times))}"
-        stage_times.each do |stage|
-          str << "<TD>#{format_time(standard_deviation(stage))}"
-        end
-        str << "\n"
-        
-#        str << "<TR><TD>VARIANCE<TH>#{format_time(variance(load_times))}<TD>#{format_time(variance(start_times))}"
-#        stage_times.each do |stage|
-#          str << "<TD>#{format_time(variance(stage))}"
-#        end
-#        str << "\n"
+        table_string << @ikko["row_template.html", {"data"=>row_string}]
 
-        str << "<TR><TD>STDEV Percent<TD>#{std_percent(load_times)}<TD>#{std_percent(start_times)}"
-        stage_times.each do |stage|
-          str << "<TD>#{std_percent(stage)}"
-        end
-        str << "\n"
 
-        str <<"</TABLE>\n"
-        str << "</HTML>\n"
-        return str
+        row_string = @ikko["cell_template.html", {"data"=>"STDDEV"}]
+        row_string << @ikko["cell_template.html", {"data"=>format_time(standard_deviation(load_times))}]
+        row_string << @ikko["cell_template.html", {"data"=>format_time(standard_deviation(start_times))}]
+        stage_times.each do |stage|
+          row_string << @ikko["cell_template.html", {"data"=>format_time(standard_deviation(stage))}]
+        end
+        table_string << @ikko["row_template.html", {"data"=>row_string}]
+
+        row_string = @ikko["cell_template.html", {"data"=>"STDDEV Percent"}]
+        row_string << @ikko["cell_template.html", {"data"=>std_percent(load_times)}]
+        row_string << @ikko["cell_template.html", {"data"=>std_percent(start_times)}]
+        stage_times.each do |stage|
+          row_string << @ikko["cell_template.html", {"data"=>std_percent(stage)}]
+        end
+        table_string << @ikko["row_template.html", {"data"=>row_string}]
+
+        ikko_data["table"] = table_string
+        return @ikko["time_report.html", ikko_data]
       end
 
       def chart_output(all_data)
@@ -251,5 +249,3 @@ module ACME
     end
   end
 end
-
-  

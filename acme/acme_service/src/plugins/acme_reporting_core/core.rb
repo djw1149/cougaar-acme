@@ -32,14 +32,19 @@ module ACME
       def process_archive(archive)
         puts "Processing an archive"
         run_log_test(archive)
+        puts "Run log"
         RunTimeTest.new(archive, @plugin, @ikko).perform
+        puts "Run Time"
         CompletionTest.new(archive, @plugin, @ikko).perform
+        puts "Comp"
 	QData.new(archive, @plugin, @ikko).perform
+        puts "Q"
         VerifyInventory.new(archive, @plugin, @ikko).perform(0.10, 0.10)
+        puts "INV"
       end
       
       def run_log_test(archive)
-        archive.add_report("RLog", @plugin.plugin_configuration.name) do |report|
+        archive.add_report("Log", @plugin.plugin_configuration.name) do |report|
           run_log = nil
           archive.files_with_name(/run\.log/).each do |f|
             run_log = f.name
