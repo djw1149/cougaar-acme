@@ -156,6 +156,9 @@
         <facet sca_supported_org='1-AD.ARMY.MIL'
                sca_echelon_of_support='DIVISION'
         />
+        <facet sca_supported_org='DISCOM.1-AD.ARMY.MIL'
+               sca_echelon_of_support='BRIGADE'
+        />
       </agent>
       <agent name='123-MSB-ORD.DISCOM.1-AD.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
