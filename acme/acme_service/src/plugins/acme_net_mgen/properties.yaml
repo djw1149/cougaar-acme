@@ -1,0 +1,8 @@
+#### Properties: acme_node_cpu - Version: 1.0
+properties: ~
+"|": 
+  - command: "mgen"
+  - description: "Generate Network Traffic. Params: red|yellow|green|stop"
+  - green: "25"
+  - yellow: "50"
+  - red: "80"
