@@ -46,7 +46,8 @@ society.each_agent do |agent|
       community.add_attribute("CommunityType", "Domain")
       community.add_attribute("CommunityTYpe", "YPCommunity")
       community.add_attribute("YPServerAgent", agent.name)
-      
+      community.add_attribute("CommunityManager", agent.name)
+
       community.add_agent(agent.name) do |entity|
 	entity.add_role("Member")
 	entity.add_role("YPServer")
