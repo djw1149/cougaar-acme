@@ -1,0 +1,4 @@
+
+node = society.nodes['501-FSB-NODE']
+node.override_parameter("-Dorg.cougaar.core.logging.log4j.category.org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin","\"DEBUG\"")
+node.override_parameter("-Dorg.cougaar.core.logging.log4j.category.org.cougaar.logistics.plugin.inventory","\"DEBUG\"")
