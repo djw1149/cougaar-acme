@@ -7,7 +7,7 @@
 #
 require "rexml/document"
 require "utb/failure.rb"
-require "vlan.rb"
+require "acme_net_shape/vlan.rb"
 
 module ACME; module Plugins
 
