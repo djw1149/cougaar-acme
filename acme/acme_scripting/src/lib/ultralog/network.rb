@@ -53,9 +53,6 @@ module Cougaar; module Actions
       ifg = @run.comms.new_message(@host).set_body("command[rexec]ifconfig #{@net.subnet[subnet].make_interface(@host.get_facet(:interface))}").send(30)
       isUp = (ifg.body["UP BROADCAST"] || !(@net.migratory_active_subnet.has_key?(@host)))
 
-      puts "***************************  UP *****************************" if isUp
-      puts "------------------------- DOWN ------------------------------" unless isUp
-
       @net.migratory_active_subnet[@host] = subnet
 
       # First, we disable all of the subnets.
