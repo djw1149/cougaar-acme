@@ -70,6 +70,10 @@ module ACME; module Plugins
         archive
       end
       
+      def get_prior_archives(time=nil, name_pattern=/.*/)
+        @service.get_prior_archives(self, time, name_pattern)
+      end
+      
       def add_report(name, plugin_name)
         report = Report.new(self, name, plugin_name)
         yield report

@@ -109,6 +109,28 @@ class ReportingService
     prior_archive.expand
     return prior_archive
   end
+  
+  def parse_time(name)
+    name = name[0...-4] if name.include?(".xml")
+    parts = name.split("-")
+    hms = parts[-1]
+    ymd = parts[-2]
+    Time.utc( ymd[0,4].to_i, ymd[4,2].to_i,  ymd[6,2].to_i, hms[0,2].to_i,  hms[2,2].to_i, hms[4,2].to_i)
+  end
+
+  def get_prior_archives(current, time=nil, name_pattern=/.*/)
+    base_time = parse_time(File.basename(current.xml_file))
+    files = []
+    Dir.glob(File.join(@archive_path, "*.xml")).each do |file|
+      ftime = parse_time(File.basename(file))
+      if (base_time - ftime) > 0
+        if (time==nil || (base_time - ftime) < time) && name_pattern =~ File.basename(file)
+          files << File.basename(file)[0...-4]
+        end
+      end
+    end
+    files.sort {|a,b| parse_time(b)<=>parse_time(a)}
+  end
 
   def add_listener(order=:none, &block)
     @listeners << block
