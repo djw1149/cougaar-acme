@@ -473,6 +473,25 @@ module Cougaar
         @action.call(@run)
       end
     end
+    class ExperimentSucceeded < Cougaar::Action
+      attr_reader :message
+      def initialize(run, message=nil)
+        super(run)
+        @message = message
+      end
+      def perform
+      end
+    end
+    class ExperimentFailed < Cougaar::Action
+      attr_reader :message
+      def initialize(run, message=nil)
+        super(run)
+        @message = message
+      end
+      def perform
+      end
+    end
+ 
   end
 end
 
