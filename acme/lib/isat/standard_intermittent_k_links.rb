@@ -28,13 +28,13 @@ insert_after parameters[:start_tag] do
      $IntermittentKLink += 1
   }
 
-  at :network_stress_start
+  at :intermittentKlink_network_stress_start
 
 end
 
 if( parameters[:duration] != nil && parameters[:duration] >0 )
   insert_before parameters[:end_tag] do
-    do_action "SleepFrom", :network_stress_start, parameters[:duration]
+    do_action "SleepFrom", :intermittentKlink_network_stress_start, parameters[:duration]
 
     threads.each { |thread|
        do_action "StopCyclicStress", thread
