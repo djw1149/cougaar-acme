@@ -22,6 +22,9 @@
 # If you don't know what this is, you don't need it.
 display = nil # eg "localhost"
 
+$:.unshift "../acme_scripting/src/lib"
+$:.unshift "../acme_service/src/redist"
+
 require 'cougaar/scripting'
 
 file = ARGV[0]
