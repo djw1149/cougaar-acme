@@ -201,10 +201,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -357,6 +360,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -567,15 +579,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -770,10 +773,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -926,6 +932,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -1136,15 +1151,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -1163,7 +1169,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='DIVISION' role='StrategicTransportationProvider' mechanism='PassThrough'  />
+        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -1342,10 +1349,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -1498,6 +1508,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -1710,15 +1729,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='110-POL-SUPPLYCO.37-TRANSGP.21-TSC.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='110-POL-SUPPLYCO.37-TRANSGP.21-TSC.ARMY.MIL'  />
@@ -1733,9 +1743,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='THEATER' role='FuelSupplyProvider'  />
-        <facet echelon_of_support='THEATER' role='PackagedPOLSupplyProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet role='FuelSupplyProvider' echelon_of_support='THEATER'  />
+        <facet role='PackagedPOLSupplyProvider' echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -1914,10 +1923,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -2070,6 +2082,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -2282,15 +2303,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='123-MSB.DISCOM.1-AD.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='123-MSB.DISCOM.1-AD.ARMY.MIL'  />
@@ -2305,11 +2317,11 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='DIVISION' role='AmmunitionProvider'  />
-        <facet echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
-        <facet echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
-        <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
-        <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
+        <facet role='AmmunitionProvider' echelon_of_support='DIVISION'  />
+        <facet role='FuelSupplyProvider' echelon_of_support='DIVISION'  />
+        <facet role='PackagedPOLSupplyProvider' echelon_of_support='DIVISION'  />
+        <facet role='SparePartsProvider' echelon_of_support='DIVISION'  />
+        <facet role='SubsistenceSupplyProvider' echelon_of_support='DIVISION'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -2489,10 +2501,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -2645,6 +2660,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -2857,15 +2881,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='125-ORDBN.7-CSG.5-CORPS.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='125-ORDBN.7-CSG.5-CORPS.ARMY.MIL'  />
@@ -2880,8 +2895,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet role='AmmunitionProvider' echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3060,10 +3074,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -3216,6 +3233,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -3428,15 +3454,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='191-ORDBN.29-SPTGP.21-TSC.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='191-ORDBN.29-SPTGP.21-TSC.ARMY.MIL'  />
@@ -3451,8 +3468,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='THEATER' role='AmmunitionProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet role='AmmunitionProvider' echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3631,10 +3647,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -3787,6 +3806,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -3999,15 +4027,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='2-BDE.1-AD.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='2-BDE.1-AD.ARMY.MIL'  />
@@ -4203,10 +4222,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -4359,6 +4381,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -4571,21 +4602,12 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='200-MMC.21-TSC.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='200-MMC.21-TSC.ARMY.MIL'  />
         <facet orig_org_id='200-MMC'  />
         <facet superior_org_id='21-TSC-HQ.ARMY.MIL'  />
-        <facet home_location='VDYD'  />
+        <facet home_location='CYWK'  />
         <facet uic='WNBPAA'  />
         <facet combat_support='CSS'  />
         <facet echelon='GROUP'  />
@@ -4594,8 +4616,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet role='SparePartsProvider' note='Add' echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -4774,10 +4795,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -4930,6 +4954,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -5142,15 +5175,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='21-TSC-HQ.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='21-TSC-HQ.ARMY.MIL'  />
@@ -5160,7 +5184,7 @@
         <facet subordinate_org_id='200-MMC.21-TSC.ARMY.MIL'  />
         <facet subordinate_org_id='29-SPTGP.21-TSC.ARMY.MIL'  />
         <facet subordinate_org_id='37-TRANSGP.21-TSC.ARMY.MIL'  />
-        <facet home_location='VDYD'  />
+        <facet home_location='CYWK'  />
         <facet uic='WNBSAA'  />
         <facet combat_support='CSS'  />
         <facet echelon='DIVISION'  />
@@ -5169,7 +5193,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
+        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='THEATER'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -5349,10 +5373,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -5505,6 +5532,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -5715,15 +5751,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -5920,10 +5947,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -6076,6 +6106,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -6286,15 +6325,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -6312,7 +6342,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
+        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='3-SUPCOM-HQ.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6491,10 +6522,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -6647,6 +6681,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -6857,15 +6900,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -6874,7 +6908,7 @@
         <facet orig_org_id='316-POL-SUPPLYBN'  />
         <facet superior_org_id='7-CSG.5-CORPS.ARMY.MIL'  />
         <facet subordinate_org_id='900-POL-SUPPLYCO.7-CSG.5-CORPS.ARMY.MIL'  />
-        <facet home_location='VDYD'  />
+        <facet home_location='XJN1'  />
         <facet uic='WSRPAA'  />
         <facet combat_support='CSS'  />
         <facet echelon='BATTALION'  />
@@ -6883,7 +6917,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Not Used Now' echelon_of_support='CORPS' role='FuelTransportProvider'  />
+        <facet role='FuelTransportProvider' note='Not Used Now' echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -7062,10 +7096,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -7218,6 +7255,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -7428,15 +7474,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -7453,8 +7490,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='THEATER' role='SubsistenceSupplyProvider'  />
-        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
+        <facet role='SubsistenceSupplyProvider' echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -7633,10 +7669,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -7789,6 +7828,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -8001,15 +8049,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='37-TRANSGP.21-TSC.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='37-TRANSGP.21-TSC.ARMY.MIL'  />
@@ -8203,10 +8242,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -8359,6 +8401,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -8571,15 +8622,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='406-SUPPLYCO.7-CSG.5-CORPS.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='406-SUPPLYCO.7-CSG.5-CORPS.ARMY.MIL'  />
@@ -8594,8 +8636,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet role='SubsistenceSupplyProvider' note='Add' echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -8774,10 +8815,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -8930,6 +8974,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -9142,15 +9195,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='47-FSB.DISCOM.1-AD.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='47-FSB.DISCOM.1-AD.ARMY.MIL'  />
@@ -9165,11 +9209,11 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='BRIGADE' role='AmmunitionProvider'  />
-        <facet echelon_of_support='BRIGADE' role='FuelSupplyProvider'  />
-        <facet echelon_of_support='BRIGADE' role='PackagedPOLSupplyProvider'  />
-        <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
-        <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
+        <facet role='AmmunitionProvider' echelon_of_support='BRIGADE'  />
+        <facet role='FuelSupplyProvider' echelon_of_support='BRIGADE'  />
+        <facet role='PackagedPOLSupplyProvider' echelon_of_support='BRIGADE'  />
+        <facet role='SparePartsProvider' echelon_of_support='BRIGADE'  />
+        <facet role='SubsistenceSupplyProvider' echelon_of_support='BRIGADE'  />
         <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE.1-AD.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -9349,10 +9393,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(2)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            2
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -9505,6 +9552,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -9717,15 +9773,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='5-CORPS.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='5-CORPS.ARMY.MIL'  />
@@ -9920,10 +9967,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(0)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            0
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -10076,6 +10126,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -10286,15 +10345,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -10490,10 +10540,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -10646,6 +10699,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -10856,15 +10918,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -11060,10 +11113,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -11216,6 +11272,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -11428,15 +11493,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='565-RPRPTCO.7-CSG.5-CORPS.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='565-RPRPTCO.7-CSG.5-CORPS.ARMY.MIL'  />
@@ -11451,8 +11507,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='CORPS' role='SparePartsProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet role='SparePartsProvider' echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -11631,10 +11686,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -11787,6 +11845,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -11999,15 +12066,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='6-TCBN.37-TRANSGP.21-TSC.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='6-TCBN.37-TRANSGP.21-TSC.ARMY.MIL'  />
@@ -12023,7 +12081,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet note='Not Used Now' echelon_of_support='THEATER' role='FuelTransportProvider'  />
+        <facet role='FuelTransportProvider' note='Not Used Now' echelon_of_support='THEATER'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12202,10 +12260,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -12358,6 +12419,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -12568,15 +12638,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -12598,6 +12659,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS.ARMY.MIL'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12776,10 +12838,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -12932,6 +12997,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -13142,15 +13216,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -13346,10 +13411,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -13502,6 +13570,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -13714,15 +13791,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='900-POL-SUPPLYCO.7-CSG.5-CORPS.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='900-POL-SUPPLYCO.7-CSG.5-CORPS.ARMY.MIL'  />
@@ -13737,9 +13805,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet echelon_of_support='CORPS' role='FuelSupplyProvider'  />
-        <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
-        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet role='FuelSupplyProvider' echelon_of_support='CORPS'  />
+        <facet role='PackagedPOLSupplyProvider' echelon_of_support='CORPS'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -13918,10 +13985,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(3)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            3
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -14074,6 +14144,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -14286,15 +14365,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='AWR-2.21-TSC.ARMY.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='AWR-2.21-TSC.ARMY.MIL'  />
@@ -14304,9 +14374,9 @@
         <facet combat_support='CSS'  />
         <facet echelon='GROUP'  />
         <facet echelon_group='Theater'  />
-        <facet note='C .lt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalInventoryManager'  />
-        <facet note='C .lt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
-        <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
+        <facet role='AmmunitionProvider' mechanism='TerminalInventoryManager' note='C .lt. 30' echelon_of_support='JOINT'  />
+        <facet role='SparePartsProvider' mechanism='TerminalInventoryManager' note='C .lt. 30' echelon_of_support='JOINT'  />
+        <facet role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager' note='C .lt. 30' echelon_of_support='JOINT'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -14486,10 +14556,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(2)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            2
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -14810,10 +14883,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -14966,6 +15042,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
         <component
@@ -15178,15 +15263,6 @@
             forward.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equipment.q
-          </argument>
-        </component>
       </agent>
       <agent name='DLAHQ.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='DLAHQ.MIL'  />
@@ -15196,9 +15272,9 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet note='Remove' echelon_of_support='JOINT' role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet note='C .gt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
-        <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
+        <facet role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager' note='Remove' echelon_of_support='JOINT'  />
+        <facet role='SparePartsProvider' mechanism='TerminalInventoryManager' note='C .gt. 30' echelon_of_support='JOINT'  />
+        <facet role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager' note='C .gt. 30' echelon_of_support='JOINT'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -15378,10 +15454,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -15518,8 +15597,8 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet echelon_of_support='JOINT' role='FuelSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
+        <facet role='FuelSupplyProvider' mechanism='TerminalInventoryManager' echelon_of_support='JOINT'  />
+        <facet role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager' echelon_of_support='JOINT'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -15699,10 +15778,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -15839,7 +15921,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
+        <facet role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker' note='C .gt. 30' echelon_of_support='JOINT'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -16019,10 +16101,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -16188,8 +16273,8 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet echelon_of_support='JOINT' role='LogisticsCommanderInChief'  />
-        <facet echelon_of_support='JOINT' role='OperationalCommanderInChief'  />
+        <facet role='LogisticsCommanderInChief' echelon_of_support='JOINT'  />
+        <facet role='OperationalCommanderInChief' echelon_of_support='JOINT'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -16380,10 +16465,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(0)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            0
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -16517,7 +16605,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='StubTransportationProvider'  />
+        <facet role='StrategicTransportationProvider' mechanism='StubTransportationProvider' echelon_of_support='JOINT'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -16697,10 +16785,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(1)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            1
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -16763,6 +16854,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin(Transport)'
+          class='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Transport
+          </argument>
+        </component>
+        <component
           name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
@@ -16807,15 +16907,6 @@
             ldmFile=GLMT.TRANSCOM.ldm.xml
           </argument>
         </component>
-        <component
-          name='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin(Transport)'
-          class='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Transport
-          </argument>
-        </component>
       </agent>
       <agent name='USAEUR.MIL' class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='USAEUR.MIL'  />
@@ -16827,7 +16918,7 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet echelon_of_support='US-ARMY' role='ArmyCommander'  />
+        <facet role='ArmyCommander' echelon_of_support='US-ARMY'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17006,10 +17097,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(0)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            0
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
@@ -17319,10 +17413,13 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin(0)'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            0
+          </argument>
         </component>
         <component
           name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'

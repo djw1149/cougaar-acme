@@ -69,6 +69,9 @@
                echelon_of_support='DIVISION'
                mechanism='PassThrough'
         />
+        <facet sca_supported_org='1-AD.ARMY.MIL'
+               sca_echelon_of_support='CORPS'
+        />
       </agent>
       <agent name='102-POL-SUPPLYCO.16-CSG.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -90,7 +93,7 @@
         <facet role='PackagedPOLSupplyProvider'
                echelon_of_support='CORPS'
         />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'
+        <facet sca_supported_org='1-AD.ARMY.MIL'
                sca_echelon_of_support='CORPS'
         />
       </agent>
@@ -113,9 +116,6 @@
         />
         <facet role='PackagedPOLSupplyProvider'
                echelon_of_support='THEATER'
-        />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL'
-               sca_echelon_of_support='THEATER'
         />
       </agent>
       <agent name='123-MSB.DISCOM.1-AD.ARMY.MIL'
@@ -168,9 +168,6 @@
         <facet role='AmmunitionProvider'
                echelon_of_support='CORPS'
         />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='CORPS'
-        />
       </agent>
       <agent name='130-ENGBDE.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -204,8 +201,8 @@
         <facet has_physical_assets='T' />
         <facet has_equipment_assets='T' />
         <facet has_personnel_assets='T' />
-        <facet sca_supported_org='1-AD.ARMY.MIL'
-               sca_echelon_of_support='CORPS'
+        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'
+               sca_echelon_of_support='DIVISION'
         />
       </agent>
       <agent name='18-MAINTBN.16-CSG.5-CORPS.ARMY.MIL'
@@ -242,9 +239,6 @@
         <facet role='AmmunitionProvider'
                echelon_of_support='THEATER'
         />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL'
-               sca_echelon_of_support='THEATER'
-        />
       </agent>
       <agent name='2-BDE.1-AD.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -269,7 +263,7 @@
         <facet org_id='200-MMC.21-TSC.ARMY.MIL' />
         <facet orig_org_id='200-MMC' />
         <facet superior_org_id='21-TSC-HQ.ARMY.MIL' />
-        <facet home_location='VDYD' />
+        <facet home_location='CYWK' />
         <facet uic='WNBPAA' />
         <facet combat_support='CSS' />
         <facet echelon='GROUP' />
@@ -282,9 +276,6 @@
                echelon_of_support='CORPS'
                note='Add'
         />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL'
-               sca_echelon_of_support='THEATER'
-        />
       </agent>
       <agent name='21-TSC-HQ.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -295,7 +286,7 @@
         <facet subordinate_org_id='200-MMC.21-TSC.ARMY.MIL' />
         <facet subordinate_org_id='29-SPTGP.21-TSC.ARMY.MIL' />
         <facet subordinate_org_id='37-TRANSGP.21-TSC.ARMY.MIL' />
-        <facet home_location='VDYD' />
+        <facet home_location='CYWK' />
         <facet uic='WNBSAA' />
         <facet combat_support='CSS' />
         <facet echelon='DIVISION' />
@@ -330,9 +321,6 @@
                echelon_of_support='DIVISION'
                note='Add'
         />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
-        />
       </agent>
       <agent name='227-SUPPLYCO.16-CSG.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -350,6 +338,9 @@
         <facet has_personnel_assets='T' />
         <facet role='SubsistenceSupplyProvider'
                echelon_of_support='CORPS'
+        />
+        <facet sca_supported_org='1-AD.ARMY.MIL'
+               sca_echelon_of_support='CORPS'
         />
       </agent>
       <agent name='240-SSCO.7-CSG.5-CORPS.ARMY.MIL'
@@ -378,15 +369,6 @@
                echelon_of_support='DIVISION'
                note='Add'
         />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
-        />
-        <facet sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
-        />
-        <facet sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
-        />
       </agent>
       <agent name='26-SSCO.16-CSG.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -413,9 +395,6 @@
         <facet role='SubsistenceSupplyProvider'
                echelon_of_support='DIVISION'
                note='Add'
-        />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
         />
       </agent>
       <agent name='29-SPTGP.21-TSC.ARMY.MIL'
@@ -455,6 +434,9 @@
                echelon_of_support='CORPS'
                mechanism='PassThrough'
         />
+        <facet sca_supported_org='3-SUPCOM-HQ.5-CORPS.ARMY.MIL'
+               sca_echelon_of_support='CORPS'
+        />
       </agent>
       <agent name='316-POL-SUPPLYBN.7-CSG.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -462,7 +444,7 @@
         <facet orig_org_id='316-POL-SUPPLYBN' />
         <facet superior_org_id='7-CSG.5-CORPS.ARMY.MIL' />
         <facet subordinate_org_id='900-POL-SUPPLYCO.7-CSG.5-CORPS.ARMY.MIL' />
-        <facet home_location='VDYD' />
+        <facet home_location='XJN1' />
         <facet uic='WSRPAA' />
         <facet combat_support='CSS' />
         <facet echelon='BATTALION' />
@@ -492,9 +474,6 @@
         <facet has_personnel_assets='T' />
         <facet role='SubsistenceSupplyProvider'
                echelon_of_support='THEATER'
-        />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL'
-               sca_echelon_of_support='THEATER'
         />
       </agent>
       <agent name='37-TRANSGP.21-TSC.ARMY.MIL'
@@ -530,9 +509,6 @@
         <facet role='SubsistenceSupplyProvider'
                echelon_of_support='CORPS'
                note='Add'
-        />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='CORPS'
         />
       </agent>
       <agent name='41-FABDE.5-CORPS.ARMY.MIL'
@@ -690,12 +666,6 @@
         <facet role='SparePartsProvider'
                echelon_of_support='CORPS'
         />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='CORPS'
-        />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='CORPS'
-        />
       </agent>
       <agent name='574-SSCO.29-SPTGP.21-TSC.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -744,7 +714,7 @@
         <facet role='AmmunitionProvider'
                echelon_of_support='CORPS'
         />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'
+        <facet sca_supported_org='1-AD.ARMY.MIL'
                sca_echelon_of_support='CORPS'
         />
       </agent>
@@ -764,12 +734,6 @@
         <facet has_personnel_assets='T' />
         <facet role='SparePartsProvider'
                echelon_of_support='DIVISION'
-        />
-        <facet sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
-        />
-        <facet sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='DIVISION'
         />
       </agent>
       <agent name='6-TCBN.37-TRANSGP.21-TSC.ARMY.MIL'
@@ -836,6 +800,9 @@
         <facet sca_supported_org='5-CORPS.ARMY.MIL'
                sca_echelon_of_support='CORPS'
         />
+        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'
+               sca_echelon_of_support='DIVISION'
+        />
       </agent>
       <agent name='71-MAINTBN.7-CSG.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -874,9 +841,6 @@
         />
         <facet role='PackagedPOLSupplyProvider'
                echelon_of_support='CORPS'
-        />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'
-               sca_echelon_of_support='CORPS'
         />
       </agent>
       <agent name='AMC.TRANSCOM.MIL'
@@ -953,6 +917,9 @@
                echelon_of_support='CORPS'
                mechanism='PassThrough'
         />
+        <facet sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL'
+               sca_echelon_of_support='CORPS'
+        />
       </agent>
       <agent name='CORPS-REAR.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
@@ -960,13 +927,16 @@
         <facet orig_org_id='5-CORPS-REAR' />
         <facet superior_org_id='5-CORPS.ARMY.MIL' />
         <facet subordinate_org_id='130-ENGBDE.5-CORPS.ARMY.MIL' />
-        <facet home_location='VDYD' />
+        <facet home_location='CYWK' />
         <facet combat_support='CMD' />
         <facet echelon='DIVISION' />
         <facet echelon_group='Corps' />
         <facet role='StrategicTransportationProvider'
                echelon_of_support='CORPS'
                mechanism='PassThrough'
+        />
+        <facet sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL'
+               sca_echelon_of_support='CORPS'
         />
       </agent>
       <agent name='DISCOM.1-AD.ARMY.MIL'

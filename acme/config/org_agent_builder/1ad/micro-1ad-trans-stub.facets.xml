@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<society name='JEFF-BERLINER-PROTO'
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
+  <host name='localhost'>
+    <node name='localnode'>
+      <agent name='5-CORPS-STUB.ARMY.MIL'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='5-CORPS-STUB.ARMY.MIL' />
+        <facet orig_org_id='5-CORPS' />
+        <facet superior_org_id='USAEUR.MIL' />
+        <facet home_location='CYWK' />
+        <facet uic='WAT6AA' />
+        <facet combat_support='CMD' />
+        <facet echelon='CORPS' />
+        <facet echelon_group='Corps' />
+      </agent>
+      <agent name='OSD.GOV'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='OSD.GOV' />
+        <facet orig_org_id='NCA' />
+        <facet superior_org_id='' />
+        <facet subordinate_org_id='TRANSCOM-STUB.MIL' />
+        <facet subordinate_org_id='USEUCOM.MIL' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CMD' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='LogisticsCommanderInChief'
+               echelon_of_support='JOINT'
+        />
+        <facet role='OperationalCommanderInChief'
+               echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='TRANSCOM-STUB.MIL'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='TRANSCOM-STUB.MIL' />
+        <facet orig_org_id='TRANSCOM' />
+        <facet superior_org_id='OSD.GOV' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CSS' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Transcom' />
+        <facet role='StrategicTransportationProvider'
+               echelon_of_support='JOINT'
+               mechanism='StubTransportationProvider'
+        />
+        <facet sca_supported_org='OSD.GOV'
+               sca_echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='USAEUR.MIL'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='USAEUR.MIL' />
+        <facet orig_org_id='USAEUR' />
+        <facet superior_org_id='USEUCOM.MIL' />
+        <facet subordinate_org_id='5-CORPS-STUB.ARMY.MIL' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CMD' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='ArmyCommander'
+               echelon_of_support='US-ARMY'
+        />
+      </agent>
+      <agent name='USEUCOM.MIL'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='USEUCOM.MIL' />
+        <facet orig_org_id='USEUCOM' />
+        <facet superior_org_id='OSD.GOV' />
+        <facet subordinate_org_id='USAEUR.MIL' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CMD' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+      </agent>
+    </node>
+  </host>
+</society>
