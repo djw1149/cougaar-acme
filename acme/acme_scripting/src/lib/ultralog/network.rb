@@ -94,41 +94,82 @@ module Cougaar; module Actions
     DOCUMENTATION = Cougaar.document {
       @description = "Enable network shaping at the K level."
       @parameters = [
-         {:noc=>"required, Hostname which contains the router."}
+         {:noc=>"nocname=nil, Optional hostname which contains the router."}
       ]
       @example = "do_action 'EnableNetworkShaping', 'sv023'"
     }
 
-    def initialize( run, nocname )
+    def initialize( run, nocname=nil )
       super( run )
       @nocname = nocname
     end
 
-    def perform
-      host = @run.society.hosts[@nocname]
-      @run.comms.new_message(host).set_body("command[shape]trigger").send
+   def to_s
+      hostname="unknown"
+      if @nocname
+       hostname = @nocname
+      else
+       @run.society.each_service_host("BW-router") {|h| hostname = h.host_name}
+      end
+      return super.to_s+"('#{hostname}')"
     end
+
+    def perform
+      host = nil
+      if @nocname
+       host = @run.society.hosts[@nocname]
+      else
+       @run.society.each_service_host("BW-router") {|h| host = h}
+      end
+      if host.nil?
+        @run.error_message "Could not find a host with the facet 'BW-router'"
+      else
+        @run.comms.new_message(host).set_body("command[shape]trigger").send
+      end 
+   end
   end
 
   class DisableNetworkShaping < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Disable network shaping at the K level."
       @parameters = [
-         {:noc=>"required, Hostname which contains the router."}
+         {:noc=>"nocname=nil, Optional hostname which contains the router."}
       ]
       @example = "do_action 'DisableNetworkShaping', 'sv023'"
     }
-
-    def initialize( run, nocname )
+                                                                                                                                                     
+    def initialize( run, nocname=nil )
       super( run )
       @nocname = nocname
     end
 
-    def perform
-      host = @run.society.hosts[@nocname]
-      @run.comms.new_message(host).set_body("command[shape]reset").send
+    def to_s
+      hostname="unknown"
+      if @nocname
+       hostname = @nocname
+      else
+       @run.society.each_service_host("BW-router") {|h| hostname = h.host_name}
+      end
+      return super.to_s+"('#{hostname}')"
     end
+                                                                                                              
+    def perform
+      host = nil
+      if @nocname
+       host = @run.society.hosts[@nocname]
+      else
+       @run.society.each_service_host("BW-router") {|h| host = h}
+      end
+      if host.nil?
+        @run.error_message "Could not find a host with the facet 'BW-router'"
+      else
+        @run.comms.new_message(host).set_body("command[shape]reset").send
+      end
+   end
   end
+
+
+
 
   class DisableWANLink < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
