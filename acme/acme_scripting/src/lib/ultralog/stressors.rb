@@ -18,42 +18,9 @@
 #  PERFORMANCE OF THE COUGAAR SOFTWARE.
 # </copyright>
 #
-require 'xmlrpc/client'
 
 module Cougaar
   module Actions
-    class KillNodes < Cougaar::Action
-      def initialize(run, *nodes)
-        super(run)
-        @nodes = nodes
-      end
-      def perform
-        pids = @run['pids']
-        
-        node_type = ""
-        if @run["loader"] == "XML"
-          node_type = "xml_"
-        end
-        
-        @nodes.each do |node|
-          pid = pids[node]
-          cougaar_node = @society.nodes[node]
-          if pid && cougaar_node
-            pids.delete(node)
-            result = @run.comms.new_message(cougaar_node.host).set_body("command[stop_#{node_type}node]#{pid}").request(60)
-            if result.nil?
-              raise_failure "Could not kill node #{node}(#{pid}) on host #{cougaar_node.host.host_name}"
-            end
-          else
-            raise_failure "Could not kill node #{node}...node unknown."
-          end
-        end
-      end
-    end
-    class KillNode < KillNodes
-      def initialize(run, node)
-        super(run, node)
-      end
-    end
+    #Location for stressors
   end
 end
