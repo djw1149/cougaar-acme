@@ -189,6 +189,7 @@ module Cougaar
       
       def process
         if @await_oplan
+          @run.info_message "Waiting for OPlan Cougaar Event"
           loop = true
           while loop
             event = @run.get_next_event
