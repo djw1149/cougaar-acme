@@ -92,8 +92,8 @@ module Cougaar
       def perform
         unless @hosts
           @hosts = []
-          @run.society.each_host do |host|
-            @hosts << host.name 
+          @run.society.each_service_host("acme") do |host|
+            @hosts << host.name
           end
           @hosts.uniq!
         end
