@@ -83,7 +83,8 @@ class XMLCougaarNode
     @plugin["/plugins/acme_host_communications/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: filename (previously posted to /xmlnode) "
     @plugin["/plugins/acme_host_communications/commands/start_xml_node"].set_proc do |message, command| 
-      node = loaded_nodes[command]
+      # retrieve the config using the node name (remove the extension)
+      node = loaded_nodes[command.split('.')[0]]
       pid = node.start
       puts "STARTED: #{pid}"
       running_nodes[pid] = node
@@ -206,7 +207,8 @@ class XMLCougaarNode
         response.body = "<html>XMLNode File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
       end
-      loaded_nodes[nodefile] = NodeConfig.new(self, @plugin, nodefile)
+      # use the node name (no extension) as the key
+      loaded_nodes[nodefile.split('.')[0]] = NodeConfig.new(self, @plugin, nodefile)
     end
     
     # Mount handler for receiving communities xml file via HTTP
