@@ -401,11 +401,17 @@ module Cougaar
       ##
       # Does this component have a component of the given name
       #
-      # name:: [String | Symbol] The facet key
+      # name:: [default=nil, String | Symbol] The facet key
+      # block:: [yield facet] If your block returns true, the has_facet? will return true
       # return:: [Boolean] True if it has a facet
       #
-      def has_facet?(name)
-        get_facet(name) ? true : false
+      def has_facet?(name=nil, &block)
+        if name
+          get_facet(name) ? true : false
+        else
+          each_facet(name) { | facet | return true if block.call(facet) }
+        end
+        return false
       end
       
       ##
