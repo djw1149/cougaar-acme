@@ -1,0 +1,83 @@
+require 'cougaar/communities'
+require 'ultralog/enclaves'
+
+COMMS = ["REAR", "FWD", "CONUS", "TRANS"]
+SUB_COMM = {"REAR"=>	[
+                      ], 
+            "FWD"=>		[ 
+                        ["FWD-A"], #Sub1 
+                        ["FWD-C"]  #Sub2
+                      ],
+            "CONUS"=>	[
+                        [] #Sub1
+                      ],
+            "TRANS"=> [
+                      ]
+           }
+           
+society.each_enclave do |enclave|
+
+  # BUILD CORE COMMUNITIES
+  society.communities.add("#{enclave}-SECURITY-COMM") do |community|
+    community.add_attribute("CommunityType", "Security")
+    added_society_mnr = false
+    society.each_enclave_node(enclave) do |node|
+      community.add_entity(node.name, "Agent") do |entity|
+        entity.add_role("Member")
+      end
+      node.each_agent do |agent|
+        community.add_agent(agent.name) do |entity|
+          entity.add_role("Member")
+          case agent.name
+          when "#{enclave.capitalize}EnclaveCrlManager"
+            entity.add_role("CrlProvider")
+          when "#{enclave.capitalize}EnclavePersistenceManager"
+            entity.add_role("PersistenceManager")
+          when "#{enclave.capitalize}MnRManager"
+            entity.add_role("Manager")
+          when "SocietySecurityMnRManager"
+            entity.add_role("Manager")
+            entity.add_role("Root")
+            added_society_mnr = true
+          end
+        end
+      end
+    end
+    unless added_society_mnr
+      community.add_agent("SocietySecurityMnRManager") do |entity|
+        entity.add_role("Member")
+        entity.add_role("Manager")
+        entity.add_role("Root")
+      end
+    end
+  end
+  
+  # BUILD SUB<N> COMMUNITIES
+  SUB_COMM[enclave].each_index do |index|
+    society.communities.add("#{enclave}-SECURITY-SUB#{index+1}-COMM") do |community|
+      community.add_attribute("CommunityType", "Security")
+      community.add_entity("Enclave#{COMMS.index(enclave)+1}Sub#{index+1}Manager", "Agent") do |entity|
+        entity.add_role("Member")
+        entity.add_role("Manager")
+      end
+      SUB_COMM[enclave][index].each do |agent|
+        community.add_agent(agent) { |entity| entity.add_role("Member") }
+      end
+    end
+  end
+  
+  # BUILD USERDOMAIN COMMUNITIES
+  society.communities.add("#{enclave}-SECURITY-COMM") do |community|
+    community.add_attribute("CommunityType", "User")
+    society.each_enclave_node(enclave) do |node|
+      community.add_entity(node.name, "Agent") do |entity|
+        entity.add_role("Member")
+      end
+      community.add_agent("#{enclave.capitalize}UserAdminAgent") do |entity|
+        entity.add_role("Member")
+        entity.add_role("UserManager")
+      end
+    end
+  end
+  
+end # enclaves
