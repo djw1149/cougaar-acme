@@ -20,6 +20,18 @@
         <facet role='LogisticsCommanderInChief' echelon_of_support='JOINT'  />
         <facet role='OperationalCommanderInChief' echelon_of_support='JOINT'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -257,18 +269,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -335,6 +335,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -761,18 +773,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -881,6 +881,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -1306,18 +1318,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -1429,6 +1429,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='StrategicTransportationProvider' echelon_of_support='DIVISION' mechanism='PassThrough'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -1854,18 +1866,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -1979,6 +1979,18 @@
         <facet role='FuelSupplyProvider' echelon_of_support='CORPS'  />
         <facet role='PackagedPOLSupplyProvider' echelon_of_support='CORPS'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -2409,18 +2421,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -2532,6 +2532,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='FuelTransportProvider' note='Not Used Now' echelon_of_support='CORPS'  />
         <facet role='MaterielTransportProvider' note='Not Used Now' echelon_of_support='CORPS'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -2962,18 +2974,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -3086,6 +3086,18 @@
         <facet role='FuelSupplyProvider' echelon_of_support='THEATER'  />
         <facet role='PackagedPOLSupplyProvider' echelon_of_support='THEATER'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -3516,18 +3528,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -3643,6 +3643,18 @@
         <facet role='SparePartsProvider' echelon_of_support='DIVISION'  />
         <facet role='SubsistenceSupplyProvider' echelon_of_support='DIVISION'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -4073,18 +4085,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -4208,6 +4208,18 @@
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -4633,18 +4645,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -4755,6 +4755,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -5184,18 +5196,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -5301,6 +5301,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='AmmunitionProvider' echelon_of_support='THEATER'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -5731,18 +5743,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -5851,6 +5851,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -6281,18 +6293,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -6398,6 +6398,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='SparePartsProvider' note='Add' echelon_of_support='CORPS'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -6828,18 +6840,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -6952,6 +6952,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='StrategicTransportationProvider' echelon_of_support='THEATER' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -7382,18 +7394,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -7502,6 +7502,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='SparePartsProvider' note='Add' echelon_of_support='DIVISION'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='16-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -7932,18 +7944,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -8051,6 +8051,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet role='SubsistenceSupplyProvider' echelon_of_support='CORPS'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -8481,18 +8493,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -8600,6 +8600,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet role='MaterielTransportProvider' note='Not Used Now' echelon_of_support='THEATER'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -9026,18 +9038,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -9151,6 +9151,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -9576,18 +9588,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -9699,6 +9699,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='StrategicTransportationProvider' echelon_of_support='CORPS' mechanism='PassThrough'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -10124,18 +10136,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -10248,6 +10248,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='SubsistenceSupplyProvider' echelon_of_support='THEATER'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -10678,18 +10690,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -10798,6 +10798,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -11228,18 +11240,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -11345,6 +11345,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='SubsistenceSupplyProvider' note='Add' echelon_of_support='CORPS'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -11775,18 +11787,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -11899,6 +11899,18 @@
         <facet role='SparePartsProvider' echelon_of_support='BRIGADE'  />
         <facet role='SubsistenceSupplyProvider' echelon_of_support='BRIGADE'  />
         <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE-1-AD'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -12329,18 +12341,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -12461,6 +12461,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -12891,18 +12903,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -13008,6 +13008,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -13444,18 +13456,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -13560,6 +13560,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -13986,18 +13998,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -14107,6 +14107,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -14532,18 +14544,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -14654,6 +14654,18 @@
         <facet role='SparePartsProvider' echelon_of_support='CORPS'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -15084,18 +15096,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -15204,6 +15204,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='AmmunitionProvider' echelon_of_support='CORPS'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -15634,18 +15646,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -15755,6 +15755,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet role='FuelTransportProvider' note='Not Used Now' echelon_of_support='THEATER'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -16185,18 +16197,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -16305,6 +16305,18 @@
         <facet has_personnel_assets='T'  />
         <facet role='SparePartsProvider' note='Add' echelon_of_support='DIVISION'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -16735,18 +16747,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -16857,6 +16857,18 @@
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -17282,18 +17294,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17403,6 +17403,18 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
           priority='BINDER'
@@ -17828,18 +17840,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17947,6 +17947,18 @@
         <facet role='SubsistenceSupplyProvider' note='C .lt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -18163,18 +18175,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -18256,6 +18256,18 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
@@ -18686,18 +18698,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -18801,6 +18801,18 @@
         <facet role='SubsistenceSupplyProvider' note='C .gt. 30' echelon_of_support='JOINT' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -19013,18 +19025,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -19107,6 +19107,18 @@
         <facet role='PackagedPOLSupplyProvider' echelon_of_support='JOINT' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -19323,18 +19335,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -19408,6 +19408,18 @@
         <facet echelon_group='Conus'  />
         <facet role='AmmunitionProvider' note='C .gt. 30' echelon_of_support='JOINT' mechanism='TerminalAmmunitionPacker'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -19643,18 +19655,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -19716,6 +19716,18 @@
         <facet echelon_group='Transcom'  />
         <facet role='StrategicTransportationProvider' echelon_of_support='JOINT' mechanism='StubTransportationProvider'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -19957,18 +19969,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
@@ -20019,6 +20019,18 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
         <facet role='ArmyCommander' echelon_of_support='US-ARMY'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -20242,18 +20254,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -20311,6 +20311,18 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -20524,18 +20536,6 @@
         <component
           name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
           class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
