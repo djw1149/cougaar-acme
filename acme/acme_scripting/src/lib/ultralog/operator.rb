@@ -119,6 +119,31 @@ module Cougaar
         operator.archive_db
       end
     end
+    
+    class StartDatagrabberService < Cougaar::Action
+      PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts the Datagrabber service on the operator machine."
+        @example = "do_action 'StartDatagrabberService'"
+      }
+      def perform
+        operator = @run['operator']
+        operator.start_datagrabber_service
+      end
+    end
+    
+    class StopDatagrabberService < Cougaar::Action
+      PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Stops the Datagrabber service on the operator machine."
+        @example = "do_action 'StopDatagrabberService'"
+      }
+      def perform
+        operator = @run['operator']
+        operator.stop_datagrabber_service
+      end
+    end
+    
   end
 end
 
@@ -166,6 +191,14 @@ module UltraLog
     
     def archive_db(runName=nil)
       send_command('archive_db', 8.minutes, composite_name(runName))
+    end
+    
+    def start_datagrabber_service
+      send_command('start_datagrabber', 30)
+    end
+    
+    def stop_datagrabber_service
+      send_command('stop_datagrabber', 30)
     end
     
     private
