@@ -69,7 +69,8 @@ module Cougaar
     
     def handle_socket(socket)
       @threads << Thread.new do
-        parser =  EventParser.new(socket, @proc)
+        parser =  RegexpEventParser.new(socket, @proc)
+        #parser =  RexmlEventParser.new(socket, @proc)
         begin
           puts "got connection"
           parser.parse
@@ -89,11 +90,39 @@ module Cougaar
       @threads.each {|thread| Thread.kill(thread)}
     end
     
+    class RegexpEventParser
+      attr_reader :started
+      
+      def initialize(stream, listener)
+        @stream = stream
+        @listener = listener
+      end
+      
+      def parse
+        while data = @stream.gets('>')
+          case data
+          when /<CougaarEvents\s+Node="(.*)"\s+experiment="(.*)"\s*>/
+            @node = $1
+            @experiment = $2
+          when /<CougaarEvent\s+type="(.*)"\s+clusterIdentifier="(.*)"\s+component="(.*)"\s*>/
+            event = CougaarEvent.new
+            event.node = @node
+            event.experiment = @experiment
+            event.event_type = $1
+            event.cluster_identifier = $2
+            event.component = $3
+            event.data = [@stream.gets("</CougaarEvent>")[0..-16]].pack("m")
+            @listener.call(event)
+          end
+        end
+      end      
+    end
+    
     ##
-    # The EventParser uses REXML to parse the incoming XML stream
+    # The REXMLEventParser uses REXML to parse the incoming XML stream
     # of the Cougaar Events
     #
-    class EventParser
+    class RexmlEventParser
       # status if the parser is started
       attr_reader :started
       
@@ -121,7 +150,7 @@ module Cougaar
           when "CougaarEvents"
             @node = attributes['Node']
             @experiment = attributes['experiment']
-            puts "  Node: #{@node}  Experiment: #{@experiment}"
+            #puts "  Node: #{@node}  Experiment: #{@experiment}"
             @started = true
           when "CougaarEvent" 
             @current = CougaarEvent.new
@@ -165,25 +194,17 @@ module Cougaar
   end
 end
 
-
-
 if $0==__FILE__
-
-  class Foo
-    def hey_now(bar)
-      puts "HERE IT IS:"
-      puts bar
+  parser =  Cougaar::CougaarEventService.new(3000)
+  count = 0
+  start = Time.now
+  parser.start(false) do |event|
+    if count == 999
+      count = 0
+      puts Time.now - start
+    else
+      start = Time.now if count == 0
+      count += 1
     end
   end
-
-  a_foo = Foo.new
-  aproc = a_foo.method("hey_now")
-
-  file = ARGV[0]
-  f = File.new(file);
-  parser =  Cougaar::CougaarEventService::EventParser.new(f, aproc)
-  puts "got connection"
-  parser.parse
-  puts "closed connection"
 end
-
