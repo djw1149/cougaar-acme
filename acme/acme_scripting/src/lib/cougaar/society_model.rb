@@ -754,6 +754,28 @@ module Cougaar
       end
       
       ##
+      # This assumes the form of the property is:
+      #  param=val1;val2;....
+      #
+      # param:: [String] the -D param to overrride
+      # value:: [String] the new value
+      #
+      def append_value_on_parameter(param, value)
+        o = nil
+        @parameters.each do |orig|
+          o = orig if orig[0..(param.size)]=="#{param}="
+        end
+        if !o
+          @parameters << "#{param}=#{value}\\;"
+        else
+          if !o.include? value
+            @parameters.delete(o)
+            @parameters << "#{o}#{value}\\;"
+          end
+        end
+      end
+
+      ##
       # Override a parameter specifically on this node
       #
       # param:: [String] the -D param to overrride
