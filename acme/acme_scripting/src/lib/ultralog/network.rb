@@ -54,7 +54,16 @@ module Cougaar; module Actions
                  @run.comms.new_message(host).set_body("command[net]reset(#{klink.interface})").send()
               }
            when "migratory":
-             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+              host.each_facet(:subnet) { |facet|
+                subnet = net.subnet[ facet.data ]
+                @run.comms.new_message(host).set_body("command[net]reset(#{subnet.make_interface(host.get_facet(:interface))})").send()
+                @run.comms.new_message(host).set_body("command[net]disable(#{subnet.make_interface(host.get_facet(:interface))})").send()
+              }
+
+              subnet = net.subnet[ host.get_facet(:default_subnet) ]
+              @run.comms.new_message(host).set_body("command[net]enable(#{subnet.make_interface(host.get_facet(:interface))})").send()
+
+              @run.error_message( "WARNING!  Migratory Hosts will not be fully implemented until after the PAD assessment." )
          end
       }
     end
@@ -92,7 +101,11 @@ module Cougaar; module Actions
                  @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{klink.bw})").send()
               }
            when "migratory":
-             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+              host.each_facet(:subnet) { |facet|
+                 subnet = net.subnet[ facet.data ]
+                 @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))})").send()
+              }
+              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
@@ -122,12 +135,18 @@ module Cougaar; module Actions
            when "standard":
               @run.comms.new_message(host).set_body("command[net]shape(#{host.get_facet(:interface)},#{@bw})").send()
            when "router":
+              raise Exception.new( "Target subnet must be specified when shaping router hosts." ) if @target.nil?
               subnet = net.subnet[ host.get_facet(:subnet) ]
               klink = subnet.klink[ @target ]
 
+              raise Exception.new( "Subnet #{@target} is unavailable to router #{host.name}" ) if (klink.nil?)
+
               @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{@bw})").send
            when "migratory":
-             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+              raise Exception.new( "Target subnet must be specified when shaping migratory hosts." ) if @target.nil?
+              subnet = net.subnet[ @target ]
+              @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))},#{@bw})").send()
+              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
@@ -167,7 +186,17 @@ module Cougaar; module Actions
                 @run.comms.new_message(host).set_body("command[net]shape(#{klink.interface},#{klink.bw})").send
               end
            when "migratory":
-             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+              if (@target.nil?) then
+                host.each_facet(:subnet) { |facet|
+                  subnet = net.subnet[ facet.data ]
+                  @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))},#{subnet.bw})").send()
+                }
+              else 
+                subnet = net.subnet[ @target ]
+                @run.comms.new_message(host).set_body("command[net]shape(#{subnet.make_interface(host.get_facet(:interface))},#{subnet.bw})").send()
+              end
+
+              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
@@ -198,7 +227,7 @@ module Cougaar; module Actions
               end
            # DON'T SHAPE ROUTERS!
            when "migratory":
-             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+             @run.error_message("Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
@@ -229,7 +258,100 @@ module Cougaar; module Actions
               end
            # DON'T SHAPE THE ROUTERS!
            when "migratory":
-             raise Exception.new("Migratory Hosts will not be implemented until after the PAD assessment.")
+             @run.error_message("Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
+    end
+  end
+
+  class ActivateNIC < Cougaar::Action
+    DOCUMENTATION = Cougaar.document {
+      @description = "Turns a NIC back on.  A facet is passed to determine which hosts NIC are to be restored.  An optional network is also provided to identify which NIC."
+      @example = "do_action 'ActivateNIC', 'sv190', 'CONUS-REAR'"
+    }
+
+    def initialize( run, facet, target=nil )
+      @run = run
+      super( run )
+      
+      @facet = facet
+      @target = target
+    end
+
+    def perform
+      net = @run['network']
+
+      @run.society.each_service_host(@facet) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              @run.comms.new_message(host).set_body("command[net]enable(#{host.get_facet(:interface)})").send
+
+           when "router":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
+              if (@target.nil?) then
+                 subnet.klink.each_value { |klink|
+                   @run.comms.new_message(host).set_body("command[net]enable(#{klink.interface})").send
+                 }
+              else
+                klink = subnet.klink[ @target ]
+
+                @run.comms.new_message(host).set_body("command[net]enable(#{klink.interface})").send
+              end
+
+           when "migratory":
+              raise Exception.new("You must provide a target to enable a Migratory Host interface!") if @target.nil?
+
+              subnet = net.subnet[ @target ]
+              @run.comms.new_message(host).set_body("command[net]enable(#{subnet.make_interface(host.get_facet(:interface))},#{subnet.bw})").send()
+
+              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
+         end
+      }
+    end
+  end
+
+  class DeactivateNIC < Cougaar::Action
+    DOCUMENTATION = Cougaar.document {
+      @description = "Disable a specified network interface.  A facet is passed in to determine which hosts to disable, and an optional target for hosts with multiple network interfaces."
+      @example = "do_action 'DeactivateNIC', 'sv190', 'CONUS-REAR'"
+    }
+
+    def initialize( run, facet, target=nil )
+      @run = run
+      super( run )
+      
+      @facet = facet
+      @target = target
+    end
+
+    def perform
+      net = @run['network']
+
+      @run.society.each_service_host(@facet) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+              @run.comms.new_message(host).set_body("command[net]disable(#{host.get_facet(:interface)})").send
+
+           when "router":
+              subnet = net.subnet[ host.get_facet(:subnet) ]
+              if (@target.nil?) then
+                 @run.error_message("WARNING!  Disabling all network interfaces on #{host.name}")
+                 subnet.klink.each_value { |klink|
+                   @run.comms.new_message(host).set_body("command[net]disable(#{klink.interface})").send
+                 }
+              else
+                klink = subnet.klink[ @target ]
+                puts "command[net]disable(#{klink.interface})"
+                @run.comms.new_message(host).set_body("command[net]disable(#{klink.interface})").send
+              end
+
+           when "migratory":
+              raise Exception.new("You must provide a target to disable a Migratory Host interface!") if @target.nil?
+
+              subnet = net.subnet[ @target ]
+              @run.comms.new_message(host).set_body("command[net]disable(#{subnet.make_interface(host.get_facet(:interface))},#{subnet.bw})").send()
+
+              @run.error_message("WARNING!  Migratory Hosts will not be implemented until after the PAD assessment.")
          end
       }
     end
