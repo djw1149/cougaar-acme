@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Society Generation -- HOWTO</title>
+</head>
+<body>
+<h1>Society Generation HOWTO</h1>
+<h2>Contents</h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#facets">Facet Files</a></li>
+<li><a href="#societies">Society Files</a></li>
+</ol>
+<a name="overview"><h2>Overview</h2></a>
+<p>All societies are now generated from CSV files.  The society generation process
+consists of two parts.  The generation of a facet configuration and the generation of a society
+(sometimes called plugins) configuration.<br>
+For all of the 1AD societies, facet files are easily generated from the CSV files using a simple
+script.  For the UA societies however, a special tool: <em>SocietyDesigner</em> is required.
+</p>
+<a name="facets"><h2>Facet Files</h2></a>
+<p>A facets file is a pre-configuration file that contains the basic information about each
+agent within that configuration.  The information contained in each agent is used by a set of
+<tt>Ruby</tt> rules to determine which plugins should be inserted into the agent.<br>
+Facets are broken up into two seperate sections, the 1AD facets and the UA facets, however
+both facet files look similar.</p>
+<h3>1AD Facets</h3>
+<p>A script to generate a single 1AD facet file does not exist.  Currently the base set of
+facet files are located in the <tt>1ad</tt> directory in <tt>configs/org_agent_builder</tt>.  The
+only reason these configurations would need to be re-generated would be if the CSV files changed.
+If that happens, running the script: <tt>make-facet-societies.sh</tt> will re-generate all of the
+facet configuration files.</p>
+<h3>UA Facets</h3>
+<p>To generate the UA facets, you must use the <em>SocietyDesigner</em> tool.  This tool,
+located in this module allows the rolling up and un-rolling of the UA agents.  For more information on
+using this tool, please consult the tool documentation.</p>
+<a name="societies"><h2>Society Files</h2></a>
+<p>To run a configuration, you need a society file.  Society files can be found in this module,
+<tt>config/societies/[ul|ua]</tt>.  However if you need to generate a new society file, there exists a
+single script to assist.  The script <tt>gen-plugins-xml.sh</tt> can be used to generate a single society.<br>
+The usage of this script is:
+<pre>% gen-plugins-xml.sh [society]</pre> Where society is the partial path and name of the society that you wish to generate.<br>
+For example: <br>
+<pre>
+% gen-plugins-xml.sh 1ad/tiny-1ad
+</pre>
+Would generate a tiny-1ad society in the current directory using the facets file located in the 1ad/ directory.<br>
+The basic 1AD Societies are: <br>
+<ul>
+<li>tiny-1ad</li>
+<li>tiny-1ad-trans</li>
+<li>small-1ad</li>
+<li>small-1ad-trans</li>
+<li>full-1ad</li>
+<li>full-1ad-trans</li>
+</ul>
+If you wish to generate all societies in a zipped file, use the scripts: <br>
+<tt>create-ul-dist.sh</tt> or <tt>create-ua-dist.sh</tt>
+</p>
+
+</body>
+</html>
