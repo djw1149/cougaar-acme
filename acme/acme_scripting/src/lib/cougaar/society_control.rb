@@ -477,6 +477,10 @@ module Cougaar
       end
       
       def perform
+        time = Time.now.gmtime
+        @run.society.each_node do |node|
+          node.replace_parameter(/Dorg.cougaar.core.society.startTime/, "-Dorg.cougaar.core.society.startTime=\"#{time.strftime('%m/%d/%Y %H:%M:%S')}\"")
+        end
         @run['node_controller'].add_cougaar_event_params
         @run['node_controller'].start_all_nodes(self)
         @run.add_to_interrupt_stack do 
