@@ -377,11 +377,6 @@ module Cougaar
                   # of the agent below triggers a checkQuiescence itself
   #                result = Cougaar::Communications::HTTP.get("#{node.uri}/agentQuiescenceState?dead=#{agent_name}", 60)
 
-                  # Remove it to free up resources - See ubug 13550
-                  Thread.new(node.uri, node.name, agent_name) do |uri, node_name, agent| 
-                    result = Cougaar::Communications::HTTP.get("#{uri}/move?op=Remove&mobileAgent=#{agent}&destNode=#{node_name}&action=Add", 60)
-                  end
-
                   # FIXME: look at the result to see if this actually did something
                   # If it did, log that fact
                   # Note that you have to poll the /move servlet as it
