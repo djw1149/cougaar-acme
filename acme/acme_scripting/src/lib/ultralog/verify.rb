@@ -20,7 +20,7 @@ module Cougaar
       port = 8800
       tasks = 0
 
-      server = Net::HTTP.new( host.host_name, port )
+      server = Net::HTTP.new( host.uri_name, port )
       resp, data = server.get("/$#{@agent}/completion?format=xml");
       doc = REXML::Document.new data
       doc.elements.each("SimpleCompletion/NumTasks") {

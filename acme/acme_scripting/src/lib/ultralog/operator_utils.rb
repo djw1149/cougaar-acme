@@ -34,6 +34,16 @@ module Ultralog
         @hostaddress = IPSocket.getaddress(@hostname) 
       end
       
+      def get_society_name(host=nil)
+        society = load_society(host)
+        name = society.name
+        if name.include?("-")
+          return name.split("-")[0]
+        else
+          return name
+        end
+      end
+      
       def get_hosts_file(host=nil)
         host = @hostname unless host
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|

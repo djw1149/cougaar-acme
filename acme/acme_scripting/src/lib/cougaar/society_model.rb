@@ -512,6 +512,7 @@ module Cougaar
         infoList = hostInfo.split(/ /)
         infoList.pop.chomp!
       end
+      
       ##
       # Adds a node to this host
       #
@@ -617,6 +618,15 @@ module Cougaar
         @name.index('|') ? @name[(@name.index('|')+1)..-1] : @name
       end
       
+      ##
+      # If the host's uri name facet or host_name if not set
+      #
+      # return:: [String] The (uri) name of this host 
+      #
+      def uri_name
+        return get_facet(:uriname) || host_name
+      end
+      
     end
   
     ##
@@ -692,17 +702,17 @@ module Cougaar
           protocol << 's'
         end
         if cp.nil?
-          raise "Could not form valid URL for node #{@name} on host #{@host.host_name}\nCougaar port set to -1 but HTTPS port not set."
+          raise "Could not form valid URL for node #{@name} on host #{@host.uri_name}\nCougaar port set to -1 but HTTPS port not set."
         end
-        return "#{protocol}://#{@host.host_name}:#{cp}"
+        return "#{protocol}://#{@host.uri_name}:#{cp}"
       end
 
       def secure_uri
         cp = secure_cougaar_port
         if cp.nil?
-          raise "Could not form valid secure URL for node #{@name} on host #{@host.host_name}\nCougaar HTTPS port not set."
+          raise "Could not form valid secure URL for node #{@name} on host #{@host.uri_name}\nCougaar HTTPS port not set."
         end
-        return "https://#{@host.host_name}:#{cp}"
+        return "https://#{@host.uri_name}:#{cp}"
       end
       
       def init_block

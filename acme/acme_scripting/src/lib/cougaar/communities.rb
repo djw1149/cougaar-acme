@@ -43,12 +43,12 @@ module Cougaar
         communities_xml = @run.society.communities.to_xml
         if @destination == 'operator'
           @run.society.each_service_host("operator") do |host|
-            result = Cougaar::Communications::HTTP.post("http://#{host.host_name}:9444/communities", communities_xml, "text/xml")
+            result = Cougaar::Communications::HTTP.post("http://#{host.uri_name}:9444/communities", communities_xml, "text/xml")
             puts result if @debug
           end
         else
           @run.society.each_service_host("acme") do |host|
-            result = Cougaar::Communications::HTTP.post("http://#{host.host_name}:9444/communities", communities_xml, "text/xml")
+            result = Cougaar::Communications::HTTP.post("http://#{host.uri_name}:9444/communities", communities_xml, "text/xml")
             puts result if @debug
           end
         end

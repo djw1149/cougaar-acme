@@ -85,7 +85,7 @@ module Cougaar
       output << @@fields.join(",")
       @society.each_node do |node| 
         node.each_agent do |agent|
-          myuri = "http://#{node.host.name}:#{@society.cougaar_port}/$#{node.name}/message/#{@type}/agent/status?agent=#{agent.name}"
+          myuri = "http://#{node.host.uri_name}:#{@society.cougaar_port}/$#{node.name}/message/#{@type}/agent/status?agent=#{agent.name}"
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           output << "\n#{agent.name},"
           @@fields.each do |field|

@@ -15,7 +15,7 @@ class AllocationResults
     def initialize(host, agent, port=8800)
       if host.kind_of? Cougaar::Society
         society=host
-        host = society.agents['AGG-Agent'].node.host.host_name
+        host = society.agents['AGG-Agent'].node.host.uri_name
         @uri = "#{society.agents['AGG-Agent'].uri}/AllocationResults"
       else
         host  = host
