@@ -41,7 +41,8 @@ society.each_host do |host|
 		node.remove_parameter("-Dorg.cougaar.tools.server.swallowOutputConnectionException")
 		node.remove_parameter("-Dorg.cougaar.node.InitializationComponent")
 		node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
-		node.override_parameter("-Dorg.cougaar.core.persistence.clear","true")
+		node.override_parameter("-Dorg.cougaar.core.persistence.enable","true")
+		node.override_parameter("-Dorg.cougaar.core.persistence.clear","false")
 		node.override_parameter("-Dorg.cougaar.society.file","#{file}")
 		# Put in your own ACME log4j config file name here
 		node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
@@ -64,8 +65,10 @@ society.each_host do |host|
 
 
 	# Edit in your own preferred Java memory sizes here
-    node.replace_parameter("/-Xms/","-Xms64m")
-    node.replace_parameter("/-Xmx/","-Xmx764m")
+    node.replace_parameter("/-Xms/","-Xms768m")
+    node.replace_parameter("/-Xmx/","-Xmx1536m")
+    node.add_parameter("-XX:ThreadStackSize=256")
+
 
 		node.each_agent do |agent|
 			agent.remove_component("org.cougaar.core.topology.TopologyReaderServlet")
