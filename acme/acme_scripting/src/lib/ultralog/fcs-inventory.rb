@@ -41,6 +41,7 @@ module Cougaar
         File.open(@file, "wb") do |file|
           file.puts result
         end
+        @run.archive_and_remove_file(@file, "FCS Inventory for agent: #{@agent} asset: #{@asset}")
       end
 
       def perform
