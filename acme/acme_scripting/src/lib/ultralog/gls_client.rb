@@ -161,10 +161,10 @@ module Cougaar
         end
         begin
           result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
-          raise_failure "Error getting OPlan Info" unless result
+          @run.error_message "Error getting OPlan Info" unless result
         rescue
-          puts $!
-          puts $!.backtrace.join
+          @run.error_message  $!
+          @run.error_message  $!.backtrace.join
         end
       end
       
@@ -235,9 +235,11 @@ module Cougaar
         gls_client = @run['gls_client']
         begin
           result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
-          raise_failure "Error publishing next stage" unless result
+          @run.error_message  "Error publishing next stage" unless result
         rescue
-          raise_failure "Could not publish next stage", $!
+          @run.error_message "Could not publish next stage"
+          @run.error_message  $!
+          @run.error_message  $!.backtrace.join
         end
       end
     end
