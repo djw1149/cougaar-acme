@@ -46,6 +46,7 @@ module ACME
                          :kill_nodes => /Starting: KillNodes\((.*)\)/}
         current_stage = nil
         start = nil
+        reset
         File.new(run_log).each do |line|
           ts = get_timestamp(line)
           if (md = pattern_table[:start_run].match(line)) then
