@@ -8,35 +8,33 @@ if [ ! -d $UADIR ]; then
 fi
 
 echo "Making All the 1AD facet files"
-ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad.member.csv -s $UADIR/tiny-1ad.oo.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad-trans-stub.member.csv -s $UADIR/tiny-1ad-trans-stub.oo.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad.member.csv -s $UADIR/small-1ad.oo.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad-trans-stub.member.csv -s $UADIR/small-1ad-trans-stub.oo.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad.member.csv -s $UADIR/full-1ad.oo.facets.xml -o
-ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad-trans-stub.member.csv -s $UADIR/full-1ad-trans-stub.oo.facets.xml -o
-## Currently the ammo facets is generated in the SocietyDesigner (until org_agent_builder is fixed).  So copy it.
-cp ./1ad.orig-org-id/small-1ad-ammo.facets.xml $UADIR
+ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad.member.csv -s $UADIR/tiny-1ad.facets.xml -o
+ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad-trans-stub.member.csv -s $UADIR/tiny-1ad-trans-stub.facets.xml -o
+ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad.member.csv -s $UADIR/small-1ad.facets.xml -o
+ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad-trans-stub.member.csv -s $UADIR/small-1ad-trans-stub.facets.xml -o
+ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad.member.csv -s $UADIR/full-1ad.facets.xml -o
+ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad-trans-stub.member.csv -s $UADIR/full-1ad-trans-stub.facets.xml -o
 echo "Done making facets"
 
 echo "Merge the 1AD and UA facet files"
-../../bin/SocietyMerger $UADIR/tiny-1ad-trans-stub.oo.facets.xml ./1ua.orig-org-id/17a12v.oo.facets.xml $UADIR/tiny-trans-stub-17a12v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/tiny-1ad-trans-stub.facets.xml ./1ua/17a12v.facets.xml $UADIR/tiny-trans-stub-17a12v.facets.xml
 
-../../bin/SocietyMerger $UADIR/tiny-1ad.oo.facets.xml ./1ua.orig-org-id/17a12v.oo.facets.xml $UADIR/tiny-17a12v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/tiny-1ad.facets.xml ./1ua/17a12v.facets.xml $UADIR/tiny-17a12v.facets.xml
 
-../../bin/SocietyMerger $UADIR/tiny-1ad-trans-stub.oo.facets.xml ./1ua.orig-org-id/160a237v.oo.facets.xml $UADIR/tiny-trans-stub-160a237v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/tiny-1ad-trans-stub.facets.xml ./1ua/160a237v.facets.xml $UADIR/tiny-trans-stub-160a237v.facets.xml
 
-../../bin/SocietyMerger $UADIR/tiny-1ad.oo.facets.xml ./1ua.orig-org-id/160a237v.oo.facets.xml $UADIR/tiny-160a237v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/tiny-1ad.facets.xml ./1ua/160a237v.facets.xml $UADIR/tiny-160a237v.facets.xml
 
-../../bin/SocietyMerger $UADIR/small-1ad-trans-stub.oo.facets.xml ./1ua.orig-org-id/17a12v.oo.facets.xml $UADIR/small-trans-stub-17a12v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/small-1ad-trans-stub.facets.xml ./1ua/17a12v.facets.xml $UADIR/small-trans-stub-17a12v.facets.xml
 
-../../bin/SocietyMerger $UADIR/small-1ad.oo.facets.xml ./1ua.orig-org-id/17a12v.oo.facets.xml $UADIR/small-11a12v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/small-1ad.facets.xml ./1ua/17a12v.facets.xml $UADIR/small-11a12v.facets.xml
 
-../../bin/SocietyMerger $UADIR/small-1ad-trans-stub.oo.facets.xml ./1ua.orig-org-id/160a237v.oo.facets.xml $UADIR/small-trans-stub-160a237v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/small-1ad-trans-stub.facets.xml ./1ua/160a237v.facets.xml $UADIR/small-trans-stub-160a237v.facets.xml
 
-../../bin/SocietyMerger $UADIR/small-1ad.oo.facets.xml ./1ua.orig-org-id/160a237v.oo.facets.xml $UADIR/small-160a237v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/small-1ad.facets.xml ./1ua/160a237v.facets.xml $UADIR/small-160a237v.facets.xml
 
-../../bin/SocietyMerger $UADIR/full-1ad-trans-stub.oo.facets.xml ./1ua.orig-org-id/160a237v.oo.facets.xml $UADIR/full-trans-stub-160a237v.oo.facets.xml
-../../bin/SocietyMerger $UADIR/full-1ad.oo.facets.xml ./1ua.orig-org-id/160a237v.oo.facets.xml $UADIR/full-160a237v.oo.facets.xml
+../../bin/SocietyMerger $UADIR/full-1ad-trans-stub.facets.xml ./1ua/160a237v.facets.xml $UADIR/full-trans-stub-160a237v.facets.xml
+../../bin/SocietyMerger $UADIR/full-1ad.facets.xml ./1ua/160a237v.facets.xml $UADIR/full-160a237v.facets.xml
 echo "Done"
 
 echo "Sorting the rules and writing to base_rules/temp..."
@@ -44,25 +42,25 @@ echo "Sorting the rules and writing to base_rules/temp..."
 echo "Done"
 
 echo "Making the societies"
-ruby ../bin/transform_society.rb -i $UADIR/tiny-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o $UADIR/tiny-trans-stub-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/tiny-trans-stub-17a12v.facets.xml -r base_rules/temp -o $UADIR/tiny-trans-stub-17a12v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/tiny-17a12v.oo.facets.xml -r base_rules/temp -o $UADIR/tiny-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/tiny-17a12v.facets.xml -r base_rules/temp -o $UADIR/tiny-17a12v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/tiny-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o $UADIR/tiny-trans-stub-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/tiny-trans-stub-160a237v.facets.xml -r base_rules/temp -o $UADIR/tiny-trans-stub-160a237v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/tiny-160a237v.oo.facets.xml -r base_rules/temp -o $UADIR/tiny-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/tiny-160a237v.facets.xml -r base_rules/temp -o $UADIR/tiny-160a237v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/small-17a12v.oo.facets.xml -r base_rules/temp -o $UADIR/small-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/small-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-17a12v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/small-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o $UADIR/small-trans-stub-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/small-trans-stub-17a12v.facets.xml -r base_rules/temp -o $UADIR/small-trans-stub-17a12v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/small-160a237v.oo.facets.xml -r base_rules/temp -o $UADIR/small-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/small-160a237v.facets.xml -r base_rules/temp -o $UADIR/small-160a237v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/small-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o $UADIR/small-trans-stub-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/small-trans-stub-160a237v.facets.xml -r base_rules/temp -o $UADIR/small-trans-stub-160a237v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/full-160a237v.oo.facets.xml -r base_rules/temp -o $UADIR/full-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/full-160a237v.facets.xml -r base_rules/temp -o $UADIR/full-160a237v.plugins.xml
 
-ruby ../bin/transform_society.rb -i $UADIR/full-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o $UADIR/full-trans-stub-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i $UADIR/full-trans-stub-160a237v.facets.xml -r base_rules/temp -o $UADIR/full-trans-stub-160a237v.plugins.xml
 echo "Done"
 
 echo "Create the zip package"
