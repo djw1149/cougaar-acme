@@ -29,12 +29,18 @@ module Cougaar
   module Actions
     class ConnectOperatorService < Cougaar::Action
       RESULTANT_STATE = 'OperatorServiceConnected'
-      def initialize(run, host='u049')
+      def initialize(run, host)
         super(run)
-        @host = host
+        @host = run.society.hosts[host]
       end
       def perform
-        @run['operator'] = ::UltraLog::Operator.from_run(@run, @host)
+        operator = ::UltraLog::Operator.from_run(@run, @host)
+        result = operator.test
+        if result =~ /ERROR SENDING/ || result =~ /Unregistered command/
+          puts "Invalid Operator Service #{@host.host_name}\n#{result}"
+        else
+          @run['operator'] = operator
+        end
       end
     end
     
@@ -95,50 +101,51 @@ module UltraLog
     
     attr_accessor :run
   
-    def initialize(host='u049')
-      @service = XMLRPC::Client.new3('host'=>host, 'port'=>8989, 'path'=>"/RPC2", 'timeout'=>TIMEOUT)
-      @service.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
+    def initialize(host)
+      @host = host
       @baseName = Time.now.strftime('%y-%m-%d_%H')
     end
     
-    def self.from_run(run, host='u049')
+    def self.from_run(run, host)
       op = Operator.new(host)
       op.run = run
       op
     end
   
     def test
-      @service.call("operator.test") 
+      send_command('test_cip', 10)
     end
     
     def reset_crypto
-      @service.call("operator.resetCrypto") 
+      send_command('reset_crypto', 20)
     end
     
     def clear_logs
-      @service.call("operator.clearLogs") 
+      send_command('clear_logs', 10)
     end
     
     def clear_pnlogs
-      @service.call("operator.clearPnLogs") 
+      send_command('clear_pnlogs', 30)
     end
     
     def clear_persistence
-      @service.call("operator.clearP") 
+      send_command('clear_persistence', 20)
     end
     
     def archive_logs(runName=nil)
-      @service.call("operator.archiveLogs", composite_name(runName)) 
+      send_command('archive_logs', 2.minutes, composite_name(runName))
     end
     
     def archive_db(runName=nil)
-      begin
-        @service.call("operator.archiveDBs", composite_name(runName)) 
-      rescue Exception
-        puts "Exception Archiving databases...continuing"
-        puts $!
-        puts $!.backtrace
-      end
+      send_command('archive_db', 8.minutes, composite_name(runName))
+    end
+    
+    private
+    
+    def send_command(command, timeout, params="")
+      reply = @run.comms.new_message(@host).set_body("command[#{command}]#{params}").request(timeout)
+      return "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
+      return reply.body
     end
     
     def composite_name(runName=nil)
