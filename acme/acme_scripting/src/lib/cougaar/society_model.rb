@@ -982,10 +982,11 @@ module Cougaar
       ##
       # Construct a component
       #
-      # name:: [String=nil] the component name
+      # name:: [String=nil] the component classname and name
       #
       def initialize(name=nil, &block)
         @name = name
+        @classname = name
         @arguments = []
         yield self if block_given?
         if @name.nil?
