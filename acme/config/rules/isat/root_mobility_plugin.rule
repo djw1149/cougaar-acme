@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert RootMobilityPlugin to all node agents
+# plugin = org.cougaar.core.mobility.service.RootMobilityPlugin
+
+rootMobilityPlugin = "org.cougaar.core.mobility.service.RootMobilityPlugin"
+
+society.each_node do |node|
+   node.add_component do |c|
+      c.classname = rootMobilityPlugin
+   end
+end
