@@ -1,0 +1,13 @@
+####################################################
+# Rule to insert the RedirectMovePlugin
+#   at every agent
+#
+# plugin = org.cougaar.core.mobility.service.RedirectMovePlugin
+
+redirect_move_plugin = "org.cougaar.core.mobility.service.RedirectMovePlugin"
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = redirect_move_plugin
+  end
+end
