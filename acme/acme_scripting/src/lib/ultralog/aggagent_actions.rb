@@ -24,9 +24,10 @@ require 'ultralog/aggagent'
 module UltraLog
   module AggAgent
     class AggAgentBase < ::Cougaar::Action
-      def initialize(run, file)
+      def initialize(run, file, agg_agent_name="AGG-Agent")
         super(run)
         @file = file
+        @agg_agent_name = agg_agent_name
       end
       def save(result)
         File.open(@file, "wb") do |file|
@@ -43,13 +44,14 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Perform basic AggAgent query on inventory and write results to a file."
         @parameters = [
-          {:file => "required, The file name to write to."}
+          {:file => "required, The file name to write to."},
+          {:agg_agent_name => "optional='AGG-Agent', The name of the agent"}
         ]
         @example = "do_action 'AggAgentQueryBasic', 'agg_agent_basic.xml'"
       }
       def perform
         begin
-          @uri = @run.society.agents['AGG-Agent'].uri
+          @uri = @run.society.agents[@agg_agent_name].uri
           client = UltraLog::AggAgent::Client.new(@uri)
           result = client.submit_query do |query|
             query.type = UltraLog::AggAgent::Query::TYPE_TRANSIENT
@@ -90,13 +92,14 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Perform AggAgent query on shortfall and write results to a file."
         @parameters = [
-          {:file => "required, The file name to write to."}
+          {:file => "required, The file name to write to."},
+          {:agg_agent_name => "optional='AGG-Agent', The name of the agent"}
         ]
         @example = "do_action 'AggAgentQueryShortfall', 'agg_agent_shortfall.xml'"
       }
       def perform
         begin
-          @uri = @run.society.agents['AGG-Agent'].uri
+          @uri = @run.society.agents[@agg_agent_name].uri
           client = UltraLog::AggAgent::Client.new(@uri)
           result = client.submit_query do |query|
             query.type = UltraLog::AggAgent::Query::TYPE_TRANSIENT
@@ -137,13 +140,14 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Perform AggAgent query on demand and write results to a file."
         @parameters = [
-          {:file => "required, The file name to write to."}
+          {:file => "required, The file name to write to."},
+          {:agg_agent_name => "optional='AGG-Agent', The name of the agent"}
         ]
         @example = "do_action 'AggAgentQueryDemand', 'agg_agent_demand.xml'"
       }
       def perform
         begin
-          @uri = @run.society.agents['AGG-Agent'].uri
+          @uri = @run.society.agents[@agg_agent_name].uri
           client = UltraLog::AggAgent::Client.new(@uri)
           result = client.submit_query do |query|
             query.type = UltraLog::AggAgent::Query::TYPE_TRANSIENT
@@ -184,13 +188,14 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Perform AggAgent query on JP8 and write results to a file."
         @parameters = [
-          {:file => "required, The file name to write to."}
+          {:file => "required, The file name to write to."},
+          {:agg_agent_name => "optional='AGG-Agent', The name of the agent"}
         ]
         @example = "do_action 'AggAgentQueryJP8', 'agg_agent_jp8.xml'"
       }
       def perform
         begin
-          @uri = @run.society.agents['AGG-Agent'].uri
+          @uri = @run.society.agents[@agg_agent_name].uri
           client = UltraLog::AggAgent::Client.new(@uri)
           result = client.submit_query do |query|
             query.type = UltraLog::AggAgent::Query::TYPE_TRANSIENT
