@@ -80,19 +80,38 @@ class CougaarNode
       return @pid
     end
     
+    # Unabashedly linux-specific
+    def find_java(parent)
+      ret = parent
+      ps = `pstree -pl`
+  
+      if ps =~ /java\(#{parent}\)/
+        ret = parent
+      elsif ps =~ /\(#{parent}\)[^j]*java\((\d+)\)/
+        ret =  $1
+      end
+      return ret
+    end
+    
+    
     def stop
       @monitors.each {|thread| thread.kill}
       if @pipe
-        a = `ps -falx`.split("\n")
-        pidlist = [@pid]
-        a.each do |line|
-          pidlist << line[10,5].strip if pidlist.include? line[16,5].strip
-        end
-        #pidlist.each_index {|i| puts "#{i} #{pidlist[i]}"}
-        `kill -9 #{pidlist[2]}`
-        sleep 2
-        `kill -9 #{@pid}` 
+        java_pid = find_java(@pid)
+        `kill -9 #{java_pid}`
+        `kill -9 #{@pid}` unless java_pid==@pid
         @pipe.close
+        
+        #a = `ps -falx`.split("\n")
+        #pidlist = [@pid]
+        #a.each do |line|
+        #  pidlist << line[10,5].strip if pidlist.include? line[16,5].strip
+        #end
+        ##pidlist.each_index {|i| puts "#{i} #{pidlist[i]}"}
+        #`kill -9 #{pidlist[2]}`
+        #sleep 2
+        #`kill -9 #{@pid}` 
+        #@pipe.close
       end
       puts "Stopping process"
     end
