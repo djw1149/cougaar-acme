@@ -1,11 +1,10 @@
-$: << "/usr/local/acme/plugins/acme_reporting_core"
-require "RunTimeTest"
-require "CompletionTest"
-require "QData"
-require "VerifyInventory"
-require "DataGrabberTest"
-require "Nameservers"
-require "Scripts"
+require "acme_reporting_core/RunTimeTest"
+require "acme_reporting_core/CompletionTest"
+require "acme_reporting_core/QData"
+require "acme_reporting_core/VerifyInventory"
+require "acme_reporting_core/DataGrabberTest"
+require "acme_reporting_core/Nameservers"
+require "acme_reporting_core/Scripts"
 
 module ACME
   module Plugins
