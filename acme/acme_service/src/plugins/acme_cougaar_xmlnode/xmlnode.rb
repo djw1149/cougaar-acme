@@ -49,6 +49,10 @@ class XMLCougaarNode
     return @nodes_hash
   end
 
+  def jabber
+    return @plugin["/plugins/acme_host_jabber_service/session"].data
+  end
+
   def makeFileName(basename)
     tmpdir = @config_mgr.tmp_dir
     if (File.exist?(tmpdir) && File.ftype(tmpdir) == "directory")
@@ -68,7 +72,7 @@ class XMLCougaarNode
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: filename (previously posted to /xmlnode) "
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
-      node = NodeConfig.new(self, @plugin, command, message.session)
+      node = NodeConfig.new(self, @plugin, command)
       pid = node.start
       puts "STARTED: #{pid}"
       running_nodes[pid] = node
@@ -266,16 +270,15 @@ class XMLCougaarNode
 			end
 		end
 
-    def initialize(xml_cougaar_node, plugin, node_config, session)
+    def initialize(xml_cougaar_node, plugin, node_config)
       begin
         @plugin = plugin
         @xml_cougaar_node = xml_cougaar_node
 
         @listeners = []
-        @session = session
         @config_mgr = plugin['/cougaar/config'].manager
 
-        @filename = xml_cougaar_node.makeFileName(node_config)
+        @filename = @xml_cougaar_node.makeFileName(node_config)
         if @filename=~/.xml/
           @xml_filename = @filename
         else
@@ -294,10 +297,7 @@ class XMLCougaarNode
         
         @conference = plugin.properties['conference']
         if @conference and @conference!=""
-          presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
-          @session.connection.send(presence)
-          iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference)
-          @session.connection.send(iq)
+          join_conference
         end
   
         @java_class = get_java_class(@society)
@@ -321,6 +321,14 @@ class XMLCougaarNode
       end
     end
     
+    def join_conference
+      @old_session = @xml_cougaar_node.jabber
+      presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
+      @xml_cougaar_node.jabber.connection.send(presence)
+      iq = Jabber::Protocol::Iq.gen_group_join(@xml_cougaar_node.jabber, @conference)
+      @xml_cougaar_node.jabber.connection.send(iq)
+    end
+
     def start
 			cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments}")
       
@@ -345,14 +353,20 @@ class XMLCougaarNode
     end
 
     def sendMsg(s) 
-      @listeners.each do |msg|
-        msg.reply.set_body(s).send
-      end
+      begin
+        @listeners.each do |msg|
+          @xml_cougaar_node.jabber.connection.send(msg.reply.set_body(s))
+        end
 
-      if (@conference)
-        chatmsg = Jabber::Protocol::Message.new(@conference, "groupchat")
-        chatmsg.set_body(s)
-        @session.connection.send(chatmsg)
+        if (@conference)
+          # session might have changed.  May need to re-login
+          join_conference unless @xml_cougaar_node.jabber == @old_session
+          chatmsg = Jabber::Protocol::Message.new(@conference, "groupchat")
+          chatmsg.set_body(s)
+          @xml_cougaar_node.jabber.connection.send(chatmsg)
+        end
+      rescue
+			  @plugin['log/info'] << "Error sending to jabber: #{$!} Msg: #{s}"
       end
 
     end
@@ -382,7 +396,7 @@ class XMLCougaarNode
       if @conference
         presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
         presence.type = "unavailable"
-        @session.connection.send(presence)
+        @xml_cougaar_node.jabber.connection.send(presence)
       end
     end
 
