@@ -12,6 +12,15 @@ society.each_node do |node|
     node.override_parameter("-Dorg.cougaar.core.persistence.clear","false")
     node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
     
+    # Add start time if parameter is not present
+    start_time = nil
+    node.each_parameter do |param|
+      start_time = param if param =~ /agent\.startTime/
+    end
+    unless start_time
+      node.add_parameter('-Dorg.cougaar.core.agent.startTime=08/10/2005')
+    end
+    
     # Preferred log file name
     node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","$COUGAAR_INSTALL_PATH/workspace/log4jlogs/#{node.name}.log")
     
