@@ -9,6 +9,7 @@ $:.unshift dir1 if File.exist?(dir1)
 $:.unshift dir2 if File.exist?(dir2)
 
 
+require 'cougaar/scripting'
 require 'cougaar/society_builder'
 require 'cougaar/society_model'
 require 'cougaar/society_rule_engine'
