@@ -7,7 +7,7 @@
 # insertion point: NodeAgent
 #
 #enable StatisticsServlet,AgentRemoteStatusServlet,AgentLocalStatusServlet:
-statisticsPlugin = "org.cougaar.core.mts.StatisticsPlugin" 
+statisticsPlugin = "org.cougaar.mts.std.StatisticsPlugin" 
 #
 # enable TopServlet, RogueThreadDetector:
 topPlugin = "org.cougaar.core.thread.TopPlugin"

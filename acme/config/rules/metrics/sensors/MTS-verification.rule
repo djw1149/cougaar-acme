@@ -56,7 +56,7 @@ end
 
 # Detect if message has not been delivered for 10 seconds
 deliver = {
-  "classname" =>"org.cougaar.core.mts.DeliveryVerificationAspect",
+  "classname" =>"org.cougaar.mts.std.DeliveryVerificationAspect",
   "order" =>"220",
   "ip" => aspectIP,
   "params" => {"warn-time" => "99",
@@ -66,14 +66,14 @@ deliver = {
 
 # Detect if agent to agent messages are out of sequence, dropped, or duplicated
 sequence= {
-  "classname" =>"org.cougaar.core.mts.SequenceAspect.java",
+  "classname" =>"org.cougaar.mts.std.SequenceAspect.java",
   "order" =>"222",
   "ip" => aspectIP,
 }
 
 # Single step through messages with gui
 step= {
-  "classname" =>"org.cougaar.core.mts.StepperAspect.java",
+  "classname" =>"org.cougaar.mts.std.StepperAspect.java",
   "order" =>224,
   "ip" => aspectIP,
 }

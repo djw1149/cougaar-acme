@@ -8,7 +8,7 @@
 # Metric sensor servlet plugins use raw sensor services and
 # display them without using the Metric Service.
 # insertion point: NodeAgent
-statisticsPlugin = "org.cougaar.core.mts.StatisticsPlugin" 
+statisticsPlugin = "org.cougaar.mts.std.StatisticsPlugin" 
 topPlugin = "org.cougaar.core.thread.TopPlugin"
 
 metric_sensor_servlet_plugins_to_add = [statisticsPlugin, topPlugin]

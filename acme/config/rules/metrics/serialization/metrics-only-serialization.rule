@@ -15,14 +15,14 @@ loadOrder=1
 bandwidthAspect = ["org.cougaar.robustness.dos.quo.BandwidthAspect",110] 
 
 # Encrypt or Sign (Security)
-messageProtect = ["org.cougaar.core.mts.MessageProtectionAspect",120]
+messageProtect = ["org.cougaar.mts.std.MessageProtectionAspect",120]
 
 # Compress (Robustness UC3)
 compressingStreamsAspect =
   ["org.cougaar.robustness.dos.quo.CompressingStreamsAspect", 130]
 
 # Measure length of message (metrics service)
-statisticsAspect = ["org.cougaar.core.mts.StatisticsAspect",140]
+statisticsAspect = ["org.cougaar.mts.std.StatisticsAspect",140]
 
 #Ultralog Aug 2003 order
 #[bandwidthAspect, messageProtect, compressingStreamsAspect,  statisticsAspect]

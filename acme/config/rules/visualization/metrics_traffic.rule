@@ -1,4 +1,4 @@
-agentflowaspect = "org.cougaar.core.mts.AgentFlowAspect"
+agentflowaspect = "org.cougaar.mts.std.AgentFlowAspect"
 agentflowrateplugin = "org.cougaar.core.qos.metrics.AgentFlowRatePlugin"
 
 

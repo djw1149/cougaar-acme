@@ -13,9 +13,9 @@
 className=0
 loadOrder=1
 
-gossipAspect = ["org.cougaar.core.mts.GossipAspect",230]
-statisticsService = ["org.cougaar.core.mts.GossipStatisticsServiceAspect",240]
-simpleGossipQualifier = ["org.cougaar.core.mts.SimpleGossipQualifierComponent",250]
+gossipAspect = ["org.cougaar.mts.std.GossipAspect",230]
+statisticsService = ["org.cougaar.mts.std.GossipStatisticsServiceAspect",240]
+simpleGossipQualifier = ["org.cougaar.mts.std.SimpleGossipQualifierComponent",250]
 
 gossip_components_to_add = [gossipAspect, statisticsService, simpleGossipQualifier]
 
@@ -45,5 +45,5 @@ end
 
 
 # Gossip Monitoring servlet
-#  servlet = org.cougaar.core.mts.GossipServlet
+#  servlet = org.cougaar.mts.std.GossipServlet
 # Added as part of the mts.statisticsPlugin

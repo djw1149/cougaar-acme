@@ -10,7 +10,7 @@ className=0
 loadOrder=1
 
 # Traffic Matrix Aspects
-agentflowaspect = ["org.cougaar.core.mts.AgentFlowAspect",210]
+agentflowaspect = ["org.cougaar.mts.std.AgentFlowAspect",210]
 
 # Traffic Matrix Plugins
 agentflowrateplugin = "org.cougaar.core.qos.metrics.AgentFlowRatePlugin"

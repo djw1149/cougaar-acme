@@ -23,8 +23,8 @@
         insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
       </component>
       <component
-        name='org.cougaar.core.mts.StatisticsPlugin'
-        class='org.cougaar.core.mts.StatisticsPlugin'
+        name='org.cougaar.mts.std.StatisticsPlugin'
+        class='org.cougaar.mts.std.StatisticsPlugin'
         priority='COMPONENT'
         insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
       </component>
@@ -59,8 +59,8 @@
         insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
       </component>
       <component
-        name='org.cougaar.core.mts.DeliveryVerificationAspect(info-time=9,warn-time=99)'
-        class='org.cougaar.core.mts.DeliveryVerificationAspect'
+        name='org.cougaar.mts.std.DeliveryVerificationAspect(info-time=9,warn-time=99)'
+        class='org.cougaar.mts.std.DeliveryVerificationAspect'
         priority='COMPONENT'
         insertionpoint='Node.AgentManager.Agent.MessageTransport.Aspect'>
         <order>
@@ -74,8 +74,8 @@
         </argument>
       </component>
       <component
-        name='org.cougaar.core.mts.GossipAspect()'
-        class='org.cougaar.core.mts.GossipAspect'
+        name='org.cougaar.mts.std.GossipAspect()'
+        class='org.cougaar.mts.std.GossipAspect'
         priority='COMPONENT'
         insertionpoint='Node.AgentManager.Agent.MessageTransport.Aspect'>
         <order>
@@ -83,8 +83,8 @@
         </order>
       </component>
       <component
-        name='org.cougaar.core.mts.GossipStatisticsServiceAspect()'
-        class='org.cougaar.core.mts.GossipStatisticsServiceAspect'
+        name='org.cougaar.mts.std.GossipStatisticsServiceAspect()'
+        class='org.cougaar.mts.std.GossipStatisticsServiceAspect'
         priority='COMPONENT'
         insertionpoint='Node.AgentManager.Agent.MessageTransport.Aspect'>
         <order>
@@ -92,8 +92,8 @@
         </order>
       </component>
       <component
-        name='org.cougaar.core.mts.SimpleGossipQualifierComponent()'
-        class='org.cougaar.core.mts.SimpleGossipQualifierComponent'
+        name='org.cougaar.mts.std.SimpleGossipQualifierComponent()'
+        class='org.cougaar.mts.std.SimpleGossipQualifierComponent'
         priority='COMPONENT'
         insertionpoint='Node.AgentManager.Agent.MessageTransport.Aspect'>
         <order>
