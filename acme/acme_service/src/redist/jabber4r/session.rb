@@ -504,11 +504,13 @@ module Jabber
     #
     def release
       begin
-        @connection.on_connection_exception do
-          #Do nothing...we are shutting down
+        timeout(2) do 
+          @connection.on_connection_exception do
+            #Do nothing...we are shutting down
+          end
+          @connection.send(Jabber::Protocol::Presence.gen_unavailable(id))
+          @connection.send(Jabber::Protocol.gen_close_stream)
         end
-        @connection.send(Jabber::Protocol::Presence.gen_unavailable(id))
-        @connection.send(Jabber::Protocol.gen_close_stream)
       rescue
         #ignore error
       end
