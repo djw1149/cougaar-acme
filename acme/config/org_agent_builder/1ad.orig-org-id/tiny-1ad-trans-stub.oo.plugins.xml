@@ -2,9 +2,6 @@
 <society name='JEFF-BERLINER-PROTO'
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:noNamespaceSchemaLocation='http://www.cougaar.org/2003/society.xsd'>
-  <facet exclude_subsistence='T'  />
-  <facet exclude_spare_parts='T'  />
-  <facet exclude_bulk_pol='T'  />
   <host name='localhost'>
     <node name='localnode'>
       <class>
@@ -318,7 +315,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -327,6 +324,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -881,7 +887,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -890,6 +896,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -1155,7 +1170,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='DIVISION' role='StrategicTransportationProvider' mechanism='PassThrough'  />
-        <facet sca_supported_org='1-AD' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -1448,7 +1463,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -1457,6 +1472,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -2013,7 +2037,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -2022,6 +2046,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -2289,7 +2322,7 @@
         <facet echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='1-AD' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -2582,7 +2615,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -2591,6 +2624,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -3146,7 +3188,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -3155,6 +3197,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -3710,7 +3761,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -3719,6 +3770,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -4276,7 +4336,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4285,6 +4345,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -4840,7 +4909,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4849,6 +4918,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -5116,7 +5194,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
-        <facet sca_supported_org='USAEUR' sca_echelon_of_support='THEATER'  />
+        <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -5409,7 +5487,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -5418,6 +5496,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -5974,7 +6061,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -5983,6 +6070,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -6247,7 +6343,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
-        <facet sca_supported_org='3-SUPCOM-HQ' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='3-SUPCOM-HQ'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6540,7 +6636,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -6549,6 +6645,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -7105,7 +7210,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -7114,6 +7219,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -7669,7 +7783,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -7678,6 +7792,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -8233,7 +8356,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -8242,6 +8365,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -8797,7 +8929,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -8806,6 +8938,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -9073,7 +9214,7 @@
         <facet echelon_of_support='BRIGADE' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
         <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='2-BDE-1-AD' sca_echelon_of_support='BRIGADE'  />
+        <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE-1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -9366,7 +9507,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -9375,6 +9516,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -9931,7 +10081,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -9940,6 +10090,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -10495,7 +10654,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -10504,6 +10663,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -11059,7 +11227,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -11068,6 +11236,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -11623,7 +11800,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -11632,6 +11809,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -12188,7 +12374,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -12197,6 +12383,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -12463,8 +12658,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet sca_supported_org='5-CORPS' sca_echelon_of_support='CORPS'  />
-        <facet sca_supported_org='7-CSG' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='7-CSG'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12757,7 +12952,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -12766,6 +12961,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -13321,7 +13525,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -13330,6 +13534,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -13886,7 +14099,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -13895,6 +14108,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -14155,7 +14377,7 @@
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14775,7 +14997,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -14784,6 +15006,15 @@
           </argument>
           <argument>
             PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            Subsistence
           </argument>
           <argument>
             MaintainInventory
@@ -15044,7 +15275,7 @@
         <facet note='Remove' echelon_of_support='JOINT' role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -15368,7 +15599,7 @@
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='JOINT' role='FuelSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -15691,7 +15922,7 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
-        <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -16375,7 +16606,7 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
         <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='StubTransportationProvider'  />
-        <facet sca_supported_org='NCA' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'

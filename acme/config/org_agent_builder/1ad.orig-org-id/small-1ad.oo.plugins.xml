@@ -1741,7 +1741,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='DIVISION'  />
+        <facet echelon_of_support='DIVISION' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -2315,8 +2315,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelSupplyProvider' echelon_of_support='CORPS'  />
-        <facet role='PackagedPOLSupplyProvider' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -2890,8 +2890,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelSupplyProvider' echelon_of_support='THEATER'  />
-        <facet role='PackagedPOLSupplyProvider' echelon_of_support='THEATER'  />
+        <facet echelon_of_support='THEATER' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='THEATER' role='PackagedPOLSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3464,11 +3464,11 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='AmmunitionProvider' echelon_of_support='DIVISION'  />
-        <facet role='FuelSupplyProvider' echelon_of_support='DIVISION'  />
-        <facet role='PackagedPOLSupplyProvider' echelon_of_support='DIVISION'  />
-        <facet role='SparePartsProvider' echelon_of_support='DIVISION'  />
-        <facet role='SubsistenceSupplyProvider' echelon_of_support='DIVISION'  />
+        <facet echelon_of_support='DIVISION' role='AmmunitionProvider'  />
+        <facet echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
+        <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
+        <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -4042,7 +4042,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='AmmunitionProvider' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6337,7 +6337,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='AmmunitionProvider' echelon_of_support='THEATER'  />
+        <facet echelon_of_support='THEATER' role='AmmunitionProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -7485,7 +7485,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SparePartsProvider' note='Add' echelon_of_support='CORPS'  />
+        <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -8062,7 +8062,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='THEATER'  />
+        <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -8636,7 +8636,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SparePartsProvider' note='Add' echelon_of_support='DIVISION'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -9209,7 +9209,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SubsistenceSupplyProvider' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -9783,9 +9783,9 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
-        <facet role='PackagedPOLSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
-        <facet role='SubsistenceSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10358,9 +10358,9 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
-        <facet role='PackagedPOLSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
-        <facet role='SubsistenceSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -11509,7 +11509,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='3-SUPCOM-HQ'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -12084,7 +12084,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelTransportProvider' note='Not Used Now' echelon_of_support='CORPS'  />
+        <facet note='Not Used Now' echelon_of_support='CORPS' role='FuelTransportProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12657,7 +12657,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SubsistenceSupplyProvider' echelon_of_support='THEATER'  />
+        <facet echelon_of_support='THEATER' role='SubsistenceSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -13803,7 +13803,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SubsistenceSupplyProvider' note='Add' echelon_of_support='CORPS'  />
+        <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14949,11 +14949,11 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='AmmunitionProvider' echelon_of_support='BRIGADE'  />
-        <facet role='FuelSupplyProvider' echelon_of_support='BRIGADE'  />
-        <facet role='PackagedPOLSupplyProvider' echelon_of_support='BRIGADE'  />
-        <facet role='SparePartsProvider' echelon_of_support='BRIGADE'  />
-        <facet role='SubsistenceSupplyProvider' echelon_of_support='BRIGADE'  />
+        <facet echelon_of_support='BRIGADE' role='AmmunitionProvider'  />
+        <facet echelon_of_support='BRIGADE' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='BRIGADE' role='PackagedPOLSupplyProvider'  />
+        <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
+        <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE-1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -17252,7 +17252,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='ConstructionProvider' note='Remove' echelon_of_support='CORPS'  />
+        <facet note='Remove' echelon_of_support='CORPS' role='ConstructionProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -18398,7 +18398,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SparePartsProvider' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='SparePartsProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -18971,9 +18971,9 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
-        <facet role='PackagedPOLSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
-        <facet role='SubsistenceSupplyProvider' note='Add' echelon_of_support='DIVISION'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -19547,7 +19547,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='AmmunitionProvider' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -20121,7 +20121,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SparePartsProvider' echelon_of_support='DIVISION'  />
+        <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -20696,7 +20696,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelTransportProvider' note='Not Used Now' echelon_of_support='THEATER'  />
+        <facet note='Not Used Now' echelon_of_support='THEATER' role='FuelTransportProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -21269,7 +21269,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='SparePartsProvider' note='Add' echelon_of_support='DIVISION'  />
+        <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -22996,8 +22996,8 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='FuelSupplyProvider' echelon_of_support='CORPS'  />
-        <facet role='PackagedPOLSupplyProvider' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='FuelSupplyProvider'  />
+        <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -23566,7 +23566,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='AirTransportationProvider' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='AirTransportationProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -23882,9 +23882,9 @@
         <facet combat_support='CSS'  />
         <facet echelon='GROUP'  />
         <facet echelon_group='Theater'  />
-        <facet role='AmmunitionProvider' mechanism='TerminalInventoryManager' note='C .lt. 30' echelon_of_support='JOINT'  />
-        <facet role='SparePartsProvider' mechanism='TerminalInventoryManager' note='C .lt. 30' echelon_of_support='JOINT'  />
-        <facet role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager' note='C .lt. 30' echelon_of_support='JOINT'  />
+        <facet note='C .lt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalInventoryManager'  />
+        <facet note='C .lt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
+        <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -24207,7 +24207,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='CONUSGroundTransportationProvider' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='CONUSGroundTransportationProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -24538,7 +24538,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS-ARTY'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -25108,7 +25108,7 @@
         <facet combat_support='CMD'  />
         <facet echelon='DIVISION'  />
         <facet echelon_group='Corps'  />
-        <facet role='StrategicTransportationProvider' mechanism='PassThrough' echelon_of_support='CORPS'  />
+        <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS-REAR'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -25995,9 +25995,9 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager' note='Remove' echelon_of_support='JOINT'  />
-        <facet role='SparePartsProvider' mechanism='TerminalInventoryManager' note='C .gt. 30' echelon_of_support='JOINT'  />
-        <facet role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager' note='C .gt. 30' echelon_of_support='JOINT'  />
+        <facet note='Remove' echelon_of_support='JOINT' role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager'  />
+        <facet note='C .gt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
+        <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -26629,8 +26629,8 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet role='FuelSupplyProvider' mechanism='TerminalInventoryManager' echelon_of_support='JOINT'  />
-        <facet role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='FuelSupplyProvider' mechanism='TerminalInventoryManager'  />
+        <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -26956,7 +26956,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='SeaTransportationProvider' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='SeaTransportationProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -27272,7 +27272,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker' note='C .gt. 30' echelon_of_support='JOINT'  />
+        <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -27625,8 +27625,8 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet role='LogisticsCommanderInChief' echelon_of_support='JOINT'  />
-        <facet role='OperationalCommanderInChief' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='LogisticsCommanderInChief'  />
+        <facet echelon_of_support='JOINT' role='OperationalCommanderInChief'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -27957,7 +27957,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='OrganicAirTransportationProvider' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='OrganicAirTransportationProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -28282,7 +28282,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='ShipPackingTransportationProvider' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='ShipPackingTransportationProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -28612,7 +28612,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='StrategicTransportationProvider' mechanism='ModeSelector' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='ModeSelector'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
@@ -28938,7 +28938,7 @@
         <facet combat_support='CSS'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
-        <facet role='TheaterStrategicTransportationProvider' echelon_of_support='JOINT'  />
+        <facet echelon_of_support='JOINT' role='TheaterStrategicTransportationProvider'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -29265,7 +29265,7 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
-        <facet role='ArmyCommander' echelon_of_support='US-ARMY'  />
+        <facet echelon_of_support='US-ARMY' role='ArmyCommander'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
