@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">   
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />    
+  <title>Welcome to ACME</title>   
+
+  <link rel="stylesheet" href="base.css" type="text/css" media="screen" />
+
+  <link rel="Start" title="Home" href="/" />   
+                    
+</head>
+<body id="download">		    
+
+<div id="container">
+  <div id="header">			
+		<div id="logo">
+			<a href="http://acme.cougaar.org" title="ACME"><img src="acme_logo.png" alt="ACME" height="140" /></a>
+		</div>
+			
+		<h1>ACME</h1>
+
+		<ul id="navMain">
+			<li class="first-child"><a href="index.html" title="About" class="about">About</a></li>
+			<li><a class="casestudy" href="casestudy.html" title="Case Study">Case Study</a></li>
+			<li><a class="download" href="download.html" title="Download">Download</a></li>
+			<li><a class="documentation" href="documentation.html" title="Manuals, Guides, and APIs">Documentation</a></li>
+			<li><a class="community" href="http://cougaar.org/projects/acme" title="Wiki, mailing lists, IRC">Community</a></li>
+			<li><a class="source" href="http://cougaar.org/cgi-bin/viewcvs.cgi/?cvsroot=acme" title="CVS Repository">Source</a></li>
+		</ul>
+	</div> <!-- #header -->
+
+<div id="sidebar">
+
+  <h2>Current versions</h2>
+
+  <table style="margin:0px" cellpadding="0" cellspacing="0">
+    <tr><td>ACME All</td><td>1.6</td></tr>
+    <tr><td>ACME Config</td><td>1.6</td></tr>
+    <tr><td>ACME Control</td><td>1.6</td></tr>
+    <tr><td>ACME Service</td><td>1.6</td></tr>
+  </table>
+  
+  <h2 style="margin-top: 10px">Ruby 1.8.2</h2>
+  <ul>
+    <li><i>Required version</i></li>
+  	<li><a href="http://rubyforge.org/frs/?group_id=426">Source release</a></li>
+  	<li><a href="http://rubyforge.org/projects/rubyinstaller/">Windows Installer</a></li>
+  	<li><a href="http://homepage.mac.com/discord/Ruby/">Mac OSX Installer</a></li>
+  </ul>
+  
+
+</div>
+
+<div id="content">
+  <div class="introduction" style="font-size: 17px; line-height: 26px">
+  	<p>The ACME framework is primarily distributed through RubyGems &mdash; the soon-to-be official packaging format for Ruby libraries.</p>
+  </div>
+
+  <p>RubyGems makes it really easy to install ACME and other libraries and to keep them up to date. If you need to install Ruby (1.8.2 required) see the sidebar on the left.  Here&#8217;s how you install ACME using Ruby Gems:</p>
+
+  <ol style="margin-bottom: 15px; font-size: 10px; line-height: 15px">
+    <li><a href="http://rubyforge.org/frs/?group_id=126">Get hold of RubyGems 0.8.6</a> (or higher)</li>
+  	<li><code>gem install acme-all --no-rdoc --source http://acme.cougaar.org</code><br>(accept all the dependencies)</li>
+  </ol>
+
+  <p>That&#8217;s it! When new versions of ACME Configuration, Control or Service are released, you just do <code>gem install acme --source http://acme.cougaar.org</code>, and you&#8217;ll have the new versions available to your machine.</p>
+  
+  <p>If you do not want to install all of the ACME components, you can install individual components one at a time:</p>
+
+  <h2>ACME Configuration</h2>
+  <p>Allows the configuration of complex distributed Cougaar Agent societies using a sophisticated rule engine.  This component can be used standalone.</p>
+  <p><pre>gem install acme-configuration --source http://acme.cougaar.org</pre></p>
+  <h2>ACME Control</h2>
+  <p>Controls the execution of distributed Cougaar Agent societies with an powerful, extensible scripting framework.  This component is dependent on acme-configuration.</p>
+  <p><pre>gem install acme-control --source http://acme.cougaar.org</pre></p>
+  <h2>ACME Service</h2>
+  <p>Executes on each host computer to provide ACME Control the ability to start/stop Cougaar nodes and control the host environment. This component is dependent on acme-configuration.</p>
+  <p><pre>gem install acme-service --no-rdoc --source http://acme.cougaar.org</pre></p>
+  
+  <h2>Downloading ACME without RubyGems</h2>
+  <p>The ACME source code is also available via CVS.  Instructions on how to checkout the CVS version of ACME are available on the <a href="http://cougaar.org/scm/?group_id=43">ACME project site</a>.</p>
+</div> <!-- #content -->
+
+</div> <!-- #container -->
+</body>
+</html>

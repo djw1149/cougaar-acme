@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">   
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />    
+  <title>Welcome to ACME</title>   
+
+  <link rel="stylesheet" href="base.css" type="text/css" media="screen" />
+
+  <link rel="Start" title="Home" href="/" />   
+                    
+</head>
+<body id="casestudy">		    
+
+<div id="container">
+  <div id="header">			
+		<div id="logo">
+			<a href="http://acme.cougaar.org" title="ACME"><img src="acme_logo.png" alt="ACME" height="140" /></a>
+		</div>
+			
+		<h1>ACME</h1>
+
+		<ul id="navMain">
+			<li class="first-child"><a href="index.html" title="About" class="about">About</a></li>
+			<li><a class="casestudy" href="casestudy.html" title="Case Study">Case Study</a></li>
+			<li><a class="download" href="download.html" title="Download">Download</a></li>
+			<li><a class="documentation" href="documentation.html" title="Manuals, Guides, and APIs">Documentation</a></li>
+			<li><a class="community" href="http://cougaar.org/projects/acme" title="Wiki, mailing lists, IRC">Community</a></li>
+			<li><a class="source" href="http://cougaar.org/cgi-bin/viewcvs.cgi/?cvsroot=acme" title="CVS Repository">Source</a></li>
+		</ul>
+	</div> <!-- #header -->
+
+<div id="sidebar">
+  <h2>UltraLog</h2>
+  <p>UltraLog was a Defense Advanced Research Projects Agency (DARPA) sponsored research project focused on creating survivable large-scale distributed agent systems capable of operating effectively in very chaotic environments.</p>
+
+  <h2>ACME's Role</h2>
+  <p>ACME was the framework that configured, controlled and assessed UltraLog Cougaar-based survivable system.</p>
+
+  <h2>UltraLog Lab</h2>
+  <p>350 dual-Xeon 1U rack servers each with 4GB of memory, 30GB fast/wide SCSI hard drives, gigabit ethernet test backplane, dynamically shaped gigabit ethernet front-side backplane.</p>
+
+</div>
+
+<div id="content">
+	<div class="introduction">
+		<p>The grand challenge of the UltraLog project was to extend the Cougaar cognitive agent architecture using a layered, integrated approach with technologies in robustness, security, stability and scalability. UltraLog's goal was to operate with up to 45% information infrastructure loss in a very chaotic environment with not more than 20% capabilities degradation and not more than 30% performance degradation for a period representing 180 days of sustained military operations in a major regional contingency.</p>
+	</div>
+
+  <h2>Rising to the Grand Challenge</h2>
+
+	<p>One of the most significant challenges of the DARPA UltraLog program was to create an infrastructure to allow testing of the entire agent society as a system. There was significant concern that such an effort was formidable at best, and  perhaps not even possible due to the emergent behavior of multi-agent systems. In the first year of the UltraLog program a test harness was attempted that was written in Java and utilized a commercial publish and subscribe server at significant cost to the program to achieve communications between the testing elements. Basic functionality was all that was achieved in that first year, and then the test harness only allowed primitive control of the environment that the agent society executed in, not control of the society itself, which remained a manual operation.</p>
+
+	<h2>The ACME Solution</h2>
+
+	<p>In spring of 2002 the UltraLog team decided to redouble the efforts to build a distributed testing framework.  The team chose to implement its test harness using the Ruby programming language. Ruby is a unique, purely object-oriented scripting language, which allows for sophisticated dynamic behaviors and yet is easily integrated with native environments through its C extension API. Both of these traits were vital because of the complexity of the system under test and the need to tightly control the operating system and network that the system operated in. The outcome was the Automated Configuration Management Environment (ACME) which in its first year of operation allowed the program to perform over 175 assessable executions of the UltraLog system, a significant improvement over the dozen tests of the first year. Over the last two years of the UltraLog program, the UltraLog team continued to increase the power and effectiveness of the ACME framework, arriving finally in 2004 with a unique and powerful artifact in its own right. What started in 2001 as controlling basic elements of 30 Pentium-class PCs (prior to ACME) had evolved into a framework that configures, starts, controls, measures and reports on agent society executions across 350 dual-xeon rack-mounted servers, all with free and open-source components.</p>
+
+	<h2>A Measured Value</h2>
+
+	<p>ACME allowed DARPA UltraLog researchers complete control of the environment that their application executed in including simulating real world stresses.  ACME also allowed measuring the effectiveness of the logistics system which was the main operational element of the UltraLog program.  Although not directly involved in the core survivability research, the ACME testing framework allowed UltraLog researchers to reach higher and farther than they would ever have been able to achieve using manual techniques.</p>
+
+</div> <!-- #content -->
+
+</div> <!-- #container -->
+</body>
+</html>

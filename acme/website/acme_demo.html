@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">   
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />    
+  <title>Welcome to ACME</title>   
+
+  <link rel="stylesheet" href="base.css" type="text/css" media="screen" />
+
+  <link rel="Start" title="Home" href="/" />   
+                    
+</head>
+<body id="documentation">		    
+
+<div id="container">
+  <div id="header">			
+		<div id="logo">
+			<a href="http://acme.cougaar.org" title="ACME"><img src="acme_logo.png" alt="ACME" height="140" /></a>
+		</div>
+			
+		<h1>ACME</h1>
+
+		<ul id="navMain">
+			<li class="first-child"><a href="index.html" title="About" class="about">About</a></li>
+			<li><a class="casestudy" href="casestudy.html" title="Case Study">Case Study</a></li>
+			<li><a class="download" href="download.html" title="Download">Download</a></li>
+			<li><a class="documentation" href="documentation.html" title="Manuals, Guides, and APIs">Documentation</a></li>
+			<li><a class="community" href="http://cougaar.org/projects/acme" title="Wiki, mailing lists, IRC">Community</a></li>
+			<li><a class="source" href="http://cougaar.org/cgi-bin/viewcvs.cgi/?cvsroot=acme" title="CVS Repository">Source</a></li>
+		</ul>
+	</div> <!-- #header -->
+
+
+<div id="content">
+  <div class="introduction" style="font-size: 17px; line-height: 26px">
+  	<p>StockTrader is a small application designed to demonstrate the basic features of the ACME distributed testing framework.</p>
+  </div>
+
+  <center><img src="acme_demo.png"/></center><br>
+
+  <a name="install"/><h2>Installing StockTrader</h2></a>
+  <p>First, in order to use this demo, you must first install all of the acme-all rubygem (see <a href="download.html">Download</a> link above).</p>
+  <p>Download the acme_demo.zip file from the <a href="http://cougaar.org/frs/?group_id=43">ACME Project files</a>.  Unzip this file into your home directory and it should create a an acme_demo folder.
+  Change your directory into that folder and you are ready to run the demo.</p>
+
+  <a name="run"/><h2>Running StockTrader</h2></a>
+  <p><b>NOTE:</b> This assumes you are in the acme_demo directory</p>
+  <p>First, start the StockTrader ACME service by running the <b>acme-service</b> command:</p>
+  <pre>
+  [root@tom acme]# acme-service -p service
+  $$$$$ USERDIR = /root/.acme
+  PLATFORM IS unix
+  nil
+  [2005-02-22 13:32:00] INFO  WEBrick 1.3.1
+  [2005-02-22 13:32:00] INFO  ruby 1.8.2 (2004-12-25) [i686-linux]
+  [2005-02-22 13:32:00] INFO  WEBrick::HTTPServer#start: pid=24926 port=9444
+  Message Router Service started on port: 6667
+  StockTrader Service started
+  Cougaar Event Service started on port: 5300
+  </pre>
+  <p>Next, start the StockTrader example script by running the scripting/stock_trader/run-stock.rb script.  The script will start, connect to the ACME service, and trade some stocks and disconnect.  The output will look something like this:
+  <pre>
+  [tom@tom stock]$ ruby scripting/stock_trader/run-stock.rb
+  [Thu Feb 17 19:50:25 UTC 2005] Experiment: StockTrader started.
+  [Thu Feb 17 19:50:25 UTC 2005]   Run: StockTrader-1of1 started.
+  [Thu Feb 17 19:50:25 UTC 2005]     Starting: StartMessageRouterCommunications(localhost )
+  [Thu Feb 17 19:50:25 UTC 2005]     Finished: StartMessageRouterCommunications(localhost ) 
+                                              in 0 seconds
+  [Thu Feb 17 19:50:25 UTC 2005]     Waiting for: CommunicationsRunning
+  [Thu Feb 17 19:50:25 UTC 2005]     Done: CommunicationsRunning in 0 seconds
+  [Thu Feb 17 19:50:25 UTC 2005]     Starting: StartTrading
+  IBM   APPL  IE    AMIGA
+  9     37    13    44
+  11    33    12    48
+  10    29    11    48
+  10    29    12    48
+  9     30    9     51
+  10    31    7     52
+  10    32    7     53
+  9     35    9     52
+  </pre>
+
+  <a name="notes"/><h2>Demo notes</h2></a>
+  <p>Here are some general notes on some of the technical aspects of the StockTrader application.  
+
+  <h3>Generating Action and State documentation</h3>
+  <p>Action and State documentation is embedded in the application code so that it's easier to keep up to date.  So, for example, SellStock has a constant field declaration:
+  <pre>
+    DOCUMENTATION = Cougaar.document {
+      @description = "Sells shares of a given stock"
+      @parameters = [
+        {"Symbol" => "The stock symbol"}, 
+        {"Shares" => "The number of shares to sell"}
+      ]
+      @example = "do_action 'SellStock','IBM',5"
+    }
+  </pre>
+  <p>@description and @example are fairly straightforward.  @parameters is an Array of Hash objects where each Hash defines a single key and value for each parameter and its description.
+  <p>To generate the <a href="actions_and_states.html">HTML documentation</a> for the Actions and States, cd into acme-1.6/acme_scripting/bin/ and run html_doc.rb like this:
+  <pre>
+  ./html_doc.rb > actions_and_states.html
+  </pre>
+  Note that you can either pass the Action/State names on the command line or you can customize html_doc.rb directly and add something like this at the bottom:
+  <pre>
+  require 'run-stock.rb'
+  puts HEADER
+  ["StartTrading", "StopTrading", "SellStock", "BuyStock"].each do |a| 
+    puts output_action(Cougaar::Actions[a])
+  end
+  ["MarketOpen", "MarketClosed"].each { |s| puts output_state(Cougaar::States[s]) }
+  puts FOOTER
+  </pre>
+  There's also a acme_doc.rb if you want plain text output, and of course you can roll your own if you want to integrate it with an IDE.
+
+  <h3>Controlling flow with States</h3>
+  <p>The Acme <A href="http://cougaar.org/docman/?group_id=43">manual</a> has a section on how States work, so that's the authoritative source for learning how to use them.  Here are some notes on how StockTrader uses States:
+  <ul>
+  <li>There are two "NOOP" States - MarketOpen and MarketClosed.  These states don't do anything; they just provide a marker for the Actions to be structured around.  They each serve as a good RESULTANT_STATE; for example, MarketOpen is the RESULTANT_STATE for StartTrading. 
+  <li>The SellStock Action has a PRIOR_STATE of MarketOpen, which makes sense, since you can't sell stock until the market it open.  If we try to do a SellStock before the market opens we get an error like this:
+  <pre>
+  [Wed Feb 23 19:46:25 UTC 2005] Experiment: StockTrader started.
+  ../../src/lib/cougaar/experiment.rb:1214:in `validate': Invalid action sequence.  
+     Cougaar::Actions::SellStock requires a prior state of MarketOpen (RuntimeError)
+          from ../../src/lib/cougaar/experiment.rb:1212:in `each'
+          from ../../src/lib/cougaar/experiment.rb:1212:in `validate'
+          from ../../src/lib/cougaar/experiment.rb:902:in `add_action'
+          from ../../src/lib/cougaar/experiment.rb:1196:in `initialize'
+          from ./run-stock.rb:56:in `initialize'
+          from ../../src/lib/cougaar/experiment.rb:751:in `new'
+          from ../../src/lib/cougaar/experiment.rb:751:in `do_action'
+          from ./run-stock.rb:163
+           ... 6 levels...
+          from ../../src/lib/cougaar/experiment.rb:555:in `new'
+          from ../../src/lib/cougaar/experiment.rb:555:in `start'
+          from ../../src/lib/cougaar/experiment.rb:546:in `run'
+          from ./run-stock.rb:160
+  [tom@tom stock_trader]$
+  </pre>
+  </ul>
+
+  <h3>Shipping data around with YAML</h3>
+  <p><A href="http://www.yaml.org/">YAML (YAML Ain't Markup Language)</a> is a simple, human readable serialization format.  StockTrader uses it to ship market updates around.  The acme_service end of StockTrader has an Array of OpenStruct instances that have two fields, symbol and price.  This information gets broadcast to all interested listeners as YAML-encoded data, which is created like this:
+  <pre>
+  status = @stocks.collect {|s|[s.symbol,s.price]}.to_yaml
+  @monitors.each {|m|
+   message = @comm_service.new_message(m)
+   message.subject = "StockMarketUpdate"
+   message.body = status
+   message.send
+  }
+  </pre>
+  <p>The acme_scripting side then loads and decodes the message like this:
+  <pre>
+  YAML.load(message.body).each {|x|
+   @market << Stock.new(x[0], x[1])
+  }
+  </pre>
+  <p>If you're going to use lots of data, a more efficient encoding would save some bandwidth.  But for small amount, YAML does just fine.</p>
+
+</div> <!-- #content -->
+
+</div> <!-- #container -->
+</body>
+</html>

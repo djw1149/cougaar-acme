@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">   
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />    
+  <title>Welcome to ACME</title>   
+
+  <link rel="stylesheet" href="base.css" type="text/css" media="screen" />
+
+  <link rel="Start" title="Home" href="/" />   
+                    
+</head>
+<body id="documentation">		    
+
+<div id="container">
+  <div id="header">			
+		<div id="logo">
+			<a href="http://acme.cougaar.org" title="ACME"><img src="acme_logo.png" alt="ACME" height="140" /></a>
+		</div>
+			
+		<h1>ACME</h1>
+
+		<ul id="navMain">
+			<li class="first-child"><a href="index.html" title="About" class="about">About</a></li>
+			<li><a class="casestudy" href="casestudy.html" title="Case Study">Case Study</a></li>
+			<li><a class="download" href="download.html" title="Download">Download</a></li>
+			<li><a class="documentation" href="documentation.html" title="Manuals, Guides, and APIs">Documentation</a></li>
+			<li><a class="community" href="http://cougaar.org/projects/acme" title="Wiki, mailing lists, IRC">Community</a></li>
+			<li><a class="source" href="http://cougaar.org/cgi-bin/viewcvs.cgi/?cvsroot=acme" title="CVS Repository">Source</a></li>
+		</ul>
+	</div> <!-- #header -->
+
+
+<div id="content">
+  <div class="introduction" style="font-size: 17px; line-height: 26px">
+  	<p>The following documentation presents an overview of the ACME components and commands.</p>
+  </div>
+
+  <p>This documentation is presented as an overview for use of the ACME framework, specifically documenting each of the commands installed with particular components. 
+  Although the goal was to make ACME as simple to use as possible, due to the fact that Cougaar itself is a complex system ACME does have a significant learning curve.
+  For detailed documentation on the ACME framework see the <a href="">ACME Developer's Guide</a>  For a simple demo/tutorial see the <a href="acme_demo.html">StockTrader demo</a> page.</p>
+
+  <h2>ACME Configuration</h2>
+  <p>ACME Configuration allows the generation of models of complex distributed Cougaar agent societies using a simple rule engine.  A Cougaar agent society is represented by model encoded in either XML or Ruby.  When you install the ACME Configuration component you install two commands, transform-society and convert-society.  Each of these commands is discussed below:
+  <p><code><b>transform-society</b></code></p>
+<p><pre>
+Transforms a society with rules (and converts between xml and ruby).
+Usage:
+    transform-society -i {input file} -l {layout file} [-h {hosts file}] 
+                      -r {rules dir} [-o {output file}] [-c {communities file}] [-?]
+    -i --input              The input file (.xml or .rb).
+    -l --layout             The layout file (.xml or .rb).
+    -h --hosts              The hosts file (.xml or .rb).
+    -r --rules              The rule directory (e.g. ./rules).
+    -c --communities        The communities file to write to (e.g. communities.xml).
+    -a --abort-on-warning   Abort the generation of the society if a rule warning 
+                            is encountered.
+    -o --output             The output file. (default new-{input})
+</pre></p>
+<p><code><b>convert-society</b></code></p>
+<p><pre>
+Converts society between xml and ruby.
+Usage:
+    convert-society -i {input file} [-o {output file}] [-h]
+    -i --input      The input file (.xml or .rb).
+    -o --output     The output file. (default {input}.rb|.xml)
+</pre></p>
+  
+  <h2>ACME Control</h2>
+  <p>Controls the execution of distributed Cougaar Agent societies with a powerful, extensible scripting framework.  ACME Control does not install any commands, but is used in scripts to run societies configured with ACME Configuration using ACME Services.</p>
+  <p><code><b>acme-doc</b></code></p>
+  <p><pre>
+  Outputs usage documentation for installed Actions and States.
+  Usage:
+      acme-doc [Action name or State name]
+  </pre></p>
+  <h2>ACME Service</h2>
+  <p>The ACME Service installs as a RubyGem but once it runs, starts a process that needs to be running on each computer that will run a Cougaar node.  There is only one command installed
+  with the ACME Service and that is <code>acme-service</code>.</p> 
+  <p><code><b>acme-service</b></code></p>
+  <p><pre>
+Starts the ACME Service.
+Usage:
+  acme-service -p <plugin dir> [-h]
+  -p --plugin-dir The plugin dir to add to the path (in addition to the core plugin dir).
+
+Example:
+
+  $$$$$ USERDIR = /Users/rich/.acme
+  PLATFORM IS unix
+  Message Router Service started on port: 6667
+  Cougaar Event Service started on port: 5300
+</pre>
+</p>
+  <p>Other than appending a plugin dir, configuration of the service is done by directly editing the files 
+  installed in the acme-service gem.  To exit this process just interrupt it with control^c.  The ACME Service uses a series of plugins that are used to extend its behavior.  Each of these plugins is located in the <code>plugins</code> directory
+  under the acme-service gem directory.  To find this directory execute the following [prompt] commands:
+  <p>
+<pre>
+[prompt] gem env gemdir
+  /usr/local/lib/ruby/gems/1.8
+[prompt] cd /usr/local/lib/ruby/gems/1.8/gems/acme-service-1.6.0/plugins
+[prompt] ls <b>(or dir)</b>
+  acme_cougaar_config
+  acme_cougaar_events
+  acme_cougaar_node
+  acme_cougaar_xmlnode
+  acme_host_communications
+  acme_host_cpu
+  acme_host_kickstart
+  acme_host_nic
+  acme_host_power
+  acme_host_reboot
+  acme_host_rexec
+  acme_host_rexec_user
+  acme_net_dns
+  acme_net_mgen
+  acme_net_shape
+  acme_reporting_core
+  acme_reporting_service
+  acme_tic_cnccalc
+  acme_tic_operator
+  acme_tic_scheduler
+  acme_tic_update_rpm
+  freebase_logger
+  raa_webrick
+</pre><p>
+<p> Each of the plugin directories has a plugin.yaml file file which holds its configuration (and potentially additional configuration .yaml files). For more detail and documentation on how to use and develop with the ACME framework see the <a href="">ACME Developer's Guide</a>.</p>
+</div> <!-- #content -->
+
+</div> <!-- #container -->
+</body>
+</html>
