@@ -150,9 +150,12 @@ public class MemoryWasterPlugin
 	 * @see org.cougaar.core.blackboard.BlackboardClientComponent#execute()
 	 */
 	protected void execute() {
-		evt.event("MEMORY\t" + getAgentIdentifier() + "\t" +
-							   Runtime.getRuntime().freeMemory() + "\t" +
-							   Runtime.getRuntime().totalMemory() + "\t" +
-							   Runtime.getRuntime().maxMemory());
+		evt.event("type=MEMORY\tagent=" + getAgentIdentifier() + "\t" +
+		          "real-time=" + System.currentTimeMillis() + "\t" +
+		          "sim-time=" + alarmService.currentTimeMillis() + "\t" +
+		          "free=" + Runtime.getRuntime().freeMemory() + "\t" +
+		          "total=" + Runtime.getRuntime().totalMemory() + "\t" +
+		          "max=" + Runtime.getRuntime().maxMemory() + "\t" +
+		          "wasted=" + getSize() * 1024);
 	}
 }
