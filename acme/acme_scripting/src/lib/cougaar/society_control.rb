@@ -248,7 +248,8 @@ module Cougaar
 
       def advance_and_wait(time_in_seconds)
         result = true
-        change_time = Time.now + 5 * @run.society.num_nodes  # add 5 sec per node
+        change_time = Time.now + 20 + 0.5 * @run.society.num_nodes  # add 20 sec + .5 sec per node
+        request_start_time = Time.now
         @run.society.each_node do |node|
 	  next unless node.active?
           myuri = node.agent.uri+"/timeControl?timeAdvance=#{time_in_seconds*1000}&executionRate=#{@execution_rate}&changeTime=#{change_time.to_i * 1000}"
@@ -263,7 +264,7 @@ module Cougaar
         end
 
         if @debug
-          @run.info_message "Finished sending servlet requests"
+          @run.info_message "Servlet requests took #{Time.now.to_i - request_start_time.to_i} seconds"
         end
 
 	society_request_time = (change_time - Time.now).ceil
