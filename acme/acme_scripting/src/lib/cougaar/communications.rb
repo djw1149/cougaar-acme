@@ -78,8 +78,8 @@ module Cougaar
         @description = "Starts the Jabber communications subsystem and connects to the Jabber server."
         @parameters = [
           {:username => "default='acme_console', The username of the account used to control the experiment."},
-          {:server => "server='acme', The Jabber server name."},
-          {:server => "pwd='c0ns0le', The password for the Jabber account."}
+          {:server => "default='acme', The Jabber server name."},
+          {:server => "default='c0ns0le', The password for the Jabber account."}
         ]
         @example = "do_action 'StartJabberCommunications', 'acme_console', 'myjabberserver'"
       }
