@@ -194,6 +194,7 @@ module Cougaar
       def perform
         @run.society.each_active_host do |host|
           @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
+          @run.comms.new_message(host).set_body("command[cpu]0").send()
         end
       end
     end

@@ -33,5 +33,6 @@ require 'ultralog/gls_client'
 require 'ultralog/inventory'
 require 'ultralog/verify'
 require 'ultralog/services'
+require 'ultralog/stressors'
 
 require 'ultralog/debug/relations'

@@ -55,5 +55,41 @@ module Cougaar
         end
       end
     end
+
+    class StressCPU < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts or stops the CPU stressor on one or more hosts."
+        @parameters = [
+          {:percent=> "required, The percentage of CPU stress to apply."},
+          {:hosts=> "optional, The comma-separated list of hosts to stress.  If omitted, all hosts are stressed."}
+        ]
+        @example = "do_action 'StressCPU', 20, 'sb022,sb023'"
+      }
+
+      def initialize(run, percent, hosts = nil)
+        super(run)
+        @percent = percent
+        if hosts
+          @hosts = hosts.split(",")
+        end
+      end
+
+      def perform
+        unless @hosts
+          @hosts = []
+          @run.society.each_host do |host|
+            @hosts << host.name 
+          end
+          @hosts.uniq!
+        end
+        
+        cmd = "command[cpu]#{@percent}"
+        @hosts.each do |host|
+          cougaar_host = run.society.hosts[host]
+          @run.comms.new_message(cougaar_host).set_body(cmd).send if cougaar_host
+        end
+      end
+    end
   end
 end
