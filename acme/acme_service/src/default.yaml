@@ -6,7 +6,7 @@ properties: ~
       - log_file: "./acme.log"
       - log_level: 2
       - log_name: ACME
-      - plugin_path: "./plugins"
+      - plugin_path: "./new_plugins"
       - product_name: "Cougaar Automated Configuration Management Environment (ACME)"
   - version: ''
     "|":
