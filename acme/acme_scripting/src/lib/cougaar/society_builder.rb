@@ -67,8 +67,7 @@ module Cougaar
       @society = Model::Society.new(doc.root.attributes['name']) do |society|
         @doc.elements.each("society/host") do |host_element|
           society.add_host(host_element.attributes['name']) do |host|
-            host.enclave = host_element.attributes['enclave']
-            #add attributes to host
+            #add facets to host
             host_element.elements.each("facet") do |element|
               host.add_facet do |facet|
                 element.attributes.each { |a, v| facet[a] = v }

@@ -52,10 +52,6 @@ module Cougaar
         yield self if block
       end
       
-      def communities
-        @communities ||= Communities.new(self)
-      end
-      
       ##
       # Adds a host to the society
       #
@@ -87,6 +83,11 @@ module Cougaar
         end
       end
       
+      ##
+      # Removes a host (and its nodes/agents/components) from the society.
+      #
+      # host:: [Cougaar::Model::Host | String] The host object or name
+      #
       def remove_host(host)
         if host.kind_of? String
           host = @hostIndex[host]
@@ -95,24 +96,6 @@ module Cougaar
         @hostIndex.delete(host.host_name)
         @hostList.delete(host)
         $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_removed(host) } 
-      end
-      
-      def each_enclave
-        enclaves = []
-        @hostList.each { |host| enclaves << host.enclave if host.enclave && !enclaves.include?(host.enclave) }
-        enclaves.each { |enclave| yield enclave }
-      end
-      
-      def each_enclave_host(enclave)
-        each_host { |host| yield host.enclave if host.enclave == enclave }
-      end
-      
-      def each_enclave_node(enclave)
-        each_node { |node| yield node if node.host.enclave == enclave }
-      end
-      
-      def each_enclave_agent(enclave, include_node_agent=false)
-        each_agent(include_node_agent) { |agent| yield agent if agent.node.host.enclave == enclave }
       end
       
       ##
@@ -174,6 +157,9 @@ module Cougaar
         society
       end
       
+      ##
+      # Recursively iterates over all hosts, nodes and agents and removed their facet data
+      # 
       def remove_all_facets
         each_host do |host|
           host.remove_all_facets
@@ -186,6 +172,11 @@ module Cougaar
         end
       end
       
+      ##
+      # Returns an XML representation of the society
+      #
+      # return:: [String] The society XML data
+      #
       def to_xml
         xml = "<?xml version='1.0'?>\n" +
               "<society name='#{@name}'\n" +
@@ -196,6 +187,11 @@ module Cougaar
         return xml
       end
       
+      ##
+      # Returns a Ruby (source) representation of the society
+      #
+      # return:: [String] The society Ruby data
+      #
       def to_ruby
         ruby =  "Cougaar::Model::Society.new('#{@name}') do |society|\n"
         each_host {|host| ruby << host.to_ruby}
@@ -466,7 +462,7 @@ module Cougaar
     #
     class Host
       attr_reader :nodes
-      attr_accessor :name, :society, :enclave
+      attr_accessor :name, :society
       
       include Multifaceted
       
@@ -475,9 +471,8 @@ module Cougaar
       #
       # name:: [String=nil] The name of this host
       #
-      def initialize(name=nil, enclave=nil)
+      def initialize(name=nil)
         @name = name
-        @enclave = enclave
         @nodes = []
         @nodeIndex = {}
         yield self if block_given?
@@ -518,6 +513,11 @@ module Cougaar
         end
       end
       
+      ##
+      # Removes a node and its agents/components from this host
+      #
+      # node:: [Cougaar::Model::Node] The node to remove from this host
+      #
       def remove_node(node)
         @nodeIndex.delete(node.name)
         @nodes.delete(node)
@@ -533,6 +533,9 @@ module Cougaar
         @nodes.each {|node| yield node}
       end
       
+      ##
+      # Removes host from the society
+      #
       def remove
         @society.remove_host(self)
       end
@@ -551,9 +554,7 @@ module Cougaar
       end
       
       def to_xml
-        xml = "  <host name='#{@name}'"
-        xml << " enclave='#{@enclave}'" if @enclave
-        xml << ">\n"
+        xml = "  <host name='#{@name}'>\n"
         xml << get_facet_xml(4)
         each_node {|node| xml << node.to_xml}
         xml << "  </host>\n"
@@ -562,7 +563,6 @@ module Cougaar
       
       def to_ruby
         ruby =  "  society.add_host('#{@name}') do |host|\n"
-        ruby << "    host.enclave = '#{@enclave}'" if @enclave
         ruby << get_facet_ruby(4, 'host')
         each_node {|node| ruby << node.to_ruby}
         ruby << "  end\n"
