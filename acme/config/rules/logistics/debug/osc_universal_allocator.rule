@@ -3,10 +3,18 @@
 
 plugin = "org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin"
 
-  society.agents["OSC"].add_component do |c|
+#   society.agents["OSC"].add_component do |c|
+#       c.classname = plugin
+#       c.add_argument("ProjectSupply")
+#       c.add_argument("Supply")
+#   end
+
+society.each_agent do |agent|
+  if agent.has_facet? { |facet| facet[:role]=='AmmunitionProvider' && (facet[:mechanism] == 'TerminalAmmunitionPacker')}
+    agent.add_component do |c|
       c.classname = plugin
       c.add_argument("ProjectSupply")
       c.add_argument("Supply")
+    end
   end
- 
-
+end

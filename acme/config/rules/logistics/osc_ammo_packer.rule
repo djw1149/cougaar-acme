@@ -5,19 +5,22 @@ lowFidelity = "org.cougaar.logistics.plugin.trans.AmmoLowFidelityExpanderPlugin"
 alAmmo = "org.cougaar.logistics.plugin.packer.ALAmmoPacker"
 ammoProjection = "org.cougaar.logistics.plugin.trans.AmmoProjectionExpanderPlugin"
 genericTable = "org.cougaar.mlm.plugin.generic.GenericTablePlugin"
-
-  society.agents["OSC"].add_component do |c|
+ 
+society.each_agent do |agent|
+  if agent.has_facet? { |facet| facet[:role]=='AmmunitionProvider' && (facet[:mechanism] == 'TerminalAmmunitionPacker')}
+    agent.add_component do |c|
       c.classname = lowFidelity
-  end
-  society.agents["OSC"].add_component do |c|
+    end
+    agent.add_component do |c|
       c.classname = alAmmo
-  end
-  society.agents["OSC"].add_component do |c|
+    end
+    agent.add_component do |c|
       c.classname = ammoProjection
-  end
-  society.agents["OSC"].add_component do |c|
+    end
+    agent.add_component do |c|
       c.classname = genericTable
       c.add_argument("IOC_allocation_rules.xml")
+    end
   end
- 
+end
 
