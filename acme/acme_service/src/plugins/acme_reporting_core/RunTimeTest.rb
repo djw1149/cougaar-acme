@@ -113,10 +113,10 @@ module ACME
       def mean(data)
         return 0 if data.size == 0
         n = 0
-        data.each do |x|
+        data.compact.each do |x|
           n += x.to_i
         end
-        n /= data.size
+        n /= data.compact.size
         return n
       end
       
@@ -128,10 +128,10 @@ module ACME
         return 0 if data.size < 2
         m = mean(data) if m.nil?
         n = 0
-        data.each do |x|
+        data.compact.each do |x|
           n += (x.to_i - m)**2
         end
-        n /= (data.size - 1)
+        n /= (data.compact.size - 1)
         return n
       end
       
@@ -145,12 +145,20 @@ module ACME
         data = []
         all_data.each do |elem|
           if elem.class.to_s  == "Struct::RunTimeData" then
-            data << elem[field] unless (elem[field].nil? || elem.type =~ /INTERRUPTED/)
+            data << elem[field] unless (elem.interrupted)
           else 
-            data << elem[field] unless elem[field].nil?
+            data << elem[field]
           end
         end
         return data
+      end
+
+      def number_of_stages(all_stage_times)
+        stages = 0
+        all_stage_times.each do |run|
+          stages = run.size if (run.size > stages)
+        end
+        return stages
       end
 
       def collect_stat(all_data)
@@ -159,7 +167,8 @@ module ACME
         total_times = collect_elements(all_data, "total_time")
         all_stage_times = collect_elements(all_data, "stage_times")
         stage_times = []
-        all_stage_times[0].each_index do |i|
+        num_stages = number_of_stages(all_stage_times)
+        0.upto (num_stages-1) do |i|
           stage_times << collect_elements(all_stage_times, i)
         end
         
@@ -179,7 +188,8 @@ module ACME
       end
 
       def get_class(val, mean, stddev)
-        return val <= (mean + 2 *stddev) ? "#00DD00" : "#FF0000"
+        return "#00DD00" if stddev.nil?
+        return val <= (mean + 2 * stddev) ? "#00DD00" : "#FF0000"
       end
 
       def row_output(row, data, mean, stddev)
