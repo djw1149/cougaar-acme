@@ -15,19 +15,24 @@ class CougaarNode
     @running_nodes = {}
     
     #START NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/start_node/description"].data = 
-      "Starts Cougaar node and returns PID. Params: -D elements separated by CR"
-    @plugin["/plugins/acme_host_jabber_service/commands/start_node"].set_proc do |message, command| 
+    start_desc = "Starts Cougaar node and returns PID. Params: -D elements separated by CR"
+    start_proc = Proc.new do |message, command| 
       node = NodeConfig.new(@plugin, @plugin.properties['props_path'], command)
       pid = node.start
       @running_nodes[pid]=node
       message.reply.set_body(pid).send
     end
     
+    @plugin["/plugins/acme_host_jabber_service/commands/start_db_node/description"].data = start_desc
+    @plugin["/plugins/acme_host_jabber_service/commands/start_db_node"].set_proc(start_proc)
+    
+    # The following two are for backward compatability
+    @plugin["/plugins/acme_host_jabber_service/commands/start_node/description"].data = start_desc
+    @plugin["/plugins/acme_host_jabber_service/commands/start_node"].set_proc(start_proc)
+    
     #STOP NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_node/description"].data = 
-      "Stops Cougaar node. Params: PID"
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_node"].set_proc do |message, command| 
+    stop_desc = "Stops Cougaar node. Params: PID"
+    stop_proc = Proc.new do |message, command| 
       pid = command
       node = @running_nodes[pid]
       if node
@@ -38,7 +43,13 @@ class CougaarNode
         message.reply.set_body("FAILURE: Unknown node: #{pid}").send
       end
     end
+
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_db_node/description"].data = stop_desc
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_db_node"].set_proc(stop_proc)
     
+    # The following two are for backward compatability
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_node/description"].data = stop_desc
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_node"].set_proc(stop_proc)
   end
   
   class NodeConfig
