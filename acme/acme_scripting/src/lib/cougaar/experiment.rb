@@ -153,7 +153,7 @@ module Cougaar
         n.begin_flag ? on_action_begin(n.action) : on_action_end(n.action)
       elsif n.kind_of? InterruptNotification
         on_state_interrupt(n.state)
-      elsif n.kind_of? InfotNotification
+      elsif n.kind_of? InfoNotification
         on_info_message(n.message)
       elsif n.kind_of? ErrorNotification
         on_error_message(n.message)
