@@ -28,6 +28,7 @@ scriptFile = ARGV[0]
 configFile = ARGV[1]
 
 server = XMLRPC::Client.new( $POLARIS_HOST, "/servlet/xml-rpc" )
+#server = XMLRPC::Client.new( 'sv023', '/RPC2', 8080 )
 server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
 
@@ -76,6 +77,9 @@ Cougaar::ExperimentMonitor.add monitor
 begin
   puts "[#{Time.now}] Starting Experiment"
   $POLARIS_MONITOR = monitor
+
+  ARGV.shift
+  ARGV.shift
 
   load scriptFile
 
