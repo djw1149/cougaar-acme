@@ -86,7 +86,7 @@ module ACME
       def run_log_test(archive)
         #if a run contains kills and a line matches any regexp in this array then it is not an error
         acceptable_kill_errors = [/Error accessing .*PersistenceManager/, 
-                                  /Error accessing .*-CA-/]
+                                  /Error accessing .*CaManager/]
         archive.add_report("Log", @plugin.plugin_configuration.name) do |report|
           run_log = nil
           archive.files_with_name(/run\.log/).each do |f|
