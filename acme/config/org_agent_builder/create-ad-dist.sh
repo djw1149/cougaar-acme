@@ -14,8 +14,6 @@ ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad.member.csv -s $ADDIR/smal
 ruby org_agent_builder.rb -d 1ad.org_data -m small-1ad-trans-stub.member.csv -s $ADDIR/small-1ad-trans-stub.oo.facets.xml -o
 ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad.member.csv -s $ADDIR/full-1ad.oo.facets.xml -o
 ruby org_agent_builder.rb -d 1ad.org_data -m full-1ad-trans-stub.member.csv -s $ADDIR/full-1ad-trans-stub.oo.facets.xml -o
-## Currently the ammo facets is generated in the SocietyDesigner (until org_agent_builder is fixed).  So copy it.
-cp ./1ad.orig-org-id/small-1ad-ammo.facets.xml $ADDIR/
 echo "Done making facets"
 
 echo "Sorting the rules and writing to base_rules/temp..."
@@ -27,7 +25,6 @@ ruby ../bin/transform_society.rb -i $ADDIR/tiny-1ad.oo.facets.xml -r base_rules/
 ruby ../bin/transform_society.rb -i $ADDIR/tiny-1ad-trans-stub.oo.facets.xml -r base_rules/temp -o $ADDIR/TINY-TRANS-STUB.xml
 ruby ../bin/transform_society.rb -i $ADDIR/small-1ad.oo.facets.xml -r base_rules/temp -o $ADDIR/SMALL-TRANS.xml
 ruby ../bin/transform_society.rb -i $ADDIR/small-1ad-trans-stub.oo.facets.xml -r base_rules/temp -o $ADDIR/SMALL-TRANS-STUB.xml
-ruby ../bin/transform_society.rb -i $ADDIR/small-1ad-ammo.facets.xml -r base_rules/temp -o $ADDIR/SMALL-TRANS-AMMO.xml
 ruby ../bin/transform_society.rb -i $ADDIR/full-1ad.oo.facets.xml -r base_rules/temp -o $ADDIR/FULL-TRANS.xml
 ruby ../bin/transform_society.rb -i $ADDIR/full-1ad-trans-stub.oo.facets.xml -r base_rules/temp -o $ADDIR/FULL-TRANS-STUB.xml
 echo "Done"
@@ -37,7 +34,6 @@ sed 's/localnode/1AD_TINY/' $ADDIR/TINY-TRANS.xml > $ADDIR/TINY-1AD-TRANS-1359.x
 sed 's/localnode/1AD_TINY/' $ADDIR/TINY-TRANS-STUB.xml > $ADDIR/TINY-1AD-TRANS-STUB-1359.xml
 sed 's/localnode/SMALL_1AD/' $ADDIR/SMALL-TRANS.xml > $ADDIR/SMALL-1AD-TRANS-1359.xml
 sed 's/localnode/SMALL_1AD/' $ADDIR/SMALL-TRANS-STUB.xml > $ADDIR/SMALL-1AD-TRANS-STUB-1359.xml
-sed 's/localnode/SMALL_1AD/' $ADDIR/SMALL-TRANS-AMMO.xml > $ADDIR/SMALL-1AD-TRANS-5.xml
 sed 's/localnode/FULL_1AD/' $ADDIR/FULL-TRANS.xml > $ADDIR/FULL-1AD-TRANS-1359.xml
 sed 's/localnode/FULL_1AD/' $ADDIR/FULL-TRANS-STUB.xml > $ADDIR/FULL-1AD-TRANS-STUB-1359.xml
 echo "Done"
