@@ -278,6 +278,10 @@ module Cougaar
             @attributes.each { |attr| yield attr[0], attr[1] }
           end
           
+          def each_role
+            @roles.each { |role| yield role }
+          end
+          
           def to_xml(xml=nil, indent = 0)
             xml ||= []
             xml << " "*indent+"<Entity Name='#{@name}' >"
