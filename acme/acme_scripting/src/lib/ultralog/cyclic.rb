@@ -19,6 +19,8 @@
 # </copyright>
 #
 
+require 'cougaar/scripting'
+
 module Cougaar; module Actions
   class CyclicStress < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
