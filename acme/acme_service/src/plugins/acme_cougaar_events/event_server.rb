@@ -74,6 +74,8 @@ module Cougaar
           puts "closed connection"
         rescue REXML::ParseException
           puts "closed connection (parse exception)"
+        rescue RuntimeError
+          puts "RuntimeError"
         ensure
           @threads.delete Thread.current
         end
