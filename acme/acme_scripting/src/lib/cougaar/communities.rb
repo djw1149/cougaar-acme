@@ -204,41 +204,40 @@ module Cougaar
         
         def add_agent(agent, &block)
           raise "Unknown agent: #{agent}" if @validate && !@society.agents[agent]
-          @entities << add_entity(agent, "Agent", &block)
+          add_entity(agent, "Agent", &block)
         end
         
         def add_node(node, &block)
           raise "Unknown node: #{node}" if @validate && !@society.nodes[node]
-          @entities << add_entity(node, "Node", &block)
+          add_entity(node, "Node", &block)
         end
         
         def add_nodes(*nodes, &block)
           nodes.each do |node|
             raise "Unknown node: #{node}" if @validate && !@society.nodes[node]
-            @entities << add_entity(node, 'Node', &block)
+            add_entity(node, 'Node', &block)
           end
         end
   
         def add_agents_on_nodes(node_agents, *nodes, &block)
           nodes.each do |node|
-            @entities << add_entity(node, 'Agent', &block) if node_agents
+            add_entity(node, 'Agent', &block) if node_agents
             raise "Unknown node: #{node}" unless @society.nodes[node]
             @society.nodes[node].each_agent do |agent|
-              @entities << add_entity(agent.name, 'Agent', &block)
+              add_entity(agent.name, 'Agent', &block)
             end
           end
         end
         
         def add_all_agents(&block)
           @society.each_agent(true) do |agent|
-            @entities << add_entity(agent.name, 'Agent', &block)
+            add_entity(agent.name, 'Agent', &block)
           end
         end
         
         def add_entity(name, entity_type, &block)
           entity = Entity.new(name, entity_type)
-          #BUG 13192 (add entity twice) Maybe the clients should change
-	  # @entities << entity
+          @entities << entity
           yield entity if block_given?
           entity
         end
