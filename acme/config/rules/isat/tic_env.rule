@@ -10,6 +10,7 @@ society.each_node do |node|
     node.remove_parameter("-Dorg.cougaar.tools.server.swallowOutputConnectionException")
     node.remove_parameter("-Dorg.cougaar.node.InitializationComponent")
     node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
+    #node.override_parameter("-Dorg.cougaar.thread.running.max","200")
     node.override_parameter("-Dorg.cougaar.core.persistence.enable","true")
     node.override_parameter("-Dorg.cougaar.core.persistence.clear","false")
     node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
