@@ -151,7 +151,7 @@ class MonitoredProcess
   def signal(sig)
     if (@@platform == "unix")
       real_pid = find_java(@pid)
-      puts "Kill(#{sig}, ${real_pid})"
+      #puts "Kill(#{sig}, #{real_pid})"
       Process.kill(sig, real_pid.to_i)
     else
       @stderrstr << "Unable to signal process on this platform"

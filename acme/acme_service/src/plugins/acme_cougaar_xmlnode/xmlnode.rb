@@ -299,7 +299,7 @@ class XMLCougaarNode
         if @conference
           presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
           @session.connection.send(presence)
-          iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference, "#{get_node_name(@society)}")
+          iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference)
           @session.connection.send(iq)
         end
         
@@ -372,18 +372,18 @@ class XMLCougaarNode
 
     def stdoutCB(s)
       if s.include?("\n")
-        msg = "OUT: \n#{s}"
+        msg = "<#{@name}:OUT>\n#{s}"
       else
-        msg = "OUT: #{s}"
+        msg = "<#{@name}:OUT> #{s}"
       end
       #puts msg
       sendMsg(msg)
     end
     def stderrCB(s)
       if s.include?("\n")
-        msg = "ERR: \n#{s}"
+        msg = "<#{@name}:ERR>\n#{s}"
       else
-        msg = "ERR: #{s}"
+        msg = "<#{@name}:ERR> #{s}"
       end
   
       #puts msg
@@ -391,7 +391,7 @@ class XMLCougaarNode
     end
     def exitCB()
 			@plugin['log/info'] << "DONE WITH NODE read thread. Process exited"
-      sendMsg("Process Exited")
+      sendMsg("#{@name} Process Exited")
       if @conference
         presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
         presence.type = "unavailable"
