@@ -42,9 +42,9 @@ module Cougaar
 	Dir.mkdir("INV/#{@modifier}") if Dir["INV/#{@modifier}"].empty?
 
         # Get some inventory charts
-        get_inventory "FSB-FUEL-WATER-SECTION", "ALL TRUCKS:JP8", "INV/#{@modifier/INV#{@modifier}-FSB-FUEL-WATER-SECTION-ALL-TRUCKS-JP8.xml"
-        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-0:JP8", "INV/#{@modifier/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
-        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-10:JP8", "INV/#{@modifier/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "ALL TRUCKS:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-ALL-TRUCKS-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-0:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-10:JP8", "INV/#{@modifier}/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
 
       end
 
