@@ -7,9 +7,10 @@ gls_expander = "org.cougaar.mlm.plugin.organization.GLSExpanderPlugin"
 society.each_agent do |agent|
    agent.each_component do |c|
       if c.classname == gls_expander
-        c.arguments.delete("PackagedPOL")
-        c.arguments.delete("Consumable")
-        c.arguments.delete("Subsistence")
+        c.arguments.delete_if { |arg|
+          arg.value == "PackagedPOL" || arg.value == "Consumable" || arg.value == "Subsistence"
+        }
+        c.name = c.comparison_name
       end
    end
 end
