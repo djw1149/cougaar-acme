@@ -194,4 +194,72 @@ module Cougaar
       end
     end
   end
+  module States
+    
+    # Wait for this state to ensure given nodes have persisted
+    class NodesPersisted < Cougaar::State
+      DEFAULT_TIMEOUT = 30.minutes
+      PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for all agents on the given nodes to have persisted at least once"
+        @parameters = [
+          {:nodes => "Nodes we want to wait for. If not given, use all in the society."}
+        ]
+        @example = "
+          wait_for 'NodesPersisted', 'FWD-A'
+        "
+      }
+
+      def initialize(run, *nodes)
+        super(run)
+        @nodes = *nodes
+      end
+
+      def process
+      	if @nodes == nil || @nodes.size == 0
+	  @run.info_message("Will wait for all nodes in the society.")
+	  @nodes = []
+	  @run.society.each_node do |node|
+	    @nodes << node
+          end
+        else
+          @run.info_message("Waiting for the following nodes to persist:  #{@nodes.join(', ')}.")
+        end
+
+        while (@nodes.size > 0)
+          @nodes.each do |node|
+            if node_persisted?(node)
+              @nodes.delete(node)
+              if (node.kind_of?(String))
+                @run.info_message("Node #{node} has persisted.")
+              else
+                @run.info_message("Node #{node.name} has persisted.")
+              end
+            end
+          end
+        end
+	@run.info_message("All nodes persisted.")
+      end
+      
+      def node_persisted?(node)
+        cougaar_node = nil
+        ready = true
+        if node.kind_of?(String)
+	  cougaar_node = @run.society.nodes[node]
+        else
+	  cougaar_node = node
+        end
+        if cougaar_node == nil
+  	  @run.error_message("No known node #{node} to look for.")
+        else
+          cougaar_node.each_agent do |agent|
+            filename = File.join(ENV['CIP'], 'workspace', 'P', agent.name, 'delta_00000')
+            ready = File.exist?(filename)
+            break if !ready
+          end
+        end
+        return ready
+      end
+    end
+  end
 end
