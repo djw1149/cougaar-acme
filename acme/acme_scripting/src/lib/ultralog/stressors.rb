@@ -42,7 +42,7 @@ module Cougaar; module Actions
                     
           @run.info_message "Taking down network for host #{cougaar_host.name} that has nodes #{node_names.join(', ')}"
           if cougaar_node
-            if (net.migratory_active_subnet.has_key?(cougaar_node.host)) then
+            if (net && net.migratory_active_subnet.has_key?(cougaar_node.host)) then
               subnet = net.subnet[net.migratory_active_subnet[cougaar_node.host]]
               result = @run.comms.new_message(cougaar_node.host).set_body("command[net]disable(#{subnet.make_interface(cougaar_node.host.get_facet(:interface))})").send(30)
               puts "#{result.body}" unless result.nil?
@@ -77,7 +77,7 @@ module Cougaar; module Actions
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
           if cougaar_node
-            if (net.migratory_active_subnet.has_key?(cougaar_node.host)) then
+            if (net && net.migratory_active_subnet.has_key?(cougaar_node.host)) then
               subnet = net.subnet[net.migratory_active_subnet[cougaar_node.host]]
               @run.comms.new_message(cougaar_node.host).set_body("command[net]enable(#{subnet.make_interface(cougaar_node.host.get_facet(:interface))})").send(30)
             else
@@ -118,7 +118,7 @@ module Cougaar; module Actions
                     
           @run.info_message "Setting up intermittent network for host #{cougaar_host.name} that has nodes #{node_names.join(', ')}"
         end
-        super.perform
+        super
       end
 
       def stress_on

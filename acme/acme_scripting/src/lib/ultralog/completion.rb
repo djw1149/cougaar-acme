@@ -123,9 +123,16 @@ module Cougaar
         run.comms.on_cougaar_event do |event|
           handleEvent(event) if (event.component == "QuiescenceReportServiceProvider")
         end
-        run.comms.add_command("get_quiescent_state", "Prints the current state of quiescence") do |message, params| 
+        run.comms.add_command("print_quiescent_state", "Prints the entire structure used to maintain quisecence state") do |message, params| 
           message.reply.set_body('Printing status to run.log').send
           @monitor.print_current_comp
+        end
+        run.comms.add_command("check_quiescent_state", "Forces a check of quiescent state, and prints the results with debug on") do |message, params| 
+          message.reply.set_body('Printing results to run.log').send
+          current_debug = @monitor.debug
+          @monitor.debug = true
+          @monitor.update_society_status
+          @monitor.debug = current_debug
         end
       end
 
@@ -307,6 +314,8 @@ module UltraLog
   end 
 
   class SocietyCompletionMonitor
+    attr_accessor :debug
+
     def initialize(society, debug, run=nil)
       @society = society;
       @debug = debug

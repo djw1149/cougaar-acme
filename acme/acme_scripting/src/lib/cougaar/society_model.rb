@@ -1342,14 +1342,14 @@ module Cougaar
         @arguments = []
         @order = -1
         yield self if block_given?
+        if @insertionpoint.nil?
+          insertionpoint_plugin
+        end
         if @name.nil?
           @name = self.comparison_name
         end
         if @priority.nil?
           priority_component
-        end
-        if @insertionpoint.nil?
-          insertionpoint_plugin
         end
       end
       
@@ -1367,6 +1367,10 @@ module Cougaar
       
       def ==(component)
         return component.comparison_name == self.comparison_name
+      end
+      
+      def comparison_name=(comparison_name)
+        @comparison_name = comparison_name
       end
 
       def comparison_name=(comparison_name)

@@ -76,12 +76,10 @@ module Ultralog
 
     class SMSNotify
       def initialize
-        @art = '7039196618@vtext.com'
-        @mark = '5716431333@vtext.com'
-        @rich = '5713326896@voicestream.net'
-        @joe = '7038696710@messaging.sprintpcs.com'
-        @beth = '5085618380@vtext.com'
-        @phonelist = [@art, @mark, @rich, @joe, @beth]
+        @sms_account = nil
+        # voicestream accounts: 'phonenumber@voicestream.net'
+        # sprint accounts 'phonenumber@messaging.sprintpcs.com'
+        @phonelist = @sms_account ? [@sms_account] : []
       end
 
       def notify(error, *addresses)

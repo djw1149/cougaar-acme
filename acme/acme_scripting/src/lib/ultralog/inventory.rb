@@ -178,6 +178,10 @@ module Cougaar
         get_inventory  "565-RPRPTCO.7-CSG.5-CORPS.ARMY.MIL", "BELT,VEHICULAR SAFE:NSN/2540013529175", "INV/#{@modifier}/INV#{@modifier}-565-RPRPTCO-BELT.xml"
         get_inventory  "565-RPRPTCO.7-CSG.5-CORPS.ARMY.MIL", "BRAKE SHOE:NSN/2530013549427", "INV/#{@modifier}/INV#{@modifier}-565-RPRPTCO-BRAKESHOE.xml"
 
+        #158 159 AVN-COs
+        get_inventory  "158-AVN-CO-C.5-CORPS.ARMY.MIL", "JP8:NSN/9130010315816", "INV/#{@modifier}/INV#{@modifier}-158-AVN-CO-C-POL-JP8.xml"
+        get_inventory  "159-AVN-CO-F.5-CORPS.ARMY.MIL", "JP8:NSN/9130010315816", "INV/#{@modifier}/INV#{@modifier}-159-AVN-CO-F-POL-JP8.xml"
+
       end
       
       def get_inventory(agent, asset, file)

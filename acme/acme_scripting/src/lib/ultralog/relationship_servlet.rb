@@ -38,13 +38,14 @@ module Cougaar
       end
 
       def save(result)
-        File.open(@file, "wb") do |file|
+        File.open("REL/#{@file}", "wb") do |file|
           file.puts result
         end
-        @run.archive_and_remove_file(@file, "Relationship schedule for agent: #{@agent} asset: #{@asset}")
+        @run.archive_and_remove_file("REL/#{@file}", "Relationship schedule for agent: #{@agent} asset: #{@asset}")
       end
 
       def perform
+        Dir.mkdir("REL") unless File.exist?("REL")
         cougaar_agent = @run.society.agents[@agent]
         if cougaar_agent
           list, uri = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/list")

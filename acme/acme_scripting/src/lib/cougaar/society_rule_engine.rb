@@ -48,6 +48,11 @@ module Cougaar
         @rules.each { |rule| @run.info_message "Applying #{rule}" }
         @engine = Cougaar::Model::RuleEngine.new(@run.society)
         @engine.load_rules(@rules.join(";"))
+        
+        @engine.on_error do |error_message|
+          @run.error_message error_message
+        end
+        
         @rules.each do |rulefile|
           if File.directory?(rulefile)
             Dir.glob(File.join(rulefile, "*.rule")).sort.each do |file|
@@ -82,6 +87,10 @@ module Cougaar
       
       def enable_stdout
         @stdout_enabled = true
+      end
+      
+      def on_error(&error_handler)
+        @error_handler = error_handler
       end
       
       def load_rules(list)
@@ -147,8 +156,9 @@ module Cougaar
         if abort_on_warning
           raise "\n#{message}"
         else
-          puts message
+          puts message unless @error_handler
         end
+        @error_handler.call(message) if @error_handler
       end
     end
     

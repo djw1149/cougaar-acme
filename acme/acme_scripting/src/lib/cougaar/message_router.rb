@@ -421,10 +421,13 @@ module InfoEther
       attr_accessor :socket_handler, :subject, :body, :to, :from, :thread
     
       @@thread_id = 0
+      @@lock = Mutex.new
       
       def self.next_thread
-        @@thread_id += 1
-        @@thread_id.to_s
+        @@lock.synchronize do 
+          @@thread_id += 1
+          @@thread_id.to_s
+        end
       end
     
       DEFAULT_TIMEOUT = 5*60
