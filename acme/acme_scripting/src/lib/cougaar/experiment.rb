@@ -328,6 +328,7 @@ module Cougaar
     
     def include(file, *include_args)
       @include_args = include_args
+      raise "Cannot find file to include: #{file}" unless File.exist?(file)
       File.open(file, "r") do |f|
         instance_eval f.read
       end
