@@ -49,7 +49,7 @@ society.each_agent do |agent|
 	if is_ua
 	  c.classname = ua_inventory_plugin
 	  c.add_argument('SUPPLY_TYPE=BulkPOL')
-	  c.add_argument('INVENTORY_FILE=CA_BN_bulkpol.inv')
+	  c.add_argument('INVENTORY_FILE=UA-Consumer-bulkpol.inv')
 	else
 	  c.classname = inventory_plugin
 	  c.add_argument('SUPPLY_TYPE=BulkPOL')
