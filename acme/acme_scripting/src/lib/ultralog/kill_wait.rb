@@ -21,6 +21,9 @@
 # UL Societies are not robust to agents being killed before they 
 # have persisted after FindProviders. This logic lets ACME
 # wait for that to be true before killing Nodes.
+# Under some circumstances, a kill before persisting after
+# sending GLS is also fatal, so an option (currently default) persists
+# after the stage 1 GLS propogation instead
 
 # Usage:
 # do_action "WatchAgentPersists" before you do StartSociety
@@ -31,19 +34,29 @@
 # Also note that a Node is ready when all of its agents which
 # have an SDClientPlugin have sent the Event saying they have persisted
 
+# Note that to get the old SDClientPlugin / FindProviders persistence
+# watch you must supply an argument of "false" to WatchAgentPersists
+
 module Ultralog
   class AgentPersistWatcher
-    attr_reader :agents_ready
+    attr_reader :agents_ready, :useSD
     # note that this won't work if the society doesn't have
     # the -D arg org.cougaar.servicediscovery.plugin.SDClientPlugin.persistEarly=true
     # and the SDClientPlugin
-    def initialize(run)
+    # OR the -D arg org.cougaar.mlm.plugin.organization.GLSExpanderPlugin.persistEarly=true
+    def initialize(run, useSD=true)
       @run = run
+      @useSD = useSD
+
+      if (! @useSD)
+        @run.info_message("Watching for early persists after GLS Stage-1 propogation, not FindProviders")
+      end
+
       @agents_ready = []
       # The real work of the watcher. Add to the list
       # of ready agents each one that sends this event
       @run.comms.on_cougaar_event do |event|
-	if (event.component == "SDClientPlugin" || event.component == "ALDynamicSDClientPlugin")
+	if ((@useSD && (event.component == "SDClientPlugin" || event.component == "ALDynamicSDClientPlugin")) || (!@useSD && event.component == "GLSExpanderPlugin"))
 	  unless @agents_ready.include?(event.cluster_identifier)
 	    @agents_ready << event.cluster_identifier
 #	    @run.info_message("Agent #{event.cluster_identifier} sent persist event")
@@ -80,7 +93,7 @@ module Ultralog
 	  # agents that have an SDClientPlugin or ALDynamicSDClientPlugin
 	  hasPI = false
 	  agent.each_component do |comp|
-	    if /SDClientPlugin/.match(comp.classname)
+	    if ((@useSD && /SDClientPlugin/.match(comp.classname)) || (!@useSD && /GLSExpanderPlugin/.match(comp.classname)))
 #	      @run.info_message("Agent #{agent.name} had SDClient: #{comp.name}")
 	      hasPI = true
 	      break
@@ -111,25 +124,47 @@ module Cougaar
       PRIOR_STATES = ["SocietyLoaded"]
       DOCUMENTATION = Cougaar.document {
 	@description = "Installs the AgentPersistWatcher so we know when each agent has done its persist after FindProviders. Run this before starting the society to have it ensure the -D arg is supplied as needed."
+        @parameters = [
+          {:waitGLS => "optional, default=true, when true waits for GLS propogation persistence instead of FindProviders persistence."}
+        ]
       }
       
+      ###### To disable this new work-around, change
+      # the "true" default below to false,
+      # Or supply the argument "false" to WatchAgentPersists
+      # in BaselineTemplate.rb
+      def initialize(run, waitGLS=true)
+        super(run)
+        @waitGLS = waitGLS
+      end
+
       def perform
 	# Force the required -D arg to be included
 	# Note that this only works if you do this before you start the society
 	@run.society.each_node do |node|
-	  node.override_parameter("-Dorg.cougaar.servicediscovery.plugin.SDClientPlugin.persistEarly", "true")
+          if @waitGLS
+            node.override_parameter("-Dorg.cougaar.mlm.plugin.organization.GLSExpanderPlugin.persistEarly", "true")
+            node.override_parameter("-Dorg.cougaar.servicediscovery.plugin.SDClientPlugin.persistEarly", "false")
+          else
+            node.override_parameter("-Dorg.cougaar.servicediscovery.plugin.SDClientPlugin.persistEarly", "true")
+            node.override_parameter("-Dorg.cougaar.mlm.plugin.organization.GLSExpanderPlugin.persistEarly", "false")
+          end
 	end
 
 	# Then install the watcher
 	if @run['agent_p_watcher'] == nil
 	  @run.info_message("Adding new AgentPersistWatcher")
-	  @run['agent_p_watcher'] = ::Ultralog::AgentPersistWatcher.new(run)
+	  @run['agent_p_watcher'] = ::Ultralog::AgentPersistWatcher.new(run, !@waitGLS)
 	end
       end
     end
   end
   
   module States
+    
+    # Add new Action NodesPersistedSentGLS
+    # that uses correct logs / comments? And supplies
+    # correct args if agent persist watcher wasn't installed?
     
     # Wait for this state to ensure given nodes can be killed
     class NodesPersistedFindProviders < Cougaar::State
@@ -164,16 +199,22 @@ module Cougaar
 	  @run['agent_p_watcher'] = ::Ultralog::AgentPersistWatcher.new(run)
 	end
 
-	@run.info_message("Waiting for #{@nodes.size} nodes to persist after finding providers.")
+        waitGLS = !@run['agent_p_watcher'].useSD
+        waitString = "finding providers"
+        if waitGLS
+          waitString = "sending Stage-1 GLS"
+        end
+
+        @run.info_message("Waiting for #{@nodes.size} nodes to persist after #{waitString}.")
 	while (@ready_nodes.size < @nodes.size)
 	  @nodes.each do |node|
 	    if ! @ready_nodes.include?(node)
 	      if @run['agent_p_watcher'].isNodeReady(node) 
 		@ready_nodes << node
 		if (node.kind_of?(String))
-		  @run.info_message("Node #{node} has persisted after finding providers.")
+		  @run.info_message("Node #{node} has persisted after #{waitString}.")
 		else
-		  @run.info_message("Node #{node.name} has persisted after finding providers.")
+		  @run.info_message("Node #{node.name} has persisted after #{waitString}.")
 		end
 	      end # node was ready -- add it block
 	    end # block to only look if not done
@@ -186,7 +227,7 @@ module Cougaar
 	  end
 	end # end while loop waiting for all needed nodes
 	# Done with the wait_for -- all needed nodes reported in
-	@run.info_message("All needed nodes have persisted after finding providers.")
+	@run.info_message("All needed nodes have persisted after #{waitString}.")
       end
       
       def unhandled_timeout
