@@ -1,0 +1,47 @@
+####################################################
+# Rule to insert DemandForecastPlugin (Formerly LogProjectionPlugin)
+#   at consumers.
+#   Consumers:
+#     - orgs which have equipment are considered potential consumers of Ammunition, BulkPOL, PackagedPOL,
+#       and RepairParts (Consumable).
+#     - orgs which have personnel are consumers of Subsistence
+#
+# plugin = org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Ammunition,SUPPLY_PG_CLASS=AmmoConsumerPG)
+# plugin = org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)
+# plugin = org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=PackagedPOL,SUPPLY_PG_CLASS=PackagedPOLConsumerPG)
+# plugin = org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Consumable,SUPPLY_PG_CLASS=RepairPartConsumerPG)
+# plugin = org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Subsistence,SUPPLY_PG_CLASS=SubsistenceConsumerPG)
+
+demand_forecast_plugin = "org.cougaar.logistics.plugin.demand.DemandForecastPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:has_equipment_assets)
+    agent.add_component do |c|
+      c.classname = demand_forecast_plugin
+      c.add_argument('SUPPLY_TYPE=Ammunition')
+      c.add_argument('SUPPLY_PG_CLASS=AmmoConsumerPG')
+    end
+    agent.add_component do |c|
+      c.classname = demand_forecast_plugin
+      c.add_argument('SUPPLY_TYPE=BulkPOL')
+      c.add_argument('SUPPLY_PG_CLASS=FueConsumerPG')
+    end
+    agent.add_component do |c|
+      c.classname = demand_forecast_plugin
+      c.add_argument('SUPPLY_TYPE=PackagedPOL')
+      c.add_argument('SUPPLY_PG_CLASS=PackagedPOLConsumerPG')
+    end
+    agent.add_component do |c|
+      c.classname = demand_forecast_plugin
+      c.add_argument('SUPPLY_TYPE=Consumable')
+      c.add_argument('SUPPLY_PG_CLASS=RepairPartConsumerPG')
+    end
+  end
+  if agent.get_facet(:has_personnel_assets)
+    agent.add_component do |c|
+      c.classname = demand_forecast_plugin
+      c.add_argument('SUPPLY_TYPE=Subsistence')
+      c.add_argument('SUPPLY_PG_CLASS=SubsistenceConsumerPG')
+    end
+  end
+end

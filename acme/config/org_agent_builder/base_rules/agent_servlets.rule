@@ -20,7 +20,8 @@
 # plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.SearchServlet,/CSMART_SearchServlet)
 # plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.PlanServlet,/CSMART_PlanServlet)
 ### New WhitePages servlet for available at /wp
-# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.core.wp.WhitePagesServlet,/wp)
+### OLD FORM: plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.core.wp.WhitePagesServlet,/wp)
+### NEW FORM: plugin = org.cougaar.core.wp.WhitePagesServlet(/wp)
 ### New servlet for Agent Mobility. This only loads in Agents,
 ### and you may want it in NodeAgents as well. Will be available at /move
 # plugin = org.cougaar.core.mobility.servlet.MoveAgentServlet
@@ -31,6 +32,7 @@
 # servlet loader classes:
 simple_servlet_component_loader = "org.cougaar.core.servlet.SimpleServletComponent"
 logistics_inventory_servlet_component_loader = "org.cougaar.logistics.servlet.LogisticsInventoryServletComponent"
+blackboard_servlet_component = "org.cougaar.planning.servlet.BlackboardServletComponent"
 # servlet classes:
 plan_view_servlet = "org.cougaar.planning.servlet.PlanViewServlet"
 glm_completion_servlet = "org.cougaar.glm.servlet.GLMCompletionServlet"
@@ -45,6 +47,7 @@ search_servlet = "org.cougaar.tools.csmart.ui.servlet.SearchServlet"
 plan_servlet = "org.cougaar.tools.csmart.ui.servlet.PlanServlet"
 white_pages_servlet = "org.cougaar.core.wp.WhitePagesServlet"
 move_agent_servlet = "org.cougaar.core.mobility.servlet.MoveAgentServlet"
+glm_stimulator_servlet = "org.cougaar.glm.servlet.GLMStimulatorServlet"
 
 society.each_agent do |agent|
   agent.add_component do |c|                       # plan_view_servlet
@@ -101,11 +104,15 @@ society.each_agent do |agent|
     c.add_argument("/CSMART_PlanServlet")
   end
   agent.add_component do |c|                       # white_pages_servlet
-    c.classname = simple_servlet_component_loader
-    c.add_argument(white_pages_servlet)
+    c.classname = white_pages_servlet
     c.add_argument("/wp")
   end
   agent.add_component do |c|                       # move_agent_servlet
     c.classname = move_agent_servlet
+  end
+  agent.add_component do |c|                       # glm_stimulator_servlet
+    c.classname = blackboard_servlet_component
+    c.add_argument(glm_stimulator_servlet)
+    c.add_argument("/stimulator")
   end
 end

@@ -1,21 +1,22 @@
 ####################################################
 # Rule to insert subsistence prototype creation Plugins
-# plugin = org.cougaar.logistics.plugin.demand.projection.LogClassIConsumerLDMPlugin(subsistence.q)
-# plugin = org.cougaar.logistics.plugin.demand.projection.LogClassILDMPlugin(subsistence.q,+PrototypeProvider)
+### OLD: plugin = org.cougaar.logistics.plugin.demand.projection.LogClassIConsumerLDMPlugin(subsistence.q)
+### NEW: plugin = org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)
+### OLD: plugin = org.cougaar.logistics.plugin.demand.projection.LogClassILDMPlugin(subsistence.q,+PrototypeProvider)
+### NEW: plugin = org.cougaar.logistics.ldm.ClassIPartsPrototypeProvider(subsistence.q)
 
-subsistence_consumer_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogClassIConsumerLDMPlugin"
-subsistence_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogClassILDMPlugin"
+subsistence_consumer_prototype_provider = "org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider"
+subsistence_parts_prototype_provider = "org.cougaar.logistics.ldm.ClassIPartsPrototypeProvider"
 
 society.each_agent do |agent|
   if agent.get_facet(:has_personnel_assets)
     agent.add_component do |c|
-      c.classname = subsistence_consumer_ldm_plugin
+      c.classname = subsistence_consumer_prototype_provider
       c.add_argument("subsistence.q")
     end
     agent.add_component do |c|
-      c.classname = subsistence_ldm_plugin
+      c.classname = subsistence_parts_prototype_provider
       c.add_argument("subsistence.q")
-      c.add_argument("+PrototypeProvider")
     end
   end
 end

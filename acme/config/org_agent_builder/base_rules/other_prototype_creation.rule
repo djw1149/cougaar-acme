@@ -1,12 +1,14 @@
 ####################################################
 # Rule to insert other prototype creation Plugins
 # plugin = org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin
-# plugin = org.cougaar.logistics.plugin.demand.projection.LogMEILDMPlugin(icisMEI.q,+PrototypeProvider)
-# plugin = org.cougaar.logistics.plugin.demand.projection.LogPartsLDMPlugin(icisParts.q,+PrototypeProvider)
+### OLD: plugin = org.cougaar.logistics.plugin.demand.projection.LogMEILDMPlugin(icisMEI.q,+PrototypeProvider)
+### NEW: plugin = org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)
+### OLD: plugin = org.cougaar.logistics.plugin.demand.projection.LogPartsLDMPlugin(icisParts.q,+PrototypeProvider)
+### NEW: plugin = org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)
 
 xml_prototype_provider_plugin = "org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin"
-log_mei_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogMEILDMPlugin"
-log_parts_ldm_plugin = "org.cougaar.logistics.plugin.demand.projection.LogPartsLDMPlugin"
+mei_prototype_provider = "org.cougaar.logistics.ldm.MEIPrototypeProvider"
+parts_prototype_provider = "org.cougaar.logistics.ldm.PartsPrototypeProvider"
 
 society.each_agent do |agent|
   if agent.get_facet(:has_physical_assets)
@@ -16,14 +18,13 @@ society.each_agent do |agent|
   end
   if agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
-      c.classname = log_mei_ldm_plugin
-      c.add_argument("icisMEI.q")
-      c.add_argument("+PrototypeProvider")
+      c.classname = mei_prototype_provider
+      c.add_argument("MEI.q")
+      c.add_argument("-PrototypeProvider")
     end
     agent.add_component do |c|
-      c.classname = log_parts_ldm_plugin
-      c.add_argument("icisParts.q")
-      c.add_argument("+PrototypeProvider")
+      c.classname = parts_prototype_provider
+      c.add_argument("Parts.q")
     end
   end
 end

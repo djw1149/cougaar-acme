@@ -9,7 +9,7 @@ society.each_agent do |agent|
   if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
       c.classname = ldm_sql_plugin
-      c.add_argument("fdm_equip.q")
+      c.add_argument("fdm_equip_ref.q")
     end
   end
 end
