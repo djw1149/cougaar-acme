@@ -1,6 +1,13 @@
 module ACME
   module Plugins
+
     class CompletionTest
+      AgentData = Struct.new("AgentData", :name, :comp_data, :error)
+      FileData = Struct.new("FileData", :agents, :totals)
+      SUCCESS = 0
+      PARTIAL = 1
+      FAIL = 2
+
       def initialize(archive, plugin, ikko)
         @archive = archive
         @plugin = plugin
@@ -10,19 +17,22 @@ module ACME
       def perform
         comp_files = @archive.files_with_description(/completion/)
         comp_files.each do |comp_file|
-          @archive.add_report("Completion test for file #{comp_file.name}", @plugin.plugin_configuration.name) do |report|
+          report_name = File.basename(comp_file.name, ".xml")
+          report_name.gsub!(/comp_/, "")
+          
+          @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
             data = get_file_data(File.new(comp_file.name))
             result = analyze(data)
-            if result == 0 then
+            if result == SUCCESS then
               report.success
-            elsif result == 1 then
+            elsif result == PARTIAL then
               report.partial_success
             else
               report.failure
             end
-            output = html_output(data, comp_file.name)
-            outfile = comp_file.name.split(/\//).last.split(/\./)[0]
-            report.open_file("completionTest-#{outfile}.html", "text/html", "Agent completion tests") do |file|
+            output = html_output(data, report_name)
+            outfile = "Comp-#{report_name}.html"
+            report.open_file(outfile, "text/html", "Agent completion tests for #{report_name}") do |file|
               file.puts output
             end
           end
@@ -30,102 +40,101 @@ module ACME
       end
   
       def get_file_data(file)
-        data = {}
-        agent = nil
+        data = FileData.new([], {})
+        curr_agent = nil
         file.each do|line|
           if line =~ /agent=/ then
             line.chomp!
-            agent = line.split(/=/)[1]
-            agent.delete!("\'>")
-            data[agent] = {}
+            agent_name = line.split(/=/)[1]
+            agent_name.delete!("\'>")
+            curr_agent = AgentData.new(agent_name, {}, SUCCESS)
           elsif (line =~ /<(.+)>(.+)<\/\1>/) then
-            if !agent.nil? then
+            if !curr_agent.nil? then
               if ($1 == "Ratio") then
-                data[agent][$1] = $2.to_f
+                curr_agent.comp_data[$1] = $2.to_f
               else
-               data[agent][$1] = $2.to_i
+                curr_agent.comp_data[$1] = $2.to_i
               end
             else
-              data[$1] = $2.to_i
+              data.totals[$1] = $2.to_i
             end
           elsif line =~ /\/SimpleCompletion/ then
-            agent = nil
+            data.agents << curr_agent            
+            curr_agent = nil
           end
         end
+
         return data
       end
 
       def analyze(data)
-        error = 0
+        error = SUCCESS
         e = ratio_test(data)
         error = (error > e ? error : e)
-        
+        e = task_test(data)
+        error = (error > e ? error : e)
+
         return error
       end
       
       def ratio_test(data)
-        error = 0
-        data.each_key do |agent|
-          next unless data[agent].class.to_s == "Hash"
-          error = 1 if (error == 0 && data[agent]["Ratio"] < 1.0 && data[agent]["Ratio"] >= 0.90) 
-          error = 2 if data[agent]["Ratio"] < 0.90
+        error = SUCCESS
+        data.agents.each do |agent|
+          if (agent.comp_data["Ratio"] < 1.0 && agent.comp_data["Ratio"] >= 0.90) then
+            error = PARTIAL if error == SUCCESS
+            agent.error = PARTIAL if agent.error == SUCCESS
+          elsif (agent.comp_data["Ratio"] < 0.90) then
+            error = FAIL
+            agent.error = FAIL
+          end
         end
         return error
       end
       
-      def html_output(data, file)
-        str = ""
-        str << "<HTML>\n"
-        str << "<TABLE border=\"1\">\n"
-        str << "<CAPTION>\n"
-        str << "Completion test for the file:  #{file.split(/\//).last}\n"
-        str << "</CAPTION>\n"
-        str << "<TR><TH>Agent"
-        
-        #Examine an arbitrary agent and pull out the field names"
-        data.keys.each do |key|
-          if data[key].class.to_s == "Hash" then
-            data[key].keys.sort.each do |field|
-              str << "<TH>#{field}"
-            end
-            break
+      def task_test(data)
+        error = SUCCESS
+        data.agents.each do |agent|
+          if agent.comp_data["NumTasks"] < 100 then
+            error = FAIL
+            agent.error = FAIL
           end
         end
-        str << "\n"
-        data.keys.sort.each do |agent|
-          if (data[agent].class.to_s == "Hash") then
-            str << agent_html(data[agent], agent)
-            str << "\n"
-          end
-        end
-        str << "</TABLE>\n"
-        str << "<BR>\n"
-        str << "<b>"
-        data.keys.sort.each do |field|
-          if (data[field].class.to_s != "Hash") then
-            str << "#{field}:  #{data[field]}\n"
-            str << "<BR>\n"
-          end
-        end
-        str << "</b>\n"
-        str << "</HTML>\n"
-        return str
+        return error
       end
-      
-      def agent_html(data, agent)
-        set = ""
-        if (data["Ratio"] == 1.0) then
-          set << "<TR BGCOLOR=#00DD00><TD>"
-        elsif (data["Ratio"] >= 0.90) then
-          set << "<TR BGCOLOR=#FFFF00><TD>"
-        else
-          set << "<TR BGCOLOR=#FF0000><TD>"
+
+      def html_output(data, stage)
+        ikko_data = {}
+        ikko_data["stage"] = stage
+        ikko_data["totals"] = []
+        data.totals.each_key do |key|
+          ikko_data["totals"] << "#{key}:  #{data.totals[key]}"        
         end
-        set << agent.to_s
-        data.keys.sort.each do |field|
-          set << "<TD>#{data[field]}"
+        headers = ["Agent Name"]
+        headers << data.agents[0].comp_data.keys.sort
+        headers.flatten!
+        header_row = ""
+        headers.each do |header|
+          header_row << @ikko["header_template.html", {"data"=>header,"options"=>""}]
         end
-        return set
+        
+        table_string = @ikko["row_template.html", {"data"=>header_row,"options"=>""}]
+        data.agents.each do |agent|
+          agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>""}]
+          agent.comp_data.keys.sort.each do |key|
+            agent_row << @ikko["cell_template.html", {"data"=>agent.comp_data[key],"options"=>""}]
+          end
+          options = ""
+          if (agent.error == SUCCESS) then
+            options << "BGCOLOR=#00DD00"
+          elsif (agent.error == PARTIAL) then
+            options << "BGCOLOR=#FFFF00"
+          else
+            options << "BGCOLOR=#FF0000"
+          end
+          table_string << @ikko["row_template.html", {"data"=>agent_row,"options"=>options}]
+        end
+        ikko_data["table"] = table_string
+        return @ikko["comp_report.html", ikko_data]
       end
     end
   end

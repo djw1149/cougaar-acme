@@ -1,5 +1,3 @@
-#! /usr/bin/ruby --
-
 module ACME
   module Plugins
     QuiescenceData = Struct.new("QuiescenceData", :node, :stage_data, :goodnode)
@@ -33,23 +31,6 @@ module ACME
         @plugin = plugin
         @ikko = ikko
       end
-      
-      def perform_local(dir)
-        Dir.chdir(dir)
-        run_log = Dir["run.log"][0]
-        if (run_log) then
-          @stage_times = get_stage_times(File.new(run_log))
-          Dir.chdir("mnt")
-          society_shared = Dir["*"][0]
-          Dir.chdir(society_shared)
-          society_name = Dir["*"][0]
-          Dir.chdir("#{society_name}/workspace/log4jlogs")
-          quiescence_files = Dir["*"]
-          data = get_quiescence_times(quiescence_files)
-          puts html_output(data)
-        end
-      end
-          
       
       def perform
         @archive.add_report("Quiescence Data", @plugin.plugin_configuration.name) do |report|
@@ -166,17 +147,9 @@ module ACME
       def get_quiescence_times(qfiles)
         data = []
         qfiles.each do |qfile|
-          file_name = nil
-          if qfile.class.to_s == "String" then
-            file_name = qfile
-          else
-            file_name = qfile.name
-          end
-
-          new_node = QuiescenceData.new(file_name.split(/\//).last.split(/\./)[0], [], true)
-
+          new_node = QuiescenceData.new(qfile.name.split(/\//).last.split(/\./)[0], [], true)
           quiescent = false
-          File.new(file_name).each do |line|
+          File.new(qfile.name).each do |line|
             next unless line =~ /quiescent="(false|true)"/
             quiescent = ($1 == "true")
             ts = get_timestamp(line, true)
@@ -254,9 +227,4 @@ module ACME
       end
     end
   end
-end
-
-if $0==__FILE__
-  queue = ACME::Plugins::QData.new(nil, nil, nil)
-  queue.perform_local($*[0])
 end
