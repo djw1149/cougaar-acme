@@ -6,7 +6,7 @@
 # between each VLAN.
 #
 require "rexml/document"
-require "utb/failure.rb"
+#require "utb/failure.rb"
 
 module VlanSupport
   class WANLink
