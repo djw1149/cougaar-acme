@@ -22,7 +22,7 @@ class Stress
     @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}/description"].data=desc + 
         " Param=setLevel(25),red,yellow,green,stop"
 
-    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}"].set_proc do |msg,command|
+    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}"].set_proc do | msg, command |
       case command
         when "stop"
           stop()
