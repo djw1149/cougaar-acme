@@ -274,7 +274,7 @@ module UltraLog
                 end
             end
 
-            result,uri = Cougaar::Communications::HTTP.get(@uri)
+            result,uri = Cougaar::Communications::HTTP.get("http://#{host}:#{port}#{@url_fragment}")
             array = []
             result.each_line {|line| array << line.strip}
             result = array.join("\n")
@@ -283,7 +283,8 @@ module UltraLog
             re0_result = re0.match(result)
             form_method = re0_result[1]
             form_action = re0_result[2]
-#            puts "Form params method=#{form_method} action=#{form_action}"
+            
+            #puts "Form params method=#{form_method} action=#{form_action}"
             
             re1 = /<input type=\"hidden\" name=\"(.*)\" value=\"(.*)\">/
             re1_result = re1.match(result)
@@ -305,7 +306,7 @@ module UltraLog
 
             re4 = /<input.*name=\"end_offset\" value=\"(\d*)\".*>/
             @end_offset = re4.match(result)[1].to_i
-#            puts "ORG OP_TEMPO = #{@op_tempo} START = #{@start_offset} END = #{@end_offset}"
+            #puts "ORG OP_TEMPO = #{@op_tempo} START = #{@start_offset} END = #{@end_offset}"
 
             if ( op_tempo != nil )
                @op_tempo = op_tempo
@@ -334,14 +335,14 @@ module UltraLog
             end
 #            puts "NEW OP_TEMPO = #{@op_tempo} START = #{@start_offset} END = #{@end_offset}"
 
-            form_action_uri =  "#{@base_uri}#{form_action}?"
+            form_action_uri =  "http://#{host}:#{port}#{form_action}?"
             hidden_args.each do |key, value| 
                 form_action_uri += "#{key}=#{value}&"
             end
             form_action_uri += "optempo=#{@op_tempo}&start_offset=#{@start_offset}&end_offset=#{@end_offset}"
-#            puts "FORM URI #{form_action_uri}"
+            #puts "FORM URI #{form_action_uri}"
             form_result, uri = Cougaar::Communications::HTTP.get(form_action_uri)
-#            puts form_result
+            #puts form_result
         end	  
     end
      
