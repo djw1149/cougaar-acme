@@ -4,67 +4,96 @@
  xsi:noNamespaceSchemaLocation="society.xsd">
  
   <host name='sa022'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="management"/>
   </host>
   <host name='sa023'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa024'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa025'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa026'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa027'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa028'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa029'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa030'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa031'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa032'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa033'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa034'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa035'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa036'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa037'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa038'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa039'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa040'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa041'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   <host name='sa042'>
-    <facet cip="/mnt/shared/integ03"/>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
+  </host>
+  <host name='sa043'>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
+  </host>
+  <host name='sa044'>
+    <facet cip="/mnt/shared/socA"/>
+    <facet role="node"/>
   </host>
   
 </society>
