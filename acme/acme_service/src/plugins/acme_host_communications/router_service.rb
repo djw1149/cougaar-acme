@@ -32,7 +32,7 @@ class RouterService
     @account = @plugin.properties["account"]
     @host = @plugin.properties["host"]
     @start_router_service = @plugin.properties["start_router_service"]
-    @start_router_service == true if @start_router_service.nil?
+    @start_router_service = true if @start_router_service.nil?
     unless @account
       @account = `hostname`.strip.downcase
     end
