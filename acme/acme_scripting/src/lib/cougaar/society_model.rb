@@ -247,8 +247,8 @@ module Cougaar
     # Holds the model of a host that is part of an experiment
     #
     class Host
-      attr_reader :name, :nodes
-      attr_accessor :society
+      attr_reader :nodes
+      attr_accessor :name, :society
       
       include Attributed
       
@@ -464,6 +464,18 @@ module Cougaar
           @parameters << param
         end
       end
+
+      # Remove a parameter specifically on this node
+      #
+      # param:: [String] the -D param to remove
+      #
+      def remove_parameter(param)
+        o = nil
+        @parameters.each do |orig|
+          o = orig if orig[0..(param.size)]=="#{param}="
+        end
+        @parameters.delete(o) if o
+      end
       
       ##
       # Iterates over each parameter
@@ -581,7 +593,18 @@ module Cougaar
           @components << comp
         end
       end
-      
+
+      ##
+      # Remove a component from this agent
+      #
+      # component:: [String] component class name
+      #
+      def remove_component(classname)
+        each_component do |comp|
+          @components.delete(comp) if classname == comp.classname
+        end
+      end
+
       def each_component
         @components.each {|comp| yield comp}
       end
