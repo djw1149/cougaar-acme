@@ -2431,6 +2431,9 @@
         <facet combat_support='CMD' />
         <facet echelon='JOINT' />
         <facet echelon_group='Conus' />
+        <facet role='ArmyCommander'
+               echelon_of_support='US-ARMY'
+        />
       </agent>
       <agent name='USEUCOM.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>

@@ -159,18 +159,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -189,7 +177,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -197,7 +185,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -390,10 +378,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -632,18 +650,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -662,7 +668,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -670,7 +676,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -863,10 +869,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -1108,18 +1144,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -1138,7 +1162,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -1146,7 +1170,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -1339,10 +1363,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -1584,18 +1638,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -1614,7 +1656,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -1622,7 +1664,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -1815,10 +1857,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CORPS-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CORPS-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CORPS-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CORPS-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -2059,18 +2131,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -2089,7 +2149,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -2097,7 +2157,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -2290,10 +2350,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -2535,18 +2625,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -2565,7 +2643,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -2573,7 +2651,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -2766,10 +2844,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-THEATER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-THEATER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-THEATER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-THEATER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -3014,18 +3122,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -3044,7 +3140,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -3052,7 +3148,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -3245,10 +3341,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-DIVISION-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-DIVISION-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-DIVISION-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-DIVISION-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-DIVISION-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -3491,18 +3617,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -3521,7 +3635,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -3529,7 +3643,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -3722,10 +3836,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -3966,18 +4110,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -3996,7 +4128,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4004,7 +4136,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -4197,10 +4329,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -4441,18 +4603,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -4471,7 +4621,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4479,7 +4629,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -4672,10 +4822,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-THEATER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-THEATER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -4916,18 +5096,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -4946,7 +5114,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4954,7 +5122,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -5147,10 +5315,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -5391,18 +5589,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -5421,7 +5607,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -5429,7 +5615,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -5622,10 +5808,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-THEATER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-THEATER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -5870,18 +6086,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -5900,7 +6104,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -5908,7 +6112,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -6101,10 +6305,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -6345,18 +6579,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -6375,7 +6597,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -6383,7 +6605,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -6576,10 +6798,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-DIVISION-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -6819,18 +7071,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -6849,7 +7089,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -6857,7 +7097,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -7050,10 +7290,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CORPS-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CORPS-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -7293,18 +7563,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -7323,7 +7581,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -7331,7 +7589,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -7524,10 +7782,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -7768,18 +8056,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -7798,7 +8074,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -7806,7 +8082,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -7999,10 +8275,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -8244,18 +8550,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -8274,7 +8568,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -8282,7 +8576,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -8475,10 +8769,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -8719,18 +9043,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -8749,7 +9061,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -8757,7 +9069,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -8950,10 +9262,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-THEATER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-THEATER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -9194,18 +9536,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -9224,7 +9554,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -9232,7 +9562,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -9425,10 +9755,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -9669,18 +10029,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -9699,7 +10047,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -9707,7 +10055,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -9900,10 +10248,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CORPS-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CORPS-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -10148,18 +10526,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -10178,7 +10544,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -10186,7 +10552,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -10379,10 +10745,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-BRIGADE-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-BRIGADE-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-BRIGADE-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-BRIGADE-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-BRIGADE-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-BRIGADE-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-BRIGADE-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-BRIGADE-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-BRIGADE-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-BRIGADE-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -10623,18 +11019,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -10653,7 +11037,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -10661,7 +11045,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -10854,10 +11238,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -11098,18 +11512,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -11128,7 +11530,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -11136,7 +11538,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -11329,10 +11731,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -11572,18 +12004,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -11602,7 +12022,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -11610,7 +12030,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -11803,10 +12223,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -12046,18 +12496,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -12076,7 +12514,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -12084,7 +12522,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -12277,10 +12715,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -12522,18 +12990,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -12552,7 +13008,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -12560,7 +13016,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -12753,10 +13209,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CORPS-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CORPS-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -12997,18 +13483,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -13027,7 +13501,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -13035,7 +13509,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -13228,10 +13702,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CORPS-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CORPS-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -13473,18 +13977,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -13503,7 +13995,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -13511,7 +14003,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -13704,10 +14196,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -13948,18 +14470,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -13978,7 +14488,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -13986,7 +14496,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -14179,10 +14689,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-DIVISION-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-DIVISION-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -14424,18 +14964,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -14454,7 +14982,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -14462,7 +14990,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -14655,10 +15183,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -14898,18 +15456,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -14928,7 +15474,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -14936,7 +15482,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -15129,10 +15675,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -15370,18 +15946,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -15409,10 +15973,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -15611,18 +16205,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -15641,7 +16223,7 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FueConsumerPG)'
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
           class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -15649,7 +16231,7 @@
             SUPPLY_TYPE=BulkPOL
           </argument>
           <argument>
-            SUPPLY_PG_CLASS=FueConsumerPG
+            SUPPLY_PG_CLASS=FuelConsumerPG
           </argument>
         </component>
         <component
@@ -15842,10 +16424,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16083,18 +16695,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -16122,10 +16722,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16320,18 +16950,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -16359,10 +16977,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16556,18 +17204,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.trans.AmmoLowFidelityExpanderPlugin()'
           class='org.cougaar.logistics.plugin.trans.AmmoLowFidelityExpanderPlugin'
           priority='COMPONENT'
@@ -16613,10 +17249,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-JOINT-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-JOINT-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16803,18 +17469,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -16851,10 +17505,40 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17036,18 +17720,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -17093,10 +17765,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17127,6 +17829,7 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
+        <facet echelon_of_support='US-ARMY' role='ArmyCommander'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -17269,18 +17972,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -17308,10 +17999,46 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none,POLICY=ArmyFeedingPolicy.ldm.xml,DESTINATION=Subordinate)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=ArmyFeedingPolicy.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=Subordinate
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17492,18 +18219,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.planning.servlet.BlackboardServletComponent(org.cougaar.glm.servlet.GLMStimulatorServlet,/stimulator)'
-          class='org.cougaar.planning.servlet.BlackboardServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.glm.servlet.GLMStimulatorServlet
-          </argument>
-          <argument>
-            /stimulator
-          </argument>
-        </component>
-        <component
           name='org.cougaar.community.CommunityPlugin()'
           class='org.cougaar.community.CommunityPlugin'
           priority='COMPONENT'
@@ -17531,10 +18246,40 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin()'
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
           class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
