@@ -1,0 +1,11 @@
+####################################################
+# PluginServiceFilter
+
+pluginService = "org.cougaar.core.security.access.PluginServiceFilter"
+
+society.each_agent(true) do |agent|
+  agent.add_component do |c|
+    c.insertionpoint = "Node.AgentManager.Agent.PluginManager.Binder"
+    c.classname = pluginService
+  end
+end

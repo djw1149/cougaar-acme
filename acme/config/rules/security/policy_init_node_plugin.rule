@@ -1,0 +1,11 @@
+####################################################
+# PolicyInitNodePlugin
+
+
+initPlugin = "org.cougaar.core.security.policy.enforcers.init.InitNodePlugin"
+
+society.each_node do |node|
+  node.add_component do |c|
+      c.classname = initPlugin
+  end
+end
