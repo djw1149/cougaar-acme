@@ -2,3 +2,4 @@
 properties: ~
 "|": 
   - runtime_path:  "/export/archive/runtimes"
+  - cache:  "/usr/local/acme/plugins/acme_reporting_core/cache"

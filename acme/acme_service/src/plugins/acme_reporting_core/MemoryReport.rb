@@ -43,10 +43,11 @@ module ACME
       
       MemoryStructure = Struct.new("MemoryStructure", :node_name, :memory, :stage)
 
-      def initialize(archive, plugin, ikko)
+      def initialize(archive, plugin, ikko, cm)
         @archive = archive
         @ikko = ikko
         @plugin = plugin
+        @cm = cm
       end
 
       def perform
@@ -54,17 +55,19 @@ module ACME
         if (!memory_files.empty?) then
           @archive.add_report("Memory", @plugin.plugin_configuration.name) do |report|
             all_data = []
-            all_data << compile_memory_data(memory_files)
+            #get run data from the cache manager for the current run
+            all_data <<  @cm.load(@archive.base_name, ArchiveMemoryData) do |name|
+              compile_memory_data(memory_files)
+            end
 
             avg_files = [@archive.base_name]
             group_pattern = Regexp.new("-#{@archive.group}-")
             @archive.get_prior_archives(60*60*24*365, group_pattern).each do |prior_name|
               avg_files << prior_name
-              prior_archive = @archive.open_prior_archive(prior_name)
-              prior_memory_files = prior_archive.files_with_description(/Memory usage file/)
-              all_data << compile_memory_data(prior_memory_files) unless prior_memory_files.empty?
-              prior_archive.cleanup
+              all_data << get_prior_data(prior_name)
             end
+            all_data.compact!
+
 
             output = html_output(all_data)
             report.open_file("memory.html", "text/html", "Memory Report") do |file|
@@ -83,6 +86,17 @@ module ACME
             report.success
           end
         end
+      end
+
+      def get_prior_data(prior_name)
+        data = @cm.load(prior_name, ArchiveMemoryData) do |name|
+          prior_archive = @archive.open_prior_archive(name)
+          prior_memory_files = prior_archive.files_with_description(/Memory usage file/)
+          tmp =  compile_memory_data(prior_memory_files) unless prior_memory_files.empty?
+          prior_archive.cleanup
+          tmp #black must return object of type ArchiveMemoryData
+        end
+        return data
       end
 
       def compile_memory_data(memory_files)

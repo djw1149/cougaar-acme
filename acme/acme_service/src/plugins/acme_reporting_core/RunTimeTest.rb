@@ -5,10 +5,11 @@ module ACME
     
     class RunTimeTest
   
-      def initialize(archive, plugin, ikko)
+      def initialize(archive, plugin, ikko, cm)
         @archive = archive
         @ikko = ikko
         @plugin = plugin
+        @cm = cm
       end
       
       def perform
@@ -16,14 +17,15 @@ module ACME
           times = []
           run_log = @archive.files_with_name(/run\.log/)[0]
           if run_log
-            times << RunTime.new(run_log.name, @archive.base_name)
+            #get run data from the cache manager for the current run
+            runtime = @cm.load(@archive.base_name, RunTime) do |name|
+              RunTime.new(run_log.name, name)
+            end
+            times << runtime
 
             group_pattern = Regexp.new("-#{@archive.group}-")
-            @archive.get_prior_archives(60*60*24, group_pattern).each do |prior_name|
-              prior = @archive.open_prior_archive(prior_name)
-              run_log = prior.files_with_name(/run\.log/)[0]
-              times << RunTime.new(run_log.name, prior.base_name) if run_log
-              prior.cleanup
+            @archive.get_prior_archives(60*60*24*365, group_pattern).each do |prior_name|
+              times << get_prior_data(prior_name)
             end
   
 
@@ -47,6 +49,17 @@ module ACME
             report.failure
           end
         end
+      end
+
+      def get_prior_data(prior_name)
+        runtime = @cm.load(prior_name, RunTime) do |name|
+          prior = @archive.open_prior_archive(name)
+          run_log = prior.files_with_name(/run\.log/)[0]
+          tmp =  RunTime.new(run_log.name, prior.base_name) if run_log
+          prior.cleanup
+          tmp #block must return object of type RunTime
+        end
+        return runtime
       end
       
       def mean(data)

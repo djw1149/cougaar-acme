@@ -57,17 +57,22 @@ module ACME
 
     class QData
 
-      def initialize(archive, plugin, ikko)
+      def initialize(archive, plugin, ikko, cm)
         @archive = archive
         @plugin = plugin
         @ikko = ikko
+        @cm = cm
       end
       
       def perform
         @archive.add_report("Q", @plugin.plugin_configuration.name) do |report|
           run_log = @archive.files_with_name(/run\.log/)[0]
           if (run_log) then
-            @run_times = RunTime.new(run_log.name, @archive.base_name)
+            #get run data from the cache manager for the current run
+            @run_times = @cm.load(@archive.base_name, RunTime) do |name|
+              RunTime.new(run_log.name, name)
+            end
+
             quiescence_files = @archive.files_with_description(/Log4j node log/)
             data = get_quiescence_times(quiescence_files)
             status = analyze(data)
@@ -164,7 +169,7 @@ module ACME
         ikko_data = {}
         ikko_data["id"]= @archive.base_name
         ikko_data["description_link"] = "qdata_description.html"
-        header_string = @ikko["header_template.html", {"data"=>"Node Name", "option"=>""}]
+        header_string = @ikko["header_template.html", {"data"=>"Agent Name", "option"=>""}]
         run_stages.each do |s|
           header_string << @ikko["header_template.html", {"data"=>s}]
         end
@@ -177,7 +182,7 @@ module ACME
             row_string << @ikko["cell_template.html", {"data"=>node.node, "options"=>"BGCOLOR=FF0000"}]
           end
           run_stages.each do |stage|
-            #Some nodes may have no quiescent data for a stage
+            #Some agents may have no quiescent data for a stage
             #espescially if the run was bad
             #so default total to 0 and be careful with node.stage_data[stage]
             total = Time.at(0).gmtime

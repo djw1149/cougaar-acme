@@ -11,7 +11,6 @@ module ACME
         @start_time = Time.at(0).gmtime
         @end_time = Time.at(0).gmtime
         @name = name
-        @total = nil
       end
       
       def include?(time)
@@ -25,7 +24,6 @@ module ACME
       def total
         return @end_time - @start_time
       end
-
     end
   
     class RunTime
@@ -33,6 +31,7 @@ module ACME
       attr_reader :load_time, :start_time, :stages, :advances, :name
       
       def initialize(run_log, name)
+        @name = name
         pattern_table = {:start_run => /Run:(.*)started/,
                          :load_time_start => /Starting: LoadSocietyFrom(Persistence|XML|Script)/,
                          :load_time_end => /Finished: LoadSociety/,
@@ -47,7 +46,6 @@ module ACME
         current_stage = nil
         start = nil
         reset
-        @name = name
         File.new(run_log).each do |line|
           ts = get_timestamp(line)
           if (md = pattern_table[:start_run].match(line)) then

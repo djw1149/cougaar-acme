@@ -1,3 +1,4 @@
+require "./plugins/acme_reporting_core/CacheManager"
 require "./plugins/acme_reporting_core/RunTimeTest"
 require "./plugins/acme_reporting_core/CompletionTest"
 require "./plugins/acme_reporting_core/QData"
@@ -27,6 +28,7 @@ module ACME
         @reporting = @plugin['/acme/reporting']
         load_template_engine
         @reporting.manager.add_listener(&method(:process_archive))
+        load_cache_manager
       end
       
       def load_template_engine
@@ -34,16 +36,21 @@ module ACME
         @ikko.base_path = File.join(@plugin.plugin_configuration.base_path, "templates")
       end
 
+      def load_cache_manager
+        cache_path = @plugin.properties['cache']
+        @cache_manager = CacheManager.new(cache_path)
+      end
+
       def process_archive(archive)
         puts "Processing an archive #{archive.base_name}"
         begin
           run_log_test(archive)
           puts "Run log"
-          RunTimeTest.new(archive, @plugin, @ikko).perform
+          RunTimeTest.new(archive, @plugin, @ikko, @cache_manager).perform
           puts "Run Time"
           CompletionTest.new(archive, @plugin, @ikko).perform
           puts "Comp"
-          QData.new(archive, @plugin, @ikko).perform
+          QData.new(archive, @plugin, @ikko, @cache_manager).perform
           puts "Q"
           VerifyInventory.new(archive, @plugin, @ikko).perform(0.10, 0.10)
           puts "INV"
@@ -55,10 +62,11 @@ module ACME
           puts "Definition"
           BWUsage.new(archive, @plugin, @ikko).perform
           puts "BWUsage"
-          MemoryReport.new(archive, @plugin, @ikko).perform
+          MemoryReport.new(archive, @plugin, @ikko, @cache_manager).perform
           puts "MEM"
           AgagentReport.new(archive, @plugin, @ikko).perform
           puts "AG"
+          @cache_manager.prune(500*1024*1024) #500 MB cache limit for now
         rescue
           puts $!
           puts $!.backtrace
