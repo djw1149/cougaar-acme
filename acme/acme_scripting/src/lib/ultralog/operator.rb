@@ -39,11 +39,16 @@ module Cougaar
         ]
         @example = "do_action 'ConnectOperatorService', 'sb022'"
       }
-      def initialize(run, host)
+      def initialize(run, host=nil)
         super(run)
         @host = host
       end
       def perform
+        unless @host
+          ohost = @run.society.get_service_host("operator")
+          raise "Could not locate operator host (host with <facet service='operator'/>)" if ohost==nil
+          @host = ohost.host_name
+        end
         operator = ::UltraLog::Operator.from_run(@run, @host)
         result = operator.test
         if result =~ /ERROR SENDING/ || result =~ /Unregistered command/
