@@ -818,11 +818,11 @@ module Cougaar
           o = orig if orig[0..(param.size)]=="#{param}="
         end
         if !o
-          @parameters << "#{param}=#{value}\\;"
+          @parameters << "#{param}=#{value}"
         else
           if !o.include? value
             @parameters.delete(o)
-            @parameters << "#{o}#{value}\\;"
+            @parameters << "#{o}\\;#{value}"
           end
         end
       end
@@ -844,15 +844,15 @@ module Cougaar
           o = orig if orig[0..(param.size)]=="#{param}="
         end
         if !o
-          @parameters << "#{param}=#{value}\\;"
+          @parameters << "#{param}=#{value}"
         else
           if !o.include? value
             property = o.split("=")
-            values = property[1].split(/[\\;\"]/)
+            values = property[1].split(/[\\;]/)
             values.delete_if {|v| v.empty?}
             values.unshift(value)
             @parameters.delete(o)
-            @parameters << "#{property[0]}=#{values.join("\\;")}\\;"
+            @parameters << "#{property[0]}=#{values.join("\\;")}"
           end
         end
       end
