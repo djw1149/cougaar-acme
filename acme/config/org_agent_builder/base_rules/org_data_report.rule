@@ -44,14 +44,24 @@ society.each_agent do |agent|
       # Supply superior relationship as argument
       if agent.get_facet(:superior_org_id)
 	org_id = agent.get_facet(:superior_org_id).to_s
-	org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
-	c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	sup = society.agents[org_id]
+	unless sup == nil
+	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
+	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	else
+	  puts("WARNING: Superior not defined for: #{org_id}")
+	end
       end
       # Also supply SCAs as arguments
       agent.each_facet(:sca_supported_org) do |facet|
 	org_id = facet[:sca_supported_org].to_s
-	org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
-	c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	sup = society.agents[org_id]
+	unless sup == nil 
+	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
+	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	else
+	  puts("WARNING: Superior not defined for: #{org_id}")
+	end
       end
     end
   end
