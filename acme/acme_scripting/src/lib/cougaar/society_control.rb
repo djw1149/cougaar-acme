@@ -36,13 +36,13 @@ module Cougaar
         pids = {}
         xml_model = @run["loader"] == "XML"
         node_type = ""
-        if xml_model
-          node_type = "xml_"
-          @run.society.each_active_host do |host|
-            host.each_node do |node|
-              node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
-              node.add_parameter("-Dorg.cougaar.event.port=5300")
-              node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
+        node_type = "xml_" if xml_model
+        @run.society.each_active_host do |host|
+          host.each_node do |node|
+            node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
+            node.add_parameter("-Dorg.cougaar.event.port=5300")
+            node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
+            if xml_model
               post_node_xml(node)
             end
           end
