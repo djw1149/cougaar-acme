@@ -441,7 +441,7 @@ module Cougaar
       end
       
       archive_file($0, "Main script file")
-      archive_file(run.log, "Log of the run")
+      archive_file("run.log", "Log of the run")
     end
     
     def archive_file(filename, description)
