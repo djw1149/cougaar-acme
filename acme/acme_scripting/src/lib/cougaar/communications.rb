@@ -437,7 +437,7 @@ module Cougaar
         return nil unless uri[0,4]=='http'
         return CURL.get(uri, @@user, @@password, @@certfile, @@certpassword, timeout) if uri[0,5]=='https'
         uri = URI.parse(uri)
-        "HTTP GET: [#{uri.to_s}]" if $COUGAAR_DEBUG
+        puts "HTTP GET: [#{uri.to_s}]" if $COUGAAR_DEBUG
         begin
           c = Net::HTTP.new(uri.host, uri.port)
           c.read_timeout = timeout
