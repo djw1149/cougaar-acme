@@ -47,6 +47,7 @@ class CougaarNode
 
     def initialize(plugin, props_file, initial_props)
       @props_file = props_file
+      @plugin = plugin
       @jvm = @plugin.properties['jvm_path']
       @java_class = nil
       @arguments = nil
@@ -103,10 +104,14 @@ class CougaarNode
     end
     
     def build_command
-      result = 'su -l -c "'
+      prefix = @plugin.properties['node_start_prefix']
+      prefix = '' unless prefix
+      suffix = @plugin.properties['node_start_suffix']
+      suffix = '' unless suffix
+      result = prefix
       @env.each {|var| result << "set #{var};"}
       result << %Q[#{@jvm} #{@options.join(" ")} #{@java_class} #{@arguments}]
-      result << '" asmt'
+      result << suffix
       return result
     end
     
