@@ -186,32 +186,103 @@ module Cougaar
       end
     end
     
+    
     ##
     # Mixin module for components that have attributes
     #
     module Attributed
     
       ##
-      # Add an attribute(s) to the component
-      # 
-      # attribute:: [String|Hash] The attribute(s) to add
+      # The Attribute class holds a collection of key-value pairs so attributes can hold complex data.
       #
-      def add_attribute(attribute)
-        @attributes ||= []
-        if attribute.kind_of?(Hash)
-          attribute.keys.each do |key|
-            unless key.kind_of?(Symbol)
-              raise "Attribute key must be a String or Symbol, not a #{key.class}" unless key.kind_of?(String)
-              mapped_attributes = {}
-              attribute.each_pair { |key, value| mapped_attributes[key.intern] = value }
-              @attributes << mapped_attributes
-              return
+      class Attribute
+  
+        def initialize(data=nil, &block)
+          @map = {}
+          unless data.nil?
+            if data.kind_of?(Hash)
+              data.each_pair { |key, value| self[key] = value }
+            else
+              @map << {:cdata => data}
             end
           end
-          @attributes << attribute
-        else
-          @attributes << {:cdata => attribute}
+          yield self if block_given?
         end
+        
+        ##
+        # Direct method for returning cdata
+        #
+        def cdata
+          return @map[:cdata]
+        end
+        
+        ##
+        # Direct method for setting cdata
+        #
+        def cdata=(value)
+          @map[:cdata] = value
+        end
+        
+        ##
+        # Gets the value of a given attribute key
+        #
+        # key:: [String | Symbol] The attribute key to get
+        # return:: [String] The attribute key's value
+        #
+        def [](key)
+          return @map[make_key(key)]
+        end
+        
+        ##
+        # Sets the value of a given attribute key
+        #
+        # key:: [String | Symbol] The attribute key
+        # value:: [String] The attribute value
+        #
+        def []=(key, value)
+          @map[make_key(key)] = value
+        end
+        
+        ##
+        # Checks to see if the set of keys is a subset of the total set of keys in this attribute
+        #
+        # keys:: [Array[String|Symbol]] Set of keys to match against
+        # return:: [Boolean] true if keys are a subset, otherwise false
+        #
+        def match?(keys)
+          keys = keys.collect { | key | make_key(key) }
+          ((@map.keys & keys).size == keys.size)
+        end
+  
+        ##
+        # Creates a copy of this attribute
+        #
+        def clone
+          return self
+        end
+        
+        private
+        
+        def make_key(key)
+          unless key.kind_of?(String) || key.kind_of?(Symbol)
+            raise "Attribute key must be a String or Symbol, not a #{key.class}" 
+          end
+          key = key.intern if key.kind_of? String
+          return key
+        end
+        
+      end
+    
+      
+      ##
+      # Add an attribute(s) to the component
+      # 
+      # attribute_data:: [String | Hash] The attribute(s) to add
+      #
+      def add_attribute(attribute_data=nil, &block)
+        @attributes ||= []
+        a = Attribute.new(attribute_data, &block)
+        @attributes << a
       end
       
       ##
@@ -222,19 +293,26 @@ module Cougaar
       def each_attribute(*keys)
         return unless @attributes
         @attributes.each do |attribute|
-          if keys
-            yield attribute if (attribute.keys & keys).size == keys.size
-          else
-            yield attribute
-          end
+          yield attribute if attribute.match?(keys)
         end
       end
       
+      ##
+      # Returns the first attribute that contains the specified key name
+      #
+      # name:: [String | Symbol] The attribute key
+      # return:: [String] The attribute key's value
+      #
       def get_attribute(name)
         return nil unless @attributes
-        name = name.intern if name.kind_of?(String)
-        raise "Attribute name must be a String or Symbol, not a #{name.class}" unless name.kind_of?(Symbol)
         each_attribute(name) { | attribute | return attribute[name] }
+      end
+      
+      ##
+      # Removes all attributes on this host, node or agent
+      #
+      def remove_all_attributes
+        @attributes = nil
       end
       
       ##
@@ -850,3 +928,4 @@ module Cougaar
   end # Model
   
 end # Cougaar
+

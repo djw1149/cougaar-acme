@@ -120,10 +120,10 @@ module Cougaar
           society.add_host(host_element.attributes['name']) do |host|
             #add attributes to host
             host_element.elements.each("attribute") do |element|
-              a_map = {}
-              element.attributes.each { |a, v| a_map[a.intern] = v }
-              a_map[:cdata] = element.text.strip if element.text
-              host.add_attribute(a_map)
+              host.add_attribute do |attribute|
+                element.attributes.each { |a, v| attribute[a] = v }
+                attribute.cdata = element.text.strip if element.text
+              end
             end
             host_element.elements.each("node") do |node_element|
               host.add_node(node_element.attributes['name']) do |node|
@@ -131,10 +131,10 @@ module Cougaar
                 node.classname = element.text.strip if element
                 #add attributes to node
                 node_element.elements.each("attribute") do |element|
-                  a_map = {}
-                  element.attributes.each { |a, v| a_map[a.intern] = v }
-                  a_map[:cdata] = element.text.strip if element.text
-                  node.add_attribute(a_map)
+                  node.add_attribute do |attribute|
+                    element.attributes.each { |a, v| attribute[a] = v }
+                    attribute.cdata = element.text.strip if element.text
+                  end
                 end
                 #add parameters to node
                 node_element.elements.each("vm_parameter") do |element|
@@ -168,10 +168,10 @@ module Cougaar
                     agent.classname = agent_element.attributes['class']
                     #add attributes to agent
                     agent_element.elements.each("attribute") do |element|
-                      a_map = {}
-                      element.attributes.each { |a, v| a_map[a.intern] = v }
-                      a_map[:cdata] = element.text.strip if element.text
-                      agent.add_attribute(a_map)
+                      agent.add_attribute do |attribute|
+                        element.attributes.each { |a, v| attribute[a] = v }
+                        attribute.cdata = element.text.strip if element.text
+                      end
                     end
                     
                     #add components to agent
