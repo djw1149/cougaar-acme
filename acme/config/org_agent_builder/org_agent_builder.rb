@@ -131,20 +131,16 @@ end
 
 class SocietyGenerator
 
-  XML_HEADER = %Q{
-<?xml version="1.0"?>
+  XML_HEADER = %Q{<?xml version="1.0"?>
 <society name='JEFF-BERLINER-PROTO'
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
   <host name='localhost'>
-    <node name='localnode'>
-  }
+    <node name='localnode'>}
   
-  XML_FOOTER = %Q{
-    </node>
+  XML_FOOTER = %Q{    </node>
   </host>
-</society>
-  }
+</society>}
   
   attr_reader :organizations, :org_id_list, :society_member_file, :society_member, :society_file
   
