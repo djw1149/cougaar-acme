@@ -83,7 +83,7 @@ module Cougaar
         ]
         @example = "do_action 'StartJabberCommunications', 'acme_console', 'myjabberserver'"
       }
-      def initialize(run, username="acme_console", server="acme", pwd="c0ns0le")
+      def initialize(run, username="acme_console", server=nil, pwd="c0ns0le")
         super(run)
         @username = username
         @server = server
@@ -93,6 +93,15 @@ module Cougaar
         return super.to_s + "('#{@username}', '#{@server}', '#{@pwd}')"
       end
       def perform
+        unless @server
+          ohost = @run.society.get_service_host("jabber")
+          if ohost==nil
+            puts "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
+            @host = 'acme'
+          else
+            @host = ohost.host_name
+          end
+        end
         @run.comms = Cougaar::Communications::JabberMessagingService.new(@run) do |jabber|
           jabber.username = @username
           jabber.password = @pwd
