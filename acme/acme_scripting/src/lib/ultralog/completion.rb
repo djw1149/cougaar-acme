@@ -64,6 +64,7 @@ module Cougaar
       end
       def perform
         agent_list = []
+        total_tasks = 0 
         @run.society.each_agent {|agent| agent_list << agent.name}
         agent_list.sort!
         xml = "<CompletionSnapshot>\n"
@@ -72,6 +73,7 @@ module Cougaar
             stats = ::UltraLog::Completion.status(@run.society.agents[agent])
             if stats
               xml += stats.to_s
+              total_tasks = total_tasks + stats.total
             else
               xml += "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
               @run.error_message "Error accessing completion data for Agent #{agent}."
@@ -81,6 +83,7 @@ module Cougaar
             @run.error_message "Error parsing completion data for Agent #{agent}."
           end
         end
+        xml += "<TotalSocietyTasks>" + total_tasks.to_s + "</TotalSocietyTasks>\n"
         xml += "</CompletionSnapshot>"
         save(xml)
       end
