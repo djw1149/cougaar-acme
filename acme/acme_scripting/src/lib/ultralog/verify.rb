@@ -28,6 +28,7 @@ module Cougaar
          tasks = element.text.to_i         
       }
 
+      @run.info "Checking #{@agent} for #{@tasks} tasks.  Found #{tasks}"
       if (tasks < @tasks) 
         handle_timeout
         @sequence.interrupt
