@@ -204,7 +204,7 @@ module UltraLog
     # The statistics class holds the results of a completion query
     #
     class Statistics
-      attr_reader :agent, :time, :total, :unplanned, :unestimated, :unconfident, :failed
+      attr_reader :agent, :time, :total, :unplanned, :unestimated, :unconfident, :failed, :rootPS, :rootSupply, :rootTrans
       
       ##
       # Parses the supplied XML data into the statistics attributed
@@ -226,6 +226,9 @@ module UltraLog
         @unestimated = root.elements["NumUnestimatedTasks"].text.to_i
         @unconfident = root.elements["NumUnconfidentTasks"].text.to_i
         @failed = root.elements["NumFailedTasks"].text.to_i
+        @rootPS = root.elements["NumRootProjectSupplyTasks"].text.to_i
+        @rootSupply = root.elements["NumRootSupplyTasks"].text.to_i
+        @rootTransport = root.elements["NumRootTransportTasks"].text.to_i
       end
       
       ##
@@ -261,6 +264,9 @@ module UltraLog
         s << "  <NumUnestimatedTasks>#{@unestimated}</NumUnestimatedTasks>\n"
         s << "  <NumUnconfidentTasks>#{@unconfident}</NumUnconfidentTasks>\n"
         s << "  <NumFailedTasks>#{@failed}</NumFailedTasks>\n"
+        s << "  <NumRootProjectSupplyTasks>#{@rootPS}</NumRootProjectSupplyTasks>\n"
+        s << "  <NumRootSupplyTasks>#{@rootSupply}</NumRootSupplyTasks>\n"
+        s << "  <NumRootTransportTasks>#{@rootTransport}</NumRootTransportTasks>\n"
         s << "</SimpleCompletion>\n"
       end
       
