@@ -164,7 +164,7 @@ module ACME
         ikko_data = {}
         ikko_data["id"]= @archive.base_name
         ikko_data["description_link"] = "qdata_description.html"
-        header_string = @ikko["header_template.html", {"data"=>"Agent Name", "option"=>""}]
+        header_string = @ikko["header_template.html", {"data"=>"Node Name", "option"=>""}]
         run_stages.each do |s|
           header_string << @ikko["header_template.html", {"data"=>s}]
         end
@@ -177,7 +177,7 @@ module ACME
             row_string << @ikko["cell_template.html", {"data"=>node.node, "options"=>"BGCOLOR=FF0000"}]
           end
           run_stages.each do |stage|
-            #Some agents may have no quiescent data for a stage
+            #Some nodes may have no quiescent data for a stage
             #espescially if the run was bad
             #so default total to 0 and be careful with node.stage_data[stage]
             total = Time.at(0).gmtime
