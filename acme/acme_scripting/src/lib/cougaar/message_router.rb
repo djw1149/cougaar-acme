@@ -7,7 +7,7 @@ module InfoEther
   module MessageRouter
   
     DEFAULT_PORT = 6667
-    DEBUG = false
+    DEBUG = true
     if DEBUG
       Thread.abort_on_exception=true
     end
@@ -178,6 +178,7 @@ module InfoEther
         Message.new(@socket_handler) do |m|
           m.to = to
           m.from = @name
+          m.thread = @name+"_"+Message.next_thread
         end
       end
       
