@@ -223,7 +223,8 @@ module UltraLog
     
     def send_command(command, timeout, params="")
       @run.info_message "Sending Operator Command: command[#{command}]#{params}"
-      reply = @run.comms.new_message("#{@host}@#{@run.comms.jabber_server}/acme").set_body("command[#{command}]#{params}").request(timeout)
+      chost = @run.society.hosts[@host]
+      reply = @run.comms.new_message(chost).set_body("command[#{command}]#{params}").request(timeout)
       if reply.nil?
         @run.error_message "ERROR SENDING: command[#{command}]#{params}" 
         raise "Operator service timeout or failed connection."

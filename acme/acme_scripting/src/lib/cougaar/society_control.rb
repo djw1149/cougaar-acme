@@ -39,7 +39,7 @@ module Cougaar
         host.each_node do |node|
           node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
           node.add_parameter("-Dorg.cougaar.event.port=5300")
-          node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.comms.local_hostname}-#{@run.name}")
+          node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.comms.experiment_name}")
         end
       end
     end

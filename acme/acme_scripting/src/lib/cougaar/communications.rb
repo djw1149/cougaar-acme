@@ -19,7 +19,6 @@
 # </copyright>
 #
 
-require 'jabber4r/jabber4r'
 require 'uri'
 require 'timeout'
 require 'net/http'
@@ -74,6 +73,49 @@ module Cougaar
   
   module Actions
   
+    class StartMessageRouterCommunications < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      RESULTANT_STATE = "CommunicationsRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts the message router communications subsystem."
+        @parameters = [
+          {:server => "default=<message-router/jabber facet>, The message router server."},
+          {:port => "default=<MessageRouter::DEFAULT_PORT>, The message router port."}
+        ]
+        @example = "do_action 'StartMessageRouterCommunications', 7777"
+      }
+      
+      def initialize(run, server=nil, port=nil) 
+        require 'message_router'
+        super(run)
+        @server = server
+        @port = port
+      end
+      
+      def to_s
+        return super.to_s + "(#{@port})"
+      end
+      
+      def perform
+         unless @server
+          ohost = @run.society.get_service_host("message-router")
+          if ohost==nil
+            ohost = @run.society.get_service_host("jabber")
+          end
+          if ohost==nil
+            @run.info_message "Could not locate message router service host (host with <facet service='message-router|jabber'/>)...defaulting to 'acme'"
+            @server = 'acme'
+          else
+            @server = ohost.host_name
+          end
+        end
+     
+        @run.comms = Cougaar::Communications::MessageRouterClient.new(@run, @server, @port)
+        @run.comms.start
+      end
+      
+    end
+  
     class StartJabberCommunications < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
       RESULTANT_STATE = "CommunicationsRunning"
@@ -81,7 +123,7 @@ module Cougaar
         @description = "Starts the Jabber communications subsystem and connects to the Jabber server."
         @parameters = [
           {:username => "default='acme_console', The username of the account used to control the experiment."},
-          {:server => "default='acme', The Jabber server name."},
+          {:server => "default=<jabber facet or nil>, The Jabber server name."},
           {:pwd => "default='c0ns0le', The password for the Jabber account."}
         ]
         @example = "do_action 'StartJabberCommunications', 'acme_console', 'myjabberserver'"
@@ -94,16 +136,16 @@ module Cougaar
         @username = username
         @server = server
         @pwd = pwd
+        require 'jabber4r/jabber4r'
       end
+      
       def to_s
         return super.to_s + "('#{@username}', '#{@server}', '#{@pwd}')"
       end
+      
       def perform
         unless @server
           ohost = @run.society.get_service_host("jabber")
-          if ohost==nil
-            ohost = @run.society.get_service_host("Jabber")
-          end
           if ohost==nil
             @run.info_message "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
             @server = 'acme'
@@ -111,7 +153,7 @@ module Cougaar
             @server = ohost.host_name
           end
         end
-        @run.comms = Cougaar::Communications::JabberMessagingService.new(@run) do |jabber|
+        @run.comms = Cougaar::Communications::JabberMessagingClient.new(@run) do |jabber|
           jabber.username = @username
           jabber.password = @pwd
           jabber.jabber_server = @server
@@ -241,58 +283,20 @@ module Cougaar
   end
 
   module Communications
-  
-    class Message
-      attr_accessor :subject, :thread, :body
-      def initialize(sender)
-        @sender = sender
-      end
-      def set_subject(subject)
-        @subject = subject
-      end
-      
-      def set_body(body)
-        @body = body
-      end
-      
-      def request(ttl = nil, &block)
-        send(true, ttl, &block)
-      end
-      
-      def send(sync = false, ttl = nil)
-        @sender.send(self, sync)
-      end
-      
-      def reply
-        m = Message.new(@sender)
-        m.thread = @thread
-        m
-      end
-    end
+
+    class MessagingClient
     
-    class JabberMessagingService
-      JABBER_RETRY_COUNT = 5
-      JABBER_RETRY_DELAY = 5 # seconds
-      attr_reader :acme_session, :pids, :local_hostname
-      attr_writer :password
-      attr_accessor :username, :jabber_server
+      attr_reader :local_hostname, :experiment_name
       
       def initialize(run)
         @run = run
         @experiment = run.experiment
-        yield self if block_given?
-        @retry_count = JABBER_RETRY_COUNT unless @retry_count
         @event_listeners = {}
+        @commands = {}
+        @command_help = {}
         @listener_count = 0
         @local_hostname = `hostname`.strip
-        @resource_id = "expt-#{@local_hostname}-#{@run.name}"
-      end
-      
-      def stop
-        if @acme_session
-          @acme_session.close
-          @acme_session = nil
-        end
+        @experiment_name = "#{@local_hostname}-#{@run.name}"
       end
       
       def verify
@@ -302,48 +306,6 @@ module Cougaar
             raise "Could not access host: #{host.host_name}"
           end
         end
-      end
-
-      def start
-        @retry_count.times do |i|
-          begin
-            @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/#{@resource_id}", @password)
-            @acme_session.on_session_failure do
-              Cougaar.logger.error "Session to Jabber interrupted...preparing to retry connection"
-              @acme_session.close
-              @acme_session = nil
-              start
-            end
-            # Listen for CougaarEvent messsages
-            @acme_session.add_message_listener do |message|
-              if message.subject=="COUGAAR_EVENT" && message.to.resource==@resource_id
-                begin 
-                  event = Cougaar::CougaarEvent.new
-                  event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("`")
-                  event.data = event.data.unpack("m")[0].gsub(/\&amp\;/, '&').gsub(/\&lt\;/, "<").gsub(/\&quot\;/, '"').gsub(/\&gt\;/, ">")
-                rescue Exception => exc
-                  @run.error_message "Exception from bad event: #{exc}"
-                  @run.error_message "    event was: #{event}"
-                end
-                @event_listeners.each_value do |listener| 
-                  begin
-                    listener.call(event)
-                  rescue
-                    @run.error_message "Exception in Cougaar Event listener: #{$!}"
-                    @run.error_message "    for event: #{event}"
-                  end
-                end
-              end
-            end
-            # Listen for command[cmd] messages
-            add_command_listener
-            return
-          rescue
-            Cougaar.logger.error "Cannot connect to Jabber...retrying #{JABBER_RETRY_COUNT-i+1} more time(s)\n#{$!}\n#{$!.backtrace}"
-            sleep JABBER_RETRY_DELAY
-          end
-        end
-        raise "Could not connect to Jabber server"
       end
       
       def add_command(command, help="No help available", &block)
@@ -356,9 +318,7 @@ module Cougaar
         @command_help.delete(command)
       end
       
-      def add_command_listener
-        @commands = {}
-        @command_help = {}
+      def add_base_commands
         add_command("hostname", "Return hostname") do |message, params|
           message.reply.set_body(@local_hostname).send
         end
@@ -371,30 +331,10 @@ module Cougaar
         add_command("help", "Display this help list") do |message, params|
           result = "Command List:\n"
           @commands.keys.sort.each { |cmd| result << "command[#{cmd}] #{@command_help[cmd]}\n" }
-          message.reply.set_body(result)
+          message.reply.set_body(result).send
         end
+      end
 
-        @acme_session.add_message_listener do |message|
-          md = /command\[([^\]]*)\](.*)/.match(message.body)
-          if md
-            command = md[1]
-            params = md[2]
-            if @commands.has_key? command
-              @commands[command].call(message, params)
-            else
-              message.reply.set_body("Unknown command [#{command}]").send
-            end
-          end
-        end
-      end
-      
-      def new_message(to)
-        if to.kind_of?(Cougaar::Model::Host)
-          to = "#{to.host_name}@#{@jabber_server}/acme"
-        end
-        @acme_session.new_chat_message(to)
-      end
-      
       ##
       # Register a block to process CougaarEvent objects
       #
@@ -410,6 +350,139 @@ module Cougaar
         @event_listeners.delete(num)
       end
       
+      def monitor_cougaar_events
+        add_message_listener do |message|
+          if message.subject=="COUGAAR_EVENT"
+            if message.to.kind_of?(String) || message.to.resource==@resource_id
+              begin 
+                event = Cougaar::CougaarEvent.new
+                event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("`")
+                event.data = event.data.unpack("m")[0].gsub(/\&amp\;/, '&').gsub(/\&lt\;/, "<").gsub(/\&quot\;/, '"').gsub(/\&gt\;/, ">")
+              rescue Exception => exc
+                @run.error_message "Exception from bad event: #{exc}"
+                @run.error_message "    event was: #{event}"
+              end
+              @event_listeners.each_value do |listener| 
+                begin
+                  listener.call(event)
+                rescue
+                  @run.error_message "Exception in Cougaar Event listener: #{$!}"
+                  @run.error_message "    for event: #{event}"
+                end
+              end
+            end
+          end 
+        end
+      end
+      
+      def monitor_commands
+        add_message_listener do |message|
+          md = /command\[([^\]]*)\](.*)/.match(message.body)
+          if md
+            command = md[1]
+            params = md[2]
+            if @commands.has_key? command
+              @commands[command].call(message, params)
+            else
+              message.reply.set_body("Unknown command [#{command}]").send
+            end
+          end
+        end
+      end
+      
+      def new_message(to)
+        raise "#{self.class} does not implement new_message"
+      end
+
+      def add_message_listener(message)
+        raise "#{self.class} does not implement add_message_listener"
+      end
+
+    end
+    
+    class MessageRouterClient < MessagingClient
+    
+      def initialize(run, server, port=nil)
+        super(run)
+        @server = server
+        @port = port ? port : InfoEther::MessageRouter::DEFAULT_PORT
+      end
+      
+      def start
+        @client = InfoEther::MessageRouter::Client.new(@experiment_name, @server, @port)
+        monitor_cougaar_events
+        monitor_commands
+      end
+      
+      def stop
+        @client.stop
+      end
+      
+      def add_message_listener(&block)
+        @client.add_message_listener(&block)
+      end
+      
+      def new_message(to)
+        if to.kind_of?(Cougaar::Model::Host)
+          to = to.host_name
+        end
+        @client.new_message(to)
+      end 
+      
+    end
+    
+    class JabberMessagingClient < MessagingClient
+      JABBER_RETRY_COUNT = 5
+      JABBER_RETRY_DELAY = 5 # seconds
+      attr_reader :acme_session, :pids
+      attr_writer :password
+      attr_accessor :username, :jabber_server
+      
+      def initialize(run)
+        super(run)
+        yield self if block_given?
+        @retry_count = JABBER_RETRY_COUNT unless @retry_count
+        @resource_id = "expt-#{@experiment_name}"
+      end
+      
+      def start
+        @retry_count.times do |i|
+          begin
+            @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/#{@resource_id}", @password)
+            @acme_session.on_session_failure do
+              Cougaar.logger.error "Session to Jabber interrupted...preparing to retry connection"
+              @acme_session.close
+              @acme_session = nil
+              start
+            end
+            monitor_cougaar_events # Listen for CougaarEvent messsages
+            monitor_commands # Listen for command[cmd] messages
+            return
+          rescue
+            Cougaar.logger.error "Cannot connect to Jabber...retrying #{JABBER_RETRY_COUNT-i+1} more time(s)\n#{$!}\n#{$!.backtrace}"
+            sleep JABBER_RETRY_DELAY
+          end
+        end
+        raise "Could not connect to Jabber server"
+      end     
+      
+      def stop
+        if @acme_session
+          @acme_session.close
+          @acme_session = nil
+        end
+      end
+      
+      def add_message_listener(&block)
+        @acme_session.add_message_listener(&block)
+      end
+      
+      def new_message(to)
+        if to.kind_of?(Cougaar::Model::Host)
+          to = "#{to.host_name}@#{@jabber_server}/acme"
+        end
+        @acme_session.new_chat_message(to)
+      end
     end
   
     class HTTP

@@ -70,9 +70,7 @@ module Cougaar
           begin
             monitor.notify(notification)
           rescue
-            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Got exception notifying #{monitor}"))
-            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{$!}"))
-            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{$!.backtrace.join("\n")}"))
+            #ignore notification failures
           end
         end
       end
@@ -300,7 +298,16 @@ module Cougaar
     def define_parameter(name, description=nil)
       @parameters << Parameter.new(name, description)
     end
-    
+
+    def parameter_map
+      map = {}
+      @parameters.each_with_index do |param, index|
+        map[index] = param.value
+        map[param.name.intern] = param.value
+      end
+      map
+    end
+
     def set_parameter(name, value)
       @parameters << Parameter.new(name, nil, value)
     end
@@ -347,10 +354,6 @@ module Cougaar
       use_cases = map['use_cases']
       use_cases.each {|uc| expt.use_cases << uc} if use_cases
       expt
-    end
-    
-    def self.from_xml(xml)
-      # TO DO
     end
     
     def self.register(file)
@@ -475,12 +478,16 @@ module Cougaar
       @include_stack = []
       @archive_entries = []
       if ExperimentDefinition.current
-        @include_stack.push(ExperimentDefinition.current.script.parameters.collect {|param| param.value})
+        @include_stack.push(ExperimentDefinition.current.script.parameter_map)
       else
         @include_stack.push ARGV.clone
       end
-      
-      archive_file($0, "Main script file")
+      if ExperimentDefinition.current 
+        archive_file($0, "Experiment definition file")
+        archive_file(ExperimentDefinition.current.script.script, "Main script file")
+      else 
+        archive_file($0, "Main script file")
+      end
       archive_file("run.log", "Log of the run")
     end
     
@@ -524,10 +531,15 @@ module Cougaar
         File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
         `tar -czf #{archive_filename+".tgz"} -T #{archive_filename+".filelist"} &> /dev/null`
         #cleanup
-        @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove }
+        @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove &&  File.exist?(entry.file)}
         File.delete archive_filename+".filelist"
         if @on_archive_block
-          @on_archive_block.call(self, archive_filename+".tgz")
+          begin
+            @on_archive_block.call(self, archive_filename+".tgz")
+          rescue
+            puts $!
+            puts $!.backtrace.join("\n")
+          end
         end
       end
     end
@@ -561,7 +573,7 @@ module Cougaar
       instance_eval &proc
       if ExperimentDefinition.current
         ExperimentDefinition.current.include_scripts.each do |include_script|
-          include(include_script.script, *(include_script.parameters.collect {|param| param.value}))
+          include(include_script.script, include_script.parameter_map)
         end
       end
     end
@@ -581,6 +593,7 @@ module Cougaar
     end
     
     def include(file, *include_args)
+      include_args = include_args[0] if include_args.size==1 && include_args[0].kind_of?(Hash)
       @include_stack.push include_args
       raise "Cannot find file to include: #{file}" unless File.exist?(file)
       archive_file(file, "File included in script #{$0}.")
@@ -1038,13 +1051,15 @@ module Cougaar
       @root_exception = root_exception
     end
     
-    def To_s
-      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("ActionFailure for action: #{@action.class}"))
-      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{message}"))      
+    def to_s
       if @root_exception
-        ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("EXCEPTION REPORT: \n#{@root_exception}"))      
-        ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{@root_exception.backtrace.join("\n")}"))
+        result = "EXCEPTION REPORT: \n#{@root_exception}"      
+        result << "#{@root_exception.backtrace.join("\n")}"
+      else
+        result = "ActionFailure for action: #{@action.class}"
+        result << @message
       end
+      result
     end
   end
   
