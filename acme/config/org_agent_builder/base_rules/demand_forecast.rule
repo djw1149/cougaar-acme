@@ -36,6 +36,8 @@ society.each_agent do |agent|
 	  c.add_argument('SUPPLY_PG_CLASS=FuelConsumerPG')
 	else
 	  c.add_argument('SUPPLY_PG_CLASS=com.bbn.fcss.ldm.asset.FuelConsumerPG')
+	  # Task scheduler does not seem to work with UA agents
+	  c.add_argument('TASK_SCHEDULER_OFF=True')
 	end
       end
     end
@@ -47,7 +49,7 @@ society.each_agent do |agent|
 	c.add_argument('SUPPLY_PG_CLASS=PackagedPOLConsumerPG')
       end
     end
-    # Only non-UA agents get teh Consumable
+    # Only non-UA agents get the Consumable
     unless agent.get_facet(:is_ua)
       agent.add_component do |c| 
 	c.classname = demand_forecast_plugin
