@@ -55,6 +55,9 @@ class XMLCougaarNode
 
   def makeFileName(basename)
     tmpdir = @config_mgr.tmp_dir
+    if tmpdir[0,1] != File::SEPARATOR
+      tmpdir = File.join(@config_mgr.cougaar_install_path, tmpdir)
+    end
     if (File.exist?(tmpdir) && File.ftype(tmpdir) == "directory")
       filename = File.join(tmpdir, basename)
     else

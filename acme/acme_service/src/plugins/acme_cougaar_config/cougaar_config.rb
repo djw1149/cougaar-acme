@@ -139,7 +139,7 @@ class CougaarConfig
     @cmd_user = "" unless @cmd_user
     @cmd_prefix = "" unless @cmd_prefix
     @cmd_suffix = "" unless @cmd_suffix
-    @tmp_dir = File.join("", "tmp") unless @tmp_dir
+    @tmp_dir = File.join("configs", "nodes") unless @tmp_dir
   end
   
   def cmd_wrap(cmd)
