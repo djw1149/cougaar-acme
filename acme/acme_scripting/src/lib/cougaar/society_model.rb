@@ -986,7 +986,7 @@ module Cougaar
       #
       def add_component(component=nil, &block)
         if component.kind_of? Component
-          if has_component?(component.name)
+          if has_component?(component)
             return nil # components must have unique names agent wide
           end
           component.agent = self
@@ -995,7 +995,7 @@ module Cougaar
           component
         else
           comp = Component.new(component, &block)
-          if has_component?(comp.name)
+          if has_component?(comp)
             return nil # components must have unique names agent wide
           end
           comp.agent = self
@@ -1023,10 +1023,15 @@ module Cougaar
         @components.each {|comp| yield comp}
       end
       
-      def has_component?(name=nil, &block)
-        if name
+      def has_component?(component=nil, &block)
+        if component.kind_of?(String)
           each_component do |comp|
-            return true if comp.name == name
+            return true if comp.name == component
+          end
+          return false
+        else
+          each_component do |comp|
+            return true if comp == component
           end
           return false
         end
@@ -1120,7 +1125,7 @@ module Cougaar
         @arguments = []
         yield self if block_given?
         if @name.nil?
-          @name = @classname + "(" + @arguments.join(",") + ")"
+          @name = self.comparison_name
         end
         if @priority.nil?
           priority_component
@@ -1141,7 +1146,14 @@ module Cougaar
       def insertionpoint_plugin
         @insertionpoint = PLUGIN   
       end
-        
+      
+      def ==(component)
+        return component.comparison_name == self.comparison_name
+      end
+      
+      def comparison_name
+        "#{@classname}(#{@arguments.join(',')})"
+      end
       
       ##
       # Add and argument to this component
