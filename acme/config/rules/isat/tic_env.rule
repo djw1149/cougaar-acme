@@ -1,4 +1,4 @@
-
+# Configure nodes and agents for the TIC environment
 society.each_node do |node|
     node.add_prog_parameter("org.cougaar.core.node.Node") unless node.prog_parameters.include?("org.cougaar.core.node.Node")
     
