@@ -48,14 +48,14 @@ module UltraLog
           req = Net::HTTP::Get.new("/$NCA/glsreply?command=connect")
           Cougaar::Communications::HTTP.authenticate_request(req)
           @gls_connection.request(req) do |resp|
-            puts "#{resp.code} #{resp.message}"
+            #puts "#{resp.code} #{resp.message}"
             return connect(resp['location']) if resp.code=='302'
             @gls_connected = true
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
 ###	    @run.info_message "Set gls_connected"
             resp.read_body do |data|
-              puts "DATA: #{CGI.escape(data)}"
+              #puts "DATA: #{CGI.escape(data)}"
               data.each_line do |line|
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
@@ -193,7 +193,6 @@ module Cougaar
 	
         until gls_client.can_get_oplan?
           sleep 2
-          puts "Sleeping in gls_client.can_get_oplan?"
         end
 
 	# On rehydrate we may already have the opinfo stuff, so
