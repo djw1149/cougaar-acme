@@ -19,6 +19,3 @@ end
 
 file = File.join(ENV['CIP'], 'csmart', 'lib', 'isat', 'datagrabber_include.rb')
 include file, {:location => :datagrabber_here}
-
-file = File.join(ENV['CIP'], 'csmart', 'assessment', 'assess', 'cnccalc_include.rb')
-include file, {:location => :cnccalc_here}
