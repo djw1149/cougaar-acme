@@ -65,6 +65,9 @@ module Cougaar
       def perform
         agent_list = []
         total_tasks = 0 
+        total_root_PS = 0
+        total_root_supply = 0
+        total_root_trans = 0
         @run.society.each_agent {|agent| agent_list << agent.name}
         agent_list.sort!
         xml = "<CompletionSnapshot>\n"
@@ -73,7 +76,10 @@ module Cougaar
             stats = ::UltraLog::Completion.status(@run.society.agents[agent])
             if stats
               xml += stats.to_s
-              total_tasks = total_tasks + stats.total
+              total_tasks = total_tasks + stats.total.to_i
+              total_root_PS = total_root_PS + stats.rootPS.to_i
+              total_root_supply = total_root_supply + stats.rootSupply.to_i
+              total_root_trans = total_root_trans + stats.rootTransport.to_i
             else
               xml += "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
               @run.error_message "Error accessing completion data for Agent #{agent}."
@@ -84,6 +90,9 @@ module Cougaar
           end
         end
         xml += "<TotalSocietyTasks>" + total_tasks.to_s + "</TotalSocietyTasks>\n"
+        xml += "<TotalRootPSTasks>" + total_root_PS.to_s + "</TotalRootPSTasks>\n"
+        xml += "<TotalRootSupplyTasks>" + total_root_supply.to_s + "</TotalRootSupplyTasks>\n"
+        xml += "<TotalRootTransportTasks>" + total_root_trans.to_s + "</TotalRootTransportTasks>\n"
         xml += "</CompletionSnapshot>"
         save(xml)
       end
@@ -204,7 +213,7 @@ module UltraLog
     # The statistics class holds the results of a completion query
     #
     class Statistics
-      attr_reader :agent, :time, :total, :unplanned, :unestimated, :unconfident, :failed, :rootPS, :rootSupply, :rootTrans
+      attr_reader :agent, :time, :total, :unplanned, :unestimated, :unconfident, :failed, :rootPS, :rootSupply, :rootTransport
       
       ##
       # Parses the supplied XML data into the statistics attributed
