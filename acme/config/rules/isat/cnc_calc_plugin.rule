@@ -10,6 +10,11 @@ exclude_array = %w{ TRANSCOM GlobalAir PlanePacker GlobalSea ShipPacker TheaterG
                                 CONUSGround SCmrmanager ChallengeRover ChallengeRoverController 
                                 ChallengeMsgRover ChallengeMsgRoverController }
 
+society.each_node do |node|
+  node.override_parameter("org.cougaar.core.logging.log4j.appender.A4.File", "/tmp/#{node.name}.CnCcalclog")
+  node.override_parameter("com.stdc.CnCcalc.config.filename", "CnCcalc.props")
+end
+
 society.each_agent do |agent|
   if agent.name =~ /.*Manager.*/ # don't apply if agent name contains "Manager"
     break
