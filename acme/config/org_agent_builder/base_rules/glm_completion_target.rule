@@ -1,0 +1,15 @@
+####################################################
+# Rule to insert GLMCompletionTargetPlugin
+# 
+# UA: plugin = org.cougaar.glm.plugin.completion.GLMCompletionTargetPlugin
+
+
+glm_completion_target = "org.cougaar.glm.plugin.completion.GLMCompletionTargetPlugin"
+
+society.each_agent do |agent|
+  if agent.get_facet(:is_ua)
+    agent.add_component do |c|
+      c.classname = glm_completion_target
+    end
+  end
+end
