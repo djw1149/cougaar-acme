@@ -37,11 +37,13 @@ public class RefreshAlarm implements PeriodicAlarm {
 	}
 
 	public void setData( byte data[] ) {
-		this.data = data;	
+		this.data = data;
+		System.gc();	
 	}
 	
 	public void free() {
 		data = new byte[0];
+		System.gc();
 	}
 	/**
 	 * @see org.cougaar.core.agent.service.alarm.Alarm#expire()
