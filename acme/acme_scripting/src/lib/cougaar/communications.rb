@@ -316,7 +316,7 @@ module Cougaar
         return nil if uri.nil?
         return nil unless uri[0,4]=='http'
         uri = URI.parse(uri)
-puts "HTTP GET: [#{uri.to_s}]"
+        "HTTP GET: [#{uri.to_s}]" if $COUGAAR_DEBUG
         begin
           c = Net::HTTP.new(uri.host, uri.port)
           c.read_timeout = timeout
@@ -326,7 +326,7 @@ puts "HTTP GET: [#{uri.to_s}]"
           authenticate_request(req)
           resp = c.request req
           return get(resp['location']) if resp.code=="302"
-puts "RESPONSE: [#{resp.body}]"
+          puts "RESPONSE: [#{resp.body}]" if $COUGAAR_DEBUG
           return resp.body, uri
         rescue
           puts "Cougaar::Util exception #{$!}"
