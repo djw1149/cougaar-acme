@@ -1,0 +1,18 @@
+####################################################
+# Rule to insert SDRegistrationPlugin and SDClientPlugin
+#   at every agent so providers can register and customers can find providers
+#
+# plugin = org.cougaar.servicediscovery.plugin.SDRegistrationPlugin
+# plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin
+
+sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
+sd_client_plugin = "org.cougaar.servicediscovery.plugin.SDClientPlugin"
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = sd_registration_plugin
+  end
+  agent.add_component do |c|
+    c.classname = sd_client_plugin
+  end
+end
