@@ -1,5 +1,5 @@
 ####################################################
-# Rule to insert the time control servlet
+# Rule to set the port numbers on the nodes
 
 
 society.each_host do |host|
