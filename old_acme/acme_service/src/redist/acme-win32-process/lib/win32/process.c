@@ -328,7 +328,7 @@ VALUE process_get_stderr(VALUE module, VALUE rbArgs){
   VALUE ret;
   char buf[4096];
   int bytes;
-  void *ptr = (void *)NUM2UINT(rbArgs);
+  unsigned int ptr = NUM2UINT(rbArgs);
   
   ret = rb_str_new2("");
   while ((bytes = GetStderr(ptr, buf, sizeof(buf))) > 0) {
@@ -342,7 +342,7 @@ VALUE process_get_stdout(VALUE module, VALUE rbArgs){
   VALUE ret;
   char buf[4096];
   int bytes;
-  void *ptr = (void *)NUM2UINT(rbArgs);
+  unsigned int ptr = NUM2UINT(rbArgs);
   
   ret = rb_str_new2("");
   while ((bytes = GetStdout(ptr, buf, sizeof(buf))) > 0) {
@@ -353,14 +353,26 @@ VALUE process_get_stdout(VALUE module, VALUE rbArgs){
 
 VALUE process_is_active(VALUE module, VALUE rbArgs){
   int status;
-  void *ptr = (void *)NUM2UINT(rbArgs);
+  unsigned int ptr = NUM2UINT(rbArgs);
   
   status = IsActive(ptr);
   return status ? Qtrue : Qfalse;
 }
 
+VALUE process_ctrl_break(VALUE module, VALUE rbArgs){
+  unsigned int ptr = NUM2UINT(rbArgs);
+  CtrlBreak(ptr);
+  return Qnil;
+}
+
+VALUE process_ctrl_c(VALUE module, VALUE rbArgs){
+  unsigned int ptr = NUM2UINT(rbArgs);
+  CtrlC(ptr);
+  return Qnil;
+}
+
 VALUE process_free(VALUE module, VALUE rbArgs){
-  void *ptr = (void *)NUM2UINT(rbArgs);
+  unsigned int ptr = NUM2UINT(rbArgs);
   FreeProcess(ptr);
   return Qnil;
 }
@@ -506,6 +518,8 @@ void Init_process()
    rb_define_module_function(rb_mProcess,"get_stdout",process_get_stdout,1);
    rb_define_module_function(rb_mProcess,"get_stderr",process_get_stderr,1);
    rb_define_module_function(rb_mProcess,"free",process_free,1);
+   rb_define_module_function(rb_mProcess,"ctrl_break",process_ctrl_break,1);
+   rb_define_module_function(rb_mProcess,"ctrl_c",process_ctrl_c,1);
    
    rb_define_global_function("fork", process_fork, 0);
    

@@ -19,6 +19,8 @@ public:
 	int hasData();
 	int getErrData(char *buf, int bytes);
 	int getOutData(char *buf, int bytes);
+	void ControlBreak();
+	void ControlC();
 	DWORD getPid() {return pid;};
 	static ProcBuffers *getProcBuffer(DWORD pid);
 	static void putProcBuffer(DWORD pid, ProcBuffers *proc);
@@ -114,6 +116,17 @@ ProcBuffers::~ProcBuffers() {
 
 	delete cmdline;
 	CloseHandle(my_mutex);
+}
+
+void ProcBuffers::ControlBreak() {
+	if (!GenerateConsoleCtrlEvent(CTRL_BREAK_EVENT, pid)) {
+		printf("Error generating CTRL-Break(%d): %s\n", pid, ErrorDescription(GetLastError()));
+	}
+}
+void ProcBuffers::ControlC() {
+	if (!GenerateConsoleCtrlEvent(CTRL_C_EVENT, pid)) {
+		printf("Error generating CTRL-C(%d): %s\n", pid, ErrorDescription(GetLastError()));
+	}
 }
 
 int ProcBuffers::hasData() {
@@ -299,7 +312,7 @@ BOOL ProcBuffers::CreateChildProcess()
 		NULL,          // process security attributes 
 		NULL,          // primary thread security attributes 
 		TRUE,          // handles are inherited 
-		CREATE_SUSPENDED,// creation flags 
+		CREATE_SUSPENDED|CREATE_NEW_PROCESS_GROUP,// creation flags 
 		NULL,          // use parent's environment 
 		NULL,          // use parent's current directory 
 		&siStartInfo,  // STARTUPINFO pointer 
@@ -389,6 +402,26 @@ extern "C" {
 			int ret = pb->getOutData(buf, size);
 			pb->unlock();
 			return ret;
+		}
+	}
+	void CtrlBreak(DWORD proc) {
+		ProcBuffers *pb = ProcBuffers::getProcBuffer(proc);
+		if (!pb) {
+			printf("CtrlBreak: unknown pid %d\n", proc);
+		} else {
+			pb->lock();
+			pb->ControlBreak();
+			pb->unlock();
+		}
+	}
+	void CtrlC(DWORD proc) {
+		ProcBuffers *pb = ProcBuffers::getProcBuffer(proc);
+		if (!pb) {
+			printf("CtrlBreak: unknown pid %d\n", proc);
+		} else {
+			pb->lock();
+			pb->ControlBreak();
+			pb->unlock();
 		}
 	}
 	void FreeProcess(DWORD proc) {

@@ -179,8 +179,10 @@ LPTSTR ErrorDescription(DWORD p_dwError)
 }
 
 extern void *SpawnProcess(char *cmdline) ;
-extern int IsActive(void *proc);
-extern int GetStderr(void *proc, char *buf, int size);
-extern int GetStdout(void *proc, char *buf, int size);
-extern void FreeProcess(void *proc);
+extern int IsActive(DWORD proc);
+extern int GetStderr(DWORD proc, char *buf, int size);
+extern int GetStdout(DWORD proc, char *buf, int size);
+extern void CtrlBreak(DWORD proc);
+extern void CtrlC(DWORD proc);
+extern void FreeProcess(DWORD proc);
 

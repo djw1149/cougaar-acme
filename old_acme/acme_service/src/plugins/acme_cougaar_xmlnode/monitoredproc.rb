@@ -194,7 +194,7 @@ class MonitoredProcess
       puts "Kill(#{sig}, #{real_pid})"
       Process.kill(sig, real_pid)
     else
-      @stderrstr << "Unable to signal process on this platform"
+      Process.ctrl_break(@pipe)
     end
   end
 
