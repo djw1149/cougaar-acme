@@ -19,9 +19,68 @@
 # </copyright>
 #
 
+$debug_society_model = false
+
 module Cougaar
 
   module Model
+  
+    class SocietyMonitor
+      
+      @@monitors = []
+      def self.add(monitor)
+        @@monitors << monitor
+      end
+      
+      def self.each_monitor
+        @@monitors.each {|monitor| yield monitor}
+      end
+    
+      def initialize
+        SocietyMonitor.add(self)
+      end
+      
+      def host_added(host) ; end
+      def host_removed(host) ; end
+      
+      def node_added(node) ; end
+      def node_removed(node) ; end
+      
+      def agent_added(agent) ; end
+      def agent_removed(agent) ; end
+      
+      def component_added(component) ; end
+      def component_removed(component) ; end
+      
+      def self.enable_stdout
+        m = SocietyMonitor.new
+        def m.host_added(host)
+          puts "Host added        #{host.host_name} < #{host.society.name}"
+        end
+        def m.host_removed(host)
+          puts "Host removed      #{host.host_name} < #{host.society.name}"
+        end
+        def m.node_added(node)
+          puts "Node added        #{node.name} < #{node.host.host_name} < #{node.host.society.name}"
+        end
+        def m.node_removed(node)
+          puts "Node removed      #{node.name} < #{node.host.host_name} < #{node.host.society.name}"
+        end
+        def m.agent_added(agent)
+          puts "Agent added       #{agent.name} < #{agent.node.name} < #{agent.node.host.host_name} < #{agent.node.host.society.name}"
+        end
+        def m.agent_removed(agent)
+          puts "Agent removed     #{agent.name} < #{agnet.node.name} on #{agent.node.host.host_name} < #{agent.node.host.society.name}"
+        end
+        def m.component_added(component)
+          puts "Component added   #{component.name} < #{component.agent.name} < #{component.agent.node.name} < #{component.agent.node.host.host_name} < #{component.agent.node.host.society.name}"
+        end
+        def m.agent_removed(agent)
+          puts "Component removed #{component.name} < #{component.agent.name} < #{component.agent.node.name} < #{component.agent.node.host.host_name} < #{component.agent.node.host.society.name}"
+        end
+      end
+    end
+    
     ##
     # The Cougaar::Society class is the root of the model of the society
     # that is to be run.  A Society is composed of Hosts (computers) that
@@ -34,7 +93,7 @@ module Cougaar
       DEFAULT_COUGAAR_PORT = 8800
       
       attr_reader :name, :agents, :nodes, :hosts
-      attr_accessor :cougaar_port
+      attr_accessor :cougaar_port, :monitor
       
       ##
       # Constructs a Society with an optional name block
@@ -60,13 +119,23 @@ module Cougaar
           @hostIndex[host.host_name] = host
           @hostList << host
           host.society = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(host) }
           return host
         else
-          @hostIndex[host] = Host.new(host, &block)
-          @hostIndex[host].society = self
-          @hostList << @hostIndex[host]
-          return @hostIndex[host]
+          newHost = Host.new(host)
+          @hostIndex[host] = newHost
+          newHost.society = self
+          @hostList << newHost
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(newHost) }
+          newHost.init_block(&block)
+          return newHost
         end
+      end
+      
+      def remove_host(host)
+        @host_index.delete(host.host_name)
+        @hostList.delete(host)
+        $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_removed(host) } 
       end
       
       ##
@@ -268,7 +337,7 @@ module Cougaar
         end
         
         def to_ruby(indent, context)
-          ruby = "#{' ' * indent}#{context}.add_facet |facet|\n"
+          ruby = "#{' ' * indent}#{context}.add_facet do |facet|\n"
           @map.each_pair do |key, value|
             ruby << "#{' ' * indent}  facet[:#{key}]='#{value}'\n"
           end
@@ -388,6 +457,10 @@ module Cougaar
         yield self if block_given?
       end
       
+      def init_block
+        yield self if block_given?
+      end
+      
       ##
       # Adds a node to this host
       #
@@ -400,13 +473,23 @@ module Cougaar
           @nodeIndex[node.name] = node
           @nodes << node
           node.host = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.node_added(node) }
           return node
         else
-          @nodeIndex[node] = Node.new(node, &block)
-          @nodeIndex[node].host = self
-          @nodes << @nodeIndex[node]
-          return @nodeIndex[node]
+          newNode = Node.new(node)
+          @nodeIndex[node] = newNode
+          newNode.host = self
+          @nodes << newNode
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.node_added(newNode) }
+          newNode.init_block(&block)
+          return newNode
         end
+      end
+      
+      def remove_node(node)
+        @nodeIndex.delete(node.name)
+        @nodes.delete(node)
+        $debug_society_model && SocietyMonitor.each_monitor { |m| m.node_removed(node) }
       end
       
       ##
@@ -416,6 +499,10 @@ module Cougaar
       #
       def each_node
         @nodes.each {|node| yield node}
+      end
+      
+      def remove
+        @society.remove_host(self)
       end
       
       ##
@@ -491,6 +578,10 @@ module Cougaar
         @parameters = []
         yield self if block_given?
       end
+
+      def init_block
+        yield self if block_given?
+      end
       
       ##
       # Add an agent to this node
@@ -504,13 +595,23 @@ module Cougaar
           @agentIndex[agent.name] = agent
           @agents << agent
           agent.node = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_added(newAgent) }
           agent
         else
-          @agentIndex[agent] = Agent.new(agent, &block)
-          @agents << @agentIndex[agent]
-          @agentIndex[agent].node = self
-          @agentIndex[agent]
+          newAgent = Agent.new(agent)
+          @agentIndex[agent] = newAgent
+          @agents << newAgent
+          newAgent.node = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_added(newAgent) }
+          newAgent.init_block(&block)
+          newAgent
         end
+      end
+      
+      def remove_agent(agent)
+        @agentIndex.delete(agent.name)
+        @agents.delete(agent)
+        $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_removed(agent) }
       end
       
       ##
@@ -556,7 +657,7 @@ module Cougaar
       # yield:: [String] env_parameter encoded as param=value
       #
       def each_env_parameter
-        @parameters.each {|param| yield param}
+        @env_parameters.each {|param| yield param}
       end
 
       ##
@@ -614,6 +715,10 @@ module Cougaar
       #
       def each_parameter
         @parameters.each {|param| yield param}
+      end
+      
+      def remove
+        @host.remove_node(self)
       end
       
       ##
@@ -699,6 +804,10 @@ module Cougaar
         @components = []
         yield self if block_given?
       end
+
+      def init_block
+        yield self if block_given?
+      end
       
       ##
       # Adds components to this agent
@@ -715,11 +824,15 @@ module Cougaar
       # component:: [Cougaar::Component | String] component or name
       # return:: [Cougaar::Component] The new component
       #
-      def add_component(component, &block)
+      def add_component(component=nil, &block)
         if component.kind_of? Component
+          component.agent = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_added(component) }
           @components << component
         else
           comp = Component.new(component, &block)
+          comp.agent = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_added(comp) }
           @components << comp
         end
       end
@@ -731,12 +844,23 @@ module Cougaar
       #
       def remove_component(classname)
         each_component do |comp|
-          @components.delete(comp) if classname == comp.classname
+          if classname == comp.classname
+            @components.delete(comp)
+            $debug_society_model && SocietyMonitor.each_monitor { |m| m.component_removed(comp) }
+          end
         end
       end
 
       def each_component
         @components.each {|comp| yield comp}
+      end
+      
+      def has_component?(&block)
+        return false unless block_given?
+        each_component do |comp|
+          return true if block.call(comp)
+        end
+        return false
       end
       
       ##
@@ -746,6 +870,10 @@ module Cougaar
       #
       def host
         @node.host
+      end
+      
+      def remove
+        @node.remove_agent(self)
       end
       
       ##
@@ -791,19 +919,37 @@ module Cougaar
     # The component holds the data representing a component in the experiment
     #
     class Component
-      attr_accessor :name, :classname, :priority, :insertionpoint, :arguments
+      PLUGIN = "Node.AgentManager.Agent.PluginManager.Plugin"
+      BINDER = "Node.AgentManager.Agent.PluginManager.Binder"
+      
+      attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments
       attr_reader :order
       
       ##
       # Construct a component
       #
-      # name:: [String] the component name
+      # name:: [String=nil] the component name
       #
-      def initialize(name, &block)
+      def initialize(name=nil, &block)
         @name = name
         @arguments = []
         yield self if block_given?
+        if @name.nil?
+          @name = @classname + "(" + @arguments.join(",") + ")"
+        end
+        if @insertionpoint.nil?
+          insertionpoint_plugin
+        end
       end
+      
+      def insertionpoint_binder
+        @insertionpoint = BINDER   
+      end
+      
+      def insertionpoint_plugin
+        @insertionpoint = PLUGIN   
+      end
+        
       
       ##
       # Add and argument to this component
@@ -835,6 +981,11 @@ module Cougaar
       #
       def each_argument
         @arguments.each {|arg| yield arg}
+      end
+      
+      def has_argument?(value)
+        each_argument {|arg| return true if arg.value == value }
+        return false
       end
       
       def <=>(other)
@@ -900,6 +1051,10 @@ module Cougaar
           @order = value.to_f if value
         rescue
         end
+      end
+      
+      def to_s
+        @value
       end
     end
     

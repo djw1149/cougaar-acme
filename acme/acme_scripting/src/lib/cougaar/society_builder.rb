@@ -3,62 +3,6 @@ require 'cougaar/experiment'
 
 module Cougaar
   
-  class TransformationEngine
-    MAXLOOP = 300
-    attr_accessor :max_loop
-    
-    def initialize(max_loop = MAXLOOP)
-      @max_loop = max_loop
-      @rules = []
-    end
-  
-    def add_rule(name, proc = nil, &block)
-      @rules << TransformationRule.new(name, proc, &block)
-    end
-    
-    def transform(builder)
-      loop = true
-      count = 0
-      while(loop && count < @max_loop)
-        loop = false
-        @rules.each do |rule|
-          rule.execute(builder.society)
-          if rule.fired?
-            rule.reset
-            loop = true
-          end
-        end
-        count += 1
-        puts "loop #{count}"
-      end
-      @rules.each {|rule| puts "Rule '#{rule.name}' fired #{rule.fire_count} times."}
-    end
-  end
-  
-  class TransformationRule
-    attr_accessor :name, :fire_count
-    def initialize(name, proc=nil, &block)
-      @name = name
-      proc = block unless proc
-      @rule = proc
-      @fire_count = 0
-      reset
-    end
-    def execute(society)
-      @rule.call(self, society)
-    end
-    def fire
-      @fire_count += 1
-      @fired = true
-    end
-    def fired?
-      @fired
-    end
-    def reset
-      @fired = false
-    end
-  end
-  
   class SocietyBuilder
     attr_reader :doc
     def initialize(doc)
