@@ -237,7 +237,8 @@ module Cougaar
         
         def add_entity(name, entity_type, &block)
           entity = Entity.new(name, entity_type)
-          @entities << entity
+          #BUG 13192 (add entity twice) Maybe the clients should change
+	  # @entities << entity
           yield entity if block_given?
           entity
         end
