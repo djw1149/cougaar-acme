@@ -20,7 +20,6 @@
 #
 
 require 'thread'
-require 'yaml'
 
 module Cougaar
 
@@ -325,6 +324,7 @@ module Cougaar
     end
   
     def self.from_yaml(yaml)
+      require 'yaml'
       map = YAML.load(yaml)
       expt = ExperimentDefinition.new(map['name'], map['description'])
       expt.script = ScriptDefinition.new(map['script'])
