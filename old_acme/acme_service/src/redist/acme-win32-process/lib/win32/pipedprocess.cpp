@@ -1,4 +1,28 @@
-
+/*
+ * <copyright>  
+ *  Copyright 2001-2004 BBN Technologies
+ *  Copyright 2001-2004 InfoEther LLC  
+ *
+ *  under sponsorship of the Defense Advanced Research Projects  
+ *  Agency (DARPA).  
+ *   
+ *  You can redistribute this software and/or modify it under the 
+ *  terms of the Cougaar Open Source License as published on the 
+ *  Cougaar Open Source Website (www.cougaar.org <www.cougaar.org> ).   
+ *   
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR 
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * </copyright>  
+ */
 #include <windows.h>
 #include <list>
 #include <map>
@@ -7,7 +31,6 @@
 
 using namespace std ;
 
-#define BUFSIZE 4096 
 typedef queue<char>  CHARQUEUE;
 
 class ProcBuffers {
@@ -19,13 +42,14 @@ public:
 	int hasData();
 	int getErrData(char *buf, int bytes);
 	int getOutData(char *buf, int bytes);
+	DWORD getPid() {return pid;};
+	// send keyboard signals
 	void ControlBreak();
 	void ControlC();
-	DWORD getPid() {return pid;};
+	// store/retrieve ProcBuffers by PID
 	static ProcBuffers *getProcBuffer(DWORD pid);
 	static void putProcBuffer(DWORD pid, ProcBuffers *proc);
-//	void lock() {printf("LS%d", this);WaitForSingleObject(my_mutex, INFINITE);printf("LD%d\n", this);};
-//	void unlock() {printf("US%d", this);ReleaseMutex(my_mutex);printf("UD%d\n", this);};
+	// mutex locks
 	void lock() {WaitForSingleObject(my_mutex, INFINITE);};
 	void unlock() {ReleaseMutex(my_mutex);};
 private:
@@ -49,6 +73,9 @@ private:
 };
 extern LPTSTR ErrorDescription(DWORD p_dwError);
 
+/*
+ * Index of PID -> ProcBuffers objects
+ */
 static map<DWORD, ProcBuffers *> proc_map;
 
 void ProcBuffers::putProcBuffer(DWORD pid, ProcBuffers *proc) {
@@ -306,7 +333,8 @@ BOOL ProcBuffers::CreateChildProcess()
 	siStartInfo.cb = sizeof(STARTUPINFO); 
 
 	// Create the child process. 
-
+    // suspend it so we can hook up to stderr/stdout before it starts
+	// create new process group so we can send CTRL-BRK and CTRL-C
 	bFuncRetn = CreateProcess(NULL, 
 		cmdline,       // command line 
 		NULL,          // process security attributes 
@@ -319,8 +347,7 @@ BOOL ProcBuffers::CreateChildProcess()
 		&piProcInfo);  // receives PROCESS_INFORMATION 
 
 	if (bFuncRetn == 0) {
-		printf("CreateProcess: %s\n", ErrorDescription(GetLastError()));
-		ErrorExit("CreateProcess failed\n");
+		printf("CreateProcess failed: %s\n", ErrorDescription(GetLastError()));
 		return 0;
 	} else {
 		pid = piProcInfo.dwProcessId;
@@ -329,7 +356,7 @@ BOOL ProcBuffers::CreateChildProcess()
 }
 
 
-
+#define BUFSIZE 4096 
 VOID ProcBuffers::ReadBuffer(HANDLE stream, CHARQUEUE *queue) {
 
 	DWORD dwRead; 
@@ -359,6 +386,9 @@ VOID ErrorExit (LPTSTR lpszMessage)
 
 
 
+/*
+ * Wrapper functions callable from "C"
+ */
 extern "C" {
 	DWORD SpawnProcess(char *cmdline) {
 		ProcBuffers *pb = new ProcBuffers(cmdline);
@@ -440,7 +470,7 @@ extern "C" {
 
 DWORD main(int argc, char *argv[]) 
 { 
-#if 0
+#if 0 /* Test C++ class */
 	ProcBuffers *pb = new ProcBuffers("java -version");
 	pb->Start();
 	do {
@@ -456,7 +486,7 @@ DWORD main(int argc, char *argv[])
 		Sleep(1000);
 	} while (pb->isRunning() || pb->hasData());
 	delete pb;
-#else
+#else /* Test "C" wrappers */
 	DWORD proc = SpawnProcess("java -version");
 	do {
 		char buf[1024];
