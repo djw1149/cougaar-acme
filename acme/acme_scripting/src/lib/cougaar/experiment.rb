@@ -451,6 +451,44 @@ module Cougaar
       @archive_entries << ArchiveEntry.new(filename, description, true)
     end
     
+    def archive
+      if @archive_path
+        archive_filename = File.join(@archive_path, @name+"-#{Time.now.to_i}")
+        
+        #write description xml file
+        descriptor = "<run directory='#{Dir.pwd}'>\n"
+        @archive_entries.each do |entry|
+          if entry.file.kind_of? Proc
+            entry.file.call.each do |file| 
+              descriptor << "<file name='#{file}' description='#{entry.description}'/>\n"
+            end
+          else
+            descriptor << "<file name='#{entry.file}' description='#{entry.description}'/>\n"
+          end
+          
+        end
+        descriptor << "</run>\n"
+        File.open(archive_filename+".xml", "w") { |file| file.puts descriptor }
+        
+        #archive files
+        filelist = []
+        @archive_entries.each do |entry| 
+          if  entry.file.kind_of? Proc
+            entry.file.call.each {|file| filelist << file}
+          else
+            filelist <<  entry.file
+          end
+        end
+        File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
+        `tar -czf #{archive_filename+".tgz"} -T #{archive_filename+".filelist"} &> /dev/null`
+        #cleanup
+        @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove }
+        File.delete archive_filename+".filelist"
+      end
+    end
+    private :archive
+    
+    
     def comms=(comms)
       @comms = comms
       @comms.on_cougaar_event do |event|
@@ -543,28 +581,7 @@ module Cougaar
       #TODO: logging end
     end
     
-    def archive
-      if @archive_path
-        archive_filename = File.join(@archive_path, @name+"-#{Time.now.to_i}")
-        
-        #write description xml file
-        descriptor = "<run directory='#{Dir.pwd}'>\n"
-        @archive_entries.each do |entry|
-          descriptor << "<file name='#{entry.file}' description='#{entry.description}'/>\n"
-        end
-        descriptor << "</run>\n"
-        File.open(archive_filename+".xml", "w") { |file| file.puts descriptor }
-        
-        #archive files
-        filelist = @archive_entries.collect {|entry| entry.file }
-        File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
-        `tar -czf #{archive_filename+".tgz"} -T #{archive_filename+".filelist"} &> /dev/null`
-        #cleanup
-        @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove }
-        File.delete archive_filename+".filelist"
-      end
-    end
-    private :archive
+
     
     def interrupt
       @multirun.interrupt
@@ -1103,9 +1120,7 @@ module Cougaar
           @run.error_message "Could not mark directory #{@directory} for archival ... Directory not found."
           return
         end
-        Dir.glob(File.expand_path(File.join(@directory, @pattern))).each do |file|
-          @run.archive_file(file, @description)
-        end
+        @run.archive_file(Proc.new { Dir.glob(File.expand_path(File.join(@directory, @pattern))) },  @description)
       end
       
     end
