@@ -2,15 +2,17 @@ module ACME
   module Plugins
 
     class AgentCompletionData
-      attr_accessor :error
-      attr_reader :name
+
+      attr_reader :name, :error, :failed_fields, :partial_fields
         
       def initialize (name)
         @name = name
         @comp_data = {}
         @error = CompletionTest::SUCCESS
+        @failed_fields = []
+        @partial_fields = []
       end
-        
+
       def []=(tag, value)
         @comp_data[tag]=value
       end
@@ -32,6 +34,18 @@ module ACME
           fields << field unless fields.include?(field)
         end
         return fields
+      end
+
+      def set_error(field, lvl)
+        @failed_fields << field if lvl == CompletionTest::FAIL
+        @partial_fields << field if lvl == CompletionTest::PARTIAL
+        @error = lvl if @error < lvl
+      end
+
+      def field_level(field)
+        return CompletionTest::FAIL if @failed_fields.include?(field)
+        return CompletionTest::PARTIAL if @partial_fields.include?(field)
+        return CompletionTest::SUCCESS
       end
     end
         
@@ -125,39 +139,52 @@ module ACME
       end
 
       def analyze(data, benchmark)
-        error = (benchmark.nil? ? PARTIAL : SUCCESS)
+        error = (benchmark.nil? ? PARTIAL : SUCCESS) #if there's no benchmark allow partial success at best
         e = ratio_test(data)
         error = (error > e ? error : e)
         if (!benchmark.nil?) then
-          e = task_test(data, benchmark)
+          e = field_test("NumRootProjectSupplyTasks", data, benchmark, 0, 0.10)
+          error = (error > e ? error : e)
+          e = field_test("NumRootSupplyTasks", data, benchmark, 0, 0.10)
+          error = (error > e ? error : e)
+          e = field_test("NumRootTransportTasks", data, benchmark, 0, 0.10)
           error = (error > e ? error : e)
         end
         return error
-      end
-     
+      end     
+
       def ratio_test(data)
         error = SUCCESS
         data.agents.each do |agent|
-          if (agent["Ratio"] < 1.0 && agent["Ratio"] >= 0.90) then
+          if (agent["Ratio"] < 1.0 && agent["Ratio"] >= 0.95) then
             error = PARTIAL if error == SUCCESS
-            agent.error = PARTIAL if agent.error == SUCCESS
-          elsif (agent["Ratio"] < 0.90) then
+            agent.set_error("Ratio", PARTIAL)
+          elsif (agent["Ratio"] < 0.95) then
             error = FAIL
-            agent.error = FAIL
+            agent.set_error("Ratio", FAIL)
           end
         end
         return error
       end
       
-      def task_test(data, benchmark)
+     def field_test(field, data, benchmark, pass_tol, partial_tol)
         error = SUCCESS
         data.agents.each do |agent|
           benchmark_agent = (benchmark.agents.collect{|x| agent.name == x.name ? x : nil}.compact)[0]
           next if benchmark_agent.nil?
-          low_bound = (benchmark_agent["NumTasks"] * (1 - TOLERENCE)).to_i
-          if agent["NumTasks"] < low_bound then
+          low_pass_bound = (benchmark_agent[field] * (1 - pass_tol)).to_i
+          up_pass_bound = (benchmark_agent[field] * (1 + pass_tol)).to_i
+          low_partial_bound = (benchmark_agent[field] * (1 - partial_tol)).to_i
+          up_partial_bound = (benchmark_agent[field] * (1 + partial_tol)).to_i
+          pass_range = Range.new(low_pass_bound, up_pass_bound)
+          partial_range = Range.new(low_partial_bound, up_partial_bound)
+          
+          if (!partial_range.include?(agent[field])) then
             error = FAIL
-            agent.error = FAIL
+            agent.set_error(field, FAIL)
+          elsif (!pass_range.include?(agent[field])) then
+            error = PARTIAL if error == SUCCESS
+            agent.set_error(field, PARTIAL)
           end
         end
         return error
@@ -184,22 +211,27 @@ module ACME
         
         table_string = @ikko["row_template.html", {"data"=>header_row,"options"=>""}]
         data.agents.each do |agent|
-          agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>""}]
+          agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>color(agent, "NAME")}]
           fields.each do |key|
-            agent_row << @ikko["cell_template.html", {"data"=>agent[key],"options"=>""}]
+            agent_row << @ikko["cell_template.html", {"data"=>agent[key],"options"=>color(agent, key)}]
           end
-          options = ""
-          if (agent.error == SUCCESS) then
-            options << "BGCOLOR=#00DD00"
-          elsif (agent.error == PARTIAL) then
-            options << "BGCOLOR=#FFFF00"
-          else
-            options << "BGCOLOR=#FF0000"
-          end
-          table_string << @ikko["row_template.html", {"data"=>agent_row,"options"=>options}]
+          table_string << @ikko["row_template.html", {"data"=>agent_row,"options"=>""}]
         end
         ikko_data["table"] = table_string
         return @ikko["comp_report.html", ikko_data]
+      end
+
+      def color(agent, field)
+        lvl = FAIL
+        if (field == "NAME") then
+          lvl = agent.error
+        else
+          lvl = agent.field_level(field)
+        end
+
+        return "BGCOLOR=#00DD00" if lvl == SUCCESS
+        return "BGCOLOR=#FFFF00" if lvl == PARTIAL
+        return "BGCOLOR=#FF0000"
       end
 
       def create_description
@@ -207,16 +239,16 @@ module ACME
         ikko_data["name"]="Completion Report"
         ikko_data["title"] = "Completion Report Description"
         ikko_data["description"] = "Creates a table from the information in completion report xml files.  Currently the test"
-        ikko_data["description"] << " is based on the tasks and ratio fields.  An agent is green if it has a ratio of 1.0 and "
-        ikko_data["description"] << "is within 10% of the baseline number of tasks.  An agent is yellow is it has a ratio of"
-        ikko_data["description"] << " at least 0.95 and is within 10% of the baseline tasks.  An agent is red otherwise."
-        ikko_data["description"] << " If the appropriate benchmark file can not be found because the subject file is named"
-        ikko_data["description"] << " in a nonstandard way, then the number of tasks test will not be run.  In this case"
-        ikko_data["description"] << " the report will be at most PARTIAL SUCCESS."
+        ikko_data["description"] << " is based on the ratio plus the RootProjectSupplyTasks, RootSupplyTasks, and RootTransportTasks fields."
+        ikko_data["description"] << " An agent is green if it has a ratio of 1.0 and exactly matches the baseline in the root task fields."
+        ikko_data["description"] << " An agent is yellow is it has a ratio of at least 0.95 and is within 10% of the baseline in the root"
+        ikko_data["description"] << " task fields.  An agent is red if the ratio is less than 0.95 or varies by greater than 10% from the"
+        ikko_data["description"] << " baseline in a root task field.  If the benchmark cannot be found, the root task tests will not be run"
+        ikko_data["description"] << " and the report will be at most PARTIAL SUCCESS."
 
-        success_table = {"success"=>"Every agent has a ratio of 1.0 and is within 10% of the baseline",
-                         "partial"=>"Baseline missing or at least one agent is yellow as described above and none are red",
-                         "fail"=>"At least one agent has a ratio less than 0.90 or is not within 10% of the baseline"}
+        success_table = {"success"=>"Every agent has a ratio of 1.0 and matches the baseline in all root task fields",
+                         "partial"=>"Baseline missing or every agent has ratio of at least 0.95 and is within 10% of the baseline in all root task fields",
+                         "fail"=>"All other cases"}
         ikko_data["table"] = @ikko["success_template.html", success_table]
         return @ikko["description.html", ikko_data]
       end
