@@ -1,0 +1,46 @@
+Welcome to the world of distributed Cougaar command and control (aka ACME).
+
+Contents:
+
+./doc/ACME_OSS_Framework.doc 
+  The user/developer documentation for the ACME Framework.
+
+./acme_scripting/...
+  ACME Scripting is the client framework for writing control scripts for Cougaar
+  The README file has more information about using ACME Scripting.
+
+./acme_service/...
+  ACME Service contains a software service that needs to execute on each computer
+  that will execute Cougaar.  The service controls the Cougaar processes.  See
+  the README document for more details on installation.
+
+./README
+  This document
+
+The main steps necessary to use ACME are:
+
+I) Install Cougaar 11.2 (www.cougaar.org)
+
+II) Install the ACME Cougaar overlay
+
+ 1) cd <acmedir>/cougaar
+ 2) ruby install_cougaar_files.rb
+
+III) Install the ACME Service (in one terminal)
+
+ 1) cd <acmedir>/acme_service/bin
+ 2) ruby install.rb  [--help for options...defaults are for single host config]
+ 3) cd /usr/local/acme
+ 4) ruby acme.rb
+
+IV) Execute a society (in another terminal)
+
+ 1) cd <acmedir>/acme_scripting/examples/ping
+ 2) ruby run-ping.rb
+
+You should see the output of the society execution (a series of messages streaming
+on the console).
+
+For more details of these steps, and to fully understand the ACME architecture see
+the ACME_OSS_Framework.doc file.
+
