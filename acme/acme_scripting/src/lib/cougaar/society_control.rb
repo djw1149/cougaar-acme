@@ -335,7 +335,8 @@ module Cougaar
       def perform
         ['operator', 'acme'].each do |service|
           @run.society.each_service_host(service) do |host|
-            @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
+            @run.comms.new_message(host).set_body("command[nic]reset").send
+	    @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
             # kills don't always work first time, try again to be sure
             @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
             @run.comms.new_message(host).set_body("command[cpu]0").send()
