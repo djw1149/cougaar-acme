@@ -261,7 +261,7 @@ class Make_NewPG
       reserve = 'FALSE'
     end
     @writer << [org_id,"MilitaryOrgPG|IsReserve","#{reserve}","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
-    @writer << [org_id,"MilitaryOrgPG|HomeLocation","GeoLocCode=#@home_location","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
+    @writer << [org_id,"MilitaryOrgPG|HomeLocation","GeolocCode=#@home_location","0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
     @writer << [org_id,"ItemIdentificationPG|Nomenclature",org_id,"0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
     @writer << [org_id,"ItemIdentificationPG|ItemIdentification",org_id,"0.000000000000000000000000000000","2000-01-01 00:00:00","\\N", " "]
   end
