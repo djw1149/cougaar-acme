@@ -23,7 +23,7 @@ require 'xmlrpc/client'
 module Cougaar
   module Actions
     class KillNodes < Cougaar::Action
-      def initialize(run, nodes)
+      def initialize(run, *nodes)
         super(run)
         @nodes = nodes
       end
@@ -52,7 +52,7 @@ module Cougaar
     end
     class KillNode < KillNodes
       def initialize(run, node)
-        super(run, [node])
+        super(run, node)
       end
     end
   end
