@@ -87,7 +87,7 @@ class XMLCougaarNode
     #STOP NODE
     @plugin["/plugins/acme_host_communications/commands/stop_xml_node/description"].data = 
       "Stops Cougaar node. Params: PID"
-    @plugin["/plugins/acme_host_communications/commands/stop_xml_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_communications/commands/stop_xml_node"].set_proc do |message, command|
       pid = command
       node = running_nodes[pid]
       if node
@@ -496,7 +496,12 @@ class XMLCougaarNode
       @status = STOPPING
       @monitors.each {|thread| thread.kill}
       @plugin['log/info'] << "Stopping process: #{@mproc.pid}"
-      @mproc.kill
+      begin
+        @mproc.kill
+      rescue Exception => e
+        puts e
+        puts e.backtrace.join("\n")
+      end
       @status = STOPPED
       @plugin['log/info'] << "Stopped process."
     end

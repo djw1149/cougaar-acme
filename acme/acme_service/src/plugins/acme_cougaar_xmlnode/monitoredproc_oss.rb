@@ -103,7 +103,7 @@ class MonitoredProcess
     @stdout = pi[1]
     @stderr = pi[2]
     @pid = pi[3]
-    #puts "pid = #{@pid}"
+    puts "root pid = #{@pid}"
     Thread.new(@stdout) do |stdout|
       begin
         while true
@@ -173,17 +173,17 @@ class MonitoredProcess
   def signal(sig)
     if (@@platform == "unix")
       real_pid = find_java(@pid)
-      #puts "Kill(#{sig}, #{real_pid})"
-      Process.kill(sig, real_pid.to_i)
+      puts "Kill(#{sig}, #{real_pid})"
+      Process.kill(sig, real_pid)
     else
       @stderrstr << "Unable to signal process on this platform"
     end
   end
 
-  def find_java(parent)
-    ret = find_child_process_id('java', parent.to_i)
-    ret = parent unless ret
-    return ret.to_s
+  def find_java(pid)
+    ret = find_child_process_id('java', get_process(pid))
+    ret = pid unless ret
+    return ret
   end
           
   def get_processes
