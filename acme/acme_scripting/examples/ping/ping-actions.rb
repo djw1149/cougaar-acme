@@ -54,8 +54,8 @@ module Cougaar
           raise "Agent #{@dest} does not exist in society"
         end
 
-        srcAgent.add_component("org.cougaar.core.mobility.ping.PingAdderPlugin") do |c|
-          c.classname = "org.cougaar.core.mobility.ping.PingAdderPlugin"
+        srcAgent.add_component("org.cougaar.ping.PingAdderPlugin") do |c|
+          c.classname = "org.cougaar.ping.PingAdderPlugin"
           c.add_argument("target=#{@dest}")
           @args.each_pair {|key, value|
             c.add_argument("#{key}=#{value}")
@@ -78,10 +78,10 @@ module Cougaar
       end
       def perform
         @run.society.each_agent do |agent|
-          if agent.has_component?("org.cougaar.core.mobility.ping.PingAdderPlugin")
-            unless agent.has_component?("org.cougaar.core.mobility.ping.PingTimerPlugin")
-              c = agent.add_component("org.cougaar.core.mobility.ping.PingTimerPlugin")
-              c.classname = "org.cougaar.core.mobility.ping.PingTimerPlugin"
+          if agent.has_component?("org.cougaar.ping.PingAdderPlugin")
+            unless agent.has_component?("org.cougaar.ping.PingTimerPlugin")
+              c = agent.add_component("org.cougaar.ping.PingTimerPlugin")
+              c.classname = "org.cougaar.ping.PingTimerPlugin"
               c.add_argument("#{@wake_time}")
             end
           end
