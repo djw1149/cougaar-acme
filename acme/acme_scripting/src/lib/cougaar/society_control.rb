@@ -42,7 +42,7 @@ module Cougaar
       end
     end
     
-    def start_all_nodes
+    def start_all_nodes(action)
       @run.society.each_active_host do |host|
         host.each_node do |node|
           if @xml_model
@@ -54,27 +54,27 @@ module Cougaar
           puts "Sending message to #{host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
           result = @run.comms.new_message(host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
           if result.nil?
-            raise_failure "Could not start node #{node.name} on host #{host.host_name}"
+            action.raise_failure "Could not start node #{node.name} on host #{host.host_name}"
           end
           @pids[node.name] = result.body
         end
       end
     end
     
-    def stop_all_nodes
+    def stop_all_nodes(action)
       @run.society.each_host do |host|
         host.each_node do |node|
           puts "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
           result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
           if result.nil?
-            raise_failure "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+            action.raise_failure "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
           end
         end
       end
       @pids.clear
     end
     
-    def restart_node(node)
+    def restart_node(action, node)
       if @xml_model
         msg_body = launch_xml_node(node, "xml")
       else
@@ -83,12 +83,12 @@ module Cougaar
       puts "RESTART: Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
       result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
       if result.nil?
-        raise_failure "Could not start node #{node.name} on host #{node.host.host_name}"
+        puts "Could not start node #{node.name} on host #{node.host.host_name}"
       end
       @pids[node.name] = result.body
     end
     
-    def kill_node(node)
+    def kill_node(action, node)
       pid = @pids[node.name]
       if pid
         @pids.delete(node.name)
@@ -147,7 +147,7 @@ module Cougaar
       
       def perform
         @run['node_controller'].add_cougaar_event_params
-        @run['node_controller'].start_all_nodes
+        @run['node_controller'].start_all_nodes(self)
       end
 
     end
@@ -160,7 +160,7 @@ module Cougaar
         @example = "do_action 'StopSociety'"
       }
       def perform
-        @run['node_controller'].stop_all_nodes
+        @run['node_controller'].stop_all_nodes(self)
       end
     end
   
@@ -181,7 +181,7 @@ module Cougaar
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
           if cougaar_node
-            @run['node_controller'].restart_node(cougaar_node)
+            @run['node_controller'].restart_node(self, cougaar_node)
           else
             raise_failure "Cannot restart node #{node}, node unknown."
           end
@@ -206,7 +206,7 @@ module Cougaar
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
           if cougaar_node
-            @run['node_controller'].kill_node(cougaar_node)
+            @run['node_controller'].kill_node(self, cougaar_node)
           else
             puts "Cannot kill node #{node}, node unknown."
           end
