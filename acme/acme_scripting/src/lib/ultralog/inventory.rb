@@ -29,7 +29,7 @@ module Cougaar
       attr_accessor :asset, :agent, :protocol, :society, :runport, :runhost
 
       # Take the asset to get the inventory for at this agent
-      def initialize(run, asset, agent, file)
+      def initialize(run, agent, asset, file)
         super(run)
 	@file = file
 	@asset = asset
