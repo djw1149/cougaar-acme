@@ -32,7 +32,7 @@ module ACME
       attr_accessor :run_start_time, :run_end_time, :type, :interrupted, :killed_nodes
       attr_reader :load_time, :start_time, :stages, :advances, :name
       
-      def initialize(run_log)
+      def initialize(run_log, name)
         pattern_table = {:start_run => /Run:(.*)started/,
                          :load_time_start => /Starting: LoadSocietyFrom(Persistence|XML|Script)/,
                          :load_time_end => /Finished: LoadSociety/,
@@ -47,11 +47,11 @@ module ACME
         current_stage = nil
         start = nil
         reset
+        @name = name
         File.new(run_log).each do |line|
           ts = get_timestamp(line)
           if (md = pattern_table[:start_run].match(line)) then
             reset
-            @name = "#{$1}-#{ts.strftime("%Y/%m/%d-%H:%M:%S")}"
             @run_start_time = ts
             surrent_stage = nil
           elsif (start.nil? && md = pattern_table[:load_time_start].match(line)) then            
@@ -107,7 +107,6 @@ module ACME
       end
 
       def reset
-        @name = ""
         @run_start_time = Time.at(0).gmtime
         @run_end_time = Time.at(0).gmtime
         @load_time = StageTime.new("Load Time")
