@@ -1,8 +1,9 @@
 --- !ruby/object:FreeBASE::PluginConfiguration 
 name: acme_reporting_core
 version: 1.0
-autoload: false
+autoload: true
 require_path: acme_reporting_core/core
 startup_module: ACME::Plugins::ReportingCore
+properties_path: properties.yaml
 start_dependencies: 
   acme_reporting_service: "*"

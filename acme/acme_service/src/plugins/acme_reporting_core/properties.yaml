@@ -1,0 +1,4 @@
+#### Properties: acme_reporting_core - Version: 1.0
+properties: ~
+"|": 
+  - runtime_path:  "/export/archive/runtimes"
