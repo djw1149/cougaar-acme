@@ -184,23 +184,23 @@ module UltraLog
     end
   
     def test
-      send_command('test_cip', 10)
+      send_command('test_cip', 2.minutes)
     end
     
     def reset_crypto
-      send_command('reset_crypto', 20)
+      send_command('reset_crypto', 2.minutes)
     end
     
     def clear_logs
-      send_command('clear_logs', 10)
+      send_command('clear_logs', 5.minutes)
     end
     
     def clear_pnlogs
-      send_command('clear_pnlogs', 30)
+      send_command('clear_pnlogs', 5.minutes)
     end
     
     def clear_persistence
-      send_command('clear_persistence', 20)
+      send_command('clear_persistence', 5.minutes)
     end
     
     def archive_logs(runName=nil)
@@ -212,11 +212,11 @@ module UltraLog
     end
     
     def start_datagrabber_service
-      send_command('start_datagrabber_service', 30)
+      send_command('start_datagrabber_service', 2.minutes)
     end
     
     def stop_datagrabber_service
-      send_command('stop_datagrabber_service', 30)
+      send_command('stop_datagrabber_service', 2.minutes)
     end
     
     private
@@ -224,8 +224,12 @@ module UltraLog
     def send_command(command, timeout, params="")
       @run.info_message "Sending Operator Command: command[#{command}]#{params}"
       reply = @run.comms.new_message("#{@host}@#{@run.comms.jabber_server}/acme").set_body("command[#{command}]#{params}").request(timeout)
-      @run.error_message "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
-      @run.info_message "Result: #{reply.body}"
+      if reply.nil?
+        @run.error_message "ERROR SENDING: command[#{command}]#{params}" 
+        raise "Operator service timeout or failed connection."
+      else
+        @run.info_message "Result: #{reply.body}"
+      end
       return reply.body
     end
     
