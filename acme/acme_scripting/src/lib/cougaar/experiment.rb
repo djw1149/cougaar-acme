@@ -420,6 +420,8 @@ module Cougaar
           opts.on('--schedule', "installation directory for the Gem") {|options[:schedule]|}
           opts.on('--priority=PRIORITY', "Priority (1=high, 2=normal, 3=low)") {|options[:priority]|}
           opts.on('--host=HOST', "host to schedule on, default 'localhost'") {|options[:host]|}
+          opts.on('--baseline', "overrides the type of run as a baseline run") {|options[:baseline]|}
+          opts.on('--stressed', "overrides the type of run as a stressed run") {|options[:stressed]|}
           opts.on('--group=GROUP', "override the group id from the command line") {|options[:group]|}
           opts.on('--debug', "output a  list of actions and states based on included subscripts") {|options[:debug]|}
           opts.parse!
@@ -430,14 +432,47 @@ module Cougaar
         if options[:group]
           expt.group = options[:group]
         end
+        if options[:baseline]
+          raise "ERROR: Can only specify --baseline OR --stressed" if options[:stressed]
+          expt.type = "baseline"
+        end
+        if options[:stressed]
+          expt.type = "stressed"
+        end
         priority = (options[:priority] || 2).to_i
         @@debug = options[:debug]
         if schedule
+          experiment_data = File.readlines($0)
+          name_loc = nil
+          type_loc = nil
+          group_loc = nil
+          experiment_data.each_with_index do |line, i|
+            if line =~ /^name: .*/
+              name_loc = i
+            elsif line =~ /^type: .*/
+              type_loc = i
+            elsif line =~ /^group: .*/
+              group_loc = i
+            end
+          end
+          if type_loc
+            experiment_data[type_loc] = "type: #{expt.type}\n"
+          end
+          if group_loc
+            experiment_data[group_loc] = "group: #{expt.group}\n"
+          end
+          unless type_loc
+            experiment_data[name_loc + 1, 0] = "type: #{expt.type}\n"
+          end
+          unless group_loc
+            experiment_data[name_loc + 1, 0] = "group: #{expt.group}\n"
+          end
+          experiment_data = experiment_data.join("")
           boundary = "----------0xKhTmLbOuNdArY"
           content_type = "multipart/form-data; boundary=#{boundary}"
           data = EXPERIMENT_POST_DATA
           data = data.gsub(/\n/, "\r\n")
-          data = data.gsub(/EXPERIMENT/, File.read($0))
+          data = data.gsub(/EXPERIMENT/, experiment_data)
           data = data.gsub(/PRIORITY/, priority.to_s)
           data = data.gsub(/FILENAME/, $0)
           data = data.gsub(/BOUNDARY/, boundary)
