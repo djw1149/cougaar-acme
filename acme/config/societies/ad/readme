@@ -1,1 +1,10 @@
-This directory contains a zip of all the generated 1AD configurations.
+This directory contains a zip of all the generated 1AD configurations. 
+This includes and replaces the XML configurations that used to come
+in the BBN ulconfigs overlay, in the COUGAAR_INSTALL_PATH/configs/ul
+directory.
+
+As before, you may run these configurations by hand, using the XMLNode
+scripts - in which case please note the name of the node used in these
+files. The preferred mechanism continues to be ACME for running UL 
+configurations.
+
