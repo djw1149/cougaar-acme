@@ -60,15 +60,24 @@ society.each_agent do |agent|
   end
 # Add the required supply roles if the org has equipment_assets
   if agent.get_facet(:has_equipment_assets)
-    required_roles << "AmmunitionProvider"
-    required_roles << "FuelSupplyProvider"
-    required_roles << "PackagedPOLSupplyProvider"
-    required_roles << "SparePartsProvider"
+    unless agent.get_facet(:is_ua)
+      required_roles << "AmmunitionProvider"
+      required_roles << "FuelSupplyProvider"
+      required_roles << "PackagedPOLSupplyProvider"
+      required_roles << "SparePartsProvider"
+    end
   end
 #
 # Add the required supply role if the org has personnel_assets
   if agent.get_facet(:has_personnel_assets)
-    required_roles << "SubsistenceSupplyProvider"
+    unless agent.get_facet(:is_ua)
+      required_roles << "SubsistenceSupplyProvider"
+    end
+  end
+#
+# Add the required supply role if the org is a UA agent
+  if agent.get_facet(:is_ua)
+    required_roles << "FuelSupplyProvider"
   end
 #
 # Add the required strat_trans_role if the agent is deployable with either equipment or personnel
