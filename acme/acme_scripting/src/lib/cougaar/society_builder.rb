@@ -177,6 +177,31 @@ module Cougaar
         return super.to_s + "('#{@filename}')"
       end
     end
+    
+    class SaveCurrentSociety < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Save the current (in memory) society to XML/Ruby."
+        @parameters = [
+          :filename => "required, The XML/Ruby file name."
+        ]
+        @example = "do_action 'SaveCurrentSociety', 'full-1ad.xml'"
+      }
+      def initialize(run, filename)
+        super(run)
+        @filename = filename
+      end
+      def perform
+        File.open(@filename, "w") do |file|
+          if (File.basename(@filename)==File.basename(@filename, ".xml"))
+            file.puts @run.society.to_xml
+          else
+            file.puts @run.society.to_ruby
+          end
+        end
+      end
+    end
+    
     class LoadSocietyFromXML < Cougaar::Action
       RESULTANT_STATE = "SocietyLoaded"
       DOCUMENTATION = Cougaar.document {
