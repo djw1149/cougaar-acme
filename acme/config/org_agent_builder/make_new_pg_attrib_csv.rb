@@ -68,7 +68,7 @@ class Make_NewPG
   end
 
   def help
-    puts "Reads in org_attribute.csv"
+    puts "Reads in org_attribute.csv and org_role.csv"
     puts "Creates new csv file in the format of org_pg_attribute based on the values in org_attribute.csv"
     puts "Usage: \n\t#$0 -o <org_attribute.csv. [-h]"
     puts "\t-o --org-attribute-csv.....   The org_attribute.csv file"
@@ -95,7 +95,6 @@ class Make_NewPG
     @writer << [@base_org_id,"ItemIdentificationPG|Nomenclature","#@nomenclature","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"ItemIdentificationPG|ItemIdentification","#@base_org_id","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
   end
-
 end
 
 pg = Make_NewPG.new
