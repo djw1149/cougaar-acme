@@ -276,12 +276,16 @@ module Cougaar
       
       def test_ntp_synch(host)
         output = @run.comms.new_message(host).set_body("command[rexec_user]ntpstat").request(60)
-        output = output.body
-        output.chomp!
-        if output.empty? then
-          @run.error_message "ntpstat not installed on #{host.name}"
-        elsif !(output =~ /^synch/) then
-          @run.error_message "Clock on #{host.name} not synchronised with ntp server"
+        if (output.nil?) then
+          @run.error_message "Request timed out verifying clock on #{host.name)"
+        else 
+          output = output.body
+          output.chomp!
+          if output.empty? then
+            @run.error_message "ntpstat not installed on #{host.name}"
+          elsif !(output =~ /^synch/) then
+            @run.error_message "Clock on #{host.name} not synchronised with ntp server"
+          end
         end
       end
     end
