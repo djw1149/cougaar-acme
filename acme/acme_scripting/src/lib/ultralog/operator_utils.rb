@@ -38,7 +38,7 @@ module Ultralog
         host = @hostname unless host
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
-          return file if  ts.get_service_host("operator") && ts.get_service_host("operator").host_name==@hostname
+          return file if  ts.get_service_host("operator") && ts.get_service_host("operator").host_name==host
         end
         return nil
       end
@@ -48,10 +48,10 @@ module Ultralog
         society = nil
         Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
           ts = Cougaar::SocietyBuilder.from_xml_file(file).society
-          society = ts if  ts.get_service_host("operator") && ts.get_service_host("operator").host_name==@hostname
+          society = ts if  ts.get_service_host("operator") && ts.get_service_host("operator").host_name==host
         end
         unless society
-          raise "Could not find society for #{@hostname}...you may not be logged into the society operator host"
+          raise "Could not find society for #{host}...you may not be logged into the society operator host"
         end
         return society
       end
