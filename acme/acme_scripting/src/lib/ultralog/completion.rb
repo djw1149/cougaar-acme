@@ -147,10 +147,10 @@ module Cougaar
       
       def process
         comp = @run["completion_monitor"] 
-	if (comp.getSocietyStatus() == "COMPLETE")
-	  # Put this in the log file only...
-	  Cougaar.logger.info  "[#{Time.now}]      INFO: Society is already quiescent. About to block waiting for society to go non-quiescent, then quiescent again...."
-	end
+        if (comp.getSocietyStatus() == "COMPLETE")
+          # Put this in the log file only...
+          Cougaar.logger.info  "[#{Time.now}]      INFO: Society is already quiescent. About to block waiting for society to go non-quiescent, then quiescent again...."
+        end
         comp.wait_for_change_to_state("COMPLETE")
       end
       
@@ -287,9 +287,9 @@ module UltraLog
         new_state = data[1].strip
         xml = REXML::Document.new(new_state)
       rescue Exception => failure
-        ::Cougaar.logger.error "Exception: #{failure}"
-        ::Cougaar.logger.error "Invalid xml Quiesence message in event: #{event}"
-        puts "WARNING: Received bad event - more info in log file"
+        @run.error_message "Exception: #{failure}"
+        @run.error_message "Invalid xml Quiesence message in event: #{event}"
+        @run.info_message "WARNING: Received bad event - more info in log file"
         return
       end
       root = xml.root
@@ -329,9 +329,11 @@ module UltraLog
       return msgs
     end
 
-    def wait_for_change_to_state(wait_for_state)
+    def wait_for_change_to_state(wait_for_state, timeout = nil)
       last_state = @society_status
+      start = Time.now
       while true
+        return false if timeout && (Time.now - start) > timeout
         sleep 10
         if @society_status != last_state
           # We get some momentary state changes, make sure it stays changed
@@ -339,7 +341,7 @@ module UltraLog
           if @society_status != last_state
             last_state = @society_status
             if last_state == wait_for_state
-              break
+              return true
             end
           end
         end
@@ -421,8 +423,7 @@ module UltraLog
       end
       unless @society_status == soc_status
         @society_status = soc_status
-        puts "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
-        ::Cougaar.logger.info "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
+        @run.info_message "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
         print_current_comp(comp) if @debug
       end
     end

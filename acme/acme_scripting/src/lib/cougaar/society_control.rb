@@ -19,6 +19,8 @@
 # </copyright>
 #
 
+require 'parsedate'
+
 module Cougaar
   class NodeController
     def initialize(run, timeout, debug)
@@ -57,20 +59,18 @@ module Cougaar
           end
         end
       end
-      launch_data = {}
+      msgs = {}
       nodes.each do |node|
         if @xml_model
           post_node_xml(node)
-          msg_body = launch_xml_node(node)
-          launch_data[node] = msg_body
+          msgs[node] = launch_xml_node(node)
         else
-          msg_body = launch_db_node(node)
-          launch_data[node] = msg_body
+          msgs[node] = launch_db_node(node)
         end
       end
       nodes.each do |node|
-        puts "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{launch_data[node]}] \n" if @debug
-        result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{launch_data[node]}").request(@timeout)
+        puts "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msgs[node]}] \n" if @debug
+        result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msgs[node]}").request(@timeout)
         if result.nil?
           @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
         else
@@ -161,83 +161,110 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Advances the scenario time and sets the execution rate."
         @parameters = [
-          {:time_to_advance => "default=86400000 (1 day) millisecs to advance the cougaar clock total."},
-          {:time_step => "default=86400000 (1 day) millisecs to advance the cougaar clock each step."},
-          {:wait_for_quiescence => "default=true if false, will return without waiting for quiescence after final step."},
+          {:time_to_advance => "default=1.day, seconds to advance the cougaar clock total."},
+          {:time_step => "default=1.day, seconds to advance the cougaar clock each step."},
+          {:wait_for_quiescence => "default=true, if false, will return without waiting for quiescence after final step."},
           {:execution_rate => "default=1.0, The new execution rate (1.0 = real time, 2.0 = 2X real time)"},
+          {:timeout => "default=1.hour, Timeout for waiting for quiescence"},
           {:debug => "default=false, Set 'true' to debug action"}
         ]
-        @example = "do_action 'AdvanceTime', 3600000, 60000, true, 1.0, false"
+        @example = "do_action 'AdvanceTime', 24.days, 1.day, true, 1.0, 1.hour, false"
       }
 
-      def initialize(run, time_to_advance=86400000, time_step=86400000, wait_for_quiescence=true, execution_rate=1.0, debug=false)
+      def initialize(run, time_to_advance=1.day, time_step=1.day, wait_for_quiescence=true, execution_rate=1.0, timeout=1.hour, debug=false)
         super(run)
         @debug = debug
         @time_to_advance = time_to_advance
         @time_step = time_step
         @wait_for_quiescence = wait_for_quiescence
         @execution_rate = execution_rate
-        @expected_result = Regexp.new("Scenario Time");
+        @timeout = timeout
+        @scenario_time = /Scenario Time<\/td><td>([^<]*)<\/td>/
       end
       
       def perform
         # true => include the node agent
-        puts "Advancing time: #{@time_to_advance} Step: #{@time_step} Rate: #{@execution_rate}" if @debug
+        @run.info_message "Advancing time: #{@time_to_advance/3600} hours Step: #{@time_step/3600} hours Rate: #{@execution_rate}" if @debug
 
         # We'll advance step by step, then by the remaining seconds
         steps_to_advance = (@time_to_advance / @time_step).floor
         seconds_to_advance = @time_to_advance % @time_step
+        
         if @debug
-          ::Cougaar.logger.info "going to step forward #{steps_to_advance} steps and #{seconds_to_advance} seconds"
+          @run.info_message "Going to step forward #{steps_to_advance} steps and #{seconds_to_advance} seconds."
         end
-
-        steps_to_advance.times do
+        
+        start_time = get_society_time
+        
+        steps_to_advance.times do | step |
           if @debug
-            ::Cougaar.logger.info "About to step forward one step (#{@time_step / 1000} seconds)"
+            @run.info_message "About to step forward one step (#{@time_step/3600} hours)"
           end
-          advance_and_wait(@time_step)
+          if get_society_time > (start_time + (step + 1) * @time_step)
+            @run.info_message "Skipping time step #{step+1}...society time #{get_society_time} is past #{start_time + (step+1)*@time_step}"
+            next
+          end
+          unless advance_and_wait(@time_step)
+            @run.error_message "Timed out advancing time...society not quiescent."
+            return
+          end
         end
-        if seconds_to_advance > 0
+        if seconds_to_advance > 0 && get_society_time < (start_time + (steps_to_advance * @time_step) + seconds_to_advance)
           if @debug
-            ::Cougaar.logger.info "About to step forward #{seconds_to_advance} seconds"
+            @run.info_message "About to step forward #{seconds_to_advance} seconds"
           end
-          advance_and_wait(1000 * seconds_to_advance)
+          unless advance_and_wait(seconds_to_advance)
+            @run.error_message "Timed out advancing time...society not quiescent."
+            return
+          end
+        end
+      end
+      
+      def get_society_time
+        nca_node = @run.society.agents['NCA'].node.agent
+        result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
+        md = @scenario_time.match(result)
+        if md
+          return Time.utc(*ParseDate.parsedate(md[1]))
         end
       end
 
-      def advance_and_wait(time)
+      def advance_and_wait(time_in_seconds)
+        result = true
         @run.society.each_node do |node|
-          myuri = node.agent.uri+"/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
-          #myuri = "http://#{node.host.uri_name}:#{@run.society.cougaar_port}/$#{node.name}/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
-          puts "URI: #{myuri}" if @debug
+          myuri = node.agent.uri+"/timeControl?timeAdvance=#{time_in_seconds*1000}&executionRate=#{@execution_rate}"
+          @run.info_message "URI: #{myuri}" if @debug
           data, uri = Cougaar::Communications::HTTP.get(myuri)
-          puts data if @debug
-          if (@expected_result.match(data) == nil)
-            puts "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
-            ::Cougaar.logger.error "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
+          md = @scenario_time.match(data)
+          if md
+            @run.info_message "OLD TIME: #{md[1]}" if @debug
+          else
+            @run.error_message "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
+            return false
           end
         end
 
         if @debug
-          ::Cougaar.logger.info "Finished sending servlet requests"
+          @run.info_message "Finished sending servlet requests"
         end
 
         # now wait for quiescence
         if @wait_for_quiescence
           comp = @run["completion_monitor"]
           if !comp
-            ::Cougaar.logger.error "Completion Monitor not installed.  Cannot wait for quiescence"
-            puts "Completion Monitor not installed.  Cannot wait for quiescence"
-            return
+            @run.error_message "Completion Monitor not installed.  Cannot wait for quiescence"
+            return false
           end
           if @debug
-            ::Cougaar.logger.info "About to wait for quiescence"
+            @run.info_message "About to wait for quiescence"
           end
           sleep 20.seconds
           if comp.getSocietyStatus() == "INCOMPLETE"
-            comp.wait_for_change_to_state("COMPLETE")
+            result = comp.wait_for_change_to_state("COMPLETE", @timeout)
           end
         end
+        @run.info_message "Society time advanced to #{get_society_time}"
+        return result
       end
 
     end # class
