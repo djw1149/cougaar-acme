@@ -57,15 +57,20 @@ module Cougaar
           end
         end
       end
+      launch_data = {}
       nodes.each do |node|
         if @xml_model
           post_node_xml(node)
           msg_body = launch_xml_node(node)
+          launch_data[node] = msg_body
         else
           msg_body = launch_db_node(node)
+          launch_data[node] = msg_body
         end
-        puts "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
-        result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
+      end
+      nodes.each do |node|
+        puts "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{launch_data[node]}] \n" if @debug
+        result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{launch_data[node]}").request(@timeout)
         if result.nil?
           @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
         else
