@@ -65,11 +65,11 @@ public class MemoryWasterPlugin
 				response.setContentType("text/xml");
 				
 				String sizeStr = request.getParameter("size");
-				if (sizeStr != null) 
+				if (sizeStr != null) {
 					size = Integer.parseInt(sizeStr);
-
-				wasteMemory();
-					
+					wasteMemory();
+				}
+								
 				PrintWriter out = response.getWriter();
 				out.println("<?xml version=\"1.0\"?>");
 				
