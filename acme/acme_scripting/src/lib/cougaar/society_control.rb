@@ -243,6 +243,7 @@ module Cougaar
       def advance_and_wait(time_in_seconds)
         result = true
         @run.society.each_node do |node|
+	  next unless node.active?
           myuri = node.agent.uri+"/timeControl?timeAdvance=#{time_in_seconds*1000}&executionRate=#{@execution_rate}"
           @run.info_message "URI: #{myuri}" if @debug
           data, uri = Cougaar::Communications::HTTP.get(myuri)
