@@ -65,8 +65,12 @@ module Cougaar
         @action = block if block_given?
       end
       def perform
-        @host = ::UltraLog::DataGrabber.get_host_from_society(@run.society) unless @host
-        @action.call(::UltraLog::DataGrabber.new(@host))
+        begin
+          @host = ::UltraLog::DataGrabber.get_host_from_society(@run.society) unless @host
+          @action.call(::UltraLog::DataGrabber.new(@host))
+        rescue
+          @run.error_message "DataGrabber error #{$!}\n#{$!.backtrace.join("\n")}"
+        end
       end
     end
   end
