@@ -31,18 +31,22 @@ class DNS
   extend FreeBASE::StandardPlugin
 
   def self.start(plugin)
+=begin
     plugin['log/info'] << "ACME::Plugin::DNS[start]"
     plugin['instance'] = DNS.new( plugin )
-
+=end
+    self.new( plugin )
     plugin.transition(FreeBASE::RUNNING)
   end
 
+=begin
   def self.stop(plugin)
     plugin['log/info'] << "ACME::Plugin::DNS[stop]"
     plugin.do_reset
 
     plugin.transition(FreeBASE::LOADED)
   end
+=end
 
   attr_reader :plugin
 
@@ -88,10 +92,11 @@ class DNS
     ip = do_lookup( hostname )
     tab = '\t'
 
-    `sed '/#{hostname}[ 	]/d' < #{@db} > #{@db}.work`
-    `echo \"#{hostname}	A	#{ipaddress}\" >> #{@db}.work`
+    `sed -e '/#{hostname}[ 	]/d' -e 's/.*; serial/#{make_serial}; serial/g' < #{@db} > #{@db}.work`
+    `echo "#{hostname}	A	#{ipaddress}" >> #{@db}.work`
     `/sbin/service named stop`
     `mv #{@db}.work #{@db}`
+    sleep(1)
     `/sbin/service named start`
 
     do_lookup( hostname )
@@ -99,9 +104,8 @@ class DNS
 
   def do_reset
     @plugin['log/info'] << "Resetting DNS to known state."
-    @plugin['log/info'] << "cp #{@backup} to #{@db}"
     `/sbin/service named stop`
-    @plugin['log/info'] << `cp #{@backup} #{@db}`
+    sleep(1)
     `/sbin/service named start`
     "OK"
   end
@@ -110,7 +114,9 @@ class DNS
     `nslookup #{hostname} -silent | grep Address | grep -v \\# | cut -d: -f2`.strip!
   end 
 
-
+  def make_serial
+    Time.now.to_i.to_s
+  end
 end
 
 end; end
