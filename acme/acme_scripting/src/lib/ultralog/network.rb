@@ -264,13 +264,13 @@ module Cougaar; module Actions
     end
   end
 
-  class ActivateNIC < Cougaar::Action
+  class ActivateKLinks < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Turns a NIC back on.  A facet is passed to determine which hosts NIC are to be restored.  An optional network is also provided to identify which NIC."
-      @example = "do_action 'ActivateNIC', 'sv190-facet', 'CONUS-REAR'"
+      @description = "Turns a K-Link back on for a router.  The first argument is a facet which identifies the router.  The second argument is the target of the K-Link to re-enable.  When the link comes back up, it should have the same shaping as before it was disabled."
+      @example = "do_action 'ActivateKLinks', 'CONUS-REAR-router', 'DIV-SUP'"
     }
 
-    def initialize( run, facet, target=nil )
+    def initialize( run, facet, target )
       @run = run
       super( run )
       
@@ -284,8 +284,7 @@ module Cougaar; module Actions
       @run.society.each_service_host(@facet) { |host|
          case (host.get_facet(:host_type))
            when "standard":
-              @run.comms.new_message(host).set_body("command[net]enable(#{host.get_facet(:interface)})").send
-
+              @run.error_message("WARNING!  Trying to activate a K-Link on a standard host.")
            when "router":
               subnet = net.subnet[ host.get_facet(:subnet) ]
               if (@target.nil?) then
@@ -310,13 +309,13 @@ module Cougaar; module Actions
     end
   end
 
-  class DeactivateNIC < Cougaar::Action
+  class DeactivateKLinks < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
-      @description = "Disable a specified network interface.  A facet is passed in to determine which hosts to disable, and an optional target for hosts with multiple network interfaces."
-      @example = "do_action 'DeactivateNIC', 'sv190-facet', 'CONUS-REAR'"
+      @description = "Disable a specified network interface.  A facet is passed in which identifies the router to affect.  The subnet field is required, and is the target of the K-Link to deactivate.."
+      @example = "do_action 'DeactivateKLinks', 'CONUS-REAR-router', 'DIV-SUP'"
     }
 
-    def initialize( run, facet, target=nil )
+    def initialize( run, facet, target )
       @run = run
       super( run )
       
@@ -330,8 +329,7 @@ module Cougaar; module Actions
       @run.society.each_service_host(@facet) { |host|
          case (host.get_facet(:host_type))
            when "standard":
-              @run.comms.new_message(host).set_body("command[net]disable(#{host.get_facet(:interface)})").send
-
+              @run.error_message("WARNING!  Attempting to disable a K-Link on a standard host.")
            when "router":
               subnet = net.subnet[ host.get_facet(:subnet) ]
               if (@target.nil?) then
