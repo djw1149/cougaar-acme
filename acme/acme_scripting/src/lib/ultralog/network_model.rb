@@ -59,7 +59,7 @@ module Cougaar
       Dir[File.join(operator, mask)].each { |filename|
          netModel = NetworkModel.from_xml_file( filename )
          if (netModel.operator == `hostname`.chomp!) then
-           @net_file = filename
+           netModel.net_file = filename
            return netModel
          end
       }

@@ -22,6 +22,45 @@
 require 'ultralog/network_model'
 
 module Cougaar; module Actions
+  class RouterInformation < Cougaar::Action
+    DOCUMENTATION = Cougaar.document {
+      @description = "Gather i nformation on all routers in the system.  Writes the results out to an XML file specified by the parameters."
+      @example = "do_action 'RouterInformation', 'routers-stage-1.xml'"
+    }
+
+    def initialize( run, file )
+      @run = run
+      super( run )
+
+      @file = file
+    end
+
+    def perform
+      netModel = @run['network']
+      out = File.open( @file, "w" )
+
+      out.puts("<?xml version='1.0'?>")
+      out.puts("<network-information time='#{Time.now.gmtime}'>")
+      
+      @run.society.each_host { |host|
+        case (host.get_facet(:host_type))
+          when "router":
+            subnet = netModel.get_subnet( host.get_facet(:subnet) )
+
+            out.puts("  <host name='#{host.name}' host_type='#{host.get_facet(:host_type)}'>") 
+            subnet.k_links.each_value { |k_link|
+              out.puts "    " + @run.comms.new_message(host).set_body("command[net]info(#{k_link.interface})").send().body
+            }
+            out.puts("  </host>")
+        end
+      }
+      out.puts("</network-information>")
+      out.close
+     
+      @run.archive_and_remove_file(@file, "Network Status")
+    end
+  end
+
   class InitializeNetwork < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Initialize network.  All interfaces up and unshaped."
@@ -32,8 +71,10 @@ module Cougaar; module Actions
       @run = run
       super( run )
 
-      run['network'] = NetworkModel.discover(File.join(ENV['CIP'], "operator"), "*-net.xml")
-      run.archive_file( run['network'].net_file )
+      model = NetworkModel.discover(File.join(ENV['CIP'], "operator"),  "*-net.xml")
+      @run.archive_file( model.net_file, "Network Definition" )
+
+      @run['network'] = model
     end
 
     def perform
@@ -398,7 +439,6 @@ module Cougaar; module Actions
                  }
               else
                 klink = subnet.klink[ @target ]
-                puts "command[net]disable(#{klink.interface})"
                 @run.comms.new_message(host).set_body("command[net]disable(#{klink.interface})").send
               end
 
