@@ -2,7 +2,7 @@
 
 name: SAVE-PreStage1
 description: SAVE-PreStage1
-script: $CIP/csmart/lib/isat/OPBaselineTemplate.rb
+script: $CIP/csmart/lib/isat/OPBaselineTemplate-ExtOplan.rb
 parameters:
   - run_count: 1
   - society_file: $CIP/csmart/config/societies/ua/full-tc20-232a703v.plugins.rb

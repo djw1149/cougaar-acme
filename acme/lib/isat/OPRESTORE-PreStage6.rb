@@ -1,14 +1,14 @@
 =begin experiment
 
-name: Restore-PreStage7
-description: Restore-PreStage7
+name: Restore-PreStage6
+description: Restore-PreStage6
 script: $CIP/csmart/lib/isat/OPRestoreTemplate.rb
 parameters:
   - run_count: 1
-  - snapshot_name: $CIP/SAVE-PreStage7.tgz
+  - snapshot_name: $CIP/SAVE-PreStage6.tgz
   - archive_dir: $CIP/Logs
   - stages: 
-    - 7
+    - 6
   
 include_scripts:
   - script: $CIP/csmart/lib/isat/clearLogs.rb
@@ -19,11 +19,11 @@ include_scripts:
   - script: $CIP/csmart/assessment/assess/cnccalc_include.rb
     parameters:
       - run_type: base
-      - description: Stage 7 Baseline
+      - description: Stage 6 Baseline
   - script: $CIP/csmart/assessment/assess/analysis_baseline_cmds.rb
     parameters:
       - only_analyze: "moe1"
-      - baseline_name: OPs7Base
+      - baseline_name: OPs6Base
 
 =end
 

@@ -1,8 +1,8 @@
 =begin experiment
 
-name: SAVE-PreStage7
-description: SAVE-PreStage7
-script: $CIP/csmart/lib/isat/OPBaselineTemplate.rb
+name: SAVE-PreStage5
+description: SAVE-PreStage5
+script: $CIP/csmart/lib/isat/OPBaselineTemplate-ExtOplan.rb
 parameters:
   - run_count: 1
   - society_file: $CIP/csmart/config/societies/ua/full-tc20-232a703v.plugins.rb
@@ -24,8 +24,8 @@ include_scripts:
   - script: $CIP/csmart/assessment/lib/assess/cnccalc_include.rb
   - script: $CIP/csmart/lib/isat/save_snapshot.rb
     parameters:
-      - snapshot_name: $CIP/SAVE-PreStage7.tgz
-      - snapshot_location: before_stage_7
+      - snapshot_name: $CIP/SAVE-PreStage5.tgz
+      - snapshot_location: before_stage_5
 =end
 
 require 'cougaar/scripting'
