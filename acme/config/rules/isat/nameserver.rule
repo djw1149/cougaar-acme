@@ -7,7 +7,7 @@ society.each_node do |node|
   some_node = node
 end
 
-ns_node = node if !ns_node
+ns_node = some_node if !ns_node
 
 if ns_node
   society.each_node do |node|
