@@ -24,7 +24,7 @@ module Cougaar; module Actions
     DOCUMENTATION = Cougaar.document {
       @description = "Enable network shaping at the K level."
       @parameters = [
-         {:host=>"required, Hostname which contains the router.}
+         {:host=>"required, Hostname which contains the router."}
       ]
       @example = "do_action 'EnableNetworkShaping', 'sv023'"
     }
@@ -36,15 +36,15 @@ module Cougaar; module Actions
 
     def perform
       host = @run.society.hosts[@hostname]
-      @run.comms.new_message(host).set_body("command[shape]trigger")
+      @run.comms.new_message(host).set_body("command[shape]trigger").send
     end
   end
 
-  class DisableNetworkShaping < Cougaar:Action
+  class DisableNetworkShaping < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Disable network shaping at the K level."
       @parameters = [
-         {:host=>"required, Hostname which contains the router.}
+         {:host=>"required, Hostname which contains the router."}
       ]
       @example = "do_action 'DisableNetworkShaping', 'sv023'"
     }
@@ -56,7 +56,7 @@ module Cougaar; module Actions
 
     def perform
       host = @run.society.hosts[@hostname]
-      @run.comms.new_message(host).set_body("command[shape]reset")
+      @run.comms.new_message(host).set_body("command[shape]reset").send
     end
   end
 end; end

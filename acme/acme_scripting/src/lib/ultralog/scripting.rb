@@ -1,6 +1,6 @@
 ##
 #  <copyright>
-#  Copyright 2002 InfoEther, LLC
+#  Copyright 2002 InfoEther, LLC, BBN Technologies
 #  under sponsorship of the Defense Advanced Research Projects Agency (DARPA).
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -34,5 +34,7 @@ require 'ultralog/inventory'
 require 'ultralog/verify'
 require 'ultralog/services'
 require 'ultralog/stressors'
+require 'ultralog/network'
+require 'ultralog/mgen'
 
 require 'ultralog/debug/relations'

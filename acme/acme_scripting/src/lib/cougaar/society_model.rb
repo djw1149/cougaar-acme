@@ -488,6 +488,11 @@ module Cougaar
         yield self if block_given?
       end
       
+      def ip
+        hostInfo = `/usr/bin/host #{@name}`
+        infoList = hostInfo.split(/ /)
+        infoList.pop.chomp!
+      end
       ##
       # Adds a node to this host
       #
