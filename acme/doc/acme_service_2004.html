@@ -114,6 +114,82 @@ definition format (see experiment_definition.html) and three new ACME service ca
 <pre> $ Archive Path? 
  $ Society Name? </pre>
 <p>After providing these inputs (as per the above mentioned editing of the properties.yaml file) the script pulls the latest (ACME HEAD) overlay from the overlays site and installs it on the current machine, fully configured and ready to go.  This is useful if updates to the reporting services need to be propagated to all societies in the TIC.</p>
+<h3> Developing ACME Report Plugins </h3>
+<p>This section will document how to write ACME Report plugins.  Report plugins are ACME Service plugins.  To learn how to write ACME Service Plugins see the ACME_Framework.doc file distributed with the ACME overlay.  To configure a plugin to use the ACME Reporting framework, you need to make your plugin <b>start dependent</b> on the the acme_reporting_service plugin in the plugin.yaml file.  An example is provided here:</p>
+<pre> --- !ruby/object:FreeBASE::PluginConfiguration 
+   name: acme_reporting_core
+   version: 1.0
+   autoload: false
+   require_path: acme_reporting_core/core
+   startup_module: ACME::Plugins::ReportingCore
+   <b>start_dependencies: 
+     acme_reporting_service: "*"</b></pre>
+<p>Within your plugin, then you need to register your plugin as a <i>listener</i> for new archives to process.  As an example, in your initialize method of your plugin, you could register as a listener:</p>
+<pre> def initialize(plugin)
+   @plugin = plugin
+   <b>@reporting = @plugin['/acme/reporting']
+   @reporting.manager.add_listener(&method(:process_archive))</b>
+ end
+ <b>def process_archive(archive)
+   # do processing here
+ end</b></pre>
+<p>This example registers the <i>process_archive</i> method to be called by the Report Service whenever a new archive is available to process.  This is actually all that is necessary to hook into the Reporting Service.  The remainder of this section will deal with processing archives and generating reports.</p>
+<h4> Processing Archive Structures </h4>
+<p>In the above process_archive method an object is passed in.  This object is an instance of the ACME::Plugins::ReportingService::ArchiveStructure class.  This class creates an <i>interface</i> through which your plugin will interact with the files that are available in the temporary directory that the .tgz file has been expanded into, and to generate reports.  For a detailed reference of the methods available on the ArchiveStructure see the plugins/archive_reporting_service/archive.rb file.  The most common methods you will use when writing a report plugins are the file helper, and the add_report methods.  There are two file helper methods that aid you in locating files that you can use to write reports against (like log4j logs, etc).</p>
+<pre> list = archive.files_with_description(/regexp pattern/)
+  
+ list = archive.files_with_name(/regexp pattern/)</pre>
+<p>Both of these methods return an Array (list) that holds FileReference structs which have the following methods:</p>
+<pre> ref.name # => the fully qualified file name of the file in the temporary expanded path
+ ref.original_name # => the fully qualified file name where the file was originally located
+ ref.description # => the description of the file</pre>
+<p>An example usage of this would be, if you wanted to iterate over all Log4J logs:</p>
+<pre> def process_archive(archive)
+   logs = archive.files_with_description(/Log4j/)
+   if logs.size > 0
+     exception_files = []
+     logs.each do |log|
+        if File.read(log.name)~=/Exception/
+          exception_files << File.basename(log.name)
+        end 
+     end
+     # TODO: produce reports
+   end
+ end</pre>
+<p>This iterates and reads in the content of each log4j log file and searches for the string 'Exception' and if it finds any, adds that file to the <i>exception_files</i> variable array.  After processing files, the next step is to produce reports that summarize your findings.  To accomplish this, you use the <b>add_report</b> method on the ArchiveStructure object.  An example report that checks for exceptions within the log4j log files (from above) is provided.</p>
+<pre> # TODO: produce reports
+ archive.add_report("EX", @plugin.plugin_configuration.name) do |report|
+   report.description = "Exception report.  Success indicates not 
+                         exceptions, Failure indicates exceptions found"
+   if exception_files.size > 0
+     reports.failed
+   else
+     reports.success
+   end
+ end</pre>
+<p>In this example, a report is generated name 'EX' under the plugin named '@plugin.plugin_configuration_name'  This is important to pass in because all generated files (see below) are located under this path.  If two report plugins generate the same filename, the plugin name will disambiguate them.  The report is marked a <i>success</i> or <i>failure</i> depending on whether exceptions were located in the Log4J log files.  The full methods available on the ACME::Plugins::ReportingService::Report object can be found in the plugins/acme_reporting_service/report.rb file.  A summary of the most used ones are:</p>
+<pre> report.description = '...' # => set the description of the report.
+ 
+ report.success # => mark the report as having no errors (successful)
+ report.partial_success # => mark the report as having some errors
+ report.failed # => mark the report as locating errors
+ 
+ report.score = <i>number</i> # => the (optional) score of the report</pre>
+<p>The last most common method used is to add a file that will be available for browsing through the Report Posting Service.
+</p>
+<pre> 
+ report.open_file("exception_reports.html", "text/html", "List of logs with exceptions.") do |file|
+   file.puts <<-REPORT
+     &lt;html>
+     &lt;body>
+     &lt;h1>Log4j log files with exceptions&lt; /h1>
+     &lt;ul>
+        #{exception_files.collect {|filename| "&lt;li>"+filename}}
+     &lt;/ul>
+   REPORT
+ end</pre>
+<p>As you can see from this example, the <b>open_file</b> method yields an already open (wb) file ready to be written to.  At the close of the block, the file will be automatically closed.  Also, the path to the file is generated based on the (prior supplied) plugin name in the 'reports' subdirectory of the temporary archive expansion path.</p>
+<p>This concludes this section on how to write report plugins.  The acme_reporting_core plugin (in the ACME Service) is a good example to look in for more sophisticated reporting and generation of report files from HTML templates using the <b>Ikko</b> Ruby templating engine (see <a class="external" href="http://ikko.rubyforge.org">http://ikko.rubyforge.org</a> ).</p>
 <h3> ACME Report Posting Service </h3>
 <p>The last component is the ACME Report Posting service.  This service resides on <a class="external" href="http://reports.ultralog.net">http://reports.ultralog.net</a> and receives reports posted by reporting hosts that are located in each executing society.  The Posting Service is a Ruby-based cgi that is configured to execute behind the Apache web service on reports.ultralog.net.  The CGI accepts an HTTP POST of the following format:</p>
 <pre> URI:  h t t p://reports.ultralog.net/post_report.rb/SOCIETY/EXPERIMENT<br>
