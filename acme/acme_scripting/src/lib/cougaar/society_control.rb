@@ -67,7 +67,7 @@ module Cougaar
           puts "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
           result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
           if result.nil?
-            action.raise_failure "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+            puts "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
           end
         end
       end
