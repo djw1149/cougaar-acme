@@ -205,6 +205,7 @@
         <facet subordinate_org_id='1-37-ARBN.1-BDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='16-ENGBN.1-BDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='2-3-FABN.1-BDE.1-AD.ARMY.MIL' />
+        <facet subordinate_org_id='501-FSB.DISCOM.1-AD.ARMY.MIL' />
         <facet home_location='TZUX' />
         <facet uic='WAELAA' />
         <facet combat_support='CBT' />
@@ -372,7 +373,7 @@
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='125-FSB.DISCOM.1-AD.ARMY.MIL' />
         <facet orig_org_id='125-FSB' />
-        <facet superior_org_id='DISCOM.1-AD.ARMY.MIL' />
+        <facet superior_org_id='3-BDE.1-AD.ARMY.MIL' />
         <facet home_location='HKBN' />
         <facet uic='WJA0AA' />
         <facet combat_support='CSS' />
@@ -428,7 +429,7 @@
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='127-DASB.DISCOM.1-AD.ARMY.MIL' />
         <facet orig_org_id='127-DASB' />
-        <facet superior_org_id='DISCOM.1-AD.ARMY.MIL' />
+        <facet superior_org_id='AVNBDE.1-AD.ARMY.MIL' />
         <facet home_location='KBFP' />
         <facet uic='WJEQAA' />
         <facet combat_support='CSS' />
@@ -751,6 +752,7 @@
         <facet subordinate_org_id='1-35-ARBN.2-BDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='40-ENGBN.2-BDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='4-27-FABN.2-BDE.1-AD.ARMY.MIL' />
+        <facet subordinate_org_id='47-FSB.DISCOM.1-AD.ARMY.MIL' />
         <facet home_location='VTYA' />
         <facet uic='WAPGAA' />
         <facet combat_support='CBT' />
@@ -1146,6 +1148,7 @@
         <facet subordinate_org_id='2-70-ARBN.3-BDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='70-ENGBN.3-BDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='4-1-FABN.3-BDE.1-AD.ARMY.MIL' />
+        <facet subordinate_org_id='125-FSB.DISCOM.1-AD.ARMY.MIL' />
         <facet home_location='HKBN' />
         <facet uic='WAHEAA' />
         <facet combat_support='CBT' />
@@ -1433,7 +1436,7 @@
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='47-FSB.DISCOM.1-AD.ARMY.MIL' />
         <facet orig_org_id='47-FSB' />
-        <facet superior_org_id='DISCOM.1-AD.ARMY.MIL' />
+        <facet superior_org_id='2-BDE.1-AD.ARMY.MIL' />
         <facet home_location='VTYA' />
         <facet uic='WH98AA' />
         <facet combat_support='CSS' />
@@ -1520,7 +1523,7 @@
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='501-FSB.DISCOM.1-AD.ARMY.MIL' />
         <facet orig_org_id='501-FSB' />
-        <facet superior_org_id='DISCOM.1-AD.ARMY.MIL' />
+        <facet superior_org_id='1-BDE.1-AD.ARMY.MIL' />
         <facet home_location='TZUX' />
         <facet uic='WH96AA' />
         <facet combat_support='CSS' />
@@ -2151,6 +2154,7 @@
         <facet org_id='AVNBDE.1-AD.ARMY.MIL' />
         <facet orig_org_id='AVNBDE-1-AD' />
         <facet superior_org_id='1-AD.ARMY.MIL' />
+        <facet subordinate_org_id='127-DASB.DISCOM.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='1-1-CAVSQDN.AVNBDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='1-501-AVNBN.AVNBDE.1-AD.ARMY.MIL' />
         <facet subordinate_org_id='2-501-AVNBN.AVNBDE.1-AD.ARMY.MIL' />
@@ -2253,10 +2257,6 @@
         <facet orig_org_id='DISCOM-1-AD' />
         <facet superior_org_id='1-AD.ARMY.MIL' />
         <facet subordinate_org_id='123-MSB.DISCOM.1-AD.ARMY.MIL' />
-        <facet subordinate_org_id='501-FSB.DISCOM.1-AD.ARMY.MIL' />
-        <facet subordinate_org_id='47-FSB.DISCOM.1-AD.ARMY.MIL' />
-        <facet subordinate_org_id='125-FSB.DISCOM.1-AD.ARMY.MIL' />
-        <facet subordinate_org_id='127-DASB.DISCOM.1-AD.ARMY.MIL' />
         <facet home_location='ULRK' />
         <facet uic='WAPLAA' />
         <facet combat_support='CSS' />

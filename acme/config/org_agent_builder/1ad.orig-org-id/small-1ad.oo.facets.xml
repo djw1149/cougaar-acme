@@ -253,6 +253,7 @@
         <facet superior_org_id='1-AD' />
         <facet subordinate_org_id='1-6-INFBN' />
         <facet subordinate_org_id='1-35-ARBN' />
+        <facet subordinate_org_id='47-FSB' />
         <facet home_location='VTYA' />
         <facet uic='WAPGAA' />
         <facet combat_support='CBT' />
@@ -554,7 +555,7 @@
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='47-FSB' />
         <facet orig_org_id='47-FSB' />
-        <facet superior_org_id='DISCOM-1-AD' />
+        <facet superior_org_id='2-BDE-1-AD' />
         <facet home_location='VTYA' />
         <facet uic='WH98AA' />
         <facet combat_support='CSS' />
@@ -974,7 +975,6 @@
         <facet orig_org_id='DISCOM-1-AD' />
         <facet superior_org_id='1-AD' />
         <facet subordinate_org_id='123-MSB' />
-        <facet subordinate_org_id='47-FSB' />
         <facet home_location='ULRK' />
         <facet uic='WAPLAA' />
         <facet combat_support='CSS' />
