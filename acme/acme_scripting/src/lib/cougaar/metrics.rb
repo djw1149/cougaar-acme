@@ -62,6 +62,50 @@ module Cougaar
       end
 
     end # class
+
+    class CollectMemoryData < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Does a ps on each node to collect the memory used by each node"
+        @parameters = [
+          {:directory => "default='.', Directory used to store the ps output"},
+          {:debug => "default=false, Set 'true' to debug action"}
+        ]
+        @example = "do_action 'CollectMemoryData', 'memusage'"
+      }
+		  @debug = true
+      def initialize(run, directory = ".", debug=false)
+        super(run)
+        @debug = debug
+        @directory = directory
+      end
+      
+      def perform
+        begin
+          Dir.mkdir(@directory) unless File.exist?(@directory)
+	  @run.society.each_active_host do |host|
+            results = @run.comms.new_message(host).set_body("command[list_java_pids]").request(60)
+            next if (results.nil? || results.body.nil?)
+            results = results.body.split(",")
+            results.each do|result|
+                            result = result.split('=')
+              node = result[0]
+              pid = result[1]
+              next if pid.nil?
+              out_file = File.open("#{@directory}/#{node}-procinfo", "w") 
+              #output = @run.comms.new_message(host).set_body("command[rexec_user]ps -o size -o pid -C java | grep #{pid}").request(60)
+              output = @run.comms.new_message(host).set_body("command[rexec_user]cat /proc/#{pid}/status | grep Vm").request(60)
+              output = output.body
+              out_file.print("#{node}\n#{output}\n")
+              out_file.close
+              @run.archive_and_remove_file("#{@directory}/#{node}-procinfo", "Memory usage file")
+            end          
+          end
+        rescue
+          @run.error_message "Exception in CollectMemoryData action: #{$!}"
+        end
+      end
+
+    end #class
   end  # module Actions
 end # module Cougaar
     
