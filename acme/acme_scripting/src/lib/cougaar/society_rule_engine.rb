@@ -22,18 +22,25 @@ module Cougaar
         @stdout_enabled = true
       end
       
-      def load_rules(dir)
-        rules = Dir.glob(dir+"/**/*.rule")
-        rules.each do |rule_file|
-          File.open(rule_file) do |file|
-            rule = file.read
-            begin
-              instance_eval %Q(
-                add_rule('#{rule_file}') do |rule, society|
-                #{rule}
-                end)
-            rescue Exception => error
-              output_warning "Error loading rule #{rule_file}: #{error}\n#{error.backtrace.join("\n")}"
+      def load_rules(list)
+        list.split(":").each do |item|
+          raise "Unknown file or direcotory: #{item}" unless File.exist?(item)
+          if File.stat(item).directory?
+            rules = Dir.glob(File.join(item, "*.rule"))
+          else
+            rules = [item]
+          end
+          rules.each do |rule_file|
+            File.open(rule_file) do |file|
+              rule = file.read
+              begin
+                instance_eval %Q(
+                  add_rule('#{rule_file}') do |rule, society|
+                  #{rule}
+                  end)
+              rescue Exception => error
+                output_warning "Error loading rule #{rule_file}: #{error}\n#{error.backtrace.join("\n")}"
+              end
             end
           end
         end
