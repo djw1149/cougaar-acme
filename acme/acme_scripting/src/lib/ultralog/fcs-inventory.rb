@@ -22,6 +22,47 @@ require 'cougaar/scripting'
 
 module Cougaar
   module Actions
+  
+    class FCSInventory < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+
+      # Take the asset to get the inventory for at this agent
+      def initialize(run, modifier)
+        super(run)
+        @modifier = modifier
+      end
+      
+      def to_s
+        return super.to_s+"(#{@modifier})"
+      end
+      
+      def perform
+        # Get some inventory charts
+        get_inventory "FSB-FUEL-WATER-SECTION", "ALL TRUCKS:JP8", "INV/INV#{@modifier}-FSB-FUEL-WATER-SECTION-ALL-TRUCKS-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-0:JP8", "INV/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-10:JP8", "INV/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
+
+      end
+
+      def get_inventory(agent, asset, file)
+        cougaar_agent = @run.society.agents[agent]
+        if cougaar_agent
+          list, uri = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/list")
+          if uri
+            resp = Cougaar::Communications::HTTP.put("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{agent}/fcs_inventory", asset)
+            File.open(file, "wb") do |f|
+              f.puts resp
+            end
+            @run.archive_and_remove_file(file, "Inventory for agent: #{agent} asset: #{asset}")
+          else
+            @run.error_message "Inventory failed to redirect to agent: #{agent}"
+          end
+        else
+          @run.error_message "Inventory failed, unknown agent: #{agent}"
+        end
+      end
+    end
+  
     # Sample the inventory of a society in predefined places
     class FCSSampleInventory < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
@@ -34,7 +75,7 @@ module Cougaar
           @file = file
           @asset = asset
           @agent = agent
-          @protocol = "http" 
+          @protocol = "http"
       end
 
       def save(result)
@@ -62,4 +103,3 @@ module Cougaar
     end
   end
 end
-
