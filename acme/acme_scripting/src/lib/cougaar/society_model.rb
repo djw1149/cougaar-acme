@@ -647,7 +647,7 @@ module Cougaar
       # value:: [String] The new parameter
       #
       def replace_parameter(param_pattern, new_param)
-        @parameters.delete_if? {|param| param =~ param_pattern}
+        @parameters.delete_if {|param| param =~ param_pattern}
         @parameters << new_param
       end
 
