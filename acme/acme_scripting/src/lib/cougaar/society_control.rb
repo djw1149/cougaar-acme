@@ -427,7 +427,7 @@ module Cougaar
           result = Cougaar::Communications::HTTP.get(uri)
           @run.error_message "Error moving agent" unless result
         rescue
-          @run.error_message "Could not move agent via HTTP", $!
+          @run.error_message "Could not move agent via HTTP\n#{$!.to_s}"
         end
        #http://sv116:8800/$1-35-ARBN/move?op=Move&mobileAgent=1-35-ARBN&originNode=&destNode=FWD-D&isForceRestart=false&action=Add
       end
