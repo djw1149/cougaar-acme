@@ -46,22 +46,28 @@ module Cougaar
     class DynamicSD < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
 
-      attr_accessor :agent, :role, :end_date
+      attr_accessor :agent, :role, :availability, :startdate, :enddate
 
       # Take the role and end date to change at this agent
-      def initialize(run, agent, role, end_date)
+      def initialize(run, agent, role, availability, start_date, end_date)
         super(run)
           @role = role
-          @end_date = end_date
+          @availability = availability
+          @startdate = start_date
+          @enddate = end_date
           @agent = agent
+          @add = "Add"
+          @publish = "Publish+All+Rows"
           @protocol = "http"
       end
 
       def perform
         cougaar_agent = @run.society.agents[@agent]
         if cougaar_agent
-          result = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/SD_Use_Case?role=#{@role}&enddate=#{@end_date}") 
-          @run.error_message "Failed to trigger SD_Use_Case on #{cougaar_agent.uri}" unless result
+          result = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/availabilityServlet?role=#{@role}&Availability=#{@availability}&startdate=#{@startdate}&enddate=#{@enddate}&action=#{@add}") 
+ @run.error_message "Failed to add role/availability SD_Use_Case on #{cougaar_agent.uri}" unless result
+          result = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/availabilityServlet?action=#{@publish}") 
+          @run.error_message "Failed to publish rows in SD_Use_Case on #{cougaar_agent.uri}" unless result
         else
           @run.error_message "SD Use Case, unknown agent: #{@agent}"
         end
