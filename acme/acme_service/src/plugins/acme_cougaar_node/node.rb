@@ -62,7 +62,7 @@ class CougaarNode
       @config_mgr = @plugin['/cougaar/config'].manager
       if @props_file==nil || @props_file==""
         @props_file = File.join(@config_mgr.cougaar_install_path, "server", "bin", "server.props")
-      elsif !@props_files.include?('/') && !@props_files.include?("\\")
+      elsif !@props_file.include?('/') && !@props_file.include?("\\")
         @props_file = File.join(@config_mgr.cougaar_install_path, "server", "bin", @props_file)
       end
       @java_class = nil
