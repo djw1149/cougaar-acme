@@ -67,35 +67,35 @@ include_scripts:
         - FSB-FUEL-WATER-SECTION-NODE
         - FSB-DRY-CARGO-SECTION-NODE
 
-  - script: $CIP/csmart/assessment/assess/standard_mem_stress.rb
-    parameters:
-      - start_tag: society_restored
-      - start_delay: 0
-      - end_tag: ending_stage
-      - duration: 900
-      - mem_stress: 25
-      - nodes_to_stress:
-        - AmmoTRANSCOM-NODE
-        - REAR-B-NODE
-        - 597-MAINTCO-NODE
-        - 565-RPRPTCO-NODE
-        - 106-TCBN-NODE
-        - 227-SUPPLYCO-NODE
-        - 592-ORDCO-NODE
-        - 102-POL-SUPPLYCO-NODE
-        - DISCOM-1-AD-NODE
-        - AVNBDE-1-AD-NODE
-        - 1-1-CAVSQDN-NODE
-        - 1-BDE-1-AD-NODE
-        - 2-BDE-1-AD-NODE
-        - UA-HHC-NODE
-        - AVN-DET-A-NODE
-        - NLOS-A-NODE
-        - FSB-CIC-NODE
-        - FSB-AREA-FWD-EVAC-SECTION-NODE
-        - 1-CA-BN-INF-CO-A-NODE
-        - 2-CA-BN-INF-CO-A-NODE
-        - 3-CA-BN-INF-CO-A-NODE
+#  - script: $CIP/csmart/assessment/assess/standard_mem_stress.rb
+#    parameters:
+#      - start_tag: society_restored
+#      - start_delay: 0
+#      - end_tag: ending_stage
+#      - duration: 900
+#      - mem_stress: 25
+#      - nodes_to_stress:
+#        - AmmoTRANSCOM-NODE
+#        - REAR-B-NODE
+#        - 597-MAINTCO-NODE
+#        - 565-RPRPTCO-NODE
+#        - 106-TCBN-NODE
+#        - 227-SUPPLYCO-NODE
+#        - 592-ORDCO-NODE
+#        - 102-POL-SUPPLYCO-NODE
+#        - DISCOM-1-AD-NODE
+#        - AVNBDE-1-AD-NODE
+#        - 1-1-CAVSQDN-NODE
+#        - 1-BDE-1-AD-NODE
+#        - 2-BDE-1-AD-NODE
+#        - UA-HHC-NODE
+#        - AVN-DET-A-NODE
+#        - NLOS-A-NODE
+#        - FSB-CIC-NODE
+#        - FSB-AREA-FWD-EVAC-SECTION-NODE
+#        - 1-CA-BN-INF-CO-A-NODE
+#        - 2-CA-BN-INF-CO-A-NODE
+#        - 3-CA-BN-INF-CO-A-NODE
 
   - script: $CIP/csmart/assessment/assess/standard_cpu_stress.rb
     parameters:
@@ -171,7 +171,7 @@ include_scripts:
 #          - router: AVN-BDE-router
 #          - target: DIV
 #          - bandwidth: 762kbit
-#        - link
+        - link
           - router: DIV-router
           - target: 1-BDE
           - bandwidth: 762kbit
