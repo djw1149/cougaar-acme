@@ -2,6 +2,8 @@
 
 # $stdout.sync = true
 
+$CIP = ENV['COUGAAR_INSTALL_PATH']
+
 if $0 == __FILE__
   $:.unshift File.dirname( __FILE__ )
   $:.unshift File.join( $CIP, "csmart", "acme_service", "src", "redist" )
@@ -56,9 +58,11 @@ end
 $POLARIS_CONFIG.update_versions
 
 puts "[#{Time.now}] Transforming . . ."
-ARGV[0] = $POLARIS_CONFIG.transform_script
+Cougaar.in_memory_society = $POLARIS_CONFIG.make_society
 
-puts "[#{Time.now}] . . . Done.  Results in #{ARGV[0]}"
+# ARGV[0] = $POLARIS_CONFIG.transform_script
+
+puts "[#{Time.now}] . . . Done.  Results in memory"
 
 puts "[#{Time.now}] Watching Log Files"
 logs = Polaris::Logs.new("#{ENV['COUGAAR_INSTALL_PATH']}/workspace/log4jlogs")
