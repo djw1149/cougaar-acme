@@ -329,6 +329,28 @@ module Cougaar
       end
     end
     
+    class MoveAgent < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Moves an Agent from its current node to the supplied node."
+        @parameters = [
+          {:agent => "String, The name of the Agent to move."},
+          {:node => "String, The name of the Node to move the agent to."}
+        ]
+        @example = "do_action 'MoveAgent', '1-35-ARBN', 'FWD-B'"
+      }
+      def initialize(run, agent, node)
+        super(run)
+        @agent = agent
+        @node = node
+      end
+      
+      def perform
+        puts "#{@run.society.agents[agent].uri}/move?op=Move&mobileAgent=#{agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
+       #http://sv116:8800/$1-35-ARBN/move?op=Move&mobileAgent=1-35-ARBN&originNode=&destNode=FWD-D&isForceRestart=false&action=Add
+      end
+    end      
+    
   end
   
   module States
