@@ -33,7 +33,7 @@ module Cougaar
         @example = "
           do_action 'EditOPlan' do |oplan|
             org = oplan['109-MDM-TRKCO']
-            org['DEPLOYMENT'].save(nil, nil, '=85')
+            org['Deployment'].save(nil, nil, '=85')
             oplan.update
           end
         "
