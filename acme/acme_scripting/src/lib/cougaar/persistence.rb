@@ -58,7 +58,14 @@ module Cougaar
       
       def perform()
         begin
-          nca_node = @run.society.agents['NCA'].node.agent
+          nca_node = nil
+          run.society.each_agent do |agent|
+            if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+              nca_node = agent.node.agent
+              break
+            end
+          end
+
           result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
           md = /Scenario Time<\/td><td>([^\s]*) (.*):(.*):(.*)<\/td>/.match(result)
           if md
@@ -100,7 +107,14 @@ module Cougaar
       def perform()
         begin
           snapshot_society = @run.society.clone
-          nca_node = snapshot_society.agents['NCA'].node.agent
+          nca_node = nil
+          run.society.each_agent do |agent|
+            if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+              nca_node = agent.node.agent
+              break
+            end
+          end
+
           result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
           md = /Scenario Time<\/td><td>([^\s]*) (.*):(.*):(.*)<\/td>/.match(result)
           if md
