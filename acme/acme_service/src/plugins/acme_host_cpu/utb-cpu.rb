@@ -40,7 +40,7 @@ class CPU
       @num_processors = ENV["NUMBER_OF_PROCESSORS"]
     end
 
-    puts "CPU_WASTER PLATFORM IS #{@platform}.  #{@num_processors} processor(s)"
+    @plugin['log/info'] << "CPU_WASTER PLATFORM IS #{@platform}.  #{@num_processors} processor(s)"
   end
 
   def get_waster()
@@ -51,12 +51,13 @@ class CPU
     perc = percent.to_f / 100.0
     stop()
     if ( perc >= 0.005 ) && (perc <= 0.90) then
-      wholePie = 1000
+      wholePie = 100000
+      wholePie = 1000 if (@platform == "windows")
       onTime = perc * wholePie
       offTime = (1 - perc) * wholePie
       @num_processors.times do |p| 
         @cmdline = "#{@cmd} #{onTime} #{offTime}"
-        puts "Starting CPU stressor: #{@cmdline}"
+        @plugin['log/info'] << "Starting CPU stressor: #{@cmdline}"
         @PIDs << IO.popen("#{@cmdline}")
       end
       @current_load = perc
@@ -65,10 +66,13 @@ class CPU
 
   def stop()
     @PIDs.each do |p|
-      puts "Killing CPU stressor: #{p.pid}"
+      @plugin['log/info'] << "Killing CPU stressor: #{p.pid}"
       Process.kill(9, p.pid) if (p.pid)
       p.close
     end
+
+    `killall -9 #{@cmd}` if @platform == "unix"
+
     @PIDs = []
     @current_load = 0
   end
