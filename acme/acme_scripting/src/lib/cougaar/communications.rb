@@ -79,7 +79,7 @@ module Cougaar
         @parameters = [
           {:username => "default='acme_console', The username of the account used to control the experiment."},
           {:server => "default='acme', The Jabber server name."},
-          {:server => "default='c0ns0le', The password for the Jabber account."}
+          {:pwd => "default='c0ns0le', The password for the Jabber account."}
         ]
         @example = "do_action 'StartJabberCommunications', 'acme_console', 'myjabberserver'"
       }
