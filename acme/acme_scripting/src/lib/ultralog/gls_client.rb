@@ -146,7 +146,7 @@ module Cougaar
       
       def process
         @reg = @run.comms.on_cougaar_event do |event| 
-          if event.event_type=="STATUS" && event.data=="Planning Complete"
+          if event.data.include?("Planning Complete")
             @run.comms.remove_on_cougaar_event(@reg)
             @currentThread.wakeup if @currentThread
           end
