@@ -308,6 +308,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -818,6 +824,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -1373,6 +1385,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -1923,6 +1941,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -2484,6 +2508,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -3039,6 +3069,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -3603,6 +3639,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -4162,6 +4204,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -4736,6 +4784,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -5289,6 +5343,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -5838,6 +5898,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -6398,6 +6464,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -6947,6 +7019,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -7511,6 +7589,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -8063,6 +8147,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -8622,6 +8712,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -9173,6 +9269,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -9733,6 +9835,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -10283,6 +10391,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -10843,6 +10957,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -11399,6 +11519,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -11948,6 +12074,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -12508,6 +12640,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -13080,6 +13218,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -13639,6 +13783,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -14191,6 +14341,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -14739,6 +14895,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -15297,6 +15459,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -15849,6 +16017,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -16410,6 +16584,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -16962,6 +17142,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17523,6 +17709,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -18075,6 +18267,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -18408,6 +18606,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -18941,6 +19145,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -19278,6 +19488,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -19586,6 +19802,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -19916,6 +20138,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -20214,6 +20442,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -20518,6 +20752,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -20806,6 +21046,12 @@
         <component
           name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
           class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
