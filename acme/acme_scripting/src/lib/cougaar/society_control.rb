@@ -62,16 +62,31 @@ module Cougaar
     end
     
     def stop_all_nodes(action)
+      last_node = nil
       @run.society.each_host do |host|
         host.each_node do |node|
-          puts "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
-          result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
-          if result.nil?
-            puts "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+          nameserver = false
+          host.each_facet(:service) do |facet|
+            nameserver = true if facet[:service]=="nameserver"
+          end
+          if nameserver
+            last_node = node
+          else
+            stop_node(node)
           end
         end
       end
+      stop_node(last_node) if last_node
       @pids.clear
+    end
+    
+    def stop_node(node)
+      host = node.host
+      puts "Sending message to #{host.name} -- command[stop_#{@node_type}node]#{@pids[node.name]} \n" if @debug
+      result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
+      if result.nil?
+        puts "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+      end
     end
     
     def restart_node(action, node)
