@@ -34,14 +34,15 @@ society.each_agent do |agent|
 	  subordinate = facet[:sca_supported_org].to_s
 	  sub_agent = society.agents[subordinate]	  
 	  unless sub_agent == nil 
-	    if sub_agent.get_facet(:equip_type_id)	       
+	    if sub_agent.get_facet(:equip_type_id)	      
+	      equip_type_id = sub_agent.get_facet(:equip_type_id)
 	      if first
-		exclude_types = "exclude_types=#{subordinate}"
+		exclude_types = "exclude_types=#{equip_type_id}"
 		first = false
 	      else
-		exclude_types << "&#{subordinate}"
+		exclude_types << "&#{equip_type_id}"
 	      end
-	    end unless exclude_types.include? subordinate
+	    end unless exclude_types.include? equip_type_id
 	  else
 	    puts("WARNING: Cannot find agent: #{subordinate} in society.")
 	  end
