@@ -359,7 +359,7 @@ module Cougaar
         @agent = Agent.new(@name)
         @agents = {}
         @env_parameters = []
-        @prog_paramters = []
+        @prog_parameters = []
         @parameters = []
         yield self if block_given?
       end
