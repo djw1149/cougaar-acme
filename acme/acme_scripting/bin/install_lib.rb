@@ -2,7 +2,7 @@ require 'rbconfig'
 require 'find'
 require 'ftools'
 
-Dir.chdir ".." if Dir.pwd =~ /bin.?$/
+Dir.chdir "../../acme_service/src" if Dir.pwd =~ /bin.?$/
 
 include Config
 
@@ -18,7 +18,7 @@ elsif $site_libdir !~ Regexp.quote($version)
 end
 
 def install_rb(srcdir = nil)
-  libdir = "lib"
+  libdir = "redist"
   libdir = File.join(srcdir, libdir) if srcdir
   path = []
   dir = []
