@@ -118,15 +118,23 @@ module Cougaar
       @society = Model::Society.new(doc.root.attributes['name']) do |society|
         @doc.elements.each("society/host") do |host_element|
           society.add_host(host_element.attributes['name']) do |host|
+            #add attributes to host
             host_element.elements.each("attribute") do |element|
-              host.add_attribute(element.text.strip)
+              a_map = {}
+              element.attributes.each { |a, v| a_map[a.intern] = v }
+              a_map[:cdata] = element.text.strip if element.text
+              host.add_attribute(a_map)
             end
             host_element.elements.each("node") do |node_element|
               host.add_node(node_element.attributes['name']) do |node|
                 element = node_element.elements["class"]
                 node.classname = element.text.strip if element
+                #add attributes to node
                 node_element.elements.each("attribute") do |element|
-                  node.add_attribute(element.text.strip)
+                  a_map = {}
+                  element.attributes.each { |a, v| a_map[a.intern] = v }
+                  a_map[:cdata] = element.text.strip if element.text
+                  node.add_attribute(a_map)
                 end
                 #add parameters to node
                 node_element.elements.each("vm_parameter") do |element|
@@ -158,8 +166,12 @@ module Cougaar
                 node_element.elements.each("agent") do |agent_element|
                   node.add_agent(agent_element.attributes['name']) do |agent|
                     agent.classname = agent_element.attributes['class']
+                    #add attributes to agent
                     agent_element.elements.each("attribute") do |element|
-                      agent.add_attribute(element.text.strip)
+                      a_map = {}
+                      element.attributes.each { |a, v| a_map[a.intern] = v }
+                      a_map[:cdata] = element.text.strip if element.text
+                      agent.add_attribute(a_map)
                     end
                     
                     #add components to agent

@@ -42,7 +42,8 @@ module Cougaar
       def initialize(name=nil, &block)
         @name = name
         @cougaar_port = DEFAULT_COUGAAR_PORT
-        @hostList = {}
+        @hostList = []
+        @hostIndex = {}
         setup_queries
         yield self if block
       end
@@ -56,13 +57,15 @@ module Cougaar
       #
       def add_host(host, &block)
         if host.kind_of? Host
-          @hostList[host.host_name] = host
+          @hostIndex[host.host_name] = host
+          @hostList << host
           host.society = self
           return host
         else
-          @hostList[host] = Host.new(host, &block)
-          @hostList[host].society = self
-          return @hostList[host]
+          @hostIndex[host] = Host.new(host, &block)
+          @hostIndex[host].society = self
+          @hostList << @hostIndex[host]
+          return @hostIndex[host]
         end
       end
       
@@ -72,7 +75,7 @@ module Cougaar
       # yield:: [Cougaar::Host] The host instance
       #
       def each_host
-        @hostList.each_value {|host| yield host}
+        @hostList.each {|host| yield host}
       end
       
       ##
@@ -82,7 +85,7 @@ module Cougaar
       # yield:: [Cougaar::Host] The host instance
       #
       def each_active_host
-        @hostList.each_value {|host| yield host if host.nodes.size > 0}
+        @hostList.each {|host| yield host if host.nodes.size > 0}
       end
       
       ##
@@ -91,7 +94,7 @@ module Cougaar
       # yield:: [Cougaar::Agent] Teh agent instance
       #
       def each_agent
-        @hostList.each_value {|host| host.each_node {|node| node.each_agent {|agent| yield agent}}}
+        @hostList.each {|host| host.each_node {|node| node.each_agent {|agent| yield agent}}}
       end
       
       ##
@@ -129,7 +132,7 @@ module Cougaar
       # value:: [String] The new value
       #
       def override_parameter(param, value)
-        @hostList.each_value do |host|
+        @hostList.each do |host|
           host.each_node do |node|
             node.override_parameter(param, value)
           end
@@ -191,14 +194,23 @@ module Cougaar
       ##
       # Add an attribute(s) to the component
       # 
-      # attribute:: [String|Array] The attribute(s) to add
+      # attribute:: [String|Hash] The attribute(s) to add
       #
       def add_attribute(attribute)
         @attributes ||= []
-        if attribute.kind_of? Array
-          @attributes.concat attribute
-        else
+        if attribute.kind_of?(Hash)
+          attribute.keys.each do |key|
+            unless key.kind_of?(Symbol)
+              raise "Attribute key must be a String or Symbol, not a #{key.class}" unless key.kind_of?(String)
+              mapped_attributes = {}
+              attribute.each_pair { |key, value| mapped_attributes[key.intern] = value }
+              @attributes << mapped_attributes
+              return
+            end
+          end
           @attributes << attribute
+        else
+          @attributes << {:cdata => attribute}
         end
       end
       
@@ -207,9 +219,15 @@ module Cougaar
       #
       # yield:: [String] The attribute
       #
-      def each_attribute
+      def each_attribute(*keys)
         return unless @attributes
-        @attributes.each {|attribute| yield attribute}
+        @attributes.each do |attribute|
+          if keys
+            yield attribute if (attribute.keys & keys).size == keys.size
+          else
+            yield attribute
+          end
+        end
       end
       
       ##
@@ -221,7 +239,16 @@ module Cougaar
       def get_attribute_xml(indent)
         xml = ""
         each_attribute do |attribute|
-          xml << "#{' ' * indent}<attribute>#{attribute}</attribute>\n"
+          cdata = attribute.delete(:cdata)
+          xml << "#{' ' * indent}<attribute"
+          attribute.each_pair do |key, value|
+            xml << "#{key}='#{value}' "
+          end
+          if cdata
+            xml << ">#{cdata}</attribute>\n"
+          else
+            xml << " />\n"
+          end
         end
         return xml
       end
@@ -236,11 +263,15 @@ module Cougaar
       def get_attribute_ruby(indent, context)
         ruby = ""
         each_attribute do |attribute|
-          ruby << "#{' ' * indent}#{context}.add_attribute('#{attribute}')\n"
+          ruby << "#{' ' * indent}#{context}.add_attribute("
+          list = []
+          attribute.each_pair do |key, value|
+            list << ":#{key}=>'#{value}'"
+          end
+          ruby << "#{list.join(', ')})\n"
         end
         return ruby
       end
-      
     end
     
     ##
@@ -259,7 +290,8 @@ module Cougaar
       #
       def initialize(name=nil)
         @name = name
-        @nodes = {}
+        @nodes = []
+        @nodeIndex = {}
         yield self if block_given?
       end
       
@@ -272,13 +304,15 @@ module Cougaar
       #
       def add_node(node, &block)
         if node.kind_of? Node
-          @nodes[node.name] = node
+          @nodeIndex[node.name] = node
+          @nodes << node
           node.host = self
           return node
         else
-          @nodes[node] = Node.new(node, &block)
-          @nodes[node].host = self
-          return @nodes[node]
+          @nodeIndex[node] = Node.new(node, &block)
+          @nodeIndex[node].host = self
+          @nodes << @nodeIndex[node]
+          return @nodeIndex[node]
         end
       end
       
@@ -288,7 +322,7 @@ module Cougaar
       # yield:: [Cougaar::Node] The node instance
       #
       def each_node
-        @nodes.each_value {|node| yield node}
+        @nodes.each {|node| yield node}
       end
       
       ##
@@ -357,7 +391,8 @@ module Cougaar
       def initialize(name=nil)
         @name = name
         @agent = Agent.new(@name)
-        @agents = {}
+        @agents = []
+        @agentIndex = {}
         @env_parameters = []
         @prog_parameters = []
         @parameters = []
@@ -373,13 +408,15 @@ module Cougaar
       #
       def add_agent(agent, &block)
         if agent.kind_of? Agent
-          @agents[agent.name] = agent
+          @agentIndex[agent.name] = agent
+          @agents << agent
           agent.node = self
           agent
         else
-          @agents[agent] = Agent.new(agent, &block)
-          @agents[agent].node = self
-          @agents[agent]
+          @agentIndex[agent] = Agent.new(agent, &block)
+          @agents << @agentIndex[agent]
+          @agentIndex[agent].node = self
+          @agentIndex[agent]
         end
       end
       
@@ -389,7 +426,7 @@ module Cougaar
       # yield:: [Cougaar::Agent] Agent instance
       #
       def each_agent
-        @agents.each_value {|agent| yield agent}
+        @agents.each {|agent| yield agent}
       end
       
       ##
@@ -528,8 +565,8 @@ module Cougaar
         ruby =  "    host.add_node('#{@name}') do |node|\n"
         ruby << "      node.classname = '#{@classname}'\n"
         ruby << get_attribute_ruby(6, 'node')
-        each_host_parameter do |param|
-          ruby << "      node.add_host_parameter('#{param}')\n"
+        each_prog_parameter do |param|
+          ruby << "      node.add_prog_parameter('#{param}')\n"
         end
         each_env_parameter do |param|
           ruby << "      node.add_env_parameter('#{param}')\n"
