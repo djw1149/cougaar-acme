@@ -114,6 +114,13 @@ def install
 	rescue
 		puts $!
 	end
+  Dir.mkdir File.join(@destdir, "bin")
+  File.copy File.join("bin", "cpu_sucker"), File.join(@destdir, "bin", "cpu_sucker")
+  File.copy File.join("bin", "cpu_sucker.exe"), File.join(@destdir, "bin", "cpu_sucker.exe")
+  File.copy File.join("bin", "power_off"), File.join(@destdir, "bin", "power_off")
+  File.copy File.join("bin", "nic_control"), File.join(@destdir, "bin", "nic_control")
+  File.copy File.join("bin", "unmount"), File.join(@destdir, "bin", "unmount")
+  
   unless defined? NOOP
     puts "Writing acme_cougaar_node properties..."
     path = File.join(@destdir, 'plugins', 'acme_cougaar_node', 'properties.yaml')
