@@ -251,6 +251,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -597,12 +603,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -730,6 +730,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -1142,12 +1148,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -1275,6 +1275,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -1690,12 +1696,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -1823,6 +1823,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -2241,12 +2247,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -2374,6 +2374,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -2794,12 +2800,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -2927,6 +2927,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -3348,12 +3354,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -3481,6 +3481,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -3905,12 +3911,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -4038,6 +4038,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -4469,12 +4475,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -4602,6 +4602,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -5016,12 +5022,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -5149,6 +5149,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -5563,12 +5569,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -5696,6 +5696,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -6113,12 +6119,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -6246,6 +6246,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -6660,12 +6666,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -6793,6 +6793,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -7214,12 +7220,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -7347,6 +7347,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -7764,12 +7770,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -7897,6 +7897,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -8313,12 +8319,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -8446,6 +8446,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -8862,12 +8868,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -8995,6 +8995,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -9412,12 +9418,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -9545,6 +9545,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -9960,12 +9966,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -10093,6 +10093,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -10510,12 +10516,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -10643,6 +10643,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -11060,12 +11066,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -11193,6 +11193,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -11607,12 +11613,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -11740,6 +11740,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -12161,12 +12167,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -12294,6 +12294,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -12723,12 +12729,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -12856,6 +12856,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -13276,12 +13282,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -13409,6 +13409,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -13822,12 +13828,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -13955,6 +13955,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -14368,12 +14374,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -14501,6 +14501,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -14916,12 +14922,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -15049,6 +15049,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -15466,12 +15472,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -15599,6 +15599,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16017,12 +16023,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -16150,6 +16150,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16567,12 +16573,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -16700,6 +16700,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17118,12 +17124,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -17251,6 +17251,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17664,12 +17670,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -17797,6 +17797,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -18149,6 +18155,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -18512,12 +18524,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.GetOplanPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.GetOplanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
           class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
           priority='COMPONENT'
@@ -18645,6 +18651,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -18999,6 +19011,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -19297,6 +19315,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -19613,6 +19637,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -19915,6 +19945,12 @@
           </argument>
         </component>
         <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
           class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
           priority='COMPONENT'
@@ -20192,6 +20228,12 @@
           <argument>
             DESTINATION=Subordinate
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -20472,6 +20514,12 @@
           <argument>
             DESTINATION=none
           </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
