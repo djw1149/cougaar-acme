@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert the time control servlet
+
+time_control = "org.cougaar.core.plugin.DemoTimeControlPlugin"
+
+society.each_node do |node|
+  node.add_component(time_control) do |c|
+    c.classname = time_control
+  end
+end
+
