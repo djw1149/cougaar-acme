@@ -67,7 +67,7 @@ society.each_enclave do |enclave|
   end
   
   # BUILD USERDOMAIN COMMUNITIES
-  society.communities.add("#{enclave}-SECURITY-COMM") do |community|
+  society.communities.add("#{enclave}-USERDOMAIN-COMM") do |community|
     community.add_attribute("CommunityType", "User")
     society.each_enclave_node(enclave) do |node|
       community.add_entity(node.name, "Agent") do |entity|
