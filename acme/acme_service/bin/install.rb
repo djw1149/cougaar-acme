@@ -86,27 +86,50 @@ def install destdir
 	rescue
 		puts $!
 	end
-  puts "Writing acme_cougaar_node properties..."
-  path = File.join(destdir, 'plugins', 'acme_cougaar_node', 'properties.yaml')
-  File.open(path, "wb") do |file|
-    file.puts %Q[#### Properties: acme_cougaar_node - Version: 1.0]
-    file.puts %Q[properties: ~]
-    file.puts %Q["|": ]
-    file.puts %Q[  - props_path: "#{@linux_props}"]
-    file.puts %Q[  - jvm_path: "#{@jvm_path}"]
-    file.puts %Q[  - node_start_prefix: su -l -c "]
-    file.puts %Q[  - node_start_suffix: "\\" asmt"]    
-  end
-  puts "Writing acme_host_jabber_service properties..."
-  path = File.join(destdir, 'plugins', 'acme_host_jabber_service', 'properties.yaml')
-  File.open(path, "wb") do |file|
-    file.puts %Q[#### Properties: acme_host_jabber_service - Version: 1.0]
-    file.puts %Q[properties: ~]
-    file.puts %Q["|": ]
-    file.puts %Q[  - host: "#{@jabber_host}"]
-    file.puts %Q[  - account: "#{@jabber_account}"] if @jabber_account
-    file.puts %Q[  - password: "#{@jabber_password}"] if @jabber_password
-  end
+  unless defined? NOOP
+    puts "Writing acme_cougaar_node properties..."
+    path = File.join(destdir, 'plugins', 'acme_cougaar_node', 'properties.yaml')
+    File.open(path, "wb") do |file|
+      file.puts %Q[#### Properties: acme_cougaar_node - Version: 1.0]
+      file.puts %Q[properties: ~]
+      file.puts %Q["|": ]
+      file.puts %Q[  - props_path: "#{@linux_props}"]
+      file.puts %Q[  - jvm_path: "#{@jvm_path}"]
+      file.puts %Q[  - node_start_prefix: su -l -c "]
+      file.puts %Q[  - node_start_suffix: "\\" asmt"]    
+    end
+    puts "Writing acme_host_jabber_service properties..."
+    path = File.join(destdir, 'plugins', 'acme_host_jabber_service', 'properties.yaml')
+    File.open(path, "wb") do |file|
+      file.puts %Q[#### Properties: acme_host_jabber_service - Version: 1.0]
+      file.puts %Q[properties: ~]
+      file.puts %Q["|": ]
+      file.puts %Q[  - host: "#{@jabber_host}"]
+      file.puts %Q[  - account: "#{@jabber_account}"] if @jabber_account
+      file.puts %Q[  - password: "#{@jabber_password}"] if @jabber_password
+    end
+  end  
+  puts "Installing acme_scripting libraries in #{destdir}/redist"
+	begin
+    Dir.chdir "../acme_scripting/src/"
+		Find.find("lib") { |file|
+			next if file =~ /CVS|\.svn|\.DS_Store/
+      name = file[(SRC.size+1)..-1]
+			dst = File.join(destdir, "redist", name)
+			if defined? NOOP
+        puts "<< #{file}"
+				puts ">> #{dst}" #if file =~ /\.rb$/
+			else
+				File.makedirs( File.dirname(dst) ) # unless File.exist?(File.dirname(dst))
+        unless File.directory?(file)
+          File.install(file, dst, 0644, true) #if file =~ /\.rb$/
+        end
+			end
+		}
+	rescue
+		puts $!
+	end
+  
 end
 
 def uninstall destdir
