@@ -16,7 +16,7 @@ start() {
   # restart if it dies
   ./acme.sh &
 
-  echo "$!" > acme.pid
+  echo "$!" > acme-sh.pid
 
 	RETVAL=0
 	echo
@@ -26,6 +26,19 @@ start() {
 
 stop() {
   cd /usr/local/acme
+  if [ -f acme-sh.pid ] ; then
+    local line p pid=
+    read line < acme-sh.pid
+    for p in $line ; do
+      [ -z "${p//[0-9]/}" -a -d /proc/$p ] &&
+      pid="$pid $p"
+    done
+    if [ -n "${pid-:}" ] ; then
+      kill -9 $pid
+      rm -rf acme-sh.pid
+      return 0
+    fi
+  fi  
   if [ -f acme.pid ] ; then
     local line p pid=
     read line < acme.pid
