@@ -235,10 +235,13 @@ class XMLCougaarNode
   end
   
   def XMLCougaarNode.jarAndSign(plugin, filepath)
-    cmd_jar = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jar cf #{filepath}.jar #{filepath}")
-    cmd_jarsign = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jarsigner -keystore $CIP/operator/signingCA_keystore -storepass keystore #{filepath}.jar privileged")
+    cmd_jar = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jar cf /tmp/temp.jar #{filepath}")
+    cmd_jarsign = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jarsigner -keystore $CIP/operator/signingCA_keystore -storepass keystore /tmp/temp.jar privileged")
+    cmd_mv = plugin['/cougaar/config'].manager.cmd_wrap("mv /tmp/temp.jar #{filepath.jar}")
+
     `#{cmd_jar}`
     `#{cmd_jarsign}`
+    `#{cmd_mv}`
   end
 
   def XMLCougaarNode.monitorStdio(message, node)
@@ -396,7 +399,7 @@ class XMLCougaarNode
     end
 
     def start
-			cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')}")
+      cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} >& #{@config_mgr.cougaar_install_path}/workspace/nodelogs/#{@name}.log")
       
       @plugin.log_info << "Starting command:\n#{cmd}"
 
