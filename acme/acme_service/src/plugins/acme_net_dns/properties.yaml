@@ -3,6 +3,6 @@ properties: ~
 "|": 
   - command: "dns"
   - description: "Control the Domain Name Service:  move(hostname,ip), reset, lookup(hostname)"
-  - zone: "/var/named/db.sv.ul.isotic.org"
-  - zone.bk: "/var/named/acme.db.sv.ul.isotic.org"
+  - db: "/var/named/db.sv.ul.isotic.org"
+  - db.bk: "/var/named/acme.db.sv.ul.isotic.org"
 

@@ -64,8 +64,9 @@ class DNS
   def do_move( hostname, ipaddress )
     @plugin['log/info'] << "Changing #{hostname} to #{ipaddress}"
     ip = do_lookup( hostname )
+    tab = '\t'
 
-    `sed '/#{hostname}/d' < #{@db} > #{@db}.work`
+    `sed '/#{hostname}[ 	]/d' < #{@db} > #{@db}.work`
     `echo \"#{hostname}	A	#{ipaddress}\" >> #{@db}.work`
     `/sbin/service named stop`
     `mv #{@db}.work #{@db}`
@@ -80,7 +81,7 @@ class DNS
     `/sbin/service named stop`
     @plugin['log/info'] << `cp #{@backup} #{@db}`
     `/sbin/service named start`
-    `nslookup sv191 -silent | grep Address | grep -v \\# | cut -d: -f2`.strip!
+    "OK"
   end
 
   def do_lookup( hostname )
