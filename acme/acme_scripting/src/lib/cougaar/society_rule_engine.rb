@@ -5,19 +5,21 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Transforms the society with a list of rules."
         @parameters = [
-          :rules => "*rules, The rules to run.  Can be file names or directory names."
+          {:verbose => "required, If true, displays the transformations performed. (true | false)"},
+          {:rules => "*rules, The rules to run.  Can be file names or directory names."}
         ]
-        @example = "do_action 'TransformSociety', 'config/rules/isat/tic_env.rule', 'config/rules/logistics'"
+        @example = "do_action 'TransformSociety', true, 'config/rules/isat/tic_env.rule', 'config/rules/logistics'"
       }
-      def initialize(run, *rules)
+      def initialize(run, verbose, *rules)
         super(run)
         raise "Must supply rules to transform society" if rules.size==0
+        @verbose = verbose
         @rules = rules
       end
       def perform
         @engine = Cougaar::Model::RuleEngine.new(@run.society)
         @engine.load_rules(@rules.join(";"))
-        @engine.enable_stdout
+        @engine.enable_stdout if @verbose
         @engine.execute
       end
     end
