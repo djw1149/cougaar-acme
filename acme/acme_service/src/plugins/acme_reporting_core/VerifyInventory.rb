@@ -420,18 +420,22 @@ module ACME
       
       def perform(abs_tol, rel_tol)
         data = []
+        baseline_name = @archive.group_baseline
+        baseline = @archive.open_prior_archive(baseline_name)
+
         @archive.add_report("INV", @plugin.plugin_configuration.name) do |report|
           inv_files = @archive.files_with_description(/Inventory/).sort{|x, y| x.name <=> y.name}
           inv_files.each do |inv_file|
             subject = inv_file.name
-            stage = find_stage(subject)
-            next if stage.nil?
-            benchmark_dir = "/usr/local/acme/plugins/acme_reporting_core/goldeninv/INV/#{stage}"
-            benchmark = ("#{benchmark_dir}/#{File.basename(inv_file.name).gsub(/Restored-/, "")}")
-            data << InventoryTestData.new(subject, benchmark, stage, [], 0)
-            if File.exists?(benchmark) then
-              data.last.errors = FileVerifier.new(subject, benchmark, abs_tol, rel_tol).verify
+            benchmark_pattern = Regexp.new(File.basename(subject))
+            benchmark_file = baseline.files_with_name(benchmark_pattern)[0]
+            subject =~ /(fcs-)?(ua-)?(Stage.*?)-/
+            stage = "#{$1}#{$2}#{$3}"
+            if (!benchmark_file.nil?) then
+              data << InventoryTestData.new(subject, benchmark_file.name, stage, [], 0)
+              data.last.errors = FileVerifier.new(subject, benchmark_file.name, abs_tol, rel_tol).verify
             else
+              data << InventoryTestData.new(subject, "MISSING", stage, [], 0)
               data.last.errors = [InventoryTestCriticalError.new("Benchmark not found")]
             end  
           end
@@ -442,7 +446,7 @@ module ACME
           else
             report.failure
           end
-          output = html_output(data)
+          output = html_output(data, baseline)
           report.open_file("Inventory.html", "text/html", "Inventory comparison") do |file|
             file.puts output
           end
@@ -453,20 +457,9 @@ module ACME
           end
 
         end
+        baseline.cleanup
       end
        
-      def find_stage(pathname)
-        old = Dir.pwd
-        Dir.chdir("plugins/acme_reporting_core/goldeninv/INV")
-        stages = Dir["*"]
-        Dir.chdir(old)
-        stages.each do |stage|
-          pattern = Regexp.new(stage)
-          return stage if pattern.match(pathname)
-        end
-        return nil
-      end
-
       def analyze(data)
         error_level = 0
         data.each do |file_data|
@@ -491,10 +484,11 @@ module ACME
       end
 
 
-      def html_output(data)
+      def html_output(data, baseline)
 	data_by_stage = collect_by_stage(data)
         ikko_hash = {}
         ikko_hash["id"] = @archive.base_name
+        ikko_hash["baseline"] = baseline.base_name
         ikko_hash["description_link"] = "inv_description.html"
         table_string = ""
         row = 0        
@@ -572,7 +566,7 @@ module ACME
         ikko_data = {}
         ikko_data["name"]="Inventory Report"
         ikko_data["title"] = "Inventory Report Description"
-        ikko_data["description"] = "Verifies the inventory files with the baselines in the goldeninv directory."
+        ikko_data["description"] = "Verifies the inventory files with the inventory files of a baseline run."
         ikko_data["description"] << "Each file is compared with the corresponding baseline file on all dates"
         ikko_data["description"] << "where the inventory levels change.  If the subject and baseline are not"
         ikko_data["description"] << " within 10% of each other there is an error.  Critical errors occur if the"
