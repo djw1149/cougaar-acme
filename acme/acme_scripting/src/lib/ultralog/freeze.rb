@@ -26,23 +26,6 @@ require 'net/http'
 
 module Cougaar
   module Actions
-    class OldFreezeSociety < Cougaar::Action
-      PRIOR_STATES = ["SocietyRunning"]
-      DOCUMENTATION = Cougaar.document {
-        @description = "Freeze the society using the 2002 version of the Freeze servlet."
-        @example = "do_action 'OldFreezeSociety'"
-      }
-      def initialize(run, &block)
-        super(run)
-        @action = block if block_given?
-      end
-      def perform
-        freezeControl = ::UltraLog::OldFreezeControl.new(@run.society)
-        freezeControl.freeze
-        @action.call(freezeControl) if @action
-      end
-    end
-
 
     class FreezeSociety < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
@@ -81,146 +64,11 @@ module Cougaar
         @action.call(freezeControl) if @action
       end
 
-
-
     end
   end
 end
 
 module UltraLog
-
-  ##
-  # Wraps the behavior of the UltraLog 2002 Freeze servlet exposing its
-  # capabilities through a simple OO API:
-  #
-  #  Usage: 
-  #  fc = UltraLog::OldFreezeControl.new(society)
-  #  fc.freeze #Freeze the society
-  #  fc.wait_until_frozen #Will not return until all nodes report frozen
-  #
-  class OldFreezeControl
-    FREEZE_SERVLET = "/$NCA/freezeControl"
-    
-    ##
-    # Constructs a FreezeControl instance, verifying existence of society.
-    #
-    # society:: [Cougaar::Model::Society] The society which holds the NCA node
-    #
-    def initialize(society)
-      nca = society.agents['NCA']
-      data, uri = Cougaar::Communications::HTTP.get("#{nca.uri}/freezeControl")
-      raise "FreezeControl cannot access society" unless data
-      @uri = uri
-    end
-    
-    ##
-    # Issues a freeze command to the Cougaar society
-    #
-    # return:: [UltraLog::FreezeControl] Reference to 'self' for chaining
-    #
-    def freeze
-      return if frozen?
-      return unless running?
-      begin
-      Net::HTTP.start( @uri.host, @uri.port ) do |http|
-        response = http.post(FREEZE_SERVLET, "submit=Freeze")
-      end
-      rescue
-        puts "Warning...could not freeze: #{$!}"
-      end
-      return self
-    end
-    
-    ##
-    # Issues a thaw command to the Cougaar society
-    #
-    # return:: [UltraLog::FreezeControl] Reference to 'self' for chaining
-    #
-    def thaw
-      raise "Already running" if running?
-      raise "Needs to be in the Frozen state to freeze" unless frozen?
-      begin
-      Net::HTTP.start( @uri.host, @uri.port ) do |http|
-        response = http.post(FREEZE_SERVLET, "submit=Thaw")
-      end
-      rescue
-        puts "Warning...could not thaw: #{$!}"
-      end
-      return self
-    end
-    
-    ##
-    # Checks if HTML response from Freeze servlet contains "Frozen", 
-    # specifying that the society is frozen
-    #
-    # return:: [Boolean] true if society if frozen, otherwise false
-    #
-    def frozen?
-      begin
-      Net::HTTP.start( @uri.host, @uri.port ) do |http|
-        response = http.post(FREEZE_SERVLET, "submit=Refresh")
-        response = response[1]
-        return false unless response.include? "Frozen"
-        return true
-      end
-      rescue
-        return false
-      end
-    end
-    
-    ##
-    # Checks if HTML response from Freeze servlet contains "Running", 
-    # specifying that the society is frozen
-    #
-    # return:: [Boolean] true if society if running, otherwise false
-    #
-    def running?
-      begin
-      Net::HTTP.start( @uri.host, @uri.port ) do |http|
-        response = http.post(FREEZE_SERVLET, "submit=Refresh")
-        response = response[1]
-        return false unless response.include? "Running"
-        return true
-      end
-      rescue
-        return false
-      end
-    end
-    
-    ##
-    # Polls up to (maxtime) seconds checking if the society is frozen
-    #
-    # maxtime:: [Integer=nil] Maximum poll time in seconds
-    #
-    def wait_until_frozen(maxtime=nil)
-      count = 0
-      until frozen?
-        sleep 3
-        count += 3
-        raise "Could not freeze society" if maxtime && count > maxtime
-      end
-      return self
-    end
-    
-    ##
-    # Polls up to (maxtime) seconds checking if the society is running
-    #
-    # maxtime:: [Integer=nil] Maximum poll time in seconds
-    #
-    def wait_until_running(maxtime=nil)
-      count = 0
-      until running?
-        sleep 3
-        count += 3
-        raise "Could not thaw society" if maxtime && count > maxtime
-      end
-      return self
-    end
-  end
-
-
-
-################################################################################
 
   ##
   # Wraps the behavior of the UltraLog 2003 Freeze servlet exposing its
@@ -265,15 +113,15 @@ module UltraLog
     #
     def freeze
       begin
-        puts "Freezing starts" if @debug
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Freezing starts")) if @debug
         start = Time.now
         @society.each_agent do |agent|
           freeze_agent(agent)
         end
         done = Time.now
-        puts "Freezing initiated in #{done - start} seconds" if @debug
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Freezing initiated in #{done - start} seconds")) if @debug
       rescue
-        puts "Warning...could not freeze: #{$!}"
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Warning...could not freeze: #{$!}"))
       end
       @society_state = FREEZING
       return self
@@ -290,7 +138,7 @@ module UltraLog
           thaw_agent(agent)
         end
       rescue
-        puts "Warning...could not thaw: #{$!}"
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Warning...could not thaw: #{$!}"))
       end
       @society_state = THAWING
       return self
@@ -350,11 +198,11 @@ module UltraLog
     # Freeze one agent
     #private
     def freeze_agent(agent)
-      puts "Telling agent #{agent.name} to freeze" if @debug
+      Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Telling agent #{agent.name} to freeze")) if @debug
       agent_uri = "#{agent.uri}#{FREEZE_SERVLET}?action=freeze"
       data, uri = Cougaar::Communications::HTTP.get(agent_uri)
       unless data && data.index("Freezing initiated")
-        puts "Error freezing agent #{agent.name}.  Data recvd: #{data}"
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Error freezing agent #{agent.name}.  Data recvd: #{data}"))
         # assume that it's frozen
         @agent_state[agent] = FROZEN 
         return
@@ -366,11 +214,11 @@ module UltraLog
     # Thaw one agent
     private
     def thaw_agent(agent)
-      puts "Telling agent #{agent.name} to thaw" if @debug
+      Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Telling agent #{agent.name} to thaw")) if @debug
       agent_uri = "#{agent.uri}#{FREEZE_SERVLET}?action=thaw"
       data, uri = Cougaar::Communications::HTTP.get(agent_uri)
       unless data && data.index("Thawing initiated")
-        puts "Error thawing agent #{agent.name}.  Data recvd: #{data}"
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Error freezing agent #{agent.name}.  Data recvd: #{data}"))
         # assume that it's thawed
         @agent_state[agent] = RUNNING
         return
@@ -385,16 +233,16 @@ module UltraLog
       agent_uri = "#{agent.uri}#{FREEZE_SERVLET}"
       data, uri = Cougaar::Communications::HTTP.get(agent_uri)
       unless data 
-        puts "Communications error contacting agent #{agent.name}."
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Communications error contacting agent #{agent.name}."))
         raise "Could not check agent #{agent.name}" 
       end
       ret = RUNNING if data.index("Thawed")
       ret = FROZEN if data.index("Frozen")
       ret = FREEZING if data.index("Freezing")
       ret = THAWING if data.index("Thawing")
-      puts "Agent #{agent.name} is #{ret}" if @debug
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Agent #{agent.name} is #{ret}")) if @debug
       unless ret 
-        puts "Error checking agent #{agent.name}.  Data recvd: #{data}"
+        Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Error checking agent #{agent.name}.  Data recvd: #{data}"))
         raise "Could not check agent #{agent.name}" 
       end
       @agent_state[agent] = ret
@@ -422,10 +270,10 @@ module UltraLog
 
           tmp_state = @agent_state[agent]
         rescue
-          puts "Warning...error checking freeze state for #{agent} : #{$!}"
+          Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::ErrorNotification.new("Warning...error checking freeze state for #{agent} : #{$!}"))
         end
       end
-      puts "**** Society state is #{tmp_state}" if @debug
+      Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("**** Society state is #{tmp_state}")) if @debug
       @society_state = tmp_state
     end
   end
