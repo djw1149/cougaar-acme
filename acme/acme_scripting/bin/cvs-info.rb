@@ -1,9 +1,16 @@
+if $0 == __FILE__
+  $:.unshift File.dirname( __FILE__ )
+  $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
+  $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
+end
+
+
 require "rexml/document"
 require "p-config"
 
 class CVSPlayground
   def initialize
-#    `rm -rf #{$POLARIS_CVS_HOME}/*`
+    `rm -rf #{$POLARIS_CVS_HOME}/*`
     @updates = Hash.new
   end
 
@@ -77,6 +84,7 @@ class CVSInfo
         entr_file = File.new( File.join( dir_part, "CVS", "Entries" ))
 
         root_file.each { |line| @root = line.chomp }
+        @root = ":ext:polaris@cvs.ultralog.net:" unless @root =~ /:/
         repo_file.each { |line| @repository = line.chomp }
         entr_file.each { |line|
           data = line.split( /\// )
