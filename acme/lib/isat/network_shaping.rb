@@ -9,9 +9,9 @@ insert_after :setup_run do
   do_action "InitializeNetwork"
 end
 
-#insert_after :society_running do
-#  do_action "ShapeNetwork"
-#end
+insert_after :society_running do
+  do_action "ShapeNetwork"
+end
 
 insert_after :end_of_run do
   do_action "InitializeNetwork"
