@@ -27,6 +27,11 @@ module ACME
             end
   
 
+            runtime_path = @plugin.properties['runtime_path']
+            if File.exist?(runtime_path) then
+              update_runtime_file(times[0], runtime_path, @archive.group)
+            end
+
             output = html_output(times)
             report.open_file("run_times.html", "text/html", "Run time statistics") do |file|
               file.puts output
@@ -103,6 +108,16 @@ module ACME
         return Time.at(n).gmtime.strftime("%H:%M:%S")
       end
 
+      def update_runtime_file(data, dir, group)
+        File.open(File.join(dir, group), "a") do |run_file|
+          run_file.puts(sprintf("%-50s", data.name))
+          run_file.puts(sprintf("%-10s %-10s", "Total", format_data(data.total)))
+          data.headers.each do |header|
+            run_file.puts(sprintf("%-10s %-10s", header, format_data(data[header].total)))
+          end
+        end
+      end
+          
       def get_class(val, mean, stddev)
         return "#FFFFFF" if val.class.to_s =~ /String/
         return val.to_f <= (mean + 2 * stddev) ? "#00DD00" : "#FF0000"
