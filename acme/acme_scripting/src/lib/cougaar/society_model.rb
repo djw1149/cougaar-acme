@@ -704,7 +704,7 @@ module Cougaar
         if cp.nil?
           raise "Could not form valid URL for node #{@name} on host #{@host.uri_name}\nCougaar port set to -1 but HTTPS port not set."
         end
-        return "#{protocol}://#{@host.uri_name}:#{cp}"
+        return "#{protocol}://#{@host.uri_name}:#{cp}/$~"
       end
 
       def secure_uri
@@ -712,7 +712,7 @@ module Cougaar
         if cp.nil?
           raise "Could not form valid secure URL for node #{@name} on host #{@host.uri_name}\nCougaar HTTPS port not set."
         end
-        return "https://#{@host.uri_name}:#{cp}"
+        return "https://#{@host.uri_name}:#{cp}/$~"
       end
       
       def init_block

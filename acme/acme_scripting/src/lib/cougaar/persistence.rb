@@ -31,7 +31,6 @@ module Cougaar
 				@run["loader"] = "XML"
       end
     end
-
     
     class SavePersistenceSnapshot <  Cougaar::Action
       def initialize(run, filename, debug = false)
@@ -43,8 +42,8 @@ module Cougaar
       def perform()
         begin
           snapshot_society = @run.society.clone
-          nca = snapshot_society.agents['NCA']
-          result, uri = Cougaar::Communications::HTTP.get(nca.uri+"/timeControl")
+          nca_node = snapshot_society.agents['NCA'].node
+          result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
           md = /Scenario Time<\/td><td>([^\s]*) (.*)<\/td>/.match(result)
           if md
             date = md[1]
