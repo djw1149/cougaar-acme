@@ -711,6 +711,19 @@ module Cougaar
         @env_parameters.each {|param| yield param}
       end
 
+      # Remove an environment parameter specifically on this node
+      #
+      # param:: [String] the -D param to remove
+      #
+      def remove_env_parameter(param)
+        o = nil
+        @env_parameters.each do |orig|
+          o = orig if orig[0..(param.size)]=="#{param}="
+        end
+        @env_parameters.delete(o) if o
+      end
+
+
       ##
       # Add a prog_paramter to this node (or a set of parameters)
       #
