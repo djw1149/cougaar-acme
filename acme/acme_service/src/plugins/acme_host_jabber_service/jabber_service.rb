@@ -150,7 +150,6 @@ class JabberService
     end
     puts "#{account} waiting..."
     session.new_chat_message("acme_console@#{host}/subscription_mgr").set_body("subscribe me").send
-    Thread.stop
     puts "completed #{host}"
     sleep 2
     session.release
