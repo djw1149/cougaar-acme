@@ -178,11 +178,10 @@ module UltraLog
     # maxtime:: [Integer=nil] Maximum poll time in seconds
     #
     def wait_until_frozen(maxtime=nil)
-      count = 0
+      start_time = Time.now.to_i
       until frozen?
-        sleep 10 unless frozen?
-        count += 10
-        raise "Could not freeze society" if maxtime && count > maxtime
+        sleep 10
+        raise "Could not freeze society" if maxtime && Time.now.to_i - start_time > maxtime
       end
       return self
     end
@@ -193,11 +192,10 @@ module UltraLog
     # maxtime:: [Integer=nil] Maximum poll time in seconds
     #
     def wait_until_running(maxtime=nil)
-      count = 0
+      start_time = Time.now.to_i
       until running?
-        sleep 10 unless running?
-        count += 10
-        raise "Could not thaw society" if maxtime && count > maxtime
+        sleep 10
+        raise "Could not thaw society" if maxtime && Time.now.to_i - start_time > maxtime
       end
       return self
     end
@@ -265,6 +263,10 @@ module UltraLog
       tmp_state = INCONSISTENT
       @society.each_agent do |agent|
         begin 
+          if agent.killed?
+            Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Not attempting to freeze dead agent #{agent.name}"))
+            next
+          end
           check_agent(agent)
 
           # init expected_state to agent[0] state
