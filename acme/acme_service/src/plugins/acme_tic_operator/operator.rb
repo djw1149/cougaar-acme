@@ -14,7 +14,7 @@ module ACME; module Plugins
     def initialize(plugin)
       @plugin = plugin
       register_commands
-      @config = ['/cougaar/config']
+      @config = plugin['/cougaar/config']
     end
     
     def register_commands
