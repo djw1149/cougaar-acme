@@ -20,6 +20,8 @@
 #
 
 require 'ultralog/metrics'
+require 'ultralog/society_cleanup'
+require 'ultralog/time_control'
 require 'ultralog/cyclic'
 require 'ultralog/enclaves'
 require 'ultralog/aggagent'
