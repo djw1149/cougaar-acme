@@ -36,7 +36,7 @@ class IndexManager
       while @build_again
         @build_again = false
         main_index_entries = []
-        Dir.glob(File.join(@path, '*')).each do |file|
+        Dir.glob(File.join(@path, 'societies', '*')).each do |file|
           next unless File.directory?(file)
           build_society_index(file)
           main_index_entries << @ikko['main_index_entry.html', {'society'=>File.basename(file)}]
@@ -79,9 +79,8 @@ class IndexManager
   end
 end
 
-PATH = "/Users/rich/cvs/ultralog/csmart/src/ruby/acme_service/src/new_plugins/acme_reporting_service/post_service/reports"
-PORT = 9443
-@im = IndexManager.new(PATH)
+PORT = 9444
+@im = IndexManager.new("/var/www/reports")
 
 httpd = WEBrick::HTTPServer.new(
   :BindAddress => "0.0.0.0",
@@ -89,41 +88,7 @@ httpd = WEBrick::HTTPServer.new(
 )
 
 httpd.mount_proc("/post_report") do |request, response|
-  if request.request_method=="POST"
-    p = request.path.split("/")
-    host = p[2]
-    archive = p[3]
-    if host && archive
-      host_path = File.join(PATH, host)
-      archive_path = File.join(host_path, archive)
-      report_archive = File.join(archive_path, "reports.tgz")
-      
-      begin
-        `mkdir #{host_path}` unless File.exist?(host_path)
-        `mkdir #{archive_path}` unless File.exist?(archive_path)
-        File.open(report_archive, "w") do |file|
-          file.write(request.body)
-        end
-        `tar -C #{archive_path} -xzf #{report_archive}`
-        `rm -f #{report_archive}`
-        response.body = "SUCCESS"
-        response['Content-Type'] = "text/plain"
-        @im.rebuild_indexes
-      rescue
-        response.body = "FAILURE - could not write report"
-        response['Content-Type'] = "text/plain"
-        puts $!
-        puts $!.backtrace.join("\n")
-      end
-    else
-      response.body = "FAILURE - malformed uri: /post_report/<host>/<experiment>"
-      response['Content-Type'] = "text/plain"
-    end
-  else
-    response.body = "<html><body><h1>Only works with HTTP POST.</h1></html>"
-    response['Content-Type'] = "text/html"
-  end
-
+  @im.rebuild_indexes
 end
 
 trap("SIGINT") {httpd.stop; exit}
