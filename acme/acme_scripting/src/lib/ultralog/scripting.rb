@@ -41,4 +41,5 @@ require 'ultralog/network'
 require 'ultralog/mgen'
 
 require 'ultralog/kill_wait'
+require 'ultralog/optimizeit'
 require 'ultralog/debug/relations'

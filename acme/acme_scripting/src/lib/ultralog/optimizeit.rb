@@ -31,29 +31,35 @@ module Cougaar; module Actions
 
     def initialize(run, optNode)
       super(run)
+      @run = run
       @optNode = optNode
     end
 
     def perform
-      node = society.node[optNode] 
+      node = @run.society.nodes[@optNode] 
       node.add_parameter("-Xnoclassgc")
       node.add_parameter("-Djava.compiler=NONE")
       node.add_parameter("-Xrunpri")
       node.add_env_parameter("LD_LIBRARY_PATH=$COUGAAR_INSTALL_PATH/sys/native")
       node.add_parameter("-Xboundthreads")
       node.add_parameter("-Xbootclasspath/a:$COUGAAR_INSTALL_PATH/sys/oibcp.jar")
+ 
+      cp = nil
       node.parameters.each do |param|
          if /-Djava.class.path\=/ =~ param then
            node.parameters.delete( param )
-           node.parameters << "#{param}:$COUGAAR_INSTALL_PATH/sys/optit.jar" 
+           cp = param
          end
       end
+      node.parameters << "#{cp}:$COUGAAR_INSTALL_PATH/sys/optit.jar" unless cp.nil?
+      node.parameters << "-Djava.class.path=$COUGAAR_INSTALL_PATH/sys/optit.jar" if cp.nil?
+
       cn = node.classname
       node.classname = "intuitive.audit.Audit -startCPUprofiler #{cn}"
     end
   end
     
-end
+end; end
 
  
 
