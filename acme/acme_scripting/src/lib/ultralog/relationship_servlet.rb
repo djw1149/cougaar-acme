@@ -49,7 +49,7 @@ module Cougaar
         if cougaar_agent
           list, uri = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/list")
           if uri
-            puts "OrgRelationship Schedule: About to do put to: #{uri.scheme}://#{uri.host}:#{uri.port}/$#{@agent}/relationship_schedule for #{@asset}"
+            @run.info_message "OrgRelationship Schedule: About to do put to: #{uri.scheme}://#{uri.host}:#{uri.port}/$#{@agent}/relationship_schedule for #{@asset}"
             resp = Cougaar::Communications::HTTP.put("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{@agent}/relationship_schedule", @asset)
             save(resp)
           else
