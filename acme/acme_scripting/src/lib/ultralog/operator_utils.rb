@@ -80,7 +80,8 @@ module Ultralog
         @mark = '5716431333@vtext.com'
         @rich = '5713326896@voicestream.net'
         @joe = '7038696710@messaging.sprintpcs.com'
-        @phonelist = [@art, @mark, @rich, @joe]
+        @beth = '5085618380@vtext.com'
+        @phonelist = [@art, @mark, @rich, @joe, @beth]
       end
 
       def notify(error, *addresses)
