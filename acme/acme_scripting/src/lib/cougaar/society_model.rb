@@ -84,7 +84,11 @@ module Cougaar
       end
       
       def remove_host(host)
-        @host_index.delete(host.host_name)
+        if host.kind_of? String
+          host = @hostIndex[host]
+          return if host.nil?
+        end
+        @hostIndex.delete(host.host_name)
         @hostList.delete(host)
         $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_removed(host) } 
       end
