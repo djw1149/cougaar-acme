@@ -28,7 +28,7 @@ society.each_node do |node|
 
     #Java Virtual Machine Parameters
     node.replace_parameter(/\-Xms/, "-Xms768m")
-    node.replace_parameter(/\-Xms/, "-Xmx1536m")
+    node.replace_parameter(/\-Xmx/, "-Xmx1536m")
     node.replace_parameter(/\-XX\:ThreadStackSize/, "-XX:ThreadStackSize=256")
 
     node.each_agent do |agent|
