@@ -18,9 +18,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -447,18 +459,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -488,6 +488,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -563,9 +587,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -992,18 +1028,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -1033,6 +1057,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -1111,9 +1159,21 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='DIVISION' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1540,18 +1600,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -1581,6 +1629,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -1662,9 +1734,21 @@
         <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2091,18 +2175,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -2132,6 +2204,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -2215,9 +2311,21 @@
         <facet note='Not Used Now' echelon_of_support='CORPS' role='FuelTransportProvider'  />
         <facet note='Not Used Now' echelon_of_support='CORPS' role='MaterielTransportProvider'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2644,18 +2752,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -2685,6 +2781,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -2769,9 +2889,21 @@
         <facet echelon_of_support='THEATER' role='PackagedPOLSupplyProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3198,18 +3330,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -3239,6 +3359,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -3326,9 +3470,21 @@
         <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3755,18 +3911,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -3796,6 +3940,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -3890,9 +4058,21 @@
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4319,18 +4499,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -4360,6 +4528,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -4437,9 +4629,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4866,18 +5070,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -4907,6 +5099,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -4984,9 +5200,21 @@
         <facet echelon_of_support='THEATER' role='AmmunitionProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5413,18 +5641,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -5454,6 +5670,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -5534,9 +5774,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5963,18 +6215,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -6004,6 +6244,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -6081,9 +6345,21 @@
         <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6510,18 +6786,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -6551,6 +6815,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -6635,9 +6923,21 @@
         <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7064,18 +7364,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -7105,6 +7393,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -7185,9 +7497,21 @@
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='16-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7614,18 +7938,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -7655,6 +7967,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -7734,9 +8070,21 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8163,18 +8511,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -8204,6 +8540,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -8283,9 +8643,21 @@
         <facet has_personnel_assets='T'  />
         <facet note='Not Used Now' echelon_of_support='THEATER' role='MaterielTransportProvider'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8712,18 +9084,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -8753,6 +9113,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -8833,9 +9217,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9262,18 +9658,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -9303,6 +9687,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -9381,9 +9789,21 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='StrategicTransportationProvider' mechanism='PassThrough'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9810,18 +10230,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -9851,6 +10259,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -9931,9 +10363,21 @@
         <facet echelon_of_support='THEATER' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10360,18 +10804,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -10401,6 +10833,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -10481,9 +10937,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10910,18 +11378,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -10951,6 +11407,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -11028,9 +11508,21 @@
         <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11457,18 +11949,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -11498,6 +11978,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -11582,9 +12086,21 @@
         <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
         <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE-1-AD'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12011,18 +12527,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -12052,6 +12556,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -12144,9 +12672,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12573,18 +13113,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -12614,6 +13142,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -12691,9 +13243,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13126,18 +13690,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -13167,6 +13719,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -13243,9 +13819,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13672,18 +14260,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -13713,6 +14289,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -13789,9 +14389,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14218,18 +14830,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -14259,6 +14859,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -14337,9 +14961,21 @@
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14766,18 +15402,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -14807,6 +15431,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -14887,9 +15535,21 @@
         <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15316,18 +15976,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -15357,6 +16005,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -15438,9 +16110,21 @@
         <facet has_personnel_assets='T'  />
         <facet note='Not Used Now' echelon_of_support='THEATER' role='FuelTransportProvider'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15867,18 +16551,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -15908,6 +16580,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -15988,9 +16684,21 @@
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16417,18 +17125,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -16458,6 +17154,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -16539,9 +17259,21 @@
         <facet has_personnel_assets='T'  />
         <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16968,18 +17700,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -17009,6 +17729,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17085,9 +17829,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17514,18 +18270,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -17555,6 +18299,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17629,6 +18397,18 @@
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -17845,18 +18625,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -17886,6 +18654,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -17939,9 +18731,21 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18368,18 +19172,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -18409,6 +19201,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -18483,6 +19299,18 @@
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -18699,18 +19527,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -18740,6 +19556,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -18789,6 +19629,18 @@
         <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
         <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
           priority='COMPONENT'
@@ -19005,18 +19857,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -19046,6 +19886,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -19090,6 +19954,18 @@
         <facet echelon_group='Conus'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -19325,18 +20201,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -19366,6 +20230,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -19403,6 +20291,18 @@
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='JOINT' role='LogisticsCommanderInChief'  />
         <facet echelon_of_support='JOINT' role='OperationalCommanderInChief'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -19641,18 +20541,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -19686,6 +20574,30 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -19714,6 +20626,18 @@
         <facet echelon_group='Transcom'  />
         <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='StubTransportationProvider'  />
         <facet sca_echelon_of_support='JOINT' sca_supported_org='NCA'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -19874,21 +20798,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin(envFile=GLMT.TRANSCOM.env.xml)'
-          class='org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin'
+          name='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin(Transport)'
+          class='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            envFile=GLMT.TRANSCOM.env.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin(envFile=GLMT.TRANSCOM.env.xml)'
-          class='org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            envFile=GLMT.TRANSCOM.env.xml
+            Transport
           </argument>
         </component>
         <component
@@ -19955,18 +20870,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
           class='org.cougaar.core.mobility.service.RedirectMovePlugin'
           priority='COMPONENT'
@@ -19987,6 +20890,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
@@ -20017,6 +20944,18 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='US-ARMY' role='ArmyCommander'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -20240,18 +21179,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -20285,6 +21212,30 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
           priority='COMPONENT'
@@ -20309,6 +21260,18 @@
         <facet combat_support='CMD'  />
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
         <component
           name='org.cougaar.yp.YPClientComponent()'
           class='org.cougaar.yp.YPClientComponent'
@@ -20526,18 +21489,6 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
           name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
           class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
           priority='COMPONENT'
@@ -20567,6 +21518,30 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
