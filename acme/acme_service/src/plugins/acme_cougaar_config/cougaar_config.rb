@@ -129,7 +129,7 @@ class CougaarConfig
   
   def cmd_wrap(cmd)
     if @cmd_user!=nil && @cmd_user!=""
-      result += %Q[su -l -c '#{@cmd_prefix}#{cmd}#{@cmd_suffix}' #{cmd_user}] 
+      result = %Q[su -l -c '#{@cmd_prefix}#{cmd}#{@cmd_suffix}' #{cmd_user}] 
     else
       result = "#{@cmd_prefix}#{cmd}#{@cmd_suffix}"
     end
