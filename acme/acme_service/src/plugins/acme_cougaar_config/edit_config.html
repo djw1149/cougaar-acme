@@ -1,0 +1,21 @@
+<html>
+<body>
+<h1>Cougaar Configuration Editor</h1>
+<br>
+ <FORM action="/cougaar_config" method="post">
+    <P>
+    <LABEL for="cougaar_install_path">Cougaar install path: </LABEL>
+              <INPUT type="text" name="cougaar_install_path" value="@cougaar_install_path"><BR>
+    <LABEL for="jvm_path">Java Virtual Machine path: </LABEL>
+              <INPUT type="text" name ="jvm_path" value="@jvm_path"><BR>
+    <LABEL for="cmd_prefix">Command Prefix: </LABEL>
+              <INPUT type="text" name ="cmd_prefix" value="@cmd_prefix"><BR>
+    <LABEL for="cmd_suffix">Command Suffix: </LABEL>
+              <INPUT type="text" name ="cmd_suffix" value="@cmd_suffix"><BR>
+    <LABEL for="cmd_user">Command User: </LABEL>
+              <INPUT type="text" name ="cmd_user" value="@cmd_user"><BR>
+    <INPUT type="submit" value="Update">
+    </P>
+ </FORM>
+
+</html>
