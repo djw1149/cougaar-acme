@@ -142,7 +142,7 @@ module InfoEther
       end
       
       def stop
-        @socket.close
+        @socket.close unless @socket.closed?
         @send_thread.kill
         @receive_thread.kill
       end
@@ -417,7 +417,13 @@ module InfoEther
             exec_thread.wakeup
           end
           @socket_handler << self
+          watcher = Thread.new do 
+            sleep timeout
+            @socket_handler.remove_listener(listener)
+            exec_thread.wakeup
+          end
           Thread.stop
+          watcher.kill if watcher && watcher.alive?
           @socket_handler.remove_listener(listener)
           return reply
         else
