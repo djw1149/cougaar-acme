@@ -147,7 +147,35 @@ module Cougaar
         end
       end
     end
-  
+    
+    class CleanupSociety < Cougaar::Action
+      PRIOR_STATES = ["CommunicationsRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Stop all Java processes and remove active stressors on all hosts listed in the society."
+        @example = "do_action 'CleanupSociety'"
+      }
+      
+      def perform
+        @run.society.each_active_host do |host|
+          @run.comms.new_message(host).set_body("command[rexec]killall -9 java").request(30)
+        end
+      end
+    end
+    
+    class LogCougaarEvents < Cougaar::Action
+      PRIOR_STATES = ["CommunicationsRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Send all CougaarEvents to the run.log."
+        @example = "do_action 'LogCougaarEvents'"
+      }
+      
+      def perform
+        @run.comms.on_cougaar_event do |event|
+          ::Cougaar.logger.info event.to_s
+        end
+      end
+    end
+    
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
