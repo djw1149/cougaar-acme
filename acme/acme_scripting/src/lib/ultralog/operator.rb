@@ -204,7 +204,7 @@ module UltraLog
     end
     
     def archive_logs(runName=nil)
-      send_command('archive_logs', 2.minutes, "#{composite_name(runName)} #{Dir.getwd} #{$0}")
+      send_command('archive_logs', 10.minutes, "#{composite_name(runName)} #{Dir.getwd} #{$0}")
     end
     
     def archive_db(runName=nil)
