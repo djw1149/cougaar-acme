@@ -778,6 +778,15 @@ module Cougaar
         $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_removed(agent) }
       end
       
+      def remove_all_agents
+        list = @agents
+        @agents = []
+        @agentIndex = {}
+        list.each do |agent|
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_removed(agent) }
+        end
+      end
+      
       ##
       # Iterates over each agent in this node
       #
