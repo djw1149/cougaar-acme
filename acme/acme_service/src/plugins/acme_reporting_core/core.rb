@@ -6,6 +6,7 @@ require "./plugins/acme_reporting_core/DataGrabberTest"
 require "./plugins/acme_reporting_core/Nameservers"
 require "./plugins/acme_reporting_core/Scripts"
 require "./plugins/acme_reporting_core/BWUsage"
+require "./plugins/acme_reporting_core/MemoryReport"
 
 module ACME
   module Plugins
@@ -53,6 +54,8 @@ module ACME
           puts "Definition"
           BWUsage.new(archive, @plugin, @ikko).perform
           puts "BWUsage"
+          MemoryReport.new(archive, @plugin, @ikko).perform
+          puts "MEM"
         rescue
           archive.add_report("Exception", @plugin.plugin_configuration.name) do |report|
             report.open_file("Exception.html", "text/html", "Exception") do |out|
