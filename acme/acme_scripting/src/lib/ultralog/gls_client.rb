@@ -42,7 +42,7 @@ module UltraLog
       uri = @run.society.agents['NCA'].uri unless uri
       uri = URI.parse(uri)
       @gls_connection = Net::HTTP.new(uri.host, uri.port)
-      @gls_connection.read_timeout = 600*60
+      @gls_connection.read_timeout = 1000.hours # no reason for this to ever timeout
       @gls_thread = Thread.new do
         begin
           req = Net::HTTP::Get.new("/$NCA/glsreply?command=connect")
