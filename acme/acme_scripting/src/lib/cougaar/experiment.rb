@@ -457,6 +457,11 @@ module Cougaar
       @archive_path = path
     end
     
+    def on_archive(&block)
+      raise "Must supply a block to the on_archive method" unless block_given?
+      @on_archive_block = block
+    end
+    
     def initialize(multirun, count)
       @count = count
       @multirun = multirun
@@ -521,6 +526,9 @@ module Cougaar
         #cleanup
         @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove }
         File.delete archive_filename+".filelist"
+        if @on_archive_block
+          @on_archive_block.call(self, archive_filename+".tgz")
+        end
       end
     end
     private :archive
