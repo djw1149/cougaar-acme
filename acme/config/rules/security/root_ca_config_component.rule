@@ -1,0 +1,15 @@
+####################################################
+# RootCAConfigComponent
+
+
+configPlugin = "org.cougaar.core.security.certauthority.ConfigPlugin"
+
+society.each_node do |node|
+  if node.name == "RootCANode"
+    node.add_component do |c|
+      c.classname = configPlugin
+      c.insertionpoint = "Node.AgentManager.Agent.SecurityComponent"
+      c.add_argument("CN=Root_CA, OU=Root, O=DLA, L=San Francisco, ST=CA, C=US, T=ca")
+    end
+  end
+end
