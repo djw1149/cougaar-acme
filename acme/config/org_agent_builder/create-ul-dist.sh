@@ -3,6 +3,10 @@
 
 ULDIR=../societies/ul
 
+if [ ! -d $ULDIR ]; then
+    mkdir $ULDIR
+fi
+
 echo "Making All the facet files"
 ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad.member.csv -s ../societies/ul/tiny-1ad.oo.facets.xml -o
 ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad-trans-stub.member.csv -s ../societies/ul/tiny-1ad-trans-stub.oo.facets.xml -o
