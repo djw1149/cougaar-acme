@@ -20,7 +20,13 @@ module ACME
       end
 
       def stages
-        return @data.keys.sort
+        return @data.keys.sort {|x, y|
+          x =~ /Stage([0-9]+)/
+          x_stage = $1
+          y =~ /Stage([0-9]+)/
+          y_stage = $1
+          (x_stage != y_stage) ? (x_stage <=> y_stage) : (x <=> y)
+        }                      
       end
       
       def sorted_nodes
@@ -49,8 +55,11 @@ module ACME
           @archive.add_report("Memory", @plugin.plugin_configuration.name) do |report|
             all_data = []
             all_data << compile_memory_data(memory_files)
+
+            avg_files = [@archive.base_name]
             group_pattern = Regexp.new("-#{@archive.group}-")
             @archive.get_prior_archives(60*60*24*365, group_pattern).each do |prior_name|
+              avg_files << prior_name
               prior_archive = @archive.open_prior_archive(prior_name)
               prior_memory_files = prior_archive.files_with_description(/Memory usage file/)
               all_data << compile_memory_data(prior_memory_files) unless prior_memory_files.empty?
@@ -62,11 +71,15 @@ module ACME
               file.puts output
             end
 
+            output = create_avg_list(avg_files)
+            report.open_file("avg_list.html", "text/html", "Archives used in averaging") do |file|
+              file.puts output
+            end
+           
             output = create_description
             report.open_file("memory_description.html", "text/html", "Memory description") do |file|
               file.puts output
             end
-            
             report.success
           end
         end
@@ -85,7 +98,9 @@ module ACME
       def read_file(filename)
         data = MemoryStructure.new
         stage = nil
-        if filename =~ /memdata_(Stage.*)\// then          
+        if filename =~ /memdata_(Stage.*?)\// then          
+          stage = $1
+        elsif filename =~ /memdata_(PreStage.*?)\// then
           stage = $1
         end
         file = IO.readlines(filename)
@@ -117,6 +132,7 @@ module ACME
         ikko_data = {}
         ikko_data["id"] = @archive.base_name
         ikko_data["description_link"] = "memory_description.html"
+        ikko_data["files_link"] = "avg_list.html"
         headers = ["Node"]
         headers << run_data.stages
         headers.flatten!
@@ -150,11 +166,17 @@ module ACME
         return @ikko["memory_report.html", ikko_data]
       end
 
+      def create_avg_list(avg_files)
+        return @ikko["avg_list.html", {"files"=>avg_files}]
+      end
+
       def create_description
         ikko_data = {}
         ikko_data["name"]="Memory Report"
         ikko_data["title"] = "Memory Report Description"
-        ikko_data["description"] = "Displays how much memory each node is using at each stage"
+        ikko_data["description"] = "Displays how much memory each node is using at each stage.  The top entry is the usage for the current run."
+        ikko_data["description"] <<"  The bottome entry is the average usage over all runs in the group."
+
         success_table = {"success"=>"Currently this report is always successful",
                          "partial"=>"not used",
                          "fail"=>"not used"}
