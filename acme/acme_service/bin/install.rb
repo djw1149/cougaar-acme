@@ -1,7 +1,6 @@
 #! /usr/bin/env ruby
 
 require 'ftools'
-require 'fileutils'
 
 SRC = 'src'
 
@@ -195,7 +194,6 @@ end
 def uninstall
   puts "Uninstalling ACME in #{@destdir}...\nPress ENTER to get a list of files that will be removed."
   STDIN.readline
-  op = FileUtils::Operator.new
   Find.find(@destdir) do |file|
     puts "Will remove #{file}"
   end
