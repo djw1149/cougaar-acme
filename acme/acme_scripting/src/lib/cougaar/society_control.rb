@@ -269,7 +269,7 @@ module Cougaar
 	society_request_time = (change_time - Time.now).ceil
 	if (society_request_time <= 0.0)
 	  @run.error_message "ERROR: All nodes did not receive Advance Time message before sync time"
-	else
+	end
 
         # now wait for quiescence
         if @wait_for_quiescence
