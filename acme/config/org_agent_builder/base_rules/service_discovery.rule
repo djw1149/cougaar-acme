@@ -38,12 +38,13 @@ strat_trans_role = "StrategicTransportationProvider"
 def get_superior_sca(agent, supported_orgs)
   if agent.has_facet?(:superior_org_id)
     sup_name = agent.get_facet(:superior_org_id)
+    # puts "Agent name is: " +agent.name + " and superior name is: "+sup_name
     superior = society.agents[sup_name]
     unless superior == nil
       superior.each_facet(:sca_supported_org) do |facet|
 	supported_org = facet[:sca_supported_org].to_s    
 	unless supported_orgs.include?(supported_org)
-	    supported_orgs.push(supported_org)
+          supported_orgs.push(supported_org)
 	end
       end
       get_superior_sca(superior, supported_orgs)
@@ -119,29 +120,69 @@ society.each_agent do |agent|
   if agent.get_facet(:echelon_group) == "Transcom"
     provided_roles.each do |my_role, m_e|
 #
-# TRANSCOM needs AirTransportationProvider
-# TRANSCOM needs SeaTransportationProvider
-      if my_role == strat_trans_role && m_e[0] == "ModeSelector"   # That makes this org TRANSCOM
+# TRANSCOM-7 needs AirTransportationProvider
+# TRANSCOM-7 needs SeaTransportationProvider
+      if my_role == strat_trans_role && m_e[0] == "ModeSelector"   # That makes this org TRANSCOM-7
         required_roles << "AirTransportationProvider"
         required_roles << "SeaTransportationProvider"
       end
 #
-# GlobalAir needs CONUSGroundTransportationProvider
+# GlobalAir needs ToPOEGroundTransportationProvider
 # GlobalAir needs OrganicAirTransportationprovider
-# GlobalAir needs TheaterStrategicTransportationProvider
-      if my_role == "AirTransportationProvider"                   # That makes this org GlobalAir
-        required_roles << "CONUSGroundTransportationProvider"
+# GlobalAir needs FromPODGroundTransportationProvider
+      if my_role == "AirTransportationProvider"  && m_e[0]=="Global"                 # That makes this org GlobalAir
+        required_roles << "ToPOEGroundTransportationProvider"
         required_roles << "OrganicAirTransportationProvider"
-        required_roles << "TheaterStrategicTransportationProvider"
+        required_roles << "FromPODGroundTransportationProvider"
       end
 #
-# GlobalSea needs CONUSGroundTransportationProvider
+# ConusAir,EuroAir needs ToPOEGroundTransportationProvider
+# ConusAir,EuroAir needs OrganicAirTransportationprovider
+# ConusAir,EuroAir needs FromPODGroundTransportationProvider
+      if my_role == "AirTransportationProvider"  && (m_e[0]=="Euro" || m_e[0]=="Conus")    # That makes this org EuroAir, or ConusAir
+        required_roles << "ToPOEGroundTransportationProvider"
+        required_roles << "OrganicAirTransportationProvider:2"
+        required_roles << "FromPODGroundTransportationProvider:2"
+      end
+#
+# GlobalSea needs ToPOEGroundTransportationProvider
 # GlobalSea needs ShipPackingTransportationProvider
-# GlobalSea needs TheaterStrategicTransportationProvider
-      if my_role == "SeaTransportationProvider"                   # That makes this org GlobalSea
-        required_roles << "CONUSGroundTransportationProvider"
+# GlobalSea needs FromPODGroundTransportationProvider
+      if my_role == "SeaTransportationProvider" && (m_e[0]=="Global" || m_e[0]=="Ammo")     # That makes this org GlobalSea or AmmoSea
+        required_roles << "ToPOEGroundTransportationProvider"
         required_roles << "ShipPackingTransportationProvider"
-        required_roles << "TheaterStrategicTransportationProvider"
+        required_roles << "FromPODGroundTransportationProvider"
+      end
+#
+# EuroSea or ConusSea needs ToPOEGroundTransportationProvider
+# EuroSea or ConusSea needs ShipPackingTransportationProvider
+# EuroSea or ConusSea needs FromPODGroundTransportationProvider
+      if my_role == "SeaTransportationProvider" && (m_e[0]=="Euro" || m_e[0]=="Conus")    # That makes this org EuroSea or ConusSea
+        required_roles << "ToPOEGroundTransportationProvider"
+        required_roles << "ShipPackingTransportationProvider"
+        required_roles << "FromPODGroundTransportationProvider:2"
+      end
+#
+# TRANSCOM-20 needs EuroStrategicTransportationProvider
+# TRANSCOM-20 needs ConusStrategicTransportationProvider
+# TRANSCOM-20 needs AmmoStrategicTransportationProvider
+      if my_role == strat_trans_role && m_e[0] == "TaskSorter"    # That makes this org TRANSCOM-20
+        required_roles << "EuroStrategicTransportationProvider"
+        required_roles << "ConusStrategicTransportationProvider"
+        required_roles << "AmmoStrategicTransportationProvider"
+      end
+#
+# EuroTRANSCOM needs AirTransportationProvider
+# EuroTRANSCOM needs SeaTransportationProvider
+      if my_role == "EuroStrategicTransportationProvider" || my_role == "ConusStrategicTransportationProvider" 
+                                                                  # That makes this org EuroTRANSCOM or ConusTRANSCOM
+        required_roles << "AirTransportationProvider"
+        required_roles << "SeaTransportationProvider"
+      end
+#
+# AmmoTRANSCOM needs SeaTransportationProvider
+      if my_role == "AmmoStrategicTransportationProvider"         # That makes this org AmmoTRANSCOM
+        required_roles << "SeaTransportationProvider"
       end
 #
     end
@@ -172,6 +213,7 @@ society.each_agent do |agent|
     supported_orgs = Array.new
     agent.each_facet(:sca_supported_org) do |facet|
       supported_org = facet[:sca_supported_org].to_s  
+      # puts "For agent: "+agent.name + " own sca_supported_org: " +supported_org
       unless supported_orgs.include?(supported_org)
 	supported_orgs.push(supported_org)
       end
@@ -181,6 +223,7 @@ society.each_agent do |agent|
     c.classname = sd_registration_plugin
     supported_orgs.uniq
     c.add_argument(supported_orgs.length.to_s)
+    # puts "Length for agent " +agent.name + "is " +supported_orgs.length.to_s 
   end
 #
 # Then insert the MatchMakerQueryServletComponent with its arguments

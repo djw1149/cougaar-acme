@@ -45,6 +45,7 @@ society.each_agent do |agent|
 # Debugging
 #    puts "Agent_name is " + agent.name
 #    roles.each {|role, m_e| puts "  Role= " + role + " Mechanism= " + m_e[0] + " Echelon_Of_Support= " + m_e[1] + "\n"}
+#    puts"echelon_group for " +(agent.get_facet(:org_id))+" is: "+(agent.get_facet(:echelon_group))
 #
 # Then insert policy arguments
 # AmmunitionProvider
@@ -59,10 +60,11 @@ society.each_agent do |agent|
       my_role = "AmmunitionProvider"
       my_commodity = "Ammunition"
       my_div_echelon_group = ""
-      non_div_echelon_groups = ["Corps", "Theater", "Conus"] 
-      if non_div_echelon_groups.include?(agent.get_facet(:echelon_group))
-	my_div_echelon_group = "NONDIV-"
-      end
+      non_div_echelon_groups = ["Corps", "Theater", "Conus"]
+#       if non_div_echelon_groups.include?(agent.get_facet(:echelon_group))
+# 	my_div_echelon_group = "NONDIV-"
+#        puts "NONDIV agent is: "+(agent.get_facet(:org_id))
+#       end
       if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
 	my_echelon_of_support = roles[my_role][1]
 	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")

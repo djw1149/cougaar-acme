@@ -40,6 +40,9 @@ society.each_agent do |agent|
 	c.add_argument("StrategicTransportation") unless society.get_facet(:exclude_strategic_transportation)
       end
     end
+    if (agent.get_facet(:is_deployable) && (not agent.get_facet(:has_physical_assets)))
+      c.add_argument("MaintainInventory")
+    end
   end
   agent.add_component do |c|
     c.classname = gls_allocator_plugin

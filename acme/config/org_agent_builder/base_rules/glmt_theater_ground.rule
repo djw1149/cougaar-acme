@@ -1,6 +1,6 @@
 ####################################################
 # Rule to insert Theater Ground Plugins
-# Just at TheaterGround: (echelon_group = "Transcom") && (role = "TheaterStrategicTransportationProvider")
+# Just at TheaterGround: (echelon_group = "Transcom") && (role = "FromPODGroundTransportationProvider")
 # plugin = org.cougaar.logistics.plugin.trans.GroundVishnuPlugin(envFile=GLMT.Transport.env.xml)
 # plugin = org.cougaar.logistics.plugin.trans.GroundTransportAllocatorPlugin(envFile=GLMT.Transport.env.xml)
 # plugin = org.cougaar.logistics.plugin.trans.TransportExpanderPlugin(envFile=GLMT.Transport.env.xml)
@@ -12,10 +12,10 @@ transport_expander_plugin = "org.cougaar.logistics.plugin.trans.TransportExpande
 society.each_agent do |agent|
   if agent.get_facet(:echelon_group) == "Transcom"
     agent.each_facet(:role) do |facet|
-      if facet[:role] == "TheaterStrategicTransportationProvider"
+      if facet[:role] == "FromPODGroundTransportationProvider"
         agent.add_component do |c|
           c.classname = ground_vishnu_plugin
-          c.add_argument("envFile=GLMT.Transport.env.xml")
+          c.add_argument("envFile=TheaterGround.env.xml")
         end
         agent.add_component do |c|
           c.classname = ground_transport_allocator_plugin

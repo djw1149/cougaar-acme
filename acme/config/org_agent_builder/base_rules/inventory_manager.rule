@@ -38,6 +38,9 @@ society.each_agent do |agent|
 	      role_and_mechanisms.include?("AmmunitionProvider.TerminalInventoryManager"))       # AWR-2
 	agent.add_component do |c|
 	  c.classname = inventory_plugin
+          if agent.has_facet? { |facet| facet[:role]=='AmmunitionProvider' && (facet[:echelon_of_support] == 'DIVISION') && (facet[:mechanism] == 'MSB')}
+            c.add_argument('INVENTORY_FILE=123-MSB_ammunition.inv')
+          end
 	  c.add_argument('SUPPLY_TYPE=Ammunition')
 	end
       end
@@ -56,6 +59,9 @@ society.each_agent do |agent|
       else
 	agent.add_component do |c|
 	  c.classname = inventory_plugin
+          if agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:echelon_of_support] == 'DIVISION') && (facet[:mechanism] == 'MSB')}
+            c.add_argument('INVENTORY_FILE=MSB_bulkpol.inv')
+          end
 	  c.add_argument('SUPPLY_TYPE=BulkPOL')
 	end
       end
@@ -66,6 +72,9 @@ society.each_agent do |agent|
       unless role_and_mechanisms.include?("PackagedPOLSupplyProvider.TerminalInventoryManager")
 	agent.add_component do |c|
 	  c.classname = inventory_plugin
+          if agent.has_facet? { |facet| facet[:role]=='PackagedPOLSupplyProvider' && (facet[:echelon_of_support] == 'DIVISION') && (facet[:mechanism] == 'MSB') }
+            c.add_argument('INVENTORY_FILE=MSB_packagedpol.inv')
+          end
 	  c.add_argument('SUPPLY_TYPE=PackagedPOL')
 	end
       end
@@ -76,6 +85,9 @@ society.each_agent do |agent|
       unless role_and_mechanisms.include?("SparePartsProvider.TerminalInventoryManager")
 	agent.add_component do |c|
 	  c.classname = inventory_plugin
+          if agent.has_facet? { |facet| facet[:role]=='SparePartsProvider' && (facet[:echelon_of_support] == 'DIVISION') && (facet[:mechanism] == 'MSB') }
+            c.add_argument('INVENTORY_FILE=MSB_consumable.inv')
+          end
 	  c.add_argument('SUPPLY_TYPE=Consumable')
 	end
       end
@@ -86,6 +98,9 @@ society.each_agent do |agent|
       unless role_and_mechanisms.include?("SubsistenceSupplyProvider.TerminalInventoryManager")
 	agent.add_component do |c|
 	  c.classname = inventory_plugin
+          if agent.has_facet? { |facet| facet[:role]=='SubsistenceSupplyProvider' && (facet[:echelon_of_support] == 'DIVISION') && (facet[:mechanism] == 'MSB')}
+            c.add_argument('INVENTORY_FILE=MSB_subsistence.inv')
+          end
 	  c.add_argument('SUPPLY_TYPE=Subsistence')
 	end
       end

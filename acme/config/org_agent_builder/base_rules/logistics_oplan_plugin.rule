@@ -10,4 +10,9 @@ society.each_agent do |agent|
       c.classname = logistics_oplan_plugin
     end
   end
+  if (agent.get_facet(:is_deployable) && (not agent.get_facet(:has_physical_assets)))
+    agent.add_component do |c|
+      c.classname = logistics_oplan_plugin
+    end
+  end
 end

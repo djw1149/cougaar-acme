@@ -1,23 +1,58 @@
 ####################################################
 # Rule to insert UTILLdmXMLPlugin
 # It only is used by the GLMT orgs (echelon_group = "Transcom")
-# It only gets the arg at TRANSCOM ??? (role = 'StrategicTransportationProvider')
+
 # plugin = org.cougaar.lib.plugin.UTILLdmXMLPlugin(ldmFile=GLMT.TRANSCOM.ldm.xml)
 # plugin = org.cougaar.lib.plugin.UTILLdmXMLPlugin
+
+# This plugin is needed for all TRANSCOM agents with various arguments. If role 'ends with' StrategicTransportationProvider
+#      then argument is ldmFile=GLMT.TRANSCOM.ldm.xml
 
 util_ldm_xml_plugin = "org.cougaar.lib.plugin.UTILLdmXMLPlugin"
 
 society.each_agent do |agent|
   if agent.get_facet(:echelon_group) == "Transcom"
-    strategic_transportation_provider = false
-    agent.each_facet(:role) do |facet|
-      strategic_transportation_provider = true if facet[:role] == "StrategicTransportationProvider"
-    end
     agent.add_component do |c|
       c.classname = util_ldm_xml_plugin
-      if strategic_transportation_provider
+      #add arguments based on role and role mechanism
+      # if role includes StrategicTransportationProvider add argument: ldmFile=GLMT.TRANSCOM.ldm.xml
+      if agent.has_facet? { |facet| facet[:role].to_s.include? 'StrategicTransportationProvider' }
         c.add_argument("ldmFile=GLMT.TRANSCOM.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='AirTransportationProvider' }
+        c.add_argument("ldmFile=GlobalAirPorts.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='SeaTransportationProvider' }
+        c.add_argument("ldmFile=GlobalSeaPorts.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='OrganicAirTransportationProvider' && (facet[:mechanism] == 'Global') }
+        c.add_argument("ldmFile=GlobalPlanes.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='OrganicAirTransportationProvider' && (facet[:mechanism] == 'GlobalHalf')}
+        c.add_argument("ldmFile=GlobalPlanesHalf.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ShipPackingTransportationProvider' && (facet[:mechanism] == 'Ammo')}
+        c.add_argument("ldmFile=AmmoShips.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ShipPackingTransportationProvider' && (facet[:mechanism] == 'Conus')}
+        c.add_argument("ldmFile=ConusShips.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ShipPackingTransportationProvider' && (facet[:mechanism] == 'Euro')}
+        c.add_argument("ldmFile=EuroShips.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ShipPackingTransportationProvider' && (facet[:mechanism] == 'Global')}
+        c.add_argument("ldmFile=GlobalShips.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ToPOEGroundTransportationProvider' && (facet[:mechanism] == 'Ammo')}
+        c.add_argument("ldmFile=AmmoConusGroundVehicles.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ToPOEGroundTransportationProvider' && (facet[:mechanism] == 'Conus')}
+        c.add_argument("ldmFile=ConusGroundVehicles.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ToPOEGroundTransportationProvider' && (facet[:mechanism] == 'Euro')}
+        c.add_argument("ldmFile=EuroGroundVehicles.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='ToPOEGroundTransportationProvider' && (facet[:mechanism] == 'ConusEuro')}
+        c.add_argument("ldmFile=GroundVehicles.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='FromPODGroundTransportationProvider' && (facet[:mechanism] == 'Theater')}
+        c.add_argument("ldmFile=TheaterGroundVehicles.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='FromPODGroundTransportationProvider' && (facet[:mechanism] == 'TheaterHalf')}
+        c.add_argument("ldmFile=TheaterGroundVehiclesHalf.ldm.xml")
+      elsif agent.has_facet? { |facet| facet[:role]=='FromPODGroundTransportationProvider' && (facet[:mechanism] == 'Ammo')}
+        c.add_argument("ldmFile=AmmoTheaterGroundVehicles.ldm.xml")
       end
     end
   end
 end
+
+
+
+

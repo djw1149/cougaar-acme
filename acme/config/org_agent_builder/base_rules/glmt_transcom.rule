@@ -1,26 +1,27 @@
 ####################################################
 # Rule to insert GLMTransOneToManyExpanderPlugin and TranscomVishnuPlugin
-# Just at TRANSCOM: (echelon_group = "Transcom") && (role = "StrategicTransportationProvider") && (mechanism = "ModeSelector")
-#   plugin = org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin(envFile={String}GLMT.TRANSCOM.env.xml)
+# Just at TRANSCOM-7: (echelon_group = "Transcom") && (role = "StrategicTransportationProvider") && (mechanism = "ModeSelector")
+#   plugin = org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin(envFile=GLMT.TRANSCOM.env.xml)
 #   plugin = org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin(envFile=GLMT.TRANSCOM.env.xml)
-# Just at TRANSCOM-STUB (echelon_group = "Transcom") && (role = "StrategicTransportationProvider") && (mechanism = "StubTransportationProvider")
-#   plugin = org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin("Transport")
+#
+# At EuroTRANSCOM, ConusTRANSCOM (echelon_group = "Transcom") && (role = "Euro...Conus...StrategicTransportationProvider") && (mechanism = "ModeSelector")
+#   plugin = org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin(envFile=GLMT.TRANSCOM.env.xml)
+#   plugin = org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin(envFile=GLMT.TRANSCOM.env.xml)
+#
+# At AmmoTRANSCOM (echelon_group = "Transcom") && (role = "AmmoStrategicTransportationProvider") && (mechanism = "ModeSelector")
+#   plugin = org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin(envFile=GLMT.TRANSCOM.env.xml)
+#   plugin = org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin(envFile=GLMT.TRANSCOM.env.xml,doesNotNeedAirTransportProvider=true)
+#
+# Just at TRANSCOM-1 (STUB) (echelon_group = "Transcom") && (role = "StrategicTransportationProvider") && (mechanism = "StubTransportationProvider")
+#   plugin = org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin("Transport") 
+# See univeral_allocator.rule
 
 glm_trans_one_to_many_expander_plugin = "org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin"
 transcom_vishnu_plugin = "org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin"
-universal_allocator_plugin = "org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin"
 
 society.each_agent do |agent|
-  roles = []
-  role_mechanisms = []
-  role_and_mechanisms = []
-  agent.each_facet(:role) do |facet|
-    roles << facet[:role]
-    role_mechanisms << facet[:mechanism]
-    role_and_mechanisms << facet[:role].to_s + "." + facet[:mechanism].to_s   
-  end
   if agent.get_facet(:echelon_group) == "Transcom"
-    if (role_and_mechanisms.include?("StrategicTransportationProvider.ModeSelector"))
+    if agent.has_facet? { |facet| (facet[:role].to_s.include? 'StrategicTransportationProvider') && (facet[:mechanism] == 'ModeSelector') }
       agent.add_component do |c|
         c.classname = glm_trans_one_to_many_expander_plugin
         c.add_argument("envFile=GLMT.TRANSCOM.env.xml")
@@ -28,6 +29,9 @@ society.each_agent do |agent|
       agent.add_component do |c|
         c.classname = transcom_vishnu_plugin
         c.add_argument("envFile=GLMT.TRANSCOM.env.xml")
+        if agent.has_facet? { |facet| facet[:role]== 'AmmoStrategicTransportationProvider' && (facet[:mechanism] == 'ModeSelector') }
+          c.add_argument("doesNotNeedAirTransportProvider=true")      #AmmoTranscom need extra arg
+        end
       end
     end
   end

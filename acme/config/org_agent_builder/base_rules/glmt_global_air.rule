@@ -11,7 +11,7 @@ society.each_agent do |agent|
       if facet[:role] == "AirTransportationProvider"
         agent.add_component do |c|
           c.classname = sequential_global_air_plugin
-          c.add_argument("envFile=GLMT.TRANSCOM.env.xml")
+          c.add_argument("envFile=GLMT.Transport.env.xml")
         end
       end
     end
