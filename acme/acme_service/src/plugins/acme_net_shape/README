@@ -1,0 +1,3 @@
+This plugin expects the "network.xml" file to be located
+in the /etc directory.  On installation, either provide
+a symlink or physically copy this file.

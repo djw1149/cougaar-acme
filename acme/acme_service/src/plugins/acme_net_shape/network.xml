@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<network name="socV1" device="eth0">
+  <vlan id="2" name="REAR-CONUS"
+        router="10.155.2.1"
+        netmask="255.255.255.0"
+        bandwidth="100">
+    <link name="DIV-SUPPORT" bandwidth="0.5"/>
+    <link name="DIVISION" bandwidth="0.5"/>
+  </vlan>
+
+  <vlan id="3" name="DIVISION"
+        router="10.155.3.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIV-SUPPORT" bandwidth="0.5" />
+     <link name="REAR-CONUS" bandwidth="0.5" />
+     <link name="AVN-BDE" bandwidth="1.54" />
+     <link name="1-BDE" bandwidth="1.54" />
+     <link name="2-BDE" bandwidth="1.54" />
+     <link name="3-BDE" bandwidth="1.54" />
+  </vlan>
+
+
+  <vlan id="4" name="DIV-SUPPORT"
+        router="10.155.4.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="REAR-CONUS" bandwidth="0.5" />
+     <link name="DIVISION" bandwidth="0.5" />
+  </vlan>
+
+  <vlan id="10" name="AVN-BDE"
+        router="10.155.10.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+
+  <vlan id="11" name="1-BDE"
+        router="10.155.11.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+
+  <vlan id="12" name="2-BDE"
+        router="10.155.12.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+
+  <vlan id="13" name="3-BDE"
+        router="10.155.13.1"
+        netmask="255.255.255.0"
+        bandwidth="10">
+     <link name="DIVISION" bandwidth="1.54" />
+  </vlan>
+</network>
