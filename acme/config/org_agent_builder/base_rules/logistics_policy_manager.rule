@@ -58,13 +58,18 @@ society.each_agent do |agent|
     else
       my_role = "AmmunitionProvider"
       my_commodity = "Ammunition"
+      my_div_echelon_group = ""
+      non_div_echelon_groups = ["Corps", "Theater", "Conus"] 
+      if non_div_echelon_groups.include?(agent.get_facet(:echelon_group))
+	my_div_echelon_group = "NONDIV-"
+      end
       if (roles.has_key?(my_role) && roles[my_role][0] != "TerminalInventoryManager")
 	my_echelon_of_support = roles[my_role][1]
 	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
 	c.add_argument(no_destination)
       else
 	my_echelon_of_support = "CONSUMER"
-	c.add_argument("POLICY=InventoryPolicy-#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
+	c.add_argument("POLICY=InventoryPolicy-#{my_div_echelon_group}#{my_echelon_of_support}-#{my_commodity}.ldm.xml")
 	c.add_argument(no_destination)
       end
       # FuelSupplyProvider
