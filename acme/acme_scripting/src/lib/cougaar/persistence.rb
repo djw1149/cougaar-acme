@@ -42,11 +42,13 @@ module Cougaar
       def perform()
         begin
           snapshot_society = @run.society.clone
-          nca_node = snapshot_society.agents['NCA'].node
+          nca_node = snapshot_society.agents['NCA'].node.agent
           result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
           md = /Scenario Time<\/td><td>([^\s]*) (.*)<\/td>/.match(result)
           if md
             date = md[1]
+            date = date.split("/")
+            date = (date << (date.shift)).join("/")
             snapshot_society.each_node do |node|
               node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=#{date}")
             end
