@@ -8,12 +8,7 @@ AVN-DET-HQ,DET-HQ,AVN-DET.1-UA.ARMY.MIL,StrategicTransportationProvider,DIVISION
 NLOS-BN-BTRY-HQ,BTY-HQ,NLOS-BN.1-UA.ARMY.MIL,StrategicTransportationProvider,DIVISION,PassThrough,
 FSB-CO-HQ,CO-HQ,FSB.1-UA.ARMY.MIL,StrategicTransportationProvider,DIVISION,PassThrough,
 FSB-FUEL-WATER-SECTION,FUEL-WATER-SECTION,FSB.1-UA.ARMY.MIL,FuelSupplyProvider,BRIGADE,TruckScheduler,
-FSB-DRY-CARGO-SECTION,DRY-CARGO-SECTION,FSB.1-UA.ARMY.MIL,PackagedPOLSupplyProvider,BRIGADE,TerminalInventoryManager,
-FSB-MAINT-PLT,MAINT-PLT,FSB.1-UA.ARMY.MIL,SparePartsProvider,BRIGADE,TerminalInventoryManager,
-FSB-DRY-CARGO-SECTION,DRY-CARGO-SECTION,FSB.1-UA.ARMY.MIL,SubsistenceSupplyProvider,BRIGADE,TerminalInventoryManager,
-FSB-DRY-CARGO-SECTION,DRY-CARGO-SECTION,FSB.1-UA.ARMY.MIL,MaterielTransportProvider,BRIGADE,,
-FSB-DRY-CARGO-SECTION,DRY-CARGO-SECTION,FSB.1-UA.ARMY.MIL,AmmunitionProvider,BRIGADE,TerminalInventoryManager,
-1-CA-BN-SUPPORT-SECTION,SUPPORT-SECTION,1-CABN.1-UA.ARMY.MIL,AmmunitionProvider,COMPANY,TerminalInventoryManager,
-2-CA-BN-SUPPORT-SECTION,SUPPORT-SECTION,2-CABN.1-UA.ARMY.MIL,AmmunitionProvider,COMPANY,TerminalInventoryManager
-3-CA-BN-SUPPORT-SECTION,SUPPORT-SECTION,3-CABN.1-UA.ARMY.MIL,AmmunitionProvider,COMPANY,TerminalInventoryManager
-AVN-DET-SVC-TRP-SUPPORT-PLT,SVC-TRP-SUPPORT-PLT,AVN-DET.1-UA.ARMY.MIL,AmmunitionProvider,COMPANY,TerminalInventoryManager
+FSB-DISTRO-PLT,DISTRO-PLT,FSB.1-UA.ARMY.MIL,FuelSupplyProvider,BRIGADE,TruckScheduler,Temporary
+FSB-SUSTAIN-CO,SUSTAIN-CO,FSB.1-UA.ARMY.MIL,FuelSupplyProvider,BRIGADE,TruckScheduler,Temporary
+FSB,FSB,1-UA.ARMY.MIL,FuelSupplyProvider,BRIGADE,TruckScheduler,Temporary
+FSB,FSB,1-UA.ARMY.MIL,StrategicTransportationProvider,DIVISION,PassThrough,Temporary
