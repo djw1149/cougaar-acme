@@ -39,6 +39,7 @@ module Cougaar
       def perform
 	#Check to see if @modifier is a subdirectory of INV
 	#if it is not create it
+	Dir.mkdir("INV") unless File.exist?("INV")
 	Dir.mkdir("INV/#{@modifier}") if Dir["INV/#{@modifier}"].empty?
 
         # Get some inventory charts
