@@ -9,16 +9,17 @@ module ACME; module Plugins
       attr_reader :files, :service, :xml_file, :reports, :report_path, :mtime
       attr_accessor :root_path
       
-      def initialize(service, xml_file, root_path, report_path)
+      def initialize(service, xml_file, temp_path, report_path)
+        @prior_archives = []
         @service = service
         @files = []
         @reports = []
         @report_path = report_path
         @xml_file = xml_file
-        @root_path = root_path
+        @root_path = File.join(temp_path, base_name)
         
-        unless File.exist?(root_path)
-          Dir.mkdir(root_path)
+        unless File.exist?(@root_path)
+          Dir.mkdir(@root_path)
         end
         
         unless File.exist?(File.join(root_path, report_path))
@@ -61,6 +62,12 @@ module ACME; module Plugins
         list = []
         @files.each {|f| list << f if name === f.name}
         list
+      end
+      
+      def open_prior_archive(prior_archive)
+        archive = @service.open_prior_archive(self, prior_archive)
+        @prior_archives << archive if archive
+        archive
       end
       
       def add_report(name, plugin_name)
@@ -129,6 +136,9 @@ module ACME; module Plugins
       end
       
       def compress
+        @prior_archives.each do |prior_archive|
+          prior_archive.cleanup
+        end
         `cd #{@root_path}; tar -czf #{File.expand_path(@archive_file)+".new"} *`
       end
 
@@ -137,7 +147,7 @@ module ACME; module Plugins
       end
       
       def cleanup
-        `rm -rf #{File.join(@root_path, "*")}`
+        `rm -rf #{@root_path}`
       end
     end
 

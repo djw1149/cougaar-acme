@@ -22,6 +22,9 @@ class ReportingService
     @plugin = plugin
     @archive_path = @plugin.properties['archive_path']
     @temp_path = @plugin.properties['temp_path']
+    unless File.exist?(@temp_path)
+      Dir.mkdir(@temp_path)
+    end
     @report_path = @plugin.properties['report_path']
     @report_host_name = @plugin.properties['report_host_name']
     @report_host_port = @plugin.properties['report_host_port']
@@ -97,6 +100,14 @@ class ReportingService
         sleep 60
       end
     end
+  end
+  
+  def open_prior_archive(current, prior)
+    prior_file = File.join(@archive_path, "#{prior}.xml")
+    return nil unless File.exist?(prior_file)
+    prior_archive = ArchiveStructure.new(self, prior_file, current.root_path, @report_path)
+    prior_archive.expand
+    return prior_archive
   end
 
   def add_listener(order=:none, &block)
