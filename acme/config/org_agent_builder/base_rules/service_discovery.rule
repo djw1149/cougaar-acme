@@ -78,6 +78,14 @@ society.each_agent do |agent|
     end
   end
 #
+# Add the strat_trans_role to the OSC Agent.
+# (Role == "AmmunitionProvider" && Mechanism=="TerminalAmmunitionPacker")
+  provided_roles.each do |my_role, m_e| 
+    if my_role == "AmmunitionProvider" && m_e[0] == "TerminalAmmunitionPacker"
+      required_roles << strat_trans_role
+    end
+  end
+#
 # Add the required roles for the Transcom Community
   if agent.get_facet(:echelon_group) == "Transcom"
     provided_roles.each do |my_role, m_e|

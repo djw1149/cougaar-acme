@@ -12,7 +12,17 @@ xml_prototype_provider_plugin = "org.cougaar.mlm.plugin.xml.XMLPrototypeProvider
 mei_prototype_provider = "org.cougaar.logistics.ldm.MEIPrototypeProvider"
 parts_prototype_provider = "org.cougaar.logistics.ldm.PartsPrototypeProvider"
 
+# First iterate over agents, collecting the provided_roles, mechanisms, and echelons of support
 society.each_agent do |agent|
+  provided_roles = Hash.new
+  agent.each_facet(:role) do |facet|
+    my_role = facet[:role].to_s
+    my_mechanism = facet[:mechanism].to_s
+    my_echelon_of_support= facet[:echelon_of_support].to_s
+    provided_roles[my_role] = [my_mechanism,my_echelon_of_support]
+  end
+#
+# Then check if agent has physical assets
   if agent.get_facet(:has_physical_assets)
     agent.add_component do |c|
       c.classname = xml_prototype_provider_plugin
@@ -21,6 +31,8 @@ society.each_agent do |agent|
 	  # Comment out for now c.priority = "BINDER"
     end
   end
+#
+# Then check if agent has equipment assets
   if agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
       c.classname = mei_prototype_provider
@@ -32,4 +44,15 @@ society.each_agent do |agent|
       c.add_argument("Parts.q")
     end
   end
+#
+# Then check if agent has a role of "AmmunitionProvider" with a mechanism of "TerminalAmmunitionPacker"
+# This would be the OSC agent which needs the XMLPrototypeProviderPlugin  
+# if agent.get_facet(:role) == "AmmunitionProvider" && agent.get_facet(:mechanism) == "TerminalAmmunitionPacker"
+  provided_roles.each do |my_role, m_e| 
+    if my_role == "AmmunitionProvider" && m_e[0] == "TerminalAmmunitionPacker"
+      agent.add_component do |c|
+        c.classname = xml_prototype_provider_plugin
+      end
+    end    
+  end 
 end
