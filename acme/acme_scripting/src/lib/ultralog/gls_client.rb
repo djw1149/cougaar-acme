@@ -142,18 +142,11 @@ module Cougaar
       DEFAULT_TIMEOUT = 30.minutes
       PRIOR_STATES = ["OPlanSent"]
       DOCUMENTATION = Cougaar.document {
-        @description = "Waits for the GLS ready Cougaar Event."
+        @description = "DEPRECATED: Waits for the GLS ready Cougaar Event."
         @parameters = [
           {:timeout => "default=nil, Amount of time to wait in seconds."},
           {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
         ]
-        @example = "
-          wait_for 'GLSReady', 5.minutes do
-            puts 'Did not get GLSReady!!!'
-            do_action 'StopSociety'
-            do_action 'StopCommunications'
-          end
-        "
       }
       
       def initialize(run, timeout=nil, &block)
@@ -161,17 +154,18 @@ module Cougaar
       end
       
       def process
-        loop = true
-        while loop
-          event = @run.get_next_event
-          if event.event_type=="STATUS" && event.cluster_identifier=="5-CORPS" && event.component=="OPlanDetector"
-            loop = false
-          end
-        end
-        gls_client = @run['gls_client']
-        until gls_client.gls_connected?
-          sleep 2
-        end
+        puts "WARNING: This state is deprecated."
+        #loop = true
+        #while loop
+        #  event = @run.get_next_event
+        #  if event.event_type=="STATUS" && event.cluster_identifier=="5-CORPS" && event.component=="OPlanDetector"
+        #    loop = false
+        #  end
+        #end
+        #gls_client = @run['gls_client']
+        #until gls_client.gls_connected?
+        #  sleep 2
+        #end
       end
       
       def unhandled_timeout
@@ -301,14 +295,19 @@ module Cougaar
     end
     
     class PublishGLSRoot < Cougaar::Action
-      PRIOR_STATES = ["GLSReady"]
+      PRIOR_STATES = ["OPlanSent"]
       RESULTANT_STATE = "SocietyPlanning"
       DOCUMENTATION = Cougaar.document {
         @description = "Publishes the GLS root task to the glsinit servlet."
         @example = "do_action 'PublishGLSRoot'"
       }
       def perform
+      
         gls_client = @run['gls_client']
+        until gls_client.gls_connected?
+          sleep 2
+        end
+
         begin
           if gls_client.c0_date
             result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
