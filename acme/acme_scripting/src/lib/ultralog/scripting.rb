@@ -19,6 +19,7 @@
 # </copyright>
 #
 
+require 'ultralog/metrics'
 require 'ultralog/cyclic'
 require 'ultralog/enclaves'
 require 'ultralog/aggagent'
