@@ -18,12 +18,16 @@ module ACME
       def perform
         comp_files = @archive.files_with_description(/completion/)
         comp_files.each do |comp_file|
+          benchmark_file = benchmark_filename(comp_file)
+          next if benchmark_file.nil?
           report_name = File.basename(comp_file.name, ".xml")
           report_name.gsub!(/comp_/, "")
+          report_name.gsub!(/Restore-/, "")
           
           @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
             data = get_file_data(File.new(comp_file.name))
-            benchmark_data = get_file_data(File.new(benchmark_filename(comp_file)))
+
+            benchmark_data = get_file_data(File.new(benchmark_file))
             puts benchmark_filename(comp_file)
             result = analyze(data, benchmark_data)
             if result == SUCCESS then
@@ -48,7 +52,21 @@ module ACME
       end
   
       def benchmark_filename(compfile)
-        return "/usr/local/acme/plugins/acme_reporting_core/goldencomp/#{File.basename(compfile.name)}"
+        basename = File.basename(compfile.name)
+        old = Dir.pwd
+        Dir.chdir("/usr/local/acme/plugins/acme_reporting_core/goldencomp")
+        filename = nil
+        files = Dir[basename]
+        if (!files.empty?) then
+          filename = Dir.pwd + "/" + files[0]
+        else
+          files = Dir[basename.gsub(/Restored-/, "")]
+          if (!files.empty?) then
+            filename =  Dir.pwd + "/" + files[0]
+          end
+        end
+        Dir.chdir(old)
+        return filename
       end
 
       def get_file_data(file)
