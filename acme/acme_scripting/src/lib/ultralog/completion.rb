@@ -261,6 +261,7 @@ module UltraLog
         @rootSupply = root.elements["NumRootSupplyTasks"].text.to_i
         @rootTransport = root.elements["NumRootTransportTasks"].text.to_i
       end
+
       
       ##
       # Checks if agent is complete
@@ -312,6 +313,30 @@ module UltraLog
       @run = run
       @society_status = "INCOMPLETE"
       @comp_status = {}
+    end
+
+    def import_from_dump(dump)
+      data = []
+      if dump.is_a?(String)
+        data = dump.split('\n')
+      elsif dump.is_a?(Array)
+        data = dump
+      end
+      info = nil
+      data.each do |line|
+        if (line =~ /Agent: ([A-Za-z0-9].*)$/)
+          agent = $1
+          @comp_status[agent] = {"recievers" => {}, "senders" => {}} if @comp_status[agent].nil?
+        elsif (line =~ /Recievers:/)
+          info = @comp_status["recievers"]
+        elsif (line =~ /Senders:/)
+          info = @comp_status["senders"]  
+        elsif (line =~ /::    ([A-Za-z0-9].*) => ([0-9]+)/)
+          agent = $1
+          id = $2.to_i
+          info[agent] = id
+        end
+      end
     end
 
     def handleXML(root)
