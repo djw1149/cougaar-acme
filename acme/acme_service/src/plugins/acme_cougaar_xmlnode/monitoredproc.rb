@@ -32,6 +32,7 @@ class MonitoredProcess
     if File::PATH_SEPARATOR == ":"
       platform = "unix"
     end
+    puts "PLATFORM IS #{platform}"
     return platform
   end
 
@@ -119,8 +120,16 @@ class MonitoredProcess
     end
     Thread.new(@pid) do |pid|
       @procactive = true
-      Process.waitpid(pid)
-      puts "#{@pid} is DEAD"
+      retries = 0
+      begin
+        puts "Starting wait for PID #{@pid}"
+        Process.waitpid(pid)
+        puts "#{@pid} is DEAD"
+      rescue
+        puts "Exception waiting for PID: #{$!}"
+        retries = retries + 1
+        retry if (retries < 5)
+      end
       @procactive = false
     end
     pi
