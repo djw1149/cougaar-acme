@@ -98,14 +98,14 @@ public class MemoryWasterPlugin
 			}		
 		}
 		
-		public void post( HttpServletRequest request,
+		public void doPost( HttpServletRequest request,
 							HttpServletResponse response ) 
 			throws ServletException
 		{
 			execute( request, response );
 		}
 		
-		public void get( HttpServletRequest request,
+		public void doGet( HttpServletRequest request,
 							HttpServletResponse response ) 
 			throws ServletException
 		{
