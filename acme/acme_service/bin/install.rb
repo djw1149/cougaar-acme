@@ -95,7 +95,7 @@ def install destdir
     file.puts %Q[  - props_path: "#{@linux_props}"]
     file.puts %Q[  - jvm_path: "#{@jvm_path}"]
     file.puts %Q[  - node_start_prefix: su -l -c "]
-    file.puts %Q[  - node_stop_prefix: "\" asmt"]    
+    file.puts %Q[  - node_start_suffix: "\\" asmt"]    
   end
   puts "Writing acme_host_jabber_service properties..."
   path = File.join(destdir, 'plugins', 'acme_host_jabber_service', 'properties.yaml')
