@@ -68,7 +68,18 @@ module Cougaar
         agent_list.sort!
         xml = "<CompletionSnapshot>\n"
         agent_list.each do |agent|
-          xml += ::UltraLog::Completion.status(@run.society.agents[agent]).to_s
+          begin
+            stats = ::UltraLog::Completion.status(@run.society.agents[agent])
+            if stats
+              xml += stats.to_s
+            else
+              xml += "<SimpleCompletion agent='#{agent}' status='Error: Could not access agent.'\>\n"
+              @run.error_message "Error accessing completion data for Agent #{agent}."
+            end
+          rescue
+            xml += "<SimpleCompletion agent='#{agent}' status='Error: Parse exception.'\>\n"
+            @run.error_message "Error parsing completion data for Agent #{agent}."
+          end
         end
         xml += "</CompletionSnapshot>"
         save(xml)
@@ -79,7 +90,6 @@ module Cougaar
         end
       end
     end
-
 
     class InstallCompletionMonitor < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
@@ -164,8 +174,12 @@ module UltraLog
     # return:: [UltraLog::Completion::Statistics] The results of the query
     #
     def self.status(agent)
-      data = Cougaar::Communications::HTTP.get("#{agent.uri}/completion?format=xml", 60)[0]
-      return Statistics.new(agent.name, data)
+      data = Cougaar::Communications::HTTP.get("#{agent.uri}/completion?format=xml", 60)
+      if data
+        return Statistics.new(agent.name, data[0])
+      else
+        return nil
+      end
     end
     
     ##
@@ -176,8 +190,12 @@ module UltraLog
     # return:: [UltraLog::Completion::Statistics] The results of the query
     #
     def self.query(host, agent, port)
-      data = Cougaar::Communications::HTTP.get("http://#{host}:#{port}/$#{agent}/completion?format=xml", 60)[0]
-      return Statistics.new(agent, data)
+      data = Cougaar::Communications::HTTP.get("http://#{host}:#{port}/$#{agent}/completion?format=xml", 60)
+      if data
+        return Statistics.new(agent, data[0])
+      else
+        return nil
+      end
     end
     
     ##
@@ -192,7 +210,11 @@ module UltraLog
       # data:: [String] A completion XML query
       #
       def initialize(agent, data)
-        xml = REXML::Document.new(data)
+        begin
+          xml = REXML::Document.new(data)
+        rescue REXML::ParseException
+          raise "Could not construct Statistics object from supplied data."
+        end
         root = xml.root
         @agent = agent
         @time = root.elements["TimeMillis"].text.to_i
