@@ -146,6 +146,11 @@ module Cougaar
       
       def process
         comp = @run["completion_monitor"] 
+	if (comp.getSocietyStatus() == "COMPLETE")
+	  # Put this in the log file only...
+#	  @run.info_message "Society is already quiescent. About to block waiting for society to go non-quiescent, then quiescent again...."
+	  Cougaar.logger.info  "[#{Time.now}]      INFO: Society is already quiescent. About to block waiting for society to go non-quiescent, then quiescent again...."
+	end
         comp.wait_for_change_to_state("COMPLETE")
       end
       
