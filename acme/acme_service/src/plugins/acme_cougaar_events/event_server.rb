@@ -145,6 +145,7 @@ module Cougaar
             @node = nil
             @started = false
           when "CougaarEvent"
+            @current.data = [@current.data].pack("m")
             @listener.call(@current)
             @current = nil
           else
