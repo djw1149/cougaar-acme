@@ -40,7 +40,8 @@ module Cougaar; module Actions
     end
 
     def set_bandwidth( bw )
-       @run.comms.new_message( @noc ).set_body("command[shape]shape(#{@from_vlan},#{@to_vlan},bw)")
+       puts "SEND: #{@noc.host_name}/command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})"
+       @run.comms.new_message( @noc ).set_body("command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})").request(30)
 
 #       @run.comms.new_message( @noc ).set_body("command[rexec]/sbin/tc class change dev eth0.#{@to_vlan} parent 1:1 classid 1:#{@from_vlan} htb rate #{bw}Mbit burst 15k ceil #{bw}Mbit").request( 30 )
     end
@@ -58,6 +59,7 @@ module Cougaar; module Actions
 
     def stop_intermittent
       @intermit.kill
+      enable
     end
 
     def WANLink.find( name )
@@ -75,19 +77,22 @@ module Cougaar; module Actions
       @description = "Define a WAN Link for further actions."
       @parameters = [
         {:name=>"required, Name of the WAN Link.",
-         :noc=>"required, Network Operation Controller",
          :from_vlan=>"required, VLAN which originates traffic.",
          :to_vlan=>"required, VLAN which is the target of the traffic."}]
       @example = "do_action 'DefineWANLink', 'link.2.3', 2, 3"
     }
 
-    def initialize( run, name, noc, from_vlan, to_vlan )
+    def initialize( run, name, from_vlan, to_vlan )
       super( run )
-      @name = name; @noc = noc; @from_vlan = from_vlan; @to_vlan = to_vlan
+
+      @name = name; @from_vlan = from_vlan; @to_vlan = to_vlan
     end
 
     def perform
-      wl = WANLink.new( @run, @run.society.hosts[@noc], @from_vlan, @to_vlan)
+      noc = nil
+      @run.society.each_service_host("BW-router") {|h| noc = h }
+
+      wl = WANLink.new( @run, noc, @from_vlan, @to_vlan)
       WANLink.store( @name, wl )
     end
   end
@@ -130,6 +135,7 @@ module Cougaar; module Actions
           @run.error_message "Could not find a host with the facet 'BW-router'"
         end
       else
+        @run.comms.new_message(host).set_body("command[shape]reset").send
         @run.comms.new_message(host).set_body("command[shape]trigger").send
       end 
    end
