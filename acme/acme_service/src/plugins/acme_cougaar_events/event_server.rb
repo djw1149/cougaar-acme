@@ -21,7 +21,9 @@
 
 require 'socket'
 require 'rexml/document'
-require 'rexml/streamlistener'
+require 'rexml/parsers/sax2parser'
+require 'rexml/source'
+require 'jabber4r/rexml_1.8_patch'
 
 module Cougaar
 
@@ -92,7 +94,6 @@ module Cougaar
     # of the Cougaar Events
     #
     class EventParser
-      include REXML::StreamListener
       # status if the parser is started
       attr_reader :started
       
@@ -110,53 +111,36 @@ module Cougaar
       end
       
       ##
-      # Callback for REXML::Document.parse_stream when a start tag is encountered
+      # Begins parsing the XML stream and does not return until
+      # the stream closes.
       #
-      # name:: [String] The tag name <name>
-      # attrs:: [Array] The attribute array...attrs = [["key","value"], ["key2", "value2"]]
-      #
-      def tag_start(name, attrs)
-        case name
+      def parse
+        parser = REXML::Parsers::SAX2Parser.new @stream 
+        parser.listen( :start_element ) do |uri, localname, qname, attributes|
+          case qname
           when "CougaarEvents"
-            attrs.each do |item| 
-              puts "#{item[0]}='#{item[1]}'"
-              @node=item[1] if item[0].downcase=='node'
-              @experiment=item[1] if item[0].downcase=='experiment'
-            end
+            @node = attributes['node']
+            @experiment = attributes['experiment']
             puts "  Node: #{@node}  Experiment: #{@experiment}"
             @started = true
           when "CougaarEvent" 
             @current = CougaarEvent.new
             @current.node = @node
-            @current.experiment = @experiment
             @current.data = ""
-            attrs.each do |item| 
-              case item[0]
-              when 'type'
-                @current.event_type = item[1]
-              when 'clusterIdentifier'
-                @current.cluster_identifier = item[1]
-              when 'component'
-                @current.component = item[1]
-              end
+            @current.experiment = @experiment
+            @current.event_type = attributes['type']
+            @current.cluster_identifier = attributes['clusterIdentifier']
+            @current.component = attributes['component']
+          else
+            @current.data << "<#{qname}"
+            attributes.each do |key, value| 
+              @current.data << " #{key} = \"#{value}\""
             end
-           else
-             @current.data << "<#{name}"
-             attrs.each do |item| 
-               @current.data << " #{item[0]} = \"#{item[1]}\""
-             end
-             @current.data << " >"
-    
+            @current.data << " >"
+          end
         end
-      end
-      
-      ##
-      # Callback for REXML::Document.parse_stream when an end tag is encountered
-      #
-      # name:: [String] the tag name
-      #
-      def tag_end(name)
-        case name
+        parser.listen( :end_element ) do  |uri, localname, qname|
+          case name
           when "CougaarEvents"
             @node = nil
             @started = false
@@ -165,39 +149,21 @@ module Cougaar
             @current = nil
           else
             @current.data << "</#{name}>"
+          end
         end
-      end
-      
-      ##
-      # Callback for REXML::Document.parse_stream when text is encountered
-      #
-      # text:: [String] The text (<tag>text</tag>)
-      #
-      def text(text)
-        @current.data << text if @current      
-      end
-      
-      ##
-      # Callback for REXML::Document.parse_stream when cdata is encountered
-      #
-      # content:: [String] The CData content
-      #
-      def cdata(content)
-        @current.data << content if @current      
-      end
-      
-      ##
-      # Begins parsing the XML stream and does not return until
-      # the stream closes.
-      #
-      def parse
-        @started = false
-        parser = REXML::Document.parse_stream(@stream, self)
+        parser.listen( :characters ) do | text |
+          @current.data << text if @current
+        end
+        parser.listen( :cdata ) do | text |
+          @current.data << text if @current
+        end
+        parser.parse
       end
     end
     
   end
 end
+
 
 
 if $0==__FILE__
@@ -219,3 +185,4 @@ if $0==__FILE__
   parser.parse
   puts "closed connection"
 end
+
