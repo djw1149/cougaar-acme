@@ -1,0 +1,12 @@
+#######################################
+# Rule to insert MemoryWaster on all agents.
+#
+
+society.each_node do |node|
+  node.add_component do |c|
+    c.classname="org.cougaar.tools.csmart.plugins.mem.MemoryWasterPlugin"
+    c.add_argument("/mem-waster")
+    c.add_argument("500000")
+    c.add_argument("3600")
+  end
+end
