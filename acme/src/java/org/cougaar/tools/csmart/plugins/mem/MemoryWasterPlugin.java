@@ -26,7 +26,6 @@ import org.cougaar.core.plugin.ComponentPlugin;
  */
 public class MemoryWasterPlugin 
 	extends ComponentPlugin
-	implements ServiceRevokedListener
 {
 	private EventService evt;
 	
