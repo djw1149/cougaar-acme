@@ -115,7 +115,7 @@ module Cougaar
 			text = "#{Socket.gethostname()}:#{cfg.port}\n"
 
       # Use this line if the nodes can't DNS back to the script (DHCP)
-      text = "#{ipaddr}:#{cfg.port}\n"
+      #text = "#{ipaddr}:#{cfg.port}\n"
 
 			return text
 		end
