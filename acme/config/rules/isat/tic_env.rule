@@ -37,6 +37,7 @@ society.each_node do |node|
     # on the path. 
     node.append_value_on_parameter("-Dorg.cougaar.config.path", "$COUGAAR_INSTALL_PATH/configs/common")
     node.append_value_on_parameter("-Dorg.cougaar.config.path", "$COUGAAR_INSTALL_PATH/configs/glmtrans")
+   node.append_value_on_parameter("-Dorg.cougaar.config.path", "$COUGAAR_INSTALL_PATH/configs/rss")
 
     # ACME Service will replace $COUGAAR_INSTALL_PATH with platform specific path
     node.override_parameter("-Dorg.cougaar.install.path","$COUGAAR_INSTALL_PATH")
