@@ -61,12 +61,18 @@ module Cougaar
       #
       def add_host(host, &block)
         if host.kind_of? Host
+          if @hostIndex[host.host_name]
+            return nil # host names must be unique society wide
+          end
           @hostIndex[host.host_name] = host
           @hostList << host
           host.society = self
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(host) }
           return host
         else
+          if @hostIndex[host]
+            return nil # host names must be unique society wide
+          end
           newHost = Host.new(host)
           @hostIndex[host] = newHost
           newHost.society = self
@@ -587,7 +593,7 @@ module Cougaar
           @agentIndex[agent.name] = agent
           @agents << agent
           agent.node = self
-          $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_added(newAgent) }
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_added(agent) }
           agent
         else
           if @host && @host.society.agents[agent]
@@ -925,7 +931,7 @@ module Cougaar
       
       def move_to(nodename)
         newNode = @node.host.society.nodes[nodename]
-        @node.agents.delete(@name)
+        @node.agents.delete(self)
         newNode.add_agent(self)
       end
       
