@@ -549,6 +549,38 @@ module Cougaar
       end
     end
 
+    class StartPreconfiguredNodes < Cougaar::Action
+      RESULTANT_STATE = "SocietyRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Startes an entire society from already deployed files"
+        @parameters = [
+        ]
+        @example = "do_action 'StartPreconfiguredNodes'"
+      }
+      def initialize(run)
+        super(run)
+      end
+      
+      def perform
+        begin
+          if @run['node_controller'].nil?
+            @run['node_controller'] = ::Cougaar::NodeController.new(@run, 2.minutes, false)
+            @run['node_controller'].add_cougaar_event_params
+          end
+          hosts = []
+          @run.society.each_active_host { |host| hosts << host}
+          hosts.each_parallel do |host|
+            host.each_node do |node|
+              @run['node_controller'].restart_node(self, node)
+            end
+          end
+        rescue Exception => exc
+          puts exc
+          puts exc.backtrace.join("\n")
+        end
+      end
+    end
+
     class KillNodes < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       DOCUMENTATION = Cougaar.document {
