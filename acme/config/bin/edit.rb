@@ -48,7 +48,7 @@ society.each_host do |host|
 		node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
 
 		# Put in your own preferred log file name here
-		node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","$COUGAAR_INSTALL_PATH/workspace/log4jlogs/$HOSTNAME.log")
+		node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","$COUGAAR_INSTALL_PATH/workspace/log4jlogs/#{node.name}.log")
 
 		# To run most societies, you need configs/common and configs/glmtrans
 		# on the path. Edit in your own cougaar_install_path
