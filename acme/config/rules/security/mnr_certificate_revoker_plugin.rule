@@ -4,7 +4,7 @@
 plugin = "org.cougaar.core.security.monitoring.plugin.CertificateRevokerPlugin"
 
 society.each_agent() do |agent|
-  if agent.name ~= /Enclave?SecurityMnRManager/
+  if agent.name =~ /Enclave?SecurityMnRManager/
     agent.add_component do |c|
       c.classname = plugin
     end
