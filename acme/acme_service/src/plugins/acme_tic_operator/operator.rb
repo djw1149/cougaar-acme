@@ -24,12 +24,6 @@ module ACME; module Plugins
         #result += `su -l -c 'echo $CIP' asmt`
         message.reply.set_body(result).send
       end
-      register_command("reset_crypto", "Reset the crypto service") do |message, command|
-        result = "\n"
-        result += call_cmd('cd $CIP/ldap; ./resetCrypto')
-        #result += `su -l -c 'cd $CIP/ldap; ./resetCrypto' asmt`
-        message.reply.set_body("Done").send
-      end
       register_command("clear_pnlogs", "Clear persistence and log data") do |message, command|
         result = "\n"
         result += call_cmd('cd $CIP/operator; ./clrPnLogs.csh')
@@ -50,7 +44,7 @@ module ACME; module Plugins
       end
       register_command("archive_logs", "Archive the log data. param: archiveDir") do |message, command|
         result = "\n"
-        resul += call_cmd("cd $CIP/operator; ./archiveLogs.csh #{command}")
+        result += call_cmd("cd $CIP/operator; ./archiveLogs.csh #{command}")
         #result += `su -l -c 'cd $CIP/operator; ./archiveLogs.csh #{command}' asmt`
         message.reply.set_body("Done").send
       end
