@@ -160,7 +160,7 @@ class XMLCougaarNode
         filename = XMLCougaarNode.makeFileName(request.path[9..-1])
         #search and replace $COUGAAR_INSTALL_PATH
         data = request.body
-        data.gsub!("$COUGAAR_INSTALL_PATH", @plugin['/cougaar/config'].manager.cougaar_install_path)
+        data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
 
         File.open(filename, "w") do |file|
           file.write(data)
