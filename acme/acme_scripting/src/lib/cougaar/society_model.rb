@@ -917,6 +917,7 @@ module Cougaar
       #
       def initialize(name=nil)
         @name = name
+        @classname = "org.cougaar.core.agent.SimpleAgent"
         @components = []
         yield self if block_given?
       end
