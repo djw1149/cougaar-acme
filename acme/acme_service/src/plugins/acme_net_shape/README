@@ -1,3 +1,9 @@
 This plugin expects the "network.xml" file to be located
 in the /etc directory.  On installation, either provide
 a symlink or physically copy this file.
+
+The vlan.rb file needs to be linked into /etc/init.d/lib
+as well as into the /root directory.
+
+The Linux Kernel must be at least:
+  linux-smp-2.4.20-18.9
