@@ -151,19 +151,39 @@ module Cougaar
       # Iterates over each (active) host, or host that has
       # nodes on it.
       #
-      # yield:: [Cougaar::Host] The host instance
+      # yield:: [Cougaar::Model::Host] The host instance
       #
       def each_active_host
         @hostList.each {|host| yield host if host.nodes.size > 0}
       end
       
       ##
+      # Iterates over each node
+      #
+      # yield:: [Cougaar::Model::Node] The node instance
+      #
+      def each_node
+        @hostList.each {|host| host.each_node {|node| yield node} }
+      end
+      
+      ##
       # Iterates over each agent (across all nodes and hosts)
       #
-      # yield:: [Cougaar::Agent] Teh agent instance
+      # include_node_agent:: [Boolean] If true, the node agents are included as well as the agents
+      # yield:: [Cougaar::Model::Agent] The agent instance
       #
-      def each_agent
+      def each_agent(include_node_agent=false, &block)
         @hostList.each {|host| host.each_node {|node| node.each_agent {|agent| yield agent}}}
+        each_node_agent(&block) if include_node_agent
+      end
+      
+      ##
+      # Iterates over each node agent
+      #
+      # yield:: [Cougaar::Agent] The agent instance
+      #
+      def each_node_agent
+        @hostList.each {|host| host.each_node {|node| yield node.agent} }
       end
       
       ##
