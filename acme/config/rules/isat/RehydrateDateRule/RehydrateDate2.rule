@@ -1,0 +1,3 @@
+  society.each_node do |node|
+    node.override_parameter("-Dorg.cougaar.core.agent.startTime","08/14/2005")
+    end
