@@ -32,7 +32,7 @@ class Shaper
   def initialize( plugin )
     super( )
     @plugin = plugin
-    @network = VlanSupport::Network.new( plugin.properties["config"] )
+#     @network = VlanSupport::Network.new( plugin.properties["config"] )
 
     cmd = @plugin.properties["command"]
     desc = @plugin.properties["description"]
@@ -40,21 +40,41 @@ class Shaper
     @plugin["/plugins/acme_host_communications/commands/#{cmd}/description"].data = desc
     @plugin["/plugins/acme_host_communications/commands/#{cmd}"].set_proc do |msg, cmd|
        case cmd
-         when "trigger"
-           trigger()
-           reply = "OK"
-         when "reset"
-           reset()
-           reply = "OK"
-         when /shape\((.*),(.*),(.*)\)/
-           do_shape( $1, $2, $3 )
-           reply = "shaping from #{$1} to #{$2} at #{$3}Mbit"
-         when /enable_link\((.*),(.*)\)/
-           do_enable_link( $1, $2 )
-           reply = "enabled link from #{$1} to #{$2}"
-         when /disable_link\((.*),(.*)\)/
+         # shape( interface, kbps ) - This method will shape the specified
+         # interface.
+         when /shape\((.*),(.*)\)/
+           plugin['log/info'] << "Shaping interface #{$1} to #{$2}Kbps"
+           do_shape( $1, $2 )
+
+           reply = "Interface #{$1} shaped to #{$2}Kbps"
+
+         # unshape( interface ) - This method removes shaping on the specified
+         # interface
+         when /unshape\((.*)\)/
+           plugin['log/info'] << "Removing shaping on interface #{$1}"
+           do_unshape( $1 )
+
+           reply = "Interface #{$1} no longer shaped"
+
+         # reset( interface ) - This method will completely reset an interface
+         # so it is enabled/not shaped.
+         when /reset\((.*)\)/
+           plugin['log/info'] << "Resetting interface #{$1}"
+           do_reset( $1 )
+
+           reply = "Interface #{$1} reset"
+
+         # enable( interface ) - This method will enable a network interface.
+         when /enable\((.*)\)/
+           plugin['log/info'] << "Enabling Interface #{$1}"
+           do_enable_link( $1 )
+           reply = "Enabled Interface #{$1}"
+
+         # disable( interface ) - This method will disable a network interface.
+         when /disable\((.*)\)/
+           plugin['log/info'] << "Disabling Interface #{$1}"
            do_disable_link( $1, $2 )
-           reply = "disabled link from #{$1} to #{$2}"
+           reply = "Disabled Interface #{$1}"
          else 
            reply = "#{cmd} unknown-#{command}"
        end
@@ -62,32 +82,25 @@ class Shaper
     end           
   end
 
-  def do_shape( from_vlan, to_vlan, bandwidth )
-    @network.shape( from_vlan, to_vlan, bandwidth )  
+  def do_shape( interface, bandwidth )
+      `/sbin/tc qdisc add dev #{interface} root handle 1:0 tbf limit #{bandwidth}Kbit rate #{bandwidth} burst 5k`
   end 
 
-  def do_disable_link( from_vlan, to_vlan )
-    @network.disable_link( from_vlan, to_vlan )
+  def do_unshape( interface )
+      `/sbin/tc qdisc del root dev #{interface}`
   end
 
-  def do_enable_link( from_vlan, to_vlan )
-    @network.enable_link( from_vlan, to_vlan )
+  def do_disable( interface )
+      `/sbin/ifdown #{interface}`
   end
 
-  def trigger
-    plugin['log/info'] << "ACME::Plugin::Shaper[trigger]"
-    if (!@isOn) then
-      @isOn = true
-      @network.do_shaping
-    end
+  def do_enable( interface )
+      `/sbin/ifup #{interface}`
   end
 
-  def reset
-    plugin['log/info'] << "ACME::Plugin::Shaper[reset]"
-    if (@isOn) then
-      @isOn = false
-      @network.stop_shaping
-    end
+  def do_reset( interface )
+      do_enable( interface )
+      do_unshape( interface )
   end
 end
 

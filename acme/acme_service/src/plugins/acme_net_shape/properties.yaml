@@ -1,6 +1,5 @@
-#### Properties: acme_net_shaper - Version: 1.0
+#### Properties: acme_net_shaper - Version: 2.0
 properties: ~
 "|": 
   - command: "shape"
-  - description: "Initiate default Network Shaping Params: trigger|reset|info"
-  - config: "/etc/network.xml"
+  - description: "Shape a network interface:  shape(interface,kbps), unshape(interface), enable(interface), disable(interface), reset(interface)"

@@ -1,29 +1,39 @@
-This information pulled from Network Setup.sxd -
-To retrieve the full document, in a readable form, 
-"unzip 'Network Setup.sxd'"  Look for content.xml
 
-----------------------------------------
-ACME Setup
+For the 2004 Objective Prototype, we will be restricting
+C-Links and K-Links.  This plugin is designed to enable
+us to do just that.
 
-ACME contains all of the software needed to run the Router (beyond kernel and the “tc” update.)  It will control the router in conjunction with an ACME script.
-Before ACME can be run however, the network configuration needs to be setup.  In the ACME install, there are two XML files in the “/usr/local/acme/plugins/acme_net_shape” directory.  You can use either of these XML files as a template for a new configuration, or symlink the file to “network.xml”
-After setup, it is required that the file “/usr/local/acme/plugins/acme_net_shape/network.xml” is available.
-Finally, edit the “plugin.yaml” file and change “auto-load” to true.
+The plugin provides 5 functions:
+   shape( interface, kbps ) - Shape the provided interface
+      (eth0, eth0.1, etc.) to the specified speed.
 
-Init.d Setup
+   unshape( interface ) - Remove the shaping on the network
+      interface.
 
-The Startup scripts are provided as part of the ACME service installation.  Installing ACME will enable automation to manipulate the network, but it does not install the startup scripts to enable the VLAN.
+   enable( interface ) - Enable the network interface.
 
------------------------------------------
+   disable( interface ) - Disable the network interface.
 
-This plugin expects the "network.xml" file to be located
-in the /etc directory.  On installation, either provide
-a symlink or physically copy this file.
+   reset( interface ) - Put the interface in a known state by
+      enabling and unshaping it.
 
-The vlan.rb file needs to be linked into /etc/init.d/lib
-as well as into the /root directory.
+Much of the network configuration logic has been moved to
+the Operator machine.  This service takes the Linux device
+names as arguments.  The operator is expected to keep track
+of what is a C-Link, K-Link and UTB interfaces, and where
+they go.
 
-The Linux Kernel must be at least:
-  linux-smp-2.4.20-18.9
+NOTE:  The following files are remanants from 2003 and should
+not be used.  They are maintained here for reference while
+development is ongoing, but should be moved to the apropriate
+location when development is finished:
+    vlan-startup
+    vlan.rb
+    network.xml
+
+The following files have been updated to 2004:
+    plugin.rb
+    plugin.yaml
+    properties.yaml
 
 
