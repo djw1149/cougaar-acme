@@ -23,11 +23,15 @@ society.each_agent(true) do |agent|
     c.add_argument("org.cougaar.mlm.ui.servlet.DataGathererServlet")
     c.add_argument("/datagatherer")
   end
-  agent.add_component do |c|
-    c.classname = "org.cougaar.logistics.servlet.LogisticsInventoryServletComponent"
-    c.add_argument("org.cougaar.logistics.servlet.LogisticsInventoryServlet")
-    c.add_argument("/log_inventory")
-    c.add_argument("PRINT_ORG_ACTIVITIES=true")
+  log_inv_servlet = "org.cougaar.logistics.servlet.LogisticsInventoryServletComponent"
+  has_log_servlet = agent.has_component? do |c| c.classname == log_inv_servlet end
+  if !has_log_servlet
+    agent.add_component do |c|
+      c.classname = log_inv_servlet
+      c.add_argument("org.cougaar.logistics.servlet.LogisticsInventoryServlet")
+      c.add_argument("/log_inventory")
+      c.add_argument("PRINT_ORG_ACTIVITIES=true")
+    end
   end
   agent.add_component do |c|
     c.classname = "org.cougaar.planning.servlet.LoaderServletComponent"

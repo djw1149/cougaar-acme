@@ -14,7 +14,7 @@ exempt_plugins = ["org.cougaar.lib.aggagent.plugin.RemoteSubscriptionPlugin",
 
 society.each_agent do |agent|
   # don't add it if it's already here, regardless of the arguments
-  next if agent.has_component?(freeze_servlet)
+  next if agent.has_component? do |c| c.classname == freeze_servlet end
 
   agent.add_component(freeze_servlet) do |c|
     c.classname = freeze_servlet
