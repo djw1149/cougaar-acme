@@ -11,7 +11,23 @@
 # rather than generating them as you cross the hour threshholds. This allows
 # you to step a whole society forward by days, rather than hours.
 demand_generator_plugin = "org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin"
-ua_demand_generator_plugin = "com.bbn.fcss.plugin.demand.FcsDemandGeneratorPlugin"
+
+# Mid Aug '03 AL: No longer using the UA specific plugin
+# Instead, using new GENERATE_PERIOD and STEP_PERIOD arguments to base
+# AL plugin
+#ua_demand_generator_plugin = "com.bbn.fcss.plugin.demand.FcsDemandGeneratorPlugin"
+
+# Gen period is 1 day for UA
+ua_gen_per_arg = "GENERATE_PERIOD=86400000"
+
+# Gen period is 1 day for 1AD
+ad_gen_per_arg = "GENERATE_PERIOD=86400000"
+
+# Step period is 1 hour for UA
+ua_step_per_arg = "STEP_PERIOD=3600000"
+
+# Step period is 1 day for 1AD
+ad_step_per_arg = "STEP_PERIOD=86400000"
 
 society.each_agent do |agent|
   if agent.get_facet(:has_equipment_assets) 
@@ -22,9 +38,8 @@ society.each_agent do |agent|
         agent.add_component do |c|
 	  c.classname = demand_generator_plugin
 	  c.add_argument('SUPPLY_TYPE=BulkPOL')
-#	  c.add_argument('GENERATE_PERIOD=3600000')
-	  c.add_argument('GENERATE_PERIOD=86400000')
-	  c.add_argument('STEP_PERIOD=3600000')
+	  c.add_argument(ua_gen_per_arg)
+	  c.add_argument(ua_step_per_arg)
 	end
       end
     else
@@ -32,26 +47,26 @@ society.each_agent do |agent|
       agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=BulkPOL')
-	c.add_argument('GENERATE_PERIOD=86400000')
-	c.add_argument('STEP_PERIOD=3600000')
+	c.add_argument(ad_gen_per_arg)
+	c.add_argument(ad_step_per_arg)
       end
       agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=PackagedPOL')
-	c.add_argument('GENERATE_PERIOD=86400000')
-	c.add_argument('STEP_PERIOD=3600000')
+	c.add_argument(ad_gen_per_arg)
+	c.add_argument(ad_step_per_arg)
       end
       agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=Consumable')
-	c.add_argument('GENERATE_PERIOD=86400000')
-	c.add_argument('STEP_PERIOD=3600000')
+	c.add_argument(ad_gen_per_arg)
+	c.add_argument(ad_step_per_arg)
       end
       agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=Ammunition')
-	c.add_argument('GENERATE_PERIOD=86400000')
-	c.add_argument('STEP_PERIOD=3600000')
+	c.add_argument(ad_gen_per_arg)
+	c.add_argument(ad_step_per_arg)
       end
     end
   end
@@ -61,6 +76,8 @@ society.each_agent do |agent|
       agent.add_component do |c| 
 	c.classname = demand_generator_plugin
 	c.add_argument('SUPPLY_TYPE=Subsistence')
+	c.add_argument(ad_gen_per_arg)
+	c.add_argument(ad_step_per_arg)
       end
     end
   end
