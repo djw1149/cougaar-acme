@@ -26,7 +26,7 @@ society.each_agent(true) do |agent|
   agent.add_component do |c|
     c.classname = "org.cougaar.logistics.servlet.LogisticsInventoryServletComponent"
     c.add_argument("org.cougaar.logistics.servlet.LogisticsInventoryServlet")
-    c.add_argument("/log_inventory")
+    c.add_argument("/log_inventory,PRINT_ORG_ACTIVITIES=true")
   end
   agent.add_component do |c|
     c.classname = "org.cougaar.planning.servlet.LoaderServletComponent"
