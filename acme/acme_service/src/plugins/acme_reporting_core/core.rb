@@ -40,7 +40,7 @@ module ACME
         archive.add_report("Run Log", @plugin.plugin_configuration.name) do |report|
           run_data = nil
           archive.files_with_name(/run\.log/).each do |f|
-            run_data = File.read(f.name).gsub(/\&/, "&amp;").gsub(/\</, "&lt;").gsub(/\>/, "&gt;")
+            run_data = File.read(f.name).gsub(/\&/, "&amp;").gsub(/\</, "&lt;").gsub(/\>/, "&gt;").gsub(/\n/, "<br>")
           end
           if run_data
             report.open_file("run_report.html", "text/html", "Full Run Log") do |file|
