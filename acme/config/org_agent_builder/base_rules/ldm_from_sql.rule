@@ -8,7 +8,7 @@ ldm_sql_plugin = "org.cougaar.mlm.plugin.ldm.LDMSQLPlugin"
 fcs_ldm_sql_plugin = "com.bbn.fcss.ldm.FCSLDMSQLPlugin"
 
 society.each_agent do |agent|
-  # FIXME: This assumes that UA Vehicle agents will have these facets
+  # This assumes that UA Vehicle agents will have these facets
   if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
       if agent.get_facet(:is_ua)
