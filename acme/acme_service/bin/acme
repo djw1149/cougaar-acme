@@ -8,20 +8,26 @@
 . /etc/init.d/functions
 
 start() {
+  ps -ef > /tmp/$$  
+  if grep "acme\.rb" /tmp/$$> /dev/null ; then
+    echo "Acme already running.  Use service acme stop first."
+    RETVAL=1
+  else
+    cd /usr/local/acme
+    # su -l acme_user #...defaults to root!
+    #/usr/bin/ruby acme.rb &> run.log &
 
-  cd /usr/local/acme
-  # su -l acme_user #...defaults to root!
-  #/usr/bin/ruby acme.rb &> run.log &
+    # restart if it dies
+    ./acme.sh &>/dev/null &
 
-  # restart if it dies
-  ./acme.sh &>/dev/null &
-
-  echo "$!" > acme-sh.pid
+    echo "$!" > acme-sh.pid
 
 	RETVAL=0
 	echo
 	echo_success
-	return $RETVAL
+  fi
+  rm /tmp/$$
+  return $RETVAL
 }
 
 stop() {
