@@ -1369,10 +1369,15 @@ module Cougaar
         return component.comparison_name == self.comparison_name
       end
 
-      def comparison_name
-        "#{@classname}(#{@arguments.join(',')})"
+      def comparison_name=(comparison_name)
+        @comparison_name = comparison_name
       end
-      
+
+      def comparison_name
+        return @comparison_name unless @comparison_name.nil?
+        "#{@classname}_#{@insertionpoint}(#{@arguments.join(',')})"
+      end
+            
       ##
       # Add and argument to this component
       #
