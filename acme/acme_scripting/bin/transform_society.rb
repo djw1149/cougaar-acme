@@ -79,8 +79,7 @@ when :xml
 end
 builder.society
 puts "done."
-print "Applying transformation rules from #{rules}..."
-$stdout.flush
+puts "Applying transformation rules from #{rules}..."
 starttime = Time.now
 engine = Cougaar::Model::RuleEngine.new(builder.society)
 engine.enable_stdout
