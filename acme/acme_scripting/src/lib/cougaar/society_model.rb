@@ -508,7 +508,7 @@ module Cougaar
     #
     class Host
       attr_reader :nodes
-      attr_accessor :name, :society
+      attr_accessor :name, :society, :status
       
       include Multifaceted
       
@@ -656,7 +656,7 @@ module Cougaar
     #
     class Node
       attr_reader :agents, :name, :parameters
-      attr_accessor :host, :agent, :prog_parameters, :env_parameters, :classname
+      attr_accessor :host, :agent, :prog_parameters, :env_parameters, :classname, :status
       attr_writer :active
       
       include Multifaceted
@@ -1080,7 +1080,7 @@ module Cougaar
   
       attr_accessor :node
       attr_reader :name
-      attr_accessor :name, :classname, :cloned, :uic
+      attr_accessor :name, :classname, :cloned, :uic, :status
       
       include Multifaceted
       
