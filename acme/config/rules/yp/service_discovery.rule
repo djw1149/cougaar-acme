@@ -1,0 +1,62 @@
+####################################################
+# Rule to remove the SDRegistrationPlugin and replace it with a
+# SDCommunityBasedRegistrationPlugin.
+#
+# This rule also adds a "true" agrument to the MatchmakerStubPlugin
+
+old_sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
+new_sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDCommunityBasedRegistrationPlugin"
+matchmaker_stub_plugin = "org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin"
+
+def get_superior_sca(agent, supported_orgs)
+  if agent.has_facet?(:superior_org_id)
+    sup_name = agent.get_facet(:superior_org_id)
+    superior = society.agents[sup_name]
+    unless superior == nil
+      superior.each_facet(:sca_supported_org) do |facet|
+	supported_org = facet[:sca_supported_org].to_s    
+	unless supported_orgs.include?(supported_org)
+	    supported_orgs.push(supported_org)
+	end
+      end
+      get_superior_sca(superior, supported_orgs)
+    end
+  end    
+end
+
+# First iterate over agents, collecting the provided_roles, mechanisms, and echelons of support
+society.each_agent do |agent|
+
+  if agent.has_component?(old_sd_registration_plugin)
+    agent.remove_component(old_sd_registration_plugin)
+  end
+
+# Insert the SDRegistrationPlugin with the number of sca's as an argument.
+  agent.add_component do |c|
+    # Calculated all of the sca's
+    # First calculate my local count of sca's
+    supported_orgs = Array.new
+    agent.each_facet(:sca_supported_org) do |facet|
+      supported_org = facet[:sca_supported_org].to_s  
+      unless supported_orgs.include?(supported_org)
+	supported_orgs.push(supported_org)
+      end
+    end
+    # Now insert my Superiors SCA's
+    get_superior_sca(agent, supported_orgs)
+    c.classname = new_sd_registration_plugin
+    supported_orgs.uniq
+    c.add_argument(supported_orgs.length.to_s)
+  end
+#
+
+# Then insert the MatchmakerStubPlugin with no arguments
+  if agent.has_component?(matchmaker_stub_plugin)
+    agent.remove_component(matchmaker_stub_plugin)
+  end
+
+  agent.add_component do |c|
+    c.classname = matchmaker_stub_plugin
+    c.add_argument("true")
+  end
+end
