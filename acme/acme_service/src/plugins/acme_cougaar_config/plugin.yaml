@@ -7,3 +7,4 @@ startup_module: ACME::Plugins::CougaarConfig
 properties_path: properties.yaml
 start_dependencies: 
   acme_host_jabber_service: "*"
+  raa_webrick: "*"
