@@ -1,0 +1,8 @@
+# Set web server timeouts to 30 seconds so things dont hang forever
+# when trying to talk to the WP 
+
+# Set to 0 to wait forever (old, default behaviour)
+society.each_node do |node|
+    node.override_parameter("-Dorg.cougaar.lib.web.redirect.timeout","30000")
+    node.override_parameter("-Dorg.cougaar.lib.web.list.timeout","30000")
+end
