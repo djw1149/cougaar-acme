@@ -72,7 +72,7 @@ module Cougaar
       end
       
       def to_s
-        return super.to_s+"(#{@file})"
+        return super.to_s+"('#{@file}')"
       end
       
       def perform
