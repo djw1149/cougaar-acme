@@ -222,7 +222,8 @@ module Cougaar
         agentlist = []
         @society.nodes["node-#{guid}"].each_agent { |agent| agentlist << agent }
         if agentlist.size>0
-          raise "Did not layout the agents: #{ agentlist.join(', ') }"
+          names = agentlist.collect { |agent| agent.name }
+          raise "Did not layout the agents: #{ names.join(', ') }"
         end
         @society.remove_host("host-#{guid}")
       end
