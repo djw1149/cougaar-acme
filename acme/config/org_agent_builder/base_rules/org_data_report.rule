@@ -47,7 +47,7 @@ society.each_agent do |agent|
 	sup = society.agents[org_id]
 	unless sup == nil
 	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
-	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=01/01/2000 12:00 am,EndTime=")
 	else
 	  puts("WARNING: Agent #{agent.name} had superior_org #{org_id} that could not be found!")
 	end
@@ -58,7 +58,7 @@ society.each_agent do |agent|
 	sup = society.agents[org_id]
 	unless sup == nil 
 	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
-	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	  c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=01/01/2000 12:00 am,EndTime=")
 	else
 	  puts("WARNING: Agent #{agent.name} had sca_supported_org #{org_id} that could not be found!")
 	end
