@@ -37,7 +37,7 @@ module Cougaar
         operator = ::UltraLog::Operator.from_run(@run, @host)
         result = operator.test
         if result =~ /ERROR SENDING/ || result =~ /Unregistered command/
-          puts "Invalid Operator Service #{@host.host_name}\n#{result}"
+          puts "Invalid Operator Service #{@host}\n#{result}"
         else
           @run['operator'] = operator
         end
