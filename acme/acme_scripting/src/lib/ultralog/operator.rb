@@ -23,12 +23,22 @@ require 'xmlrpc/client'
 module Cougaar
   module States
     class OperatorServiceConnected < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the operator service was successfully connected to."
+      }
     end
   end
   
   module Actions
     class ConnectOperatorService < Cougaar::Action
       RESULTANT_STATE = 'OperatorServiceConnected'
+      DOCUMENTATION = Cougaar.document {
+        @description = "Verifies that the supplied host is running the ACME Service and has the Operator plugins enabled."
+        @parameters = [
+          {:host => "required, The host running the ACME Service and Operator plugin."}
+        ]
+        @example = "do_action 'ConnectOperatorService', 'sb022'"
+      }
       def initialize(run, host)
         super(run)
         @host = host
@@ -46,6 +56,10 @@ module Cougaar
     
     class ResetCrypto < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Resets (clears) the crypto data for the agents prior to a society run."
+        @example = "do_action 'ResetCrypto'"
+      }
       def perform
         operator = @run['operator']
         operator.reset_crypto
@@ -54,6 +68,10 @@ module Cougaar
     
     class ClearPersistence < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Clears society persistence data."
+        @example = "do_action 'ClearPersistence'"
+      }
       def perform
         operator = @run['operator']
         operator.clear_persistence
@@ -62,6 +80,10 @@ module Cougaar
     
     class ClearLogs < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Clears society log data."
+        @example = "do_action 'ClearLogs'"
+      }
       def perform
         operator = @run['operator']
         operator.clear_logs
@@ -70,6 +92,10 @@ module Cougaar
     
     class ClearPersistenceAndLogs < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Clears society persistence and log data."
+        @example = "do_action 'ClearPersistenceAndLogs'"
+      }
       def perform
         operator = @run['operator']
         operator.clear_pnlogs
@@ -78,6 +104,10 @@ module Cougaar
     
     class ArchiveLogs < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Archives the log data."
+        @example = "do_action 'ArchiveLogs'"
+      }
       def perform
         operator = @run['operator']
         operator.archive_logs
@@ -86,6 +116,10 @@ module Cougaar
     
     class ArchiveDatabases < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
+      DOCUMENTATION = Cougaar.document {
+        @description = "Archives database data."
+        @example = "do_action 'ArchiveDatabases'"
+      }
       def perform
         operator = @run['operator']
         operator.archive_db

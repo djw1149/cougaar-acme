@@ -28,10 +28,21 @@ module Cougaar
 
   module States
     class CommunicationsRunning < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the Communications was started."
+      }
     end
     
     class Command < Cougaar::State
       PRIOR_STATES = ["CommunicationsRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Puts the script in a wait state to await an instant message to continue."
+        @parameters = [
+          {:command => "required, The string command to wait for."},
+          {:timeout => "default=nil, Number of seconds to timeout."}
+        ]
+        @example = "wait_for 'Command', 'continue'"
+      }
       def initialize(run, command, timeout=nil, &block)
         super(run, timeout, &block)
         @command = command
@@ -63,6 +74,15 @@ module Cougaar
     class StartJabberCommunications < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
       RESULTANT_STATE = "CommunicationsRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts the Jabber communications subsystem and connects to the Jabber server."
+        @parameters = [
+          {:username => "default='acme_console', The username of the account used to control the experiment."},
+          {:server => "server='acme', The Jabber server name."},
+          {:server => "pwd='c0ns0le', The password for the Jabber account."}
+        ]
+        @example = "do_action 'StartJabberCommunications', 'acme_console', 'myjabberserver'"
+      }
       def initialize(run, username="acme_console", server="acme", pwd="c0ns0le")
         super(run)
         @username = username
@@ -88,6 +108,10 @@ module Cougaar
     
     class StopCommunications <  Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Stops the current communications system."
+        @example = "do_action 'StopCommunications'"
+      }
       def perform
         @run.comms.stop
       end
@@ -95,6 +119,10 @@ module Cougaar
     
     class VerifyHosts < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Verify the hosts used by an experiment by sending an communications message to each ACME Service."
+        @example = "do_action 'VerifyHosts'"
+      }
       def perform
         begin
           @run.comms.verify

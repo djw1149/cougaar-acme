@@ -2,6 +2,13 @@ module Cougaar
   module Actions
     class TransformSociety < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Transforms the society with a list of rules."
+        @parameters = [
+          :rules => "*rules, The rules to run.  Can be file names or directory names."
+        ]
+        @example = "do_action 'TransformSociety', 'config/rules/isat/tic_env.rule', 'config/rules/logistics'"
+      }
       def initialize(run, *rules)
         super(run)
         raise "Must supply rules to transform society" if rules.size==0

@@ -128,6 +128,14 @@ module Cougaar
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Start a society from XML or CSmart."
+        @parameters = [
+          {:timeout => "default=120, Number of seconds to wait to start each node before failing."},
+          {:debug => "default=false, If true, outputs messages sent to start nodes."}
+        ]
+        @example = "do_action 'StartSociety', 300, true"
+      }
       
       def initialize(run, timeout=120, debug=false)
         super(run)
@@ -147,6 +155,10 @@ module Cougaar
     class StopSociety <  Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = "SocietyStopped"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Stop a running society."
+        @example = "do_action 'StopSociety'"
+      }
       def perform
         @run['node_controller'].stop_all_nodes
       end
@@ -154,6 +166,13 @@ module Cougaar
   
     class RestartNodes < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Restarts stopped node(s)."
+        @parameters = [
+          :nodes => "*parameters, The list of nodes to restart"
+        ]
+        @example = "do_action 'RestartNodes', 'FWD-A', 'FWD-B'"
+      }
       def initialize(run, *nodes)
         super(run)
         @nodes = nodes
@@ -172,6 +191,13 @@ module Cougaar
 
     class KillNodes < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Kills running node(s)."
+        @parameters = [
+          :nodes => "*parameters, The list of nodes to kill"
+        ]
+        @example = "do_action 'KillNodes', 'FWD-A', 'FWD-B'"
+      }
       def initialize(run, *nodes)
         super(run)
         @nodes = nodes
@@ -192,17 +218,29 @@ module Cougaar
   
   module States
     class SocietyLoaded < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the society was loaded from XML, a Ruby script or a CSmart database."
+      }
     end
     
     class SocietyRunning < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the society started."
+      }
     end
     
     class SocietyStopped < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the society stopped."
+      }
     end
     
     class RunStopped < Cougaar::State
       DEFAULT_TIMEOUT = 20.minutes
       PRIOR_STATES = ["SocietyStopped"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the run was stopped."
+      }
       def process
         while(true)
           return if @run.stopped?

@@ -81,6 +81,20 @@ module Cougaar
     class OPlanReady < Cougaar::State
       DEFAULT_TIMEOUT = 30.minutes
       PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the OPlan ready Cougaar Event."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
+        ]
+        @example = "
+          wait_for 'OPlanReady', 2.hours do
+            puts 'Did not get OPlanReady!!!'
+            do_action 'StopSociety'
+            do_action 'StopCommunications'
+          end
+        "
+      }
       def initialize(run, timeout=nil, &block)
         super(run, timeout, &block)
       end
@@ -109,6 +123,20 @@ module Cougaar
     class GLSReady < Cougaar::State
       DEFAULT_TIMEOUT = 30.minutes
       PRIOR_STATES = ["OPlanSent"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the GLS ready Cougaar Event."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
+        ]
+        @example = "
+          wait_for 'GLSReady', 5.minutes do
+            puts 'Did not get GLSReady!!!'
+            do_action 'StopSociety'
+            do_action 'StopCommunications'
+          end
+        "
+      }
       
       def initialize(run, timeout=nil, &block)
         super(run, timeout, &block)
@@ -137,6 +165,20 @@ module Cougaar
     class PlanningComplete < Cougaar::State
       DEFAULT_TIMEOUT = 60.minutes
       PRIOR_STATES = ["SocietyPlanning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the Planning Complete Cougaar Event."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
+        ]
+        @example = "
+          wait_for 'PlanningComplete', 2.hours do
+            puts 'Did not get Planning Complete!!!'
+            do_action 'StopSociety'
+            do_action 'StopCommunications'
+          end
+        "
+      }
       
       def initialize(run, timeout=nil, &block)
         super(run, timeout, &block)
@@ -158,10 +200,54 @@ module Cougaar
       end
     end
     
+    class PlanningActive < Cougaar::State
+      DEFAULT_TIMEOUT = 60.minutes
+      PRIOR_STATES = ["PlanningComplete"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the Planning Active Cougaar Event."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
+        ]
+        @example = "
+          wait_for 'PlanningActive', 10.minutes do
+            puts 'Did not get Planning Active!!!'
+            do_action 'StopSociety'
+            do_action 'StopCommunications'
+          end
+        "
+      }
+      
+      def initialize(run, timeout=nil, &block)
+        super(run, timeout, &block)
+      end
+      
+      def process
+        loop = true
+        while loop
+          event = @run.get_next_event
+          if event.data.include?("Planning Active")
+            loop = false
+          end
+        end
+      end
+      
+      def unhandled_timeout
+        @run.do_action "StopSociety"
+        @run.do_action "StopCommunications"
+      end
+    end
+    
     class OPlanSent < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the OPlan was sent."
+      }
     end
     
     class SocietyPlanning < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the society is planning."
+      }
     end
       
   end
@@ -171,6 +257,10 @@ module Cougaar
     class RehydrateSociety < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = "SocietyPlanning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "This action is used in place of OPlan/GLS actions if you start a society from a persistent state."
+        @example = "do_action 'RehydrateSociety'"
+      }
       def perform
       end
     end
@@ -178,6 +268,10 @@ module Cougaar
     class SendOPlan < Cougaar::Action
       PRIOR_STATES = ["OPlanReady"]
       RESULTANT_STATE = "OPlanSent"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sends the OPlan to the glsinit servlet."
+        @example = "do_action 'SendOPlan'"
+      }
       def perform
         begin
           result = Cougaar::Communications::HTTP.get("http://#{@run.society.agents['NCA'].node.host.host_name}:#{@run.society.cougaar_port}/$NCA/glsinit?command=sendoplan")
@@ -191,6 +285,10 @@ module Cougaar
     class PublishGLSRoot < Cougaar::Action
       PRIOR_STATES = ["GLSReady"]
       RESULTANT_STATE = "SocietyPlanning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Publishes the GLS root task to the glsinit servlet."
+        @example = "do_action 'PublishGLSRoot'"
+      }
       def perform
         gls_client = @run['gls_client']
         begin

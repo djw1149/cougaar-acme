@@ -28,6 +28,10 @@ module Cougaar
   module Actions
     class FreezeSociety < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Freeze the society using the Freeze servlet."
+        @example = "do_action 'FreezeSociety'"
+      }
       def initialize(run, &block)
         super(run)
         @action = block if block_given?

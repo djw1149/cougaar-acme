@@ -21,9 +21,9 @@
 
 require 'ultralog/aggagent'
 
-module Cougaar
-  module Actions
-    class AggAgentBase < Cougaar::Action
+module UltraLog
+  module AggAgent
+    class AggAgentBase < ::Cougaar::Action
       def initialize(run, file)
         super(run)
         @file = file
@@ -36,8 +36,19 @@ module Cougaar
         end
       end
     end
-    
-    class AggAgentQueryBasic < AggAgentBase
+  end
+end
+
+module Cougaar
+  module Actions
+    class AggAgentQueryBasic < ::UltraLog::AggAgent::AggAgentBase
+      DOCUMENTATION = Cougaar.document {
+        @description = "Perform basic AggAgent query on inventory and write results to a file."
+        @parameters = [
+          {:file => "required, The file name to write to."}
+        ]
+        @example = "do_action 'AggAgentQueryBasic', 'agg_agent_basic.xml'"
+      }
       def perform
         begin
           client = AggAgent::Client.new(@uri)
@@ -76,7 +87,14 @@ module Cougaar
       end
     end
   
-    class AggAgentQueryShortfall < AggAgentBase
+    class AggAgentQueryShortfall < ::UltraLog::AggAgent::AggAgentBase
+      DOCUMENTATION = Cougaar.document {
+        @description = "Perform AggAgent query on shortfall and write results to a file."
+        @parameters = [
+          {:file => "required, The file name to write to."}
+        ]
+        @example = "do_action 'AggAgentQueryShortfall', 'agg_agent_shortfall.xml'"
+      }
       def perform
         begin
           client = AggAgent::Client.new(@uri)
@@ -115,7 +133,14 @@ module Cougaar
       end
     end
     
-    class AggAgentQueryDemand < AggAgentBase
+    class AggAgentQueryDemand < ::UltraLog::AggAgent::AggAgentBase
+      DOCUMENTATION = Cougaar.document {
+        @description = "Perform AggAgent query on demand and write results to a file."
+        @parameters = [
+          {:file => "required, The file name to write to."}
+        ]
+        @example = "do_action 'AggAgentQueryDemand', 'agg_agent_demand.xml'"
+      }
       def perform
         begin
           client = AggAgent::Client.new(@uri)
@@ -154,7 +179,14 @@ module Cougaar
       end
     end
     
-    class AggAgentQueryJP8
+    class AggAgentQueryJP8 < ::UltraLog::AggAgent::AggAgentBase
+      DOCUMENTATION = Cougaar.document {
+        @description = "Perform AggAgent query on JP8 and write results to a file."
+        @parameters = [
+          {:file => "required, The file name to write to."}
+        ]
+        @example = "do_action 'AggAgentQueryJP8', 'agg_agent_jp8.xml'"
+      }
       def perform
         begin
           client = AggAgent::Client.new(@uri)

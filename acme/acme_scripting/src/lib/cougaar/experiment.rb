@@ -31,72 +31,76 @@ module Cougaar
   
     @@monitors = []
     
+    ExperimentNotification = Struct.new(:experiment, :begin_flag)
+    RunNotification = Struct.new(:run, :begin_flag)
+    StateNotification = Struct.new(:state, :begin_flag)
+    ActionNotification = Struct.new(:action, :begin_flag)
+    InterruptNotification = Struct.new(:state)
+    
     def self.add(monitor)
       @@monitors << monitor
     end
     
-    def self.notify_interrupt(state)
-      @@monitors.each {|monitor| monitor.notify_interrupt(state)}
+    def self.active?
+      return (@@monitors.size > 0)
     end
     
-    def self.notify(state_action, begin_flag)
-      @@monitors.each {|monitor| monitor.notify(state_action.experiment, state_action.run, state_action, begin_flag)}
+    def self.notify(notification)
+      @@monitors.each {|monitor| monitor.notify(notification)}
     end
   
     def self.enable_stdout
       monitor = ExperimentMonitor.new
-      def monitor.on_new_experiment
-        puts "[#{Time.now}] Experiment: #{current_experiment.name} started."
+      
+      def monitor.on_experiment_begin(experiment)
+        puts "[#{Time.now}] Experiment: #{experiment.name} started."
       end
-      def monitor.on_new_run
-        puts "[#{Time.now}]   Run: #{current_run.name} started."
+      def monitor.on_experiment_end(experiment)
+        puts "[#{Time.now}] Experiment: #{experiment.name} finished."
       end
-      def monitor.on_begin_state_action
-        if current_state_action.kind_of? Action
-          puts "[#{Time.now}]     Starting: #{current_state_action}"
-        else
-          puts "[#{Time.now}]     Waiting for: #{current_state_action}"
-        end
+      
+      def monitor.on_run_begin(run)
+        puts "[#{Time.now}]   Run: #{run.name} started."
       end
-      def monitor.on_end_state_action
-        if current_state_action.kind_of? Action
-          puts "[#{Time.now}]     Finished: #{current_state_action}"
-        else
-          puts "[#{Time.now}]     Done: #{current_state_action}"
-        end
+      def monitor.on_run_end(run)
+        puts "[#{Time.now}]   Run: #{run.name} finished."
       end
-      def monitor.on_interrupted_state
-        puts  "[#{Time.now}]     ** INTERRUPT ** #{current_state_action}"
+      
+      def monitor.on_state_begin(state)
+        puts "[#{Time.now}]     Waiting for: #{state}"
+      end
+      def monitor.on_state_end(state)
+          puts "[#{Time.now}]     Done: #{state}"
+      end
+      
+      def monitor.on_action_begin(action)
+        puts "[#{Time.now}]     Starting: #{action}"
+      end
+      def monitor.on_action_end(action)
+          puts "[#{Time.now}]     Finished: #{action}"
+      end
+      
+      def monitor.on_state_interrupt(state)
+        puts  "[#{Time.now}]     ** INTERRUPT ** #{state}"
       end
     end
   
-    attr_reader :current_experiment, :current_run, :current_state_action
-    
     def initialize
-      @current_experiment = nil
-      @current_run = nil
-      @current_state_action = nil
       ExperimentMonitor.add(self)
     end
     
-    def current_experiment=(experiment)
-      @current_experiment = experiment
-      on_new_experiment
-    end
-    
-    def current_run=(run)
-      @current_run = run
-      on_new_run
-    end
-    
-    def notify(experiment, run, state_action, begin_flag)
-      self.current_experiment = experiment unless current_experiment==experiment
-      self.current_run = run unless current_run==run
-      @current_state_action = state_action
-      if begin_flag
-        on_begin_state_action
-      else
-        on_end_state_action
+    def notify(n)
+      
+      if n.kind_of? ExperimentNotification
+        n.begin_flag ? on_experiment_begin(n.experiment) : on_experiment_end(n.experiment)
+      elsif n.kind_of? RunNotification
+        n.begin_flag ? on_run_begin(n.run) : on_run_end(n.run)
+      elsif n.kind_of? StateNotification
+        n.begin_flag ? on_state_begin(n.state) : on_state_end(n.state)
+      elsif n.kind_of? ActionNotification
+        n.begin_flag ? on_action_begin(n.action) : on_action_end(n.action)
+      elsif n.kind_of? InterruptNotification
+        n.on_state_interrupt(n.state)
       end
     end
     
@@ -105,19 +109,31 @@ module Cougaar
       on_interrupted_state
     end
     
-    def on_new_experiment
+    def on_experiment_begin(experiment)
     end
     
-    def on_new_run
+    def on_experiment_end(experiment)
     end
     
-    def on_begin_state_action
+    def on_run_begin(run)
     end
     
-    def on_end_state_action
+    def on_run_end(run)
     end
     
-    def on_interrupted_state
+    def on_state_begin(state)
+    end
+    
+    def on_state_end(state)
+    end
+    
+    def on_action_begin(action)
+    end
+    
+    def on_action_end(action)
+    end
+    
+    def on_state_interrupt(state)
     end
   end
 
@@ -131,7 +147,9 @@ module Cougaar
     
     def run(runcount = 1, &block)
       raise "The experiment defintion must be supplied in a block to the run method" unless block_given?
+      ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, true)) if ExperimentMonitor.active?
       MultiRun.start(self, runcount, &block)
+      ExperimentMonitor.notify(ExperimentMonitor::ExperimentNotification.new(self, false)) if ExperimentMonitor.active?
     end
   end
   
@@ -236,9 +254,11 @@ module Cougaar
     end
     
     def start
+      ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, true)) if ExperimentMonitor.active?
       @state = STARTED
       #TODO: logging begin
       @sequence.start
+      ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, false)) if ExperimentMonitor.active?
       #TODO: logging end
     end
     
@@ -294,7 +314,7 @@ module Cougaar
     end
     
     def interrupt(state)
-      ExperimentMonitor.notify_interrupt(state)
+      ExperimentMonitor.notify(ExperimentMonitor::InterruptNotification.new(state)) if ExperimentMonitor.active?
       @definitions = @definitions[0..@definitions.index(state)]
     end
     
@@ -302,8 +322,8 @@ module Cougaar
       count = 0
       last_state = nil
       while @definitions[count]
-        ExperimentMonitor.notify(@definitions[count], true)
         if @definitions[count].kind_of? State
+          ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[count], true)) if ExperimentMonitor.active?
           last_state = @definitions[count]
           last_state.prepare
           if last_state.timed_process?
@@ -311,15 +331,18 @@ module Cougaar
           else
             last_state.untimed_process
           end
+          ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[count], false)) if ExperimentMonitor.active?
         else
+          ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[count], true)) if ExperimentMonitor.active?
           begin
             @definitions[count].perform
           rescue ActionFailure => failure
             puts failure
             exit
+          ensure
+            ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[count], false)) if ExperimentMonitor.active?
           end
         end
-        ExperimentMonitor.notify(@definitions[count], false)
         count += 1
       end
     end
@@ -342,7 +365,33 @@ module Cougaar
     end
     
     def to_s
-      return self.class.to_s
+      return self.name
+    end
+    
+    def is_noop?
+      return self.class.ancestors.include?(Cougaar::NOOPState)
+    end
+    
+    def default_timeout
+      if self.class.constants.include?("DEFAULT_TIMEOUT")
+        return self.class::DEFAULT_TIMEOUT
+      end
+    end
+
+    def prior_states
+      if self.class.constants.include?("PRIOR_STATES")
+        return self.class::PRIOR_STATES
+      end
+    end
+    
+    def documentation
+      if self.class.constants.include?("DOCUMENTATION")
+        return self.class::DOCUMENTATION
+      end
+    end
+    
+    def name
+      self.class.to_s.split("::")[2]
     end
     
     def timed_out?
@@ -477,9 +526,30 @@ module Cougaar
     end
     
     def to_s
-      return self.class.to_s
+      return self.name
     end
     
+    def resultant_state
+      if self.class.constants.include?("RESULTANT_STATE")
+        return self.class::RESULTANT_STATE
+      end
+    end
+    
+    def prior_states
+      if self.class.constants.include?("PRIOR_STATES")
+        return self.class::PRIOR_STATES
+      end
+    end
+    
+    def documentation
+      if self.class.constants.include?("DOCUMENTATION")
+        return self.class::DOCUMENTATION
+      end
+    end
+    
+    def name
+      self.class.to_s.split("::")[2]
+    end
     
   end
   
@@ -505,7 +575,7 @@ module Cougaar
     def self.each
       Actions.constants.each do |c|
         obj = (eval c)
-        if obj.class == Class && obj.superclass == Cougaar::Action
+        if obj.class == Class && obj.ancestors.include?(Cougaar::Action)
           yield obj
         end
       end
@@ -525,7 +595,7 @@ module Cougaar
     def self.each
       States.constants.each do |c|
         obj = (eval c)
-        if obj.class == Class && obj.superclass == Cougaar::State
+        if obj.class == Class && obj.ancestors.include?(Cougaar::State)
           yield obj
         end
       end
@@ -545,6 +615,19 @@ end
 module Cougaar
   module Actions
     class GenericAction < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "The GenericAction Action is useful for performing any 
+                       ad hoc processing during a run, such as waiting (sleeping) 
+                       for a period of time, or any other task."
+        @block_yields = [
+          :run => "The run object (Cougaar::Experiment::Run)"
+        ]
+        @example = "
+          do_action 'GenericAction' do |run|
+            sleep 3.minutes
+          end
+        "
+      }
       def initialize(run, &block)
         super(run)
         raise "Must supply block for GenericAction" unless block_given?
@@ -554,7 +637,30 @@ module Cougaar
         @action.call(@run)
       end
     end
+    class Sleep < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sleep the script for the specified number of seconds."
+        @parameters = [
+          :seconds => "Number of seconds to sleep (Numeric)"
+        ]
+        @example = "do_action 'Sleep', 5.minutes"
+      }
+      def initialize(run, seconds)
+        super(run)
+        @seconds = seconds
+      end
+      def perform
+        sleep @seconds
+      end
+    end
     class ExperimentSucceeded < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Marker action to document that the experiment succeeded."
+        @parameters = [
+          :message => "default=nil, the message to output"
+        ]
+        @example = "do_action 'ExperimentSucceeded', 'Finished full run'"
+      }
       attr_reader :message
       def initialize(run, message=nil)
         super(run)
@@ -564,6 +670,13 @@ module Cougaar
       end
     end
     class ExperimentFailed < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Marker action to document that the experiment failed."
+        @parameters = [
+          :message => "default=nil, the message to output"
+        ]
+        @example = "do_action 'ExperimentFailed', 'Failed to get planning complete'"
+      }
       attr_reader :message
       def initialize(run, message=nil)
         super(run)

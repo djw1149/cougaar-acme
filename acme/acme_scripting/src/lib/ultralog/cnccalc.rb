@@ -23,6 +23,13 @@ module Cougaar
   module Actions
     class InitCnCCalcBaselineRun < Cougaar::Action
       RESULTANT_STATE = "CnCCalcInitialized"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Initialize a baseline run entry in the CnCCalc database."
+        @parameters = [
+          {:desc => "required, The run description."}
+        ]
+        @example = "do_action 'InitCnCCalcBaselineRun', 'AL-398 base run'"
+      }
       def initialize(run, desc=nil)
         @desc = desc
         @desc = @run.name unless @desc
@@ -34,6 +41,13 @@ module Cougaar
     
     class InitCnCCalcStressRun < Cougaar::Action
       RESULTANT_STATE = "CnCCalcInitialized"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Initialize a stress run entry in the CnCCalc database."
+        @parameters = [
+          {:desc => "required, The run description."}
+        ]
+        @example = "do_action 'InitCnCCalcStressRun', 'AL-398 stress run'"
+      }
       def initialize(run, desc=nil)
         @desc = desc
         @desc = @run.name unless @desc
@@ -46,6 +60,10 @@ module Cougaar
     class RunCnCCalc < Cougaar::Action
       PRIOR_STATES = ["CnCCalcInitialized", "PlanningComplete"]
       RESULTANT_STATE = "CnCCalcRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts the CnCCalculator to collect data."
+        @example = "do_action 'RunCnCCalc'"
+      }
       def perform
         ##TODO
       end
@@ -54,14 +72,23 @@ module Cougaar
   
   module States
     class CnCCalcInitialized < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the CnCCalc run is initialized."
+      }
     end
     
     class CnCCalcRunning < Cougaar::NOOPState
+      DOCUMENTATION = Cougaar.document {
+        @description = "Indicates that the CnCCalc is running."
+      }
     end
     
     class CnCCalcComplete < Cougaar::State
       DEFAULT_TIMEOUT = 50.minutes
       PRIOR_STATES = ["CnCCalcRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Wait until the CnCCalc run is complete."
+      }
       def process
         ##TODO
       end

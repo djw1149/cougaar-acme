@@ -22,9 +22,22 @@
 
 module Cougaar
   module Actions
-    class EditOplan < Cougaar::Action
+    class EditOPlan < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = 'SocietyPlanning'
+      DOCUMENTATION = Cougaar.document {
+        @description = "Edit and resend the OPlan."
+        @block_yields = [
+          {:oplan => "The OPlan edit control class (UltraLog::OPlan)."}
+        ]
+        @example = "
+          do_action 'EditOPlan' do |oplan|
+            org = oplan['109-MDM-TRKCO']
+            org['DEPLOYMENT'].save(nil, nil, '=85')
+            oplan.update
+          end
+        "
+      }
       def initialize(run, &block)
         super(run)
         @action = block

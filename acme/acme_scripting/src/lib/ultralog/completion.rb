@@ -25,6 +25,20 @@ module Cougaar
   module Actions
     class GetAgentCompletion < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Gets an individual agent's completion statistics."
+        @parameters = [
+          {:agent => "required, The name of the agent."}
+        ]
+        @block_yields = [
+          {:stats => "The completion statistics object (UltraLog::Completion)."}
+        ]
+        @example = "
+          do_action 'GetAgentCompletion', 'NCA' do |stats|
+            puts stats
+          end
+        "
+      }
       def initialize(run, agent_name, &block)
         super(run)
         @agent_name = agent_name
@@ -37,6 +51,13 @@ module Cougaar
   
     class SaveSocietyCompletion < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Gets all agent's completion statistics and writes them to a file."
+        @parameters = [
+          {:file => "required, The file name to write to."}
+        ]
+        @example = "do_action 'SaveSocietyCompletion', 'completion.xml'"
+      }
       def initialize(run, file)
         super(run)
         @file = file

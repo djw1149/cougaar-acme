@@ -206,6 +206,20 @@ begin
     module Actions
       class LoadSocietyFromCSmart < Cougaar::Action
         RESULTANT_STATE = "SocietyLoaded"
+        DOCUMENTATION = Cougaar.document {
+          @description = "Load a society definition from the CSmart database."
+          @parameters = [
+            {:experiment_name => "required, The name of the experiment in the csmart database"},
+            {:host => "required, The host that the MySQL database is on"},
+            {:username => "required, The username for the database"},
+            {:password => "required, The MySQL password"},
+            {:db => "required, The MySQL database name"}
+          ]
+          @example = "
+            do_action 'LoadSocietyFromCSmart', 'FULL-1AD-TRANS-DEFAULT', 
+              'u052', 'society_config', 's0c0nfig', 'asmt02'
+          "
+        }
         def to_s
           return super.to_s + "('#{@csmart_experiment}', '#{@csmart_host}', '#{@csmart_username}', '#{@csmart_pwd}', '#{@csmart_db}')"
         end

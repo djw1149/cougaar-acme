@@ -26,6 +26,21 @@ module Cougaar
     class GLMStimulator < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = 'SocietyPlanning'
+      DOCUMENTATION = Cougaar.document {
+        @description = "Performs a GLM Stimulator pertubation on the society."
+        @parameters = [
+          {:name => "required, The name of the agent to stimulate."}
+        ]
+        @block_yields = [
+          {:stimulator => "The GLMStimulator instance (UltraLog::GLMStimulator)."}
+        ]
+        @example = "
+          do_action 'GLMStimulator', '1-35-ARBN' do |stimulator|
+            glms.inputFileName = 'Supply.dat.xml'
+            glms.update
+          end
+        "
+      }
       def initialize(run, agent, &block)
         super(run)
         @agent = @run.society.agents[agent]

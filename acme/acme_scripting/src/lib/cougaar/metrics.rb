@@ -29,6 +29,15 @@ module Cougaar
   module Actions
 
     class CollectMtsMetrics < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Collects message transport service metrics and stores them in a file."
+        @parameters = [
+          {:filename => "default='mts.csv', File name used to hold metrics data."},
+          {:type => "default='remote', The type of metrics ('remote' or 'local')"},
+          {:debug => "default=false, Set 'true' to debug action"}
+        ]
+        @example = "do_action 'CollectMtsMetrics', 'mymts.csv'"
+      }
 		  @debug = true
       def initialize(run, filename="mts.csv", type="remote", debug=false)
         super(run)

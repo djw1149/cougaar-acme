@@ -152,6 +152,13 @@ module Cougaar
   module Actions
     class LoadSocietyFromScript < Cougaar::Action
       RESULTANT_STATE = "SocietyLoaded"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Load a society definition from a Ruby society file."
+        @parameters = [
+          :filename => "required, The Ruby file name"
+        ]
+        @example = "do_action 'LoadSocietyFromScript', 'full-1ad.rb'"
+      }
       def initialize(run, filename)
         super(run)
         @filename = filename
@@ -172,6 +179,13 @@ module Cougaar
     end
     class LoadSocietyFromXML < Cougaar::Action
       RESULTANT_STATE = "SocietyLoaded"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Load a society definition from an XML."
+        @parameters = [
+          :filename => "required, The XML file name"
+        ]
+        @example = "do_action 'LoadSocietyFromXML', 'full-1ad.xml'"
+      }
       def initialize(run, filename)
         super(run)
         @filename = filename

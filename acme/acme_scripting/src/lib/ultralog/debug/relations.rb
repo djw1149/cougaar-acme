@@ -36,6 +36,13 @@ module Cougaar
     #     make sure the other agent has the reciprocal relationship
     #
     class CheckRelations < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Checks to ensure that the relationships between agents are symmetric."
+        @parameters = [
+          {:show_missing_agents => "default=false, Set 'true' to show missing agents."}
+        ]
+        @example = "do_action 'CheckRelations', true"
+      }
 		  @debug = true
       def initialize(run, show_missing_agents=false)
         super(run)

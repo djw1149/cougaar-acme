@@ -28,6 +28,18 @@ module Cougaar
     class CompletionControl < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = 'SocietyPlanning'
+      DOCUMENTATION = Cougaar.document {
+        @description = "Adjusts the completion control (advancing clock, etc) for the running society."
+        @block_yields = [
+          {:cc => "The completion control object (UltraLog::CompletionControl)."}
+        ]
+        @example = "
+          do_action 'CompletionControl' do |cc|
+            cc.numberOfSteps = 2
+            cc.update
+          end
+        "
+      }
       def initialize(run, &block)
         super(run)
         @action = block

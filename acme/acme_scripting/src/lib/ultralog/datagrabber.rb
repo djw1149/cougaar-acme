@@ -23,6 +23,13 @@ require 'net/http'
 module Cougaar
   module Actions
     class StartDatagrabber < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts the Jabber communications subsystem and connects to the Jabber server."
+        @parameters = [
+          {:host => "required, The host running datagrabber."}
+        ]
+        @example = "do_action 'StartDatagrabber', 'sb022'"
+      }
       def initialize(run, host)
         super(run)
         @host = host
@@ -32,6 +39,21 @@ module Cougaar
       end
     end
     class ConnectToDatagrabber < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Establishes a connection to a datagrabber service."
+        @parameters = [
+          {:host => "required, The host running datagrabber."}
+        ]
+        @block_yields = [
+          {:datagrabber => "The datagrabber object (UltraLog::Datagrabber)."}
+        ]
+        @example = "
+          do_action 'ConnectToDatagrabber', 'sb022' do |datagrabber|
+            run = datagrabber.new_run
+            run.wait_for_completion
+          end
+        "
+      }
       def initialize(run, host, &block)
         super(run)
         @host = host
