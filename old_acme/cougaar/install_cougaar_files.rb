@@ -9,7 +9,12 @@ end
 require 'fileutils'
 include FileUtils
 
-mkdir_p File.join(CIP, 'workspace', 'nodelogs')
-mkdir File.join(CIP, 'configs', 'nodes')
+unless File.exist?( File.join(CIP, 'workspace', 'nodelogs') )
+  mkdir_p File.join(CIP, 'workspace', 'nodelogs')
+end
+unless File.exist?( File.join(CIP, 'configs', 'nodes') )
+  mkdir File.join(CIP, 'configs', 'nodes')
+end
 cp 'socketappender.jar', File.join(CIP, 'sys')
 cp 'loggingConfig.conf', File.join(CIP, 'configs', 'common')
+puts "Files installed in #{CIP}"
