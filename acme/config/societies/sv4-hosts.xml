@@ -9,6 +9,7 @@
     <facet service="Jabber"/>
   </host>
   <host name='sv107'>
+    <facet service="ACME"/>
     <facet service="Operator"/>
   </host>
   <host name='sv108'>
