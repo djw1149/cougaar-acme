@@ -230,6 +230,13 @@ module Cougaar
         end
       end
       
+      def get_attribute(name)
+        return nil unless @attributes
+        name = name.intern if name.kind_of?(String)
+        raise "Attribute name must be a String or Symbol, not a #{name.class}" unless name.kind_of?(Symbol)
+        each_attribute(name) { | attribute | return attribute[name] }
+      end
+      
       ##
       # Returns the XML encoding of the components attributes
       #
