@@ -350,6 +350,24 @@ module Cougaar
         @hostList.each {|host| host.each_node {|node| node.each_agent {|agent| yield agent}}}
         each_node_agent(&block) if include_node_agent
       end
+
+      ##
+      # Returns true if all agents in society have .running? == true.  Ignores agents with Restartable
+      #   facet == false unless include_non_restartable_agents == true 
+      #
+      # include_non_restartable_agents:: [Boolean] If true, includes agents with Restartable facet == false.
+      #                                            Default is false.
+      #
+      def all_agents_running?(include_non_restartable_agents=false)
+        each_agent do |agent|
+          if !include_non_restartable_agents && agent.has_facet?("Restartable") 
+            value = agent.get_facet("Restartable") 
+            next if value == "false"
+          end
+          return false if !agent.running?
+        end
+        return true
+      end
       
       ##
       # Iterates over each node agent
@@ -1080,7 +1098,7 @@ module Cougaar
   
       attr_accessor :node
       attr_reader :name
-      attr_accessor :name, :classname, :cloned, :uic, :status
+      attr_accessor :name, :classname, :cloned, :uic
       
       include Multifaceted
       
@@ -1094,6 +1112,7 @@ module Cougaar
         @name = name
         @classname = "org.cougaar.core.agent.SimpleAgent"
         @components = []
+        @status = "not_started"
         yield self if block_given?
       end
 
@@ -1101,6 +1120,22 @@ module Cougaar
         yield self if block_given?
       end
       
+      def set_running
+        @status = "running"
+      end
+
+      def running?
+        return @status == "running"
+      end
+
+      def set_killed
+        @status = "killed"
+      end
+
+      def killed?
+        return @status == "killed"
+      end
+
       def uri
         if self==@node.agent
           return @node.uri+"/$~"
