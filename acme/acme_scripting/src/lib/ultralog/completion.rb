@@ -114,7 +114,7 @@ module Cougaar
   end  # Module Actions
 
   module States
-    class MyPlanningComplete < Cougaar::State
+    class SocietyQuiesced < Cougaar::State
       DEFAULT_TIMEOUT = 60.minutes
       PRIOR_STATES = ["SocietyPlanning"]
       DOCUMENTATION = Cougaar.document {
@@ -124,8 +124,8 @@ module Cougaar
           {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
         ]
         @example = "
-          wait_for 'MyPlanningComplete', 2.hours do
-            puts 'Did not get Planning Complete!!!'
+          wait_for 'SocietyQuiesced', 2.hours do
+            puts 'Did not get Society Quiesced!!!'
             do_action 'StopSociety'
             do_action 'StopCommunications'
           end
