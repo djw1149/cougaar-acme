@@ -1,0 +1,23 @@
+####################################################
+# Rule to insert Policy Plugins
+# plugin = org.cougaar.mlm.plugin.sample.PolicyPlugin
+# plugin = org.cougaar.mlm.plugin.ldm.XMLPolicyPlugin(policy.ldm.xml)
+
+policy_plugin = "org.cougaar.mlm.plugin.sample.PolicyPlugin"
+xml_policy_plugin = "org.cougaar.mlm.plugin.ldm.XMLPolicyPlugin"
+
+
+
+# Iterate over agents.
+society.each_agent do |agent|
+  
+  if agent.has_facet? { |facet| facet[:role]=='StrategicTransportationProvider' && (facet[:mechanism] == 'ModeSelector') }
+    agent.add_component do |c|
+      c.classname = policy_plugin
+    end
+    agent.add_component do |c|
+      c.classname = xml_policy_plugin
+      c.add_argument("policy.ldm.xml")
+    end
+  end
+end

@@ -1,0 +1,5 @@
+order,orig_org_id,base_org_id,suffix,alias_org_id,combat_support,echelon,echelon_group,is_ua,is_deployable,has_physical_assets,has_equipment_assets,has_personnel_assets,uic,home_location
+1,3ID,3ID,ARMY.MIL,,CMD,DIVISION,DIVISION,N,N,N,N,N,WAQJA1,BBNV
+2,1BDE,1BDE,3ID.ARMY.MIL,,CMD,BRIGADE,DIVISION,N,N,N,N,N,WAQNA1,BBNV
+3,3-69-ARBN,3-69-ARBN,1BDE.3ID.ARMY.MIL,,CMD,BATTALION,DIVISION,N,Y,Y,Y,N,WAQ1AA,BBNV
+4,MCCGlobalMode,MCCGlobalMode,MIL,,CMD,JOINT,JOINT,N,N,Y,Y,N,WAQJA1,VDYD
