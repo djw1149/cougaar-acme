@@ -1,4 +1,4 @@
-drequire "parsedate"
+require "parsedate"
 
 module ACME
   module Plugins
