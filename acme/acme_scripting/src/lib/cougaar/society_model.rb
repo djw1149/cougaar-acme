@@ -1029,7 +1029,7 @@ module Cougaar
             return true if comp.name == component
           end
           return false
-        else
+        elsif component.kind_of?(Component)
           each_component do |comp|
             return true if comp == component
           end
