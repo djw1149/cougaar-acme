@@ -1,8 +1,8 @@
 --- !ruby/object:FreeBASE::PluginConfiguration 
-name: acme_net_shaper
+name: acme_net_shape
 version: 1.0
 autoload: true
-require_path: acme_net_shaper/vlan
+require_path: acme_net_shape/vlan
 startup_module: ACME::Plugins::Shaper
 properties_path: properties.yaml
 start_dependencies: 
