@@ -417,8 +417,10 @@ module Cougaar
 	    @run.info_message "No agent #{@agent} in society to move to #{@node}!"
 	  else
 	    # Could (should?) also check if the agent is already on the named node
-	    # Note we ask the Node to move the agent, to avoid any timing issues
-	    uri = "#{@run.society.agents[@agent].node.uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
+	    # Note we could ask the Node to move the agent, to avoid any timing issues. But that
+	    # seems to leave ugly WARNs and ERRORs in the logs that have no real harm
+#	    uri = "#{@run.society.agents[@agent].node.uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
+	    uri = "#{@run.society.agents[@agent].uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
 	    result = Cougaar::Communications::HTTP.get(uri)
 	    unless result
 	      @run.error_message "Error moving agent #{@agent} using uri #{uri}" 
