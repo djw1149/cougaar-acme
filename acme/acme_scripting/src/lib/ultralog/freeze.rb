@@ -50,14 +50,16 @@ module Cougaar
         @description = "Freeze the society using the 2003 version of the Freeze servlet. This action blocks until the freeze is complete."
         @example = "do_action 'FreezeSociety'"
       }
-      def initialize(run, &block)
+      def initialize(run, timeout, &block)
         super(run)
+        @timeout = timeout
+        @timeout = 3600 if @timeout.nil?
         @action = block if block_given?
       end
       def perform
         freezeControl = ::UltraLog::FreezeControl.new(@run.society)
         freezeControl.freeze
-        freezeControl.wait_until_frozen
+        freezeControl.wait_until_frozen(@timeout)
         @action.call(freezeControl) if @action
       end
    end
