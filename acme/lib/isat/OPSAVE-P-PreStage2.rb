@@ -1,7 +1,7 @@
 =begin experiment
 
-name: Baseline
-description: Baseline
+name: SAVE-PreStage2
+description: SAVE-PreStage2
 script: $CIP/csmart/lib/isat/OPBaselineTemplate.rb
 parameters:
   - run_count: 1
@@ -17,12 +17,11 @@ parameters:
 
 include_scripts:
   - script: $CIP/csmart/lib/isat/clearPnLogs.rb
-  - script: $CIP/csmart/lib/isat/datagrabber_include.rb
+  - script: $CIP/csmart/lib/isat/network_shaping.rb
   - script: $CIP/csmart/lib/isat/save_snapshot.rb
     parameters:
-      - snapshot_name: $CIP/SAVE-PreStage5.tgz
-      - snapshot_location: before_stage_5
-
+      - snapshot_name: $CIP/SAVE-PreStage2.tgz
+      - snapshot_location: before_stage_2
 =end
 
 require 'cougaar/scripting'

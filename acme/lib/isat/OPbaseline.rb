@@ -18,10 +18,11 @@ parameters:
 include_scripts:
   - script: $CIP/csmart/lib/isat/clearPnLogs.rb
   - script: $CIP/csmart/lib/isat/datagrabber_include.rb
-  - script: $CIP/csmart/lib/isat/save_snapshot.rb
+  - script: $CIP/csmart/assessment/assess/cnccalc_include.rb
     parameters:
-      - snapshot_name: $CIP/SAVE-PreStage5.tgz
-      - snapshot_location: before_stage_5
+    - run_type: Base
+    - description: ISAT Baseline
+
 
 =end
 

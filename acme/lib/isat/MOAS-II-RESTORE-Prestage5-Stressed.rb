@@ -2,7 +2,7 @@
 
 name: RESTORE-StressedCPU50-56-Experiment-1
 description: Stage-56-cpu50
-script: $CIP/csmart/scripts/definitions/RestoreTemplate.rb
+script: $CIP/csmart/lib/isat/OPRestoreTemplate.rb
 parameters:
   - run_count: 1
   - snapshot_name: $CIP/SAVE-PreStage5.tgz
@@ -12,9 +12,9 @@ parameters:
     - 6
   
 include_scripts:
-  - script: $CIP/csmart/scripts/definitions/clearLogs.rb
-#  - script: $CIP/csmart/scripts/definitions/network_shaping.rb
-  - script: $CIP/csmart/scripts/definitions/datagrabber_include_new.rb
+  - script: $CIP/csmart/lib/isat/clearLogs.rb
+#  - script: $CIP/csmart/lib/isat/network_shaping.rb
+  - script: $CIP/csmart/lib/isat/datagrabber_include_new.rb
   - script: $CIP/csmart/assessment/assess/standard_cpu_stress.rb
     parameters:
       - start_tag: starting_stage
@@ -35,13 +35,13 @@ include_scripts:
       - only_analyze: "moe1"
       - baseline_name: base2
 
-#  - script: $CIP/csmart/scripts/definitions/standard_kill_nodes.rb
+#  - script: $CIP/csmart/lib/isat/standard_kill_nodes.rb
 #    parameters:
 #      - start_tag: starting_stage
 #      - start_delay: 60
 #      - nodes_to_kill:
 #        - 123-MSB-NODE
-#  - script: $CIP/csmart/scripts/definitions/std_continuous_network_stress.rb
+#  - script: $CIP/csmart/lib/isat/std_continuous_network_stress.rb
 #    parameters:
 #      - start_tag: starting_stage
 #      - start_delay: 120
@@ -57,7 +57,7 @@ include_scripts:
 #          - router: DIVISION-router
 #          - target: CONUS-REAR
 #          - bandwidth: 512kbit
-#  - script: $CIP/csmart/scripts/definitions/standard_cyclic_network_stress.rb
+#  - script: $CIP/csmart/lib/isat/standard_cyclic_network_stress.rb
 #    parameters:
 
 =end
