@@ -22,7 +22,6 @@ module ACME
       end
         
       def <=>(rhs)
-        return rhs.error <=> @error if (@error != rhs.error)
         return @name <=> rhs.name
       end
         
@@ -48,9 +47,7 @@ module ACME
         return CompletionTest::SUCCESS
       end
     end
-        
-        
-        
+                       
     class CompletionTest
 
       SUCCESS = 0
@@ -85,7 +82,6 @@ module ACME
             benchmark_data = nil
             benchmark_data = get_file_data(File.new(benchmark_file.name)) unless benchmark_file.nil?
             result = analyze(data, benchmark_data)
-            data.agents.sort! #analyze function may change ordering if agents fail
         
             if result == SUCCESS then
               report.success
@@ -95,7 +91,7 @@ module ACME
               report.failure
             end
             output = html_output(data, report_name, baseline_name)
-            outfile = "Comp-#{report_name}.html"
+            outfile = "#{report_name}.html"
             report.open_file(outfile, "text/html", "Agent completion tests for #{report_name}") do |file|
               file.puts output
             end
@@ -208,16 +204,9 @@ module ACME
         headers.each do |header|
           header_row << @ikko["header_template.html", {"data"=>header.gsub(/Num/, ""),"options"=>""}]
         end
-        
-        table_string = @ikko["row_template.html", {"data"=>header_row,"options"=>""}]
-        data.agents.each do |agent|
-          agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>color(agent, "NAME")}]
-          fields.each do |key|
-            agent_row << @ikko["cell_template.html", {"data"=>agent[key],"options"=>color(agent, key)}]
-          end
-          table_string << @ikko["row_template.html", {"data"=>agent_row,"options"=>""}]
-        end
-        ikko_data["table"] = table_string
+        ikko_data["bad"] = create_bad_table(data.agents, fields, header_row)        
+        ikko_data["table"] = create_full_table(data.agents, fields, header_row)        
+
         return @ikko["comp_report.html", ikko_data]
       end
 
@@ -233,6 +222,38 @@ module ACME
         return "BGCOLOR=#FFFF00" if lvl == PARTIAL
         return "BGCOLOR=#FF0000"
       end
+
+      def create_agent_row(agent, fields)
+        agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>color(agent, "NAME")}]
+        fields.each do |key|
+          val = agent[key]
+          val = sprintf("%.4d", val) if val.class.name == "Float"
+          agent_row << @ikko["cell_template.html", {"data"=>val,"options"=>color(agent, key)}]
+        end
+        return agent_row
+      end
+
+      def create_bad_table(agents, fields, header_row)
+        table_string = @ikko["row_template.html", {"data"=>header_row,"options"=>""}]
+        bad_agents = agents.collect{|x| (x.error != SUCCESS ? x : nil)}
+        bad_agents.compact!
+        return "" if bad_agents.empty?
+        bad_agents.each do |agent|
+          agent_row = create_agent_row(agent, fields)
+          table_string << @ikko["row_template.html", {"data"=>agent_row,"options"=>""}]
+        end
+        return table_string
+      end
+
+      def create_full_table(agents, fields, header_row)
+        table_string = @ikko["row_template.html", {"data"=>header_row,"options"=>""}]
+        agents.each do |agent|
+          agent_row = create_agent_row(agent, fields)
+          table_string << @ikko["row_template.html", {"data"=>agent_row,"options"=>""}]
+        end
+        return table_string
+      end
+
 
       def create_description
         ikko_data = {}
