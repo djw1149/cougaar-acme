@@ -177,6 +177,7 @@ module Cougaar
             target = false
             host.each_facet(:service) do |facet|
               target = true if facet[:service]=='acme'
+              target = true if facet[:service]=='ACME'
             end
             if target
               hostlist << host
@@ -189,7 +190,7 @@ module Cougaar
         hostindex = 0
         @society_layout.each_host do |host|
           if hostlist && (hostindex == hostlist.size)
-            raise "Not enough hosts in #{@host_file} for the society layout in #{@layout_file}"
+            raise "Not enough hosts in #{@hosts_file} for the society layout in #{@layout_file}"
           end
           @society.add_host(hostlist ? hostlist[hostindex].name : host.name) do |newhost|
             host.each_facet { |facet| newhost.add_facet(facet.clone) }
@@ -202,10 +203,11 @@ module Cougaar
               end
               node.each_agent do |agent| 
                 to_move = @society.agents[agent.name]
-                unless to_move
-                  raise "Layout specifies agent '#{agent.name}' that is not defined in the society"
-                end
-                to_move.move_to(node.name)
+		if to_move
+		  to_move.move_to(node.name)
+		else
+                  puts "Layout specifies agent '#{agent.name}' that is not defined in the society"
+		end
               end
             end
           end
