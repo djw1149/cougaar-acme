@@ -14,7 +14,7 @@ parameters:
 include_scripts:
   - script: $CIP/csmart/lib/isat/clearLogs.rb
 #  - script: $CIP/csmart/lib/isat/network_shaping.rb
-  - script: $CIP/csmart/lib/isat/datagrabber_include_new.rb
+  - script: $CIP/csmart/lib/isat/datagrabber_include.rb
   - script: $CIP/csmart/assessment/assess/standard_cpu_stress.rb
     parameters:
       - start_tag: starting_stage
