@@ -11,5 +11,5 @@ if [ "x$1" = "x" ]; then
 fi
 
 echo "Making $1.facets.xml..."
-ruby org_agent_builder.rb -d 1ad.org_data -m $1.member.csv -s ./$1-x$2.facets.xml -o -x $2
+ruby org_agent_builder.rb -d 1ad.org_data -m $1.member.csv -s ./$1-x$2.facets.xml -x $2
 echo "Done"
