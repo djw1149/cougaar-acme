@@ -17,9 +17,9 @@ class XMLCougaarNode
     @running_nodes = {}
     
     #START NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/start_node/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: host:port (of XML document server)"
-    @plugin["/plugins/acme_host_jabber_service/commands/start_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
       node = NodeConfig.new(@plugin, command)
       pid = node.start
       @running_nodes[pid]=node
@@ -27,9 +27,9 @@ class XMLCougaarNode
     end
     
     #STOP NODE
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_node/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_xml_node/description"].data = 
       "Stops Cougaar node. Params: PID"
-    @plugin["/plugins/acme_host_jabber_service/commands/stop_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_xml_node"].set_proc do |message, command| 
       pid = command
       node = @running_nodes[pid]
       if node
@@ -68,9 +68,9 @@ class XMLCougaarNode
 =end
 
     #LIST NODES
-    @plugin["/plugins/acme_host_jabber_service/commands/list_nodes/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes/description"].data = 
       "List Running Cougaar nodes."
-    @plugin["/plugins/acme_host_jabber_service/commands/list_nodes"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes"].set_proc do |message, command| 
       txt = "Current Nodes:\n"
       @running_nodes.each do |pid, node| 
         txt << "PID:#{pid}\n#{node.to_s}\n"
@@ -79,9 +79,9 @@ class XMLCougaarNode
     end
 
     #Show Params
-    @plugin["/plugins/acme_host_jabber_service/commands/show_params/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_params/description"].data = 
       "Show parameters for starting Cougaar nodes."
-    @plugin["/plugins/acme_host_jabber_service/commands/show_params"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_params"].set_proc do |message, command| 
 			txt = "\n"
       cip = @plugin.properties['cip']
       txt << "cip = #{cip} \n"
