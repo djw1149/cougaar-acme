@@ -409,7 +409,7 @@ module Cougaar
         if name
           get_facet(name) ? true : false
         else
-          each_facet(name) { | facet | return true if block.call(facet) }
+          @facets.each { | facet | return true if block.call(facet) }
         end
         return false
       end
