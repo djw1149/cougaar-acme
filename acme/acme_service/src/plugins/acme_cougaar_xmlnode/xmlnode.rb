@@ -188,6 +188,7 @@ class XMLCougaarNode
         #search and replace $COUGAAR_INSTALL_PATH
         data = request.body
         data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
+        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common')}`
         `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common/communities.xml')}`
         File.open(filename, "w") do |file|
           file.write(data)
