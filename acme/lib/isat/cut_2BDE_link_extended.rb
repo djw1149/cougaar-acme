@@ -10,8 +10,8 @@ insert_after :before_stage_2 do
 #  do_action "DisableNetworkInterfaces", "2-BDE-NODE"
 
   do_action "InfoMessage", "Deactivate DIV--2-BDE,2-BDE---DIV K links"
-  do_action "DeactivateKLinks", "DIV", "2-BDE"
-  do_action "DeactivateKLinks", "2-BDE", "DIV"
+  do_action "DeactivateKLinks", "DIV-router", "2-BDE"
+  do_action "DeactivateKLinks", "2-BDE-router", "DIV"
 
   do_action "GenericAction" do |run|
     uri=run.society.agents['123-MSB-POL.DISCOM.1-AD.ARMY.MIL'].uri+"/commStatus?commUp=false&connectedAgentName=47-FSB.DISCOM.1-AD.ARMY.MIL"
@@ -59,8 +59,8 @@ insert_after :before_stage_2 do
 #  do_action "EnableNetworkInterfaces", "2-BDE-NODE"
 
   do_action "InfoMessage", "Activate DIV--2-BDE,2-BDE---DIV K links"
-  do_action "ActivateKLinks", "DIV", "2-BDE"
-  do_action "ActivateKLinks", "2-BDE", "DIV"
+  do_action "ActivateKLinks", "DIV-router", "2-BDE"
+  do_action "ActivateKLinks", "2-BDE-router", "DIV"
 
   do_action "GenericAction" do |run|
     uri=run.society.agents['123-MSB-POL.DISCOM.1-AD.ARMY.MIL'].uri+"/commStatus?commUp=true&connectedAgentName=47-FSB.DISCOM.1-AD.ARMY.MIL"
