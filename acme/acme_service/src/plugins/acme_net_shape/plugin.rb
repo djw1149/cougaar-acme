@@ -27,6 +27,24 @@ class Interface
 
     rc 
   end
+
+  def rx_bytes
+    rx_RE = /RX bytes:(\d*)/
+
+    rx_match = rx_RE.match( `/sbin/ifconfig #{@name}` )
+
+    return rx_match[1] unless rx_match.nil?
+    nil
+  end
+
+  def tx_bytes
+    tx_RE = /TX bytes:(\d*)/
+
+    tx_match = tx_RE.match( `/sbin/ifconfig #{@name}` )
+
+    return tx_match[1] unless tx_match.nil?
+    nil
+  end
 end
 
 class Shaper
@@ -150,7 +168,7 @@ class Shaper
 
   def info( interface )
     ifs = @interfaces[interface]
-    "<interface name=\"#{ifs.name}\" state=\"#{ifs.state}\" rate=\"#{ifs.rate}\" />"
+    rc = "<interface name=\"#{ifs.name}\" state=\"#{ifs.state}\" rate=\"#{ifs.rate}\" rx=\"#{ifs.rx_bytes}\" tx=\"#{ifs.tx_bytes}\" />"
   end
 
   def info_all
