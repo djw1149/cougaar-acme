@@ -189,7 +189,7 @@ module Cougaar
             match = /.*AgentLifecycle\(([^\)]*)\) Agent\(([^\)]*)\) Node\(([^\)]*)\) Host\(([^\)]*)\)/.match(event.data)
             if match
               cycle, agent, node, host = match[1,4]
-              unless node == @run.society.agents[agent].node.name
+              if cycle == "Started" && @run.society.agents[agent] && node != @run.society.agents[agent].node.name
                 @run.society.agents[agent].move_to(node)
                 @run.info_message "Moving agent: #{agent} to node: #{node}"
               end
