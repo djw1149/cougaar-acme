@@ -71,6 +71,7 @@ module UltraLog
     # The DataGrabber::Run class holds the status of a dg request
     #
     class Run
+      DEFAULT_TIMEOUT = 30*60 # (30 minutes in seconds)
       attr_reader :datagrabber, :id, :status, :action
       
       ##
@@ -95,8 +96,9 @@ module UltraLog
       #
       # poll_interval:: [Integer=60] The interval in seconds to poll at
       #
-      def wait_for_completion(poll_interval=60)
+      def wait_for_completion(timeout=DEFAULT_TIMEOUT, poll_interval=60)
         completed = false
+        startTime = Time.now
         until completed
           @datagrabber.get_runs.each do |run|
             if run.id == @id
@@ -106,8 +108,10 @@ module UltraLog
               break
             end
           end
+          return false if (Time.now - startTime) > timeout
           sleep poll_interval unless completed
         end
+        return true
       end
     end
     
