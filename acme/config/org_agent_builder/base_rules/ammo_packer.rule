@@ -9,7 +9,8 @@ al_ammo_packer = "org.cougaar.logistics.plugin.packer.ALAmmoPacker"
 ammo_projection_expander_plugin = "org.cougaar.logistics.plugin.trans.AmmoProjectionExpanderPlugin"
 
 society.each_agent do |agent|
-    if agent.name == "OSC" 
+  agent.each_facet(:role) do |facet|
+    if facet[:role]=="AmmunitionProvider" && facet[:mechanism]=="TerminalAmmunitionPacker"
       agent.add_component do |c|
         c.classname = ammo_low_fidelity_expander_plugin
       end
@@ -20,5 +21,5 @@ society.each_agent do |agent|
         c.classname = ammo_projection_expander_plugin
       end
     end
+  end
 end
-
