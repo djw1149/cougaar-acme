@@ -31,7 +31,8 @@ society.each_agent do |agent|
 end
 
 # When using multiple YP servers, turn off caching of keys (they will be
-#  different across servers)
+#  different across servers), and dont set the single YP arg
 society.each_node do |node|
   node.override_parameter("-Dorg.cougaar.servicediscovery.service.tModelCacheDisabled", "true")
+  node.remove_parameter("-Dorg.cougaar.yp.ypAgent")
 end
