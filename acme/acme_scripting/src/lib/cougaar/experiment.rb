@@ -170,7 +170,7 @@ module Cougaar
         end
 
         def $StdOutMonitor.on_state_end(state)
-          if @state_times[state] then
+          if (!@state_times.nil? && !@state_times[state].nil?) then
             t = Time.now
             sec = (t - @state_times[state])
             m = "[#{t}]     Done: #{state} in #{sec} seconds"
@@ -188,7 +188,7 @@ module Cougaar
           puts m
         end
         def $StdOutMonitor.on_action_end(action)
-          if @action_times[action] then
+          if (!@action_times.nil? && !@action_times[action].nil?) then
             t = Time.now
             sec = (t - @action_times[action])
             m = "[#{t}]     Finished: #{action} in #{sec} seconds" 
@@ -239,13 +239,13 @@ module Cougaar
       
       def monitor.on_state_begin(state)
         t = Time.now
-        @state_times = {} if state_times.nil?
+        @state_times = {} if @state_times.nil?
         @state_times[state] = t
         Cougaar.logger.info  "    Waiting for: #{state}"
       end
 
       def monitor.on_state_end(state)
-        if @state_times[state] then
+        if (!@state_times.nil? && !@state_times[state].nil?) then
           t = Time.now
           sec = (t - @state_times[state])
           Cougaar.logger.info  "    Done: #{state} in #{sec} seconds"
@@ -256,13 +256,13 @@ module Cougaar
       
       def monitor.on_action_begin(action)
         t = Time.now
-        @action_times = {} if action_times.nil?
+        @action_times = {} if @action_times.nil?
         @action_times[action] = t
         Cougaar.logger.info  "    Starting: #{action}"
       end
 
       def monitor.on_action_end(action)
-        if @action_times[action] then
+        if (!@action_times.nil? && !@action_times[action].nil?) then
           t = Time.now
           sec = (t - @action_times[action])
           Cougaar.logger.info  "    Finished: #{action} in #{sec} seconds"
