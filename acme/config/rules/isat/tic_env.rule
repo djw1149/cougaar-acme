@@ -1,4 +1,5 @@
 # Configure nodes and agents for the TIC environment
+time = Time.now.gmtime
 society.each_node do |node|
     node.add_prog_parameter("org.cougaar.core.node.Node") unless node.prog_parameters.include?("org.cougaar.core.node.Node")
     
@@ -30,7 +31,8 @@ society.each_node do |node|
       start_time = param if param =~ /agent\.startTime/
     end
     unless start_time
-      node.add_parameter('-Dorg.cougaar.core.agent.startTime=08/10/2005')
+      node.add_parameter('-Dorg.cougaar.core.agent.startTime="08/10/2005 00:05:00"')
+      node.add_parameter("-Dorg.cougaar.core.society.startTime=\"#{time.strftime('%m/%d/%Y %I:%M:%S')}\"")
       node.add_parameter('-Duser.timezone=GMT')
     end
     
