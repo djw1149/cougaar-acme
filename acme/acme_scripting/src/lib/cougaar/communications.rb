@@ -321,7 +321,7 @@ module Cougaar
           message.reply.set_body([File.read($0)].pack("m")).send
         end
         add_command("script_name", "Return fill name of active script") do |message, params|
-          message.reply.set_body(File.expane_path($0)).send
+          message.reply.set_body(File.expand_path($0)).send
         end
 
         @acme_session.add_message_listener do |message|
