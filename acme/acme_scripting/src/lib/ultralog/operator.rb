@@ -192,23 +192,23 @@ module UltraLog
     end
     
     def clear_logs
-      send_command('clear_logs', 5.minutes)
+      send_command('clear_logs', 20.minutes)
     end
     
     def clear_pnlogs
-      send_command('clear_pnlogs', 5.minutes)
+      send_command('clear_pnlogs', 20.minutes)
     end
     
     def clear_persistence
-      send_command('clear_persistence', 5.minutes)
+      send_command('clear_persistence', 20.minutes)
     end
     
     def archive_logs(runName=nil)
-      send_command('archive_logs', 10.minutes, "#{composite_name(runName)} #{Dir.getwd} #{$0}")
+      send_command('archive_logs', 20.minutes, "#{composite_name(runName)} #{Dir.getwd} #{$0}")
     end
     
     def archive_db(runName=nil)
-      send_command('archive_db', 8.minutes, composite_name(runName))
+      send_command('archive_db', 20.minutes, composite_name(runName))
     end
     
     def start_datagrabber_service
