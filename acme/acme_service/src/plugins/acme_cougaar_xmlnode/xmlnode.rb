@@ -1,5 +1,3 @@
-require 'cougaar/event_server'
-require 'cougaar/society_builder'
 
 
 module ACME ; module Plugins
@@ -18,9 +16,9 @@ class XMLCougaarNode
     @running_nodes = {}
     
     #START NODE
-    @plugin["/plugins/JabberService/commands/start_node/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/start_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: host:port (of XML document server)"
-    @plugin["/plugins/JabberService/commands/start_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/start_node"].set_proc do |message, command| 
       node = NodeConfig.new(@plugin, command)
       pid = node.start
       @running_nodes[pid]=node
@@ -28,9 +26,9 @@ class XMLCougaarNode
     end
     
     #STOP NODE
-    @plugin["/plugins/JabberService/commands/stop_node/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_node/description"].data = 
       "Stops Cougaar node. Params: PID"
-    @plugin["/plugins/JabberService/commands/stop_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/stop_node"].set_proc do |message, command| 
       pid = command
       node = @running_nodes[pid]
       if node
@@ -43,9 +41,9 @@ class XMLCougaarNode
     end
     
     # MONITOR NODE
-    @plugin["/plugins/JabberService/commands/monitor_node/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/monitor_node/description"].data = 
       "Sends back CougaarEvent messages of the proc (PID) every (interval) seconds. Params: PID,interval"
-    @plugin["/plugins/JabberService/commands/monitor_node"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/monitor_node"].set_proc do |message, command| 
       pid, interval = command.split(",")
       unless pid and interval
         message.reply.set_body("FAILURE: Invalid params: PID,interval")
@@ -67,16 +65,33 @@ class XMLCougaarNode
     end
 
     #LIST NODES
-    @plugin["/plugins/JabberService/commands/list_nodes/description"].data = 
+    @plugin["/plugins/acme_host_jabber_service/commands/list_nodes/description"].data = 
       "List Running Cougaar nodes."
-    @plugin["/plugins/JabberService/commands/list_nodes"].set_proc do |message, command| 
+    @plugin["/plugins/acme_host_jabber_service/commands/list_nodes"].set_proc do |message, command| 
       txt = "Current Nodes:\n"
       @running_nodes.each do |pid, node| 
         txt << "PID:#{pid}\n#{node.to_s}\n"
       end
       message.reply.set_body(txt).send
     end
-    
+
+    #Show Params
+    @plugin["/plugins/acme_host_jabber_service/commands/show_params/description"].data = 
+      "Show parameters for starting Cougaar nodes."
+    @plugin["/plugins/acme_host_jabber_service/commands/show_params"].set_proc do |message, command| 
+			txt = "\n"
+      cip = @plugin.properties['cip']
+      txt << "cip = #{cip} \n"
+      jvm_path=@plugin.properties['jvm_path']
+      txt << "jvm_path=#{jvm_path}\n"
+      cmd_prefix=@plugin.properties['cmd_prefix']
+      txt << "cmd_prefix=#{cmd_prefix}\n"
+      cmd_suffix=@plugin.properties['cmd_suffix']
+      txt << "cmd_suffix=#{cmd_suffix}\n"
+=begin
+=end
+      message.reply.set_body(txt).send
+    end
   end
   
   class NodeConfig
