@@ -1,0 +1,62 @@
+SocietyDesigner Tool
+
+The SocietyDesigner tool supports selecting agents to
+include in a society.  After selecting the appropriate agents, the user
+typically saves the society to an XML file, then applies rules to the
+society in order to produce a runnable society.  The SocietyDesigner is
+intended as an aid in composing and validating societies from CSV files
+and rules.
+
+The SocietyDesigner tool can read CSV or XML files 
+using the commands on the File menu.
+
+Typically, the user selects the "File-Read from CSV File..." menu item
+and reads a CSV file that contains descriptions of all 
+the agents, i.e. csmart/org_agent_builder/org_data/org_hieratchy.csv.
+The SocietyDesignor tool then automatically reads files that describe
+the agents' attributes and roles (i.e. org_attribute.csv, org_role.csv, etc.).
+The SocietyDesigner tool displays the agents in a tree.  If the agent
+descriptions were read from a CSV file, then the user can select or deselect
+agents to include in the society by right-clicking on the agent name.
+Deselected agents are displayed in gray.  When an agent is deselected,
+neither it or its subordinates are included in the society.
+
+The SocietyDesigner tool can also be used to Validate supply chains.  
+Select the Validate command from the File menu and the
+SocietyDesigner displays a dialog that shows supporting relationships
+for all the selected agents, and any supporting relationships that are 
+not filled.  The Validate algorithm mirrors the Service Discovery done 
+in a running society; hence, thus this is a way to verify that 
+Service Discovery will find the necessary providers when the society is run.
+
+After selecting a set of agents, the SocietyDesigner tool can write 
+the results to either a CSV file or an XML file (using the commands on 
+the File menu). If the results are written to an XML file, then that file can 
+be used as input to the ruby rules to produce a runnable society.
+
+In summary, here is how you use the SocietyDesigner tool:
+
+1.  Load the agents by selecting the "File-Read from CSV File..." menu item.
+Either read all the agents by specifying:
+	csmart/config/org_agent_builder/org_data/org_hierarchy.csv.
+or read an agent member list, by specify the member CSV file.
+2.  Select the agents that you want to exclude from your society by
+right mouse clicking over the agent name.
+
+-- OR --
+1.  Read a Society XML file that you've previously created.
+
+3.  (Optional) Validate the supply chains.
+4.  Save the society as an XML file OR
+    Save the "member" list as a CSV file.
+5.  Apply rules (using different tools).
+6.  Run society.
+
+------------------------------------------------------------------------------
+XMLDiff Tool
+
+This tool compares 2 XML files that contain society definitions.  It ignores
+host-node-agent mapping, and agent and component names and order.  It compares
+agent attributes, component class names and component arguments.  The XML files
+are displayed side-by-side in trees, and grayed out branches and leaves
+indicate differences.
