@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert IE Log Filter
+# plugin = org.cougaar.tools.util.LogEventFilter
+
+log_filter = "org.cougaar.tools.util.LogEventFilter"
+
+society.each_agent(true) do |agent|
+   agent.add_component do |c|
+      c.classname = log_filter
+   end
+end

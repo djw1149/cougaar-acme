@@ -1,0 +1,6 @@
+
+society.each_node do |node|
+  node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
+  node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","/mnt/shared/socA/workspace/log4jlogs/$HOSTNAME.log")
+  node.override_parameter("-Dorg.cougaar.config.path","/mnt/shared/socA/configs/common\\\;/mnt/shared/socA/configs/glmtrans\\\;")
+end

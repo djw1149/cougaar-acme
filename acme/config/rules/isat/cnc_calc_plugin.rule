@@ -1,0 +1,29 @@
+####################################################
+# Rule to insert the CnC Calc Plugin
+# Add to :
+# All Agents except those listed in the exclude_array, below, and those with the string
+# "Manager" in their name
+# plugin = com.stdc.CnCcalc.plugin.CnCcalcPlugin
+
+cnc_calc_plugin = "com.stdc.CnCcalc.plugin.CnCcalcPlugin"
+exclude_array = %w{ TRANSCOM GlobalAir PlanePacker GlobalSea ShipPacker TheaterGround 
+                                CONUSGround SCmrmanager ChallengeRover ChallengeRoverController 
+                                ChallengeMsgRover ChallengeMsgRoverController }
+
+society.each_agent do |agent|
+  if agent.name =~ /.*Manager.*/ # don't apply if agent name contains "Manager"
+    break
+  end
+  excluded = false
+  exclude_array.each { |excluded_agent|
+    if agent.name == excluded_agent
+      excluded = true
+      break
+    end
+  }
+  unless excluded 
+    agent.add_component do |c|
+      c.classname = cnc_calc_plugin
+    end
+  end
+end

@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert Metrics Servlet plugin to all node agents
+# plugin = org.cougaar.core.qos.metrics.MessageCounterServlet 
+
+plugin = "org.cougaar.core.qos.metrics.MetricsServletPlugin"
+
+society.each_node_agent() do |node_agent|
+   node_agent.add_component do |c|
+      c.classname = plugin
+   end
+end

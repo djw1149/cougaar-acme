@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert CommunityPlugin to all agents and node agents
+# plugin = org.cougaar.community.CommunityPlugin
+
+communityPlugin = "org.cougaar.community.CommunityPlugin"
+
+society.each_agent(true) do |agent|
+   agent.add_component do |c|
+      c.classname = communityPlugin
+   end
+end

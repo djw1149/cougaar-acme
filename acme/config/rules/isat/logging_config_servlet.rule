@@ -1,0 +1,12 @@
+####################################################
+# Rule to insert LoggingConfigServlet to all agents and node agents
+# plugin = org.cougaar.core.logging.LoggingConfigServlet
+
+logging_config_servlet = "org.cougaar.core.logging.LoggingConfigServlet"
+
+society.each_agent(true) do |agent|
+  agent.add_component do |c|
+    c.classname = logging_config_servlet
+  end
+end
+

@@ -1,0 +1,47 @@
+####################################################
+# Rule to insert the GLM Completion Society, Node, and Target
+# Add to : NCA agent
+# plugin: org.cougaar.glm.plugin.completion.GLMCompletionSocietyPlugin
+# Add to: All Nodes (NodeAgents)
+# plugin: org.cougaar.glm.plugin.completion.GLMCompletionNodePlugin
+# Add to: All agents except those in exclude_array, below, and those with names containing "Manager" or "Agent"
+# (formerly known as recipeQueryCompletionTarget)
+# plugin: org.cougaar.glm.plugin.completion.GLMCompletionTargetPlugin
+
+glm_compl_society_plugin = "org.cougaar.glm.plugin.completion.GLMCompletionSocietyPlugin"
+glm_compl_node_plugin = "org.cougaar.glm.plugin.completion.GLMCompletionNodePlugin"
+glm_compl_target_plugin = "org.cougaar.glm.plugin.completion.GLMCompletionTargetPlugin"
+exclude_array = %w{ SCmrmanager ChallengeRover ChallengeRoverController 
+                              ChallengeMsgRover ChallengeMsgRoverController }
+
+society.each_agent do |agent|
+  if agent.name == "NCA"  or agent.name == "OSD.GOV"
+    agent.add_component do |c|
+      c.classname = glm_compl_society_plugin
+      c.add_argument("DEAD_NODE_TIMEOUT1200000")
+      c.add_argument("NORMAL_TIME_ADVANCE_DELAY=120000")
+    end
+  end
+  # don't apply if agent name contains "Manager" or "Agent"
+  if agent.name =~ /.*Manager.*/ or agent.name =~ /.*Agent.*/ 
+    break
+  end
+  excluded = false
+  exclude_array.each { |excluded_agent|
+    if agent.name == excluded_agent
+      excluded = true
+      break
+    end
+  }
+  unless excluded 
+    agent.add_component do |c|
+      c.classname = glm_compl_target_plugin
+    end
+  end
+end
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = glm_compl_node_plugin
+  end
+end

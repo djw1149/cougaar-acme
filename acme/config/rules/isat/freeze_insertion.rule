@@ -1,0 +1,41 @@
+####################################################
+# Rule to insert the Freeze components
+# At All Agents:
+# plugin = org.cougaar.core.plugin.freeze.FreezeTargetPlugin(RemoteSubscriptionPlugin, AlertPlugin, 
+#                                                                                AggregationPlugin, AggregationComponent,
+#                                                                                CnCcalcPlugin)
+# At All Nodes:
+# plugin = org.cougaar.core.plugin.freeze.FreezeNodePlugin
+# At NCA Agent:
+# plugin = org.cougaar.core.plugin.freeze.FreezeSocietyPlugin
+
+freeze_target_plugin = "org.cougaar.core.plugin.freeze.FreezeTargetPlugin"
+freeze_node_plugin = "org.cougaar.core.plugin.freeze.FreezeNodePlugin"
+freeze_society_plugin = "org.cougaar.core.plugin.freeze.FreezeSocietyPlugin"
+remote_subscription_plugin = "org.cougaar.lib.aggagent.plugin.RemoteSubscriptionPlugin"
+alert_plugin = "org.cougaar.lib.aggagent.plugin.AlertPlugin"
+aggregation_plugin = "org.cougaar.lib.aggagent.plugin.AggregationPlugin"
+aggregation_component = "org.cougaar.lib.aggagent.plugin.AggregationComponent"
+cnc_calc_plugin = "com.stdc.CnCcalc.plugin.CnCcalcPlugin"
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = freeze_target_plugin
+    c.add_argument(remote_subscription_plugin)
+    c.add_argument(alert_plugin)
+    c.add_argument(aggregation_plugin)
+    c.add_argument(aggregation_component)
+    c.add_argument(cnc_calc_plugin)
+  end
+  if agent.name == "NCA"  or agent.name == "OSD.GOV"
+    agent.add_component do |c|
+        c.classname = freeze_society_plugin
+    end
+  end
+end
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = freeze_node_plugin
+  end
+end

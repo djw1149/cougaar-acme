@@ -1,0 +1,55 @@
+####################################################
+# Rule to insert the Agg-Agent Collection
+# Add Agent AGG-Agent
+# At All Agents EXCEPT AGG-Agent:
+# plugin = org.cougaar.lib.aggagent.plugin.RemoteSubscriptionPlugin
+# At Agent AGG-Agent:
+# plugin = org.cougaar.lib.aggagent.servlet.AggregationComponent
+# plugin = org.cougaar.lib.aggagent.servlet.AggregationKeepAliveComponent
+# plugin = org.cougaar.lib.aggagent.plugin.AggregationPlugin
+# plugin = org.cougaar.lib.aggagent.plugin.AlertPlugin
+
+remote_subscription_plugin = "org.cougaar.lib.aggagent.plugin.RemoteSubscriptionPlugin"
+alert_plugin = "org.cougaar.lib.aggagent.plugin.AlertPlugin"
+aggregation_plugin = "org.cougaar.lib.aggagent.plugin.AggregationPlugin"
+aggregation_component = "org.cougaar.lib.aggagent.plugin.AggregationComponent"
+aggregation_keepalive_component = "org.cougaar.lib.aggagent.servlet.AggregationKeepAliveComponent"
+
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("AGG-Agent") do |agent|
+  agent.add_component do |c|
+    c.classname = aggregation_component
+    c.add_argument("/aggregator")
+  end
+  agent.add_component do |c|
+    c.classname = aggregation_keepalive_component
+    c.add_argument("/aggregatorkeepalive")
+  end
+  agent.add_component do |c|
+    c.classname = aggregation_plugin
+  end
+  agent.add_component do |c|
+    c.classname = alert_plugin
+  end
+end
+
+#According to the old recipeQuery.q, "Both 'Agg-agent' and the UofM manager are aggregators"
+society.each_agent do |agent|
+  unless agent.name == "AGG-Agent" or agent.name == "UMmrmanager"
+    agent.add_component do |c|
+      c.classname = remote_subscription_plugin
+    end
+  end
+end
+
+#According to the old recipeQuery.q, "The society security manager and the enclave 
+#security managers are also agg-agents."   This may need to be re-worked or expanded.
+society.each_agent do |agent|
+  if agent.name == "SCmrmanager"
+    agent.add_component do |c|
+      c.classname = aggregation_component
+      c.add_argument("/aggregator")
+    end
+  end
+end

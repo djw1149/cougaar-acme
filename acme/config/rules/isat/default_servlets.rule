@@ -1,0 +1,68 @@
+####################################################
+# TIC Default Servlets
+
+simple_servlet_comp = "org.cougaar.core.servlet.SimpleServletComponent"
+
+society.each_agent(true) do |agent|
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.planning.servlet.PlanViewServlet")
+    c.add_argument("/tasks")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.glm.servlet.GLMCompletionServlet"
+    c.add_argument("/completion")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.planning.servlet.HierarchyServlet")
+    c.add_argument("/hierarchy")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.mlm.ui.servlet.DataGathererServlet")
+    c.add_argument("/datagatherer")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.logistics.servlet.LogisticsInventoryServletComponent"
+    c.add_argument("org.cougaar.logistics.servlet.LogisticsInventoryServlet")
+    c.add_argument("/log_inventory")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.planning.servlet.LoaderServletComponent"
+    c.add_argument("/load")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet")
+    c.add_argument("/CSMART_AgentInfoServlet")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet")
+    c.add_argument("/CSMART_CommunityProviderServlet")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.tools.csmart.ui.servlet.MetricsServlet")
+    c.add_argument("/CSMART_MetricsServlet")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.tools.csmart.ui.servlet.SearchServlet")
+    c.add_argument("/CSMART_SearchServlet")
+  end
+  agent.add_component do |c|
+    c.classname = simple_servlet_comp
+    c.add_argument("org.cougaar.tools.csmart.ui.servlet.PlanServlet")
+    c.add_argument("/CSMART_PlanServlet")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.wp.WhitePagesServlet"
+    c.add_argument("/wp")
+  end
+  agent.add_component do |c|
+    c.classname = "org.cougaar.core.mobility.servlet.MoveAgentServlet"
+  end
+end
+
