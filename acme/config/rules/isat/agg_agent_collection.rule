@@ -17,9 +17,19 @@ aggregation_keepalive_component = "org.cougaar.lib.aggagent.servlet.AggregationK
 
 # put it on NCA node if it's there, otherwise CONUS node
 
-node = society.agents["NCA"].node
+agg_node = nil
+nca_agent = society.agents["NCA"]
+if nca_agent
+  agg_node = nca_agent.node
+else
+  some_node = nil
+  society.each_node do |node|
+    some_node = node
+  end
+  agg_node = some_node
+end
 
-node.add_agent("AGG-Agent") do |agent|
+agg_node.add_agent("AGG-Agent") do |agent|
   agent.add_component do |c|
     c.classname = aggregation_component
     c.add_argument("/aggregator")

@@ -1,9 +1,13 @@
 ns_node = nil
+some_node = nil
 society.each_node do |node|
   node.each_facet(:role) do |facet|
     ns_node = node if facet[:role]=='NameServer'
   end
+  some_node = node
 end
+
+ns_node = node if !ns_node
 
 if ns_node
   society.each_node do |node|
