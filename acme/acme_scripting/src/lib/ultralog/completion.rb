@@ -361,14 +361,16 @@ module UltraLog
         if soc_status != "INCOMPLETE"
           @society.each_agent(true) do |agent|
             agentHash = comp[agent.name]
-            # This goes through all receiver messages and compares to sender messages
-            # on the other side.  Is that valid?  Can I assume that if I loop through
-            # everybody that thinks they sent a message, and not through everybody that
-            # thinks they received a message, I'll hit everything?  The only way this would break
-            # is if agentB thinks it received a message from agentA, but agentA doesn't think it
-            # sent any message to agentB.
             agentHash["receivers"].each do |agent, msg|
-              if (srcMsg == comp[agent]["senders"][agent.name] && srcMsg != msg)
+              if (srcMsg = comp[agent]["senders"][agent.name]) && srcMsg != msg
+                soc_status = "INCOMPLETE"
+                break
+              end
+            end
+            break if soc_status == "INCOMPLETE"
+
+            agentHash["senders"].each do |agent, msg|
+              if (srcMsg = comp[agent]["receivers"][agent.name]) && srcMsg != msg
                 soc_status = "INCOMPLETE"
                 break
               end
