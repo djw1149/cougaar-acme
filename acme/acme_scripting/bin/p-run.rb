@@ -6,6 +6,9 @@ if $0 == __FILE__
   $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
 end
 
+$stdout.sync = true
+
+
 require "p-config"
 
 require "cougaar/scripting"
@@ -24,11 +27,16 @@ server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
 scriptInfo = CVSInfo.new( scriptFile )
 if (!scriptInfo.committed?) then
-  puts "You must run p-run.rb within a CVS heirarchy, or check in your script"
+  puts "You must run p-run.rb within a CVS hierarchy, or check in your script"
   exit -1
 end
-
-testId = server.call("remote.lookupTest", scriptInfo.root, scriptInfo.repository, scriptInfo.file_name)
+begin
+  testId = server.call("remote.lookupTest", scriptInfo.root, scriptInfo.repository, scriptInfo.file_name)
+rescue XMLRPC::FaultException => e
+  puts "Code: #{e.faultCode}"
+  puts "Msg: #{e.faultString}"
+  throw e
+end
 
 puts "[#{Time.now}] Starting Registered Test: #{scriptInfo.file_name}/#{testId}"
 
@@ -57,10 +65,19 @@ Cougaar::ExperimentMonitor.add monitor
 
 begin
   puts "[#{Time.now}] Starting Experiment"
+  $POLARIS_MONITOR = monitor
+
   load scriptFile
   puts "[#{Time.now}] Experiment Finished"
+
+rescue XMLRPC::FaultException => e
+  puts "Code: #{e.faultCode}"
+  puts "Msg: #{e.faultString}"
+  throw e
 rescue Exception => exc
+  puts "Caught ACME Exception: #{exc}"
   monitor.acme_failure( exc )
+  throw exc
 end
 
 
