@@ -12,6 +12,7 @@ society.each_node do |node|
     node.remove_parameter("-Dorg.cougaar.node.InitializationComponent")
     node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
     node.override_parameter("-Dorg.cougaar.thread.running.max","300")
+    node.override_parameter("-Dorg.cougaar.society.xsl.param.pluginThreadPool","50")
     node.override_parameter("-Dorg.cougaar.core.persistence.enable","true")
     node.override_parameter("-Dorg.cougaar.core.persistence.clear","false")
     node.override_parameter("-Dorg.cougaar.core.persistence.archiveCount","4")
