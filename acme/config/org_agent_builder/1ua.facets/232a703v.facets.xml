@@ -19,6 +19,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBBB"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -57,6 +58,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBBB"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -95,6 +97,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBBB"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -133,6 +136,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCBB"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -171,6 +175,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCBB"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -209,6 +214,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECBB"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -247,6 +253,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBBC"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -285,6 +292,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBBC"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -323,6 +331,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBBC"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -361,6 +370,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCBC"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -399,6 +409,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCBC"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -437,6 +448,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECBC"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -475,6 +487,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBBD"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -513,6 +526,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBBD"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -551,6 +565,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBBD"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -589,6 +604,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCBD"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -627,6 +643,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCBD"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -665,6 +682,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECBD"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -702,6 +720,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ACBBA"/>
+        <facet subordinate_org_id="FCS-C2V-0.1-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.1-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -761,6 +781,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ADBBA"/>
+        <facet subordinate_org_id="FCS-C2V-0.1-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.1-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -820,6 +842,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="AEBBA"/>
+        <facet subordinate_org_id="FCS-C2V-0.1-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.1-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -879,6 +903,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ACCBA"/>
+        <facet subordinate_org_id="FCS-C2V-0.1-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.1-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -938,6 +964,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ADCBA"/>
+        <facet subordinate_org_id="FCS-C2V-0.1-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.1-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -997,6 +1025,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="AECBA"/>
+        <facet subordinate_org_id="FCS-C2V-0.1-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.1-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -1057,6 +1087,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ACBBE"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -1095,6 +1126,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ADBBE"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -1133,6 +1165,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="AEBBE"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -1171,6 +1204,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ACCBE"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -1209,6 +1243,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ADCBE"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -1247,6 +1282,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="AECBE"/>
+        <facet subordinate_org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.1-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -1285,6 +1321,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDB"/>
+        <facet subordinate_org_id="FCS-MCS-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -1383,6 +1423,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDB"/>
+        <facet subordinate_org_id="FCS-MCS-0.1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -1481,6 +1525,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDB"/>
+        <facet subordinate_org_id="FCS-MCS-0.1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -1579,6 +1627,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEB"/>
+        <facet subordinate_org_id="FCS-MCS-0.1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -1677,6 +1729,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEB"/>
+        <facet subordinate_org_id="FCS-MCS-0.1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -1775,6 +1831,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEB"/>
+        <facet subordinate_org_id="FCS-MCS-0.1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -1873,6 +1933,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGB"/>
+        <facet subordinate_org_id="NLOS-Mortar-0.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-1.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-2.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-3.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
@@ -2011,6 +2077,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGB"/>
+        <facet subordinate_org_id="NLOS-Mortar-0.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-1.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-2.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-3.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
@@ -2149,6 +2221,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGB"/>
+        <facet subordinate_org_id="NLOS-Mortar-0.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-1.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-2.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-3.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
@@ -2287,6 +2365,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ACFB"/>
+        <facet subordinate_org_id="FCS-RS-V-0.1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
@@ -2385,6 +2467,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ADFB"/>
+        <facet subordinate_org_id="FCS-RS-V-0.1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
@@ -2483,6 +2569,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="AEFB"/>
+        <facet subordinate_org_id="FCS-RS-V-0.1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
@@ -2581,6 +2671,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBCB"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -2619,6 +2710,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBCB"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -2657,6 +2749,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBCB"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -2695,6 +2788,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCCB"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -2733,6 +2827,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCCB"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -2771,6 +2866,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECCB"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -2809,6 +2905,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBCC"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -2847,6 +2944,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBCC"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -2885,6 +2983,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBCC"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -2923,6 +3022,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCCC"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -2961,6 +3061,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCCC"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -2999,6 +3100,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECCC"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -3037,6 +3139,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBCD"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -3075,6 +3178,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBCD"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -3113,6 +3217,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBCD"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -3151,6 +3256,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCCD"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -3189,6 +3295,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCCD"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -3227,6 +3334,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECCD"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -3264,6 +3372,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ACBCA"/>
+        <facet subordinate_org_id="FCS-C2V-0.2-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.2-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -3323,6 +3433,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ADBCA"/>
+        <facet subordinate_org_id="FCS-C2V-0.2-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.2-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -3382,6 +3494,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="AEBCA"/>
+        <facet subordinate_org_id="FCS-C2V-0.2-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.2-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -3441,6 +3555,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ACCCA"/>
+        <facet subordinate_org_id="FCS-C2V-0.2-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.2-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -3500,6 +3616,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ADCCA"/>
+        <facet subordinate_org_id="FCS-C2V-0.2-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.2-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -3559,6 +3677,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="AECCA"/>
+        <facet subordinate_org_id="FCS-C2V-0.2-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.2-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -3619,6 +3739,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ACBCE"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -3657,6 +3778,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ADBCE"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -3695,6 +3817,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="AEBCE"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -3733,6 +3856,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ACCCE"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -3771,6 +3895,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ADCCE"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -3809,6 +3934,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="AECCE"/>
+        <facet subordinate_org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.2-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -3847,6 +3973,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDC"/>
+        <facet subordinate_org_id="FCS-MCS-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -3945,6 +4075,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDC"/>
+        <facet subordinate_org_id="FCS-MCS-0.2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -4043,6 +4177,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDC"/>
+        <facet subordinate_org_id="FCS-MCS-0.2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -4141,6 +4279,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEC"/>
+        <facet subordinate_org_id="FCS-MCS-0.2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -4239,6 +4381,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEC"/>
+        <facet subordinate_org_id="FCS-MCS-0.2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -4337,6 +4483,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEC"/>
+        <facet subordinate_org_id="FCS-MCS-0.2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -4435,6 +4585,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGC"/>
+        <facet subordinate_org_id="NLOS-Mortar-0.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-1.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-2.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-3.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
@@ -4573,6 +4729,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGC"/>
+        <facet subordinate_org_id="NLOS-Mortar-0.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-1.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-2.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-3.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
@@ -4711,6 +4873,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGC"/>
+        <facet subordinate_org_id="NLOS-Mortar-0.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-1.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-2.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Mortar-3.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
@@ -4849,6 +5017,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ACFC"/>
+        <facet subordinate_org_id="FCS-RS-V-0.2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
@@ -4947,6 +5119,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ADFC"/>
+        <facet subordinate_org_id="FCS-RS-V-0.2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
@@ -5045,6 +5221,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="AEFC"/>
+        <facet subordinate_org_id="FCS-RS-V-0.2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
@@ -5143,6 +5323,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBDB"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -5181,6 +5362,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBDB"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -5219,6 +5401,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBDB"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -5257,6 +5440,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCDB"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -5295,6 +5479,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCDB"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -5333,6 +5518,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECDB"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -5371,6 +5557,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBDC"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -5409,6 +5596,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBDC"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -5447,6 +5635,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBDC"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -5485,6 +5674,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCDC"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -5523,6 +5713,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCDC"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -5561,6 +5752,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECDC"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -5599,6 +5791,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACBDD"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -5637,6 +5830,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADBDD"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -5675,6 +5869,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AEBDD"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -5713,6 +5908,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ACCDD"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -5751,6 +5947,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="ADCDD"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -5789,6 +5986,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-SQUAD"/>
         <facet org_code="AECDD"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -5826,6 +6024,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ACBDA"/>
+        <facet subordinate_org_id="FCS-C2V-0.3-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.3-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-1-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-2-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-3-INF-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -5885,6 +6085,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ADBDA"/>
+        <facet subordinate_org_id="FCS-C2V-0.3-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.3-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-1-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-2-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-3-INF-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -5944,6 +6146,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="AEBDA"/>
+        <facet subordinate_org_id="FCS-C2V-0.3-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.3-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-1-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-2-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-3-INF-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -6003,6 +6207,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ACCDA"/>
+        <facet subordinate_org_id="FCS-C2V-0.3-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.3-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-1-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-2-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-3-INF-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -6062,6 +6268,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="ADCDA"/>
+        <facet subordinate_org_id="FCS-C2V-0.3-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.3-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-1-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-2-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-3-INF-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -6121,6 +6329,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT-HQ"/>
         <facet org_code="AECDA"/>
+        <facet subordinate_org_id="FCS-C2V-0.3-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.3-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-1-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-2-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-3-INF-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -6181,6 +6391,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ACBDE"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -6219,6 +6430,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ADBDE"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -6257,6 +6469,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="AEBDE"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -6295,6 +6508,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ACCDE"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -6333,6 +6547,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="ADCDE"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -6371,6 +6586,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-WPN-SQUAD"/>
         <facet org_code="AECDE"/>
+        <facet subordinate_org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ICV-0.3-PLT-WPN-SQUAD.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -6409,6 +6625,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDD"/>
+        <facet subordinate_org_id="FCS-MCS-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -6507,6 +6727,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDD"/>
+        <facet subordinate_org_id="FCS-MCS-0.3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -6605,6 +6829,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDD"/>
+        <facet subordinate_org_id="FCS-MCS-0.3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -6703,6 +6931,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACED"/>
+        <facet subordinate_org_id="FCS-MCS-0.3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -6801,6 +7033,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADED"/>
+        <facet subordinate_org_id="FCS-MCS-0.3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -6899,6 +7135,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEED"/>
+        <facet subordinate_org_id="FCS-MCS-0.3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-1.3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MCS-2.3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -6997,6 +7237,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ACFD"/>
+        <facet subordinate_org_id="FCS-RS-V-0.3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
@@ -7095,6 +7339,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ADFD"/>
+        <facet subordinate_org_id="FCS-RS-V-0.3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
@@ -7193,6 +7441,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="AEFD"/>
+        <facet subordinate_org_id="FCS-RS-V-0.3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-1.3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RS-V-2.3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-R-0.3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-R-0.3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
@@ -7291,6 +7543,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-AREA-SPT-EVAC-SECTION"/>
         <facet org_code="AHBEB"/>
+        <facet subordinate_org_id="FTTS-AMB-0.AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-AMB-1.AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-AMB-2.AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-AMB-3.AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-AMB-0.AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-AMB-0.AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
@@ -7389,6 +7645,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBB"/>
+        <facet subordinate_org_id="NLOS-Cannon-0.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-1.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-2.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -7587,6 +7852,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBC"/>
+        <facet subordinate_org_id="NLOS-Cannon-0.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-1.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-2.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -7784,6 +8058,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTY-HQ"/>
         <facet org_code="AGBA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.BTY-A-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.BTY-A-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="BTY-A-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="BTY-A-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
@@ -7842,6 +8118,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCB"/>
+        <facet subordinate_org_id="NLOS-Cannon-0.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-1.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-2.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -8040,6 +8325,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCC"/>
+        <facet subordinate_org_id="NLOS-Cannon-0.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-1.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-2.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -8237,6 +8531,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTY-HQ"/>
         <facet org_code="AGCA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.BTY-B-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.BTY-B-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="BTY-B-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="BTY-B-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
@@ -8295,6 +8591,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDB"/>
+        <facet subordinate_org_id="NLOS-Cannon-0.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-1.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-2.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -8493,6 +8798,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDC"/>
+        <facet subordinate_org_id="NLOS-Cannon-0.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-1.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="NLOS-Cannon-2.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -8690,6 +9004,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTY-HQ"/>
         <facet org_code="AGDA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.BTY-C-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.BTY-C-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="BTY-C-1-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="BTY-C-2-CANNON-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
@@ -8747,6 +9063,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-BTY-HQ"/>
         <facet org_code="ACGA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.BTY-HQ.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.BTY-HQ.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.BTY-HQ.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MORTAR-BTY.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
@@ -8823,6 +9142,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-BTY-HQ"/>
         <facet org_code="ADGA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.BTY-HQ.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.BTY-HQ.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.BTY-HQ.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MORTAR-BTY.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
@@ -8899,6 +9221,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-BTY-HQ"/>
         <facet org_code="AEGA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.BTY-HQ.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.BTY-HQ.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.BTY-HQ.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MORTAR-BTY.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
@@ -8975,6 +9300,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTRY-HQ"/>
         <facet org_code="AGAA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.BTY-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="CIC-CMD-GRP.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SENSOR-PLT-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -9020,6 +9346,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CIC-CMD-GRP"/>
         <facet org_code="AGABA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CIC-CMD-GRP.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.CIC-CMD-GRP.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CIC-CMD-GRP.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.CIC-CMD-GRP.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="CIC-STAFF-CELLS.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.CIC-CMD-GRP.NLOS-BN.1-UA.ARMY.MIL">
@@ -9114,6 +9444,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CIC-STAFF-CELLS"/>
         <facet org_code="AGABB"/>
+        <facet subordinate_org_id="FCS-C2V-0.CIC-STAFF-CELLS.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CIC-STAFF-CELLS.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.CIC-STAFF-CELLS.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.CIC-STAFF-CELLS.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -9169,6 +9501,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-CIC"/>
         <facet org_code="AHAB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CIC.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CIC.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.CIC.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.CIC.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-C2-0.CIC.FSB.1-UA.ARMY.MIL"/>
@@ -9244,6 +9579,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-CO-HQ-SECTION"/>
         <facet org_code="ACAE"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CO-HQ-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.CO-HQ-SECTION.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.CO-HQ-SECTION.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.CO-HQ-SECTION.1-CABN.1-UA.ARMY.MIL"/>
@@ -9302,6 +9639,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-CO-HQ-SECTION"/>
         <facet org_code="ADAE"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CO-HQ-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.CO-HQ-SECTION.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.CO-HQ-SECTION.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.CO-HQ-SECTION.2-CABN.1-UA.ARMY.MIL"/>
@@ -9360,6 +9699,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-CO-HQ-SECTION"/>
         <facet org_code="AEAE"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CO-HQ-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.CO-HQ-SECTION.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.CO-HQ-SECTION.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.CO-HQ-SECTION.3-CABN.1-UA.ARMY.MIL"/>
@@ -9417,6 +9758,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-CO-HQ"/>
         <facet org_code="ABA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CO-HQ.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="RANGE-EXT-HQ-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="NETOPS-HQ-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SIT-AWARE-TEAM.BIC.1-UA.ARMY.MIL"/>
@@ -9480,6 +9823,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-CO-HQ"/>
         <facet org_code="AHAA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.CO-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.CO-HQ.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="CIC.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
@@ -9564,6 +9910,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ACBA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-HQ.INFCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -9641,6 +9990,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ADBA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-HQ.INFCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -9718,6 +10070,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="AEBA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-HQ.INFCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -9795,6 +10150,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ACCA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-HQ.INFCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -9872,6 +10230,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ADCA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-HQ.INFCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -9949,6 +10310,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="AECA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT-HQ.INFCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -10026,6 +10390,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ACDA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
@@ -10103,6 +10470,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ADDA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.MCSCO-A.2-CABN.1-UA.ARMY.MIL"/>
@@ -10180,6 +10550,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="AEDA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.MCSCO-A.3-CABN.1-UA.ARMY.MIL"/>
@@ -10257,6 +10630,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ACEA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.MCSCO-B.1-CABN.1-UA.ARMY.MIL"/>
@@ -10334,6 +10710,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ADEA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.MCSCO-B.2-CABN.1-UA.ARMY.MIL"/>
@@ -10411,6 +10790,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="AEEA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.CO-HQ.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.CO-HQ.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CO-HQ.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.MCSCO-B.3-CABN.1-UA.ARMY.MIL"/>
@@ -10489,6 +10871,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-CP-CTRL-TEAM"/>
         <facet org_code="ABEB"/>
+        <facet subordinate_org_id="FCS-C2V-0.CP-CTRL-TEAM.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.CP-CTRL-TEAM.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.CP-CTRL-TEAM.BIC.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.CP-CTRL-TEAM.BIC.1-UA.ARMY.MIL"/>
@@ -10546,6 +10930,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-HQ"/>
         <facet org_code="AFA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.DET-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.DET-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.DET-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-A-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-B-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SVC-TRP-HQ.AVN-DET.1-UA.ARMY.MIL"/>
@@ -10628,6 +11015,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-DET-HQ"/>
         <facet org_code="ACFA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.DET-HQ.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.DET-HQ.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.DET-HQ.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.DET-HQ.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.DET-HQ.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.RECON-DET.1-CABN.1-UA.ARMY.MIL"/>
@@ -10743,6 +11135,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-DET-HQ"/>
         <facet org_code="ADFA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.DET-HQ.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.DET-HQ.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.DET-HQ.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.DET-HQ.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.DET-HQ.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.RECON-DET.2-CABN.1-UA.ARMY.MIL"/>
@@ -10858,6 +11255,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-DET-HQ"/>
         <facet org_code="AEFA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.DET-HQ.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.DET-HQ.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.DET-HQ.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.DET-HQ.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.DET-HQ.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="1-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="2-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="3-PLT.RECON-DET.3-CABN.1-UA.ARMY.MIL"/>
@@ -10974,6 +11376,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-DISTRO-MGT-CELL"/>
         <facet org_code="AHAC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.DISTRO-MGT-CELL.FSB.1-UA.ARMY.MIL"/>
@@ -11111,6 +11519,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-DISTRO-PLT-HQ"/>
         <facet org_code="AHCCA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.DISTRO-PLT-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.DISTRO-PLT-HQ.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FUEL-WATER-SECTION.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
@@ -11170,6 +11580,43 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-DRY-CARGO-SECTION"/>
         <facet org_code="AHCCD"/>
+        <facet subordinate_org_id="FTTS-MS-0.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-6.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-7.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-8.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-9.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-10.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-11.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-12.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-13.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-14.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-15.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-16.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-17.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-18.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-19.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-20.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-21.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-22.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-23.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-24.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-25.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-26.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-27.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-28.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-29.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-30.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-31.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-32.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-33.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-34.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-35.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-36.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.DRY-CARGO-SECTION.FSB.1-UA.ARMY.MIL"/>
@@ -11927,6 +12374,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-EVAC-PLT-HQ"/>
         <facet org_code="AHBEA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.EVAC-PLT-HQ.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="AREA-SPT-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
       </agent>
@@ -11966,6 +12414,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-PLT"/>
         <facet org_code="AFBB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-A-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.FLT-TRP-A-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.FLT-TRP-A-1-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.FLT-TRP-A-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12024,6 +12474,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-PLT"/>
         <facet org_code="AFBC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-A-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.FLT-TRP-A-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.FLT-TRP-A-2-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.FLT-TRP-A-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12081,6 +12533,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-HQ"/>
         <facet org_code="AFBA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-A-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.FLT-TRP-A-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-A-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-A-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12140,6 +12594,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-SPT-PLT"/>
         <facet org_code="AFBD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-2.FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-C2-0.FLT-TRP-A-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12238,6 +12696,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-PLT"/>
         <facet org_code="AFCB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-B-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.FLT-TRP-B-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.FLT-TRP-B-1-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.FLT-TRP-B-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12296,6 +12756,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-PLT"/>
         <facet org_code="AFCC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-B-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.FLT-TRP-B-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.FLT-TRP-B-2-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.FLT-TRP-B-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12353,6 +12815,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-HQ"/>
         <facet org_code="AFCA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-B-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.FLT-TRP-B-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-B-1-PLT.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-B-2-PLT.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12412,6 +12876,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-SPT-PLT"/>
         <facet org_code="AFCD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-2.FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-C2-0.FLT-TRP-B-SPT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -12530,6 +12998,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-FWD-EVAC-SECTION"/>
         <facet org_code="AHBEC"/>
+        <facet subordinate_org_id="FCS-MV-0.FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-2.FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-3.FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.FWD-EVAC-SECTION.FSB.1-UA.ARMY.MIL"/>
@@ -12628,6 +13100,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-HOLDING-DET"/>
         <facet org_code="AHBC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.HOLDING-DET.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.HOLDING-DET.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.HOLDING-DET.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.HOLDING-DET.FSB.1-UA.ARMY.MIL"/>
@@ -12686,6 +13160,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-ISR-INTEG-TEAM"/>
         <facet org_code="ABEA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.ISR-INTEG-TEAM.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.ISR-INTEG-TEAM.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="CP-CTRL-TEAM.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.ISR-INTEG-TEAM.BIC.1-UA.ARMY.MIL">
@@ -12745,6 +13221,23 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-MAINT-PLT"/>
         <facet org_code="AHCB"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-0.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-1.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-2.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-3.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-4.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-5.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-6.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-7.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-8.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-RMV-9.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-RMV-0.MAINT-PLT.FSB.1-UA.ARMY.MIL">
         <facet org_id="FCS-RMV-0.MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
@@ -13102,6 +13595,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCG"/>
         <facet org_code="ACAA"/>
+        <facet subordinate_org_id="FCS-C2V-0.MCG.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="TACP.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-HQ.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
@@ -13151,6 +13645,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCG"/>
         <facet org_code="ADAA"/>
+        <facet subordinate_org_id="FCS-C2V-0.MCG.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="TACP.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-HQ.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
@@ -13200,6 +13695,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCG"/>
         <facet org_code="AEAA"/>
+        <facet subordinate_org_id="FCS-C2V-0.MCG.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="TACP.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-HQ.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
@@ -13248,6 +13744,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-MCG"/>
         <facet org_code="AAA"/>
+        <facet subordinate_org_id="FCS-ICV-0.MCG1.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.MCG1.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MCG2.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="TACP.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-SPT.1-UA.ARMY.MIL"/>
@@ -13318,6 +13816,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-MCG"/>
         <facet org_code="AAB"/>
+        <facet subordinate_org_id="FCS-ICV-0.MCG2.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.MCG2.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.MCG2.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.MCG2.1-UA.ARMY.MIL"/>
@@ -13373,6 +13873,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-MED-CO-HQ"/>
         <facet org_code="AHBA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.MED-CO-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.MED-CO-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.MED-CO-HQ.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="HOLDING-DET.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SURG-PLT.FSB.1-UA.ARMY.MIL"/>
@@ -13452,6 +13955,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-EVAC-SECTION"/>
         <facet org_code="ACACC"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-2.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-3.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-4.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
@@ -13570,6 +14078,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-EVAC-SECTION"/>
         <facet org_code="ADACC"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-2.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-3.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-4.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
@@ -13688,6 +14201,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-EVAC-SECTION"/>
         <facet org_code="AEACC"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-2.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-3.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-4.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
@@ -13805,6 +14323,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-HQ"/>
         <facet org_code="ACACA"/>
+        <facet subordinate_org_id="FCS-C2V-0.MED-PLT-HQ.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-TREATMENT-SQUAD.1-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-EVAC-SECTION.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
@@ -13843,6 +14362,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-HQ"/>
         <facet org_code="ADACA"/>
+        <facet subordinate_org_id="FCS-C2V-0.MED-PLT-HQ.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-TREATMENT-SQUAD.2-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-EVAC-SECTION.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
@@ -13881,6 +14401,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-HQ"/>
         <facet org_code="AEACA"/>
+        <facet subordinate_org_id="FCS-C2V-0.MED-PLT-HQ.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-TREATMENT-SQUAD.3-CABN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MED-PLT-EVAC-SECTION.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
@@ -13920,6 +14441,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-TREATMENT-SQUAD"/>
         <facet org_code="ACACB"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.MED-PLT-TREATMENT-SQUAD.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.1-CABN.1-UA.ARMY.MIL"/>
@@ -13978,6 +14501,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-TREATMENT-SQUAD"/>
         <facet org_code="ADACB"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.MED-PLT-TREATMENT-SQUAD.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.2-CABN.1-UA.ARMY.MIL"/>
@@ -14036,6 +14561,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-TREATMENT-SQUAD"/>
         <facet org_code="AEACB"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.MED-PLT-TREATMENT-SQUAD.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-PLT-TREATMENT-SQUAD.3-CABN.1-UA.ARMY.MIL"/>
@@ -14093,6 +14620,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-MED-SPT"/>
         <facet org_code="AAD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.MED-SPT.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-0.MED-SPT.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.MED-SPT.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.MED-SPT.1-UA.ARMY.MIL"/>
@@ -14149,6 +14678,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-SQUAD"/>
         <facet org_code="ABCC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NETOPS-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.NETOPS-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.NETOPS-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14187,6 +14717,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-SQUAD"/>
         <facet org_code="ABCD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NETOPS-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.NETOPS-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.NETOPS-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14225,6 +14756,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-SQUAD"/>
         <facet org_code="ABCE"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NETOPS-3-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.NETOPS-3-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.NETOPS-3-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14263,6 +14795,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-FSB-SQUAD"/>
         <facet org_code="ABCB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NETOPS-FSB-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.NETOPS-FSB-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.NETOPS-FSB-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14301,6 +14834,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-UA-HQ-SQUAD"/>
         <facet org_code="ABCA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NETOPS-HQ-SQUAD.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.NETOPS-HQ-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="NETOPS-FSB-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="NETOPS-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="NETOPS-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14364,6 +14899,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-NLOS-SQUAD"/>
         <facet org_code="ABCF"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NETOPS-NLOS-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.NETOPS-NLOS-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.NETOPS-NLOS-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14402,6 +14938,19 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-NLOS-LS-PLT"/>
         <facet org_code="AGAC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-6.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-7.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-8.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-9.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-10.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-11.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.NLOS-LS-PLT.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -14680,6 +15229,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-RADAR-SECTION"/>
         <facet org_code="AGADB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-2.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-3.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-4.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-5.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -14818,6 +15373,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-SQUAD"/>
         <facet org_code="ABBC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RANGE-EXT-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.RANGE-EXT-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.RANGE-EXT-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14856,6 +15412,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-SQUAD"/>
         <facet org_code="ABBD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RANGE-EXT-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.RANGE-EXT-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.RANGE-EXT-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14894,6 +15451,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-SQUAD"/>
         <facet org_code="ABBE"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RANGE-EXT-3-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.RANGE-EXT-3-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.RANGE-EXT-3-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14932,6 +15490,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-FSB-SQUAD"/>
         <facet org_code="ABBB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RANGE-EXT-FSB-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.RANGE-EXT-FSB-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.RANGE-EXT-FSB-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -14970,6 +15529,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-UA-HQ-SQUAD"/>
         <facet org_code="ABBA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RANGE-EXT-HQ-SQUAD.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.RANGE-EXT-HQ-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="RANGE-EXT-FSB-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="RANGE-EXT-1-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="RANGE-EXT-2-CA-BN-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -15033,6 +15594,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-NLOS-SQUAD"/>
         <facet org_code="ABBF"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.RANGE-EXT-NLOS-SQUAD.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.RANGE-EXT-NLOS-SQUAD.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.RANGE-EXT-NLOS-SQUAD.BIC.1-UA.ARMY.MIL"/>
@@ -15070,6 +15632,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-SENSOR-PLT-HQ"/>
         <facet org_code="AGADA"/>
+        <facet subordinate_org_id="FCS-C2V-0.SENSOR-PLT-HQ.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="RADAR-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
@@ -15109,6 +15672,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-SIT-AWARE-TEAM"/>
         <facet org_code="ABDA"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.SIT-AWARE-TEAM.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.SIT-AWARE-TEAM.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-2.SIT-AWARE-TEAM.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-3.SIT-AWARE-TEAM.BIC.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="TGT-DEV-TEAM.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.SIT-AWARE-TEAM.BIC.1-UA.ARMY.MIL">
@@ -15207,6 +15774,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-STAFF-CELL"/>
         <facet org_code="AHAD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-2.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-2.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.STAFF-CELL.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.STAFF-CELL.FSB.1-UA.ARMY.MIL"/>
@@ -15377,6 +15952,20 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
+        <facet subordinate_org_id="FTTS-MS-0.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-6.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-7.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-1.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-2.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-3.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-4.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-5.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-A-0.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-A-0.SUPPORT-SECTION.1-CABN.1-UA.ARMY.MIL"/>
@@ -15675,6 +16264,20 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
+        <facet subordinate_org_id="FTTS-MS-0.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-6.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-7.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-1.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-2.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-3.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-4.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-5.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-A-0.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-A-0.SUPPORT-SECTION.2-CABN.1-UA.ARMY.MIL"/>
@@ -15973,6 +16576,20 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
+        <facet subordinate_org_id="FTTS-MS-0.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-6.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-7.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-0.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-1.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-2.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-3.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-4.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ARV-A-5.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-A-0.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-ARV-A-0.SUPPORT-SECTION.3-CABN.1-UA.ARMY.MIL"/>
@@ -16271,6 +16888,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-SURG-PLT"/>
         <facet org_code="AHBD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-2.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-3.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-4.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-5.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.SURG-PLT.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.SURG-PLT.FSB.1-UA.ARMY.MIL"/>
@@ -16408,6 +17031,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-SUSTAIN-CO-HQ"/>
         <facet org_code="AHCA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SUSTAIN-CO-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.SUSTAIN-CO-HQ.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.SUSTAIN-CO-HQ.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="MAINT-PLT.FSB.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="DISTRO-PLT-HQ.FSB.1-UA.ARMY.MIL"/>
       </agent>
@@ -16485,6 +17111,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-AIRCRAFT-REPAIR-SECTION"/>
         <facet org_code="AFDBC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SVC-TRP-AIRCRAFT-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.SVC-TRP-AIRCRAFT-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-SPT-0.SVC-TRP-AIRCRAFT-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-SPT-0.SVC-TRP-AIRCRAFT-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
@@ -16543,6 +17171,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-AIRFRAME-REPAIR-SECTION"/>
         <facet org_code="AFDBD"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SVC-TRP-AIRFRAME-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.SVC-TRP-AIRFRAME-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.SVC-TRP-AIRFRAME-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.SVC-TRP-AIRFRAME-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
@@ -16601,6 +17231,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-ARMT-ELEC-REPAIR-SECTION"/>
         <facet org_code="AFDBB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
@@ -16698,6 +17332,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-HQ"/>
         <facet org_code="AFDA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SVC-TRP-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.SVC-TRP-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.SVC-TRP-HQ.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.SVC-TRP-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SVC-TRP-MAINT-PLT-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
@@ -16793,6 +17431,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-MAINT-PLT-HQ"/>
         <facet org_code="AFDBA"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SVC-TRP-MAINT-PLT-HQ.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SVC-TRP-ARMT-ELEC-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SVC-TRP-AIRCRAFT-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
         <facet subordinate_org_id="SVC-TRP-AIRFRAME-REPAIR-SECTION.AVN-DET.1-UA.ARMY.MIL"/>
@@ -16833,6 +17472,16 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-SUPPORT-PLT"/>
         <facet org_code="AFDC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-2.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-3.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.SVC-TRP-SUPPORT-PLT.AVN-DET.1-UA.ARMY.MIL"/>
@@ -17050,6 +17699,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-TACP"/>
         <facet org_code="ACAB"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.TACP.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.TACP.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ICV-0.TACP.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.TACP.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.TACP.1-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-2.TACP.1-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.TACP.1-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.TACP.1-CABN.1-UA.ARMY.MIL"/>
@@ -17181,6 +17836,18 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-TACP"/>
         <facet org_code="AAC"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-2.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-3.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ICV-0.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-2.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-3.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-4.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-5.TACP.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-6.TACP.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.TACP.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.TACP.1-UA.ARMY.MIL"/>
@@ -17426,6 +18093,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-TACP"/>
         <facet org_code="ADAB"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.TACP.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.TACP.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ICV-0.TACP.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.TACP.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.TACP.2-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-2.TACP.2-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.TACP.2-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.TACP.2-CABN.1-UA.ARMY.MIL"/>
@@ -17557,6 +18230,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-TACP"/>
         <facet org_code="AEAB"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.TACP.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.TACP.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-ICV-0.TACP.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-0.TACP.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-1.TACP.3-CABN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-C2V-2.TACP.3-CABN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-C2V-0.TACP.3-CABN.1-UA.ARMY.MIL">
         <facet org_id="FCS-C2V-0.TACP.3-CABN.1-UA.ARMY.MIL"/>
@@ -17689,6 +18368,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-TGT-DEV-TEAM"/>
         <facet org_code="ABDB"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.TGT-DEV-TEAM.BIC.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-1.TGT-DEV-TEAM.BIC.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-U-C2-0.TGT-DEV-TEAM.BIC.1-UA.ARMY.MIL">
         <facet org_id="FTTS-U-C2-0.TGT-DEV-TEAM.BIC.1-UA.ARMY.MIL"/>
@@ -17747,6 +18428,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-TREATMENT-PLT"/>
         <facet org_code="AHBB"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-SPT-1.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-0.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-1.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FCS-MV-2.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MV-0.TREATMENT-PLT.FSB.1-UA.ARMY.MIL">
         <facet org_id="FCS-MV-0.TREATMENT-PLT.FSB.1-UA.ARMY.MIL"/>
@@ -17885,6 +18572,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-CO-HQ-SECTION"/>
         <facet org_code="AAE"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.UA-CO-HQ-SECTION.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-U-C2-0.UA-CO-HQ-SECTION.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.UA-CO-HQ-SECTION.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.UA-CO-HQ-SECTION.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.UA-CO-HQ-SECTION.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.UA-CO-HQ-SECTION.1-UA.ARMY.MIL"/>
@@ -17983,6 +18674,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-UAV-CL-III-SECTION"/>
         <facet org_code="AGADC"/>
+        <facet subordinate_org_id="FTTS-U-SPT-0.UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-0.UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.UAV-CL-III-SECTION.NLOS-BN.1-UA.ARMY.MIL"/>
@@ -18080,6 +18775,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-UAV-SUSTAIN-MAINT-SECTION"/>
         <facet org_code="AHCCB"/>
+        <facet subordinate_org_id="FTTS-MS-0.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-1.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-2.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-3.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-4.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-5.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-6.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
+        <facet subordinate_org_id="FTTS-MS-7.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FTTS-MS-0.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL">
         <facet org_id="FTTS-MS-0.UAV-SUSTAIN-MAINT-SECTION.FSB.1-UA.ARMY.MIL"/>
