@@ -1,0 +1,50 @@
+This represents the first release of the ACME Scripting library.  This library must be installed 
+on all computers that will control Cougaar societies via ACME.  
+
+Linux Requirments:
+
+  Ruby 1.6.8 ( see http://www.ruby-lang.org )
+  MySQL Ruby extension ( see http://www.tmtm.org/en/mysql/ruby )
+
+Windows Requirements:
+
+  Ruby 1.6.8 Installer ( see http://rubyinstaller.sourceforge.net )
+
+Installation:
+
+To install this library change to the bin directory and run the install script-
+
+  cd bin
+  ruby install.rb 
+  
+Important Note: 
+
+This library does not have to be installed to be used.  If you have a directory where 
+you unpack the ACME overlay it creates a subdirectory 'csmart' which holds the 
+'acme_scripting' directory.  In that top level directory, if you created a Ruby script 
+that you wanted to reference these files from, you simply need to include the directory
+path in your Ruby library path:
+
+script.rb
+
+  $:.unshift 'csmart/acme_scripting/src/lib'
+  $:.unshift 'csmart/acme_service/src/redist'
+  
+  require 'cougaar/scripting'
+  require 'ultralog/scripting'
+  
+  ...
+  
+Files:
+
+  bin/install.rb - Install the ACME Scripting library in the site_ruby directory
+  bin/acme_doc.rb - Generate text documentation for States and Actions
+  bin/html_doc.rb - Generate html documentation for States and Actions
+  bin/install_lib - Install redistributed libraries in site_ruby directory
+  
+  regress/tutorial - Tutorial files
+  
+  src/lib/cougaar - Cougaar general scripting files
+  src/lib/ultralog - Ultralog-specific scripting files
+  src/lib/polaris - Polaris continuous-testing scripting files
+  
