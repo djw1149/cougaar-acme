@@ -34,6 +34,12 @@ class Integer
     return to_i*60*60+value
   end
   alias_method :hour, :hours
+  
+  def days(value=0)
+    return to_i*24*60*60+value
+  end
+  alias_method :day, :days
+  
 end
 
 require 'log4r'
