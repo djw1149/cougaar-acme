@@ -751,10 +751,10 @@ module Cougaar
         each_parameter do |param|
           xml << "      <vm_parameter>\n        #{param}\n      </vm_parameter>\n"
         end
-        each_agent {|agent| xml << agent.to_xml}
         @agent.each_component do |comp|
           xml << comp.to_xml(6)
         end
+        each_agent {|agent| xml << agent.to_xml}
         xml << "    </node>\n"
         return xml
       end
@@ -772,10 +772,10 @@ module Cougaar
         each_parameter do |param|
           ruby << "      node.add_parameter('#{param}')\n"
         end
-        each_agent {|agent| ruby << agent.to_ruby}
         @agent.each_component do |comp|
           ruby << comp.to_ruby(self, 6)
         end
+        each_agent {|agent| ruby << agent.to_ruby}
         ruby << "    end\n"
         ruby
       end
