@@ -17,8 +17,10 @@ module ACME
           run_log = @archive.files_with_name(/run\.log/)[0]
           if run_log
             times << RunTime.new(run_log.name)
-            @archive.get_prior_archives(60*60*24).each do |archive_name|
-              prior = @archive.open_prior_archive(archive_name)
+
+            group_pattern = Regexp.new("-#{@archive.group}-")
+            @archive.get_prior_archives(60*60*24, group_pattern).each do |prior_name|
+              prior = @archive.open_prior_archive(prior_name)
               run_log = prior.files_with_name(/run\.log/)[0]
               times << RunTime.new(run_log.name) if run_log
               prior.cleanup
