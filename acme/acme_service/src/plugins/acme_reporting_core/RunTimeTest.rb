@@ -21,11 +21,12 @@ module ACME
             runtime = @cm.load(@archive.base_name, RunTime) do |name|
               RunTime.new(run_log.name, name)
             end
-            times << runtime
+            times << runtime 
 
             group_pattern = Regexp.new("-#{@archive.group}-")
             @archive.get_prior_archives(60*60*24*365, group_pattern).each do |prior_name|
-              times << get_prior_data(prior_name)
+              old_data = get_prior_data(prior_name)
+              times << old_data unless old_data.nil?
             end
   
 
