@@ -308,7 +308,7 @@ module Cougaar
         loop = true
         while loop
           event = @run.get_next_event
-          if event.data.include?("Planning Complete")
+          if event != nil && event.data != nil && event.data.include?("Planning Complete")
             loop = false
           end
         end
@@ -346,7 +346,7 @@ module Cougaar
         loop = true
         while loop
           event = @run.get_next_event
-          if event.data.include?("Planning Active")
+          if event != nil && event.data != nil && event.data.include?("Planning Active")
             loop = false
           end
         end
