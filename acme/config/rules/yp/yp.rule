@@ -13,12 +13,24 @@ yp_client_component = "org.cougaar.yp.YPClientComponent"
 yp_server = "org.cougaar.yp.YPServer"
 publish_taxonomy = "org.cougaar.servicediscovery.util.yp.PublishTaxonomy"
 
+sca_supported_org_targets = Array.new
+
 society.each_agent do |agent|
-    agent.add_component do |c|
-      c.classname = yp_client_component
-	  c.insertionpoint = "Node.AgentManager.Agent.YPService"
-    end
-  if agent.has_facet?(:subordinate_org_id)
+  agent.add_component do |c|
+    c.classname = yp_client_component
+    c.insertionpoint = "Node.AgentManager.Agent.YPService"
+  end
+# Loop over each agent and collect the targets of the sca_supported_org facet  
+  agent.each_facet(:sca_supported_org) do |sca|
+    name = sca[:sca_supported_org].to_s
+    sca_supported_org_targets << name
+  end
+end
+
+# Now for each agent that is a target of the sca_supported_org,
+#  make sure it has the YPServer
+society.each_agent do |agent|
+  if sca_supported_org_targets.include?(agent.name)
     agent.add_component do |c|
       c.classname = yp_server
     end
@@ -27,3 +39,14 @@ society.each_agent do |agent|
     end
   end
 end
+
+
+#   if agent.has_facet?(:subordinate_org_id)
+#     agent.add_component do |c|
+#       c.classname = yp_server
+#     end
+#     agent.add_component do |c|
+#       c.classname = publish_taxonomy
+#     end
+#   end
+# end
