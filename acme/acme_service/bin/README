@@ -1,0 +1,4 @@
+install.rb : Install the acme service.  ruby install.rb --help
+
+acme : init.d script for RedHat linux.  cp acme /etc/init.d/acme
+                                        chkconfig --add acme
