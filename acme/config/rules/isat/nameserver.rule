@@ -1,21 +1,125 @@
-ns_node = nil
-some_node = nil
-society.each_node do |node|
-  node.each_facet(:role) do |facet|
-    ns_node = node if facet[:role]=='NameServer'
-  end
-  some_node = node
-end
 
-ns_node = some_node if !ns_node
+#
+# Find all hosts or agents with "NameServer" facets,
+# add the server component to the matching agents,
+# and set the server system properties in all nodes.
+#
 
-if ns_node
-  society.each_node do |node|
-    node.override_parameter("-Dorg.cougaar.name.server", "#{ns_node.host.host_name}:8888:5555")
-    if node==ns_node
-      node.override_parameter("-Dorg.cougaar.nameserver.auto", "true")
-    else
-      node.override_parameter("-Dorg.cougaar.nameserver.auto", "false")
+debug = false
+
+ns_facet = "NameServer"
+port = "8888"
+prop_server = "org.cougaar.name.server"
+
+# should we explicitly load the server on just the agents running
+# servers?  If false then all node-agents will load a server, which
+# is wasteful
+explicit_plugin=true
+plugin = "org.cougaar.core.wp.server.Server"
+ipoint = "Node.AgentManager.Agent.WPServer"
+prop_implicit_plugin = "org.cougaar.core.load.wp.server"
+
+# should we allow host-based servers?  this option will likely be
+# deprecated in the future
+allow_host_servers=true
+
+puts "finding facets" if debug
+
+# find all HNAs with the NameServer facet
+addrs = Array.new
+objs = Array.new if explicit_plugin
+if allow_host_servers
+  society.each_host do |host|
+    has_facet = false
+    host.each_facet(:role) do |facet|
+      if facet[:role] == ns_facet
+        has_facet = true
+        break
+      end
+    end
+    if has_facet
+      puts "adding host #{host.name}" if debug
+      objs.push(host) if explicit_plugin
+      addrs.push("#{host.name}:#{port}")
     end
   end
 end
+# can't use "each_agent(true)" due to ACME bug 13190
+society.each_node do |node|
+  has_facet = false
+  node.each_facet(:role) do |facet|
+    if facet[:role] == ns_facet
+      has_facet = true
+      break
+    end
+  end
+  if has_facet
+    objs.push(node.agent) if explicit_plugin
+  else 
+    next unless node.has_component?(plugin)
+  end
+  puts "adding node #{node.name} on #{node.host.name}" if debug
+  addrs.push("#{node.name}@#{node.host.name}:#{port}")
+end
+society.each_agent(false) do |agent|
+  has_facet = false
+  agent.each_facet(:role) do |facet|
+    if facet[:role] == ns_facet
+      has_facet = true
+      break
+    end
+  end
+  if has_facet
+    objs.push(agent) if explicit_plugin
+  else 
+    next unless agent.has_component?(plugin)
+  end
+  puts "adding agent #{agent.name} on #{agent.node.host.name}" if debug
+  addrs.push("#{agent.name}@#{agent.node.host.name}:#{port}")
+end
+
+puts "found servers[#{addrs.size}]=#{addrs}" if debug
+
+# add server components to the above hosts and agents
+#
+# this may change to set the servers as an argument, so we
+# do this in a separate loop
+if explicit_plugin
+  objs.each {|obj| 
+   if obj.kind_of? Agent
+     obj.add_component do |c|
+       c.classname = plugin
+       c.insertionpoint = ipoint
+     end
+   elsif obj.kind_of? Host
+     obj.each_node do |node|
+       node.add_component do |c|
+         c.classname = plugin
+         c.insertionpoint = ipoint
+      end
+     end
+   else 
+     raise "Invalid array object: #{obj}"
+   end
+  }
+end
+
+puts "adding properties" if debug
+
+# set the system properties in all nodes
+if !addrs.empty?
+  society.each_node do |node|
+    addrs.each_index {|idx| 
+      name = (idx == 0 ? "" : ".WP-#{idx+1}")
+      name = "-D#{prop_server}#{name}"
+      value = addrs[idx]
+      node.override_parameter(name, value)
+      puts "set #{node.name}  #{name}=#{value}" if debug
+    }
+    if explicit_plugin
+      node.override_parameter("-D#{prop_implicit_plugin}", "false")
+    end
+  end
+end
+
+puts "done with nameserver" if debug
