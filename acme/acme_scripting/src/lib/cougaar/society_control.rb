@@ -190,7 +190,8 @@ module Cougaar
 
       def advance_and_wait(time)
         @run.society.each_node do |node|
-          myuri = "http://#{node.host.uri_name}:#{@run.society.cougaar_port}/$#{node.name}/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
+          myuri = node.agent.uri+"/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
+          #myuri = "http://#{node.host.uri_name}:#{@run.society.cougaar_port}/$#{node.name}/timeControl?timeAdvance=#{time}&executionRate=#{@execution_rate}"
           puts "URI: #{myuri}" if @debug
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           puts data if @debug
