@@ -67,7 +67,7 @@ module ACME
         @archive.add_report("Q", @plugin.plugin_configuration.name) do |report|
           run_log = @archive.files_with_name(/run\.log/)[0]
           if (run_log) then
-            @run_times = RunTime.new(run_log.name)
+            @run_times = RunTime.new(run_log.name, @archive.base_name)
             quiescence_files = @archive.files_with_description(/Log4j node log/)
             data = get_quiescence_times(quiescence_files)
             status = analyze(data)
@@ -136,6 +136,7 @@ module ACME
       def get_run_stages
         stages = @run_times.headers
         stages -= ["Total", "Load Time"]
+	stages -= ["Start Time"] unless @run_times.type == "Persistence"
         return stages
       end
 
