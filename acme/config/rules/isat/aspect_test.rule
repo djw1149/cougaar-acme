@@ -1,4 +1,0 @@
-
-society.each_node do |node|
-  node.override_parameter("-Dorg.cougaar.message.transport.aspects","org.cougaar.core.mts.DeliveryVerificationAspect")
-end
