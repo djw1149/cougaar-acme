@@ -52,7 +52,9 @@ society.each_agent do |agent|
 # or if it is the strat_trans_role with a mechanism of "PassThrough"
   provided_roles.each do |my_role, m_e| 
     if supply_roles.include?(my_role) && (m_e[0] != "TerminalInventoryManager" && m_e[0] != "TerminalAmmunitionPacker")
-      required_roles << my_role
+      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }      
+	required_roles << my_role
+      end
     end
     if my_role == strat_trans_role && m_e[0] == "PassThrough"
       required_roles << my_role
@@ -77,7 +79,9 @@ society.each_agent do |agent|
 #
 # Add the required supply role if the org is a UA agent
   if agent.get_facet(:is_ua)
-    required_roles << "FuelSupplyProvider"
+    unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }      
+      required_roles << "FuelSupplyProvider" 
+    end
   end
 #
 # Add the required strat_trans_role if the agent is deployable with either equipment or personnel
