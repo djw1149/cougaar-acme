@@ -201,6 +201,8 @@ module Cougaar
     end
   
     def self.enable_logging
+      return if ExperimentDefinition.debug?
+      
       monitor = ExperimentMonitor.new
       
       def monitor.on_experiment_begin(experiment)
