@@ -31,7 +31,7 @@ module Cougaar
         ::UltraLog::DataGrabber.new(@host).new_run
       end
     end
-    class RunDatagrabber < Cougaar::Action
+    class ConnectToDatagrabber < Cougaar::Action
       def initialize(run, host, &block)
         super(run)
         @host = host
