@@ -2,5 +2,5 @@
 properties: ~
 "|": 
   - experiment_path: "./experiments"
-  - queue_status: disabled
+  - queue_status: enabled
   - log: "./scheduler.log"
