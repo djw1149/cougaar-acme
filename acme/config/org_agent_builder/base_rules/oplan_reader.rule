@@ -13,7 +13,7 @@ society.each_agent do |agent|
     # UA agents need different .q file to get
     # different OrgActivityQueryHandler
     if agent.get_facet(:is_ua)
-      c.add_argument("ua_oplan.q")
+      c.add_argument("ua.oplan.q")
     end
   end
 end
