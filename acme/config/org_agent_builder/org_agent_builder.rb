@@ -171,17 +171,21 @@ class SocietyGenerator
   def initialize  
     @organizations = Hash.new
     @org_id_list = Array.new
+    @org_data_directory = nil
     @society_member_file = nil
     @society_member_list = Array.new
     @society_file = nil
-    opts = GetoptLong.new( [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
+    opts = GetoptLong.new( [ '--org-data-directory', '-d', GetoptLong::OPTIONAL_ARGUMENT],
+                           [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
                            [ '--society',  '-s', GetoptLong::OPTIONAL_ARGUMENT],
 						   [ '--help',    '-h', GetoptLong::NO_ARGUMENT])
 
     opts.each do |opt, arg|
       case opt
+      when '--org-data-directory'
+        @org_data_directory = arg
       when '--society-member'
-        @society_member_file = "org_data/" + arg
+        @society_member_file = arg
       when '--society'
         @society_file = arg
       when '--help'
@@ -190,7 +194,10 @@ class SocietyGenerator
       end
     end
 
+    @org_data_directory = 'org_data' unless @org_data_directory               # org_data is the default for @org_data_directory
+
     if @society_member_file
+      @society_member_file = @org_data_directory + '/' + @society_member_file # Look in org_data_directory for society_member_file
       unless File.exist?(@society_member_file)
         raise "Cannot find Society member input file: #{@society_member_file}"
         exit
@@ -208,19 +215,21 @@ class SocietyGenerator
   end
   
   def help
-    puts "Reads org_data/org_attribute.csv, org_data/org_hierarchy.csv, org_data/org_role.csv, and org_data/org_sca.csv and writes society.xml"
-    puts "If society_member_file is specified, just the orgs in org_data/@society_member_file are included in the society."
+    puts "Reads OrgData/org_attribute.csv, OrgData/org_hierarchy.csv, OrgData/org_role.csv, and OrgData/org_sca.csv and writes society.xml"
+    puts "If the OrgData directory is not specified, the directory org_data/ is used."
+    puts "If society_member_file is specified, just the orgs in OrgData/society_member_file.csv are included in the society."
     puts "If output file is specified society.xml is written there, otherwise society.xml is written to stdout."
     puts "Usage:\n\t#$0 [-m <society member file>] [-s <society file>] [-h]"
-    puts "\t-m --society-member..  The SocietyMember file (.csv)."
-    puts "\t-s --society.........  The society file (.xml)."
-    puts "\t-h --help............  Prints this help message."
+    puts "\t-d --org-data-directory..  The OrgData directory (org_data)."
+    puts "\t-m --society-member......  The SocietyMember file (.csv)."
+    puts "\t-s --society.............  The society file (.xml)."
+    puts "\t-h --help................  Prints this help message."
   end
-  
+
   def parse
     header = nil
     first = true                                # Process org_attribute.csv
-    CSV.open('org_data/org_attribute.csv',"r") do |row|
+    CSV.open("#{@org_data_directory}/org_attribute.csv","r") do |row|
       if first
         header = CSVHeader.new(row)
         first = false
@@ -265,7 +274,7 @@ class SocietyGenerator
     # @organizations.delete_if { |org_id, org| !@society_member_list.include?(org_id) } # Don't do it this way
 
     first = true                                # Process org_hierarchy.csv
-    CSV.open('org_data/org_hierarchy.csv',"r") do |row|
+    CSV.open("#{@org_data_directory}/org_hierarchy.csv","r") do |row|
       if first
         header = CSVHeader.new(row)
         first = false
@@ -287,7 +296,7 @@ class SocietyGenerator
     end
     
     first = true                                # Process org_role.csv
-    CSV.open('org_data/org_role.csv',"r") do |row|
+    CSV.open("#{@org_data_directory}/org_role.csv","r") do |row|
       if first
         header = CSVHeader.new(row)
         first = false
@@ -301,7 +310,7 @@ class SocietyGenerator
     end
     
     first = true                                # Process org_sca.csv (Support Command Assignments)
-    CSV.open('org_data/org_sca.csv',"r") do |row|
+    CSV.open("#{@org_data_directory}/org_sca.csv","r") do |row|
       if first
         header = CSVHeader.new(row)
         first = false
