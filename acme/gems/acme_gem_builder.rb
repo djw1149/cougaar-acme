@@ -175,3 +175,6 @@ spec = Gem::Specification.new do |s|
 end
 
 Gem::Builder.new(spec).build
+
+FileUtils.rm_rf("lib") if File.exist?("lib")
+FileUtils.rm_rf("bin") if File.exist?("bin")
