@@ -79,12 +79,14 @@ public class MemoryWasterPlugin
 				}
 				
 				String logEnabled = request.getParameter("log");
-				if (logEnabled.equals("enable")) {
-					plugin.doLog = true;	
-				} else if (logEnabled.equals("disable")) {
-					plugin.doLog = false;
+				if (logEnabled != null) {
+					if (logEnabled.equals("enable")) {
+						plugin.doLog = true;	
+					} else if (logEnabled.equals("disable")) {
+						plugin.doLog = false;
+					}
 				}
-								
+							
 				PrintWriter out = response.getWriter();
 				out.println("<?xml version=\"1.0\"?>");
 				
