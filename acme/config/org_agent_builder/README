@@ -1,1 +1,23 @@
-This directory holds organization-agent builder code
+This directory holds organization-agent builder code as well as the scripts
+to generate new configurations.
+
+The basic scripts are:
+- create-ul-dist.sh                ;; Creates ALL of the 1AD societies.
+- create-ua-dist.sh	           ;; Creates ALL of the UA societies.
+- gen-merged-facets-xml.sh         ;; Generates a merged facets file based on the given parameters. 
+- gen-plugins-xml.sh               ;; Generates a new society configuration based on a given facets file.
+- make-facet-societies.sh          ;; Generates ALL of the 1AD facets from the CSV files.
+- make-merged-facets-societies.sh  ;; Generates ALL of the common merged facet societies.  
+
+The basic 1AD Societies (in 1ad) are:
+ - TINY-TRANS
+ - TINY-TRANS-STUB
+ - SMALL-TRANS
+ - SMALL-TRANS-STUB
+ - FULL-TRANS
+ - FULL-TRANS-STUB
+
+The base UA Societies (in 1ua) are:
+ - 17a12v     
+ - 160a237v
+ - 14a0v
