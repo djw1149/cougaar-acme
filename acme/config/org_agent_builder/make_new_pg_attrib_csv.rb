@@ -120,7 +120,7 @@ class Make_NewPG
                           [ '--new-pg-attr', '-p', GetoptLong::REQUIRED_ARGUMENT],
                           [ '--new-lib-organization', '-l', GetoptLong::REQUIRED_ARGUMENT],
                           [ '--strip-headers', '-s', GetoptLong::NO_ARGUMENT],
-                          [ '--full-org-id', '-f', GetoptLong::OPTIONAL_ARGUMENT],
+                          [ '--orig-org-id', '-o', GetoptLong::NO_ARGUMENT],
                           [ '--help', '-h', GetoptLong::NO_ARGUMENT])
 
     opts.each do |opt, arg|
@@ -132,9 +132,9 @@ class Make_NewPG
       when '--new-lib-organization'
         @new_lib_org_csv = arg
       when '--strip-headers'
-        @strip = (arg != 'true')
-      when '--full-org-id'
-        @use_full_org_id = (arg != 'false')        # use_full_org_id is true unless arg is false
+        @strip = true
+      when '--orig-org-id'
+	@use_full_org_id = false
       when '--help'
         help
         exit 0
