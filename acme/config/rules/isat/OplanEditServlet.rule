@@ -1,9 +1,0 @@
-####################################################
-# Rule to insert Oplan Edit Servlet to NCA
-# plugin = org.cougaar.logistics.servlet.OplanEditServlet  
-
-oplan_edit_servlet = "org.cougaar.logistics.servlet.OplanEditServlet"
-
-   society.agents["NCA"].add_component do |c|
-      c.classname = oplan_edit_servlet
-end

@@ -11,7 +11,7 @@ exclude_array = %w{ TRANSCOM GlobalAir PlanePacker GlobalSea ShipPacker TheaterG
                                 ChallengeMsgRover ChallengeMsgRoverController }
 
 society.each_node do |node|
-  node.override_parameter("org.cougaar.core.logging.log4j.appender.A4.File", "/tmp/#{node.name}.CnCcalclog")
+  node.override_parameter("org.cougaar.core.logging.log4j.appender.A4.File", "$COUGAAR_INSTALL_PATH/workspace/log4jlogs/#{node.name}.CnCcalclog")
   node.override_parameter("com.stdc.CnCcalc.config.filename", "CnCcalc.props")
 end
 
@@ -20,12 +20,12 @@ society.each_agent do |agent|
     break
   end
   excluded = false
-  exclude_array.each { |excluded_agent|
+  exclude_array.each do |excluded_agent|
     if agent.name == excluded_agent
       excluded = true
       break
     end
-  }
+  end
   unless excluded 
     agent.add_component do |c|
       c.classname = cnc_calc_plugin

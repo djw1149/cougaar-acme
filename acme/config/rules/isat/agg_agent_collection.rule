@@ -16,8 +16,8 @@ aggregation_component = "org.cougaar.lib.aggagent.servlet.AggregationComponent"
 aggregation_keepalive_component = "org.cougaar.lib.aggagent.servlet.AggregationKeepAliveComponent"
 
 # put it on NCA node if it's there, otherwise CONUS node
-:x
-node = society.nodes["CONUS-NODE"] unless node != nil
+
+node = society.agents["NCA"].node
 
 node.add_agent("AGG-Agent") do |agent|
   agent.add_component do |c|
