@@ -26,10 +26,17 @@ module Cougaar
         rules.each do |rule_file|
           File.open(rule_file) do |file|
             rule = file.read
-            instance_eval %Q(
-              add_rule('#{rule_file}') do |rule, society|
-              #{rule}
-              end)
+            begin
+              instance_eval %Q(
+                add_rule('#{rule_file}') do |rule, society|
+                #{rule}
+                end)
+            rescue
+              puts "Error loading rule #{rule_file}"
+              puts $!
+              puts $!.backtrace
+              exit
+            end
           end
         end
       end
@@ -67,7 +74,14 @@ module Cougaar
         @rule = proc
       end
       def execute(society)
-        @rule.call(self, society)
+        begin
+          @rule.call(self, society)
+        rescue
+          puts "Error executing rule #{@name}"
+          puts $!
+          puts $!.backtrace
+          exit
+        end
       end
     end
     
