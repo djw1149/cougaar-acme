@@ -210,12 +210,15 @@ module Cougaar
             if host.has_facet?(:group)
               target_host = hostgroups[host.get_facet(:group)].shift
               #puts "Group #{host.get_facet(:group)} has #{hostgroups[host.get_facet(:group)].size} hosts left"
+              unless target_host
+                raise "Not enough hosts in #{@host_file} for group #{host.get_facet(:group)} in the society layout file #{@layout_file}"
+              end
             else
               target_host = hostgroups[:ungrouped].shift
               #puts "Group ungrouped has #{hostgroups[:ungrouped].size} hosts left"
-            end
-            unless target_host
-              raise "Not enough hosts in #{@host_file} for group #{host.get_facet(:group)} in the society layout file #{@layout_file}"
+              unless target_host
+                raise "Not enough hosts in #{@host_file} for ungrouped in the society layout file #{@layout_file}"
+              end
             end
           else
             target_host = host
