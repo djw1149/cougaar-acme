@@ -19,8 +19,6 @@
 # </copyright>
 #
 
-require 'mysql'
-
 module Cougaar
   module CSmart
 
@@ -201,38 +199,43 @@ module Cougaar
   end # CSmart
 end # Cougaar
 
-module Cougaar
-  module Actions
-    class LoadSocietyFromCSmart < Cougaar::Action
-      RESULTANT_STATE = "SocietyLoaded"
-      def to_s
-        return super.to_s + "('#{@csmart_experiment}', '#{@csmart_host}', '#{@csmart_username}', '#{@csmart_pwd}', '#{@csmart_db}')"
-      end
-      def initialize(run, experiment_name, host, username, pwd, db)
-        super(run)
-        @csmart_experiment = experiment_name
-        @csmart_host = host
-        @csmart_username = username
-        @csmart_pwd = pwd
-        @csmart_db = db
-      end
-      def perform
-        begin
-          csmart = CSmart::Database.connect(@csmart_host, @csmart_username, @csmart_pwd, @csmart_db)
-        rescue
-          raise_failure "Could not connect to CSmart: #{@csmart_username}:#{@csmart_pwd}@#{@csmart_host}/#{@csmart_db}", $!
+
+begin
+  require 'mysql'
+  module Cougaar
+    module Actions
+      class LoadSocietyFromCSmart < Cougaar::Action
+        RESULTANT_STATE = "SocietyLoaded"
+        def to_s
+          return super.to_s + "('#{@csmart_experiment}', '#{@csmart_host}', '#{@csmart_username}', '#{@csmart_pwd}', '#{@csmart_db}')"
         end
-        society = nil
-        csmart.each_experiment do |expt|
-          society = csmart.build_society(@csmart_experiment) if expt.name==@csmart_experiment
+        def initialize(run, experiment_name, host, username, pwd, db)
+          super(run)
+          @csmart_experiment = experiment_name
+          @csmart_host = host
+          @csmart_username = username
+          @csmart_pwd = pwd
+          @csmart_db = db
         end
-        unless society
-          raise_failure "Could not locate CSmart experiment: #{@csmart_experiment}"
+        def perform
+          begin
+            csmart = CSmart::Database.connect(@csmart_host, @csmart_username, @csmart_pwd, @csmart_db)
+          rescue
+            raise_failure "Could not connect to CSmart: #{@csmart_username}:#{@csmart_pwd}@#{@csmart_host}/#{@csmart_db}", $!
+          end
+          society = nil
+          csmart.each_experiment do |expt|
+            society = csmart.build_society(@csmart_experiment) if expt.name==@csmart_experiment
+          end
+          unless society
+            raise_failure "Could not locate CSmart experiment: #{@csmart_experiment}"
+          end
+          @run.society = society
+          @run["loader"] = "DB"
         end
-        @run.society = society
-				@run["loader"] = "DB"
       end
     end
   end
+rescue 
+  puts "LoadSocietyFromCSmart was not loaded because mysql extension not found"
 end
-
