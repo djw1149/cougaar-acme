@@ -1,0 +1,16 @@
+# Configure nodes and agents for the TIC environment
+society.each_node do |node|
+
+    #Java Virtual Machine Parameters
+
+    if (node.agents.size == 1) && (node.agents[0].get_facet(:echelon_group) != 'Transcom')
+      node.replace_parameter(/\-Xms/, "-Xms256m")
+      node.replace_parameter(/\-Xmx/, "-Xmx256m")
+    else
+      node.replace_parameter(/\-Xms/, "-Xms768m")
+      node.replace_parameter(/\-Xmx/, "-Xmx1536m")
+    end
+
+    node.replace_parameter(/\-XX\:ThreadStackSize/, "-XX:ThreadStackSize=256")
+
+end
