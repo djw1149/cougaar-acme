@@ -49,20 +49,12 @@ module UltraLog
           Cougaar::Communications::HTTP.authenticate_request(req)
           @gls_connection.request(req) do |resp|
             return connect(resp['location']) if resp.code=='302'
+            @can_get_oplan = true
+            @gls_connected = true
             resp.read_body do |data|
-	      @gls_connected = true
               data.each_line do |line|
                 puts "DATA: #{line.strip}" if $COUGAAR_DEBUG
                 case line.strip
-                when /^<oplan name=.* id=[0-9A-F]*>/
-                  match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
-                  @oplan_name = match[1]
-                  @oplan_id = match[2]
-                when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]*>/
-                  match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*)>/.match(data)
-                  @oplan_name = match[1]
-                  @oplan_id = match[2]
-                  @c0_date = match[3]
                 when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]* nextStage=.* stageDesc=.*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*) nextStage=(.*) stageDesc=.*>/.match(data)
                   @oplan_name = match[1]
@@ -81,8 +73,6 @@ module UltraLog
                     @next_stage = match[4]
                     @stages << @next_stage
                   end
-                when /^<GLS .*>/
-                  @can_get_oplan = true
                 end
               end
             end
@@ -131,49 +121,6 @@ end
 
 module Cougaar  
   module States
-  
-    class OPlanReady < Cougaar::State
-      DEFAULT_TIMEOUT = 30.minutes
-      PRIOR_STATES = ["SocietyRunning"]
-      DOCUMENTATION = Cougaar.document {
-        @description = "Waits for the OPlan ready Cougaar Event."
-        @parameters = [
-          {:timeout => "default=nil, Amount of time to wait in seconds."},
-          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
-        ]
-        @example = "
-          wait_for 'OPlanReady', 2.hours do
-            puts 'Did not get OPlanReady!!!'
-            do_action 'StopSociety'
-            do_action 'StopCommunications'
-          end
-        "
-      }
-      def initialize(run, timeout=nil, &block)
-        super(run, timeout, &block)
-      end
-      
-      def process
-        loop = true
-        while loop
-          event = @run.get_next_event
-          if event.event_type=="STATUS" && event.cluster_identifier=="NCA" && event.component=="OPlanDetector"
-            loop = false
-          end
-        end
-        gls_client = ::UltraLog::GLSClient.new(run)
-        @run['gls_client'] = gls_client
-#        until gls_client.can_get_oplan?
-        until gls_client.gls_connected?
-          sleep 2
-        end
-      end
-      
-      def unhandled_timeout
-        @run.do_action "StopSociety" 
-        @run.do_action "StopCommunications"
-      end
-    end
 
     class GLSConnection < Cougaar::State
       DEFAULT_TIMEOUT = 30.minutes
@@ -209,8 +156,7 @@ module Cougaar
         end
         gls_client = ::UltraLog::GLSClient.new(run)
         @run['gls_client'] = gls_client
-#        until gls_client.can_get_oplan?
-        until gls_client.gls_connected?
+        until gls_client.can_get_oplan?
           sleep 2
         end
         begin
@@ -252,42 +198,6 @@ module Cougaar
       
       def unhandled_timeout
         @run.do_action "StopSociety" 
-        @run.do_action "StopCommunications"
-      end
-    end
-    
-    class GLSReady < Cougaar::State
-      DEFAULT_TIMEOUT = 30.minutes
-      PRIOR_STATES = ["OPlanSent"]
-      DOCUMENTATION = Cougaar.document {
-        @description = "DEPRECATED: Waits for the GLS ready Cougaar Event."
-        @parameters = [
-          {:timeout => "default=nil, Amount of time to wait in seconds."},
-          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications)"}
-        ]
-      }
-      
-      def initialize(run, timeout=nil, &block)
-        super(run, timeout, &block)
-      end
-      
-      def process
-        puts "WARNING: This state is deprecated."
-        #loop = true
-        #while loop
-        #  event = @run.get_next_event
-        #  if event.event_type=="STATUS" && event.cluster_identifier=="5-CORPS" && event.component=="OPlanDetector"
-        #    loop = false
-        #  end
-        #end
-        #gls_client = @run['gls_client']
-        #until gls_client.gls_connected?
-        #  sleep 2
-        #end
-      end
-      
-      def unhandled_timeout
-        @run.do_action "StopSociety"
         @run.do_action "StopCommunications"
       end
     end
