@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<society name='sv4-hosts' 
+  xmlns:xsi='http:/www.w3.org/2001/XMLSchema-instance'
+  xsi:noNamespaceSchemaLocation='http:/www.cougaar.org/2003/society.xsd'>
+ 
+  <host name='sv007'>
+    <facet service="NFS"/>
+    <facet service="SMTP"/>
+    <facet service="Jabber"/>
+  </host>
+  <host name='sv107'>
+    <facet service="Operator"/>
+  </host>
+  <host name='sv108'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv109'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv110'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv111'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv112'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv113'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv114'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv115'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv116'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv117'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv118'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv119'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv120'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv121'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv122'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv123'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv124'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv125'>
+    <facet service="ACME"/>
+  </host>
+  <host name='sv048'>
+    <facet service="ACME"/>
+  </host>
+</society>
