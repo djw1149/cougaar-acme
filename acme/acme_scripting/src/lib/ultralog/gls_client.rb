@@ -51,15 +51,11 @@ module UltraLog
             #puts "#{resp.code} #{resp.message}"
             return connect(resp['location']) if resp.code=='302'
             @gls_connected = true
-# WARNING:  Calling "info_message" while Polaris is attached may cause
-# GLS Client to die.
-###	    @run.info_message "Set gls_connected"
+	    @run.info_message "Set gls_connected"
             resp.read_body do |data|
               #puts "DATA: #{CGI.escape(data)}"
               data.each_line do |line|
-# WARNING:  Calling "info_message" while Polaris is attached may cause
-# GLS Client to die.
-###                @run.info_message "DATA: #{CGI.escape(line.strip)}" if $COUGAAR_DEBUG_GLS
+                @run.info_message "DATA: #{CGI.escape(line.strip)}" if $COUGAAR_DEBUG_GLS
                 case line.strip
                 when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]* nextStage=.* stageDesc=.*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*) nextStage=(.*) stageDesc=.*>/.match(data)
@@ -80,23 +76,17 @@ module UltraLog
                     @stages << @next_stage
                   end
                 end # end while block
-# WARNING:  Calling "info_message" while Polaris is attached may cause
-# GLS Client to die.
-###		@run.info_message "Finishing each_line block"
+		@run.info_message "Finishing each_line block"
               end # end each_line handle
 
 	      # Mark this after we've processed the return data to avoid
 	      # threading issues
 	      unless @can_get_oplan
 		@can_get_oplan = true
-# WARNING:  Calling "info_message" while Polaris is attached may cause
-# GLS Client to die.
-###		@run.info_message "Set can_get_oplan"
+		@run.info_message "Set can_get_oplan"
 	      end
 
-# WARNING:  Calling "info_message" while Polaris is attached may cause
-# GLS Client to die.
-###	      @run.info_message "Finishing read_body block"
+	      @run.info_message "Finishing read_body block"
             end # end response.read_body block
 	    # I believe we never get here!
           end # end req.resp
@@ -170,7 +160,7 @@ module Cougaar
         if @await_oplan
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
-###          @run.info_message "Waiting for OPlan Cougaar Event"
+          @run.info_message "Waiting for OPlan Cougaar Event"
           loop = true
           while loop
             event = @run.get_next_event
@@ -180,7 +170,7 @@ module Cougaar
           end
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
-###	  @run.info_message "Got OPlan Cougaar Event"
+	  @run.info_message "Got OPlan Cougaar Event"
         end
 
         gls_client = ::UltraLog::GLSClient.new(run)
@@ -189,7 +179,7 @@ module Cougaar
 	# Wait for the gls_client to get fully connected
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
-###	@run.info_message "Waiting for can_get_oplan" unless gls_client.can_get_oplan?
+	@run.info_message "Waiting for can_get_oplan" unless gls_client.can_get_oplan?
 	
         until gls_client.can_get_oplan?
           sleep 2
@@ -200,7 +190,7 @@ module Cougaar
 	if (gls_client.c0_date==nil)
 # WARNING:  Calling "info_message" while Polaris is attached may cause
 # GLS Client to die.
-###	  @run.info_message "Fetching Oplan from DB"
+	  @run.info_message "Fetching Oplan from DB"
 	  begin
 	    result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
 	    @run.error_message "Error getting OPlan Info" unless result
