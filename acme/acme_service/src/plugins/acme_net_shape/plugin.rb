@@ -18,7 +18,7 @@ class Interface
 
   def rate
     rate_RE = /rate (\S*)/
-    qdisc = `/sbin/tc qdisc show dev eth0`
+    qdisc = `/sbin/tc qdisc show dev #{@name}`
 
     rate_match = rate_RE.match( qdisc )
     
@@ -110,6 +110,9 @@ class Shaper
          when /iperf\((.*)\)/
           plugin['log/info'] << "Measuring bandwidth to host #{$1}" 
           reply = "#{do_iperf($1)}"
+         when /nslookup\((.*)\)/
+          plugin['log/info'] << "Looking up #{$1}"
+          reply = `nslookup #{$1} -silent | grep Address | grep -v \\# | cut -d: -f2`.strip!
          else 
            reply = "#{cmd} unknown-#{command}"
        end
@@ -121,7 +124,7 @@ class Shaper
       ifs = @interfaces[interface]
 
       do_unshape( interface ) unless ifs.rate.nil?
-      `/sbin/tc qdisc add dev #{interface} root handle 1:0 tbf limit #{bandwidth} rate #{bandwidth} burst 1k`
+      `/sbin/tc qdisc add dev #{interface} root handle 1:0 tbf limit #{bandwidth} rate #{bandwidth} burst 15k`
   end 
 
   def do_unshape( interface )
@@ -160,7 +163,7 @@ class Shaper
 
   def reset
     plugin['log/info'] << "Resetting Network Interfaces at ACME shutdown" 
-    @plugin.properties["interfaces"].each { |iface|
+    @interfaces.each_value { |iface|
       plugin['log/info'] << "Resetting: #{iface}" 
       do_reset( iface )
     }
