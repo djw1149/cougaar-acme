@@ -1,0 +1,12 @@
+##############################
+# modifies the default gc parameters
+
+
+society.each_host do |host|
+    host.each_node do |node|
+      node.override_parameter("-Dsun.rmi.dgc.client.gcInterval","3600000")
+      node.override_parameter("-Dsun.rmi.dgc.server.gcInterval","3600000")
+      node.override_parameter("-Dorg.cougaar.util.GC.minGCInterval","60000")
+    end
+end
+
