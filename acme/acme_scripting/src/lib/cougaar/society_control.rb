@@ -40,15 +40,15 @@ module Cougaar
           node_type = "xml_"
           @run.society.each_active_host do |host|
             host.each_node do |node|
+              node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
+              node.add_parameter("-Dorg.cougaar.event.port=5300")
+              node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
               post_node_xml(node)
             end
           end
         end
         @run.society.each_active_host do |host|
           host.each_node do |node|
-            node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
-            node.add_parameter("-Dorg.cougaar.event.port=5300")
-            node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
 						if xml_model
 						  msg_body = launch_xml_node(node)
 						else
