@@ -30,10 +30,6 @@ society.each_agent do |agent|
       c.add_argument("ItemIdentificationPG:AlternateItemIdentification:String:OrgCode/#{org_code}")
       c.add_argument("TypeIdentificationPG:TypeIdentification:String:UAType/#{org_type_id}")
       c.add_argument("TypeIdentificationPG:Nomenclature:String:#{org_type_id}")
-
-      # Not sure what this value should be.....
-      c.add_argument("TypeIdentificationPG:AlternateTypeIdentification:String:FIXME")
-
       c.add_argument("MilitaryOrgPG:HomeLocation:queryGeolocLocation:#{home_location}")
       c.add_argument("MilitaryOrgPG:UTC:String:#{org_type_id}")
       c.add_argument("MilitaryOrgPG:UIC:String:#{org_code}")
