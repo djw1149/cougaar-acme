@@ -28,7 +28,7 @@ module UltraLog
     def initialize(run)
       @run = run
       @gls_connected = false
-      @can_send_oplan = false
+      @can_get_oplan = false
       @oplan_name = nil
       @oplan_id = nil
       @c0_date=nil
@@ -50,6 +50,7 @@ module UltraLog
           @gls_connection.request(req) do |resp|
             return connect(resp['location']) if resp.code=='302'
             resp.read_body do |data|
+	      @gls_connected = true
               data.each_line do |line|
                 puts "DATA: #{line.strip}" if $COUGAAR_DEBUG
                 case line.strip
@@ -57,13 +58,20 @@ module UltraLog
                   match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
                   @oplan_name = match[1]
                   @oplan_id = match[2]
-                  @gls_connected = true
                 when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*)>/.match(data)
                   @oplan_name = match[1]
                   @oplan_id = match[2]
                   @c0_date = match[3]
-                  @gls_connected = true
+                when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]* nextStage=.* stageDesc=.*>/
+                  match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*) nextStage=(.*) stageDesc=.*>/.match(data)
+                  @oplan_name = match[1]
+                  @oplan_id = match[2]
+                  @c0_date = match[3]
+                  unless match[4]==@next_stage
+                    @next_stage = match[4]
+                    @stages << @next_stage
+                  end
                 when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]* nextStage=.*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*) nextStage=(.*)>/.match(data)
                   @oplan_name = match[1]
@@ -74,7 +82,7 @@ module UltraLog
                     @stages << @next_stage
                   end
                 when /^<GLS .*>/
-                  @can_send_oplan = true
+                  @can_get_oplan = true
                 end
               end
             end
@@ -99,8 +107,8 @@ module UltraLog
       result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{@oplan_id}&c0_date=#{@c0_date}")
     end
 
-    def can_send_oplan?
-      @can_send_oplan
+    def can_get_oplan?
+      @can_get_oplan
     end
     
     def gls_connected?
@@ -155,7 +163,8 @@ module Cougaar
         end
         gls_client = ::UltraLog::GLSClient.new(run)
         @run['gls_client'] = gls_client
-        until gls_client.can_send_oplan?
+#        until gls_client.can_get_oplan?
+        until gls_client.gls_connected?
           sleep 2
         end
       end
@@ -200,12 +209,13 @@ module Cougaar
         end
         gls_client = ::UltraLog::GLSClient.new(run)
         @run['gls_client'] = gls_client
-        until gls_client.can_send_oplan?
+#        until gls_client.can_get_oplan?
+        until gls_client.gls_connected?
           sleep 2
         end
         begin
           result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
-          raise_failure "Error sending OPlan" unless result
+          raise_failure "Error getting OPlan Info" unless result
         rescue
           puts $!
           puts $!.backtrace.join
