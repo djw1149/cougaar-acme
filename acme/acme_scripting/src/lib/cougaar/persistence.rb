@@ -19,6 +19,7 @@ module Cougaar
       def perform()
         `cd #{ENV['CIP']}/workspace;rm -rf P;rm -rf security`
         `cd #{ENV['CIP']}/workspace;tar -xzf #{@filename}`
+        `cp #{ENV['CIP']}/workspace/P/securityservices_config.jar #{ENV['CIP']}/configs/security/securityservices_config.jar`
         begin
           builder = Cougaar::SocietyBuilder.from_ruby_file("#{ENV['CIP']}/workspace/P/society.rb")
         rescue
@@ -34,6 +35,7 @@ module Cougaar
         @run.society.communities = Cougaar::Model::Communities.from_xml_file(@run.society, "#{ENV['CIP']}/workspace/P/communities.xml")
         `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
         `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
+        `rm -rf #{ENV['CIP']}/workspace/P/securityservices_config.jar`
 				@run["loader"] = "XML"
       end
       
@@ -116,9 +118,11 @@ module Cougaar
           File.open("#{ENV['CIP']}/workspace/P/communities.xml", "w") do |file|
             file.puts @run.society.communities.to_xml
           end
+          `cp #{ENV['CIP']}/configs/security/securityservices_config.jar #{ENV['CIP']}/workspace/P/securityservices_config.jar`
           `cd #{ENV['CIP']}/workspace; tar -czf #{@filename} P security`
           `rm -rf #{ENV['CIP']}/workspace/P/society.rb`
           `rm -rf #{ENV['CIP']}/workspace/P/communities.xml`
+          `rm -rf #{ENV['CIP']}/workspace/P/securityservices_config.jar`
         rescue
           @run.error_message "Error saving persistence snapshot to #{@filename}."
           @run.error_message $!
