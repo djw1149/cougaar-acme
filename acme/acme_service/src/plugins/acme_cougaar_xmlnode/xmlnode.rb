@@ -158,7 +158,7 @@ class XMLCougaarNode
       message.reply.set_body(txt).send
     end
     
-    # Mount handler for receiving file via HTTP
+    # Mount handler for receiving xml node file via HTTP
     @plugin['/protocols/http/xmlnode'].set_proc do |request, response|
       if request.request_method=="POST"
         filename = makeFileName(request.path[9..-1])
@@ -174,6 +174,26 @@ class XMLCougaarNode
         File.chmod(0644, filename)
       else
         response.body = "<html>XMLNode File upload only responds to HTTP POST.</html>"
+        response['Content-Type'] = "text/html"
+      end
+    end
+    
+    # Mount handler for receiving communities xml file via HTTP
+    @plugin['/protocols/http/communities'].set_proc do |request, response|
+      if request.request_method=="POST"
+        filename = File.join(@plugin['/cougaar/config'].manager.cougaar_install_path, "configs", "common", "communities.xml")
+        #search and replace $COUGAAR_INSTALL_PATH
+        data = request.body
+        data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
+
+        File.open(filename, "w") do |file|
+          file.write(data)
+          response.body = "Communities.xml file written."
+          response['Content-Type'] = "text/plain"
+        end
+        File.chmod(0644, filename)
+      else
+        response.body = "<html>Communities.xml File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
       end
     end
