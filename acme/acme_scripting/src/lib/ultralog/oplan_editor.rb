@@ -130,7 +130,7 @@ module UltraLog
     # Class to hold the organization data required by editOplan servlet.
     #
     class OrganizationData
-        attr_reader :oplan, :host, :port, :uri_frag
+        attr_reader :oplan, :host, :port, :uri_frag, :uri
         attr_accessor :org_name, :org_activities
 
         ##
@@ -176,7 +176,7 @@ module UltraLog
 
                 activity_list = []
                 org_activity_data.each do |item|
-                    activity_list << OrgActivity.new(org, *item) 
+                    activity_list << OrgActivity.new(self, *item) 
                 end
 
                 if activity_list.size==3
@@ -258,8 +258,8 @@ module UltraLog
         # end_offset:: [Integer | String] new end_offset
         #
         def save (op_tempo, start_offset, end_offset)
-            host = @organization.oplan.host
-            port = @organization.oplan.port
+            host = @organization.host
+            port = @organization.port
 
             unless op_tempo == nil
                 unless OrgActivity.is_optempo_valid?(op_tempo)
