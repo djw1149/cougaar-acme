@@ -6,8 +6,8 @@
 universal_allocator_plugin = "org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin"
 
 society.each_agent do |agent|
-  agent.each_facet(:role) do |facet|
-    if agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
+  agent.each_facet(:role) do |facet| 
+    if  facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler')
       agent.add_component do |c|
 	c.classname = universal_allocator_plugin
 	c.add_argument('-ProjectSupply')
