@@ -1,0 +1,450 @@
+####################################################
+# certificate_authorities.rule
+
+CaServletComponent = "org.cougaar.core.security.certauthority.CaServletComponent"
+index = "org.cougaar.core.security.certauthority.servlet.Index"
+caIndex = "/CA/Index"
+browser = "org.cougaar.core.security.certauthority.servlet.Browser"
+caBrowser = "/CA/Browser"
+main = "org.cougaar.core.security.certauthority.servlet.Main"
+caMain = "/CA/Main"
+keyMgt = "org.cougaar.core.security.certauthority.servlet.CaKeyManagement"
+caKeyMgt = "/CA/CaKeyManagement"
+certDetailsServlet = "org.cougaar.core.security.certauthority.servlet.CertificateDetailsServlet"
+caCertDetailsServlet = "/CA/CertificateDetailsServlet"
+downloadCertServlet = "org.cougaar.core.security.certauthority.servlet.DownloadCertificateServlet"
+caDownloadCertServlet = "/CA/DownloadCertificateServlet"
+certList = "org.cougaar.core.security.certauthority.servlet.CertificateList"
+caCertList = "/CA/CertificateList"
+certSigningReq = "org.cougaar.core.security.certauthority.servlet.CertificateSigningRequest"
+caCertSigningReq = "/CA/CertificateSigningRequest"
+browserSigningReq = "org.cougaar.core.security.certauthority.servlet.BrowserSigningRequest"
+caBrowserSigningReq = "/CA/BrowserSigningRequest"
+pendingCertDetailsServlet = "org.cougaar.core.security.certauthority.servlet.PendingCertDetailsServlet"
+caPendingCertDetailsServlet = "/CA/PendingCertDetailsServlet"
+pendingCertServlet = "org.cougaar.core.security.certauthority.servlet.PendingCertificateServlet"
+caPendingCertServlet = "/CA/PendingCertificateServlet"
+processPendingCertServlet = "org.cougaar.core.security.certauthority.servlet.ProcessPendingCertServlet"
+caProcessPendingCertServlet"/CA/ProcessPendingCertServlet"
+revokeCertServlet = "org.cougaar.core.security.certauthority.servlet.RevokeCertificateServlet"
+caRevokeCertServlet = "/CA/RevokeCertificateServlet"
+createCaKeyServlet = "org.cougaar.core.security.certauthority.servlet.CreateCaKeyServlet"
+caCreateCaKeyServlet = "/CA/CreateCaKeyServlet"
+listCaKeysServlet = "org.cougaar.core.security.certauthority.servlet.ListCaKeysServlet"
+caListCaKeysServlet = "/CA/ListCaKeysServlet"
+infoServlet = "org.cougaar.core.security.certauthority.servlet.CAInfoServlet"
+caInfoServlet = "/CA/CAInfoServlet"
+ 
+node = nil
+society.each_node {|n| node = n}
+node.add_agent("Enclave1CA") do |agent|
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(index)
+    c.add_argument(caIndex)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browser)
+    c.add_argument(caBrowser)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(main)
+    c.add_argument(caMain)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(keyMgt)
+    c.add_argument(caKeyMgt)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certDetailsServlet)
+    c.add_argument(caCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(downloadCertServlet)
+    c.add_argument(caDownloadCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certList)
+    c.add_argument(caCertList)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certSigningReq)
+    c.add_argument(caCertSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browserSigningReq)
+    c.add_argument(caBrowserSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertDetailsServlet)
+    c.add_argument(caPendingCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertServlet)
+    c.add_argument(caPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(processPendingCertServlet)
+    c.add_argument(caProcessPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(revokeCertServlet)
+    c.add_argument(caRevokeCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(createCaKeyServlet)
+    c.add_argument(caCreateCaKeyServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(listCaKeysServlet)
+    c.add_argument(caListCaKeysServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(infoServlet)
+    c.add_argument(caInfoServlet)
+  end
+end
+node.add_agent("Enclave2CA") do |agent|
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(index)
+    c.add_argument(caIndex)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browser)
+    c.add_argument(caBrowser)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(main)
+    c.add_argument(caMain)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(keyMgt)
+    c.add_argument(caKeyMgt)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certDetailsServlet)
+    c.add_argument(caCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(downloadCertServlet)
+    c.add_argument(caDownloadCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certList)
+    c.add_argument(caCertList)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certSigningReq)
+    c.add_argument(caCertSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browserSigningReq)
+    c.add_argument(caBrowserSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertDetailsServlet)
+    c.add_argument(caPendingCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertServlet)
+    c.add_argument(caPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(processPendingCertServlet)
+    c.add_argument(caProcessPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(revokeCertServlet)
+    c.add_argument(caRevokeCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(createCaKeyServlet)
+    c.add_argument(caCreateCaKeyServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(listCaKeysServlet)
+    c.add_argument(caListCaKeysServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(infoServlet)
+    c.add_argument(caInfoServlet)
+  end
+end
+node.add_agent("Enclave3CA") do |agent|
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(index)
+    c.add_argument(caIndex)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browser)
+    c.add_argument(caBrowser)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(main)
+    c.add_argument(caMain)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(keyMgt)
+    c.add_argument(caKeyMgt)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certDetailsServlet)
+    c.add_argument(caCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(downloadCertServlet)
+    c.add_argument(caDownloadCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certList)
+    c.add_argument(caCertList)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certSigningReq)
+    c.add_argument(caCertSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browserSigningReq)
+    c.add_argument(caBrowserSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertDetailsServlet)
+    c.add_argument(caPendingCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertServlet)
+    c.add_argument(caPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(processPendingCertServlet)
+    c.add_argument(caProcessPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(revokeCertServlet)
+    c.add_argument(caRevokeCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(createCaKeyServlet)
+    c.add_argument(caCreateCaKeyServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(listCaKeysServlet)
+    c.add_argument(caListCaKeysServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(infoServlet)
+    c.add_argument(caInfoServlet)
+  end
+end
+node.add_agent("Enclave4CA") do |agent|
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(index)
+    c.add_argument(caIndex)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browser)
+    c.add_argument(caBrowser)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(main)
+    c.add_argument(caMain)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(keyMgt)
+    c.add_argument(caKeyMgt)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certDetailsServlet)
+    c.add_argument(caCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(downloadCertServlet)
+    c.add_argument(caDownloadCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certList)
+    c.add_argument(caCertList)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certSigningReq)
+    c.add_argument(caCertSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browserSigningReq)
+    c.add_argument(caBrowserSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertDetailsServlet)
+    c.add_argument(caPendingCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertServlet)
+    c.add_argument(caPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(processPendingCertServlet)
+    c.add_argument(caProcessPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(revokeCertServlet)
+    c.add_argument(caRevokeCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(createCaKeyServlet)
+    c.add_argument(caCreateCaKeyServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(listCaKeysServlet)
+    c.add_argument(caListCaKeysServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(infoServlet)
+    c.add_argument(caInfoServlet)
+  end
+end
+node.add_agent("RootCA") do |agent|
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(index)
+    c.add_argument(caIndex)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browser)
+    c.add_argument(caBrowser)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(main)
+    c.add_argument(caMain)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(keyMgt)
+    c.add_argument(caKeyMgt)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certDetailsServlet)
+    c.add_argument(caCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(downloadCertServlet)
+    c.add_argument(caDownloadCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certList)
+    c.add_argument(caCertList)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(certSigningReq)
+    c.add_argument(caCertSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(browserSigningReq)
+    c.add_argument(caBrowserSigningReq)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertDetailsServlet)
+    c.add_argument(caPendingCertDetailsServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(pendingCertServlet)
+    c.add_argument(caPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(processPendingCertServlet)
+    c.add_argument(caProcessPendingCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(revokeCertServlet)
+    c.add_argument(caRevokeCertServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(createCaKeyServlet)
+    c.add_argument(caCreateCaKeyServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(listCaKeysServlet)
+    c.add_argument(caListCaKeysServlet)
+  end
+  agent.add_component do |c|
+    c.classname = CaServletComponent
+    c.add_argument(infoServlet)
+    c.add_argument(caInfoServlet)
+  end
+end
+
