@@ -20,30 +20,34 @@
 #
 
 $:.unshift "../src/lib"
-$:.unshift "../../acme_service/src/redist"
+#$:.unshift "../../acme_service/src/redist"
 
 require 'cougaar/scripting'
 require 'ultralog/scripting'
 
 Cougaar::ExperimentMonitor.enable_stdout
 
-Cougaar.new_experiment("MyExperiment").run {
-  do_action "LoadSocietyFromCSmart", "FULL-1AD-TRANS-DEFAULT", "u052", "society_config", "s0c0nfig", "asmt02"
+Cougaar.new_experiment("RichKilmer").run {
+  do_action "LoadSocietyFromCSmart", "SMALL-1AD-TRANS-Small2", "u021", "society_config", "s0c0nfig", "integ102"
   do_action "StartJabberCommunications"
   do_action "VerifyHosts"
   #
-  do_action "ConnectOperatorService"
-  do_action "ClearPersistenceAndLogs"
+  #do_action "ConnectOperatorService"
+  #do_action "ClearPersistenceAndLogs"
   #
   do_action "StartSociety"
   #
   wait_for  "OPlanReady"
   do_action "SendOPlan"
   wait_for  "GLSReady"
+  do_action "GenericAction" do
+    puts "Sleeping for 20 seconds"
+    sleep 20.seconds
+  end
   do_action "PublishGLSRoot"
   wait_for  "PlanningComplete"
   #
-  wait_for  "Command", "shutdown"
+  #wait_for  "Command", "shutdown"
   do_action "StopSociety"
   do_action "StopCommunications"
 }

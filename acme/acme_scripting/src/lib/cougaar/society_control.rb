@@ -80,7 +80,7 @@ module Cougaar
           end
         end
         node_society.remove_all_facets
-        result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:8484/xmlnode/#{node.name}.rb", node_society.to_ruby, "x-application/ruby")
+        result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:9444/xmlnode/#{node.name}.rb", node_society.to_ruby, "x-application/ruby")
         puts result if @debug
       end
     end
