@@ -35,6 +35,10 @@ module Cougaar
       def perform
         pids = {}
         xml_model = @run["loader"] == "XML"
+        node_type = ""
+        if xml_model
+          node_type = "xml_"
+        end
         @run.society.each_active_host do |host|
           host.each_node do |node|
             node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
@@ -45,8 +49,8 @@ module Cougaar
 						else
 						  msg_body = launch_db_node(node)
 						end
-		        puts "Sending message to #{host.name} -- [command[start_node]#{msg_body}] \n" if @debug
-            result = @run.comms.new_message(host).set_body("command[start_node]#{msg_body}").request(120)
+		        puts "Sending message to #{host.name} -- [command[start_#{node_type}node]#{msg_body}] \n" if @debug
+            result = @run.comms.new_message(host).set_body("command[start_#{node_type}node]#{msg_body}").request(120)
             if result.nil?
               raise_failure "Could not start node #{node.name} on host #{host.host_name}"
             end
@@ -97,11 +101,15 @@ module Cougaar
 	    #node.add_parameter("-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=9001,suspend=n")
 	    #node.add_parameter("-Dorg.cougaar.nameserver.verbosity=2")
 		
-	    node_society = Cougaar::Model::Society.new("society-for-#{node.name}")
-	    node_host = Cougaar::Model::Host.new(node.host.name)
-	    node_host.add_node(node)
-	    node_society.add_host(node_host)
-
+	    #node_society = Cougaar::Model::Society.new("society-for-#{node.name}")
+	    #node_host = Cougaar::Model::Host.new(node.host.name)
+	    #node_host.add_node(node)
+	    #node_society.add_host(node_host)
+      node_society = Cougaar::Model::Society.new( "society-for-#{node.name}" ) do |society|
+        society.add_host( node.host.name ) do |host|
+          host.add_node( node.clone(host) )
+        end
+      end
       cfg = ConfigServer.new(node_society.to_xml, @debug)
 			ipinfo = Socket.getaddrinfo(Socket.gethostname(), cfg.port)
 			ipaddr = ipinfo[0][3] # gets IP address
@@ -118,10 +126,15 @@ module Cougaar
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = "SocietyStopped"
       def perform
+        xml_model = @run["loader"] == "XML"
+        node_type = ""
+        if xml_model
+          node_type = "xml_"
+        end
         pids = @run['pids']
         @run.society.each_host do |host|
           host.each_node do |node|
-            result = @run.comms.new_message(host).set_body("command[stop_node]#{pids[node.name]}").request(60)
+            result = @run.comms.new_message(host).set_body("command[stop_#{node_type}node]#{pids[node.name]}").request(60)
             if result.nil?
               raise_failure "Could not stop node #{node.name}(#{pids[node.name]}) on host #{host.host_name}"
             end
