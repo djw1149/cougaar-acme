@@ -80,86 +80,6 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-ARV-R-0">
-        <facet org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-ARV-R-0"/>
-        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-ARV-R"/>
-        <facet vin="0"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDB"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-0">
-        <facet org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-0"/>
-        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="0"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDB"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-1">
-        <facet org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-1"/>
-        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="1"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDB"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-2">
-        <facet org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-2"/>
-        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="2"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDB"/>
-      </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="102-POL-SUPPLYCO.16-CSG.5-CORPS.ARMY.MIL">
         <facet org_id="102-POL-SUPPLYCO.16-CSG.5-CORPS.ARMY.MIL"/>
         <facet orig_org_id="102-POL-SUPPLYCO"/>
@@ -394,86 +314,6 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-ARV-R-0">
-        <facet org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-ARV-R-0"/>
-        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-ARV-R"/>
-        <facet vin="0"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDC"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-0">
-        <facet org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-0"/>
-        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="0"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDC"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-1">
-        <facet org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-1"/>
-        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="1"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDC"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-2">
-        <facet org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-2"/>
-        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="2"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDC"/>
-      </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="200-MMC.21-TSC.ARMY.MIL">
         <facet org_id="200-MMC.21-TSC.ARMY.MIL"/>
         <facet orig_org_id="200-MMC"/>
@@ -623,86 +463,6 @@
         <facet has_physical_assets="T"/>
         <facet has_equipment_assets="T"/>
         <facet has_personnel_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDD"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-ARV-R-0">
-        <facet org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-ARV-R-0"/>
-        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-ARV-R"/>
-        <facet vin="0"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDD"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-0">
-        <facet org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-0"/>
-        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="0"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDD"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-1">
-        <facet org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-1"/>
-        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="1"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
-        <facet service="Army"/>
-        <facet agency="FORSCOM"/>
-        <facet org_type_id="CA-BN-MCS-PLT"/>
-        <facet org_code="ACDD"/>
-      </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-2">
-        <facet org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL-FCS-MCS-2"/>
-        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
-        <facet equip_type_id="FCS-MCS"/>
-        <facet vin="2"/>
-        <facet home_location="TYFV"/>
-        <facet combat_support="CBT"/>
-        <facet echelon="PLATOON"/>
-        <facet echelon_group="Brigade"/>
-        <facet is_deployable="T"/>
-        <facet is_ua="T"/>
-        <facet has_physical_assets="T"/>
-        <facet has_equipment_assets="T"/>
         <facet service="Army"/>
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
@@ -1379,6 +1139,246 @@
         <facet echelon_group="Transcom"/>
         <facet echelon_of_support="JOINT" mechanism="ModeSelector" role="EuroStrategicTransportationProvider"/>
         <facet sca_echelon_of_support="" sca_supported_org="EuroTRANSCOM.TRANSCOM.MIL"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-ARV-R-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-ARV-R"/>
+        <facet vin="0"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDB"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-ARV-R-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-ARV-R"/>
+        <facet vin="0"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDC"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-ARV-R-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-ARV-R-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-ARV-R"/>
+        <facet vin="0"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-0.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="0"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDB"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-0.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="0"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDC"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-0.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="0"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-1.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-1.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="1"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDB"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-1.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-1.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="1"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDC"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-1.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-1.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="1"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDD"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-2.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-2.1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="1-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="2"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDB"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-2.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-2.2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="2-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="2"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDC"/>
+      </agent>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="FCS-MCS-2.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL">
+        <facet org_id="FCS-MCS-2.3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet orig_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet superior_org_id="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet owner="3-PLT.MCSCO-A.1-CABN.1-UA.ARMY.MIL"/>
+        <facet equip_type_id="FCS-MCS"/>
+        <facet vin="2"/>
+        <facet home_location="TYFV"/>
+        <facet combat_support="CBT"/>
+        <facet echelon="PLATOON"/>
+        <facet echelon_group="Brigade"/>
+        <facet is_deployable="T"/>
+        <facet is_ua="T"/>
+        <facet has_physical_assets="T"/>
+        <facet has_equipment_assets="T"/>
+        <facet service="Army"/>
+        <facet agency="FORSCOM"/>
+        <facet org_type_id="CA-BN-MCS-PLT"/>
+        <facet org_code="ACDD"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FORSCOM.MIL">
         <facet org_id="FORSCOM.MIL"/>
