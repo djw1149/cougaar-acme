@@ -415,17 +415,16 @@ module Cougaar
         require 'optparse'
 
         options = {}
-        ARGV.options do |opts|
-          opts.on_tail("--help", "show this message") {puts opts; exit}
-          opts.on('--schedule', "installation directory for the Gem") {|options[:schedule]|}
-          opts.on('--priority=PRIORITY', "Priority (1=high, 2=normal, 3=low)") {|options[:priority]|}
-          opts.on('--host=HOST', "host to schedule on, default 'localhost'") {|options[:host]|}
-          opts.on('--baseline', "overrides the type of run as a baseline run") {|options[:baseline]|}
-          opts.on('--stressed', "overrides the type of run as a stressed run") {|options[:stressed]|}
-          opts.on('--group=GROUP', "override the group id from the command line") {|options[:group]|}
-          opts.on('--debug', "output a  list of actions and states based on included subscripts") {|options[:debug]|}
-          opts.parse!
-        end
+        opts = ARGV.options
+        opts.on_tail("--help", "show this message") {puts opts; exit}
+        opts.on('--schedule', "installation directory for the Gem") {|options[:schedule]|}
+        opts.on('--priority=PRIORITY', "Priority (1=high, 2=normal, 3=low)") {|options[:priority]|}
+        opts.on('--host=HOST', "host to schedule on, default 'localhost'") {|options[:host]|}
+        opts.on('--baseline', "overrides the type of run as a baseline run") {|options[:baseline]|}
+        opts.on('--stressed', "overrides the type of run as a stressed run") {|options[:stressed]|}
+        opts.on('--group=GROUP', "override the group id from the command line") {|options[:group]|}
+        opts.on('--debug', "output a  list of actions and states based on included subscripts") {|options[:debug]|}
+        opts.parse!
 
         schedule = options[:schedule]
         host = options[:host] || 'localhost'
