@@ -577,7 +577,7 @@ module Cougaar
       # return:: [Cougaar::Host] The newly cloned host
       #
       def clone(society)
-        host = Host.new(@name, @enclave)
+        host = Host.new(@name)
         host.society = society
         each_node { |node| host.add_node(node.clone(host)) }
         each_facet { |facet| host.add_facet(facet.clone) }
