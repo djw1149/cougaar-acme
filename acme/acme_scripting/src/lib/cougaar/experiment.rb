@@ -1392,6 +1392,10 @@ module Cougaar
         @description = description
       end
       
+      def to_s
+        return super.to_s + "(#{@directory}, #{@pattern})"
+      end
+
       def perform
         @run.archive_file(Proc.new { Dir.glob(File.expand_path(File.join(@directory, @pattern))) },  @description)
       end
