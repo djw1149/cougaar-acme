@@ -113,7 +113,7 @@ module UltraLog
     
     def query_defaults
       value = /VALUE="(\w+)"/
-      data = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/$#{@agent}/stimulator", 300)
+      data = Cougaar::Communications::HTTP.get("#{@uri}/stimulator", 300)
       raise "Unable to query default values in GLMStimulator" unless data
       values = data[0].scan(value)
       @numberOfBatches = values[0][0].to_i
