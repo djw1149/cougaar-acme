@@ -1,0 +1,8 @@
+####################################################
+# Rule to insert MTS watcher plugin
+
+society.each_node_agent do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = "org.cougaar.core.thread.TopPlugin"
+  end
+end
