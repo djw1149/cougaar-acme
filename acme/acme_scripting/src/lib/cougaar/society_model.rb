@@ -340,7 +340,7 @@ module Cougaar
       def clone
         host = Host.new(@name)
         each_node { |node| host.add_node(node.clone) }
-        each_attribute { |attribute| host.add_attribute(attribute) }
+        each_attribute { |attribute| host.add_attribute(attribute.clone) }
         host
       end
       
@@ -538,7 +538,7 @@ module Cougaar
       def clone
         node = Node.new(@name)
         each_agent {|agent| node.add_agent agent.clone}
-        each_attribute { |attribute| node.add_attribute(attribute) }
+        each_attribute { |attribute| node.add_attribute(attribute.clone) }
         node.parameters.concat @parameters
         node.env_parameters.concat @env_parameters
         node.prog_parameters.concat @prog_parameters
@@ -673,7 +673,7 @@ module Cougaar
         agent.cloned = @cloned
         agent.uic = @uic
         agent.add_components @components.collect {|component| component.clone}
-        each_attribute { |attribute| agent.add_attribute(attribute) }
+        each_attribute { |attribute| agent.add_attribute(attribute.clone) }
         agent
       end
       
