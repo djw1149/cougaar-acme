@@ -351,6 +351,7 @@ module UltraLog
       soc_status = "COMPLETE"
       if @society.num_agents(true) > comp.size
         soc_status = "INCOMPLETE"
+        ::Cougaar.logger.info "Quiescence incomplete because not all agents have reported" if @debug
       else
         # before doing the exhaustive check, see if every node is currently
         # reporting quiescence (will be nil if not).  Since this is reported at
@@ -358,6 +359,7 @@ module UltraLog
         @society.each_node_agent do |node|
           if !comp[node.name]
             soc_status = "INCOMPLETE"
+            ::Cougaar.logger.info "Quiescence incomplete because #{node.name} is not quiescent" if @debug
             break
           end
         end
@@ -367,6 +369,9 @@ module UltraLog
             agentHash["receivers"].each do |destAgent, msg|
               if (destMsg = comp[destAgent]["senders"][agent.name]) && destMsg != msg
                 soc_status = "INCOMPLETE"
+                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
+                ::Cougaar.logger.info "   src message for #{agent.name} (#{destMsg}) != " if @debug
+                ::Cougaar.logger.info "       dest message for #{destAgent} (#{msg})" if @debug
                 break
               end
             end
@@ -375,6 +380,9 @@ module UltraLog
             agentHash["senders"].each do |srcAgent, msg|
               if (srcMsg = comp[srcAgent]["receivers"][agent.name]) && srcMsg != msg
                 soc_status = "INCOMPLETE"
+                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
+                ::Cougaar.logger.info "   dest message for #{agent.name} (#{srcMsg}) != " if @debug
+                ::Cougaar.logger.info "       src message for #{srcAgent} (#{msg})" if @debug
                 break
               end
             end
@@ -385,6 +393,7 @@ module UltraLog
       unless @society_status == soc_status
         @society_status = soc_status
         puts "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
+        ::Cougaar.logger.info "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
         print_current_comp(comp) if @debug
       end
     end
