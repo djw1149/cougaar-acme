@@ -277,7 +277,7 @@ module Cougaar
     STOPPED = 1
     STARTED = 2
     
-    attr_reader :experiment, :count, :sequence, :name, :comms
+    attr_reader :experiment, :count, :sequence, :name, :comms, :include_args
     attr_accessor :society
     
     def initialize(multirun, count)
@@ -290,6 +290,7 @@ module Cougaar
       @properties = {}
       @name = "#{@experiment.name}-#{count+1}of#{@multirun.run_count}"
       @event_queue = CougaarEventQueue.new
+      @include_args = []
     end
     
     def comms=(comms)
@@ -323,6 +324,14 @@ module Cougaar
     def do_action(action_name, *args, &block)
       action = Cougaar::Actions[action_name]
       action.new(self, *args, &block)
+    end
+    
+    def include(file, *include_args)
+      @include_args = include_args
+      File.open(file, "r") do |f|
+        instance_eval f.read
+      end
+      @include_args = []
     end
     
     def continue
