@@ -60,7 +60,13 @@ module FreeBASE
       num = 0
       while num < @load_list.size
         plugin = @load_list[num]
-        plugin.instance.load
+        begin
+          plugin.instance.load
+        rescue
+          puts "Exception loading plugin #{plugin.name} at #{Time.now}"
+          puts $!
+          puts $!.backtrace.join("\n")
+        end
         if plugin.instance.state != LOADED
           fail_load_dependencies(plugin)
           fail_start_dependencies(plugin)
@@ -77,7 +83,13 @@ module FreeBASE
       num = 0
       while num < @start_list.size
         plugin = @start_list[num]
-        plugin.instance.start
+        begin
+          plugin.instance.start
+        rescue
+          puts "Exception starting plugin #{plugin.name} at #{Time.now}"
+          puts $!
+          puts $!.backtrace.join("\n")
+        end
         if plugin.instance.state != RUNNING
           fail_start_dependencies(plugin)
         else
@@ -91,7 +103,13 @@ module FreeBASE
     #
     def stop_plugins
       @start_list.reverse.each do |plugin|
-        plugin.instance.stop
+        begin
+          plugin.instance.stop
+        rescue
+          puts "Exception stopping plugin #{plugin.name} at #{Time.now}"
+          puts $!
+          puts $!.backtrace.join("\n")
+        end
       end
     end
     
@@ -100,7 +118,13 @@ module FreeBASE
     #
     def unload_plugins
       @load_list.reverse.each do |plugin|
-        plugin.instance.unload
+        begin
+          plugin.instance.unload
+        rescue
+          puts "Exception unloading plugin #{plugin.name} at #{Time.now}"
+          puts $!
+          puts $!.backtrace.join("\n")
+        end
       end
     end
     
