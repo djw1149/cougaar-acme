@@ -111,12 +111,11 @@ module Cougaar
         end
       end
       cfg = ConfigServer.new(node_society.to_xml, @debug)
-			ipinfo = Socket.getaddrinfo(Socket.gethostname(), cfg.port)
-			ipaddr = ipinfo[0][3] # gets IP address
+			ipaddr = IPSocket.getaddress(Socket.gethostname())
 			text = "#{Socket.gethostname()}:#{cfg.port}\n"
 
       # Use this line if the nodes can't DNS back to the script (DHCP)
-      #text = "#{ipaddr}:#{cfg.port}\n"
+      text = "#{ipaddr}:#{cfg.port}\n"
 
 			return text
 		end
