@@ -86,7 +86,7 @@ module Cougaar
       }
       
       def initialize(run, server=nil, port=nil) 
-        require 'message_router'
+        require 'cougaar/message_router'
         super(run)
         @server = server
         @port = port
