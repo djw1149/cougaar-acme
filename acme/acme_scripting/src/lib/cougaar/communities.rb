@@ -143,6 +143,14 @@ module Cougaar
           @society = society
           @entities = []
           @attributes = []
+          @subcommunities = []
+        end
+
+        def add_subcommunity(name)
+          @subcommunities.each {|community| return if community.name==name}
+          community = Community.new(name, @society)
+          yield community
+          @subcommunities << community
         end
         
         def add_attribute(id, value)
@@ -170,16 +178,23 @@ module Cougaar
           @attributes.each { |attr| yield attr[0], attr[1] }
         end
         
-        def to_xml(xml = nil)
+        def each_subcommunity
+          @subcommunities.each { |comm| yield comm }
+        end
+        
+        def to_xml(xml = nil, indent = 2)
           xml ||= []
-          xml << "  <Community Name='#{@name}' >"
+          xml << " "*indent+"<Community Name='#{@name}' >"
           each_attribute do |id, value|
-            xml << "    <Attribute ID='#{id}' Value='#{value}' />"
+            xml << " "*indent+"  <Attribute ID='#{id}' Value='#{value}' />"
           end
           each do |entity|
-            entity.to_xml(xml)
+            entity.to_xml(xml, indent+2)
           end
-          xml << "  </Community>"
+          each_subcommunity do |community|
+            community.to_xml(xml, indent+2)
+          end
+          xml << " "*indent+"</Community>"
           xml.to_s
         end
         
@@ -263,17 +278,17 @@ module Cougaar
             @attributes.each { |attr| yield attr[0], attr[1] }
           end
           
-          def to_xml(xml=nil)
+          def to_xml(xml=nil, indent = 0)
             xml ||= []
-            xml << "    <Entity Name='#{@name}' >"
-            xml << "      <Attribute ID='EntityType' Value='#{@entity_type}' />"
+            xml << " "*indent+"<Entity Name='#{@name}' >"
+            xml << " "*indent+"  <Attribute ID='EntityType' Value='#{@entity_type}' />"
             @roles.each do |role|
-              xml << "      <Attribute ID='Role' Value='#{role}' />"
+              xml << " "*indent+"  <Attribute ID='Role' Value='#{role}' />"
             end
             each_attribute do |id, value|
-              xml << "      <Attribute ID='#{id}' Value='#{value}' />"
+              xml << " "*indent+"  <Attribute ID='#{id}' Value='#{value}' />"
             end
-            xml << "    </Entity>"
+            xml << " "*indent+"</Entity>"
             xml.to_s
           end
           
