@@ -89,6 +89,9 @@ module Cougaar
         else
           @run.do_action "StartJabberCommunications"
         end
+        @run.add_to_interrupt_stack do 
+          do_action "StopCommunications"
+        end
       end
     end
   

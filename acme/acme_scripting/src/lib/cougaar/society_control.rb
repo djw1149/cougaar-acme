@@ -479,6 +479,9 @@ module Cougaar
       def perform
         @run['node_controller'].add_cougaar_event_params
         @run['node_controller'].start_all_nodes(self)
+        @run.add_to_interrupt_stack do 
+          do_action "StopSociety"
+        end
       end
     end
 

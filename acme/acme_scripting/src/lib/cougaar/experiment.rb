@@ -581,7 +581,7 @@ module Cougaar
     STOPPED = 1
     STARTED = 2
     
-    attr_reader :experiment, :count, :sequence, :name, :comms, :archive_entries
+    attr_reader :experiment, :count, :sequence, :name, :comms, :archive_entries, :interrupt_stack
     attr_accessor :society
     
     
@@ -598,11 +598,22 @@ module Cougaar
       @on_archive_block = block
     end
     
+    def add_to_interrupt_stack(&block)
+      @interrupt_stack.push block
+    end
+    
+    def process_interrupt_stack
+      while block=@interrupt_stack.pop
+        instance_eval &block
+      end
+    end
+    
     def initialize(multirun, count)
+      @interrupt_stack = []
       @count = count
       @multirun = multirun
       @experiment = multirun.experiment
-      @sequence = Cougaar::Sequence.new
+      @sequence = Cougaar::Sequence.new(self)
       @stop_listeners = []
       @state = STOPPED
       @properties = {}
@@ -849,7 +860,8 @@ module Cougaar
     attr_accessor :definitions, :tag
     attr_reader :insert_index
     
-    def initialize
+    def initialize(run)
+      @run = run
       @definitions = []
       @current_definition = 0
       @started = false
@@ -982,18 +994,25 @@ module Cougaar
             last_state.untimed_process
           end
           ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
-        else
+        else # Action
           ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], true)) if ExperimentMonitor.active?
+          trap("SIGINT") {
+            interrupt
+            @run.process_interrupt_stack
+            @run.interrupt
+          }
           begin
             @definitions[@current_definition].perform
           rescue ActionFailure => failure
             ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{failure}"))
             interrupt
+            @run.process_interrupt_stack
           rescue Exception => exception
             ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Exception received in #{@definitions[@current_definition].class}'s perform method"))
             ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception}"))
             ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{exception.backtrace.join("\n")}"))
             interrupt
+            @run.process_interrupt_stack
           ensure
             ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
           end
