@@ -445,7 +445,7 @@ class XMLCougaarNode
       @xml_cougaar_node.jabber.connection.send(iq)
     end
 
-    def start(script_name)
+    def start #(script_name)
       @status = STARTING
       cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments.join(' ')} >& #{@config_mgr.cougaar_install_path}/workspace/nodelogs/#{@name}.log")
       # wwright: use the line below to allow stdio to go to message clients 
@@ -456,7 +456,9 @@ class XMLCougaarNode
 
       @mproc = MonitoredProcess.new(cmd)
       @mproc.addStdioListener(self)
-      @mproc.start do 
+      @mproc.start 
+=begin
+      do 
         # called on process death
         if @status == RUNNING
           event = Cougaar::CougaarEvent.new
@@ -468,7 +470,7 @@ class XMLCougaarNode
           @event_queue << event
         end
       end
-
+=end
 			@pid = @mproc.pid.to_s
       if @pid == ''
         @society.each_host do |host|
