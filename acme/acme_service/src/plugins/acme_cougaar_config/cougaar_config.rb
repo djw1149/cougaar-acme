@@ -114,11 +114,19 @@ class CougaarConfig
     if @cougaar_install_path.nil? || @cougaar_install_path==""
       if @cmd_user!=nil && @cmd_user!=""
         @cougaar_install_path = `su -l -c 'echo $COUGAAR_INSTALL_PATH' #{@cmd_user}`.strip
+        @plugin.log_info << "Using COUGAAR_INSTALL_PATH from user #{@cmd_user}"
       else
         @cougaar_install_path = ENV['COUGAAR_INSTALL_PATH']
+        @plugin.log_info << "Using COUGAAR_INSTALL_PATH from environment"
       end
-      @cougaar_install_path = "" unless @cougaar_install_path
+      unless @cougaar_install_path
+        @cougaar_install_path = ""
+        @plugin.log_error << "Unknown COUGAAR_INSTALL_PATH, set it in the environment or properties.yaml file"
+      end
+    else
+      @plugin.log_info << "Using COUGAAR_INSTALL_PATH from properties.yaml file"
     end
+    @plugin.log_info << "COUGAAR_INSTALL_PATH=#{@cougaar_install_path}"
     if @jvm_path.nil? || @jvm_path==""
       @jvm_path = "java"
     end
