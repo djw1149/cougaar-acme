@@ -56,7 +56,7 @@ class ReportingService
     archive.compress_reports
     data = File.read(File.join(@temp_path, "reports.tgz"))
     Net::HTTP.start(@report_host_name, @report_host_port) do |http|
-      response = http.post("/post_report/#{@society_name}/#{archive.base_name}", 
+      response = http.post("/post_report.rb?/#{@society_name}/#{archive.base_name}", 
                  data, 
                  {'content-type'=>'application/octet-stream'})
       result = response.read_body
