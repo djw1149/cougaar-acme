@@ -118,18 +118,25 @@ module Cougaar
       @society = Model::Society.new(doc.root.attributes['name']) do |society|
         @doc.elements.each("society/host") do |host_element|
           society.add_host(host_element.attributes['name']) do |host|
+            host_element.elements.each("attribute") do |element|
+              host.add_attribute(element.text.strip)
+            end
             host_element.elements.each("node") do |node_element|
               host.add_node(node_element.attributes['name']) do |node|
-              
-                #add parameters to node
-                element = node_element.elements["prog_parameter"]
-                node.prog_parameter = element.text.strip if element
-                element = node_element.elements["env_parameter"]
-                node.env_parameter = element.text.strip if element
                 element = node_element.elements["class"]
                 node.classname = element.text.strip if element
+                node_element.elements.each("attribute") do |element|
+                  node.add_attribute(element.text.strip)
+                end
+                #add parameters to node
                 node_element.elements.each("vm_parameter") do |element|
                   node.add_parameter(element.text.strip)
+                end
+                node_element.elements.each("env_parameter") do |element|
+                  node.add_env_parameter(element.text.strip)
+                end
+                node_element.elements.each("prog_parameter") do |element|
+                  node.add_prog_parameter(element.text.strip)
                 end
                 
                 #add componenets to node
@@ -151,6 +158,9 @@ module Cougaar
                 node_element.elements.each("agent") do |agent_element|
                   node.add_agent(agent_element.attributes['name']) do |agent|
                     agent.classname = agent_element.attributes['class']
+                    agent_element.elements.each("attribute") do |element|
+                      agent.add_attribute(element.text.strip)
+                    end
                     
                     #add components to agent
                     agent_element.elements.each("component") do |comp_element|
