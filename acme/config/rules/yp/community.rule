@@ -1,0 +1,70 @@
+# For each agent specified in the sca_supported_org facet,
+# create a new Community.  The members of this new community
+# are all of the subordinate agents of the community agents.
+# If one of the subordinate agents is itself a community, then
+# a nested community is created.
+
+require 'cougaar/communities'
+require 'ultralog/enclaves'
+
+@comms = Hash.new
+
+society.each_agent do |agent|
+  if agent.has_facet?(:subordinate_org_id)     
+    name = agent.get_facet(:org_id).to_s
+    unless @comms.has_key?(name)
+      subs = []
+      agent.each_facet(:subordinate_org_id) do |facet|
+	subs << facet[:subordinate_org_id].to_s
+      end
+      @comms[name] = subs
+    end
+  end
+end
+
+keys = @comms.keys.sort do |a, b|
+  if @comms[b].include?(a)
+    -1
+  elsif @comms[a].include?(b)
+    +1
+  else
+    0
+  end
+end
+
+expansion = {}
+keys.each do |key|
+  t = @comms[key].dup
+  t = t.collect { |element| expansion.include?(element) ? 
+    expansion[element] : element }
+  expansion[key] = t
+end
+
+society.each_agent do |agent|
+  if @comms.has_key?(agent.name)
+    society.communities.add("#{agent.name}-YPCOMMUNITY") do |community|
+      community.add_attribute("CommunityType", "Domain")
+      community.add_attribute("CommunityTYpe", "YPCommunity")
+      community.add_attribute("YPServerAgent", agent.name)
+      
+      community.add_agent(agent.name) do |entity|
+	entity.add_role("Member")
+	entity.add_role("YPServer")
+      end
+
+      subs = @comms.fetch(agent.name)
+      subs.each do |sub_agent|
+	if @comms.has_key?(sub_agent)
+	  community.add_agent("#{sub_agent}-YPCOMMUNITY") do |entity|
+	    entity.add_role("Member")
+	  end
+	else
+	  community.add_agent(sub_agent) do | entity|
+	    entity.add_role("Member")
+	  end
+	end
+      end
+    end
+  end
+end
+  
