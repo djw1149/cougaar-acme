@@ -35,7 +35,7 @@ def install_rb(srcdir = nil)
     File::makedirs(File.join($site_libdir, f))
   end
   for f in path
-    File::install(File.join("lib", f), File.join($site_libdir, f), 0644, true)
+    File::install(File.join("redist", f), File.join($site_libdir, f), 0644, true)
   end
 end
 
