@@ -7,6 +7,8 @@
 #
 require "rexml/document"
 
+$NET = 100
+
 module VlanSupport
   class WANLink
     attr_accessor :to, :bandwidth
@@ -17,7 +19,7 @@ module VlanSupport
   end
 
   class Vlan
-    attr_accessor :name, :id, :router, :netmask, :bandwidth, :device, :links
+    attr_accessor :name, :id, :router, :netmask, :bandwidth, :device, :links, :vlan_names
 
     def initialize( device ) 
       @device = device
@@ -29,7 +31,7 @@ module VlanSupport
     end
 
     def stop_shaping
-      `tc qdisc del root dev #{@device}.#{id}`
+      `/sbin/tc qdisc del root dev #{@device}.#{id}`
     end
 
     def do_shaping
@@ -47,7 +49,8 @@ module VlanSupport
         `/sbin/tc qdisc add dev #{@device}.#{id} parent 1:#{to_vlan.id} handle #{to_vlan.id}:1 sfq perturb 10`
 
         # And a filter, to let it know to use the class.
-        `/sbin/tc filter add dev #{@device}.#{id} protocol ip parent 1: prio 1 u32 match ip src 10.155.#{to_vlan.id}.0/24 flowid 1:#{to_vlan.id}`
+        `/sbin/tc filter add dev #{@device}.#{id} protocol ip parent 1: prio 1 u32 match ip src 10.#{$NET}.#{to_vlan.id.to_i - $NET}.0/24 flowid 1:#{to_vlan.id}`
+#        puts "/sbin/tc filter add dev #{@device}.#{id} protocol ip parent 1: prio 1 u32 match ip src 10.#{$NET}.#{to_vlan.id.to_i - $NET}.0/24 flowid 1:#{to_vlan.id}"
       }
     end
 
@@ -67,7 +70,7 @@ module VlanSupport
 
     def initialize( xml_file )
       @vlans = Array.new
-      vlan_names = Hash.new
+      @vlan_names = Hash.new
 
       vlan_config = REXML::Document.new(File.new(xml_file))
       @name = vlan_config.elements["network"].attributes["name"]
@@ -81,14 +84,14 @@ module VlanSupport
         vlan.netmask = vlan_el.attributes["netmask"]
         vlan.bandwidth = vlan_el.attributes["bandwidth"]
 
-        vlan_names[vlan.name] = vlan
+        @vlan_names[vlan.name] = vlan
         @vlans.push vlan
       }
 
       vlan_config.elements.each("network/vlan") { |vlan_el|
-        vlan_from = vlan_names[vlan_el.attributes["name"]]
+        vlan_from = @vlan_names[vlan_el.attributes["name"]]
         vlan_el.elements.each("link") { |link_el|
-          vlan_to = vlan_names[link_el.attributes["name"]]
+          vlan_to = @vlan_names[link_el.attributes["name"]]
           bandwidth = link_el.attributes["bandwidth"]
           vlan_from.add_link( vlan_to, bandwidth )
         } 
@@ -113,6 +116,31 @@ module VlanSupport
     def stop_shaping
       @vlans.each { |vlan| vlan.stop_shaping }
     end
+
+    def shape( from_name, to_name, bandwidth )
+      from_vlan = @vlan_names[from_name]
+      to_vlan = @vlan_names[to_name]
+
+      `/sbin/tc class change dev #{to_vlan.device}.#{to_vlan.id} parent 1:1 classid 1:#{from_vlan.id} htb rate #{bandwidth}Mbit burst 15k ceil #{bandwidth}Mbit`
+
+#      `/sbin/tc class change dev #{to_vlan.device}.#{to_vlan.id} parent 1:1 classid 1:#{from_vlan.id} htb rate #{bandwidth}Mbit burst 15k ceil #{bandwidth}Mbit`
+    end
+
+    def disable_link( from_name, to_name )
+      from_vlan = @vlan_names[from_name]
+      to_vlan = @vlan_names[to_name]
+ 
+      `/sbin/iptables -I FORWARD -i #{from_vlan.device}.#{from_vlan.id} -o #{to_vlan.device}.#{to_vlan.device} -j DROP`
+    end
+
+    def enable_link( from_name, to_name )
+      from_vlan = @vlan_names[from_name]
+      to_vlan = @vlan_names[to_name]
+ 
+      `/sbin/iptables -I FORWARD -i #{from_vlan.device}.#{from_vlan.id} -o #{to_vlan.device}.#{to_vlan.device} -j ACCEPT`
+    end
+
+
   end
 end
 
