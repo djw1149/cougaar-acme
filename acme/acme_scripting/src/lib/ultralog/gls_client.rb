@@ -172,7 +172,7 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Waits for the GLS connection."
         @parameters = [
-          {:await_oplan => "default=false, true to await oplan cougaar event prior to connecting to GLS."},
+          {:await_oplan => "default=true, true to await oplan cougaar event prior to connecting to GLS."},
           {:timeout => "default=nil, Amount of time to wait in seconds."},
           {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
         ]
@@ -182,7 +182,7 @@ module Cougaar
           wait_for 'GLSConnection', true # wait for OPlan event
         "
       }
-      def initialize(run, await_oplan=false, timeout=nil, &block)
+      def initialize(run, await_oplan=true, timeout=nil, &block)
         super(run, timeout, &block)
         @await_oplan = await_oplan
       end
