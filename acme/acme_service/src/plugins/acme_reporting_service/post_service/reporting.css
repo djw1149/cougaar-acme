@@ -66,6 +66,8 @@ table.reportTable th {
 }
 
 table.reportTable tr.date {
+ background-color: #000;
+ color: #fff;
 }
 
 table.reportTable tr.odd {
@@ -99,15 +101,11 @@ table.reportTable
 {
     COLOR      : black;
 }
-table.reportTable a
-{
-    COLOR      : black;
-    TEXT-DECORATION: NONE;
-}
+
 table.reportTable a:link
 {
     COLOR      : black;
-    TEXT-DECORATION: NONE;
+    TEXT-DECORATION: UNDERLINE;
 }
 table.reportTable a:hover
 {
@@ -117,10 +115,10 @@ table.reportTable a:hover
 table.reportTable a:visited
 {
     COLOR      : black;
-    TEXT-DECORATION: NONE;
+    TEXT-DECORATION: UNDERLINE;
 }
 table.reportTable a:active
 {
     COLOR      : red;
-    TEXT-DECORATION: NONE;
+    TEXT-DECORATION: UNDERLINE;
 }

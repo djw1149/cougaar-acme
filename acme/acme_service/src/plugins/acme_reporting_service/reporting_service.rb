@@ -3,6 +3,7 @@ require 'fileutils'
 require 'ikko'
 require 'acme_reporting_service/report'
 require 'acme_reporting_service/archive'
+require 'net/http'
 
 module ACME; module Plugins
 
@@ -77,11 +78,15 @@ class ReportingService
         archive = ArchiveStructure.new(self, file, @temp_path, @report_path) # this is the temporary expansion path
         unless archive.processed?
           archive.expand
-          notify(archive) # notify all plugins
-          archive.rebuild_index
-          archive.build_index_page
-          archive.compress
-          post_reports(archive) # send results to service
+          if archive.is_valid?
+            notify(archive) # notify all plugins
+            archive.rebuild_index
+            archive.build_index_page
+            archive.compress
+            post_reports(archive) # send results to service
+          else
+            puts "Errors: Skipping archive file: #{archive.xml_file}"
+          end
           archive.cleanup
         end
         @archive_structures << archive

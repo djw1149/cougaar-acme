@@ -74,6 +74,16 @@ module ACME; module Plugins
         `tar -C #{@root_path} -xzf #{@archive_file}`
       end
       
+      def is_valid?
+        @files.each do |f|
+          unless File.exist?(f.name)
+            puts "Cannot find file #{f.name}"
+            return false
+          end
+        end
+        return true
+      end
+      
       def rebuild_index
         result = []
         result << %Q{<run directory="#{@original_directory}">}
