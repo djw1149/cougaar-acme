@@ -85,7 +85,7 @@ module ACME
       def read_file(filename)
         data = MemoryStructure.new
         stage = nil
-        if filename =~ /(Stage.*)\// then
+        if filename =~ /memdata_(Stage.*)\// then          
           stage = $1
         end
         file = IO.readlines(filename)
