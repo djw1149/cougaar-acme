@@ -30,8 +30,18 @@ society.each_node do |node|
 
     node.override_parameter("-Djava.security.egd", "file:/dev/urandom")
 
-    node.override_parameter("-Dorg.cougaar.lib.web.list.depth","-1")
-    
+########## WP STUFF ###############
+#    node.override_parameter("-Dorg.cougaar.lib.web.list.depth","-1")
+#         cache for 4 minutes instead of 1.5 minutes
+     node.override_parameter("-Dorg.cougaar.core.wp.server.successTTD","240000")
+#         cache "unknown agent" for 1.5 minutes instead of 0.5 minutes
+     node.override_parameter("-Dorg.cougaar.core.wp.server.failTTD","90000")
+#         lease for 8 minutes instead of 4 minutes
+     node.override_parameter("-Dorg.cougaar.core.wp.server.expireTTD","480000")
+#         assume wp server messages take 20 seconds instead of 0.75 seconds,
+#         to reduce server switching when comms are slow
+     node.override_parameter("-Dorg.cougaar.core.wp.resolver.select.defaultScore","20000")
+################################    
     # Add start time/timezone if startTime parameter is not present
     start_time = nil
     node.each_parameter do |param|
