@@ -53,7 +53,7 @@ opts = GetoptLong.new([ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
 @destdir = File.join("", "usr", "local", "acme")
 
 @jabber_host = nil
-@message_router = nil
+@message_router = "localhost"
 @message_router_port = nil
 @jabber_account = nil
 @jabber_password = nil
@@ -90,8 +90,8 @@ opts.each do |opt, arg|
   when '--help'
     puts "Installs the ACME Service."
     puts "Command Options:"
-    puts "\t-j --jabber-host\tThe jabber host (--message-router or this required)."
-    puts "\t-r --message-router\tThe message router host (--jabber-host or this required)."
+    puts "\t-j --jabber-host\tThe jabber host (instead of message router)."
+    puts "\t-r --message-router\tThe message router host (default 'localhost')."
     puts "\t-o --port\t\tThe message router port"
     puts "\t-t --target\t\tInstalls the software at an absolute location, EG:"
     puts "\t\t\t\t#$0 -t /usr/local/acme"
