@@ -148,6 +148,18 @@ module Cougaar
         society
       end
       
+      def remove_all_facets
+        each_host do |host|
+          host.remove_all_facets
+          host.each_node do |node|
+            node.remove_all_facets
+            node.each_agent do |agent|
+              agent.remove_all_facets
+            end
+          end
+        end
+      end
+      
       def to_xml
         xml = "<?xml version='1.0'?>\n" +
               "<society name='#{@name}'\n" +
@@ -159,7 +171,7 @@ module Cougaar
       end
       
       def to_ruby
-        ruby =  "SOCIETY = Cougaar::Model::Society.new('#{@name}') do |society|\n"
+        ruby =  "Cougaar::Model::Society.new('#{@name}') do |society|\n"
         each_host {|host| ruby << host.to_ruby}
         ruby << "end\n"
         ruby
