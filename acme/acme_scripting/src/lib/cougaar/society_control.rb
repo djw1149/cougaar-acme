@@ -152,6 +152,33 @@ module Cougaar
 
     end
     
+    class EgregiousHack <  Cougaar::Action
+      def initialize(run, filename)
+        super(run)
+        @filename = filename
+      end
+
+      def perform()
+        mobysociety = Cougaar::Model::Society.new("moby")
+        mobyhost = Cougaar::Model::Host.new("moby")
+        mobysociety.add_host(mobyhost)
+        mobynode = Cougaar::Model::Node.new("moby")
+        mobyhost.add_node(mobynode)
+
+        run.society.each_host do |host|
+	        host.each_node do |node|
+            node.each_agent do |agent|
+              mobynode.add_agent(agent.clone(node))
+		        end
+	        end
+        end
+
+        print "WRITING: moby.xml as #{@filename}\n"
+        File.open(@filename, "wb") {|file| file.puts(mobysociety.to_xml)}
+        print "DONE Writing: #{@filename}\n"
+      end
+    end
+
     class StopSociety <  Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       RESULTANT_STATE = "SocietyStopped"
