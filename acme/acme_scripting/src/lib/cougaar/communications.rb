@@ -277,7 +277,7 @@ module Cougaar
       def test_ntp_synch(host)
         output = @run.comms.new_message(host).set_body("command[rexec_user]ntpstat").request(60)
         if (output.nil?) then
-          @run.error_message "Request timed out verifying clock on #{host.name)"
+          @run.error_message "Request timed out verifying clock on #{host.name}"
         else 
           output = output.body
           output.chomp!
