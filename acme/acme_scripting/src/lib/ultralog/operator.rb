@@ -129,6 +129,7 @@ module Cougaar
       def perform
         operator = @run['operator']
         operator.start_datagrabber_service
+        sleep 30
       end
     end
     
@@ -139,6 +140,7 @@ module Cougaar
         @example = "do_action 'StopDatagrabberService'"
       }
       def perform
+        sleep 20
         operator = @run['operator']
         operator.stop_datagrabber_service
       end
