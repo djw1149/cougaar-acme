@@ -81,19 +81,20 @@ module Cougaar
       
       def perform
         begin
-          Dir.mkdir(@directory) unless File.exist?(@directory)
+          `mkdir -p #{@directory}` unless File.exist?(@directory)
 	  @run.society.each_active_host do |host|
             results = @run.comms.new_message(host).set_body("command[list_java_pids]").request(60)
             next if (results.nil? || results.body.nil?)
             results = results.body.split(",")
             results.each do|result|
-                            result = result.split('=')
+              result = result.split('=')
               node = result[0]
               pid = result[1]
               next if pid.nil?
               out_file = File.open("#{@directory}/#{node}-procinfo", "w") 
               #output = @run.comms.new_message(host).set_body("command[rexec_user]ps -o size -o pid -C java | grep #{pid}").request(60)
               output = @run.comms.new_message(host).set_body("command[rexec_user]cat /proc/#{pid}/status | grep Vm").request(60)
+              next if output.nil?
               output = output.body
               out_file.print("#{node}\n#{output}\n")
               out_file.close
