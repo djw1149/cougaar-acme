@@ -38,6 +38,7 @@ class XMLCougaarNode
   end
   
   attr_reader :plugin
+  
   def running_nodes() 
     nodes = @nodes_hash.clone()
     nodes.each do |pid, node| 
@@ -132,8 +133,6 @@ class XMLCougaarNode
       message.reply.set_body("FAILURE: Unknown node: #{command}").send unless found
     end
 
-
-
     #LIST NODES
     @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes/description"].data = 
       "List Running Cougaar nodes."
@@ -150,14 +149,6 @@ class XMLCougaarNode
       "Show parameters for starting Cougaar nodes."
     @plugin["/plugins/acme_host_jabber_service/commands/show_xml_params"].set_proc do |message, command| 
 			txt = "\n"
-      cip = @plugin.properties['cip']
-      txt << "cip = #{cip} \n"
-      jvm_path=@plugin.properties['jvm_path']
-      txt << "jvm_path=#{jvm_path}\n"
-      cmd_prefix=@plugin.properties['cmd_prefix']
-      txt << "cmd_prefix=#{cmd_prefix}\n"
-      cmd_suffix=@plugin.properties['cmd_suffix']
-      txt << "cmd_suffix=#{cmd_suffix}\n"
       conference=@plugin.properties['conference']
       txt << "conference=#{conference}\n"
       message.reply.set_body(txt).send
@@ -167,8 +158,12 @@ class XMLCougaarNode
     @plugin['/protocols/http/xmlnode'].set_proc do |request, response|
       if request.request_method=="POST"
         filename = XMLCougaarNode.makeFileName(request.path[9..-1])
+        #search and replace $COUGAAR_INSTALL_PATH
+        data = request.body
+        data.gsub!("$COUGAAR_INSTALL_PATH", @plugin['/cougaar/config'].manager.cougaar_install_path)
+
         File.open(filename, "w") do |file|
-          file.write(request.body)
+          file.write(data)
           response.body = "File #{request.path[9..-1]} written."
           response['Content-Type'] = "text/plain"
         end
@@ -178,6 +173,7 @@ class XMLCougaarNode
         response['Content-Type'] = "text/html"
       end
     end
+  end
 
   def XMLCougaarNode.makeFileName(basename)
     tmpdir = File.join("", "tmp")
@@ -203,11 +199,9 @@ class XMLCougaarNode
     end
   end
 
-  end
-  
   class NodeConfig
   
-    attr_accessor :pid, :jvm, :arguments, :env, :jvm_props, :java_class, :society_doc
+    attr_accessor :pid, :arguments, :env, :jvm_props, :java_class, :society_doc
     attr_reader :name, :mproc, :listeners
 
     def alive()
@@ -258,14 +252,14 @@ class XMLCougaarNode
 			@society.each_host do |host|
 				host.each_node do |node|
 					#node.override_parameter("-Dorg.cougaar.class.path","/debug/classes")
-          node.override_parameter("-Dorg.cougaar.workspace","#{@cip}/workspace")
-					node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
-					node.override_parameter("-Dorg.cougaar.install.path","#{@cip}")
-					node.override_parameter("-Dorg.cougaar.system.path","#{@cip}/sys")
-					node.override_parameter("-Djava.class.path","#{@cip}/lib/bootstrap.jar")
-					node.override_parameter("-Dorg.cougaar.core.node.XML","true")
+          #node.override_parameter("-Dorg.cougaar.workspace","#{@config_mgr.cougaar_install_path}/workspace")
+					#node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
+					#node.override_parameter("-Dorg.cougaar.install.path","#{@config_mgr.cougaar_install_path}")
+					#node.override_parameter("-Dorg.cougaar.system.path","#{@config_mgr.cougaar_install_path}/sys")
+					#node.override_parameter("-Djava.class.path","#{@config_mgr.cougaar_install_path}/lib/bootstrap.jar")
+					#node.override_parameter("-Dorg.cougaar.core.node.XML","true")
 					node.override_parameter("-Dorg.cougaar.society.file", @xml_filename)
-					node.add_parameter("-Xbootclasspath/p:#{@cip}/lib/javaiopatch.jar")
+					#node.add_parameter("-Xbootclasspath/p:#{@config_mgr.cougaar_install_path}/lib/javaiopatch.jar")
 				end
 			end
 		end
@@ -292,28 +286,17 @@ class XMLCougaarNode
         end
         
         @society = @builder.society
-  
-        @jvm = plugin.properties['jvm_path']
+        
+        @config_mgr = plugin['/cougaar/config'].manager
   
         @conference = plugin.properties['conference']
-        if @conference
+        if @conference and @conference!=""
           presence = Jabber::Protocol::Presence.gen_group_probe(@conference)
           @session.connection.send(presence)
           iq = Jabber::Protocol::Iq.gen_group_join(@session, @conference)
           @session.connection.send(iq)
         end
-        
-
-        @cmd_prefix = plugin.properties['cmd_prefix']
-        if (!@cmd_prefix) 
-          @cmd_prefix = ""
-        end
-        @cmd_suffix = plugin.properties['cmd_suffix']
-        if (!@cmd_suffix) 
-          @cmd_suffix = ""
-        end
   
-        @cip = plugin.properties['cip']
         @java_class = get_java_class(@society)
         @arguments = get_arguments(@society)
         @env = get_env(@society)
@@ -336,7 +319,8 @@ class XMLCougaarNode
     end
     
     def start
-			cmd = build_command
+			cmd = @config_mgr.cmd_wrap("#{@config_mgr.jvm_path} #{@jvm_props.join(' ')} #{@java_class} #{@arguments}")
+      
       @plugin.log_info << "Starting command:\n#{cmd}"
 
       @mproc = MonitoredProcess.new(cmd)
@@ -448,17 +432,8 @@ class XMLCougaarNode
       return cpu.to_s    
     end
     
-    def build_command
-      result = ""
-      result << @cmd_prefix
-			#@env.each {|var| result << "set #{var};"}
-      result << %Q[#{@jvm} #{@jvm_props.join(" ")} #{@java_class} #{@arguments}]
-			result << @cmd_suffix
-      return result
-    end
-    
     def to_s
-      %Q[JVM: #{@jvm}\n#{@jvm_props.join("\n")}\nCLASS: #{@java_class}\nARGS: #{@arguments}\nENV:\n#{@env.join("\n")}]
+      %Q[JVM: #{@config_mgr.jvm_path}\n#{@jvm_props.join("\n")}\nCLASS: #{@java_class}\nARGS: #{@arguments}\nENV:\n#{@env.join("\n")}]
     end
 	end
 end

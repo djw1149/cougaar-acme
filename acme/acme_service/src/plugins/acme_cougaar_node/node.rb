@@ -17,7 +17,7 @@ class CougaarNode
     #START NODE
     start_desc = "Starts Cougaar node and returns PID. Params: -D elements separated by CR"
     start_proc = Proc.new do |message, command| 
-      node = NodeConfig.new(@plugin, @plugin.properties['props_path'], command)
+      node = NodeConfig.new(@plugin, command)
       pid = node.start
       @running_nodes[pid]=node
       message.reply.set_body(pid).send
@@ -56,10 +56,13 @@ class CougaarNode
   
     attr_accessor :pid, :jvm, :arguments, :env, :options, :java_class
 
-    def initialize(plugin, props_file, initial_props)
-      @props_file = props_file
+    def initialize(plugin, initial_props)
+      @props_file = @plugin.properties['server_props']
+      @config_mgr = plugin['/cougaar/config'].manager
+      if @props_file==nil || @props_file==""
+        @props_file = File.join(@config.mgr.cougaar_install_path, "server", "bin", "server.props")
+      end
       @plugin = plugin
-      @jvm = @plugin.properties['jvm_path']
       @java_class = nil
       @arguments = nil
       @env = []
@@ -115,15 +118,10 @@ class CougaarNode
     end
     
     def build_command
-      prefix = @plugin.properties['node_start_prefix']
-      prefix = '' unless prefix
-      suffix = @plugin.properties['node_start_suffix']
-      suffix = '' unless suffix
-      result = prefix.clone
-      @env.each {|var| result << "set #{var};"}
-      result << %Q[#{@jvm} #{@options.join(" ")} #{@java_class} #{@arguments}]
-      result << suffix
-      return result
+      cmd = ""
+      @env.each {|var| cmd << "set #{var};"}
+      cmd << %Q[#{@config_mgr.jvm_path} #{@options.join(" ")} #{@java_class} #{@arguments}]
+      return @config_mgr.cmd_wrap(cmd)
     end
     
     def configure(props)

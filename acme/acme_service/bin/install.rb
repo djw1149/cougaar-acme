@@ -9,16 +9,16 @@ Dir.chdir ".." if Dir.pwd =~ /bin.?$/
 require 'getoptlong'
 require 'find'
 
-opts = GetoptLong.new( [ '--uninstall',	'-u',		GetoptLong::NO_ARGUMENT],
-											[ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
+opts = GetoptLong.new([ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-host', '-j', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-account', '-a', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-password', '-p', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jvm-path', '-v', GetoptLong::REQUIRED_ARGUMENT ],
-											[ '--linux-props', '-l', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--server-props', '-s', GetoptLong::REQUIRED_ARGUMENT ],
                       [ '--cip', '-c', GetoptLong::REQUIRED_ARGUMENT ],
-											[ '--start-prefix', '-s', GetoptLong::REQUIRED_ARGUMENT ],
-											[ '--start-suffix', '-x', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--cmd-prefix', '-b', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--cmd-suffix', '-e', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--cmd-user', '-w', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--help', '-h', GetoptLong::NO_ARGUMENT],
 											[ '--noop', '-n', GetoptLong::NO_ARGUMENT])
 
@@ -26,19 +26,18 @@ opts = GetoptLong.new( [ '--uninstall',	'-u',		GetoptLong::NO_ARGUMENT],
 destdir = File.join "", "usr", "local", "acme"
 
 uninstall = false
-@jabber_host = 'acme'
+@jabber_host = nil
 @jabber_account = nil
 @jabber_password = nil
-@jvm_path = "/usr/java/j2sdk1.4.1/bin/java"
-@linux_props = "/mnt/shared/acme_config/Linux.props"
-@start_prefix = %Q["su -l -c \\""]
-@start_suffix = %Q["\\" asmt"]
-@cip = '/usr/local/cougaar'
+@jvm_path = ''
+@server_props = ''
+@cmd_prefix =''
+@cmd_suffix = ''
+@cmd_user = ''
+@cip = ''
 
 opts.each do |opt, arg|
 	case opt
-		when '--uninstall'
-			uninstall = true
     when '--jabber-host'
       @jabber_host = arg
     when '--jabber-account'
@@ -49,39 +48,47 @@ opts.each do |opt, arg|
       @jvm_path = arg
     when '--cip'
       @cip = arg
-    when '--linux-props'
-      @linux_props = arg
-    when '--start-prefix'
-      @start_prefix = arg
-    when '--start-suffix'
-      @start_suffix = arg
+    when '--server-props'
+      @server_props = arg
+    when '--cmd-prefix'
+      @cmd_prefix = arg
+    when '--cmd-suffix'
+      @cmd_suffix = arg
+    when '--cmd-user'
+      @cmd_user = arg
 		when '--target'
 			destdir = arg
 		when '--help'
-			puts "Installs the ACME Service.\nUsage:\n\t#$0 [[-u] [-n] [-t <dir>] [-j <jabberhost>] [-a <account>]\n\t\t\t [-p <pwd>] [-v <jvm path>] [-l <linux props path>] -h]"
-			puts "\t-u --uninstall\t\tUninstalls the package"
+			puts "Installs the ACME Service.\nUsage:\n\t#$0 -j <jabberhost> [[-n] [-t <dir>] [-a <account>]\n\t\t\t [-p <pwd>] [-v <jvm path>] [-l <linux props path>] -h]"
 			puts "\t-t --target\t\tInstalls the software at an absolute location, EG:"
 			puts "\t\t\t\t#$0 -t /usr/local/acme"
 			puts "\t\t\t\twill put the software directly underneath /usr/local/acme"
-      puts "\t-j --jabber-host\tThe jabber host (default 'acme')."
+      puts "\t-j --jabber-host\tThe jabber host (default empty string)."
       puts "\t-a --jabber-account\tThe jabber account (default <hostname>)."
       puts "\t-p --jabber-password\tThe jabber password (default <hostname>_password)."
       puts "\t-v --jvm-path\t\tThe JVM path to start nodes with."
-      puts "\t\t\t\t(default '/usr/java/j2sdk1.4.1/bin/java')"
+      puts "\t\t\t\t(default 'java')"
       puts "\t-c --cip\t\tThe Cougaar Install Path"
-      puts "\t\t\t\t(default '/usr/local/cougaar')"
+      puts "\t\t\t\t(default computed from environment)"
       puts "\t-l --linux-props\tThe Linux.props path to start the node with."
-      puts "\t\t\t\t(default '/mnt/shared/acme_config/Linux.props')"
-      puts "\t-s --start-prefix\tThe prefix to use when starting java."
-      puts %Q[\t\t\t\t(default 'su -l -c "')]
-      puts "\t-x --start-suffix\tThe suffix to use when starting java."
-      puts %Q[\t\t\t\t(default '" asmt')]
+      puts "\t\t\t\t(default computed from $COUGAAR_INSTALL_PATH/server/bin/server.props)"
+      puts "\t-b --cmd-prefix\tThe prefix to use when starting java."
+      puts "\t\t\t\t(default empty string)"
+      puts "\t-e --cmd-suffix\tThe suffix to use when starting java."
+      puts "\t\t\t\t(default empty string)"
+      puts "\t-w --cmd-user\tThe user to use when starting java and computing $COUGAAR_INSTALL_PATH."
+      puts "\t\t\t\t(default empty string)"
 			puts "\t-n --noop\t\tDon't actually do anything; just print out what it"
 			puts "\t\t\t\twould do."
 			exit 0
 		when '--noop'
 			NOOP = true
 	end
+end
+
+unless @jabber_host
+  puts "Must specify --jabber-host <hostname> to install"
+  exit
 end
 
 def install destdir
@@ -111,10 +118,7 @@ def install destdir
       file.puts %Q[#### Properties: acme_cougaar_node - Version: 1.0]
       file.puts %Q[properties: ~]
       file.puts %Q["|": ]
-      file.puts %Q[  - props_path: "#{@linux_props}"]
-      file.puts %Q[  - jvm_path: "#{@jvm_path}"]
-      file.puts %Q[  - node_start_prefix: #{@start_prefix}]
-      file.puts %Q[  - node_start_suffix: #{@start_suffix}]    
+      file.puts %Q[  - server_props: "#{@server_props}"]
     end
     puts "Writing acme_cougaar_xmlnode properties..."
     path = File.join(destdir, 'plugins', 'acme_cougaar_xmlnode', 'properties.yaml')
@@ -122,10 +126,7 @@ def install destdir
       file.puts %Q[#### Properties: acme_cougaar_xmlnode - Version: 1.0]
       file.puts %Q[properties: ~]
       file.puts %Q["|": ]
-      file.puts %Q[  - cip: "#{@cip}"]
-      file.puts %Q[  - jvm_path: "#{@jvm_path}"]
-      file.puts %Q[  - cmd_prefix: #{@start_prefix}]
-      file.puts %Q[  - cmd_suffix: #{@start_suffix}]    
+      file.puts %Q[  - conference: ~]    
     end
     puts "Writing acme_host_jabber_service properties..."
     path = File.join(destdir, 'plugins', 'acme_host_jabber_service', 'properties.yaml')
@@ -137,7 +138,18 @@ def install destdir
       file.puts %Q[  - account: "#{@jabber_account}"] if @jabber_account
       file.puts %Q[  - password: "#{@jabber_password}"] if @jabber_password
     end
-  end  
+    path = File.join(destdir, 'plugins', 'acme_cougaar_config', 'properties.yaml')
+    File.open(path, "wb") do |file|
+      file.puts %Q[#### Properties: acme_cougaar_config - Version: 1.0]
+      file.puts %Q[properties: ~]
+      file.puts %Q["|": ]
+      file.puts %Q[  - cougaar_install_path: "#{@cip}"]
+      file.puts %Q[  - jvm_path: "#{@jvm_path}"]
+      file.puts %Q[  - cmd_prefix: "#{@cmd_prefix}"]
+      file.puts %Q[  - cmd_suffix: "#{@cmd_suffix}"]    
+      file.puts %Q[  - cmd_user: "#{@cmd_user}"]    
+    end
+  end
   puts "Installing acme_scripting libraries in #{destdir}/redist"
 	begin
     Dir.chdir "../acme_scripting/src/"
@@ -158,38 +170,6 @@ def install destdir
 	rescue
 		puts $!
 	end
-  
 end
 
-def uninstall destdir
-	puts "Uninstalling in #{destdir}"
-	begin
-		puts "Deleting:"
-		dirs = []
-		Find.find(File.join(destdir)) do |file| 
-			if defined? NOOP
-				puts "-- #{file}" if File.file? file
-			else
-				File.rm_f file,true if File.file? file
-			end
-			dirs << file if File.directory? file
-		end
-		dirs.sort { |x,y|
-			y.length <=> x.length 	
-		}.each { |d| 
-			if defined? NOOP
-				puts "-- #{d}"
-			else
-				puts d
-				Dir.delete d
-			end
-		}
-	rescue
-	end
-end
-
-if uninstall
-	uninstall destdir
-else
-	install destdir
-end
+install destdir

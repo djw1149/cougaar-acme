@@ -117,6 +117,7 @@ class CougaarConfig
       else
         @cougaar_install_path = ENV['COUGAAR_INSTALL_PATH']
       end
+      @cougaar_install_path = "" unless @cougaar_install_path
     end
     if @jvm_path.nil? || @jvm_path==""
       @jvm_path = "java"
