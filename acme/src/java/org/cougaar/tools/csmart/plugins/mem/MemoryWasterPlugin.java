@@ -72,7 +72,11 @@ public class MemoryWasterPlugin
 				out.println("<HTML><HEAD>");
 				
 				out.println("<TABLE>");
-				out.println("<TR><TD>SIZE: </TD><TD>" + size + "</TD></TR>");
+				out.println("<TR><TD>FREE: </TD><TD>" + 
+					Runtime.getRuntime().freeMemory() + "</TD></TR>");
+				out.println("<TR><TD>TOTAL: </TD><TD>" + 
+					Runtime.getRuntime().totalMemory() + "</TD></TR>");
+				out.println("<TR><TD>SIZE: </TD><TD>" + size + " k</TD></TR>");
 				out.println("<TR><TD>FREQ: </TD><TD>" + freq + "</TD></TR>");
 				out.println("<TR><TD>STDDEV: </TD><TD>" + stddev + "</TD></TR>");
 				out.println("</TABLE>");
