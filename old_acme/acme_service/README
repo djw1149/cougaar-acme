@@ -8,6 +8,7 @@ Linux Requirments:
 Windows Requirements:
 
   Ruby 1.8.1 Installer ( see http://rubyinstaller.rubyforge.org )
+  See "WINDOWS NOTES" below.
 
 Installation:
 
@@ -40,3 +41,10 @@ Which will remove the ACME Service.  You also need to remove the working directo
   rm -rf ~/.acme
 
 This will ensure that the ACME Service does not use old data when trying to start up.  
+
+
+WINDOWS NOTES:
+Acme process control requires a Ruby extension module located in 
+acme_service/src/redist/acme-win32-process/.  See the README file in that dir
+for instructions on how to build and install the extension.
+
