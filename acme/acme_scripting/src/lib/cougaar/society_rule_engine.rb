@@ -16,7 +16,9 @@ module Cougaar
         @verbose = verbose
         @rules = rules
       end
+      
       def perform
+        @rules.each { |rule| @run.info_message "Applying #{rule}" }
         @engine = Cougaar::Model::RuleEngine.new(@run.society)
         @engine.load_rules(@rules.join(";"))
         @engine.enable_stdout if @verbose

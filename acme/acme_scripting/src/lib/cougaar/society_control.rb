@@ -191,7 +191,7 @@ module Cougaar
               cycle, agent, node, host = match[1,4]
               unless node == @run.society.agents[agent].node.name
                 @run.society.agents[agent].move_to(node)
-                puts "Moving agent: #{agent} to node: #{node}"
+                @run.info_message "Moving agent: #{agent} to node: #{node}"
               end
             end
           end
@@ -307,6 +307,11 @@ module Cougaar
         super(run)
         @nodes = nodes
       end
+      
+      def to_s
+        return super.to_s+"(#{@nodes.join(', ')})"
+      end
+      
       def perform
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
@@ -332,6 +337,11 @@ module Cougaar
         super(run)
         @nodes = nodes
       end
+      
+      def to_s
+        return super.to_s+"(#{@nodes.join(', ')})"
+      end
+      
       def perform
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]

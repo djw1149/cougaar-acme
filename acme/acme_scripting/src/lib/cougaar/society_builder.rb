@@ -191,6 +191,11 @@ module Cougaar
         super(run)
         @filename = filename
       end
+
+      def to_s
+        return super.to_s+"('#{@filename}')"
+      end
+      
       def perform
         File.open(@filename, "w") do |file|
           if (File.basename(@filename)!=File.basename(@filename, ".xml"))
