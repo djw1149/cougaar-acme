@@ -121,6 +121,31 @@ module Cougaar
       end
     end
     
+    class AddScriptCommand < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Adds a command that can be invoked on the running script."
+        @parameters = [
+          {:command => "required, command name."},
+          {:help => "optional, Help text returned in 'command[help]'."},
+          {:block => "required |message, params| The block to process the command"}
+        ]
+        @example = "do_action 'AddScriptCommand', 'say_hello', 'Say howdy ho!' 
+          {|message, params| message.reply.set_body('Howdy ho!').send}"
+      }
+      
+      def initialize(run, command, help=nil, &block)
+        super(run)
+        @command = command
+        @help = help
+        @handler = block
+      end
+      
+      def perform
+        @run.comms.add_command(@command, @help, &@handler)
+      end
+      
+    end
+    
     class StopCommunications <  Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       DOCUMENTATION = Cougaar.document {

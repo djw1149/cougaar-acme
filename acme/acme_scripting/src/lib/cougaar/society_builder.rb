@@ -178,6 +178,7 @@ module Cougaar
          raise_failure "Could not build society from Ruby file: #{@filename}", $!
         end
         @run.society = builder.society
+        @run.archive_file(@filename, "Initial society file")
 				@run["loader"] = "XML"
       end
       def to_s
@@ -204,12 +205,17 @@ module Cougaar
       end
       
       def perform
-        File.open(@filename, "w") do |file|
-          if (File.basename(@filename)!=File.basename(@filename, ".xml"))
-            file.puts @run.society.to_xml
-          else
-            file.puts @run.society.to_ruby
+        begin
+          File.open(@filename, "w") do |file|
+            if (File.basename(@filename)!=File.basename(@filename, ".xml"))
+              file.puts @run.society.to_xml
+            else
+              file.puts @run.society.to_ruby
+            end
           end
+          @run.archive_and_remove_file(@filename, "Saved instance of society in memory")
+        rescue
+          @run.error "Could not write society to #{@filename}"
         end
       end
     end
@@ -235,6 +241,7 @@ module Cougaar
          raise_failure "Could not build society from XML file: #{@filename}", $!
         end
         @run.society = builder.society
+        @run.archive_file(@filename, "Initial society file")
 				@run["loader"] = "XML"
       end
       def to_s

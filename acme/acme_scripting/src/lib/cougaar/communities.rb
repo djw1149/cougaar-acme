@@ -79,7 +79,12 @@ module Cougaar
       
       def perform
         communities_xml = @run.society.communities.to_xml
-        File.open(@file, "w") { |file| file.puts communities_xml }
+        begin
+          File.open(@file, "w") { |file| file.puts communities_xml }
+          @run.archive_and_remove_file(@file, "Saved instance of the society communities in memory")
+        rescue
+          @run.error_message "Could not write communities to #{@file}"
+        end
       end
     end
     

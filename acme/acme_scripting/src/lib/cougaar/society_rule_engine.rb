@@ -21,6 +21,15 @@ module Cougaar
         @rules.each { |rule| @run.info_message "Applying #{rule}" }
         @engine = Cougaar::Model::RuleEngine.new(@run.society)
         @engine.load_rules(@rules.join(";"))
+        @rules.each do |rulefile|
+          if File.directory?(rulefile)
+            Dir.glob(File.join(rulefile, "*.rule")).sort.each do |file|
+              @run.archive_file(file, "Rule file used to transform the society")
+            end
+          else
+            @run.archive_file(rulefile, "Rule file used to transform the society")
+          end
+        end
         @engine.enable_stdout if @verbose
         @engine.execute
       end

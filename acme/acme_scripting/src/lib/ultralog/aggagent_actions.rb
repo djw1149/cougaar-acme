@@ -33,6 +33,7 @@ module UltraLog
         File.open(@file, "wb") do |file|
           file.puts result
         end
+        @run.archive_and_remove_file(@file, "AggAgent query using #{self.class}")
       end
     end
   end

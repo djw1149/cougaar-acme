@@ -296,12 +296,23 @@ module Cougaar
     end
   end
   
+  ArchiveEntry = Struct.new(:file, :description, :autoremove)
+  
   class Run
     STOPPED = 1
     STARTED = 2
     
-    attr_reader :experiment, :count, :sequence, :name, :comms
+    attr_reader :experiment, :count, :sequence, :name, :comms, :archive_entries
     attr_accessor :society
+    
+    
+    def archive_path
+      @archive_path
+    end
+    
+    def set_archive_path(path)
+      @archive_path = path
+    end
     
     def initialize(multirun, count)
       @count = count
@@ -315,6 +326,16 @@ module Cougaar
       @event_queue = CougaarEventQueue.new
       @include_stack = []
       @include_stack.push []
+      @archive_entries = []
+      archive_file($0, "Main script file")
+    end
+    
+    def archive_file(filename, description)
+      @archive_entries << ArchiveEntry.new(filename, description, false)
+    end
+
+    def archive_and_remove_file(filename, description)
+      @archive_entries << ArchiveEntry.new(filename, description, true)
     end
     
     def comms=(comms)
@@ -354,13 +375,40 @@ module Cougaar
       action.new(self, *args, &block)
     end
     
+    def at(tag)
+      @sequence.tag = tag
+    end
+    
     def include(file, *include_args)
       @include_stack.push include_args
       raise "Cannot find file to include: #{file}" unless File.exist?(file)
+      archive_file(file, "File included in script #{$0}.")
       File.open(file, "r") do |f|
         instance_eval f.read
       end
       @include_stack.pop
+    end
+    
+    def insert_before(action_state_name, ordinality=1, &block)
+      index = @sequence.index_of(action_state_name, ordinality)
+      if index
+        @sequence.insert_index = index
+        instance_eval &block
+        @sequence.reset_insert_index
+      else
+        raise "Failed to apply insert before.\n#{action_state_name}(#{ordinality}) is not in the script (or ordinality is too high)"
+      end
+    end
+    
+    def insert_after(action_state_name, ordinality=1, &block)
+      index = @sequence.index_of(action_state_name, ordinality)
+      if index
+        @sequence.insert_index = index + 1
+        instance_eval &block
+        @sequence.reset_insert_index
+      else
+        raise "Failed to apply insert after.\n#{action_state_name}(#{ordinality}) is not in the script (or ordinality is too high)"
+      end
     end
     
     def continue
@@ -372,9 +420,33 @@ module Cougaar
       @state = STARTED
       #TODO: logging begin
       @sequence.start
+      archive
       ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, false)) if ExperimentMonitor.active?
       #TODO: logging end
     end
+    
+    def archive
+      if @archive_path
+        archive_filename = File.join(@archive_path, @name+"-#{Time.now.to_i}")
+        
+        #write description xml file
+        descriptor = "<run directory='#{Dir.pwd}'>\n"
+        @archive_entries.each do |entry|
+          descriptor << "<file name='#{entry.file}' description='#{entry.description}'/>\n"
+        end
+        descriptor << "</run>\n"
+        File.open(archive_filename+".xml", "w") { |file| file.puts descriptor }
+        
+        #archive files
+        filelist = @archive_entries.collect {|entry| entry.file }
+        File.open(archive_filename+".filelist", "w") { |file| file.puts filelist.join("\n") }
+        `tar -czf #{archive_filename+".tgz"} -T #{archive_filename+".filelist"} &> /dev/null`
+        #cleanup
+        @archive_entries.each { |entry| File.delete(entry.file) if entry.autoremove }
+        File.delete archive_filename+".filelist"
+      end
+    end
+    private :archive
     
     def interrupt
       @multirun.interrupt
@@ -408,32 +480,68 @@ module Cougaar
   end
   
   class Sequence
-    attr_accessor :definitions
+    attr_accessor :definitions, :tag
+    attr_reader :insert_index
+    
     def initialize
       @definitions = []
       @current_definition = 0
       @started = false
-      @insert_index = 0
+      @insert_index = 1
+    end
+    
+    def insert_index=(value)
+      value = 0 if value < 0
+      value = defintions.size+1 if value > definitions.size+1
+      @insert_index = value
     end
     
     def add_state(state)
-      if @started
-        @definitions = @definitions[0..@insert_index]+[state]+@definitions[(@insert_index+1)..-1]
-        @insert_index += 1
-      else
+      unless @started
         state.validate
-        @definitions << state
+        state.tag = @tag 
+        @tag = nil
       end
+      insert_definition(state)
     end
     
     def add_action(action)
-      if @started
-        @definitions = @definitions[0..@insert_index]+[action]+@definitions[(@insert_index+1)..-1]
-        @insert_index += 1
-      else
+      unless @started
         action.validate
-        @definitions << action
+        action.tag = @tag
+        @tag = nil
       end
+      insert_definition(action)
+    end
+    
+    def insert_definition(definition)
+      @definitions = @definitions[0...@insert_index] + [definition] +
+        (insert_index_at_end? ? [] : @definitions[@insert_index..-1])
+      @insert_index += 1
+    end
+    private :insert_definition
+    
+    def index_of(action_state_name, ordinality=1)
+      index = nil
+      count = 0
+      @definitions.each_with_index do |definition, current|
+        if definition.name == action_state_name || definition.tag == action_state_name
+          count += 1
+          if count == ordinality
+            index = current 
+            break
+          end
+        end
+      end
+      index
+    end
+    
+    def reset_insert_index
+      @insert_index = @definitions.size+1
+    end
+    
+    def insert_index_at_end?
+      return @insert_index==(@definitions.size+1)
     end
     
     def last_state?(state)
@@ -472,7 +580,7 @@ module Cougaar
       else
         ExperimentMonitor.notify(ExperimentMonitor::StateInterruptNotification.new(current)) if ExperimentMonitor.active?
       end
-      @definitions = @definitions[0..@insert_index] 
+      @definitions = @definitions[0...@insert_index] 
     end
     
     def start
@@ -480,7 +588,7 @@ module Cougaar
       @started = true
       last_state = nil
       while @definitions[@current_definition]
-        @insert_index = @current_definition
+        @insert_index = @current_definition + 1
         if @definitions[@current_definition].kind_of? State
           ExperimentMonitor.notify(ExperimentMonitor::StateNotification.new(@definitions[@current_definition], true)) if ExperimentMonitor.active?
           last_state = @definitions[@current_definition]
@@ -508,7 +616,7 @@ module Cougaar
   end
   
   class State
-    attr_accessor :timeout, :failure_proc
+    attr_accessor :timeout, :failure_proc, :tag
     attr_reader :experiment, :run
     def initialize(run, timeout=nil, &block)
       if self.class.constants.include?("DEFAULT_TIMEOUT") && timeout.nil?
@@ -664,7 +772,7 @@ module Cougaar
   end
   
   class Action
-    attr_accessor :sequence
+    attr_accessor :sequence, :tag
     attr_reader :run, :experiment
     def initialize(run)
       @run = run
@@ -885,6 +993,10 @@ module Cougaar
         super(run)
         @message = message
       end
+      def to_s
+        return super.to_s+"('#{@message}')"
+      end
+      
       def perform
       end
     end
@@ -901,6 +1013,11 @@ module Cougaar
         super(run)
         @message = message
       end
+      
+      def to_s
+        return super.to_s+"('#{@message}')"
+      end
+      
       def perform
       end
     end

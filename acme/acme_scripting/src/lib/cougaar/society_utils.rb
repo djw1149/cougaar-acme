@@ -47,8 +47,10 @@ module Cougaar
       
       def perform
         @run.info_message "Layout file #{@layout.layout_file}"
+        @run.archive_file(@layout.layout_file, "Layout file for the society run")
         if @hosts
           @run.info_message "Hosts file  #{@layout.hosts_file}"
+          @run.archive_file(@layout.hosts_file, "Hosts file for the society run")
         else
           @run.info_message "No hosts file used for layout"
         end
