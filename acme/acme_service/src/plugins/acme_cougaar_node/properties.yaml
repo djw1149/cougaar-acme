@@ -4,4 +4,4 @@ properties: ~
   - props_path: "/mnt/shared/acme_config/Linux.props"
   - jvm_path: "/usr/java/j2sdk1.4.1/bin/java"
   - node_start_prefix: su -l -c "
-  - node_stop_prefix: "\" asmt"
+  - node_start_suffix: "\" asmt"
