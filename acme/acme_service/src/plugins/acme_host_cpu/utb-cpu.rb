@@ -9,7 +9,7 @@ class CPU < UTB::Stress
     begin
       require 'utb/UTB.rb'
       plugin.transition(FreeBASE::LOADED)
-    rescue
+    rescue LoadError
       plugin.transition_failure
     end
   end
