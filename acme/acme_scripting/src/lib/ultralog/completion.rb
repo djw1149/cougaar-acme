@@ -117,8 +117,29 @@ module Cougaar
         @debug = debug
       end
       def perform
-        @monitor = UltraLog::SocietyCompletionMonitor.new(run, @debug)
+        @monitor = UltraLog::SocietyCompletionMonitor.new(run.society, @debug, run)
         run["completion_monitor"] = @monitor
+        run.comms.on_cougaar_event do |event|
+          handleEvent(event) if (event.component == "QuiescenceReportServiceProvider")
+        end
+        run.comms.add_command("get_quiescent_state", "Prints the current state of quiescence") do |message, params| 
+          message.reply.set_body('Printing status to run.log').send
+          @monitor.print_current_comp
+        end
+      end
+
+      def handleEvent(event)
+        begin
+          data = event.data.split(":")
+          new_state = data[1].strip
+          xml = REXML::Document.new(new_state)
+        rescue Exception => failure
+          run.error_message "Exception: #{failure}"
+          run.error_message "Invalid xml Quiesence message in event: #{event}"
+          run.info_message "WARNING: Received bad event - more info in log file"
+          return
+        end
+        @monitor.handleXML(xml.root)
       end
     end
 
@@ -284,42 +305,27 @@ module UltraLog
   end 
 
   class SocietyCompletionMonitor
-    def initialize(run, debug)
-      @run = run
+    def initialize(society, debug, run=nil)
+      @society = society;
       @debug = debug
-      @society = run.society;
+      @run = run
       @society_status = "INCOMPLETE"
-      @run["completion_agent_status"] = {}
-   	  @run.comms.on_cougaar_event do |event|
-	      handleEvent(event) if (event.component == "QuiescenceReportServiceProvider")
-	    end
+      @comp_status = {}
     end
 
-    def handleEvent(event)
-      comp = @run["completion_agent_status"] 
-      begin
-        data = event.data.split(":")
-        new_state = data[1].strip
-        xml = REXML::Document.new(new_state)
-      rescue Exception => failure
-        @run.error_message "Exception: #{failure}"
-        @run.error_message "Invalid xml Quiesence message in event: #{event}"
-        @run.info_message "WARNING: Received bad event - more info in log file"
-        return
-      end
-      root = xml.root
+    def handleXML(root)
       node_name = root.attributes["name"]
       if root.attributes["quiescent"] == "true"
         root.each_element do |elem|
           agent_name = elem.attributes["name"]
           if agent_name != node_name
-            comp[agent_name] = get_agent_data(elem)
+            @comp_status[agent_name] = get_agent_data(elem)
           end
         end
       else
-        node = @run.society.nodes[node_name]
+        node = @society.nodes[node_name]
         node.each_agent do |agent|
-          comp[agent.name] = nil
+          @comp_status[agent.name] = nil
         end
       end
       update_society_status()
@@ -337,7 +343,7 @@ module UltraLog
       data.each_element do |elem|
         agent_name = elem.attributes["agent"]
         # throw out any message ids that are to/from node agents
-        if @run.society.nodes[agent_name].nil?
+        if @society.nodes[agent_name].nil?
           msgs[agent_name] = elem.attributes["msgnum"]
         end
       end
@@ -363,54 +369,62 @@ module UltraLog
       end
     end
       
+    def print(str)
+      if @run.nil?
+        puts str
+      else
+        Cougaar.logger.info str
+      end
+    end
+    
     # Very verbose.  Only call if you really want to see this stuff
-    def print_current_comp(comp)
-      ::Cougaar.logger.info "*********************************************************"
-      ::Cougaar.logger.info "PRINTING COMP INFO"
-      ::Cougaar.logger.info "*********************************************************"
-      comp.each_key do |agent|
-        ::Cougaar.logger.info "Agent: #{agent}"
-        info = comp[agent]
+    def print_current_comp()
+      print "*********************************************************"
+      print "PRINTING COMP INFO"
+      print "*********************************************************"
+      @comp_status.each_key do |agent|
+        print "Agent: #{agent}"
+        info = @comp_status[agent]
         next if !info
-        ::Cougaar.logger.info "  Receivers:"
+        print "  Receivers:"
         print_messages(info["receivers"])
-        ::Cougaar.logger.info "  Senders:"
+        print "  Senders:"
         print_messages(info["senders"])
       end
     end
 
     def print_messages(msgs)
       msgs.each do |agent, msg|
-        ::Cougaar.logger.info "    #{agent} => #{msg}"
+        print "    #{agent} => #{msg}"
       end
     end
 
     def update_society_status()
-      comp = @run["completion_agent_status"] 
       soc_status = "COMPLETE"
-      if @society.num_agents > comp.size
+      if @society.num_agents > @comp_status.size
         soc_status = "INCOMPLETE"
-        ::Cougaar.logger.info "Quiescence incomplete because not all agents have reported" if @debug
+        print "Quiescence incomplete because not all agents have reported" if @debug
+        print "  There are #{@society.num_agents} in the society, but only #{@comp_status.size} have reported" if @debug
       else
         if soc_status != "INCOMPLETE"
           @society.each_agent do |agent|
-            agentHash = comp[agent.name]
+            agentHash = @comp_status[agent.name]
             if agentHash.nil?
               soc_status = "INCOMPLETE"
-              ::Cougaar.logger.info "Quiescence incomplete because #{agent.name} is not quiescent" if @debug
+              print "Quiescence incomplete because #{agent.name} is not quiescent" if @debug
               break
             end
             agentHash["receivers"].each do |destAgent, msg|
-              if !(comp[destAgent])
+              if !(@comp_status[destAgent])
                 soc_status = "INCOMPLETE"
-                ::Cougaar.logger.info "Quiescence incomplete because #{destAgent} is not quiescent" if @debug
+                print "Quiescence incomplete because #{destAgent} is not quiescent" if @debug
                 break
-              elsif (destMsg = comp[destAgent]["senders"][agent.name]) && destMsg != msg
+              elsif (destMsg = @comp_status[destAgent]["senders"][agent.name]) && destMsg != msg
                 soc_status = "INCOMPLETE"
                 if @debug
-                  ::Cougaar.logger.info "Quiescence incomplete because:" 
-                  ::Cougaar.logger.info "   src message for #{agent.name} (#{destMsg}) != " 
-                  ::Cougaar.logger.info "       dest message for #{destAgent} (#{msg})" 
+                  print "Quiescence incomplete because:" 
+                  print "   src message for #{agent.name} (#{destMsg}) != " 
+                  print "       dest message for #{destAgent} (#{msg})" 
                 end
                 break
               end
@@ -418,16 +432,16 @@ module UltraLog
             break if soc_status == "INCOMPLETE"
 
             agentHash["senders"].each do |srcAgent, msg|
-              if !(comp[srcAgent])
+              if !(@comp_status[srcAgent])
                 soc_status = "INCOMPLETE"
-                ::Cougaar.logger.info "Quiescence incomplete because #{srcAgent} is not quiescent" if @debug
+                print "Quiescence incomplete because #{srcAgent} is not quiescent" if @debug
                 break
-              elsif (srcMsg = comp[srcAgent]["receivers"][agent.name]) && srcMsg != msg
+              elsif (srcMsg = @comp_status[srcAgent]["receivers"][agent.name]) && srcMsg != msg
                 soc_status = "INCOMPLETE"
                 if @debug
-                  ::Cougaar.logger.info "Quiescence incomplete because:" 
-                  ::Cougaar.logger.info "   dest message for #{agent.name} (#{srcMsg}) != " 
-                  ::Cougaar.logger.info "       src message for #{srcAgent} (#{msg})" 
+                  print "Quiescence incomplete because:" 
+                  print "   dest message for #{agent.name} (#{srcMsg}) != " 
+                  print "       src message for #{srcAgent} (#{msg})" 
                 end
                 break
               end
@@ -438,8 +452,11 @@ module UltraLog
       end
       unless @society_status == soc_status
         @society_status = soc_status
-        @run.info_message "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
-        print_current_comp(comp) if @debug
+        if @run.nil?
+          puts "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
+        else
+          @run.info_message "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
+        end
       end
     end
   
@@ -449,8 +466,7 @@ module UltraLog
  
     def printIncomplete()
       line = "### Incomplete: " 
-      comp = @run["completion_agent_status"] 
-      comp.each do |agent, status|
+      @comp_status.each do |agent, status|
         if status == "INCOMPLETE"
           line << "#{agent},"
         end
