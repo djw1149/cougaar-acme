@@ -54,22 +54,10 @@ module Cougaar
       end
     end
     
-    class ResetCrypto < Cougaar::Action
-      PRIOR_STATES = ['OperatorServiceConnected']
-      DOCUMENTATION = Cougaar.document {
-        @description = "Resets (clears) the crypto data for the agents prior to a society run."
-        @example = "do_action 'ResetCrypto'"
-      }
-      def perform
-        operator = @run['operator']
-        operator.reset_crypto
-      end
-    end
-    
     class ClearPersistence < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
       DOCUMENTATION = Cougaar.document {
-        @description = "Clears society persistence data."
+        @description = "Clears society persistence data and keystores."
         @example = "do_action 'ClearPersistence'"
       }
       def perform
@@ -93,7 +81,7 @@ module Cougaar
     class ClearPersistenceAndLogs < Cougaar::Action
       PRIOR_STATES = ['OperatorServiceConnected']
       DOCUMENTATION = Cougaar.document {
-        @description = "Clears society persistence and log data."
+        @description = "Clears society persistence, log data and keystores."
         @example = "do_action 'ClearPersistenceAndLogs'"
       }
       def perform
