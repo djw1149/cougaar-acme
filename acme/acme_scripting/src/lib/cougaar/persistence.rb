@@ -42,8 +42,49 @@ module Cougaar
       end
       
     end
+
+
+    class SynchronizeSocietyTime <  Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Synchronize the in-memory society's time with actual Cougaar time."
+        @example = "do_action 'SynchronizeSocietyTime'"
+      }
+      
+      def initialize(run)
+        super(run)
+      end
+      
+      def perform()
+        begin
+          nca_node = @run.society.agents['NCA'].node.agent
+          result, uri = Cougaar::Communications::HTTP.get(nca_node.uri+"/timeControl")
+          md = /Scenario Time<\/td><td>([^\s]*) (.*):(.*):(.*)<\/td>/.match(result)
+          if md
+            date = md[1]
+            socHour = md[2]
+            date = date.split("/")
+            date = (date << (date.shift)).join("/")
+            @run.society.each_node do |node|
+              node.replace_parameter(/Dorg.cougaar.core.agent.startTime/, "-Dorg.cougaar.core.agent.startTime=\"#{date} #{socHour}:00:00\"")
+            end
+          end
+        rescue
+          @run.error_message "Error syncing society time."
+          @run.error_message $!
+          @run.error_message $!.backtrace.join("\n")
+        end
+      end
+    end
     
     class SavePersistenceSnapshot <  Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Save a society to a persistence snapshot file."
+        @parameters = [
+          {:filename => "required, The persistence snapshot filename"},
+          {:debug => "boolean=false, True to print out debug messages"}
+        ]
+        @example = "do_action 'SavePersistenceSnapshot', '~/snapshot.tgz''"
+      }
       def initialize(run, filename, debug = false)
         super(run)
         @filename = filename
