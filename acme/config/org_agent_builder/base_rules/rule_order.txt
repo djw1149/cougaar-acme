@@ -20,7 +20,6 @@
  logistics_policy_manager.rule
  propagation_plugin.rule
  ldm_from_sql.rule
- glm_completion_target.rule
  fcs_inventory_servlet.rule
  fsb_fuel_transport.rule
  glmt_util_ldm_xml.rule
