@@ -66,7 +66,7 @@ class RouterService
   
   def disconnect
     @client.stop
-    @server.stop
+    @service.stop
   end
 end
 

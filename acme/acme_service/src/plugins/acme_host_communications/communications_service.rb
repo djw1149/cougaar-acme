@@ -15,7 +15,10 @@ class CommunicationsService
   end
 
   def self.stop(plugin)
-    plugin["client"].data.disconnect
+    begin
+      plugin["client"].data.disconnect
+    rescue
+    end
     plugin.transition(FreeBASE::LOADED)
   end
 end
