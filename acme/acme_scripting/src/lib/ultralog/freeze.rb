@@ -264,8 +264,6 @@ module UltraLog
     # return:: [UltraLog::FreezeControl] Reference to 'self' for chaining
     #
     def freeze
-      return if frozen?
-      return unless running?
       begin
         puts "Freezing starts" if @debug
         start = Time.now
@@ -287,8 +285,6 @@ module UltraLog
     # return:: [UltraLog::FreezeControl] Reference to 'self' for chaining
     #
     def thaw
-      return if running?
-      return unless frozen?
       begin
         @society.each_agent do |agent|
           thaw_agent(agent)
@@ -354,11 +350,14 @@ module UltraLog
     # Freeze one agent
     #private
     def freeze_agent(agent)
+      puts "Telling agent #{agent.name} to freeze" if @debug
       agent_uri = "#{agent.uri}#{FREEZE_SERVLET}?action=freeze"
       data, uri = Cougaar::Communications::HTTP.get(agent_uri)
-      unless data.index("Freezing initiated")
+      unless data && data.index("Freezing initiated")
         puts "Error freezing agent #{agent.name}.  Data recvd: #{data}"
-        raise "Could not freeze agent #{agent.name}" 
+        # assume that it's frozen
+        @agent_state[agent] = FROZEN 
+        return
       end
       @agent_state[agent] = FREEZING
     end
@@ -367,11 +366,14 @@ module UltraLog
     # Thaw one agent
     private
     def thaw_agent(agent)
+      puts "Telling agent #{agent.name} to thaw" if @debug
       agent_uri = "#{agent.uri}#{FREEZE_SERVLET}?action=thaw"
       data, uri = Cougaar::Communications::HTTP.get(agent_uri)
-      unless data.index("Thawing initiated")
+      unless data && data.index("Thawing initiated")
         puts "Error thawing agent #{agent.name}.  Data recvd: #{data}"
-        raise "Could not thaw agent #{agent.name}" 
+        # assume that it's thawed
+        @agent_state[agent] = RUNNING
+        return
       end
       @agent_state[agent] = THAWING
     end
@@ -382,6 +384,10 @@ module UltraLog
     def check_agent(agent)
       agent_uri = "#{agent.uri}#{FREEZE_SERVLET}"
       data, uri = Cougaar::Communications::HTTP.get(agent_uri)
+      unless data 
+        puts "Communications error contacting agent #{agent.name}."
+        raise "Could not check agent #{agent.name}" 
+      end
       ret = RUNNING if data.index("Thawed")
       ret = FROZEN if data.index("Frozen")
       ret = FREEZING if data.index("Freezing")
@@ -402,18 +408,22 @@ module UltraLog
       expected_state = nil
       tmp_state = INCONSISTENT
       @society.each_agent do |agent|
-        check_agent(agent)
+        begin 
+          check_agent(agent)
 
-        # init expected_state to agent[0] state
-        expected_state = @agent_state[agent] unless expected_state 
+          # init expected_state to agent[0] state
+          expected_state = @agent_state[agent] unless expected_state 
 
-        # if this agent state != the first agent state, society is inconsistent
-        unless expected_state == @agent_state[agent]
-          tmp_state = INCONSISTENT
-          break
+          # if this agent state != the first agent state, society is inconsistent
+          unless expected_state == @agent_state[agent]
+            tmp_state = INCONSISTENT
+            break
+          end
+
+          tmp_state = @agent_state[agent]
+        rescue
+          puts "Warning...error checking freeze state for #{agent} : #{$!}"
         end
-
-        tmp_state = @agent_state[agent]
       end
       puts "**** Society state is #{tmp_state}" if @debug
       @society_state = tmp_state
