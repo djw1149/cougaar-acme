@@ -181,7 +181,12 @@ class ReportingService
   
   def notify(struct)
     @listeners.each do |listener|
-      listener.call(struct)
+      begin
+        listener.call(struct)
+      rescue Exception => e
+        @plugin.log_error << e.to_s
+        @plugin.log_error << e.backtrace.join("\n")
+      end
     end
   end
 end
