@@ -2,6 +2,12 @@ $FREEBASE_APPLICATION = "acme"
 
 require 'rbconfig'
 
+at_exit {
+  puts "WARNING: Exit called within ACME Service"
+  puts caller
+  puts "-------"
+}
+
 module ACME
   class Service
     #version information
