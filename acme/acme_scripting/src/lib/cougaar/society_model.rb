@@ -407,7 +407,7 @@ module Cougaar
       #
       def has_facet?(name=nil, &block)
         if name
-          get_facet(name) ? true : false
+          return get_facet(name) ? true : false
         else
           @facets.each { | facet | return true if block.call(facet) }
         end
