@@ -23,7 +23,6 @@
 
 require 'thread'
 
-
 class MonitoredProcess
   attr_reader :pid
 
@@ -45,8 +44,13 @@ class MonitoredProcess
     @stdoutstr = ""
     @stderrstr = ""
     @procactive = true
-    Thread.new do 
-      listenerThread() 
+    Thread.new do
+      begin
+        listenerThread() 
+      rescue
+        puts $!
+        puts $!.backtrace.join("\n")
+      end
     end
   end
 
@@ -99,24 +103,34 @@ class MonitoredProcess
     @pid = pi[3]
     #puts "pid = #{@pid}"
     Thread.new(@stdout) do |stdout|
-      while true
-        s = @stdout.getc
-        break if s == nil
-        @stdoutstr << s
+      begin
+        while true
+          s = @stdout.getc
+          break if s == nil
+          @stdoutstr << s
+        end
+        #puts "stdout exit"
+        @outactive = false
+      rescue
+        puts $!
+        puts $!.backtrace.join("\n")
       end
-      #puts "stdout exit"
-      @outactive = false
     end
 
     Thread.new(@stderr) do |stderr|
-      @erractive = true
-      while true
-        s = @stderr.getc
-        break if s == nil
-        @stderrstr << s
+      begin
+        @erractive = true
+        while true
+          s = @stderr.getc
+          break if s == nil
+          @stderrstr << s
+        end
+        #puts "stderr exit"
+        @erractive = false
+      rescue
+        puts $!
+        puts $!.backtrace.join("\n")
       end
-      #puts "stderr exit"
-      @erractive = false
     end
     Thread.new(@pid) do |pid|
       @procactive = true
