@@ -204,6 +204,182 @@ module Cougaar
       end
     end
     
+    class Communities
+      include Enumerable
+      
+      def initialize(society)
+        @society = society
+        @communities = []
+        yield self if block_given?
+      end
+      
+      def add(name)
+        @communities.each {|community| return if community.name==name}
+        community = Community.new(name, @society)
+        yield community
+        @communities << community
+      end
+      
+      def each(&block)
+        @communities.each { |community| yield community }
+      end
+      
+      def to_xml
+        xml = []
+        xml << "<Communities>"
+        each do |community|
+          community.to_xml(xml)
+        end
+        xml << "</Communities>"
+        xml.join("\n")
+      end
+      
+      class Community
+        include Enumerable
+        attr_accessor :name
+        
+        def initialize(name, society)
+          @name = name
+          @society = society
+          @entities = []
+          @attributes = []
+        end
+        
+        def add_attribute(id, value)
+          @attributes << [id, value]
+        end
+        
+        def remove_attribute(id)
+          @attributes.delete_if { |attr| attr[0]==id }
+        end
+        
+        def replace_attribute(id, value)
+          @attributes.size.times do |i|
+            if @attributes[i][0]==id
+              @attributes[i] == [id, value]
+              return
+            end
+          end
+        end
+          
+        def each_attribute
+          @attributes.each { |attr| yield attr[0], attr[1] }
+        end
+        
+        def to_xml(xml = nil)
+          xml ||= []
+          xml << "  <Community Name='#{@name}' >"
+          each_attribute do |id, value|
+            xml << "    <Attribute ID='#{id}' Value='#{value}' />"
+          end
+          each do |entity|
+            entity.to_xml(xml)
+          end
+          xml << "  </Community>"
+          xml.to_s
+        end
+        
+        def each(&block)
+          @entities.each { |entity| yield entity }
+        end
+        
+        def add_agent(agent, &block)
+          raise "Unknown agent: #{agent}" unless @society.agents[agent]
+          @entities << add_entity(agent, "Agent", &block)
+        end
+        
+        def add_node(node, &block)
+          raise "Unknown node: #{node}" unless @society.nodes[node]
+          @entities << add_entity(node, "Node", &block)
+        end
+        
+        def add_nodes(*nodes, &block)
+          nodes.each do |node|
+            raise "Unknown node: #{node}" unless @society.nodes[node]
+            @entities << add_entity(node, 'Node', &block)
+          end
+        end
+  
+        def add_agents_on_nodes(node_agents, *nodes, &block)
+          nodes.each do |node|
+            @entities << add_entity(node, 'Agent', &block) if node_agents
+            raise "Unknown node: #{node}" unless @society.nodes[node]
+            @society.nodes[node].each_agent do |agent|
+              @entities << add_entity(agent.name, 'Agent', &block)
+            end
+          end
+        end
+        
+        def add_all_agents(&block)
+          @society.each_agent(true) do |agent|
+            @entities << add_entity(agent.name, 'Agent', &block)
+          end
+        end
+        
+        def add_entity(name, entity_type, &block)
+          entity = Entity.new(name, entity_type)
+          yield entity if block_given?
+          entity
+        end
+        
+        def [](member_id)
+          @members.each do |member|
+            return member if member.name==member_id
+          end
+        end
+        
+        class Entity
+          attr_accessor :name, :entity_type
+          
+          def initialize(name, entity_type)
+            @name = name
+            @entity_type = entity_type
+            @roles = []
+            @attributes = []
+          end
+
+          def add_attribute(id, value)
+            @attributes << [id, value]
+          end
+          
+          def remove_attribute(id)
+            @attributes.delete_if { |attr| attr[0]==id }
+          end
+          
+          def replace_attribute(id, value)
+            @attributes.size.times do |i|
+              if @attributes[i][0]==id
+                @attributes[i] == [id, value]
+                return
+              end
+            end
+          end
+          
+          def each_attribute
+            @attributes.each { |attr| yield attr[0], attr[1] }
+          end
+          
+          def to_xml(xml=nil)
+            xml ||= []
+            xml << "    <Entity Name='#{@name}' >"
+            xml << "      <Attribute ID='EntityType' Value='#{@entity_type}' />"
+            @roles.each do |role|
+              xml << "      <Attribute ID='Role' Value='#{role}' />"
+            end
+            each_attribute do |id, value|
+              xml << "      <Attribute ID='#{id}' Value='#{value}' />"
+            end
+            xml << "    </Entity>"
+            xml.to_s
+          end
+          
+          def add_role(role)
+            @roles << role
+          end
+        end
+      end
+    end
+    
     
     ##
     # The SocietyMonitor collects chagnes to the cougaar society and 

@@ -52,6 +52,10 @@ module Cougaar
         yield self if block
       end
       
+      def communities
+        @communities ||= Communities.new(self)
+      end
+      
       ##
       # Adds a host to the society
       #
@@ -91,6 +95,24 @@ module Cougaar
         @hostIndex.delete(host.host_name)
         @hostList.delete(host)
         $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_removed(host) } 
+      end
+      
+      def each_enclave
+        enclaves = []
+        @hostList.each { |host| enclaves << host.enclave if host.enclave && !enclaves.include?(host.enclave) }
+        enclaves.each { |enclave| yield enclave }
+      end
+      
+      def each_enclave_host(enclave)
+        each_host { |host| yield host.enclave if host.enclave == enclave }
+      end
+      
+      def each_enclave_node(enclave)
+        each_node { |node| yield node if node.host.enclave == enclave }
+      end
+      
+      def each_enclave_agent(enclave, include_node_agent=false)
+        each_agent(include_node_agent) { |agent| yield agent if agent.node.host.enclave == enclave }
       end
       
       ##
@@ -444,7 +466,7 @@ module Cougaar
     #
     class Host
       attr_reader :nodes
-      attr_accessor :name, :society
+      attr_accessor :name, :society, :enclave
       
       include Multifaceted
       
@@ -453,8 +475,9 @@ module Cougaar
       #
       # name:: [String=nil] The name of this host
       #
-      def initialize(name=nil)
+      def initialize(name=nil, enclave=nil)
         @name = name
+        @enclave = enclave
         @nodes = []
         @nodeIndex = {}
         yield self if block_given?
@@ -520,7 +543,7 @@ module Cougaar
       # return:: [Cougaar::Host] The newly cloned host
       #
       def clone(society)
-        host = Host.new(@name)
+        host = Host.new(@name, @enclave)
         host.society = society
         each_node { |node| host.add_node(node.clone(host)) }
         each_facet { |facet| host.add_facet(facet.clone) }
@@ -528,7 +551,9 @@ module Cougaar
       end
       
       def to_xml
-        xml = "  <host name='#{@name}'>\n"
+        xml = "  <host name='#{@name}'"
+        xml << " enclave='#{@enclave}'" if @enclave
+        xml << ">\n"
         xml << get_facet_xml(4)
         each_node {|node| xml << node.to_xml}
         xml << "  </host>\n"
@@ -537,6 +562,7 @@ module Cougaar
       
       def to_ruby
         ruby =  "  society.add_host('#{@name}') do |host|\n"
+        ruby << "    host.enclave = '#{@enclave}'" if @enclave
         ruby << get_facet_ruby(4, 'host')
         each_node {|node| ruby << node.to_ruby}
         ruby << "  end\n"
