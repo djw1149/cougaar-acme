@@ -49,12 +49,12 @@ class CougaarConfig
     plugin.transition(FreeBASE::RUNNING)
   end
   
-  attr_reader :plugin, :cougaar_install_path, :jvm_path, :cmd_prefix, :cmd_suffix, :cmd_user
+  attr_reader :plugin, :cougaar_install_path, :jvm_path, :cmd_prefix, :cmd_suffix, :cmd_user, :tmp_dir
   
   def initialize(plugin)
     @plugin = plugin
     load_properties
-    @plugin['/cougaar/config'].manager = Facet.new(self, :cougaar_install_path, :jvm_path, :cmd_wrap)
+    @plugin['/cougaar/config'].manager = Facet.new(self, :cougaar_install_path, :jvm_path, :cmd_wrap, :tmp_dir)
     #Show Params
     @plugin["/plugins/acme_host_jabber_service/commands/show_cougaar_config/description"].data = 
       "Show parameters for starting Cougaar nodes."
@@ -65,6 +65,7 @@ class CougaarConfig
       txt << "cmd_prefix=#{@cmd_prefix}\n"
       txt << "cmd_suffix=#{@cmd_suffix}\n"
       txt << "cmd_user=#{@cmd_user}\n"
+      txt << "tmp_dir=#{@tmp_dir}\n"
       message.reply.set_body(txt).send
     end
     
@@ -86,6 +87,9 @@ class CougaarConfig
         if @cmd_user != request.query['cmd_user']
           @plugin.properties['cmd_user'] = request.query['cmd_user']
         end
+        if @tmp_dir != request.query['tmp_dir']
+          @plugin.properties['tmp_dir'] = request.query['tmp_dir']
+        end
         load_properties
         response['Content-Type'] = "text/html"
         response.body="<html><body><h2>Configuration Data Updated <A href='/cougaar_config'>(cont)</A></html>"
@@ -98,6 +102,7 @@ class CougaarConfig
           data.gsub!('@cmd_prefix', @cmd_prefix)
           data.gsub!('@cmd_suffix', @cmd_suffix)
           data.gsub!('@cmd_user', @cmd_user)
+          data.gsub!('@tmp_dir', @tmp_dir)
           response.body = data
         end
         response['Content-Type'] = "text/html"
@@ -111,6 +116,7 @@ class CougaarConfig
     @cmd_prefix = @plugin.properties['cmd_prefix']
     @cmd_suffix = @plugin.properties['cmd_suffix']
     @cmd_user = @plugin.properties['cmd_user']
+    @tmp_dir = @plugin.properties['tmp_dir']
     if @cougaar_install_path.nil? || @cougaar_install_path==""
       if @cmd_user!=nil && @cmd_user!=""
         @cougaar_install_path = `su -l -c 'echo $COUGAAR_INSTALL_PATH' #{@cmd_user}`.strip
@@ -133,6 +139,7 @@ class CougaarConfig
     @cmd_user = "" unless @cmd_user
     @cmd_prefix = "" unless @cmd_prefix
     @cmd_suffix = "" unless @cmd_suffix
+    @tmp_dir = File.join("", "tmp") unless @tmp_dir
   end
   
   def cmd_wrap(cmd)
