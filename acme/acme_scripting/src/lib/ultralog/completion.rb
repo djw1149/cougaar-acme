@@ -20,10 +20,9 @@
 #
 
 require 'rexml/document'
-require 'cougaar/communications'
 
-class Cougaar
-  class Actions
+module Cougaar
+  module Actions
     class GetAgentCompletion < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       def initialize(run, agent_name, &block)

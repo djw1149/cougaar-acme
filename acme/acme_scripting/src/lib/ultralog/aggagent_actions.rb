@@ -21,8 +21,8 @@
 
 require 'ultralog/aggagent'
 
-class Cougaar
-  class Actions
+module Cougaar
+  module Actions
     class AggAgentBase < Cougaar::Action
       def initialize(run, file)
         super(run)

@@ -23,7 +23,6 @@ $:.unshift ".." if $0 == __FILE__
 
 require 'uri'
 require 'net/http'
-require 'cougaar/util'
 
 module Cougaar
   module Actions

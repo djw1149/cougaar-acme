@@ -19,11 +19,7 @@
 # </copyright>
 #
 
-$:.unshift ".." if $0 == __FILE__
-
 require 'cgi'
-require 'cougaar/communications'
-require 'cougaar/state_action'
 
 module Cougaar
   module Actions

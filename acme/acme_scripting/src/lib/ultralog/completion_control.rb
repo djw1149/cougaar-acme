@@ -22,7 +22,6 @@
 $:.unshift ".." if $0 == __FILE__
 
 require 'cgi'
-require 'cougaar/communications'
 
 module Cougaar
   module Actions
