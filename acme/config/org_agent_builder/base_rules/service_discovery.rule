@@ -77,9 +77,13 @@ society.each_agent do |agent|
 # Then insert the UDDI4JRegistrationService, UDDI4JRegistryQueryService, and SDRegistrationPlugin with no arguments
   agent.add_component do |c|
     c.classname = uddi4j_registration_service
+    # Load UDDI4J plugins early so SDReg Plugin can always find them
+    c.priority = "BINDER"
   end
   agent.add_component do |c|
     c.classname = uddi4j_registry_query_service
+    # Load UDDI4J plugins early so SDReg Plugin can always find them
+    c.priority = "BINDER"
   end
   agent.add_component do |c|
     c.classname = sd_registration_plugin

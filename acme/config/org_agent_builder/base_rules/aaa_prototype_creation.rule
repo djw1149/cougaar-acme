@@ -16,6 +16,9 @@ society.each_agent do |agent|
   if agent.get_facet(:has_physical_assets)
     agent.add_component do |c|
       c.classname = xml_prototype_provider_plugin
+      # Make the XMLPrototypeProvider loaded at BINDER priority
+	  # so LDMSQLPlugin always has it - see Bug #1411
+	  # Comment out for now c.priority = "BINDER"
     end
   end
   if agent.get_facet(:has_equipment_assets)

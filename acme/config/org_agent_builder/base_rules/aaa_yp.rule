@@ -16,6 +16,7 @@ publish_taxonomy = "org.cougaar.servicediscovery.util.yp.PublishTaxonomy"
 society.each_agent do |agent|
     agent.add_component do |c|
       c.classname = yp_client_component
+	  c.insertionpoint = "Node.AgentManager.Agent.YPService"
     end
   agent.each_facet(:role) do |facet|
     if facet[:role] == 'LogisticsCommanderInChief'
