@@ -277,7 +277,7 @@ module Cougaar
     STOPPED = 1
     STARTED = 2
     
-    attr_reader :experiment, :count, :sequence, :name, :comms, :include_args
+    attr_reader :experiment, :count, :sequence, :name, :comms
     attr_accessor :society
     
     def initialize(multirun, count)
@@ -290,7 +290,8 @@ module Cougaar
       @properties = {}
       @name = "#{@experiment.name}-#{count+1}of#{@multirun.run_count}"
       @event_queue = CougaarEventQueue.new
-      @include_args = []
+      @include_stack = []
+      @include_stack.push []
     end
     
     def comms=(comms)
@@ -298,6 +299,10 @@ module Cougaar
       @comms.on_cougaar_event do |event|
         @event_queue.enqueue(event)
       end
+    end
+    
+    def include_args
+      @include_stack.last
     end
     
     def get_next_event
@@ -327,12 +332,12 @@ module Cougaar
     end
     
     def include(file, *include_args)
-      @include_args = include_args
+      @include_stack.push include_args
       raise "Cannot find file to include: #{file}" unless File.exist?(file)
       File.open(file, "r") do |f|
         instance_eval f.read
       end
-      @include_args = []
+      @include_stack.pop
     end
     
     def continue
