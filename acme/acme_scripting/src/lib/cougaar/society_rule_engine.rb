@@ -77,6 +77,7 @@ module Cougaar
         if unused_rules.size > 0
           output_warning "The rule(s)s: #{unused_rules.join(', ')} did not modify the society."
         end
+        @monitor.finish
       end
       
       def output_warning(message)

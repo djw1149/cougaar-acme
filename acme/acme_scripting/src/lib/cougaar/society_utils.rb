@@ -109,8 +109,16 @@ module Cougaar
         @@monitors << monitor
       end
       
+      def self.remove(monitor)
+        @@monitors.delete(monitor)
+      end
+      
       def self.each_monitor
         @@monitors.each {|monitor| yield monitor}
+      end
+      
+      def finish
+        SocietyMonitor.remove(self)
       end
     
       def initialize
