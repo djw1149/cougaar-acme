@@ -367,7 +367,7 @@ module UltraLog
             # is if agentB thinks it received a message from agentA, but agentA doesn't think it
             # sent any message to agentB.
             agentHash["receivers"].each do |agent, msg|
-              if (srcMsg = comp[agent]["senders"][agent.name] && srcMsg != msg
+              if (srcMsg = comp[agent]["senders"][agent.name] && srcMsg != msg)
                 soc_status = "INCOMPLETE"
                 break
               end
