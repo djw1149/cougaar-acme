@@ -1,0 +1,12 @@
+####################################################
+# Rule to insert the time control servlet
+
+
+society.each_host do |host|
+  port = 8800
+  host.each_node do |node|
+    node.override_parameter("-Dorg.cougaar.lib.web.http.port","#{port}")
+    port = port + 1
+  end
+end
+
