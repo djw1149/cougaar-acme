@@ -44,10 +44,6 @@ module Cougaar
       end
 
       def perform
-        # Get the http port set earlier for this society
-        @runport = @run.society.cougaar_port 
-        # find the host this agent is running on (at config time)
-        @runhost = @run.society.agents[@agent].node.host.host_name
         cougaar_agent = @run.society.agents[@agent]
         if cougaar_agent
           list, uri = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/list")
