@@ -22,7 +22,7 @@ module ACME
             end
 
             output = create_description
-            report.open_file("agagent_description.html", "text/html", "Memory description") do |file|
+            report.open_file("agagent_description.html", "text/html", "Agagent description") do |file|
               file.puts output
             end
             report.success
