@@ -489,7 +489,8 @@ module Cougaar
     
     def archive
       if @archive_path
-        archive_filename = File.join(@archive_path, @name+"-#{Time.now.to_i}")
+        t = Time.now
+        archive_filename = File.join(@archive_path, @name+"-#{Time.now.strftime('%Y%m%d%-%H%M%S')}")
         
         #write description xml file
         descriptor = "<run directory='#{Dir.pwd}'>\n"
