@@ -192,11 +192,19 @@ class XMLCougaarNode
           response['Content-Type'] = "text/plain"
         end
         `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 644 $CIP/configs/common/communities.xml')}`
+        XMLCougaarNode.jarAndSign(@plugin, "configs/common/communities.xml")
       else
         response.body = "<html>Communities.xml File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
       end
     end
+  end
+  
+  def XMLCougaarNode.jarAndSign(plugin, filepath)
+    cmd_jar = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jar cf #{filepath}.jar #{filepath}")
+    cmd_jarsign = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jarsigner -keystore /usr/local/acme/keystore_localconfig -storepass keystore #{filepath}.jar xmlconfigkey")
+    `#{cmd_jar}`
+    `#{cmd_jarsign}`
   end
 
   def XMLCougaarNode.monitorStdio(message, node)
@@ -331,6 +339,7 @@ class XMLCougaarNode
         # Edit the society per the current configuration
         edit_society
         @builder.to_xml_file(@xml_filename)
+        XMLCougaarNode.jarAndSign(@plugin, @xml_filename)
         unless @filename == @xml_filename
           File.unlink(@filename)
         end
