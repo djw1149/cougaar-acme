@@ -1,0 +1,12 @@
+This directory holds society configuration capabilities (scripts and rules) and defaut models
+
+Directories:
+
+config
+
+  bin/ -> scripts for configuring societies
+
+  rules/ -> .rule directories and files to transform society
+
+  societies/ -> default (standard) base societies
+  
