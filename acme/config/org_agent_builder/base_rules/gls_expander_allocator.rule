@@ -24,16 +24,10 @@ society.each_agent do |agent|
 	c.add_argument("Subsistence")
       end
     end
-    # Will UA agents pass the has_personnel and has equipment tests?
-    # I think so - only question is vehicles...
-    if agent.get_facet(:is_ua)
+    if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
       c.add_argument("MaintainInventory")
-    else
-      if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
-	c.add_argument("MaintainInventory")
-	if agent.get_facet(:is_deployable)
-	  c.add_argument("StrategicTransportation")
-	end
+      if agent.get_facet(:is_deployable)
+	c.add_argument("StrategicTransportation")
       end
     end
   end
