@@ -15,6 +15,7 @@ begin
   state = "READY"
   name = "(none)"
   file_name = nil
+  isConfigFile = false
 
   ARGV.each { |arg|
     case state
@@ -24,6 +25,8 @@ begin
             state = "FILE"
           when /-n/, /--name/ then
             state = "NAME"
+          when /-c/, /--config/ then
+            isConfigFile = true
           else
             file_name = arg
         end
@@ -36,6 +39,11 @@ begin
     end
   }
 
+
+  if (file_name.nil?) then
+    puts "Please specify the file to register."
+    exit -1
+  end
 
   cvsInfo = CVSInfo.new( file_name )
   if (!cvsInfo.committed?) then
@@ -53,7 +61,11 @@ begin
   server = XMLRPC::Client.new( $POLARIS_HOST, "/servlet/xml-rpc" )
   server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
-  result = server.call("remote.registerTest", name, description, cvsInfo.root, cvsInfo.repository, cvsInfo.file_name)
+  if (isConfigFile) then
+    result = server.call("remote.registerConfig", name, description, cvsInfo.root, cvsInfo.repository, cvsInfo.file_name)
+  else
+    result = server.call("remote.registerTest", name, description, cvsInfo.root, cvsInfo.repository, cvsInfo.file_name)
+  end
 
 #  puts "#{result}"
 
