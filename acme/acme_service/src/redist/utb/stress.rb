@@ -7,9 +7,9 @@ class Stress
   
   def update_status
     if @isOn
-      @plugin["/plugins/acme_host_jabber_service/status/add"].call(@plugin.properties["command"], @level.to_s)
+      @plugin["/plugins/acme_host_communications/status/add"].call(@plugin.properties["command"], @level.to_s)
     else
-      @plugin["/plugins/acme_host_jabber_service/status/delete"].call(@plugin.properties["command"])
+      @plugin["/plugins/acme_host_communications/status/delete"].call(@plugin.properties["command"])
     end
   end
 
@@ -19,10 +19,10 @@ class Stress
     cmd = @plugin.properties["command"]
     desc = @plugin.properties["description"]
 
-    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}/description"].data=desc + 
+    @plugin["/plugins/acme_host_communications/commands/#{cmd}/description"].data=desc + 
         " Param=setLevel(25),red,yellow,green,stop"
 
-    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}"].set_proc do | msg, command |
+    @plugin["/plugins/acme_host_communications/commands/#{cmd}"].set_proc do | msg, command |
       case command
         when "stop"
           stop()
