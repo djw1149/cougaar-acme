@@ -44,6 +44,14 @@ module Cougaar
       @@monitors << monitor
     end
     
+    def self.remove(monitor)
+      @@monitors.delete(monitor)
+    end
+      
+    def self.each_monitor
+      @@monitors.each {|monitor| yield monitor}
+    end
+            
     def self.active?
       return (@@monitors.size > 0)
     end
@@ -53,50 +61,52 @@ module Cougaar
     end
   
     def self.enable_stdout
-      monitor = ExperimentMonitor.new
+      if ($StdOutMonitor.nil?) then
+        $StdOutMonitor = ExperimentMonitor.new
       
-      def monitor.on_experiment_begin(experiment)
-        puts "[#{Time.now}] Experiment: #{experiment.name} started."
-      end
-      def monitor.on_experiment_end(experiment)
-        puts "[#{Time.now}] Experiment: #{experiment.name} finished."
-      end
+        def $StdOutMonitor.on_experiment_begin(experiment)
+          puts "[#{Time.now}] Experiment: #{experiment.name} started."
+        end
+        def $StdOutMonitor.on_experiment_end(experiment)
+          puts "[#{Time.now}] Experiment: #{experiment.name} finished."
+        end
       
-      def monitor.on_run_begin(run)
-        puts "[#{Time.now}]   Run: #{run.name} started."
-      end
-      def monitor.on_run_end(run)
-        puts "[#{Time.now}]   Run: #{run.name} finished."
-      end
+        def $StdOutMonitor.on_run_begin(run)
+          puts "[#{Time.now}]   Run: #{run.name} started."
+        end
+        def $StdOutMonitor.on_run_end(run)
+          puts "[#{Time.now}]   Run: #{run.name} finished."
+        end
       
-      def monitor.on_state_begin(state)
-        puts "[#{Time.now}]     Waiting for: #{state}"
-      end
-      def monitor.on_state_end(state)
-        puts "[#{Time.now}]     Done: #{state}"
-      end
+        def $StdOutMonitor.on_state_begin(state)
+          puts "[#{Time.now}]     Waiting for: #{state}"
+        end
+        def $StdOutMonitor.on_state_end(state)
+          puts "[#{Time.now}]     Done: #{state}"
+        end
       
-      def monitor.on_action_begin(action)
-        puts "[#{Time.now}]     Starting: #{action}"
-      end
-      def monitor.on_action_end(action)
-        puts "[#{Time.now}]     Finished: #{action}"
-      end
+        def $StdOutMonitor.on_action_begin(action)
+          puts "[#{Time.now}]     Starting: #{action}"
+        end
+        def $StdOutMonitor.on_action_end(action)
+          puts "[#{Time.now}]     Finished: #{action}"
+        end
       
-      def monitor.on_state_interrupt(state)
-        puts  "[#{Time.now}]      ** INTERRUPT ** #{state}"
-      end
+        def $StdOutMonitor.on_state_interrupt(state)
+          puts  "[#{Time.now}]      ** INTERRUPT ** #{state}"
+        end
       
-      def monitor.on_action_interrupt(action)
-        puts  "[#{Time.now}]      ** INTERRUPT ** #{action}"
-      end
+        def $StdOutMonitor.on_action_interrupt(action)
+          puts  "[#{Time.now}]      ** INTERRUPT ** #{action}"
+        end
       
-      def monitor.on_info_message(message)
-        puts  "[#{Time.now}]      INFO: #{message}"
-      end
+        def $StdOutMonitor.on_info_message(message)
+          puts  "[#{Time.now}]      INFO: #{message}"
+        end
       
-      def monitor.on_error_message(message)
-        puts  "[#{Time.now}]      ERROR: #{message}"
+        def $StdOutMonitor.on_error_message(message)
+          puts  "[#{Time.now}]      ERROR: #{message}"
+        end
       end
     end
   
