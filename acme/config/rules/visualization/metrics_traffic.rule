@@ -1,0 +1,21 @@
+agentflowaspect = "org.cougaar.core.mts.AgentFlowAspect"
+agentflowrateplugin = "org.cougaar.core.qos.metrics.AgentFlowRatePlugin"
+
+
+aspects_to_add = [agentflowaspect]
+
+# Add all traffic matrix components on all node agents, different insertion points
+
+society.each_node_agent() do |node_agent|
+    aspects_to_add.each { |comp|
+      node_agent.add_component do |c|
+      c.classname = comp
+      c.insertionpoint = 
+"Node.AgentManager.Agent.MessageTransport.Aspect"
+      end
+     }
+end
+
+society.each_node_agent() do |node_agent|
+    node_agent.add_component(agentflowrateplugin)
+end
