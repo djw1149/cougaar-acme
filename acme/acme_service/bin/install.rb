@@ -16,6 +16,9 @@ opts = GetoptLong.new( [ '--uninstall',	'-u',		GetoptLong::NO_ARGUMENT],
 											[ '--jabber-password', '-p', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jvm-path', '-v', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--linux-props', '-l', GetoptLong::REQUIRED_ARGUMENT ],
+                      [ '--cip', '-c', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--start-prefix', '-s', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--start-suffix', '-x', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--help', '-h', GetoptLong::NO_ARGUMENT],
 											[ '--noop', '-n', GetoptLong::NO_ARGUMENT])
 
@@ -28,6 +31,9 @@ uninstall = false
 @jabber_password = nil
 @jvm_path = "/usr/java/j2sdk1.4.1/bin/java"
 @linux_props = "/mnt/shared/acme_config/Linux.props"
+@start_prefix = %Q["su -l -c \\""]
+@start_suffix = %Q["\\" asmt"]
+@cip = '/usr/local/cougaar'
 
 opts.each do |opt, arg|
 	case opt
@@ -41,8 +47,14 @@ opts.each do |opt, arg|
       @jabber_password = arg
     when '--jvm-path'
       @jvm_path = arg
+    when '--cip'
+      @cip = arg
     when '--linux-props'
       @linux_props = arg
+    when '--start-prefix'
+      @start_prefix = arg
+    when '--start-suffix'
+      @start_suffix = arg
 		when '--target'
 			destdir = arg
 		when '--help'
@@ -56,8 +68,14 @@ opts.each do |opt, arg|
       puts "\t-p --jabber-password\tThe jabber password (default <hostname>_password)."
       puts "\t-v --jvm-path\t\tThe JVM path to start nodes with."
       puts "\t\t\t\t(default '/usr/java/j2sdk1.4.1/bin/java')"
+      puts "\t-c --cip\t\tThe Cougaar Install Path"
+      puts "\t\t\t\t(default '/usr/local/cougaar')"
       puts "\t-l --linux-props\tThe Linux.props path to start the node with."
       puts "\t\t\t\t(default '/mnt/shared/acme_config/Linux.props')"
+      puts "\t-s --start-prefix\tThe prefix to use when starting java."
+      puts %Q[\t\t\t\t(default 'su -l -c "')]
+      puts "\t-x --start-suffix\tThe suffix to use when starting java."
+      puts %Q[\t\t\t\t(default '" asmt')]
 			puts "\t-n --noop\t\tDon't actually do anything; just print out what it"
 			puts "\t\t\t\twould do."
 			exit 0
@@ -95,8 +113,19 @@ def install destdir
       file.puts %Q["|": ]
       file.puts %Q[  - props_path: "#{@linux_props}"]
       file.puts %Q[  - jvm_path: "#{@jvm_path}"]
-      file.puts %Q[  - node_start_prefix: "su -l -c \\""]
-      file.puts %Q[  - node_start_suffix: "\\" asmt"]    
+      file.puts %Q[  - node_start_prefix: #{@start_prefix}]
+      file.puts %Q[  - node_start_suffix: #{@start_suffix}]    
+    end
+    puts "Writing acme_cougaar_xmlnode properties..."
+    path = File.join(destdir, 'plugins', 'acme_cougaar_xmlnode', 'properties.yaml')
+    File.open(path, "wb") do |file|
+      file.puts %Q[#### Properties: acme_cougaar_xmlnode - Version: 1.0]
+      file.puts %Q[properties: ~]
+      file.puts %Q["|": ]
+      file.puts %Q[  - cip: "#{@cip}"]
+      file.puts %Q[  - jvm_path: "#{@jvm_path}"]
+      file.puts %Q[  - cmd_prefix: #{@start_prefix}]
+      file.puts %Q[  - cmd_suffix: #{@start_suffix}]    
     end
     puts "Writing acme_host_jabber_service properties..."
     path = File.join(destdir, 'plugins', 'acme_host_jabber_service', 'properties.yaml')
