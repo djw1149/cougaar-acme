@@ -124,6 +124,44 @@ module Cougaar
   end
   
   module Actions
+
+    class AdvanceTime < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Advances the scenario time and sets the execution rate."
+        @parameters = [
+          {:time_to_advance => "default=86400000 (1 day) millisecs to advance the cougaar clock."},
+          {:execution_rate => "default=1.0, The new execution rate (1.0 = real time, 2.0 = 2X real time)"},
+          {:debug => "default=false, Set 'true' to debug action"}
+        ]
+        @example = "do_action 'AdvanceTime', 10000, 1.0, false"
+      }
+		  @debug = true
+      def initialize(run, time_to_advance=86400000, execution_rate=1.0, debug=false)
+        super(run)
+        @debug = debug
+        @time_to_advance = time_to_advance
+        @execution_rate = execution_rate
+        @expected_result = Regexp.new("Scenario Time");
+      end
+      
+      def perform
+        # true => include the node agent
+        puts "Advancing time: #{@time_to_advance} Rate: #{@execution_rate}" if @debug
+        @run.society.each_node_agent do |agent|
+          myuri = "http://#{agent.node.host.name}:#{@run.society.cougaar_port}/$#{agent.name}/timeControl?timeAdvance=#{@time_to_advance}&executionRate=#{@execution_rate}"
+          puts "URI: #{myuri}" if @debug
+          data, uri = Cougaar::Communications::HTTP.get(myuri)
+          puts data if @debug
+          if (@expected_result.match(data) == nil)
+            puts "ERROR Accessing timeControl Servlet at node #{agent.name}"
+            raise Exception.exception("ERROR Accessing timeControl Servlet at node #{agent.name}");
+
+          end
+        end
+      end
+
+    end # class
+
   
     class KeepSocietySynchronized < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
@@ -151,7 +189,7 @@ module Cougaar
     class CleanupSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       DOCUMENTATION = Cougaar.document {
-        @description = "Stop all Java processes and remove active stressors on all hosts listed in the society."
+        @description = "Stop all Java processes and remove actives stressors on all hosts listed in the society."
         @example = "do_action 'CleanupSociety'"
       }
       

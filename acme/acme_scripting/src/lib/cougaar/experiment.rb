@@ -36,6 +36,8 @@ module Cougaar
     StateNotification = Struct.new(:state, :begin_flag)
     ActionNotification = Struct.new(:action, :begin_flag)
     InterruptNotification = Struct.new(:state)
+    InfoNotification = Struct.new(:message)
+    ErrorNotification = Struct.new(:message)
     
     def self.add(monitor)
       @@monitors << monitor
@@ -70,18 +72,26 @@ module Cougaar
         puts "[#{Time.now}]     Waiting for: #{state}"
       end
       def monitor.on_state_end(state)
-          puts "[#{Time.now}]     Done: #{state}"
+        puts "[#{Time.now}]     Done: #{state}"
       end
       
       def monitor.on_action_begin(action)
         puts "[#{Time.now}]     Starting: #{action}"
       end
       def monitor.on_action_end(action)
-          puts "[#{Time.now}]     Finished: #{action}"
+        puts "[#{Time.now}]     Finished: #{action}"
       end
       
       def monitor.on_state_interrupt(state)
-        puts  "[#{Time.now}]     ** INTERRUPT ** #{state}"
+        puts  "[#{Time.now}]      ** INTERRUPT ** #{state}"
+      end
+      
+      def monitor.on_info_message(message)
+        puts  "[#{Time.now}]      INFO: #{message}"
+      end
+      
+      def monitor.on_error_message(message)
+        puts  "[#{Time.now}]      ERROR: #{message}"
       end
     end
   
@@ -113,11 +123,17 @@ module Cougaar
         Cougaar.logger.info  "[#{Time.now}]     Starting: #{action}"
       end
       def monitor.on_action_end(action)
-          Cougaar.logger.info  "[#{Time.now}]     Finished: #{action}"
+        Cougaar.logger.info  "[#{Time.now}]     Finished: #{action}"
       end
       
       def monitor.on_state_interrupt(state)
-        Cougaar.logger.info   "[#{Time.now}]     ** INTERRUPT ** #{state}"
+        Cougaar.logger.info  "[#{Time.now}]      ** INTERRUPT ** #{state}"
+      end
+      def monitor.on_info_message(message)
+        Cougaar.logger.info  "[#{Time.now}]      INFO: #{message}"
+      end
+      def monitor.on_error_message(message)
+        Cougaar.logger.error "[#{Time.now}]      ERROR: #{message}"
       end
     end
   
@@ -137,6 +153,10 @@ module Cougaar
         n.begin_flag ? on_action_begin(n.action) : on_action_end(n.action)
       elsif n.kind_of? InterruptNotification
         on_state_interrupt(n.state)
+      elsif n.kind_of? InfotNotification
+        on_info_message(n.message)
+      elsif n.kind_of? ErrorNotification
+        on_error_message(n.message)
       end
     end
     
@@ -170,6 +190,12 @@ module Cougaar
     end
     
     def on_state_interrupt(state)
+    end
+    
+    def on_info_message(message)
+    end
+    
+    def on_error_message(message)
     end
   end
 
@@ -439,6 +465,14 @@ module Cougaar
       @sequence = run.sequence
       @sequence.add_state(self)
     end
+
+    def info_message(message)
+      ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new(message)) if ExperimentMonitor.active?
+    end
+    
+    def error_message(message)
+      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new(message)) if ExperimentMonitor.active?
+    end
     
     def to_s
       return self.name
@@ -583,6 +617,14 @@ module Cougaar
       if self.class.constants.include?("RESULTANT_STATE")
         @run.wait_for(self.class::RESULTANT_STATE)
       end
+    end
+    
+    def info_message(message)
+      ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new(message)) if ExperimentMonitor.active?
+    end
+    
+    def error_message(message)
+      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new(message)) if ExperimentMonitor.active?
     end
     
     def validate
@@ -763,42 +805,6 @@ module Cougaar
       end
     end
 
-    class AdvanceTime < Cougaar::Action
-      DOCUMENTATION = Cougaar.document {
-        @description = "Advances the scenario time and sets the execution rate."
-        @parameters = [
-          {:time_to_advance => "default=86400000 (1 day) millisecs to advance the cougaar clock."},
-          {:execution_rate => "default=1.0, The new execution rate (1.0 = real time, 2.0 = 2X real time)"},
-          {:debug => "default=false, Set 'true' to debug action"}
-        ]
-        @example = "do_action 'AdvanceTime', 10000, 1.0, false"
-      }
-		  @debug = true
-      def initialize(run, time_to_advance=86400000, execution_rate=1.0, debug=false)
-        super(run)
-        @debug = debug
-        @time_to_advance = time_to_advance
-        @execution_rate = execution_rate
-        @expected_result = Regexp.new("Scenario Time");
-      end
-      
-      def perform
-        # true => include the node agent
-        puts "Advancing time: #{@time_to_advance} Rate: #{@execution_rate}" if @debug
-        @run.society.each_node_agent do |agent|
-          myuri = "http://#{agent.node.host.name}:#{@run.society.cougaar_port}/$#{agent.name}/timeControl?timeAdvance=#{@time_to_advance}&executionRate=#{@execution_rate}"
-          puts "URI: #{myuri}" if @debug
-          data, uri = Cougaar::Communications::HTTP.get(myuri)
-          puts data if @debug
-          if (@expected_result.match(data) == nil)
-            puts "ERROR Accessing timeControl Servlet at node #{agent.name}"
-            raise Exception.exception("ERROR Accessing timeControl Servlet at node #{agent.name}");
-
-          end
-        end
-      end
-
-    end # class
  
   end
 end

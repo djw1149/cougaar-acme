@@ -166,10 +166,10 @@ module UltraLog
     private
     
     def send_command(command, timeout, params="")
-      Cougaar.logger.info "Sending Operator Command: command[#{command}]#{params}"
+      @run.info_message "Sending Operator Command: command[#{command}]#{params}"
       reply = @run.comms.new_message("#{@host}@#{@run.comms.jabber_server}/acme").set_body("command[#{command}]#{params}").request(timeout)
-      Cougaar.logger.error "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
-      Cougaar.logger.info "Result: #{reply.body}"
+      @run.error_message "ERROR SENDING: command[#{command}]#{params}" if reply.nil?
+      @run.info_message "Result: #{reply.body}"
       return reply.body
     end
     
