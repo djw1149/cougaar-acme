@@ -72,28 +72,30 @@ class ReportingService
     Thread.new do
       sleep 5
       puts "Beginning to process archives"
-      files = Dir.glob(File.join(@archive_path, "*.xml"))
-      new_files = files - last
-      new_files.each do |file|
-        archive = ArchiveStructure.new(self, file, @temp_path, @report_path) # this is the temporary expansion path
-        unless archive.processed?
-          archive.expand
-          if archive.is_valid?
-            notify(archive) # notify all plugins
-            archive.rebuild_index
-            archive.build_index_page
-            archive.compress
-            post_reports(archive) # send results to service
-          else
-            puts "Errors: Skipping archive file: #{archive.xml_file}"
+      while true
+        files = Dir.glob(File.join(@archive_path, "*.xml"))
+        new_files = files - last
+        new_files.each do |file|
+          archive = ArchiveStructure.new(self, file, @temp_path, @report_path) # this is the temporary expansion path
+          unless archive.processed?
+            archive.expand
+            if archive.is_valid?
+              notify(archive) # notify all plugins
+              archive.rebuild_index
+              archive.build_index_page
+              archive.compress
+              post_reports(archive) # send results to service
+            else
+              puts "Errors: Skipping archive file: #{archive.xml_file}"
+            end
+            archive.cleanup
           end
-          archive.cleanup
+          @archive_structures << archive
+          @archive_structures.sort
         end
-        @archive_structures << archive
-        @archive_structures.sort
+        last = files
+        sleep 60
       end
-      last = files
-      sleep 10
     end
   end
 
