@@ -271,6 +271,12 @@ module Cougaar
 	  @run.error_message "ERROR: All nodes did not receive Advance Time message before sync time"
 	end
 
+        # make sure we don't progress until the time we've told the society to put the new time into effect
+	sleep_time = (change_time - Time.now).ceil
+	if (sleep_time > 0.0)
+          sleep sleep_time
+	end
+
         # now wait for quiescence
         if @wait_for_quiescence
           comp = @run["completion_monitor"]
@@ -286,12 +292,6 @@ module Cougaar
             result = comp.wait_for_change_to_state("COMPLETE", @timeout)
           end
         end
-
-        # make sure we don't progress until the time we've told the society to put the new time into effect
-	sleep_time = (change_time - Time.now).ceil
-	if (sleep_time > 0.0)
-          sleep sleep_time
-	end
 
         @run.info_message "Society time advanced to #{get_society_time}"
         return result
