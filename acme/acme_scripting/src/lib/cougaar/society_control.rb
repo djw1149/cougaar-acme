@@ -193,8 +193,8 @@ module Cougaar
           data, uri = Cougaar::Communications::HTTP.get(myuri)
           puts data if @debug
           if (@expected_result.match(data) == nil)
-            puts "ERROR Accessing timeControl Servlet at node #{node.name}"
-            raise Exception.exception("ERROR Accessing timeControl Servlet at node #{node.name}");
+            puts "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
+            ::Cougaar.logger.error "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
           end
         end
 
