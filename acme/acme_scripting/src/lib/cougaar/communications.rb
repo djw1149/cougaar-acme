@@ -112,7 +112,7 @@ module Cougaar
       end
       
       def to_s
-        return super.to_s + "(#{@port})"
+        return super.to_s + "(#{@server} #{@port})"
       end
       
       def perform
