@@ -67,13 +67,13 @@ class Shaper
          # enable( interface ) - This method will enable a network interface.
          when /enable\((.*)\)/
            plugin['log/info'] << "Enabling Interface #{$1}"
-           do_enable_link( $1 )
+           do_enable( $1 )
            reply = "Enabled Interface #{$1}"
 
          # disable( interface ) - This method will disable a network interface.
          when /disable\((.*)\)/
            plugin['log/info'] << "Disabling Interface #{$1}"
-           do_disable_link( $1, $2 )
+           do_disable( $1 )
            reply = "Disabled Interface #{$1}"
          else 
            reply = "#{cmd} unknown-#{command}"
