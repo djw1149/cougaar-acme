@@ -148,7 +148,7 @@ module Cougaar
             @listener.call(@current)
             @current = nil
           else
-            @current.data << "</#{name}>"
+            @current.data << "</#{qname}>"
           end
         end
         parser.listen( :characters ) do | text |
