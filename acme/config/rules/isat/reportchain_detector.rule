@@ -1,0 +1,22 @@
+####################################################
+# Rule to insert ReportChainDetectorPlugin
+# plugin = org.cougaar.mlm.plugin.organization.ReportChainDetectorPlugin
+
+society.each_agent do |agent|
+  opd_classname='org.cougaar.mlm.plugin.organization.ReportChainDetectorPlugin'
+  
+  # Add this component to every agent with a superior, plus the agent
+  # that is the Log Chief -- the head of the ReportChain
+  if (agent.get_facet(:superior_org_id) || (agent.get_facet(:role) == "LogisticsCommanderInChief"))
+    unless agent.has_component? { |c| c.classname == opd_classname }
+      count = 0
+      agent.each_facet(:subordinate_org_id) { |facet| count += 1 }
+      
+      agent.add_component do |c|
+        c.classname = opd_classname
+	# Arg is number of subordinates of this agent
+        c.add_argument( count.to_s )
+      end # add_component
+    end # unless
+  end # if
+end # each_agent
