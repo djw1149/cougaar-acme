@@ -10,6 +10,7 @@ $:.unshift dir2 if File.exist?(dir2)
 
 
 require 'cougaar/scripting'
+require 'cougaar/communities'
 require 'getoptlong'
 
 opts = GetoptLong.new( [ '--input',	'-i',		GetoptLong::REQUIRED_ARGUMENT],
@@ -17,6 +18,7 @@ opts = GetoptLong.new( [ '--input',	'-i',		GetoptLong::REQUIRED_ARGUMENT],
                       [ '--hosts', '-h', GetoptLong::REQUIRED_ARGUMENT],
 											[ '--rules', '-r', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--output', '-o', GetoptLong::REQUIRED_ARGUMENT ],
+                      [ '--communities', '-c', GetoptLong::REQUIRED_ARGUMENT ],
                       [ '--abort-on-warning', '-a',  GetoptLong::NO_ARGUMENT],
 											[ '--help', '-?', GetoptLong::NO_ARGUMENT])
 
@@ -24,17 +26,19 @@ input = nil
 layout = nil
 hosts = nil
 output = nil
+communities = nil
 input_type = :unknown
 output_type = :unknown
 abort_on_warning = false
 rules = nil
 
 def help
-  puts "Transforms a society with rules (and converts between xml and ruby).\nUsage:\n\t#$0 -i <input file> -l <layout file> [-h <hosts file>] -r <rules dir> [-o <output file>] [-?]"
+  puts "Transforms a society with rules (and converts between xml and ruby).\nUsage:\n\t#$0 -i <input file> -l <layout file> [-h <hosts file>] -r <rules dir> [-o <output file>] [-c <communities file>] [-?]"
   puts "\t-i --input\tThe input file (.xml or .rb)."
   puts "\t-l --layout\tThe layout file (.xml or .rb)."
   puts "\t-h --hosts\tThe hosts file (.xml or .rb)."
   puts "\t-r --rules\tThe rule directory (e.g. ./rules)."
+  puts "\t-c --communities\tThe communities file to write to (e.g. communities.xml)."
   puts "\t-a --abort-on-warning\tAbort the generation of the society if a rule warning is encountered."
   puts "\t-o --output\tThe output file. (default new-<input>)"
 end
@@ -51,6 +55,8 @@ opts.each do |opt, arg|
     hosts = arg
   when '--rules'
     rules = arg
+  when '--communities'
+    communities = arg
   when '--output'
     output = arg
     output_type = :xml if (File.basename(output)!=File.basename(output, ".xml"))
@@ -128,5 +134,10 @@ when :ruby
   builder.to_ruby_file(output)
 when :xml
   builder.to_xml_file(output)
+end
+if communities
+  puts "Writing Communities file to: #{communities}"
+  communities_xml = society.communities.to_xml
+  File.open(communities, "w") { |file| file.puts communities_xml }  
 end
 puts "Done."
