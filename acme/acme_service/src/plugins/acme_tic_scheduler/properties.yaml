@@ -3,3 +3,4 @@ properties: ~
 "|": 
   - experiment_path: "./experiments"
   - queue_status: disabled
+  - log: "./scheduler.log"

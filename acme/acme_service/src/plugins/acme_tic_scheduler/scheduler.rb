@@ -35,6 +35,11 @@ module ACME; module Plugins
     def load_properties
       @experiment_path = @plugin.properties['experiment_path']
       @queue_status = @plugin.properties['queue_status']
+      @log = @plugin.properties['log']
+      if @log
+        @log_file = File.open(@log, File::APPEND|File::CREAT|File::WRONLY) 
+        @log_file.sync = true
+      end
     end
     
     def enable_queue
@@ -112,8 +117,17 @@ module ACME; module Plugins
       out_log = File.join(@script_dir, 'scheduledRun.log')
       File.open(@current, 'w') { |f| f.puts(data)}
       cmd = @cougaar_config.manager.cmd_wrap("ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0 >& #{out_log}")
+      if @log_file
+        @log_file.puts "Starting experiment at #{Time.now}"
+        @log_file.puts data
+        @log_file.puts "Command: #{cmd}"
+      end
       @start_time = Time.now
       result = `#{cmd}`
+      if @log_file
+        @log_file.puts "Finished experiment at #{Time.now}, runtime #{((Time.now - @start_time)/60).to_i} minutes #{(@start_time-Time.now)<3 ? '(Potential Error)' : ''}"
+        @log_file.puts "="*60
+      end
       cmd = @cougaar_config.manager.cmd_wrap("rm -f #{@current}")
       `#{cmd}`
     end
