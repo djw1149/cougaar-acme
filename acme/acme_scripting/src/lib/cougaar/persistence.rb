@@ -17,7 +17,7 @@ module Cougaar
       end
 
       def perform()
-        `cd #{ENV['CIP']}/workspace;rm -rf P`
+        `cd #{ENV['CIP']}/workspace;rm -rf P;rm -rf security`
         `cd #{ENV['CIP']}/workspace;tar -xzf #{@filename}`
         begin
           builder = Cougaar::SocietyBuilder.from_ruby_file("#{ENV['CIP']}/workspace/P/society.rb")
