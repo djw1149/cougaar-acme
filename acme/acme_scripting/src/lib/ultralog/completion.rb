@@ -294,16 +294,16 @@ module UltraLog
         return
       end
       root = xml.root
-      node = root.attributes["name"]
-      quiescent = (root.attributes["quiescent"] == "true")
-      if quiescent
+      node_name = root.attributes["name"]
+      if root.attributes["quiescent"] == "true"
         root.each_element do |elem|
-          agent = elem.attributes["name"]
-          comp[agent] = get_agent_data(elem)
+          agent_name = elem.attributes["name"]
+          if agent_name != node_name
+            comp[agent_name] = get_agent_data(elem, node_name)
+          end
         end
       else
-        comp[node] = nil
-        node = @run.society.nodes[node]
+        node = @run.society.nodes[node_name]
         node.each_agent do |agent|
           comp[agent.name] = nil
         end
@@ -311,17 +311,20 @@ module UltraLog
       update_society_status()
     end
 
-    def get_agent_data (data)
+    def get_agent_data (data, node_name)
       agents = {}
-      agents["receivers"] = get_messages(data.elements["receivers"])
-      agents["senders"] = get_messages(data.elements["senders"])
+      agents["receivers"] = get_messages(data.elements["receivers"], node_name)
+      agents["senders"] = get_messages(data.elements["senders"], node_name)
       return agents
     end
       
-    def get_messages (data)
+    def get_messages (data, node_name)
       msgs = {}
       data.each_element do |elem|
-        msgs[elem.attributes["agent"]] = elem.attributes["msgnum"]
+        agent_name = elem.attributes["agent"]
+        if agent_name != node_name
+          msgs[agent_name] = elem.attributes["msgnum"]
+        end
       end
       return msgs
     end
@@ -368,35 +371,30 @@ module UltraLog
     def update_society_status()
       comp = @run["completion_agent_status"] 
       soc_status = "COMPLETE"
-      if @society.num_agents(true) > comp.size
+      if @society.num_agents > comp.size
         soc_status = "INCOMPLETE"
         ::Cougaar.logger.info "Quiescence incomplete because not all agents have reported" if @debug
       else
-        # before doing the exhaustive check, see if every node is currently
-        # reporting quiescence (will be nil if not).  Since this is reported at
-        # the node level, it'll be the same for all agents on each node.
-        @society.each_node_agent do |node|
-          if !comp[node.name]
-            soc_status = "INCOMPLETE"
-            ::Cougaar.logger.info "Quiescence incomplete because #{node.name} is not quiescent" if @debug
-            break
-          end
-        end
         if soc_status != "INCOMPLETE"
-          @society.each_agent(true) do |agent|
+          @society.each_agent do |agent|
             agentHash = comp[agent.name]
+            if agentHash.nil?
+              soc_status = "INCOMPLETE"
+              ::Cougaar.logger.info "Quiescence incomplete because #{agent.name} is not quiescent" if @debug
+              break
+            end
             agentHash["receivers"].each do |destAgent, msg|
               if !(comp[destAgent])
                 soc_status = "INCOMPLETE"
-                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
-                ::Cougaar.logger.info "  #{destAgent} does not currently have quiescence info, but it did at earlier test" if @debug
-                ::Cougaar.logger.info " trying to verify against #{agent.name} (#{destMsg}) != " if @debug
+                ::Cougaar.logger.info "Quiescence incomplete because #{destAgent} is not quiescent" if @debug
                 break
               elsif (destMsg = comp[destAgent]["senders"][agent.name]) && destMsg != msg
                 soc_status = "INCOMPLETE"
-                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
-                ::Cougaar.logger.info "   src message for #{agent.name} (#{destMsg}) != " if @debug
-                ::Cougaar.logger.info "       dest message for #{destAgent} (#{msg})" if @debug
+                if @debug
+                  ::Cougaar.logger.info "Quiescence incomplete because:" 
+                  ::Cougaar.logger.info "   src message for #{agent.name} (#{destMsg}) != " 
+                  ::Cougaar.logger.info "       dest message for #{destAgent} (#{msg})" 
+                end
                 break
               end
             end
@@ -405,15 +403,15 @@ module UltraLog
             agentHash["senders"].each do |srcAgent, msg|
               if !(comp[srcAgent])
                 soc_status = "INCOMPLETE"
-                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
-                ::Cougaar.logger.info "  #{srcAgent} does not currently have quiescence info, but it did at earlier test" if @debug
-                ::Cougaar.logger.info " trying to verify against #{agent.name} (#{srcMsg}) != " if @debug
+                ::Cougaar.logger.info "Quiescence incomplete because #{srcAgent} is not quiescent" if @debug
                 break
               elsif (srcMsg = comp[srcAgent]["receivers"][agent.name]) && srcMsg != msg
                 soc_status = "INCOMPLETE"
-                ::Cougaar.logger.info "Quiescence incomplete because:" if @debug
-                ::Cougaar.logger.info "   dest message for #{agent.name} (#{srcMsg}) != " if @debug
-                ::Cougaar.logger.info "       src message for #{srcAgent} (#{msg})" if @debug
+                if @debug
+                  ::Cougaar.logger.info "Quiescence incomplete because:" 
+                  ::Cougaar.logger.info "   dest message for #{agent.name} (#{srcMsg}) != " 
+                  ::Cougaar.logger.info "       src message for #{srcAgent} (#{msg})" 
+                end
                 break
               end
             end
