@@ -19,21 +19,31 @@ society.each_agent do |agent|
       c.add_argument("Prototype:MilitaryOrganization")
       org_id = agent.get_facet(:org_id).to_s
       org_type_id = agent.get_facet(:org_type_id).to_s
+      org_code = agent.get_facet(:org_code).to_s
+      home_location = agent.get_facet(:home_location).to_s
+      agency = agent.get_facet(:agency).to_s
+      service = agent.get_facet(:service).to_s
+      is_reserve = agent.get_facet(:is_reserve).to_s
       c.add_argument("ClusterPG:MessageAddress:MessageAddress:#{org_id}")
       c.add_argument("ItemIdentificationPG:ItemIdentification:String:#{org_id}")
       c.add_argument("ItemIdentificationPG:Nomenclature:String:#{org_id}")
-      # OrgCode/#{org_code}
-      c.add_argument("ItemIdentificationPG:AlternateItemIdentification:String:FIXME")
-      # UAType/#{org_type_id}
+      c.add_argument("ItemIdentificationPG:AlternateItemIdentification:String:OrgCode/#{org_code}")
       c.add_argument("TypeIdentificationPG:TypeIdentification:String:UAType/#{org_type_id}")
       c.add_argument("TypeIdentificationPG:Nomenclature:String:#{org_type_id}")
+
+      # Not sure what this value should be.....
       c.add_argument("TypeIdentificationPG:AlternateTypeIdentification:String:FIXME")
-      #MilitaryOrgPG:HomeLocation:queryGeolocLocation:#{home_location}
-      #MilitaryOrgPG:UTC:String:#{org_type_id}
-      #MilitaryOrgPG:UIC:String:#{org_code}
-      #MilitaryOrgPG:IsReserve:boolean:FIXME
-      #OrganizationPG:Service:Service:#{service}
-      #OrganizationPG:Agent:Agency:#{agency}
+
+      c.add_argument("MilitaryOrgPG:HomeLocation:queryGeolocLocation:#{home_location}")
+      c.add_argument("MilitaryOrgPG:UTC:String:#{org_type_id}")
+      c.add_argument("MilitaryOrgPG:UIC:String:#{org_code}")
+      if is_reserve.empty?
+	c.add_argument("MilitaryOrgPG:IsReserve:boolean:false")
+      else
+	c.add_argument("MilitaryOrgPG:IsReserve:boolean:true")
+      end
+      c.add_argument("OrganizationPG:Service:Service:#{service}")
+      c.add_argument("OrganizationPG:Agent:Agency:#{agency}")
 
       # Note that relationships are added below
     else
