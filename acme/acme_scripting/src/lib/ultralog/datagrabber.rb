@@ -35,8 +35,12 @@ module Cougaar
         @host = host
       end
       def perform
-        @host = @run.society.get_service_host("operator") unless @host
-        ::UltraLog::DataGrabber.new(@host).new_run
+        begin
+          @host = @run.society.get_service_host("operator") unless @host
+          ::UltraLog::DataGrabber.new(@host).new_run
+        rescue
+          @run.error_message "DataGrabber error #{$!}\n#{$!.backtrace.join("\n")}"
+        end
       end
     end
     class ConnectToDatagrabber < Cougaar::Action
