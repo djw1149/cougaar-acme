@@ -123,7 +123,7 @@ class PolicyGenerator
     puts "Creates one policy_org_type xml file for each org_type in policy.csv"
     puts "Usage:\n\t#$0 -p <policy csv file> [-h]"
     puts "\t-p --policy-csv......  The Policy file (.csv)."
-    puts "\t-p --policy-dir......  The directory for writing the policy xml files."
+    puts "\t-d --policy-dir......  The directory for writing the policy xml files."
     puts "\t-h --help............  Prints this help message."
   end
 
@@ -178,33 +178,13 @@ class PolicyGenerator
     }
   end
 
-  def xml_list
-    # Open the output and write the orgs and facets in xml
-    if @society_file
-      output = File.open(@society_file, "w")
-    else
-      output = $stdout
-    end
-    output.puts XML_HEADER
-    @org_id_list = @organizations.keys                      # Make a list of the org_ids
-    if @society_member_file
-      xml_list = @org_id_list && @society_member_list
-    else
-      xml_list = @org_id_list
-    end
-    xml_list.sort!
-    xml_list.each { |org_id| @organizations[org_id].to_xml(6,output) }
-    output.puts XML_FOOTER
-  end
-
 end
 
 if __FILE__==$0
-  # This only executes if you run this file alone (ruby hnac_generator.rb)
+  # This only executes if you run this file alone (ruby make_policy_files.rb)
 
   pol = PolicyGenerator.new
   pol.parse
   #pol.print_policies
   pol.write_xml_policy_files
-  #pol.xml_list
 end
