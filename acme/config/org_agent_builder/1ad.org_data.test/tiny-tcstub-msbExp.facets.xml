@@ -1,0 +1,739 @@
+<?xml version="1.0"?>
+<society name='ACME-UL-SOCIETY'
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
+
+  <host name='localhost'>
+    <node name='localnode'>
+      <agent name='1-35-ARBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='1-35-ARBN' />
+        <facet orig_org_id='1-35-ARBN' />
+        <facet superior_org_id='2-BDE-1-AD' />
+        <facet home_location='VTYA' />
+        <facet uic='WAPYAA' />
+        <facet combat_support='CBT' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Brigade' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='1-6-INFBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='1-6-INFBN' />
+        <facet orig_org_id='1-6-INFBN' />
+        <facet superior_org_id='2-BDE-1-AD' />
+        <facet home_location='VTYA' />
+        <facet uic='WAPSAA' />
+        <facet combat_support='CBT' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Brigade' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='1-AD'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='1-AD' />
+        <facet orig_org_id='1-AD' />
+        <facet superior_org_id='5-CORPS' />
+        <facet subordinate_org_id='2-BDE-1-AD' />
+        <facet subordinate_org_id='DISCOM-1-AD' />
+        <facet home_location='ULRK' />
+        <facet uic='WAPBAA' />
+        <facet combat_support='CMD' />
+        <facet echelon='DIVISION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='StrategicTransportationProvider'
+               echelon_of_support='DIVISION'
+               mechanism='PassThrough'
+        />
+        <facet sca_supported_org='1-AD'
+               sca_echelon_of_support='CORPS'
+        />
+      </agent>
+      <agent name='110-POL-SUPPLYCO'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='110-POL-SUPPLYCO' />
+        <facet orig_org_id='110-POL-SUPPLYCO' />
+        <facet superior_org_id='6-TCBN' />
+        <facet home_location='LEXG' />
+        <facet uic='WELKAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='COMPANY' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='FuelSupplyProvider'
+               echelon_of_support='THEATER'
+        />
+        <facet role='PackagedPOLSupplyProvider'
+               echelon_of_support='THEATER'
+        />
+      </agent>
+      <agent name='123-MSB-FOOD'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='123-MSB-FOOD' />
+        <facet orig_org_id='123-MSB-FOOD' />
+        <facet superior_org_id='123-MSB-HQ' />
+        <facet home_location='AJPG' />
+        <facet uic='WMSBAE' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet role='SubsistenceSupplyProvider'
+               echelon_of_support='DIVISION'
+        />
+      </agent>
+      <agent name='123-MSB-HQ'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='123-MSB-HQ' />
+        <facet orig_org_id='123-MSB-HQ' />
+        <facet superior_org_id='DISCOM-1-AD' />
+        <facet subordinate_org_id='123-MSB-POL' />
+        <facet subordinate_org_id='123-MSB-ORD' />
+        <facet subordinate_org_id='123-MSB-PARTS' />
+        <facet subordinate_org_id='123-MSB-FOOD' />
+        <facet home_location='AJPG' />
+        <facet uic='WDJ0A0' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet sca_supported_org='1-AD'
+               sca_echelon_of_support='DIVISION'
+        />
+      </agent>
+      <agent name='123-MSB-ORD'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='123-MSB-ORD' />
+        <facet orig_org_id='123-MSB-ORD' />
+        <facet superior_org_id='123-MSB-HQ' />
+        <facet home_location='AJPG' />
+        <facet uic='WMSBAC' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet role='AmmunitionProvider'
+               echelon_of_support='DIVISION'
+        />
+      </agent>
+      <agent name='123-MSB-PARTS'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='123-MSB-PARTS' />
+        <facet orig_org_id='123-MSB-PARTS' />
+        <facet superior_org_id='123-MSB-HQ' />
+        <facet home_location='AJPG' />
+        <facet uic='WMSBAD' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet role='SparePartsProvider'
+               echelon_of_support='DIVISION'
+        />
+      </agent>
+      <agent name='123-MSB-POL'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='123-MSB-POL' />
+        <facet orig_org_id='123-MSB-POL' />
+        <facet superior_org_id='123-MSB-HQ' />
+        <facet home_location='AJPG' />
+        <facet uic='WMSBAB' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet role='PackagedPOLSupplyProvider'
+               echelon_of_support='DIVISION'
+        />
+        <facet role='FuelSupplyProvider'
+               echelon_of_support='DIVISION'
+        />
+      </agent>
+      <agent name='125-ORDBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='125-ORDBN' />
+        <facet orig_org_id='125-ORDBN' />
+        <facet superior_org_id='7-CSG' />
+        <facet home_location='BQKY' />
+        <facet uic='WQ91AA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='AmmunitionProvider'
+               echelon_of_support='CORPS'
+        />
+      </agent>
+      <agent name='191-ORDBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='191-ORDBN' />
+        <facet orig_org_id='191-ORDBN' />
+        <facet superior_org_id='29-SPTGP' />
+        <facet home_location='QEYP' />
+        <facet uic='WFMVAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='AmmunitionProvider'
+               echelon_of_support='THEATER'
+        />
+      </agent>
+      <agent name='2-BDE-1-AD'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='2-BDE-1-AD' />
+        <facet orig_org_id='2-BDE-1-AD' />
+        <facet superior_org_id='1-AD' />
+        <facet subordinate_org_id='1-6-INFBN' />
+        <facet subordinate_org_id='1-35-ARBN' />
+        <facet subordinate_org_id='47-FSB' />
+        <facet home_location='VTYA' />
+        <facet uic='WAPGAA' />
+        <facet combat_support='CBT' />
+        <facet echelon='BRIGADE' />
+        <facet echelon_group='Brigade' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='200-MMC'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='200-MMC' />
+        <facet orig_org_id='200-MMC' />
+        <facet superior_org_id='21-TSC-HQ' />
+        <facet home_location='CYWK' />
+        <facet uic='WNBPAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='GROUP' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='SparePartsProvider'
+               echelon_of_support='CORPS'
+               note='Add'
+        />
+      </agent>
+      <agent name='21-TSC-HQ'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='21-TSC-HQ' />
+        <facet orig_org_id='21-TSC-HQ' />
+        <facet superior_org_id='USAEUR' />
+        <facet subordinate_org_id='AWR-2' />
+        <facet subordinate_org_id='200-MMC' />
+        <facet subordinate_org_id='29-SPTGP' />
+        <facet subordinate_org_id='37-TRANSGP' />
+        <facet home_location='CYWK' />
+        <facet uic='WNBSAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='DIVISION' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='StrategicTransportationProvider'
+               echelon_of_support='THEATER'
+               mechanism='PassThrough'
+        />
+        <facet sca_supported_org='USAEUR'
+               sca_echelon_of_support='THEATER'
+        />
+      </agent>
+      <agent name='29-SPTGP'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='29-SPTGP' />
+        <facet orig_org_id='29-SPTGP' />
+        <facet superior_org_id='21-TSC-HQ' />
+        <facet subordinate_org_id='51-MAINTBN' />
+        <facet subordinate_org_id='191-ORDBN' />
+        <facet home_location='LXQD' />
+        <facet uic='WCAYAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='GROUP' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='3-SUPCOM-HQ'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='3-SUPCOM-HQ' />
+        <facet orig_org_id='3-SUPCOM-HQ' />
+        <facet superior_org_id='5-CORPS' />
+        <facet subordinate_org_id='7-CSG' />
+        <facet home_location='YRBU' />
+        <facet uic='WBG0AA' />
+        <facet combat_support='CSS' />
+        <facet echelon='DIVISION' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='StrategicTransportationProvider'
+               echelon_of_support='CORPS'
+               mechanism='PassThrough'
+        />
+        <facet sca_supported_org='3-SUPCOM-HQ'
+               sca_echelon_of_support='CORPS'
+        />
+      </agent>
+      <agent name='316-POL-SUPPLYBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='316-POL-SUPPLYBN' />
+        <facet orig_org_id='316-POL-SUPPLYBN' />
+        <facet superior_org_id='7-CSG' />
+        <facet subordinate_org_id='900-POL-SUPPLYCO' />
+        <facet home_location='XJN1' />
+        <facet uic='WSRPAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='FuelTransportProvider'
+               echelon_of_support='CORPS'
+               note='Not Used Now'
+        />
+      </agent>
+      <agent name='343-SUPPLYCO'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='343-SUPPLYCO' />
+        <facet orig_org_id='343-SUPPLYCO' />
+        <facet superior_org_id='51-MAINTBN' />
+        <facet home_location='UJGP' />
+        <facet uic='WSS7AA' />
+        <facet combat_support='CSS' />
+        <facet echelon='COMPANY' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='SubsistenceSupplyProvider'
+               echelon_of_support='THEATER'
+        />
+      </agent>
+      <agent name='37-TRANSGP'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='37-TRANSGP' />
+        <facet orig_org_id='37-TRANSGP' />
+        <facet superior_org_id='21-TSC-HQ' />
+        <facet subordinate_org_id='6-TCBN' />
+        <facet home_location='MJPG' />
+        <facet uic='WCJZAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='GROUP' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='406-SUPPLYCO'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='406-SUPPLYCO' />
+        <facet orig_org_id='406-SUPPLYCO' />
+        <facet superior_org_id='561-SSBN' />
+        <facet home_location='HCTL' />
+        <facet uic='WEVHAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='COMPANY' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='SubsistenceSupplyProvider'
+               echelon_of_support='CORPS'
+               note='Add'
+        />
+      </agent>
+      <agent name='47-FSB'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='47-FSB' />
+        <facet orig_org_id='47-FSB' />
+        <facet superior_org_id='2-BDE-1-AD' />
+        <facet home_location='VTYA' />
+        <facet uic='WH98AA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='AmmunitionProvider'
+               echelon_of_support='BRIGADE'
+        />
+        <facet role='FuelSupplyProvider'
+               echelon_of_support='BRIGADE'
+        />
+        <facet role='PackagedPOLSupplyProvider'
+               echelon_of_support='BRIGADE'
+        />
+        <facet role='SparePartsProvider'
+               echelon_of_support='BRIGADE'
+        />
+        <facet role='SubsistenceSupplyProvider'
+               echelon_of_support='BRIGADE'
+        />
+        <facet sca_supported_org='2-BDE-1-AD'
+               sca_echelon_of_support='BRIGADE'
+        />
+      </agent>
+      <agent name='5-CORPS'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='5-CORPS' />
+        <facet orig_org_id='5-CORPS' />
+        <facet superior_org_id='USAEUR' />
+        <facet subordinate_org_id='1-AD' />
+        <facet subordinate_org_id='3-SUPCOM-HQ' />
+        <facet home_location='CYWK' />
+        <facet uic='WAT6AA' />
+        <facet combat_support='CMD' />
+        <facet echelon='CORPS' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='51-MAINTBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='51-MAINTBN' />
+        <facet orig_org_id='51-MAINTBN' />
+        <facet superior_org_id='29-SPTGP' />
+        <facet subordinate_org_id='343-SUPPLYCO' />
+        <facet home_location='VYZR' />
+        <facet uic='WB0HAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='561-SSBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='561-SSBN' />
+        <facet orig_org_id='561-SSBN' />
+        <facet superior_org_id='7-CSG' />
+        <facet subordinate_org_id='406-SUPPLYCO' />
+        <facet home_location='HDBL' />
+        <facet uic='WDEEAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='565-RPRPTCO'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='565-RPRPTCO' />
+        <facet orig_org_id='565-RPRPTCO' />
+        <facet superior_org_id='71-MAINTBN' />
+        <facet home_location='HFTZ' />
+        <facet uic='WDWTAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='COMPANY' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='SparePartsProvider'
+               echelon_of_support='CORPS'
+        />
+      </agent>
+      <agent name='6-TCBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='6-TCBN' />
+        <facet orig_org_id='6-TCBN' />
+        <facet superior_org_id='37-TRANSGP' />
+        <facet subordinate_org_id='110-POL-SUPPLYCO' />
+        <facet home_location='HERT' />
+        <facet uic='WCKKAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Theater' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='FuelTransportProvider'
+               echelon_of_support='THEATER'
+               note='Not Used Now'
+        />
+      </agent>
+      <agent name='7-CSG'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='7-CSG' />
+        <facet orig_org_id='7-CSG' />
+        <facet superior_org_id='3-SUPCOM-HQ' />
+        <facet subordinate_org_id='71-MAINTBN' />
+        <facet subordinate_org_id='561-SSBN' />
+        <facet subordinate_org_id='316-POL-SUPPLYBN' />
+        <facet subordinate_org_id='125-ORDBN' />
+        <facet home_location='AVFD' />
+        <facet uic='WH7MAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='GROUP' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet sca_supported_org='5-CORPS'
+               sca_echelon_of_support='CORPS'
+        />
+        <facet sca_supported_org='7-CSG'
+               sca_echelon_of_support='DIVISION'
+        />
+      </agent>
+      <agent name='71-MAINTBN'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='71-MAINTBN' />
+        <facet orig_org_id='71-MAINTBN' />
+        <facet superior_org_id='7-CSG' />
+        <facet subordinate_org_id='565-RPRPTCO' />
+        <facet home_location='YKLA' />
+        <facet uic='WB0RAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BATTALION' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='900-POL-SUPPLYCO'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='900-POL-SUPPLYCO' />
+        <facet orig_org_id='900-POL-SUPPLYCO' />
+        <facet superior_org_id='316-POL-SUPPLYBN' />
+        <facet home_location='HCRL' />
+        <facet uic='WSTMAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='COMPANY' />
+        <facet echelon_group='Corps' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+        <facet role='FuelSupplyProvider'
+               echelon_of_support='CORPS'
+        />
+        <facet role='PackagedPOLSupplyProvider'
+               echelon_of_support='CORPS'
+        />
+      </agent>
+      <agent name='AWR-2'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='AWR-2' />
+        <facet orig_org_id='AWR-2' />
+        <facet superior_org_id='21-TSC-HQ' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CSS' />
+        <facet echelon='GROUP' />
+        <facet echelon_group='Theater' />
+        <facet role='AmmunitionProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+               note='C .lt. 30'
+        />
+        <facet role='SparePartsProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+               note='C .lt. 30'
+        />
+        <facet role='SubsistenceSupplyProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+               note='C .lt. 30'
+        />
+        <facet sca_supported_org='NCA'
+               sca_echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='DISCOM-1-AD'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='DISCOM-1-AD' />
+        <facet orig_org_id='DISCOM-1-AD' />
+        <facet superior_org_id='1-AD' />
+        <facet subordinate_org_id='123-MSB-HQ' />
+        <facet home_location='ULRK' />
+        <facet uic='WAPLAA' />
+        <facet combat_support='CSS' />
+        <facet echelon='BRIGADE' />
+        <facet echelon_group='Division' />
+        <facet is_deployable='T' />
+        <facet has_physical_assets='T' />
+        <facet has_equipment_assets='T' />
+        <facet has_personnel_assets='T' />
+      </agent>
+      <agent name='DLAHQ'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='DLAHQ' />
+        <facet orig_org_id='DLAHQ' />
+        <facet superior_org_id='NCA' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CSS' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='ConstructionSupplyProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+               note='Remove'
+        />
+        <facet role='SparePartsProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+               note='C .gt. 30'
+        />
+        <facet role='SubsistenceSupplyProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+               note='C .gt. 30'
+        />
+        <facet sca_supported_org='NCA'
+               sca_echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='HNS'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='HNS' />
+        <facet orig_org_id='HNS' />
+        <facet superior_org_id='NCA' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CSS' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='FuelSupplyProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+        />
+        <facet role='PackagedPOLSupplyProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalInventoryManager'
+        />
+        <facet sca_supported_org='NCA'
+               sca_echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='OSC'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='OSC' />
+        <facet orig_org_id='OSC' />
+        <facet superior_org_id='NCA' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CSS' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='AmmunitionProvider'
+               echelon_of_support='JOINT'
+               mechanism='TerminalAmmunitionPacker'
+               note='C .gt. 30'
+        />
+        <facet sca_supported_org='NCA'
+               sca_echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='NCA'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='NCA' />
+        <facet orig_org_id='NCA' />
+        <facet superior_org_id='' />
+        <facet subordinate_org_id='TRANSCOM' />
+        <facet subordinate_org_id='HNS' />
+        <facet subordinate_org_id='DLAHQ' />
+        <facet subordinate_org_id='OSC' />
+        <facet subordinate_org_id='USEUCOM' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CMD' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='LogisticsCommanderInChief'
+               echelon_of_support='JOINT'
+        />
+        <facet role='OperationalCommanderInChief'
+               echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='TRANSCOM'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='TRANSCOM' />
+        <facet orig_org_id='TRANSCOM' />
+        <facet superior_org_id='NCA' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CSS' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Transcom' />
+        <facet role='StrategicTransportationProvider'
+               echelon_of_support='JOINT'
+               mechanism='StubTransportationProvider'
+        />
+        <facet sca_supported_org='NCA'
+               sca_echelon_of_support='JOINT'
+        />
+      </agent>
+      <agent name='USAEUR'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='USAEUR' />
+        <facet orig_org_id='USAEUR' />
+        <facet superior_org_id='USEUCOM' />
+        <facet subordinate_org_id='5-CORPS' />
+        <facet subordinate_org_id='21-TSC-HQ' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CMD' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+        <facet role='ArmyCommander'
+               echelon_of_support='US-ARMY'
+        />
+      </agent>
+      <agent name='USEUCOM'
+             class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='USEUCOM' />
+        <facet orig_org_id='USEUCOM' />
+        <facet superior_org_id='NCA' />
+        <facet subordinate_org_id='USAEUR' />
+        <facet home_location='VDYD' />
+        <facet combat_support='CMD' />
+        <facet echelon='JOINT' />
+        <facet echelon_group='Conus' />
+      </agent>
+    </node>
+  </host>
+</society>
