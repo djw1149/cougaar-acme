@@ -1,7 +1,7 @@
 =begin experiment
 
-name: Baseline
-description: Baseline
+name: MOAS-II-Save
+description: MOAS-II save pre-Stage5
 script: $CIP/csmart/lib/isat/OPBaselineTemplate.rb
 parameters:
   - run_count: 1

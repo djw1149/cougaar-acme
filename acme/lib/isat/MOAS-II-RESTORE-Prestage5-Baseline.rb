@@ -1,7 +1,7 @@
 =begin experiment
 
-name: RESTORE-Basline56-Experiment-1
-description: Stage-56-Rehydration
+name: MOAS-II-RESTORE-Basline
+description: MOAS-II-preStage5-Restore-Baseline
 script: $CIP/csmart/lib/isat/OPRestoreTemplate.rb
 parameters:
   - run_count: 1

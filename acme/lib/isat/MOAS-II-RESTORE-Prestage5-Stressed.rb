@@ -1,7 +1,7 @@
 =begin experiment
 
-name: RESTORE-StressedCPU50-56-Experiment-1
-description: Stage-56-cpu50
+name: MOAS-II-RESTORE-Stressed
+description: MOAS-II-Stage56
 script: $CIP/csmart/lib/isat/OPRestoreTemplate.rb
 parameters:
   - run_count: 1
