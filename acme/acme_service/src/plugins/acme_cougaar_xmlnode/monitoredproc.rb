@@ -28,13 +28,9 @@ class MonitoredProcess
   attr_reader :pid
 
   def MonitoredProcess.guessPlatform()
-    begin
-      pid = fork {exit!}
-      Process.waitpid(pid)
-   
+    platform = "windows"
+    if File::PATH_SEPARATOR == ":"
       platform = "unix"
-    rescue NotImplementedError
-      platform = "windows"
     end
     return platform
   end
