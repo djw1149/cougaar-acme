@@ -91,21 +91,28 @@ module ACME
           end
           if run_log
             error = 0
+            kills = false
             run_data = File.readlines(run_log)
             last_run = []
             run_data.each do |line|
               if line =~ /Run:.*started/ then
               #only care if last run in the log was interrupted
-                error = 0 
+                error = 0
+                kills = false 
                 last_run = []
               end
+              kills = true if (line =~ /KillNodes/)
               error = 1 if (line =~ /INTERRUPT/ && error == 0)
-              error = 2 if (line =~ /\[ERROR\]/)
+              if (line =~ /\[ERROR\]/) then
+                if (!kills || !line =~ /Error accessing .*Manager/) then
+                  error = 2
+                end
+              end
               last_run << line
             end
             run_data = run_data.collect!{|x| x.gsub(/&/, "&amp;").gsub(/</, "&lt;").gsub(/>/,"&gt;")}
             report.open_file("run_report.html", "text/html", "Full Run Log") do |file|
-              file.puts @ikko['run_report.html', {'description_link'=>"run_report_description.html", 'data'=>last_run}]
+              file.puts @ikko['run_report.html', {'description_link'=>"run_report_description.html", 'data'=>last_run, 'date'=>Time.now}]
             end
 
             desc = create_description
