@@ -11,7 +11,11 @@ start() {
 
   cd /usr/local/acme
   # su -l acme_user #...defaults to root!
-  /usr/bin/ruby acme.rb &> run.log &
+  #/usr/bin/ruby acme.rb &> run.log &
+
+  # restart if it dies
+  acme.sh &
+
   echo "$!" > acme.pid
 
 	RETVAL=0
