@@ -82,7 +82,6 @@ opts.each do |opt, arg|
     puts "\t\t\t\t(default empty string)"
     puts "\t-w --cmd-user\tWho to use (userid) when starting java and computing $COUGAAR_INSTALL_PATH."
     puts "\t\t\t\t(default empty string)"
-    puts "\t-u --uninstall\tUninstall ACME."
     exit 0
   when '--noop'
     NOOP = true
