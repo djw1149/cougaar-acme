@@ -256,6 +256,24 @@ module Cougaar
         return super.to_s + "('#{@filename}')"
       end
     end
+    
+    class LoadSocietyFromMemory < Cougaar::Action
+      RESULTANT_STATE = "SocietyLoaded"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Load a society stored in Cougaar.in_memory_society."
+        @example = "do_action 'LoadSocietyFromMember'"
+      }
+      
+      def initialize(run)
+        super(run)
+      end
+      
+      def perform
+        raise_failure "In memory society not set" unless Cougaar.in_memory_society
+        @run.society = Cougaar.in_memory_society
+        @run["loader"] = "XML"
+      end
+    end
   end
 end
 

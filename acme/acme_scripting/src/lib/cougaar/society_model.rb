@@ -24,6 +24,15 @@ require 'cougaar/society_utils'
 $debug_society_model = false
 
 module Cougaar
+  
+  def self.in_memory_society
+    @in_memory_society
+  end
+  
+  def self.in_memory_society=(society)
+    @in_memory_society = society
+  end
+
   module Model
 
     ##
