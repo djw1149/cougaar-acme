@@ -180,10 +180,10 @@ class SocietyGenerator
     @society_file = nil
     @use_full_org_id = true                     # Default is to use full org_id, not orig_org_id
     opts = GetoptLong.new( [ '--org-data-directory', '-d', GetoptLong::OPTIONAL_ARGUMENT],
-                           [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
-                           [ '--society',  '-s', GetoptLong::OPTIONAL_ARGUMENT],
-                           [ '--full-org-id', '-f', GetoptLong::OPTIONAL_ARGUMENT],
-						   [ '--help',    '-h', GetoptLong::NO_ARGUMENT])
+			  [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
+			  [ '--society',  '-s', GetoptLong::OPTIONAL_ARGUMENT],
+			  [ '--orig-org-id', '-o', GetoptLong::NO_ARGUMENT],
+			  [ '--help',    '-h', GetoptLong::NO_ARGUMENT])
 
     opts.each do |opt, arg|
       case opt
@@ -193,8 +193,8 @@ class SocietyGenerator
         @society_member_file = arg
       when '--society'
         @society_file = arg
-      when '--full-org-id'
-        @use_full_org_id = (arg != 'false')        # use_full_org_id is true unless arg is false
+      when '--orig-org-id'
+	@use_full_org_id = false
       when '--help'
         help
         exit 0
