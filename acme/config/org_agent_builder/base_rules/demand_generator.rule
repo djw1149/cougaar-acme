@@ -7,6 +7,9 @@
 # plugin = org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Consumable)
 # plugin = org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Subsistence)
 
+# From Amy: The FCS DemandGenerator produces an entire days worth of tasks at midnight (24),
+# rather than generating them as you cross the hour threshholds. This allows
+# you to step a whole society forward by days, rather than hours.
 demand_generator_plugin = "org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin"
 ua_demand_generator_plugin = "com.bbn.fcss.plugin.demand.FcsDemandGeneratorPlugin"
 
