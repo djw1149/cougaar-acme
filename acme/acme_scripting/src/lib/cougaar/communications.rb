@@ -69,7 +69,12 @@ module Cougaar
         @myThread.exit
         @run.comms.remove_command(@command)
       end
-      
+
+      def unhandled_timeout
+        @run.do_action "StopSociety" if @sequence.index_of("StartSociety")
+        @run.do_action "StopCommunications"
+      end
+            
     end
   end
   
