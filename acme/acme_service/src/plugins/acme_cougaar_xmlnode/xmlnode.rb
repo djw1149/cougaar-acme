@@ -67,18 +67,24 @@ class XMLCougaarNode
     end
     filename
   end
+  
+  def loaded_nodes
+    @loaded_nodes
+  end
 
   def initialize(plugin)
     @plugin = plugin
     @nodes_hash = {}
+    @loaded_nodes = {}
+    
     @config_mgr = plugin['/cougaar/config'].manager
     
     #START NODE
     @plugin["/plugins/acme_host_communications/commands/start_xml_node/description"].data = 
       "Starts Cougaar node and returns PID. Params: filename (previously posted to /xmlnode) "
     @plugin["/plugins/acme_host_communications/commands/start_xml_node"].set_proc do |message, command| 
-      node = NodeConfig.new(self, @plugin, command)
-      pid = node.start(message.from)
+      node = loaded_nodes[command]
+      pid = node.start
       puts "STARTED: #{pid}"
       running_nodes[pid] = node
       message.reply.set_body(pid).send
@@ -181,7 +187,8 @@ class XMLCougaarNode
     # Mount handler for receiving xml node file via HTTP
     @plugin['/protocols/http/xmlnode'].set_proc do |request, response|
       if request.request_method=="POST"
-        filename = makeFileName(request.path[9..-1])
+        nodefile = request.path[9..-1]
+        filename = makeFileName(nodefile)
         #search and replace $COUGAAR_INSTALL_PATH
         data = request.body
         data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
@@ -199,24 +206,51 @@ class XMLCougaarNode
         response.body = "<html>XMLNode File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
       end
+      loaded_nodes[nodefile] = NodeConfig.new(self, @plugin, nodefile)
     end
     
     # Mount handler for receiving communities xml file via HTTP
     @plugin['/protocols/http/communities'].set_proc do |request, response|
       if request.request_method=="POST"
-        filename = File.join(@plugin['/cougaar/config'].manager.cougaar_install_path, "configs", "common", "communities.xml")
-        #search and replace $COUGAAR_INSTALL_PATH
-        data = request.body
-        data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
-        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common')}`
-        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common/communities.xml')}`
-        File.open(filename, "w") do |file|
-          file.write(data)
-          response.body = "Communities.xml file written."
-          response['Content-Type'] = "text/plain"
+        node_name = request.path[13..-1]
+        if node_name && node_name.size > 3 # node name specified
+          node_name = node_name.strip
+          filename = File.join(@plugin['/cougaar/config'].manager.cougaar_install_path, "configs", "communities", "#{node_name}_communities.xml")
+          #search and replace $COUGAAR_INSTALL_PATH
+          data = request.body
+          data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
+          unless File.exist?(File.join(@plugin['/cougaar/config'].manager.cougaar_install_path, "configs", "communities"))
+            `#{@plugin['/cougaar/config'].manager.cmd_wrap('mkdir $CIP/configs/communities')}`
+          end
+          cmd = @plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/communities')
+          `#{cmd}`
+          cmd = @plugin['/cougaar/config'].manager.cmd_wrap("touch '#{filename}'")
+          `#{cmd}`
+          cmd = @plugin['/cougaar/config'].manager.cmd_wrap("chmod 777 '#{filename}'")
+          `#{cmd}`
+          File.open(filename, "w") do |file|
+            file.write(data)
+            response.body = "#{node_name}_communities.xml file written."
+            response['Content-Type'] = "text/plain"
+          end
+          cmd = @plugin['/cougaar/config'].manager.cmd_wrap("chmod 644 '#{filename}'")
+          `#{cmd}`
+          XMLCougaarNode.jarAndSign(@plugin, filename)
+        else # default to regular configs/command/communities.xml
+          filename = File.join(@plugin['/cougaar/config'].manager.cougaar_install_path, "configs", "common", "communities.xml")
+          #search and replace $COUGAAR_INSTALL_PATH
+          data = request.body
+          data.gsub!(/\$COUGAAR_INSTALL_PATH/, @plugin['/cougaar/config'].manager.cougaar_install_path)
+          `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common')}`
+          `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 777 $CIP/configs/common/communities.xml')}`
+          File.open(filename, "w") do |file|
+            file.write(data)
+            response.body = "Communities.xml file written."
+            response['Content-Type'] = "text/plain"
+          end
+          `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 644 $CIP/configs/common/communities.xml')}`
+          XMLCougaarNode.jarAndSign(@plugin, filename)
         end
-        `#{@plugin['/cougaar/config'].manager.cmd_wrap('chmod 644 $CIP/configs/common/communities.xml')}`
-        XMLCougaarNode.jarAndSign(@plugin, filename)
       else
         response.body = "<html>Communities.xml File upload only responds to HTTP POST.</html>"
         response['Content-Type'] = "text/html"
