@@ -1,4 +1,4 @@
-$:.unshift "../src/lib"
+$:.unshift "../../src/lib"
 
 require "cougaar/scripting"
 require "my_action"
