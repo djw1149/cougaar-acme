@@ -4,7 +4,8 @@
 
 community_plugin = "org.cougaar.community.CommunityPlugin"
 
-society.each_agent do |agent|
+# Adding the 'true' option makes this rule apply to nodeAgents to.
+society.each_agent(true) do |agent|
   agent.add_component do |c|
     c.classname = community_plugin
   end
