@@ -205,7 +205,7 @@ class XMLCougaarNode
   
   def XMLCougaarNode.jarAndSign(plugin, filepath)
     cmd_jar = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jar cf #{filepath}.jar #{filepath}")
-    cmd_jarsign = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jarsigner -keystore /usr/local/acme/keystore_localconfig -storepass keystore #{filepath}.jar xmlconfigkey")
+    cmd_jarsign = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jarsigner -keystore /usr/local/acme/keystore_localconfig -storepass keystore #{filepath}.jar privileged")
     `#{cmd_jar}`
     `#{cmd_jarsign}`
   end
