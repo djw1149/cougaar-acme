@@ -33,49 +33,50 @@ include_scripts:
       - start_delay: 60
       - nodes_to_kill:
         - AmmoTRANSCOM-NODE
-        - EuroTRANSCOM-NODE
+        - 127-DASB-NODE
+        - 501-FSB-NODE
+        - 47-FSB-NODE
+        - 125-FSB-NODE
+        - 191-ORDBN-NODE
+        - 1-CA-SEC-MGMT-NODE
+        - 1-CA-ROB-MGMT-NODE
+        - 2-CA-SEC-MGMT-NODE
+        - 2-CA-ROB-MGMT-NODE
+        - 3-CA-SEC-MGMT-NODE
+        - 3-CA-ROB-MGMT-NODE
+        - FSB-FUEL-WATER-SECTION-NODE
         - 123-MSB-HQ-NODE
         - 123-MSB-FOOD-NODE
         - 123-MSB-POL-NODE
         - 123-MSB-PARTS-NODE
         - 123-MSB-ORD-NODE
+
+  - script: $CIP/csmart/assessment/assess/standard_mem_stress.rb
+    parameters:
+      - start_tag: society_restored
+      - start_delay: 0
+      - end_tag: ending_stage
+      - duration: 900
+      - mem_stress: 25
+      - nodes_to_stress:
+        - AmmoTRANSCOM-NODE
+        - 127-DASB-NODE
         - 501-FSB-NODE
         - 47-FSB-NODE
         - 125-FSB-NODE
-        - 127-DASB-NODE
         - 191-ORDBN-NODE
+        - 1-CA-SEC-MGMT-NODE
+        - 1-CA-ROB-MGMT-NODE
+        - 2-CA-SEC-MGMT-NODE
+        - 2-CA-ROB-MGMT-NODE
+        - 3-CA-SEC-MGMT-NODE
+        - 3-CA-ROB-MGMT-NODE
         - FSB-FUEL-WATER-SECTION-NODE
-        - FSB-DRY-CARGO-SECTION-NODE
-
-#  - script: $CIP/csmart/assessment/assess/standard_mem_stress.rb
-#    parameters:
-#      - start_tag: society_restored
-#      - start_delay: 0
-#      - end_tag: ending_stage
-#      - duration: 900
-#      - mem_stress: 25
-#      - nodes_to_stress:
-#        - AmmoTRANSCOM-NODE
-#        - REAR-B-NODE
-#        - 597-MAINTCO-NODE
-#        - 565-RPRPTCO-NODE
-#        - 106-TCBN-NODE
-#        - 227-SUPPLYCO-NODE
-#        - 592-ORDCO-NODE
-#        - 102-POL-SUPPLYCO-NODE
-#        - DISCOM-1-AD-NODE
-#        - AVNBDE-1-AD-NODE
-#        - 1-1-CAVSQDN-NODE
-#        - 1-BDE-1-AD-NODE
-#        - 2-BDE-1-AD-NODE
-#        - UA-HHC-NODE
-#        - AVN-DET-A-NODE
-#        - NLOS-A-NODE
-#        - FSB-CIC-NODE
-#        - FSB-AREA-FWD-EVAC-SECTION-NODE
-#        - 1-CA-BN-INF-CO-A-NODE
-#        - 2-CA-BN-INF-CO-A-NODE
-#        - 3-CA-BN-INF-CO-A-NODE
+        - 123-MSB-HQ-NODE
+        - 123-MSB-FOOD-NODE
+        - 123-MSB-POL-NODE
+        - 123-MSB-PARTS-NODE
+        - 123-MSB-ORD-NODE
 
   - script: $CIP/csmart/assessment/assess/standard_cpu_stress.rb
     parameters:
@@ -86,26 +87,23 @@ include_scripts:
       - cpu_stress: 25
       - nodes_to_stress:
         - AmmoTRANSCOM-NODE
-        - REAR-B-NODE
-        - 597-MAINTCO-NODE
-        - 565-RPRPTCO-NODE
-        - 106-TCBN-NODE
-        - 227-SUPPLYCO-NODE
-        - 592-ORDCO-NODE
-        - 102-POL-SUPPLYCO-NODE
-        - DISCOM-1-AD-NODE
-        - AVNBDE-1-AD-NODE
-        - 1-1-CAVSQDN-NODE
-        - 1-BDE-1-AD-NODE
-        - 2-BDE-1-AD-NODE
-        - UA-HHC-NODE
-        - AVN-DET-A-NODE
-        - NLOS-A-NODE
-        - FSB-CIC-NODE
-        - FSB-AREA-FWD-EVAC-SECTION-NODE
-        - 1-CA-BN-INF-CO-A-NODE
-        - 2-CA-BN-INF-CO-A-NODE
-        - 3-CA-BN-INF-CO-A-NODE
+        - 127-DASB-NODE
+        - 501-FSB-NODE
+        - 47-FSB-NODE
+        - 125-FSB-NODE
+        - 191-ORDBN-NODE
+        - 1-CA-SEC-MGMT-NODE
+        - 1-CA-ROB-MGMT-NODE
+        - 2-CA-SEC-MGMT-NODE
+        - 2-CA-ROB-MGMT-NODE
+        - 3-CA-SEC-MGMT-NODE
+        - 3-CA-ROB-MGMT-NODE
+        - FSB-FUEL-WATER-SECTION-NODE
+        - 123-MSB-HQ-NODE
+        - 123-MSB-FOOD-NODE
+        - 123-MSB-POL-NODE
+        - 123-MSB-PARTS-NODE
+        - 123-MSB-ORD-NODE
 
   - script: $CIP/csmart/lib/isat/standard_shape_K_links.rb
     parameters:
@@ -118,31 +116,31 @@ include_scripts:
 #        - link 
 #          - router: CONUS-REAR-router
 #          - target: DIVISION
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link 
 #          - router: DIV-router
 #          - target: CONUS-REAR
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link
 #          - router: CONUS-REAR-router
 #          - target: DIV-SUP
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link
 #          - router: DIV-SUP-router
 #          - target: CONUS-REAR
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link
 #          - router: CONUS-REAR-router
 #          - target: 1-UA
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link
 #          - router: DIV-SUP-router
 #          - target: DIV
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link
 #          - router: DIV-router
 #          - target: DIV-SUP
-#          - bandwidth: 256kbit
+#          - bandwidth: 762kbit
 #        - link
 #          - router: DIV-router
 #          - target: AVN-BDE
