@@ -1,0 +1,9 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_net_dns
+version: 1.0
+autoload: false
+require_path: acme_net_dns/plugin
+startup_module: ACME::Plugins::DNS
+properties_path: properties.yaml
+start_dependencies: 
+  acme_host_communications: "*"

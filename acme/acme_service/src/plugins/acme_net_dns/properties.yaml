@@ -1,0 +1,8 @@
+#### Properties: acme_net_dns - Version: 1.0
+properties: ~
+"|": 
+  - command: "dns"
+  - description: "Control the Domain Name Service:  move(hostname,ip), reset, lookup(hostname)"
+  - zone: "/var/named/db.sv.ul.isotic.org"
+  - zone.bk: "/var/named/acme.db.sv.ul.isotic.org"
+
