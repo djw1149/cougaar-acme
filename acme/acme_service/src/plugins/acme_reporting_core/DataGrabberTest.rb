@@ -79,8 +79,8 @@ module ACME
             start_time = ts[0]
           elsif (ts = get_timestamp(line, data_pattern)) then
             curr.run = ts[1][0]
-            curr.assets = ts[1][1]
-            curr.units = ts[1][2]
+            curr.assets = ts[1][1].to_i
+            curr.units = ts[1][2].to_i
           elsif (ts = get_timestamp(line, end_pattern)) then
             curr.time = Time.at(ts[0] - start_time).gmtime
             data << curr
@@ -90,26 +90,23 @@ module ACME
       end
 
       def analyze(data)
-        units_ranges = [UNITS..UNITS, 
-                        (0.95*UNITS)..(1.05*UNITS)]
-        assets_ranges = [(0.95*ASSETS)..(1.05*ASSETS), 
-                         (0.90*ASSETS)..(1.10*ASSETS)]
-         
-        unit_error_lvl = units_ranges.size
-        asset_error_lvl = assets_ranges.size
-        units_ranges.each_index do |i|
-          if units_ranges[i].include?(data.units) then
-            unit_error_lvl = i
-            break
-          end
+        unit_error_lvl = asset_error_lvl = 0
+        if (data.units != UNITS) then
+          unit_error_lvl = 1
+        end
+        if (data.units < 0.95*UNITS || data.units > 1.05*UNITS) then
+          unit_error_lvl = 2
         end
 
-        assets_ranges.each_index do |i|
-          if assets_ranges[i].include?(data.assets) then
-            asset_error_lvl = i
-            break
-          end
+        if (data.assets < 0.95*ASSETS || data.assets > 1.05*ASSETS) then
+          asset_error_lvl = 1
         end
+        if (data.assets < 0.90*ASSETS || data.assets > 1.10*ASSETS) then
+          asset_error_lvl = 2
+        end
+
+        puts unit_error_lvl
+        puts asset_error_lvl
         return [unit_error_lvl, asset_error_lvl].max
       end
        
