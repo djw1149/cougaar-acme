@@ -8,7 +8,6 @@
 # plugin = org.cougaar.glm.servlet.GLMCompletionServlet(/completion)
 ### For the data grabber
 # plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.HierarchyServlet,/hierarchy)
-# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.mlm.ui.servlet.DataGathererServlet,/datagatherer)
 ### For the inventory Servlet
 # plugin = org.cougaar.mlm.servlet.InventoryServletComponent(org.cougaar.logistics.servlet.InventoryServlet,/log_inventory)
 ### Allows loading arbitrary components
@@ -35,7 +34,6 @@ simple_servlet_component_loader = "org.cougaar.core.servlet.SimpleServletCompone
 plan_view_servlet = "org.cougaar.planning.servlet.PlanViewServlet"
 glm_completion_servlet = "org.cougaar.glm.servlet.GLMCompletionServlet"
 hierarchy_servlet = "org.cougaar.planning.servlet.HierarchyServlet"
-data_gatherer_servlet = "org.cougaar.mlm.ui.servlet.DataGathererServlet"
 inventory_servlet_component = "org.cougaar.mlm.servlet.InventoryServletComponent"
 inventory_servlet = "org.cougaar.mlm.servlet.InventoryServlet"
 loader_servlet_component = "org.cougaar.planning.servlet.LoaderServletComponent"
@@ -61,11 +59,6 @@ society.each_agent do |agent|
     c.classname = simple_servlet_component_loader
     c.add_argument(hierarchy_servlet)
     c.add_argument("/hierarchy")
-  end
-  agent.add_component do |c|                       # data_gatherer_servlet
-    c.classname = simple_servlet_component_loader
-    c.add_argument(data_gatherer_servlet)
-    c.add_argument("/datagatherer")
   end
   agent.add_component do |c|                       # inventory_servlet
     c.classname = inventory_servlet_component
