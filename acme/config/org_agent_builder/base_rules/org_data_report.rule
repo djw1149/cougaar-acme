@@ -26,7 +26,7 @@ society.each_agent do |agent|
       is_reserve = agent.get_facet(:is_reserve).to_s
       equip_type_id = agent.get_facet(:equip_type_id).to_s
       c.add_argument("ClusterPG:MessageAddress:MessageAddress:#{org_id}")
-      c.add_argument("ItemIdentificationPG:ItemIdentification:String:UIC/#{org_id}")
+      c.add_argument("ItemIdentificationPG:ItemIdentification:String:#{org_id}")
       c.add_argument("ItemIdentificationPG:Nomenclature:String:#{org_id}")
       c.add_argument("ItemIdentificationPG:AlternateItemIdentification:String:OrgCode/#{org_code}")
       c.add_argument("TypeIdentificationPG:TypeIdentification:String:#{equip_type_id}")
