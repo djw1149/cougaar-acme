@@ -1,11 +1,9 @@
-
 <?xml version="1.0"?>
 <society name='JEFF-BERLINER-PROTO'
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
   <host name='localhost'>
     <node name='localnode'>
-  
       <agent name='1-27-FABN.5-CORPS.ARMY.MIL'
              class='org.cougaar.core.agent.SimpleAgent'>
         <facet org_id='1-27-FABN.5-CORPS.ARMY.MIL' />
@@ -986,17 +984,17 @@
         <facet role='AmmunitionProvider'
                echelon_of_support='JOINT'
                mechanism='TerminalInventoryManager'
-               note='C < 30'
+               note='C .lt. 30'
         />
         <facet role='SparePartsProvider'
                echelon_of_support='JOINT'
                mechanism='TerminalInventoryManager'
-               note='C < 30'
+               note='C .lt. 30'
         />
         <facet role='SubsistenceSupplyProvider'
                echelon_of_support='JOINT'
                mechanism='TerminalInventoryManager'
-               note='C < 30'
+               note='C .lt. 30'
         />
         <facet sca_supported_org='OSD.GOV'
                sca_echelon_of_support='JOINT'
@@ -1084,12 +1082,12 @@
         <facet role='SparePartsProvider'
                echelon_of_support='JOINT'
                mechanism='TerminalInventoryManager'
-               note='C > 30'
+               note='C .gt. 30'
         />
         <facet role='SubsistenceSupplyProvider'
                echelon_of_support='JOINT'
                mechanism='TerminalInventoryManager'
-               note='C > 30'
+               note='C .gt. 30'
         />
         <facet sca_supported_org='OSD.GOV'
                sca_echelon_of_support='JOINT'
@@ -1154,7 +1152,7 @@
         <facet role='AmmunitionProvider'
                echelon_of_support='JOINT'
                mechanism='TerminalAmmunitionPacker'
-               note='C > 30'
+               note='C .gt. 30'
         />
         <facet sca_supported_org='OSD.GOV'
                sca_echelon_of_support='JOINT'
@@ -1263,8 +1261,6 @@
         <facet echelon='JOINT' />
         <facet echelon_group='Conus' />
       </agent>
-
     </node>
   </host>
 </society>
-  
