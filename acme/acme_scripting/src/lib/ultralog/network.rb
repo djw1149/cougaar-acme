@@ -85,12 +85,15 @@ module Cougaar; module Actions
       @run.society.each_host { |host|
          case (host.get_facet(:host_type))
            when "standard":
-              @run.comms.new_message(host).set_body("command[net]reset(#{host.get_facet(:interface)})").send()
+              result = @run.comms.new_message(host).set_body("command[net]reset(#{host.get_facet(:interface)})").request(30)
+              @run.error_message "WARNING!  Unable to reset standard host: #{host.name}" if result.nil?
            when "router":
               subnet = net.subnet[ host.get_facet(:subnet) ]
 
               # Reset the C-Link on the Router (Trunk!  Not Standard!)
-              @run.comms.new_message(host).set_body("command[net]reset(#{subnet.make_interface(host.get_facet(:interface))})").send()
+              result = @run.comms.new_message(host).set_body("command[net]reset(#{subnet.make_interface(host.get_facet(:interface))})").request(30)
+
+              @run.error_message "WARNING!  No response when attempting to reset host: #{host.name}"
               
               # Each K-Link interface includes the VLAN already.  This is
               # because the VLAN ids are not the same.
