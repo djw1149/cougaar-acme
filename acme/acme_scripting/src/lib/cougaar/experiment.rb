@@ -358,6 +358,15 @@ module Cougaar
     def at_stop(&block)
       @stop_listeners << block if block_given?
     end
+    
+    def info_message(message)
+      ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new(message)) if ExperimentMonitor.active?
+    end
+    
+    def error_message(message)
+      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new(message)) if ExperimentMonitor.active?
+    end
+    
   end
   
   class Sequence
