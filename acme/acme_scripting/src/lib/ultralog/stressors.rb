@@ -1,6 +1,6 @@
 ##
 #  <copyright>
-#  Copyright 2002 InfoEther, LLC
+#  Copyright 2002-2004 InfoEther, LLC & BBN Technologies, LLC
 #  under sponsorship of the Defense Advanced Research Projects Agency (DARPA).
 #
 #  This program is free software; you can redistribute it and/or modify

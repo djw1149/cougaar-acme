@@ -309,6 +309,64 @@ module Cougaar; module Actions
     end
   end
 
+  class IntermittentKLinks < CyclicStress
+    DOCUMENATION = Cougaar.document {
+      @description = "Cyclicly deactivates and re-activates a network interface."
+      @parameters = [
+        {:handle => "required, Handle to refer to the intermittent thread.",
+         :on_time => "required, Amount of time stressor is on.",
+         :off_time => "required, Amount of time stressor is off.",
+         :router => "required, Router which hosts the K-Link.",
+         :subnet => "required, Target subnet of K-Link."}
+      ]
+      @example = "do_action 'IntermittentKLinks', 'IN-K-001', 4.minutes, 4.minutes, 'CONUS-REAR-router', 'DIV'"
+    }
+    def initialize(run, handle, on_time, off_time, router, target)
+      super(run, handle, on_time, off_time)
+      @router = router
+      @target = target
+    end
+
+    def perform
+      @run.society.each_service_host( @router ) { |host|
+         case (host.get_facet(:host_type))
+           when "standard":
+             @run.error_message("WARNING!  Standard Host #{host.name} have no K-Links.")
+           when "migratory":
+             @run.error_message("WARNING!  Migratory Host #{host.name} not supported until after the PAD.")
+           when "router":
+             subnet = net.subnet[ host.get_facet(:subnet) ]
+             klink = subnet.klink[ @target ]
+             @run.error_message("WARNING!  Router #{host.name} has no K-Link to #{@target}")
+         end
+      }
+      super.perform
+    end
+
+    def stress_on
+      @run.society.each_service_host( @router ) { |host|
+         case (host.get_facet(:host_type))
+           when "router":
+             subnet = net.subnet[ host.get_facet(:subnet) ]
+             klink = subnet.klink[ @target ]
+             @run.comms.new_message(host).set_body("command[net]disable(#{klink.interface})").send
+         end
+     }          
+    end
+
+    def stress_off
+      @run.society.each_service_host( @router ) { |host|
+         case (host.get_facet(:host_type))
+           when "router":
+             subnet = net.subnet[ host.get_facet(:subnet) ]
+             klink = subnet.klink[ @target ]
+             @run.comms.new_message(host).set_body("command[net]enable(#{klink.interface})").send
+         end
+      }          
+    end
+  end
+
+
   class DeactivateKLinks < Cougaar::Action
     DOCUMENTATION = Cougaar.document {
       @description = "Disable a specified network interface.  A facet is passed in which identifies the router to affect.  The subnet field is required, and is the target of the K-Link to deactivate.."
