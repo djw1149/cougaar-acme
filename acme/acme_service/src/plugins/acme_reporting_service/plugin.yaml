@@ -1,0 +1,7 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_reporting_service
+version: 1.0
+autoload: false
+require_path: acme_reporting_service/reporting_service
+startup_module: ACME::Plugins::ReportingService
+properties_path: properties.yaml

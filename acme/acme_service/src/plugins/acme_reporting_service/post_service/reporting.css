@@ -1,0 +1,126 @@
+body {
+  font-family: Georgia, Times, sans-serif;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 0px;
+}
+
+p {
+  margin-top: 0.4em;
+  margin-bottom: 0.1em;
+}
+
+h1 {
+  font-family: Georgia, Times, serif;
+  font-size: 16pt;
+  margin-left: 10px;
+}
+
+h2 {
+  font-family: Georgia, Times, serif;
+  font-size: 12pt;
+  margin-left: 10px;
+}
+
+.description {
+  font-size: 10pt;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.header {
+  font-variant: small-caps;
+  margin-top: 5px;
+}
+
+.section 
+{
+  padding: 4px;
+  #border: 1px solid #000;
+}
+
+table.reportTable {
+  padding:0px;
+  border-spacing:1;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color:#FFF;
+}
+
+table.reportTable th, table.reportTable td {
+  padding: 2px 4px 2px 4px;
+  vertical-align: top;
+  #border: 1px solid #000;
+  font-size: 1em;
+}
+
+table.reportTable th {
+  color: white;
+  background-color: #bbb;
+  text-align: left;
+  font-weight: bold;
+}
+
+table.reportTable tr.date {
+}
+
+table.reportTable tr.odd {
+  background-color: #eee;
+}
+
+table.reportTable tr.even {
+  background-color: #e6e6e6;
+}
+
+table.reportTable td.FAILURE {
+  border: solid #e00 3px;
+  text-align: center;
+}
+
+table.reportTable td.SUCCESS {
+  border: solid #0e0 3px;
+  text-align: center;
+}
+
+table.reportTable td.PARTIAL_SUCCESS {
+  border: solid #ee0 3px;
+  text-align: center;
+}
+
+table.reportTable td.NONE {
+  background-color: #FFF;
+}
+
+table.reportTable
+{
+    COLOR      : black;
+}
+table.reportTable a
+{
+    COLOR      : black;
+    TEXT-DECORATION: NONE;
+}
+table.reportTable a:link
+{
+    COLOR      : black;
+    TEXT-DECORATION: NONE;
+}
+table.reportTable a:hover
+{
+    COLOR      : blue;
+    TEXT-DECORATION: UNDERLINE;
+}
+table.reportTable a:visited
+{
+    COLOR      : black;
+    TEXT-DECORATION: NONE;
+}
+table.reportTable a:active
+{
+    COLOR      : red;
+    TEXT-DECORATION: NONE;
+}

@@ -1,0 +1,9 @@
+#### Properties: acme_reporting_service - Version: 1.0
+properties: ~
+"|": 
+  - archive_path: "./archives"
+  - temp_path: "./temp"
+  - report_path: "reports"
+  - report_host_name: "ultralog.net"
+  - report_host_port: 9444
+  - society_name: socM1
