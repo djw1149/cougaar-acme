@@ -26,7 +26,6 @@ class Indexer
         spec = Gem::Format.from_file_by_path(gemfile).spec
         file.puts "  #{spec.full_name}: #{spec.to_yaml.gsub(/\n/, "\n    ")[4..-1]}"
       end
-      `chmod 644 #{File.join(@directory, "yaml")}`
     end
     build_compressed_index
   end
@@ -35,6 +34,5 @@ class Indexer
     File.open(File.join(@directory, "yaml.Z"), "w") do |file|
       file.write(Zlib::Deflate.deflate(File.read(File.join(@directory, "yaml"))))
     end
-    `chmod 644 #{File.join(@directory, "yaml.Z")}`
   end
 end

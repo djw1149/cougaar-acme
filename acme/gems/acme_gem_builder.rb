@@ -53,6 +53,7 @@ CONFIGURATION_BIN_FILE_LIST = [
 ]
 
 CONTROL_BIN_FILE_LIST = [
+  'acme-doc'
 ]
 
 require 'fileutils'
@@ -151,6 +152,15 @@ end
       output.write(input.read)
     end
   end 
+end
+
+CONTROL_BIN_FILE_LIST.each do |file|
+  File.open(File.join("..","acme_scripting","bin",file), "rb") do |input|
+    File.open(File.join("bin", file), "wb") do |output|
+      output.write(input.read)
+    end
+  end 
+  FileUtils.chmod(0755, File.join("bin", file))
 end
 
 spec = Gem::Specification.new do |s|
