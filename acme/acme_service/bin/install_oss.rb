@@ -183,6 +183,7 @@ def install
       file.puts %Q[  - cmd_prefix: "#{@cmd_prefix}"]
       file.puts %Q[  - cmd_suffix: "#{@cmd_suffix}"]    
       file.puts %Q[  - cmd_user: "#{@cmd_user}"]    
+      file.puts %Q[  - tmp_dir: "configs"]
     end
   end
   puts "Installing acme_scripting libraries in #{@destdir}/redist"
