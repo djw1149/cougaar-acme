@@ -64,6 +64,34 @@ module Cougaar
        @migratory_active_subnet = Hash.new
     end
 
+    def save_MAS
+      `mkdir -p #{ENV['CIP']}/workspace/P`
+
+      out = File.open( "#{ENV['CIP']}/workspace/P/migrate.xml", "w" )
+
+      out.puts( "<migratory-hosts>" )
+
+      @migratory_active_subnet.each_key do |key|
+         out.puts( "    <host name='#{key.name}' subnet='#{@migratory_active_subnet[key]}' />" )
+      end
+
+      out.puts( "</migratory-hosts>" )
+
+      out.close
+    end
+
+    def load_MAS
+      if (File.exists?( "#{ENV['CIP']}/workspace/P/migrate.xml" )) then
+        doc = REXML::Document.new( File.new( "#{ENV['CIP']}/workspace/P/migrate.xml") )
+        doc.elements.each do |mhL|
+          mhL.elements.each do |hostL|
+            @migratory_active_subnet[hostL.attributes['name']] =
+               hostL.attributes['subnet']
+          end
+        end
+      end
+    end
+
     def self.discover( operator, mask )
       Dir[File.join(operator, mask)].each { |filename|
          netModel = NetworkModel.from_xml_file( filename )

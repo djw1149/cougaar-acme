@@ -154,6 +154,10 @@ module Cougaar; module Actions
 
       iperf = @run.comms.new_message(host1).set_body("command[net]iperf(#{host2.name})").send(true)
 
+      if (iperf.nil?)
+        puts "IPERF results unavailable for #{host1.nil?} to #{host2.nil?}"
+      end
+
       iperf_results = iperf.body.split("\n")
       skip = true
 
@@ -197,18 +201,27 @@ module Cougaar; module Actions
 
          dns = @run.comms.new_message(host).set_body("command[net]nslookup(#{host.name})").send(true)
          
-         if (dns_RE.match(dns.body).nil?) then
-           @run.error_message("Service DNS is not available on host #{host.name}")
+         if (dns.nil?) then
+           @run.error_message("DNS Request did not complete in time. (#{host.name})")
+         else if (dns_RE.match(dns.body).nil?) then
+             @run.error_message("Service DNS is not available on host #{host.name}")
+           end
          end
 
          nfs = @run.comms.new_message(host).set_body("command[rexec]ls /mnt/shared").send(true)
-         if (nfs.body == "") then
-           @run.error_message("Service NFS is not available on host #{host.name}")
+         if (nfs.nil?) then
+           @run.error_message("NFS Request did not complete in time. (#{host.name})")
+         else if (nfs.body == "") then
+             @run.error_message("Service NFS is not available on host #{host.name}")
+           end
          end
 
          nis = @run.comms.new_message(host).set_body("command[rexec]su -c'echo $USER' asmt").send(true)
-         if (nis.body.strip! != "asmt") then
-           @run.error_message("Service NIS is not available on host #{host.name}")
+         if (nis.nil?) then
+            @run.error_message("NIS Request did not complete in time. (#{host.name})")
+         else if (nis.body.strip! != "asmt") then
+             @run.error_message("Service NIS is not available on host #{host.name}")
+           end
          end
       }
     end
@@ -304,5 +317,72 @@ module Cougaar; module Actions
     end
   end
 
+  class AllNICsOff < Cougaar::Action
+    def initialize( run, service )
+      super( run )
+      @service = service
+      @net = run['network']
+    end
+
+    def perform
+      @run.society.each_service_host(@service) do |host|
+        case (host.get_facet(:host_type))
+          when "router":
+            # Don't bother.
+          when "standard":
+            @run.comms.new_message(host).set_body("command[net]disable(#{host.get_facet(:interface)})").send()
+          when "migratory":
+            host.get_facet(:subnet).split(/,/).each do |subnet_name|
+              subnet = @net.subnet[subnet_name]
+              rc = @run.comms.new_message(host).set_body("command[net]disable(#{subnet.make_interface(host.get_facet(:interface))})").send(30)
+            end
+        end
+      end
+    end
+  end
+
+  class AllNICsOn < Cougaar::Action
+    def initialize( run, service )
+      super( run )
+      @service = service
+   end
+
+   def perform
+      net = @run['network']
+      @run.society.each_service_host(@service) do |host|
+        case (host.get_facet(:host_type))
+          when "router":
+            # Don't bother.
+          when "standard":
+            @run.comms.new_message(host).set_body("command[net]enable(#{host.get_facet(:interface)})").send()
+          when "migratory":
+            subnet_name = net.migratory_active_subnet[host]
+            @run.comms.new_message(host).set_body("command[net]enable(#{net.subnet[subnet_name].make_interface(host.get_facet(:interface))})").send
+        end
+      end
+    end
+  end
+
+  class AssertFile < Cougaar::Action
+    def initialize( run, filename )
+      super( run )
+      @filename = filename
+    end
+
+    def perform
+      @run.error_message("Expecting file: #{@filename}") unless File.exists?( "#{ENV['CIP']}#{@filename}") 
+    end
+  end
+
+  class AssertNoFile < Cougaar::Action
+    def initialize( run, filename )
+      super( run )
+      @filename = filename
+    end
+
+    def perform
+      @run.error_message("File should not exist: #{@filename}") if File.exists?( "#{ENV['CIP']}#{@filename}") 
+    end
+  end
 end; end
 
