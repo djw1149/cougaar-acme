@@ -54,16 +54,12 @@ module ACME
       end
       
       def perform
-        puts "Starting Comp"
         comp_files = @archive.files_with_description(/completion/)
         baseline_name = @archive.group_baseline
-        puts baseline_name
         baseline = @archive.open_prior_archive(baseline_name)
-        comp_files.each do |comp_file|
+        comp_files.uniq.each do |comp_file|
           benchmark_pattern = Regexp.new(File.basename(comp_file.name))
-          puts benchmark_pattern
           benchmark_file = baseline.files_with_name(benchmark_pattern)[0]
-          puts benchmark_file
           report_name = File.basename(comp_file.name, ".xml")
 
           @archive.add_report(report_name, @plugin.plugin_configuration.name) do |report|
