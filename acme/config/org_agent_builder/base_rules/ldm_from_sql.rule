@@ -31,8 +31,8 @@ society.each_agent do |agent|
 	# facet, add that value to a list if not already there
 	first = true
 	exclude_types = ""
-	agent.each_facet(:subordinate) do |facet|
-	  subordinate = facet[:subordinate].to_s
+	agent.each_facet(:subordinate_org_id) do |facet|
+	  subordinate = facet[:subordinate_org_id].to_s
 	  sub_agent = society.agents[subordinate]	  
 	  unless sub_agent == nil 
 	    if sub_agent.get_facet(:equip_type_id)	      
