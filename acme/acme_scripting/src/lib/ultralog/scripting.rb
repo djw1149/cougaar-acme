@@ -21,7 +21,7 @@
 
 require 'ultralog/aggagent'
 require 'ultralog/aggagent_actions'
-require 'ultralog/cnccalc'
+#require 'ultralog/cnccalc'
 require 'ultralog/completion_control'
 require 'ultralog/completion'
 require 'ultralog/datagrabber'
@@ -30,5 +30,6 @@ require 'ultralog/glm_stimulator'
 require 'ultralog/operator'
 require 'ultralog/oplan_editor'
 require 'ultralog/gls_client'
-
+require 'ultralog/inventory'
+require 'ultralog/verify'
 require 'ultralog/debug/relations'
