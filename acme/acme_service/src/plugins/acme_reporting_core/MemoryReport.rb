@@ -83,10 +83,34 @@ module ACME
             report.open_file("memory_description.html", "text/html", "Memory description") do |file|
               file.puts output
             end
-            report.success
+            
+            bad_nodes = check_out_of_memory
+            if (bad_nodes.empty?) then
+              report.success
+            else
+              report.open_file("out_of_memory.html", "text", "List of out of memory nodes") do |file|
+                file.puts(bad_nodes)
+              end
+              report.failure
+            end
           end
         end
       end
+
+      def check_out_of_memory
+        bad_files = []
+        log_files = @archive.files_with_description(/Log4j node log/)
+        log_files.each do |log_file|
+          IO.foreach(log_file.name) do |line|
+            if (line =~ /OutOfMemory/i) then
+              bad_files << File.basename(log_file.name)
+              break
+            end
+          end
+        end
+        return bad_files
+      end
+
 
       def get_prior_data(prior_name)
         data = @cm.load(prior_name, ArchiveMemoryData) do |name|
@@ -191,9 +215,9 @@ module ACME
         ikko_data["description"] = "Displays how much memory each node is using at each stage.  The top entry is the usage for the current run."
         ikko_data["description"] <<"  The bottome entry is the average usage over all runs in the group."
 
-        success_table = {"success"=>"Currently this report is always successful",
+        success_table = {"success"=>"All log4j logfiles free of out of memory errors",
                          "partial"=>"not used",
-                         "fail"=>"not used"}
+                         "fail"=>"At least one out of memory error"}
         ikko_data["table"] = @ikko["success_template.html", success_table]
         return @ikko["description.html", ikko_data]
       end
