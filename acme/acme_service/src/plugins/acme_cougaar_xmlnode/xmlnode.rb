@@ -1,5 +1,6 @@
 
-
+require 'cougaar/scripting'
+require 'cougaar/society_builder'
 module ACME ; module Plugins
 
 class XMLCougaarNode
@@ -40,6 +41,7 @@ class XMLCougaarNode
       end
     end
     
+=begin # This is untested
     # MONITOR NODE
     @plugin["/plugins/acme_host_jabber_service/commands/monitor_node/description"].data = 
       "Sends back CougaarEvent messages of the proc (PID) every (interval) seconds. Params: PID,interval"
@@ -63,6 +65,7 @@ class XMLCougaarNode
         message.reply.set_body("FAILURE: Unknown node: #{pid}").send
       end
     end
+=end
 
     #LIST NODES
     @plugin["/plugins/acme_host_jabber_service/commands/list_nodes/description"].data = 
@@ -160,17 +163,17 @@ class XMLCougaarNode
 			port = tokens[1].to_i
 			sock = TCPSocket.new(host, port)
 			text = sock.read()
-			#puts "Read #{text.length} bytes of XML\n"
 			sock.close
 			return Cougaar::SocietyBuilder.from_string(text).society
 		end
 
     def initialize(plugin, node_config)
-      puts "NEW NODE Starting. ctor.. config svr= #{node_config}\n"
+			@plugin = plugin
+      @plugin['log/info']  << "NEW NODE Starting. Config server = #{node_config}"
 
 			@society = read_config(node_config)
 
-      puts "NODE Starting. parsed society..: \n"
+      @plugin['log/info'] << "NODE Starting. parsed society.."
       @jvm = plugin.properties['jvm_path']
 
 			@cmd_prefix = plugin.properties['cmd_prefix']
@@ -190,41 +193,17 @@ class XMLCougaarNode
       @name = get_node_name(@society)
       @monitors = []
       @event_queue = plugin["/plugins/Events/event"]
-      puts "NODE done ctor: #{@name}\n"
     end
-
-=begin
-		# This method reads and discards the HTTP header
-		# Could be handy if we decide to use HTTP
-    def eatInputStream(is)
-        nexti = [-1, 0, 0, 0]
-        pat = [13, 10, 13, 10]
-        pIdx = -1
-        ch = 0
-        while (true) do
-            if (pIdx == -1) or (ch == pat[pIdx]) 
-                pIdx = pIdx+1
-                if (pIdx == pat.length) 
-									break 
-								end
-                ch = is.getc
-								#puts "Read: #{ch} pIdx = #{pIdx}\n"
-            else 
-                pIdx = nexti[pIdx]
-						end
-				end
-		end
-=end
 
     def start
 			require "tempfile"
-			xml = Tempfile.new("society")
+			xml = Tempfile.new("society",".")
 			edit_society(@society, xml.path)
 			text = @society.to_xml
 			xml.write(text)
 			xml.close
 			cmd = build_command
-      puts "Starting...\n#{cmd}"
+      @plugin['log/info']  << "Starting command:\n#{cmd}"
 
       @pipe = IO.popen(cmd)
 			Thread.new(@pipe) {|pipe|stdio(pipe)}
@@ -238,7 +217,7 @@ class XMLCougaarNode
 					break
 				end
       end
-			print "DONE starting NODE: #{@pid}\n"
+			@plugin['log/info'] << "DONE starting NODE: #{@pid}\n"
 			return @pid
     end
 
@@ -259,21 +238,21 @@ class XMLCougaarNode
           end
 				end
 			rescue
-			  print "DONE WITH NODE exception: #{$!}\n"
+			  @plugin['log/info'] << "DONE WITH NODE exception: #{$!}"
 			end
-			print "DONE WITH NODE read thread\n"
+			@plugin['log/info'] << "DONE WITH NODE read thread"
     end
     
     def stop
       @monitors.each {|thread| thread.kill}
-      puts "Stopping process: #{@pipe.id}"
+      @plugin['log/info'] << "Stopping process: #{@pipe.id}"
       if @pipe
 				if (@pipe.pid)
           Process.kill(9, @pipe.pid)
 				end
 				@pipe.close
       end
-      puts "Stopped process"
+      @plugin['log/info'] << "Stopped process."
     end
     
     def monitor(experiment, interval)

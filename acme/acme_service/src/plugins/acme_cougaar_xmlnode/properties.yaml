@@ -1,5 +1,5 @@
 #### Properties: acme_cougaar_xmlnode - Version: 1.0
 properties: ~
 "|": 
-  - cip: "/mnt/shared/asmt02"
-  - jvm_path: "/usr/java/j2sdk1.4.1/bin/java"
+  - cip: "c:\\alp\\recent"
+  - jvm_path: "java"
