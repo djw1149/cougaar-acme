@@ -96,6 +96,114 @@ module Cougaar
       end
     end
     
+    class SocietyLayout
+      attr_accessor :society_file, :layout_file, :hosts_file, :society
+      
+      def self.from_files(society_file, layout_file, hosts_file)
+        layout = SocietyLayout.new
+        layout.society_file = society_file
+        layout.layout_file = layout_file
+        layout.hosts_file = hosts_file
+        layout.load_files
+        return layout
+      end
+      
+      def self.from_society(society, layout_file, hosts_file)
+        layout = SocietyLayout.new
+        layout.society = society
+        layout.layout_file = layout_file
+        layout.hosts_file = hosts_file
+        layout.load_files
+        return layout
+      end
+      
+      def load_files
+        @society = load_file(@society_file) if @society_file
+        @society_layout = load_file(@layout_file) if @layout_file
+        @society_hosts = load_file(@hosts_file) if @hosts_file
+      end
+      
+      def layout
+        # build temporary host and node and move all agents to it
+        guid = Time.now.to_i
+        @society.add_host("host-#{guid}") { |host| host.add_node("node-#{guid}") }
+        agentlist = []
+        @society.each_agent { |agent| agentlist << agent }
+        agentlist.each {|agent| agent.move_to("node-#{guid}")}
+        # remove all existing hosts/nodes
+        purgelist = []
+        @society.each_host { |host| purgelist << host unless host.name=="host-#{guid}" }
+        purgelist.each { |host| society.remove_host(host) } 
+        # build a list of available hosts
+        hostlist = []
+        @society_hosts.each_host do |host|
+          host.each_facet("type") do |facet|
+            hostlist << host if facet['type']=='node'
+          end
+        end
+        # perform layout
+        hostindex = 0
+        @society_layout.each_host do |host|
+          if hostindex == hostlist.size
+            raise "Not enough hosts in #{@host_file} for the society layout in #{@layout_file}"
+          end
+          @society.add_host(hostlist[hostindex].name) do |newhost|
+            host.each_facet { |facet| newhost.add_facet(facet.clone) }
+            host.each_node do |node|
+              newhost.add_node(node.name)
+              node.each_agent do |agent| 
+                to_move = @society.agents[agent.name]
+                unless to_move
+                  raise "Layout specifies agent '#{agent.name}' that is not defined in the society"
+                end
+                to_move.move_to(node.name)
+              end
+            end
+          end
+          hostindex += 1
+        end
+        # check to make sure we laid out all the agents
+        agentlist = []
+        @society.nodes["node-#{guid}"].each_agent { |agent| agentlist << agent }
+        if agentlist.size>0
+          raise "Did not layout the agents: #{ agentlist.join(', ') }"
+        end
+        @society.remove_host("host-#{guid}")
+      end
+      
+      def to_ruby_file(filename)
+        f = File.open(filename, "w")
+        f.puts(@society.to_ruby)
+        f.close
+      end
+      
+      def to_xml_file(filename)
+        f = File.open(filename, "w")
+        f.puts(@society.to_xml)
+        f.close
+      end
+      
+      def tree
+        @society.each_host do |host|
+          puts host.name
+          host.each_node do |node|
+            puts "  "+node.name
+            node.each_agent do |agent|
+              puts "    "+agent.name
+            end
+          end
+        end
+      end
+      
+      def load_file(file)
+        if file[-3..-1] == '.rb'
+          return Cougaar::SocietyBuilder.from_ruby_file(file).society
+        else
+          return Cougaar::SocietyBuilder.from_xml_file(file).society
+        end
+      end
+    end
+    
     
     ##
     # The SocietyMonitor collects chagnes to the cougaar society and 
