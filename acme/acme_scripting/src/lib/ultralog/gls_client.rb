@@ -172,18 +172,31 @@ module Cougaar
       DOCUMENTATION = Cougaar.document {
         @description = "Waits for the GLS connection."
         @parameters = [
+          {:await_oplan => "default=false, true to await oplan cougaar event prior to connecting to GLS."},
           {:timeout => "default=nil, Amount of time to wait in seconds."},
           {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
         ]
         @example = "
-          wait_for 'GLSConnection'
+          wait_for 'GLSConnection' # connect immediately
+            or
+          wait_for 'GLSConnection', true # wait for OPlan event
         "
       }
-      def initialize(run, timeout=nil, &block)
+      def initialize(run, await_oplan=false, timeout=nil, &block)
         super(run, timeout, &block)
+        @await_oplan = await_oplan
       end
       
       def process
+        if @await_oplan
+          loop = true
+          while loop
+            event = @run.get_next_event
+            if event.event_type=="STATUS" && event.cluster_identifier=="NCA" && event.component=="OPlanDetector"
+              loop = false
+            end
+          end
+        end
         gls_client = ::UltraLog::GLSClient.new(run)
         @run['gls_client'] = gls_client
         until gls_client.can_send_oplan?
