@@ -386,7 +386,7 @@ module Cougaar
     end
 
     class PublishNextStage < Cougaar::Action
-      PRIOR_STATES = ["OPlanStage"]
+      PRIOR_STATES = ["NextOPlanStage"]
       RESULTANT_STATE = "SocietyPlanning"
       DOCUMENTATION = Cougaar.document {
         @description = "Publishes the next stage of the GLS root task to the glsinit servlet."
