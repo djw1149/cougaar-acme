@@ -66,7 +66,7 @@ class XMLCougaarNode
     
     #START NODE
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node/description"].data = 
-      "Starts Cougaar node and returns PID. Params: host:port (of XML document server)"
+      "Starts Cougaar node and returns PID. Params: filename (previously posted to /xmlnode) "
     @plugin["/plugins/acme_host_jabber_service/commands/start_xml_node"].set_proc do |message, command| 
       node = NodeConfig.new(self, @plugin, command, message.session)
       pid = node.start
@@ -118,13 +118,28 @@ class XMLCougaarNode
       message.reply.set_body("FAILURE: Unknown node: #{command}").send unless found
     end
 
+    # SHOW NODE
+    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_node/description"].data = 
+      "Show details about a running Cougaar node. Params: PID"
+    @plugin["/plugins/acme_host_jabber_service/commands/show_xml_node"].set_proc do |message, command| 
+      pid = command
+      node = running_nodes[pid]
+      if node
+        txt = "#{node.get_description}\n"
+        txt << "#{node.to_s}\n"
+        message.reply.set_body(txt).send
+      else
+        message.reply.set_body("FAILURE: Unknown node: #{pid}").send
+      end
+    end
+
     #LIST NODES
     @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes/description"].data = 
       "List Running Cougaar nodes."
     @plugin["/plugins/acme_host_jabber_service/commands/list_xml_nodes"].set_proc do |message, command| 
       txt = "Current Nodes:\n"
       running_nodes.each do |pid, node| 
-        txt << "PID:#{pid} Name:#{node.name}\n"
+        txt << "#{node.get_description}\n"
       end
       message.reply.set_body(txt).send
     end
@@ -224,6 +239,17 @@ class XMLCougaarNode
 			end
 		end
 
+    def get_description()
+      exp = "unknown"
+		  props = get_jvm_props(@society) 
+      props.each do |p|
+        if (p.index("-Dorg.cougaar.event.experiment=") == 0)
+          exp = p.split("=")[1]
+        end
+      end
+      return "PID: #{@pid} Node: #{@name} Experiment: #{exp}"
+    end
+
 		def edit_society
 			@society.each_host do |host|
 				host.each_node do |node|
@@ -248,7 +274,6 @@ class XMLCougaarNode
         @listeners = []
         @session = session
         @config_mgr = plugin['/cougaar/config'].manager
-  
 
         @filename = xml_cougaar_node.makeFileName(node_config)
         if @filename=~/.xml/
