@@ -609,6 +609,7 @@ module Cougaar
         archive_file($0, "Main script file")
       end
       archive_file("run.log", "Log of the run")
+      archive_file("scheduledRun.log", "Log of the run containing stdout & stderr")
     end
     
     def archive_file(filename, description)
