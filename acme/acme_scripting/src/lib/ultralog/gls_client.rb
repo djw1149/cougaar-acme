@@ -167,6 +167,14 @@ module Cougaar
   end
   
   module Actions
+  
+    class RehydrateSociety < Cougaar::Action
+      PRIOR_STATES = ["SocietyRunning"]
+      RESULTANT_STATE = "SocietyPlanning"
+      def perform
+      end
+    end
+    
     class SendOPlan < Cougaar::Action
       PRIOR_STATES = ["OPlanReady"]
       RESULTANT_STATE = "OPlanSent"
