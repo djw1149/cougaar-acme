@@ -11,17 +11,34 @@ parameters:
   
   - rules:
     - $CIP/csmart/config/rules/isat
+    - $CIP/csmart/config/rules/isat/uc3_nosec
     - $CIP/csmart/config/rules/yp
     - $CIP/csmart/config/rules/logistics
     - $CIP/csmart/config/rules/assessment
+    - $CIP/csmart/config/rules/robustness/manager.rule
+    - $CIP/csmart/config/rules/robustness/uc1
+    - $CIP/csmart/config/rules/robustness/uc1/tuning/collect_stats.rule
+    - $CIP/csmart/config/rules/robustness/uc7
+    - $CIP/csmart/config/rules/robustness/uc9
+    - $CIP/csmart/config/rules/robustness/UC3
+    - $CIP/csmart/config/rules/metrics/basic
+    - $CIP/csmart/config/rules/metrics/sensors
+    - $CIP/csmart/config/rules/metrics/serialization/metrics-only-serialization.rule
+    - $CIP/csmart/config/rules/metrics/rss/tic
+
+  - community_rules:
+    - $CIP/csmart/config/rules/robustness/communities
+    - $CIP/csmart/config/rules/robustness/uc1/tuning/add_tuning_parameters.rule
 
 include_scripts:
   - script: $CIP/csmart/lib/isat/clearPnLogs.rb
   - script: $CIP/csmart/lib/isat/network_shaping.rb
+  - script: $CIP/csmart/lib/isat/klink_reporting.rb
+  - script: $CIP/csmart/lib/robustness/objs/deconfliction.rb
   - script: $CIP/csmart/lib/isat/datagrabber_include.rb
   - script: $CIP/csmart/assessment/assess/inbound_aggagent_include.rb
   - script: $CIP/csmart/assessment/assess/outofbound_aggagent_include.rb
-  - script: $CIP/csmart/assessment/assess/cnccalc_include.rb
+
   - script: $CIP/csmart/lib/isat/save_snapshot.rb
     parameters:
       - snapshot_name: $CIP/SAVE-PreStage5.tgz

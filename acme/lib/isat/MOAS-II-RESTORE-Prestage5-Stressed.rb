@@ -16,7 +16,7 @@ include_scripts:
   - script: $CIP/csmart/lib/isat/datagrabber_include.rb
   - script: $CIP/csmart/assessment/assess/inbound_aggagent_include.rb
   - script: $CIP/csmart/assessment/assess/outofbound_aggagent_include.rb
-
+  - script: $CIP/csmart/lib/robustness/objs/deconfliction.rb
   - script: $CIP/csmart/assessment/assess/cnccalc_include.rb
     parameters:
       - run_type: stress
@@ -26,26 +26,6 @@ include_scripts:
     parameters:
       - only_analyze: "moe1,moe3"
       - baseline_name: base2
-
-  - script: $CIP/csmart/lib/isat/standard_restart_nodes.rb
-    parameters:
-      - start_tag: starting_stage
-      - start_delay: 240
-      - nodes_to_restart:
-        - AmmoTRANSCOM-NODE
-        - EuroTRANSCOM-NODE
-        - 123-MSB-HQ-NODE
-        - 123-MSB-FOOD-NODE
-        - 123-MSB-POL-NODE
-        - 123-MSB-PARTS-NODE
-        - 123-MSB-ORD-NODE
-        - 501-FSB-NODE
-        - 47-FSB-NODE
-        - 125-FSB-NODE
-        - 127-DASB-NODE
-        - 191-ORDBN-NODE
-        - FSB-FUEL-WATER-SECTION-NODE 
-        - FSB-DRY-CARGO-SECTION-NODE
 
   - script: $CIP/csmart/lib/isat/standard_kill_nodes.rb
     parameters:
