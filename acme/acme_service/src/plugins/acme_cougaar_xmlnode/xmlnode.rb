@@ -209,7 +209,9 @@ class XMLCougaarNode
       @plugin['log/info']  << "Starting command:\n#{cmd}"
 
       @pipe = IO.popen(cmd)
-			Thread.new(@pipe) {|pipe|stdio(pipe)}
+      if @cip.index(":") == nil
+			  Thread.new(@pipe) {|pipe|stdio(pipe)}
+      end
 			@pid = @pipe.pid.to_s
       if @pid == ''
         @society.each_host do |host|
