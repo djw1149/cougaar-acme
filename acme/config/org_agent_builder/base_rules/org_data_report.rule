@@ -34,7 +34,13 @@ society.each_agent do |agent|
       #MilitaryOrgPG:IsReserve:boolean:FIXME
       #OrganizationPG:Service:Service:#{service}
       #OrganizationPG:Agent:Agancy:#{agency}
-      
+
+      # Note that relationships are added below
+    else
+      c.classname = org_data_plugin
+    end
+
+    if agent.get_facet(:is_ua)
       # Supply superior relationship as argument
       if agent.get_facet(:superior_org_id)
 	org_id = agent.get_facet(:superior_org_id).to_s
@@ -46,22 +52,6 @@ society.each_agent do |agent|
 	org_id = facet[:sca_supported_org].to_s
 	org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
 	c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
-      end
-    else
-      c.classname = org_data_plugin
-      if agent.get_facet(:is_ua)
-	# Supply superior relationship as argument
-	if agent.get_facet(:superior_org_id)
-	  org_id = agent.get_facet(:superior_org_id).to_s
-	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
-	  c.add_argument("MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
-	end
-	# Also supply SCAs as arguments
-	agent.each_facet(:sca_supported_org) do |facet|
-	  org_id = facet[:sca_supported_org].to_s
-	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
-	  c.add_argument("MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
-	end
       end
     end
   end
