@@ -227,7 +227,7 @@ module ACME
         agent_row = @ikko["cell_template.html", {"data"=>agent.name,"options"=>color(agent, "NAME")}]
         fields.each do |key|
           val = agent[key]
-          val = sprintf("%.4d", val) if val.class.name == "Float"
+          val = sprintf("%.4f", val) if val.class.name == "Float"
           agent_row << @ikko["cell_template.html", {"data"=>val,"options"=>color(agent, key)}]
         end
         return agent_row
