@@ -55,7 +55,7 @@ society.each_host do |host|
 
 		# To run most societies, you need configs/common and configs/glmtrans
 		# on the path. Edit in your own cougaar_install_path
-		node.override_parameter("-Dorg.cougaar.config.path","$COUGAAR_INSTALL_PATH/configs/common\\\;$COUGAAR_INSTALL_PATH/configs/glmtrans\\\;")
+		node.override_parameter("-Dorg.cougaar.config.path","$COUGAAR_INSTALL_PATH/configs/common\\\;$COUGAAR_INSTALL_PATH/configs/glmtrans\\\;$COUGAAR_INSTALL_PATH/CnCcalc/configs\\\;")
 
 
     # the acme service will substitute for $COUGAAR_INSTALL_PATH in these
