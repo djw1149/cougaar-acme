@@ -122,7 +122,11 @@ module Cougaar; module Actions
        @run.society.each_service_host("BW-router") {|h| host = h}
       end
       if host.nil?
-        @run.error_message "Could not find a host with the facet 'BW-router'"
+        if @nocname
+          @run.error_message "Could not find host '#{@nocname}'"
+        else
+          @run.error_message "Could not find a host with the facet 'BW-router'"
+        end
       else
         @run.comms.new_message(host).set_body("command[shape]trigger").send
       end 
