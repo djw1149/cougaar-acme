@@ -144,8 +144,12 @@ module Cougaar
       }
       def perform
         operator = @run['operator']
-        operator.start_datagrabber_service
-        sleep 30
+        unless ::UltraLog::DataGrabber.is_running?(::UltraLog::DataGrabber.get_host_from_society(@run.society))
+          operator.start_datagrabber_service
+          sleep 30
+        else
+          @run.info_message("DataGrabber service already running...not started")
+        end
       end
     end
     

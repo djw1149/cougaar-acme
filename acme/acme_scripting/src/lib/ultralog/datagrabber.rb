@@ -36,7 +36,7 @@ module Cougaar
       end
       def perform
         begin
-          @host = @run.society.get_service_host("operator") unless @host
+          @host = ::UltraLog::DataGrabber.get_host_from_society(@run.society) unless @host
           ::UltraLog::DataGrabber.new(@host).new_run
         rescue
           @run.error_message "DataGrabber error #{$!}\n#{$!.backtrace.join("\n")}"
@@ -65,7 +65,7 @@ module Cougaar
         @action = block if block_given?
       end
       def perform
-        @host = @run.society.get_service_host("operator") unless @host
+        @host = ::UltraLog::DataGrabber.get_host_from_society(@run.society) unless @host
         @action.call(::UltraLog::DataGrabber.new(@host))
       end
     end
@@ -84,15 +84,44 @@ module UltraLog
   #
   class DataGrabber
   
+    DEFAULT_PORT = 7000
+  
     ##
     # Constructs a DataGrabber instance pointed to the host and port
     #
     # host:: [String] The host that is running datagrabber
     # port:: [Integer=7000] The port that datagrabber is running on
     #
-    def initialize(host, port=7000)
+    def initialize(host, port=DEFAULT_PORT)
       @host = host
       @port = port
+    end
+    
+    ##
+    # Determine if the service is running
+    #
+    # return:: [boolean] true if service is running
+    #
+    def self.is_running?(host, port=DEFAULT_PORT)
+      c = Net::HTTP.new(host, port)
+      begin
+        resp = c.get("/")
+        return true
+      rescue
+        return false
+      end
+    end
+    
+    ##
+    # Gets the datagrabber host from either the datagrabber service
+    # facet or the operator service facet in that order
+    #
+    # return:: [String] the host name
+    #
+    def self.get_host_from_society(society)
+     @host = society.get_service_host("datagrabber")
+     @host = society.get_service_host("operator") unless @host
+     @host.host_name
     end
     
     ##
