@@ -49,8 +49,8 @@ module UltraLog
           Cougaar::Communications::HTTP.authenticate_request(req)
           @gls_connection.request(req) do |resp|
             return connect(resp['location']) if resp.code=='302'
-            @can_get_oplan = true
             @gls_connected = true
+#	    @run.info_message "Set gls_connected"
             resp.read_body do |data|
               data.each_line do |line|
                 puts "DATA: #{line.strip}" if $COUGAAR_DEBUG
@@ -73,10 +73,21 @@ module UltraLog
                     @next_stage = match[4]
                     @stages << @next_stage
                   end
-                end
-              end
-            end
-          end
+                end # end while block
+#		@run.info_message "Finishing each_line block"
+              end # end each_line handle
+
+	      # Mark this after we've processed the return data to avoid
+	      # threading issues
+	      unless @can_get_oplan
+		@can_get_oplan = true
+		@run.info_message "Set can_get_oplan"
+	      end
+
+#	      @run.info_message "Finishing read_body block"
+            end # end response.read_body block
+	    # I believe we never get here!
+          end # end req.resp
         rescue
           Cougaar.logger.error $!
           Cougaar.logger.error $!.backtrace.join("\n")
@@ -153,19 +164,33 @@ module Cougaar
               loop = false
             end
           end
+	  @run.info_message "Got OPlan Cougaar Event"
         end
+
         gls_client = ::UltraLog::GLSClient.new(run)
         @run['gls_client'] = gls_client
+
+	# Wait for the gls_client to get fully connected
+	@run.info_message "Waiting for can_get_oplan" unless gls_client.can_get_oplan?
+	
         until gls_client.can_get_oplan?
           sleep 2
         end
-        begin
-          result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
-          @run.error_message "Error getting OPlan Info" unless result
-        rescue
-          @run.error_message  $!
-          @run.error_message  $!.backtrace.join
-        end
+
+	# On rehydrate we may already have the opinfo stuff, so
+	# dont do it again
+	if (gls_client.c0_date==nil)
+	  @run.info_message "Fetching Oplan from DB"
+	  begin
+	    result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
+	    @run.error_message "Error getting OPlan Info" unless result
+	  rescue
+	    @run.error_message  $!
+	    @run.error_message  $!.backtrace.join
+	  end
+	else
+	  @run.info_message "Rehydrated run with C0_date: #{gls_client.c0_date}"
+	end
       end
       
       def unhandled_timeout
