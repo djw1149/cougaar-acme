@@ -350,7 +350,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -895,7 +895,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1443,7 +1443,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1994,7 +1994,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2547,7 +2547,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3101,7 +3101,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3658,7 +3658,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4222,7 +4222,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4769,7 +4769,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5316,7 +5316,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5866,7 +5866,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6413,7 +6413,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6967,7 +6967,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7517,7 +7517,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8066,7 +8066,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8615,7 +8615,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9165,7 +9165,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9713,7 +9713,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10263,7 +10263,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10813,7 +10813,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11360,7 +11360,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11914,7 +11914,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12476,7 +12476,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13023,7 +13023,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13575,7 +13575,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14121,7 +14121,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14669,7 +14669,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15219,7 +15219,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15770,7 +15770,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16320,7 +16320,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16871,7 +16871,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17417,7 +17417,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18271,7 +18271,7 @@
         <component
           name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
           class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
