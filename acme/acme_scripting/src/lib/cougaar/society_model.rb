@@ -621,7 +621,7 @@ module Cougaar
       
       def name=(name)
         @name = name
-        replace_parameter(/\-Dorg\.cougaar\.node\.name/, "-Dorg.cougaar.node.name=#{@name}")
+        add_parameter("-Dorg.cougaar.node.name=#{@name}") unless @parameters.include?("-Dorg.cougaar.node.name=#{@name}")
       end
         
       def cougaar_port
@@ -841,7 +841,7 @@ module Cougaar
         if param.kind_of? Array
           @parameters.concat param
         else
-          @parameters << param
+          @parameters << param unless @parameters.include?(param)
         end
       end
 
