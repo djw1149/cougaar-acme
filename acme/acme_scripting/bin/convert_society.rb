@@ -63,7 +63,7 @@ if (input_type==:ruby && output_type!=:xml) || (input_type==:xml && output_type!
 end
 
 unless File.exist?(input)
-  puts "Cannot load file: #{input}\n"
+  puts "Cannot find file: #{input}\n"
   exit
 end
 
