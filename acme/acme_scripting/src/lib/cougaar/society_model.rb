@@ -351,6 +351,20 @@ module Cougaar
       end
       
       ##
+      # Returns the total number of agents in the society
+      #
+      # include_node_agent:: [Boolean] If true, the node agents are included in the count as well as the agents
+      #
+      def num_agents(include_node_agent=false)
+        count = 0
+        @hostList.each { |host| 
+          host.each_node {|node| count += node.agents.size }
+          count += host.nodes.size if include_node_agent
+        }
+        return count
+      end
+
+      ##
       # Clones this society/hosts/nodes/agents/plugins
       #
       # return:: [Cougaar::Society] The newly cloned society
