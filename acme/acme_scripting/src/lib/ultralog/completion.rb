@@ -103,7 +103,7 @@ module Cougaar
         @debug = debug
       end
       def perform
-        @monitor = UltraLog::SocietyCompletionMonitor.new(run)
+        @monitor = UltraLog::SocietyCompletionMonitor.new(run, @debug)
         run["completion_monitor"] = @monitor
       end
     end
@@ -268,8 +268,9 @@ module UltraLog
   end 
 
   class SocietyCompletionMonitor
-    def initialize(run)
+    def initialize(run, debug)
       @run = run
+      @debug = debug
       @society = run.society;
       @society_status = "INCOMPLETE"
       @run["completion_agent_status"] = {}
@@ -361,16 +362,16 @@ module UltraLog
         if soc_status != "INCOMPLETE"
           @society.each_agent(true) do |agent|
             agentHash = comp[agent.name]
-            agentHash["receivers"].each do |agent, msg|
-              if (srcMsg = comp[agent]["senders"][agent.name]) && srcMsg != msg
+            agentHash["receivers"].each do |destAgent, msg|
+              if (destMsg = comp[destAgent]["senders"][agent.name]) && destMsg != msg
                 soc_status = "INCOMPLETE"
                 break
               end
             end
             break if soc_status == "INCOMPLETE"
 
-            agentHash["senders"].each do |agent, msg|
-              if (srcMsg = comp[agent]["receivers"][agent.name]) && srcMsg != msg
+            agentHash["senders"].each do |srcAgent, msg|
+              if (srcMsg = comp[srcAgent]["receivers"][agent.name]) && srcMsg != msg
                 soc_status = "INCOMPLETE"
                 break
               end
@@ -382,7 +383,7 @@ module UltraLog
       unless @society_status == soc_status
         @society_status = soc_status
         puts "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
-        print_current_comp(comp) if debug
+        print_current_comp(comp) if @debug
       end
     end
   
