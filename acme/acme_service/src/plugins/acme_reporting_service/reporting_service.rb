@@ -68,7 +68,7 @@ class ReportingService
     @hostname = `hostname`.strip
     @processing_queue = ProcessingQueue.new
     @groups_file = File.join(@plugin.plugin_configuration.base_path, 'groups.yaml')
-    #load_template_engine
+    load_template_engine
     #mount_web_services
     start_threads
     monitor_path
