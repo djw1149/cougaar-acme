@@ -28,7 +28,6 @@ file = ARGV[0]
 print "EDITING: #{file}\n"
 builder = Cougaar::SocietyBuilder.from_xml_file(file)
 society = builder.society
-=begin
 society.each_host do |host|
 	host.each_node do |node|
 		if (display)
@@ -41,17 +40,21 @@ society.each_host do |host|
 		node.remove_parameter("-Dorg.cougaar.control.port")
 		node.remove_parameter("-Dorg.cougaar.tools.server.swallowOutputConnectionException")
 		node.remove_parameter("-Dorg.cougaar.node.InitializationComponent")
-		node.override_parameter("-Dorg.cougaar.workspace","/mnt/shared/socA/workspace")
 		node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
 		node.override_parameter("-Dorg.cougaar.core.persistence.clear","true")
+		# Put in your own ACME log4j config file name here
 		node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
+		# Put in your own preferred log file name here
 		node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","/mnt/shared/socA/workspace/log4jlogs/$HOSTNAME.log")
 		node.override_parameter("-Dorg.cougaar.society.file","#{file}")
+		# To run most societies, you need configs/common and configs/glmtrans
+		# on the path. Edit in your own cougaar_install_path
 		node.override_parameter("-Dorg.cougaar.config.path","/mnt/shared/socA/configs/common\\\;/mnt/shared/socA/configs/glmtrans\\\;")
-    node.remove_parameter("-Xms64m")
-    node.add_parameter("-Xms64m")
-    node.remove_parameter("-Xmx764m")
-    node.add_parameter("-Xmx764m")
+
+	# Edit in your own preferred Java memory sizes here
+    node.replace_parameter("/-Xms/","-Xms64m")
+    node.replace_parameter("/-Xmx/","-Xmx764m")
+
 		node.each_agent do |agent|
 			agent.remove_component("org.cougaar.core.topology.TopologyReaderServlet")
 			agent.each_component do |comp|
@@ -65,7 +68,6 @@ society.each_host do |host|
 		end
 	end
 end
-=end
 
 print "WRITING: #{file}.rb\n"
 builder.to_ruby_file(file+".rb")
