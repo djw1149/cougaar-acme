@@ -25,60 +25,6 @@ require 'rexml/document'
 module Ultralog
 
   module OperatorUtils
-    Overlay = Struct.new(:thread, :desc, :uri)
-    
-    class OverlayParser
-      DEFAULT = "27, 25, 31, 39, 32"
-      def initialize
-        @xml = `wget https://cvs.ultralog.net/dist/overlay_descriptor.xml -q --http-user=TICCVS --http-passwd=T1CCVS --output-document=-`
-        @threads = {}
-        parse
-      end
-      
-      def parse
-        doc = REXML::Document.new(@xml)
-        doc.root.each_element do |element|
-          list = @threads[element.attributes['thread']]
-          unless list
-            list = []
-            @threads[element.attributes['thread']]=list
-          end
-          list << Overlay.new(element.attributes['thread'], element.attributes['desc'], element.attributes['uri'])
-        end
-      end
-      
-      def each_thread
-        @threads.each_key { |key| yield key }
-      end
-      
-      def each_overlay(thread=nil, &block)
-        unless thread
-          each_thread { |thread| each_overlay(thread, &block) }
-        end
-        @threads[thread].each { |overlay| yield overlay }
-      end
-      
-      def stdin_query_list
-        list = []
-        acme = nil
-        each_thread do |thread|
-          puts "#{thread.upcase}"
-          each_overlay(thread) do |overlay|
-            puts "  #{list.size}: #{overlay.desc}"
-            acme = overlay if overlay.uri == "https://ultraforge.ultralog.net/dist/isat_acme.zip"
-            list << overlay
-          end
-        end
-        puts "--------------------"
-        print "Enter overlays (default: #{DEFAULT}): "
-        result = gets 
-        result = DEFAULT if result.strip == ""
-        result = result.split.collect { |i| list[i.strip.to_i] }
-        result << acme unless result.include?(acme)
-        result
-      end
-      
-    end
     
     class HostManager
       def initialize(dir = nil)
@@ -111,14 +57,5 @@ module Ultralog
       end
       
     end
-  end
-end
-
-if __FILE__ == $0
-  $:.unshift '..'
-  op = Ultralog::OperatorUtils::OverlayParser.new
-  overlays = op.stdin_query_list
-  overlays.each do |overlay|
-    puts overlay.uri
   end
 end
