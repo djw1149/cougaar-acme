@@ -129,7 +129,7 @@ public class MemoryWasterPlugin
 			ServletService srv =
 				(ServletService) broker.getService(this, ServletService.class, null);
 			
-			srv.register("/mem-waster", new MWServlet( getAlarmService(), freq, std));
+			srv.register(servletName, new MWServlet( getAlarmService(), freq, std));
 		} catch (Exception e) {
 			throw new RuntimeException(e);	
 		}
