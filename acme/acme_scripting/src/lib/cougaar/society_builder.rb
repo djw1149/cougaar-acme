@@ -65,6 +65,13 @@ module Cougaar
     
     def parse_xml
       @society = Model::Society.new(doc.root.attributes['name']) do |society|
+        #add facets to host
+        @doc.root.elements.each("facet") do |element|
+          society.add_facet do |facet|
+            element.attributes.each { |a, v| facet[a] = v }
+            facet.cdata = element.text.strip if element.text
+          end
+        end
         @doc.elements.each("society/host") do |host_element|
           society.add_host(host_element.attributes['name']) do |host|
             #add facets to host

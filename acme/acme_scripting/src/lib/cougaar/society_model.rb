@@ -25,242 +25,7 @@ $debug_society_model = false
 
 module Cougaar
   module Model
-    
-    ##
-    # The Cougaar::Society class is the root of the model of the society
-    # that is to be run.  A Society is composed of Hosts (computers) that
-    # contain node(s) and nodes contain agent(s).
-    # 
-    # There are several instance varables that represent instances of the
-    # Query class, specifically :nodes and :agents.
-    #
-    class Society
-      DEFAULT_COUGAAR_PORT = 8800
-      
-      attr_reader :name, :agents, :nodes, :hosts
-      attr_accessor :cougaar_port, :monitor
-      
-      ##
-      # Constructs a Society with an optional name block
-      #
-      def initialize(name=nil, &block)
-        @name = name
-        @cougaar_port = DEFAULT_COUGAAR_PORT
-        @hostList = []
-        @hostIndex = {}
-        setup_queries
-        yield self if block
-      end
-      
-      ##
-      # Adds a host to the society
-      #
-      # host:: [Cougaar::Host | String] the Host or name of the host
-      # block:: [Block] The constructor block
-      # return:: [Cougaar::Host] The new host
-      #
-      def add_host(host, &block)
-        if host.kind_of? Host
-          if @hostIndex[host.host_name]
-            return nil # host names must be unique society wide
-          end
-          @hostIndex[host.host_name] = host
-          @hostList << host
-          host.society = self
-          $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(host) }
-          return host
-        else
-          if @hostIndex[host]
-            return nil # host names must be unique society wide
-          end
-          newHost = Host.new(host)
-          @hostIndex[host] = newHost
-          newHost.society = self
-          @hostList << newHost
-          $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(newHost) }
-          newHost.init_block(&block)
-          return newHost
-        end
-      end
-      
-      ##
-      # Removes a host (and its nodes/agents/components) from the society.
-      #
-      # host:: [Cougaar::Model::Host | String] The host object or name
-      #
-      def remove_host(host)
-        if host.kind_of? String
-          host = @hostIndex[host]
-          return if host.nil?
-        end
-        @hostIndex.delete(host.host_name)
-        @hostList.delete(host)
-        $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_removed(host) } 
-      end
-      
-      ##
-      # Iterates over each host
-      #
-      # yield:: [Cougaar::Host] The host instance
-      #
-      def each_host
-        @hostList.each {|host| yield host}
-      end
-      
-      ##
-      # Iterates over each (active) host, or host that has
-      # nodes on it.
-      #
-      # yield:: [Cougaar::Model::Host] The host instance
-      #
-      def each_active_host
-        @hostList.each {|host| yield host if host.nodes.size > 0}
-      end
-      
-      ##
-      # Iterates over each node
-      #
-      # yield:: [Cougaar::Model::Node] The node instance
-      #
-      def each_node
-        @hostList.each {|host| host.each_node {|node| yield node} }
-      end
-      
-      ##
-      # Iterates over each agent (across all nodes and hosts)
-      #
-      # include_node_agent:: [Boolean] If true, the node agents are included as well as the agents
-      # yield:: [Cougaar::Model::Agent] The agent instance
-      #
-      def each_agent(include_node_agent=false, &block)
-        @hostList.each {|host| host.each_node {|node| node.each_agent {|agent| yield agent}}}
-        each_node_agent(&block) if include_node_agent
-      end
-      
-      ##
-      # Iterates over each node agent
-      #
-      # yield:: [Cougaar::Agent] The agent instance
-      #
-      def each_node_agent
-        @hostList.each {|host| host.each_node {|node| yield node.agent} }
-      end
-      
-      ##
-      # Clones this society/hosts/nodes/agents/plugins
-      #
-      # return:: [Cougaar::Society] The newly cloned society
-      #
-      def clone
-        society = Society.new(@name)
-        each_host {|host| society.add_host host.clone(society)}
-        society
-      end
-      
-      ##
-      # Recursively iterates over all hosts, nodes and agents and removed their facet data
-      # 
-      def remove_all_facets
-        each_host do |host|
-          host.remove_all_facets
-          host.each_node do |node|
-            node.remove_all_facets
-            node.each_agent do |agent|
-              agent.remove_all_facets
-            end
-          end
-        end
-      end
-      
-      ##
-      # Returns an XML representation of the society
-      #
-      # return:: [String] The society XML data
-      #
-      def to_xml
-        xml = "<?xml version='1.0'?>\n" +
-              "<society name='#{@name}'\n" +
-              "  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'\n" + 
-              "  xsi:noNamespaceSchemaLocation='http://www.cougaar.org/2003/society.xsd'>\n"
-        each_host {|host| xml << host.to_xml}
-        xml << "</society>"
-        return xml
-      end
-      
-      ##
-      # Returns a Ruby (source) representation of the society
-      #
-      # return:: [String] The society Ruby data
-      #
-      def to_ruby
-        ruby =  "Cougaar::Model::Society.new('#{@name}') do |society|\n"
-        each_host {|host| ruby << host.to_ruby}
-        ruby << "end\n"
-        ruby
-      end
-      
-      ##
-      # Override the parameter across all nodes
-      #
-      # param:: [String] The -D parameter to overrride
-      # value:: [String] The new value
-      #
-      def override_parameter(param, value)
-        @hostList.each do |host|
-          host.each_node do |node|
-            node.override_parameter(param, value)
-          end
-        end
-      end
-      
-      private
-      
-      ##
-      # Sets up query objects responding to 
-      # @agents and @nodes
-      #
-      def setup_queries
-        @agents = Query.new(self) do |name|
-          result = nil
-          each_host do |host|
-            host.each_node do |node|
-              node.each_agent do |agent| 
-                if agent.name==name
-                  result = agent
-                  break
-                end
-              end
-            end
-          end
-          result
-        end
-        @nodes = Query.new(self) do |name|
-          result = nil
-          each_host do |host|
-            host.each_node do |node|
-              if node.name==name
-                result = node
-                break
-              end
-            end
-          end
-          result
-        end
-        @hosts = Query.new(self) do |name|
-          result = nil
-          name = (name.index('|') ? name[(name.index('|')+1)..-1] : name)
-          each_host do |host|
-            if host.host_name==name
-              result = host
-              break
-            end
-          end
-          result
-        end
-      end
-    end
-    
-    
+
     ##
     # Mixin module for components that have facets
     #
@@ -460,6 +225,246 @@ module Cougaar
           ruby << facet.to_ruby(indent, context)
         end
         return ruby
+      end
+    end
+    
+    ##
+    # The Cougaar::Society class is the root of the model of the society
+    # that is to be run.  A Society is composed of Hosts (computers) that
+    # contain node(s) and nodes contain agent(s).
+    # 
+    # There are several instance varables that represent instances of the
+    # Query class, specifically :nodes and :agents.
+    #
+    class Society
+      include Multifaceted
+      
+      DEFAULT_COUGAAR_PORT = 8800
+      
+      attr_reader :name, :agents, :nodes, :hosts
+      attr_accessor :cougaar_port, :monitor
+      
+      ##
+      # Constructs a Society with an optional name block
+      #
+      def initialize(name=nil, &block)
+        @name = name
+        @cougaar_port = DEFAULT_COUGAAR_PORT
+        @hostList = []
+        @hostIndex = {}
+        setup_queries
+        yield self if block
+      end
+      
+      ##
+      # Adds a host to the society
+      #
+      # host:: [Cougaar::Host | String] the Host or name of the host
+      # block:: [Block] The constructor block
+      # return:: [Cougaar::Host] The new host
+      #
+      def add_host(host, &block)
+        if host.kind_of? Host
+          if @hostIndex[host.host_name]
+            return nil # host names must be unique society wide
+          end
+          @hostIndex[host.host_name] = host
+          @hostList << host
+          host.society = self
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(host) }
+          return host
+        else
+          if @hostIndex[host]
+            return nil # host names must be unique society wide
+          end
+          newHost = Host.new(host)
+          @hostIndex[host] = newHost
+          newHost.society = self
+          @hostList << newHost
+          $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_added(newHost) }
+          newHost.init_block(&block)
+          return newHost
+        end
+      end
+      
+      ##
+      # Removes a host (and its nodes/agents/components) from the society.
+      #
+      # host:: [Cougaar::Model::Host | String] The host object or name
+      #
+      def remove_host(host)
+        if host.kind_of? String
+          host = @hostIndex[host]
+          return if host.nil?
+        end
+        @hostIndex.delete(host.host_name)
+        @hostList.delete(host)
+        $debug_society_model && SocietyMonitor.each_monitor { |m| m.host_removed(host) } 
+      end
+      
+      ##
+      # Iterates over each host
+      #
+      # yield:: [Cougaar::Host] The host instance
+      #
+      def each_host
+        @hostList.each {|host| yield host}
+      end
+      
+      ##
+      # Iterates over each (active) host, or host that has
+      # nodes on it.
+      #
+      # yield:: [Cougaar::Model::Host] The host instance
+      #
+      def each_active_host
+        @hostList.each {|host| yield host if host.nodes.size > 0}
+      end
+      
+      ##
+      # Iterates over each node
+      #
+      # yield:: [Cougaar::Model::Node] The node instance
+      #
+      def each_node
+        @hostList.each {|host| host.each_node {|node| yield node} }
+      end
+      
+      ##
+      # Iterates over each agent (across all nodes and hosts)
+      #
+      # include_node_agent:: [Boolean] If true, the node agents are included as well as the agents
+      # yield:: [Cougaar::Model::Agent] The agent instance
+      #
+      def each_agent(include_node_agent=false, &block)
+        @hostList.each {|host| host.each_node {|node| node.each_agent {|agent| yield agent}}}
+        each_node_agent(&block) if include_node_agent
+      end
+      
+      ##
+      # Iterates over each node agent
+      #
+      # yield:: [Cougaar::Agent] The agent instance
+      #
+      def each_node_agent
+        @hostList.each {|host| host.each_node {|node| yield node.agent} }
+      end
+      
+      ##
+      # Clones this society/hosts/nodes/agents/plugins
+      #
+      # return:: [Cougaar::Society] The newly cloned society
+      #
+      def clone
+        society = Society.new(@name)
+        each_facet { |facet| society.add_facet(facet.clone) }
+        each_host {|host| society.add_host host.clone(society)}
+        society
+      end
+      
+      ##
+      # Recursively iterates over all hosts, nodes and agents and removed their facet data
+      # 
+      def remove_all_facets
+        remove_all_facets
+        each_host do |host|
+          host.remove_all_facets
+          host.each_node do |node|
+            node.remove_all_facets
+            node.each_agent do |agent|
+              agent.remove_all_facets
+            end
+          end
+        end
+      end
+
+      ##
+      # Returns an XML representation of the society
+      #
+      # return:: [String] The society XML data
+      #
+      def to_xml
+        xml = "<?xml version='1.0'?>\n" +
+              "<society name='#{@name}'\n" +
+              "  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'\n" + 
+              "  xsi:noNamespaceSchemaLocation='http://www.cougaar.org/2003/society.xsd'>\n"
+        xml << get_facet_xml(2)
+        each_host {|host| xml << host.to_xml}
+        xml << "</society>"
+        return xml
+      end
+      
+      ##
+      # Returns a Ruby (source) representation of the society
+      #
+      # return:: [String] The society Ruby data
+      #
+      def to_ruby
+        ruby =  "Cougaar::Model::Society.new('#{@name}') do |society|\n"
+        ruby << get_facet_ruby(2, 'society')
+        each_host {|host| ruby << host.to_ruby}
+        ruby << "end\n"
+        ruby
+      end
+      
+      ##
+      # Override the parameter across all nodes
+      #
+      # param:: [String] The -D parameter to overrride
+      # value:: [String] The new value
+      #
+      def override_parameter(param, value)
+        @hostList.each do |host|
+          host.each_node do |node|
+            node.override_parameter(param, value)
+          end
+        end
+      end
+      
+      private
+      
+      ##
+      # Sets up query objects responding to 
+      # @agents and @nodes
+      #
+      def setup_queries
+        @agents = Query.new(self) do |name|
+          result = nil
+          each_host do |host|
+            host.each_node do |node|
+              node.each_agent do |agent| 
+                if agent.name==name
+                  result = agent
+                  break
+                end
+              end
+            end
+          end
+          result
+        end
+        @nodes = Query.new(self) do |name|
+          result = nil
+          each_host do |host|
+            host.each_node do |node|
+              if node.name==name
+                result = node
+                break
+              end
+            end
+          end
+          result
+        end
+        @hosts = Query.new(self) do |name|
+          result = nil
+          name = (name.index('|') ? name[(name.index('|')+1)..-1] : name)
+          each_host do |host|
+            if host.host_name==name
+              result = host
+              break
+            end
+          end
+          result
+        end
       end
     end
     
