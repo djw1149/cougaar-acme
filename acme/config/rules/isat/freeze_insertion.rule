@@ -16,7 +16,7 @@ remote_subscription_plugin = "org.cougaar.lib.aggagent.plugin.RemoteSubscription
 alert_plugin = "org.cougaar.lib.aggagent.plugin.AlertPlugin"
 aggregation_plugin = "org.cougaar.lib.aggagent.plugin.AggregationPlugin"
 aggregation_component = "org.cougaar.lib.aggagent.servlet.AggregationComponent"
-cnc_calc_plugin = "com.stdc.CnCcalc.plugin.CnCcalcPlugin"
+#cnc_calc_plugin = "com.stdc.CnCcalc.plugin.CnCcalcPlugin"
 
 society.each_agent do |agent|
   agent.add_component do |c|
@@ -25,7 +25,7 @@ society.each_agent do |agent|
     c.add_argument(alert_plugin)
     c.add_argument(aggregation_plugin)
     c.add_argument(aggregation_component)
-    c.add_argument(cnc_calc_plugin)
+    #c.add_argument(cnc_calc_plugin)
   end
   if agent.name == "NCA"  or agent.name == "OSD.GOV"
     agent.add_component do |c|
