@@ -98,8 +98,9 @@ module Cougaar
         @parameters = []
         @example = " do_action 'InstallCompletionMonitor' "
       }
-      def initialize(run)
+      def initialize(run, debug=false)
         super(run)
+        @debug = debug
       end
       def perform
         @monitor = UltraLog::SocietyCompletionMonitor.new(run)
@@ -322,23 +323,23 @@ module UltraLog
 
     # Very verbose.  Only call if you really want to see this stuff
     def print_current_comp(comp)
-      puts "*********************************************************"
-      puts "PRINTING COMP INFO"
-      puts "*********************************************************"
+      ::Cougaar.logger.info "*********************************************************"
+      ::Cougaar.logger.info "PRINTING COMP INFO"
+      ::Cougaar.logger.info "*********************************************************"
       comp.each_key do |agent|
-        puts "Agent: #{agent}"
+        ::Cougaar.logger.info "Agent: #{agent}"
         info = comp[agent]
         next if !info
-        puts "  Receivers:"
+        ::Cougaar.logger.info "  Receivers:"
         print_messages(info["receivers"])
-        puts "  Senders:"
+        ::Cougaar.logger.info "  Senders:"
         print_messages(info["senders"])
       end
     end
 
     def print_messages(msgs)
       msgs.each do |agent, msg|
-        puts "    #{agent} => #{msg}"
+        ::Cougaar.logger.info "    #{agent} => #{msg}"
       end
     end
 
@@ -367,7 +368,7 @@ module UltraLog
             # is if agentB thinks it received a message from agentA, but agentA doesn't think it
             # sent any message to agentB.
             agentHash["receivers"].each do |agent, msg|
-              if (srcMsg = comp[agent]["senders"][agent.name] && srcMsg != msg)
+              if (srcMsg == comp[agent]["senders"][agent.name] && srcMsg != msg)
                 soc_status = "INCOMPLETE"
                 break
               end
@@ -379,6 +380,7 @@ module UltraLog
       unless @society_status == soc_status
         @society_status = soc_status
         puts "**** SOCIETY STATUS IS NOW: #{soc_status} ****"
+        print_current_comp(comp) if debug
       end
     end
   
