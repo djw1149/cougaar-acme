@@ -1,8 +1,8 @@
 ####################################################
 # Rule to insert StimulatorServlet to all agents 
-# plugin = org.cougaar.core.servlet.BlackboardServletComponent
+# plugin = org.cougaar.planning.servlet.BlackboardServletComponent
 
-servlet = "org.cougaar.core.servlet.BlackboardServletComponent"
+servlet = "org.cougaar.planning.servlet.BlackboardServletComponent"
 
 society.each_agent do |agent|
   agent.add_component do |c|
