@@ -57,7 +57,7 @@ module Cougaar
       def initialize(run, host, &block)
         super(run)
         @host = host
-        @action = block if block_given
+        @action = block if block_given?
       end
       def perform
         @action.call(::UltraLog::DataGrabber.new(@host))
