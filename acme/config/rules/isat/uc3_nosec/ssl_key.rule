@@ -1,0 +1,11 @@
+# Add SSL props for using RMISSL without security
+society.each_node do |node|
+
+    #SSL parameters if no security overlay
+    node.override_parameter("-Djavax.net.ssl.trustStore","$COUGAAR_INSTALL_PATH/configs/common/nskeystore")
+    node.override_parameter("-Djavax.net.ssl.trustStorePassword","passwd")
+    node.override_parameter("-Djavax.net.ssl.keyStore","$COUGAAR_INSTALL_PATH/configs/common/nskeystore")
+    node.override_parameter("-Djavax.net.ssl.keyStorePassword","passwd")
+    #node.override_parameter("-Djavax.net.ssl.debug","true")
+
+end
