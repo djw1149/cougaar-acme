@@ -17,5 +17,11 @@ society.each_agent do |agent|
       c.add_argument('ProjectSupply')
       c.add_argument('Supply')
     end
+  elsif agent.has_facet? { |facet| facet[:role]=='StrategicTransportationProvider' && 
+      (facet[:mechanism] == 'StubTransportationProvider') }
+    agent.add_component do |c|
+      c.classname = universal_allocator_plugin
+      c.add_argument("Transport")
+    end    
   end
 end

@@ -29,12 +29,6 @@ society.each_agent do |agent|
         c.classname = transcom_vishnu_plugin
         c.add_argument("envFile=GLMT.TRANSCOM.env.xml")
       end
-	else if (role_and_mechanisms.include?("StrategicTransportationProvider.StubTransportationProvider"))
-        agent.add_component do |c|
-           c.classname = universal_allocator_plugin
-          c.add_argument("Transport")
-        end
-      end
     end
   end
 end
