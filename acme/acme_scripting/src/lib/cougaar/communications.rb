@@ -73,6 +73,23 @@ module Cougaar
   
   module Actions
   
+    class StartCommunications < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      RESULTANT_STATE = "CommunicationsRunning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Starts either the jabber or message router communications subsystem."
+        @example = "do_action 'StartCommunications'"
+      }
+      
+      def perform
+        if @run.society.get_service_host("message-router")
+          @run.do_action "StartMessageRouterCommunications"
+        else
+          @run.do_action "StartJabberCommunications"
+        end
+      end
+    end
+  
     class StartMessageRouterCommunications < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
       RESULTANT_STATE = "CommunicationsRunning"
@@ -97,7 +114,7 @@ module Cougaar
       end
       
       def perform
-         unless @server
+        unless @server
           ohost = @run.society.get_service_host("message-router")
           if ohost==nil
             ohost = @run.society.get_service_host("jabber")
