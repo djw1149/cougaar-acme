@@ -237,7 +237,7 @@ class XMLCougaarNode
   def XMLCougaarNode.jarAndSign(plugin, filepath)
     cmd_jar = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jar cf /tmp/temp.jar #{filepath}")
     cmd_jarsign = plugin['/cougaar/config'].manager.cmd_wrap("cd $CIP; jarsigner -keystore $CIP/operator/signingCA_keystore -storepass keystore /tmp/temp.jar privileged")
-    cmd_mv = plugin['/cougaar/config'].manager.cmd_wrap("mv /tmp/temp.jar #{filepath.jar}")
+    cmd_mv = plugin['/cougaar/config'].manager.cmd_wrap("mv /tmp/temp.jar #{filepath}.jar")
 
     `#{cmd_jar}`
     `#{cmd_jarsign}`
