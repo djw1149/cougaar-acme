@@ -6,17 +6,67 @@
 # plugin = org.cougaar.mlm.plugin.organization.OrgReportPlugin
 
 org_data_plugin = "org.cougaar.mlm.plugin.organization.OrgDataPlugin"
+org_data_param_plugin = "org.cougaar.mlm.plugin.organization.OrgDataParamPlugin"
 org_report_plugin = "org.cougaar.mlm.plugin.organization.OrgReportPlugin"
 
 society.each_agent do |agent|
   agent.add_component do |c|
-    c.classname = org_data_plugin
-    if agent.get_facet(:is_ua)
+    # Must check for UA Vehicle agents - they dont get the OrgDataPlugin,
+    # but get the OrgDataParamPlugin
+    if agent.get_facet(:is_ua) && agent.get_facet(:equip_type_id)
+      c.classname = org_data_param_plugin
+      # Now must supply as args every PG, etc....
+      c.add_argument("Prototype:MilitaryOrganization")
       org_id = agent.get_facet(:org_id).to_s
       org_type_id = agent.get_facet(:org_type_id).to_s
-      c.add_argument("MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=COMING_SOON,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+      c.add_argument("ClusterPG:MessageAddress:MessageAddress:#{org_id}")
+      c.add_argument("ItemIdentificationPG:ItemIdentification:String:#{org_id}")
+      c.add_argument("ItemIdentificationPG:Nomenclature:String:#{org_id}")
+      # OrgCode/#{org_code}
+      c.add_argument("ItemIdentificationPG:AlternateItemIdentification:String:FIXME")
+      # UAType/#{org_type_id}
+      c.add_argument("TypeIdentificationPG:TypeIdentification:String:UAType/#{org_type_id}")
+      c.add_argument("TypeIdentificationPG:Nomenclature:String:#{org_type_id}")
+      c.add_argument("TypeIdentificationPG:AlternateTypeIdentification:String:FIXME")
+      #MilitaryOrgPG:HomeLocation:GeolocLocation:#{home_location}
+      #MilitaryOrgPG:UTC:String:#{org_type_id}
+      #MilitaryOrgPG:UIC:String:#{org_code}
+      #MilitaryOrgPG:IsReserve:boolean:FIXME
+      #OrganizationPG:Service:Service:#{service}
+      #OrganizationPG:Agent:Agancy:#{agency}
+      
+      # Supply superior relationship as argument
+      if agent.get_facet(:superior_org_id)
+	org_id = agent.get_facet(:superior_org_id).to_s
+	org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
+	c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+      end
+      # Also supply SCAs as arguments
+      agent.each_facet(:sca_supported_org) do |facet|
+	org_id = facet[:sca_supported_org].to_s
+	org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
+	c.add_argument("Relationship:MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+      end
+    else
+      c.classname = org_data_plugin
+      if agent.get_facet(:is_ua)
+	# Supply superior relationship as argument
+	if agent.get_facet(:superior_org_id)
+	  org_id = agent.get_facet(:superior_org_id).to_s
+	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
+	  c.add_argument("MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=Subordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	end
+	# Also supply SCAs as arguments
+	agent.each_facet(:sca_supported_org) do |facet|
+	  org_id = facet[:sca_supported_org].to_s
+	  org_type_id = society.agents[org_id].get_facet(:org_type_id).to_s
+	  c.add_argument("MessageAddress=#{org_id},ItemIdentification=#{org_id},TypeIdentification=UAType/#{org_type_id},Role=SupportSubordinate,StartTime=2000-01-01 00:00:00,EndTime=\\N")
+	end
+      end
     end
   end
+  # Done with OrgDataPlugin
+
   agent.add_component do |c|
     c.classname = org_report_plugin
   end
