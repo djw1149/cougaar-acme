@@ -12,13 +12,23 @@ society.each_agent do |agent|
     agent.add_component do |c|
       c.classname = generic_table_plugin
       terminal_ammunition_packer = false
+      ua_strat_trans_provider = false
       agent.each_facet(:role) do |facet|
         if facet[:role] == "AmmunitionProvider" && facet[:mechanism] == "TerminalAmmunitionPacker"
           terminal_ammunition_packer = true
         end
+	# Find the StratTransProviders that might need to handle
+	# Project tasks, ie in UA, the FSB
+	if facet[:role] == "FuelSupplyProvider" && facet[:mechanism] == "TruckScheduler"
+	  ua_strat_trans_provider = true
+	end
       end
       if terminal_ammunition_packer    # Just for OSC (Formerly IOC)
         c.add_argument("IOC_allocation_rules.xml")
+      elsif agent.get_facet(:is_ua) && ua_strat_trans_provider
+	# UA Trans plugins cant handle Project tasks. So make the FSB
+	# which handles StratTrans use the rules here to handle them
+	c.add_argument("dp_allocation_rules.xml")
       else
         c.add_argument("default_allocation_rules.xml")
       end
