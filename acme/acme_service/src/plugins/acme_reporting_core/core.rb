@@ -34,22 +34,35 @@ module ACME
 
       def process_archive(archive)
         puts "Processing an archive #{archive.base_name}"
-        run_log_test(archive)
-        puts "Run log"
-        RunTimeTest.new(archive, @plugin, @ikko).perform
-        puts "Run Time"
-        CompletionTest.new(archive, @plugin, @ikko).perform
-        puts "Comp"
-	QData.new(archive, @plugin, @ikko).perform
-        puts "Q"
-        VerifyInventory.new(archive, @plugin, @ikko).perform(0.10, 0.10)
-        puts "INV"
-        DataGrabberTest.new(archive, @plugin, @ikko).perform
-        puts "GRAB"
-        Nameservers.new(archive, @plugin, @ikko).perform
-        puts "NS"
-        Scripts.new(archive, @plugin, @ikko).perform
-        puts "Definition"
+        begin
+          run_log_test(archive)
+          puts "Run log"
+          RunTimeTest.new(archive, @plugin, @ikko).perform
+          puts "Run Time"
+          CompletionTest.new(archive, @plugin, @ikko).perform
+          puts "Comp"
+          QData.new(archive, @plugin, @ikko).perform
+          puts "Q"
+          VerifyInventory.new(archive, @plugin, @ikko).perform(0.10, 0.10)
+          puts "INV"
+          DataGrabberTest.new(archive, @plugin, @ikko).perform
+          puts "GRAB"
+          Nameservers.new(archive, @plugin, @ikko).perform
+          puts "NS"
+          Scripts.new(archive, @plugin, @ikko).perform
+          puts "Definition"
+        rescue
+          archive.add_report("Exception", @plugin.plugin_configuration.name) do |report|
+            report.open_file("Exception.html", "text/html", "Exception") do |out|
+              out.puts "<html>"
+              out.puts "<title>Exception</title>"
+              out.puts "#{$!} <BR>"
+              out.puts $!.backtrace.collect{|x| x.gsub(/&/, "&amp;").gsub(/</, "&lt;").gsub(/>/,"&gt;")}.join("<BR>")
+              out.puts "</html>"
+            end
+            report.failure
+          end
+        end
       end
       
       def run_log_test(archive)
