@@ -11,6 +11,8 @@ require 'find'
 
 opts = GetoptLong.new([ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-host', '-j', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--message-router', '-r', GetoptLong::REQUIRED_ARGUMENT ],
+											[ '--port', '-o', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-account', '-a', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-password', '-p', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jvm-path', '-v', GetoptLong::REQUIRED_ARGUMENT ],
@@ -26,6 +28,8 @@ opts = GetoptLong.new([ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
 @destdir = File.join("", "usr", "local", "acme")
 
 @jabber_host = nil
+@message_router = nil
+@message_router_port = nil
 @jabber_account = nil
 @jabber_password = nil
 @jvm_path = ''
@@ -39,6 +43,10 @@ opts.each do |opt, arg|
 	case opt
   when '--jabber-host'
     @jabber_host = arg
+  when '--message-router'
+    @message_router = arg
+  when '--port'
+    @message_router_port = arg
   when '--jabber-account'
     @jabber_account = arg
   when '--jabber-password'
@@ -61,7 +69,9 @@ opts.each do |opt, arg|
     puts "Installs the ACME Service.\nUsage:\n\t#$0 -j <jabberhost> [ [-n] [-h] [-t <dir>] [-a <account>] [-p <pwd>]"
     puts "\t\t\t[-v <jvm path>] [-c <cougaar install path>] [-l <server props path>]"
     puts "\t\t\t[-b <command prefix>] [-e <command suffix>] [-w <user>] -u]"
-    puts "\t-j --jabber-host\tThe jabber host (required)."
+    puts "\t-j --jabber-host\tThe jabber host (message router or this required)."
+    puts "\t-r --message-router\tThe message router host (jabber server or this required)."
+    puts "\t-o --port\tThe message router port"
     puts "\t-h --help\tPrint this help file."
     puts "\t-n --noop\t\tDon't actually do anything; just print out what it"
     puts "\t\t\t\twould do."
@@ -88,8 +98,8 @@ opts.each do |opt, arg|
 	end
 end
 
-unless @jabber_host
-  puts "Must specify --jabber-host <hostname> to install"
+unless @jabber_host || @message_router
+  puts "Must specify --jabber-host <hostname> or --message-router <hostname> to install"
   exit
 end
 
@@ -138,12 +148,21 @@ def install
       file.puts %Q[  - conference: ~]    
     end
     puts "Writing acme_host_jabber_service properties..."
-    path = File.join(@destdir, 'plugins', 'acme_host_jabber_service', 'properties.yaml')
+    path = File.join(@destdir, 'plugins', 'acme_host_communications', 'properties.yaml')
     File.open(path, "wb") do |file|
-      file.puts %Q[#### Properties: acme_host_jabber_service - Version: 1.0]
+      file.puts %Q[#### Properties: acme_host_communications - Version: 1.0]
       file.puts %Q[properties: ~]
       file.puts %Q["|": ]
-      file.puts %Q[  - host: "#{@jabber_host}"]
+      if @jabber_host
+        file.puts %Q[  - host: "#{@jabber_host}"]
+        file.puts %Q[  - service_type: jabber]
+      else
+        file.puts %Q[  - host: "#{@message_router}"]
+        file.puts %Q[  - service_type: router]
+        if @message_router_port
+        file.puts %Q[  - port: #{@message_router_port}]
+        end
+      end
       file.puts %Q[  - account: "#{@jabber_account}"] if @jabber_account
       file.puts %Q[  - password: "#{@jabber_password}"] if @jabber_password
     end
