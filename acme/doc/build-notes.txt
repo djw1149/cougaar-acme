@@ -2,6 +2,8 @@ Until the automated build process is in place.
 
 To build SocietyDesigner:
 
+cd ${CSMART_INSTALL_PATH}/src/java/org/cougaar/designtools/designer
+
 javac -classpath ${COUGAAR_INSTALL_PATH}/sys/xerces.jar:${COUGAAR_INSTALL_PATH}/lib/util.jar  -d ${CSMART_INSTALL_PATH}/tmp/classes *.java
 
 cd ${CSMART_INSTALL_PATH}/tmp/classes
@@ -10,6 +12,8 @@ jar cvf ../designer.jar .
 cp ../designer.jar ${CSMART_INSTALL_PATH}/lib
 
 To build XMLDiff:
+
+cd ${CSMART_INSTALL_PATH}/src/java/org/cougaar/designtools/diff
 
 javac -classpath ${COUGAAR_INSTALL_PATH}/sys/xerces.jar  -d ${CSMART_INSTALL_PATH}/tmp/classes *.java
 
