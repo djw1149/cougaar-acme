@@ -51,7 +51,7 @@ society.each_agent do |agent|
 # Add each provided_role if it is a supply_role, unless the mechanism is "TerminalInventoryManager"
 # or if it is the strat_trans_role with a mechanism of "PassThrough"
   provided_roles.each do |my_role, m_e| 
-    if supply_roles.include?(my_role) && m_e[0] != "TerminalInventoryManager"
+    if supply_roles.include?(my_role) && (m_e[0] != "TerminalInventoryManager" && m_e[0] != "TerminalAmmunitionPacker")
       required_roles << my_role
     end
     if my_role == strat_trans_role && m_e[0] == "PassThrough"
@@ -126,11 +126,9 @@ society.each_agent do |agent|
 # Load these UDDI4J plugins early and with Binder priority so SDReg Plugin can always find them
   agent.add_component do |c|
     c.classname = uddi4j_registration_service
-    c.priority = "BINDER"
   end
   agent.add_component do |c|
     c.classname = uddi4j_registry_query_service
-    c.priority = "BINDER"
   end
 #
 # Then insert the LineagePlugin and SDRegistrationPlugin with no arguments
@@ -153,6 +151,7 @@ society.each_agent do |agent|
   agent.add_component do |c|
     c.classname = sd_client_plugin
     required_roles.each { |my_role| c.add_argument(my_role) }
+    c.priority = "LOW"
   end
 #
 # Then insert the MatchmakerStubPlugin with no arguments
@@ -163,7 +162,8 @@ society.each_agent do |agent|
 # Then insert the SDProviderPlugin with Provided roles (although these are presently ignored)
   agent.add_component do |c|
     c.classname = sd_provider_plugin
-    provided_roles.each_key { |my_role| c.add_argument(my_role) }
+# Comment out args for now
+#   provided_roles.each_key { |my_role| c.add_argument(my_role) }
   end
 
 end
