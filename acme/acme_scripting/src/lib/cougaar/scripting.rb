@@ -56,6 +56,7 @@ require 'cougaar/experiment'
 require 'cougaar/society_builder'
 require 'cougaar/communications'
 require 'cougaar/society_control'
+require 'cougaar/society_rule_engine'
 begin
   require 'cougaar/csmart_database'
 rescue

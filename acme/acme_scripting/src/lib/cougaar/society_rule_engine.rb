@@ -1,9 +1,24 @@
-$debug_society_model = true
+module Cougaar
+  module Actions
+    class TransformSociety < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      def initialize(run, *rules)
+        super(run)
+        raise "Must supply rules to transform society" if rules.size==0
+        @rules = rules
+      end
+      def perform
+        @engine = Cougaar::Model::RuleEngine.new(@run.society)
+        @engine.load_rules(@rules.join(";"))
+        @engine.enable_stdout
+        @engine.execute
+      end
+    end
+  end
+end
 
 module Cougaar
-
   module Model
-
     class RuleEngine
       MAXLOOP = 300
       attr_accessor :max_loop, :society, :abort_on_warning
@@ -53,6 +68,7 @@ module Cougaar
       end
       
       def execute
+        $debug_society_model = true
         loop = true
         count = 0
         while(loop && count < @max_loop)
@@ -70,12 +86,14 @@ module Cougaar
         if count >= @max_loop
           output_warning "Detected endless loop in rule applciation."
         end
-        unused_rules = []
-        @rules.each do |rule|
-          unused_rules << rule.name unless rule.modified_society?
-        end
-        if unused_rules.size > 0
-          output_warning "The rule(s)s: #{unused_rules.join(', ')} did not modify the society."
+        if @stdout_enabled
+          unused_rules = []
+          @rules.each do |rule|
+            unused_rules << rule.name unless rule.modified_society?
+          end
+          if unused_rules.size > 0
+            output_warning "The rule(s)s: #{unused_rules.join(', ')} did not modify the society."
+          end
         end
         @monitor.finish
       end
