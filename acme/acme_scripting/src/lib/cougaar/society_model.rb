@@ -1311,7 +1311,7 @@ module Cougaar
         xml << "#{' '*i}  name='#{@name}'\n"
         xml << "#{' '*i}  class='#{@classname}'\n"
         xml << "#{' '*i}  priority='#{@priority}'\n" if @priority
-        xml << "#{' '*i}  order='#{@order}'\n" if @order > -1
+        xml << "#{' '*i}  order=#{@order}\n" if @order > -1
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
         each_argument do |arg|
           xml << "#{' '*i}  <argument>\n"
@@ -1326,7 +1326,7 @@ module Cougaar
         ruby =  "#{' '*i}#{parent.kind_of?(Node) ? 'node.agent' : 'agent'}.add_component('#{@name}') do |c|\n"
         ruby << "#{' '*i}  c.classname = '#{@classname}'\n"
         ruby << "#{' '*i}  c.priority = '#{@priority}'\n"
-        ruby << "#{' '*i}  c.order = '#{@order}'\n"
+        ruby << "#{' '*i}  c.order = #{@order}\n"
         ruby << "#{' '*i}  c.insertionpoint = '#{@insertionpoint}'\n"
         each_argument do |arg|
           ruby << "#{' '*i}  c.add_argument('#{arg.value}')\n"
