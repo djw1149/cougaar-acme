@@ -2,14 +2,14 @@
 # Rule to insert SDRegistrationPlugin and SDClientPlugin
 #   at every agent so providers can register and customers can find providers
 #
-# plugin = org.cougaar.servicediscovery.plugin.SDRegistrationPlugin
-# plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin(NeededRole,NeededRole,...)
-# plugin = org.cougaar.servicediscovery.plugin.SDProviderPlugin(ProvidedRole,ProvidedRole,...)
-# plugin = org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin
-# plugin = org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)
-# plugin = org.cougaar.servicediscovery.plugin.LineagePlugin
-# plugin = org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent
-# plugin = org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent
+# 1. plugin = org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent
+# 2. plugin = org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent
+# 3. plugin = org.cougaar.servicediscovery.plugin.LineagePlugin
+# 4. plugin = org.cougaar.servicediscovery.plugin.SDRegistrationPlugin
+# 5. plugin = org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)
+# 6. plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin(NeededRole,NeededRole,...)
+# 7. plugin = org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin
+# 8. plugin = org.cougaar.servicediscovery.plugin.SDProviderPlugin(ProvidedRole,ProvidedRole,...)
 #
 # Roles
 # AmmunitionProvider
@@ -18,16 +18,16 @@
 # SparePartsProvider
 # SubsistenceSupplyProvider
 #
-sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
-sd_client_plugin = "org.cougaar.servicediscovery.plugin.SDClientPlugin"
-sd_provider_plugin = "org.cougaar.servicediscovery.plugin.SDProviderPlugin"
-matchmaker_stub_plugin = "org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin"
-matchmaker_query_servlet_component = "org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent"
-matchmaker_query_servlet = "org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet"
-
-lineage_plugin = "org.cougaar.servicediscovery.plugin.LineagePlugin"
 uddi4j_registration_service = "org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent"
 uddi4j_registry_query_service = "org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent"
+lineage_plugin = "org.cougaar.servicediscovery.plugin.LineagePlugin"
+sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
+matchmaker_query_servlet_component = "org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent"
+matchmaker_query_servlet = "org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet"
+sd_client_plugin = "org.cougaar.servicediscovery.plugin.SDClientPlugin"
+matchmaker_stub_plugin = "org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin"
+sd_provider_plugin = "org.cougaar.servicediscovery.plugin.SDProviderPlugin"
+
 supply_roles = Array ["AmmunitionProvider",
                       "FuelSupplyProvider",
                       "PackagedPOLSupplyProvider",
@@ -114,32 +114,32 @@ society.each_agent do |agent|
   required_roles = required_roles.sort
   required_roles = required_roles.uniq 
 #
-# Then insert the UDDI4JRegistrationService, UDDI4JRegistryQueryService, SDRegistrationPlugin with no arguments
-# and the MatchmakerStubPlugin and the LineagePlugin with no arguments
+# Then insert the UDDI4JRegistrationService, UDDI4JRegistryQueryService with no arguments
+# Load these UDDI4J plugins early and with Binder priority so SDReg Plugin can always find them
   agent.add_component do |c|
     c.classname = uddi4j_registration_service
-    # Load UDDI4J plugins early so SDReg Plugin can always find them
     c.priority = "BINDER"
   end
   agent.add_component do |c|
     c.classname = uddi4j_registry_query_service
-    # Load UDDI4J plugins early so SDReg Plugin can always find them
     c.priority = "BINDER"
+  end
+#
+# Then insert the LineagePlugin and SDRegistrationPlugin with no arguments
+  agent.add_component do |c|
+    c.classname = lineage_plugin
   end
   agent.add_component do |c|
     c.classname = sd_registration_plugin
   end
-  agent.add_component do |c|
-    c.classname = matchmaker_stub_plugin
-  end
+#
+# Then insert the MatchMakerQueryServletComponent with its arguments
   agent.add_component do |c|
     c.classname = matchmaker_query_servlet_component
     c.add_argument(matchmaker_query_servlet)
     c.add_argument("/matchmaker_query")
   end
-  agent.add_component do |c|
-    c.classname = lineage_plugin
-  end
+#
 #
 # Then insert the SDClientPlugin with required role arguments
   agent.add_component do |c|
@@ -147,7 +147,12 @@ society.each_agent do |agent|
     required_roles.each { |my_role| c.add_argument(my_role) }
   end
 #
-# Then insert the SDProviderPlugin with Provided roles
+# Then insert the MatchmakerStubPlugin with no arguments
+  agent.add_component do |c|
+    c.classname = matchmaker_stub_plugin
+  end
+#
+# Then insert the SDProviderPlugin with Provided roles (although these are presently ignored)
   agent.add_component do |c|
     c.classname = sd_provider_plugin
     provided_roles.each_key { |my_role| c.add_argument(my_role) }
