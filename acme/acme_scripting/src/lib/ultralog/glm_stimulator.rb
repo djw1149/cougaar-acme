@@ -43,11 +43,11 @@ module Cougaar
       }
       def initialize(run, agent, &block)
         super(run)
-        @agent = @run.society.agents[agent]
+        @agent = agent
         @action = block
       end
       def perform
-        @action.call(::UltraLog::GLMStimulator.for_cougaar_agent(@agent))
+        @action.call(::UltraLog::GLMStimulator.for_cougaar_agent(@run.society.agents[@agent]))
       end
     end
   end
@@ -131,7 +131,7 @@ module UltraLog
 end
 
 if $0==__FILE__
-  stimulator = UltraLog::GLMStimulator.for_agent_on_host("1-35-ARBN", "u192")
+  stimulator = UltraLog::GLMStimulator.for_agent_on_host("1-35-ARBN", "u073")
   stimulator.inputFileName="Supply.dat.xml"
   puts stimulator.update(:xml)
 end
