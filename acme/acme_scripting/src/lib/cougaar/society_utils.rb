@@ -19,7 +19,39 @@
 # </copyright>
 #
 
+require 'cougaar/experiment'
+
 module Cougaar
+
+  module Actions
+    class LayoutSociety < ::Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Layout a loaded society using the supplied layout and optional hosts file."
+        @parameters = [
+          {:layout => "The layout file (valid society file in .xml or .rb)."},
+          {:hosts => "default=nil, If present, uses the hosts from this file instead of those in the layout file."}
+        ]
+        @example = "do_action 'LayoutSociety', '1ad-layout.xml', 'sa-hosts.xml'"
+      }
+      
+      def initialize(run, layout, hosts=nil)
+        super(run)
+        @layout = layout
+        @hosts = hosts
+        @layout = ::Cougaar::Model::SocietyLayout.new
+        @layout.layout_file = layout_file
+        @layout.hosts_file = hosts_file
+        @layout.load_files
+      end
+      
+      def perform
+        @layout.society = @run.society
+        @layout.layout
+      end
+
+    end
+  end
 
   module Model
   
@@ -99,7 +131,7 @@ module Cougaar
     class SocietyLayout
       attr_accessor :society_file, :layout_file, :hosts_file, :society
       
-      def self.from_files(society_file, layout_file, hosts_file)
+      def self.from_files(society_file, layout_file, hosts_file = nil)
         layout = SocietyLayout.new
         layout.society_file = society_file
         layout.layout_file = layout_file
@@ -108,7 +140,7 @@ module Cougaar
         return layout
       end
       
-      def self.from_society(society, layout_file, hosts_file)
+      def self.from_society(society, layout_file, hosts_file = nil)
         layout = SocietyLayout.new
         layout.society = society
         layout.layout_file = layout_file
@@ -134,23 +166,40 @@ module Cougaar
         purgelist = []
         @society.each_host { |host| purgelist << host unless host.name=="host-#{guid}" }
         purgelist.each { |host| society.remove_host(host) } 
+        
         # build a list of available hosts
-        hostlist = []
-        @society_hosts.each_host do |host|
-          host.each_facet("type") do |facet|
-            hostlist << host if facet['type']=='node'
+        hostlist = nil
+        unused_hostlist = nil
+        if @society_hosts
+          hostlist = []
+          unused_hostlist = []
+          @society_hosts.each_host do |host|
+            target = false
+            host.each_facet(:service) do |facet|
+              target = true if facet[:service]=='ACME'
+            end
+            if target
+              hostlist << host
+            else
+              unused_hostlist << host
+            end
           end
         end
         # perform layout
         hostindex = 0
         @society_layout.each_host do |host|
-          if hostindex == hostlist.size
+          if hostlist && (hostindex == hostlist.size)
             raise "Not enough hosts in #{@host_file} for the society layout in #{@layout_file}"
           end
-          @society.add_host(hostlist[hostindex].name) do |newhost|
+          @society.add_host(hostlist ? hostlist[hostindex].name : host.name) do |newhost|
             host.each_facet { |facet| newhost.add_facet(facet.clone) }
+            if hostlist
+              hostlist[hostindex].each_facet { |facet| newhost.add_facet(facet.clone) }
+            end
             host.each_node do |node|
-              newhost.add_node(node.name)
+              newhost.add_node(node.name) do |newnode|
+                node.each_facet { |facet| newnode.add_facet(facet.clone) }
+              end
               node.each_agent do |agent| 
                 to_move = @society.agents[agent.name]
                 unless to_move
@@ -161,6 +210,13 @@ module Cougaar
             end
           end
           hostindex += 1
+        end
+        if unused_hostlist
+          unused_hostlist.each do |host|
+            @society.add_host(host.name) do |newhost|
+              host.each_facet { |facet| newhost.add_facet(facet.clone) }
+            end
+          end
         end
         # check to make sure we laid out all the agents
         agentlist = []

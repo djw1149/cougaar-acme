@@ -138,9 +138,9 @@ module Cougaar
   end
 end
 
-require 'cougaar/society_utils'
 require 'cougaar/society_model'
 require 'cougaar/experiment'
+require 'cougaar/society_utils'
 require 'cougaar/society_builder'
 require 'cougaar/communications'
 require 'cougaar/society_control'
