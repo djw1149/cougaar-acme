@@ -19888,21 +19888,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin(envFile=GLMT.TRANSCOM.env.xml)'
-          class='org.cougaar.logistics.plugin.trans.base.GLMTransOneToManyExpanderPlugin'
+          name='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin(Transport)'
+          class='org.cougaar.mlm.plugin.sample.UniversalAllocatorPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            envFile=GLMT.TRANSCOM.env.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin(envFile=GLMT.TRANSCOM.env.xml)'
-          class='org.cougaar.logistics.plugin.trans.TranscomVishnuPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            envFile=GLMT.TRANSCOM.env.xml
+            Transport
           </argument>
         </component>
         <component
