@@ -173,7 +173,7 @@ module UltraLog
     def get_runs
       c = Net::HTTP.new(@host, @port)
       resp = c.get("/controller/listruns")
-      resp = resp[1]
+      resp = resp.body
       lines = resp.split("\n")
       offset = 25
       runs = []
