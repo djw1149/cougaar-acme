@@ -31,6 +31,7 @@ module Cougaar
     end
     
     class Command < Cougaar::State
+      PRIOR_STATES = ["CommunicationsRunning"]
       def initialize(run, command, timeout=nil, &block)
         super(run, timeout, &block)
         @command = command
