@@ -19,19 +19,31 @@
 # </copyright>
 #
 
-require 'ultralog/aggagent'
-require 'ultralog/aggagent_actions'
-require 'ultralog/completion_control'
-require 'ultralog/completion'
-require 'ultralog/datagrabber'
-require 'ultralog/freeze'
-require 'ultralog/glm_stimulator'
-require 'ultralog/operator'
-require 'ultralog/operator_utils'
-require 'ultralog/oplan_editor'
-require 'ultralog/gls_client'
-require 'ultralog/inventory'
-require 'ultralog/verify'
-require 'ultralog/services'
+require 'socket'
 
-require 'ultralog/debug/relations'
+module Ultralog
+
+  module OperatorUtils
+    class HostManager
+    
+      def initialize(dir = nil)
+        dir = File.join(ENV['CIP'], 'operator') unless dir
+        @dir = dir
+        @hostname = Socket.gethostname
+        @hostaddress = IPSocket.getaddress(@hostname) 
+      end
+      
+      def load_society(host=nil)
+        host = @hostname unless host
+        Dir.glob(File.join(@dir, "*hosts.xml")).each do |file|
+          ts = Cougaar::SocietyBuilder.from_xml_file(file).society
+          @society = ts if  ts.get_service_host("operator") && ts.get_service_host("operator").host_name==@hostname
+        end
+        unless @society
+          raise "Could not find society for #{@hostname}...you may not be logged into the society operator host"
+        end
+      end
+      
+    end
+  end
+end
