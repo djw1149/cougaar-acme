@@ -279,7 +279,7 @@ module Jabber
       else
         authRequest = Jabber::Protocol::Iq.gen_auth(self, msg_id, username, password, resource)
       end
-      @connection.send(authRequest, authHandler)
+      @connection.send(authRequest, &authHandler)
       Thread.stop
       return @authenticated
     end
@@ -504,13 +504,11 @@ module Jabber
     #
     def release
       begin
-        timeout(2) do 
-          @connection.on_connection_exception do
-            #Do nothing...we are shutting down
-          end
-          @connection.send(Jabber::Protocol::Presence.gen_unavailable(id))
-          @connection.send(Jabber::Protocol.gen_close_stream)
+        @connection.on_connection_exception do
+          #Do nothing...we are shutting down
         end
+        @connection.send(Jabber::Protocol::Presence.gen_unavailable(id))
+        @connection.send(Jabber::Protocol.gen_close_stream)
       rescue
         #ignore error
       end

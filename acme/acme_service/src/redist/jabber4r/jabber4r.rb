@@ -9,8 +9,8 @@
 #
 module Jabber
   VERSION_MAJOR = 0
-  VERSION_MINOR = 0
-  RELEASE = 3
+  VERSION_MINOR = 5
+  RELEASE = 0
   DEBUG = false
 end
 

@@ -118,6 +118,9 @@ module Jabber
       # element:: [ParsedXMLElement] The received element
       # 
       def receive(element)
+        while @threadBlocks.size==0 && @filters.size==0
+          sleep 0.1
+        end        
         Jabber::DEBUG && puts("RECEIVED:\n#{element.to_s}")
         @threadBlocks.each do |thread, proc|
           begin
@@ -678,7 +681,7 @@ module Jabber
       # return:: [Jabber::Protocol::Message] The current Message object
       #
       def set_body(body)
-        @body = body.gsub(/[&]/, '&amp;').gsub(/[<]/, '&lt;')
+        @body = body.sub(/[&]/, '&amp;').sub(/[<]/, '&lt;')
         self
       end
       
@@ -689,7 +692,7 @@ module Jabber
       # return:: [Jabber::Protocol::Message] The current Message object
       #
       def set_subject(subject)
-        @subject = subject.gsub(/[&]/, '&amp;').gsub(/[<]/, '&lt;')
+        @subject = subject.sub(/[&]/, '&amp;').sub(/[<]/, '&lt;')
         self
       end
       
@@ -1288,7 +1291,7 @@ module Jabber
       end
     else # USE REXML
       require 'rexml/document'
-      require 'rexml/streamlistener'
+      require 'rexml/parsers/sax2parser'
       require 'rexml/source'
       
       ##
@@ -1297,7 +1300,6 @@ module Jabber
       # instance.
       #
       class REXMLJabberParser
-        include REXML::StreamListener
         # status if the parser is started
         attr_reader :started
         
@@ -1312,63 +1314,7 @@ module Jabber
           @listener = listener
           @current = nil
         end
-        
-        ##
-        # Callback for REXML::Document.parse_stream when a start tag is encountered
-        #
-        # name:: [String] The tag name <name>
-        # attrs:: [Array] The attribute array...attrs = [["key","value"], ["key2", "value2"]]
-        #
-        def tag_start(name, attrs)
-          case name
-            when "stream:stream"
-              openstream = ParsedXMLElement.new(name)
-              attrs.each {|key, value| openstream.add_attribute(key, value)}              
-              @listener.receive(openstream)
-              @started = true
-            else 
-              if @current.nil?
-                @current = ParsedXMLElement.new(name)
-              else
-                @current = @current.add_child(name)
-              end
-              attrs.each {|attr| @current.add_attribute(attr[0], attr[1])}
-          end
-        end
-        
-        ##
-        # Callback for REXML::Document.parse_stream when an end tag is encountered
-        #
-        # name:: [String] the tag name
-        #
-        def tag_end(name)
-          case name
-            when "stream:stream"
-              @started = false
-            else
-              @listener.receive(@current) unless @current.element_parent
-              @current = @current.element_parent
-          end
-        end
-        
-        ##
-        # Callback for REXML::Document.parse_stream when text is encountered
-        #
-        # text:: [String] The text (<tag>text</tag>)
-        #
-        def text(text)
-          @current.append_data(text) if @current      
-        end
-        
-        ##
-        # Callback for REXML::Document.parse_stream when cdata is encountered
-        #
-        # content:: [String] The CData content
-        #
-        def cdata(content)
-          @current.append_data(content) if @current      
-        end
-        
+
         ##
         # Begins parsing the XML stream and does not return until
         # the stream closes.
@@ -1376,7 +1322,39 @@ module Jabber
         def parse
           @started = false
           begin
-            parser = REXML::Document.parse_stream(@stream, self)
+            parser = REXML::Parsers::SAX2Parser.new @stream 
+            parser.listen( :start_element ) do |uri, localname, qname, attributes|
+              case qname
+              when "stream:stream"
+                openstream = ParsedXMLElement.new(qname)
+                attributes.each { |attr, value| openstream.add_attribute(attr, value) }              
+                @listener.receive(openstream)
+                @started = true
+              else 
+                if @current.nil?
+                  @current = ParsedXMLElement.new(qname)
+                else
+                  @current = @current.add_child(qname)
+                end
+                attributes.each { |attr, value| @current.add_attribute(attr, value) }
+              end
+            end
+            parser.listen( :end_element ) do  |uri, localname, qname|
+              case qname
+              when "stream:stream"
+                @started = false
+              else
+                @listener.receive(@current) unless @current.element_parent
+                @current = @current.element_parent
+              end
+            end
+            parser.listen( :characters ) do | text |
+              @current.append_data(text) if @current
+            end
+            parser.listen( :cdata ) do | text |
+              @current.append_data(text) if @current
+            end
+            parser.parse
           rescue REXML::ParseException
             @listener.parse_failure
           end
