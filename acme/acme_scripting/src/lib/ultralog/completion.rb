@@ -160,7 +160,7 @@ module UltraLog
           pct = 0
         else
           pct = (@total - @unplanned - @unestimated - @unconfident - @failed) * 100 / @total
-        end§
+        end
         s << "  <PercentComplete>#{pct}</PercentComplete>\n"
         s << "  <NumUnplannedTasks>#{@unplanned}</NumUnplannedTasks>\n"
         s << "  <NumUnestimatedTasks>#{@unestimated}</NumUnestimatedTasks>\n"
