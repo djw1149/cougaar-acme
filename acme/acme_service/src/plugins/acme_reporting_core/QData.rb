@@ -143,6 +143,7 @@ module ACME
         status = 0
         stages = get_run_stages
         data.each do |node|
+          next if @run_times.killed_nodes.include?(node.node)
           stages.each do |stage|
             if (!node.stage_data[stage].nil? && !node.stage_data[stage].quiesced) then
               node.goodnode = false

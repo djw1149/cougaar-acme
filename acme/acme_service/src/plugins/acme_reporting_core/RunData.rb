@@ -1,4 +1,4 @@
-require "parsedate"
+drequire "parsedate"
 
 module ACME
   module Plugins
@@ -29,7 +29,7 @@ module ACME
     end
   
     class RunTime
-      attr_accessor :run_start_time, :run_end_time, :type, :interrupted
+      attr_accessor :run_start_time, :run_end_time, :type, :interrupted, :killed_nodes
       attr_reader :load_time, :start_time, :stages, :advances, :name
       
       def initialize(run_log)
@@ -42,7 +42,8 @@ module ACME
                          :stage_time_publish => /INFO: Published stage.*([0-9]+)/,
                          :stage_time_end => /Done: SocietyQuiesced/,
                          :advance_time_start => /Advancing time to .* \((C[-+][0-9]+)\)/,
-                         :advance_time_end => /Finished: AdvanceTime/}
+                         :advance_time_end => /Finished: AdvanceTime/,
+                         :kill_nodes => /Starting: KillNodes\((.*)\)/}
         current_stage = nil
         start = nil
         File.new(run_log).each do |line|
@@ -91,6 +92,9 @@ module ACME
           elsif (md = pattern_table[:advance_time_end].match(line))
             self[current_stage].end_time = ts
             current_stage = nil
+          elsif (md = pattern_table[:kill_nodes].match(line)) then
+            @killed_nodes << md[1].split(",").collect{|x| x.strip}
+            @killed_nodes.flatten!
           elsif (line =~ /INTERRUPT/) then 
             @interrupted = true
             @run_end_time = ts
@@ -110,6 +114,7 @@ module ACME
         @stages = []
         @advances = []
         @interrupted = false
+        @killed_nodes = []
       end
 
       def get_timestamp(line)
