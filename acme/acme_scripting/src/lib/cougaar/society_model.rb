@@ -638,6 +638,18 @@ module Cougaar
         @parameters.delete(o) if o
         @parameters << "#{param}=#{value}"
       end
+      
+      ##
+      # Removes all parameters matching param_pattern and adds
+      # the value as the new parameter.
+      #
+      # param_pattern:: [Regex | String] The pattern of parameters to remove
+      # value:: [String] The new parameter
+      #
+      def replace_parameter(param_pattern, new_param)
+        @parameters.delete_if? {|param| param =~ param_pattern}
+        @parameters << new_param
+      end
 
       ##
       # Add an env_paramter to this node (or a set of parameters)
