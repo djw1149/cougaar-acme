@@ -87,7 +87,7 @@ httpd = WEBrick::HTTPServer.new(
   :Port => PORT
 )
 
-httpd.mount_proc("/post_report") do |request, response|
+httpd.mount_proc("/rebuild") do |request, response|
   @im.rebuild_indexes
 end
 
