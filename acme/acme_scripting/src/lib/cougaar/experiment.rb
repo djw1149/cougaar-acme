@@ -262,7 +262,12 @@ module Cougaar
     def self.from_yaml(yaml)
       map = YAML.load(yaml)
       expt = ExperimentDefinition.new(map['name'], map['description'])
-      expt.script = map['script']
+      expt.script = ScriptDefinition.new(map['script'])
+      params = map['parameters']
+      if params
+        params.each {|param| expt.script.set_parameter(param.keys[0], param.values[0])}
+      end
+      map['script']
       include_scripts = map['include_scripts']
       if include_scripts
         include_scripts.each do |iscript|
@@ -277,6 +282,10 @@ module Cougaar
       use_cases = map['use_cases']
       use_cases.each {|uc| expt.use_cases << uc} if use_cases
       expt
+    end
+    
+    def self.from_xml(xml)
+      # TO DO
     end
     
     def self.register(file)
@@ -314,7 +323,7 @@ module Cougaar
     
     def start
       self.class.current = name
-      load script
+      load script.script
     end
     
   end
@@ -424,8 +433,13 @@ module Cougaar
       @name = "#{@experiment.name}-#{count+1}of#{@multirun.run_count}"
       @event_queue = CougaarEventQueue.new
       @include_stack = []
-      @include_stack.push []
       @archive_entries = []
+      if ExperimentDefinition.current
+        @include_stack.push (ExperimentDefinition.current.script.parameters.collect {|param| param.value})
+      else
+        @include_stack.push ARGV.clone
+      end
+      
       archive_file($0, "Main script file")
     end
     
@@ -723,6 +737,7 @@ module Cougaar
     attr_accessor :timeout, :failure_proc, :tag
     attr_reader :experiment, :run
     def initialize(run, timeout=nil, &block)
+      timeout = timeout.to_i if timeout && timeout.respond_to?(:to_i)
       if self.class.constants.include?("DEFAULT_TIMEOUT") && timeout.nil?
         timeout = self.class::DEFAULT_TIMEOUT
       end
