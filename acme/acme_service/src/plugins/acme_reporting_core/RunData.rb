@@ -82,7 +82,7 @@ module ACME
               self[current_stage].append_name("_#{md[1]}")
               current_stage += "_#{md[1]}"
             end
-          elsif (md = pattern_table[:stage_time_end].match(line))
+          elsif (md = pattern_table[:stage_time_end].match(line) && !self[current_stage].nil?)
             self[current_stage].end_time = ts
             current_stage = nil
           elsif (md = pattern_table[:advance_time_start].match(line))
