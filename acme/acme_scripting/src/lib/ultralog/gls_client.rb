@@ -51,6 +51,7 @@ module UltraLog
             return connect(resp['location']) if resp.code=='302'
             resp.read_body do |data|
               data.each_line do |line|
+                puts "DATA: #{line.strip}"
                 case line.strip
                 when /^<oplan name=.* id=[0-9A-F]*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
@@ -84,8 +85,9 @@ module UltraLog
       end
     end
     
-    def wait_for_next_stage(stage)
+    def wait_for_next_stage
       @next_stage_count += 1
+      puts "Waiting for stage: #{@next_stage_count}"
       while @next_stage_count != @stages.size
         sleep 2
       end
