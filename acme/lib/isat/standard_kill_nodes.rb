@@ -15,6 +15,6 @@ insert_after parameters[:start_tag] do
   if( parameters[:start_delay] != nil && parameters[:start_delay] > 0)
     do_action "SleepFrom", parameters[:start_tag], parameters[:start_delay]
   end
-  do_action "InfoMessage", "##### Killing Agents #{parameters[::nodes_to_kill].join(',')} #####"
+  do_action "InfoMessage", "##### Killing Agents #{parameters[:nodes_to_kill].join(',')} #####"
   do_action "KillNodes", *parameters[:nodes_to_kill]
 end
