@@ -57,12 +57,14 @@ class CougaarNode
     attr_accessor :pid, :jvm, :arguments, :env, :options, :java_class
 
     def initialize(plugin, initial_props)
-      @props_file = @plugin.properties['server_props']
-      @config_mgr = plugin['/cougaar/config'].manager
-      if @props_file==nil || @props_file==""
-        @props_file = File.join(@config.mgr.cougaar_install_path, "server", "bin", "server.props")
-      end
       @plugin = plugin
+      @props_file = @plugin.properties['server_props']
+      @config_mgr = @plugin['/cougaar/config'].manager
+      if @props_file==nil || @props_file==""
+        @props_file = File.join(@config_mgr.cougaar_install_path, "server", "bin", "server.props")
+      elsif !@props_files.include?('/') && !@props_files.include?("\\")
+        @props_file = File.join(@config_mgr.cougaar_install_path, "server", "bin", @props_file)
+      end
       @java_class = nil
       @arguments = nil
       @env = []
@@ -143,9 +145,9 @@ class CougaarNode
         when /^java.X/
           @options << "-"+property[5..-1]
         when /^java.D/
-          @options << "-D"+property[6..-1].gsub(/"/, "'")
+          @options << "-D"+property[6..-1].gsub(/'/, '"')
         else
-          @options << %Q[-D#{property.gsub(/\\/, '').gsub(/"/, "'")}]
+          @options << %Q[-D#{property.gsub(/\\/, '').gsub(/'/, '"')}]
         end
       end
     end
