@@ -21,7 +21,6 @@
 
 require 'ultralog/aggagent'
 require 'ultralog/aggagent_actions'
-#require 'ultralog/cnccalc'
 require 'ultralog/completion_control'
 require 'ultralog/completion'
 require 'ultralog/datagrabber'
