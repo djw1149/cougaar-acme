@@ -83,25 +83,27 @@ class JabberService
   
   def handle_messages
     listenerid = @session.add_message_listener do |message|
-      if message.body[0..7]=="command["
-        if closeBracket = message.body.index("]")
-          command = message.body[8...closeBracket]
-          @plugin['log/info'] << "Processing command #{message.body}"
-          slot = @plugin["commands/#{command}"]
-          if slot.is_proc_slot?
-            begin
-              slot.call(message, message.body[(closeBracket+1)..-1])
-            rescue StandardError => error
-              message.reply.set_body("Exception caught in executing: #{message.body}\n\n#{error}").send
+      unless message.type == "groupchat"
+        if message.body[0..7]=="command["
+          if closeBracket = message.body.index("]")
+            command = message.body[8...closeBracket]
+            @plugin['log/info'] << "Processing command #{message.body}"
+            slot = @plugin["commands/#{command}"]
+            if slot.is_proc_slot?
+              begin
+                slot.call(message, message.body[(closeBracket+1)..-1])
+              rescue StandardError => error
+                message.reply.set_body("Exception caught in executing: #{message.body}\n\n#{error}").send
+              end
+            else
+              message.reply.set_body("Unregistered command: #{command}").send
             end
           else
-            message.reply.set_body("Unregistered command: #{command}").send
+            message.reply.set_body("Invalid command syntax: #{message.body}").send
           end
         else
-          message.reply.set_body("Invalid command syntax: #{message.body}").send
+          message.reply.set_body("Command format: command[name]params").send
         end
-      else
-        message.reply.set_body("Command format: command[name]params").send
       end
     end
   end
