@@ -126,18 +126,17 @@ module VlanSupport
 #      `/sbin/tc class change dev #{to_vlan.device}.#{to_vlan.id} parent 1:1 classid 1:#{from_vlan.id} htb rate #{bandwidth}Mbit burst 15k ceil #{bandwidth}Mbit`
     end
 
-    def disable_link( from_name, to_name )
-      from_vlan = @vlan_names[from_name]
-      to_vlan = @vlan_names[to_name]
- 
-      `/sbin/iptables -I FORWARD -i #{from_vlan.device}.#{from_vlan.id} -o #{to_vlan.device}.#{to_vlan.device} -j DROP`
-    end
-
     def enable_link( from_name, to_name )
       from_vlan = @vlan_names[from_name]
       to_vlan = @vlan_names[to_name]
  
-      `/sbin/iptables -I FORWARD -i #{from_vlan.device}.#{from_vlan.id} -o #{to_vlan.device}.#{to_vlan.device} -j ACCEPT`
+      `/sbin/iptables -D FORWARD -s #{from_vlan.router}/#{from_vlan.netmask} -d #{to_vlan.router}/#{to_vlan.netmask} -j DROP`
+    end
+
+    def disable_link( from_name, to_name )
+      from_vlan = @vlan_names[from_name]
+      to_vlan = @vlan_names[to_name]
+      `/sbin/iptables -I FORWARD -s #{from_vlan.router}/#{from_vlan.netmask} -d #{to_vlan.router}/#{to_vlan.netmask} -j DROP`
     end
 
 
