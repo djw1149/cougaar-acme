@@ -14,7 +14,7 @@ start() {
   #/usr/bin/ruby acme.rb &> run.log &
 
   # restart if it dies
-  ./acme.sh &
+  ./acme.sh &>/dev/null &
 
   echo "$!" > acme-sh.pid
 
@@ -36,7 +36,6 @@ stop() {
     if [ -n "${pid-:}" ] ; then
       kill -9 $pid
       rm -rf acme-sh.pid
-      return 0
     fi
   fi  
   if [ -f acme.pid ] ; then
@@ -49,7 +48,6 @@ stop() {
     if [ -n "${pid-:}" ] ; then
       kill -9 $pid
       rm -rf acme.pid
-      return 0
     fi
   fi  
   
