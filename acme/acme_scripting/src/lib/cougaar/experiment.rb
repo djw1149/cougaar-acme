@@ -631,9 +631,9 @@ module Cougaar
     def dump
       @definitions.each do |definition|
         if definition.kind_of?(Cougaar::Action)
-          puts "do_action #{definition.to_s}"
+          puts "#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} do_action #{definition.to_s}"
         else
-          puts "wait_for #{definition.to_s}"
+          puts "#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} wait_for #{definition.to_s}"
         end
       end
     end
