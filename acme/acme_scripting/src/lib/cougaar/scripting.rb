@@ -19,6 +19,8 @@
 # </copyright>
 #
 
+require 'thread'
+
 $stdout.sync = true
 
 class Integer
@@ -44,9 +46,66 @@ class Integer
   
 end
 
-require 'log4r'
-
 module Cougaar
+
+  class SimpleFileLogger
+    LEVELS = ['disabled', 'error', 'info', 'debug']
+    def initialize(logName, logFile, logLevel)
+      @logName = logName
+      @logFile = logFile
+      self.logLevel = logLevel
+      @file = File.new(logFile, "a")
+      @file.sync = true
+      @mutex = Mutex.new
+    end
+    
+    def logLevel=(logLevel)
+      logLevel = LEVELS[logLevel] if logLevel.kind_of? Numeric
+      @logLevel = logLevel.downcase
+      case @logLevel
+      when 'disabled'
+        @logLevelInt = 0
+      when 'error'
+        @logLevelInt = 1
+      when 'info'
+        @logLevelInt = 2
+      when 'debug'
+        @logLevelInt = 3
+      else
+        raise "Unknown Logger level: #{@logLevel}"
+      end
+    end
+    
+    def close
+      @file.close
+    end
+    
+    def time
+      Time.now.gmtime.to_s
+    end
+    
+    def error(message)
+      return if @logLevelInt < 1
+      write "[ERROR] #{time} :: #{message}"
+    end
+    
+    def info(message)
+      return if @logLevelInt < 2
+      write "[INFO] #{time} :: #{message}"
+    end
+    
+    def debug(message)
+      return if @logLevelInt < 3
+      write "[DEBUG] #{time} :: #{message}"
+    end
+    
+    def write(line)
+      @mutex.synchronize do
+        @file.puts line
+      end
+    end
+
+  end
   
   class Documentation
     attr_accessor :description, :example
@@ -138,11 +197,8 @@ module Cougaar
   
   def self.logger
     unless @logger
-      @logger = Log4r::Logger.new("ACME Run")
       File.delete('run.log') if File.exist?('run.log')
-      outputter = Log4r::FileOutputter.new(name, {:filename=>"run.log"})
-      outputter.formatter = Log4r::PatternFormatter.new(:date_method => :gmtime, :pattern => "[%l] %d :: %m")
-      @logger.outputters = outputter
+      @logger = SimpleFileLogger.new("ACME Run", "run.log", "info")
     end
     @logger
   end
