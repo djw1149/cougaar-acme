@@ -45,6 +45,13 @@ module Cougaar
         @layout.load_files
       end
       
+      def to_s
+        param = "('#{@layout}'"
+        param << ", '#{@hosts}'" if @hosts
+        param << ")"
+        return super.to_s+param
+      end
+      
       def perform
         @layout.society = @run.society
         @layout.layout
