@@ -245,8 +245,7 @@ module Cougaar
                   # add layout society's agent facets to the agent
                   agent.each_facet {|facet| to_move.add_facet(facet.clone)}
                 else
-                  puts "Layout specifies agent '#{agent.name}' that is not defined in the society"
-                  Cougaar.logger.info "[#{Time.now}]  Layout specifies agent '#{agent.name}' that is not defined in the society"
+                  ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Layout specifies agent '#{agent.name}' that is not defined in the society"))
                 end
               end
             end

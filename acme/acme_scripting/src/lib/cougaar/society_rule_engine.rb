@@ -233,22 +233,14 @@ module Cougaar
       end
       
       def report
-        puts "Added #{@hosts_added} hosts."  if @hosts_added > 0
-        puts "Removed #{@hosts_removed} hosts."  if @hosts_removed > 0
-        puts "Added #{@nodes_added} nodes."  if @nodes_added > 0
-        puts "Removed #{@nodes_removed} nodes."  if @nodes_removed > 0
-        puts "Added #{@agents_added} agents."  if @agents_added > 0
-        puts "Removed #{@agents_removed} agents."  if @agents_removed > 0
-        puts "Added #{@components_added} components."  if @components_added > 0
-        puts "Removed #{@components_removed} components."  if @components_removed > 0
-	Cougaar.logger.info "[#{Time.now}]  Added #{@hosts_added} hosts."  if @hosts_added > 0
-        Cougaar.logger.info "[#{Time.now}]  Removed #{@hosts_removed} hosts."  if @hosts_removed > 0
-        Cougaar.logger.info "[#{Time.now}]  Added #{@nodes_added} nodes."  if @nodes_added > 0
-        Cougaar.logger.info "[#{Time.now}]  Removed #{@nodes_removed} nodes."  if @nodes_removed > 0
-        Cougaar.logger.info "[#{Time.now}]  Added #{@agents_added} agents."  if @agents_added > 0
-        Cougaar.logger.info "[#{Time.now}]  Removed #{@agents_removed} agents."  if @agents_removed > 0
-        Cougaar.logger.info "[#{Time.now}]  Added #{@components_added} components."  if @components_added > 0
-        Cougaar.logger.info "[#{Time.now}]  Removed #{@components_removed} components."  if @components_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@hosts_added} hosts.")) if @hosts_added > 0
+	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@hosts_removed} hosts.")) if @hosts_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@nodes_added} nodes.")) if @nodes_added > 0
+	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@nodes_removed} nodes.")) if @nodes_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@agents_added} agents.")) if @agents_added > 0
+	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@agents_removed} agents.")) if @agents_removed > 0
+        ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Added #{@components_added} components.")) if @components_added > 0
+	ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Removed #{@components_removed} components.")) if @components_removed > 0
       end
     end  
   end

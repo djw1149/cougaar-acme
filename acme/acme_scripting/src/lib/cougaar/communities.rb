@@ -218,8 +218,7 @@ module Cougaar
             end
           end
           community_element.elements.each("Community") do |subcommunity_element|
-            puts community_element.attributes['Name']
-	    Cougaar.logger.info "[#{Time.now}]  #{community_element.attributes['Name']}"
+            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{community_element.attributes['Name']}"))    
             add_subcommunity(community_element.attributes['Name']) do |subcommunity|
               subcommunity.initialize_from_rexml_element(subcommunity_element)
             end

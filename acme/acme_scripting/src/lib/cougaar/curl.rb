@@ -25,7 +25,7 @@ class CURL
   #
   def self.get(uri, username=nil, password=nil, certfile=nil, certpassword=nil, timeout=1800)
     return nil if uri.nil?
-    puts "CURL HTTP GET: [#{uri}]" if $COUGAAR_DEBUG
+      puts "CURL HTTP GET: [#{uri}]" if $COUGAAR_DEBUG       
     begin
       header = `curl -s -I --max-time #{timeout} #{gen_auth(username, password)} #{gen_cert(certfile, certpassword)} '#{uri}'`
       header.each_line do |line|

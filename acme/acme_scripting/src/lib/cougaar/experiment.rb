@@ -70,12 +70,9 @@ module Cougaar
           begin
             monitor.notify(notification)
           rescue
-            puts "Got exception notifying #{monitor}"
-            puts $!
-            puts $!.backtrace.join("\n")
-	    Cougaar.logger.error "[#{Time.now}]  Got exception notifying #{monitor}"
-	    Cougaar.logger.error "[#{Time.now}]  #{$!}"
-	    Cougaar.logger.error "[#{Time.now}]  #{$!.backtrace.join("\n")}"
+            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("Got exception notifying #{monitor}"))
+            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{$!}"))
+            ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{$!.backtrace.join("\n")}"))
           end
         end
       end
@@ -678,11 +675,9 @@ module Cougaar
     def dump
       @definitions.each do |definition|
         if definition.kind_of?(Cougaar::Action)
-          puts "    #{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} do_action #{definition.class.to_s.split('::').last}"
-	  Cougaar.logger.info "[#{Time.now}]    #{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} do_action #{definition.class.to_s.split('::').last}"
+	  ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} do_action #{definition.class.to_s.split('::').last}")) 
         else
-          puts "    #{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} wait_for #{definition.class.to_s.split('::').last}"
-	  Cougaar.logger.info "[#{Time.now}]    #{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} wait_for #{definition.class.to_s.split('::').last}"
+          ExperimentMonitor.notify(ExperimentMonitor::InfoNotification.new("#{definition.tag ? "at :"+definition.tag.to_s+"\n" : ''} wait_for #{definition.class.to_s.split('::').last}"))
         end
       end
     end
@@ -801,8 +796,7 @@ module Cougaar
           begin
             @definitions[@current_definition].perform
           rescue ActionFailure => failure
-            puts failure
-    	    Cougaar.logger.error "[#{Time.now}]    #{failure}"
+            ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{failure}"))
             exit
           ensure
             ExperimentMonitor.notify(ExperimentMonitor::ActionNotification.new(@definitions[@current_definition], false)) if ExperimentMonitor.active?
@@ -922,12 +916,9 @@ module Cougaar
         begin
           process
         rescue
-          puts "Exception received in #{self.class}'s process method"
-          puts $!
-          puts $!.backtrace
-  	  Cougaar.logger.error "[#{Time.now}]  Exception received in #{self.class}'s process method"
-  	  Cougaar.logger.error "[#{Time.now}]  #{$!}"
-  	  Cougaar.logger.error "[#{Time.now}]  #{$!.backtrace}"
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Exception received in #{self.class}'s process method"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!}"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!.backtrace}"))
         end
         @timer.exit if @timer.status
       end
@@ -940,12 +931,9 @@ module Cougaar
         begin
           process
         rescue
-          puts "Exception received in #{self.class}'s process method"
-          puts $!
-          puts $!.backtrace
-  	  Cougaar.logger.error "[#{Time.now}]  Exception received in #{self.class}'s process method"
-  	  Cougaar.logger.error "[#{Time.now}]  #{$!}"
-  	  Cougaar.logger.error "[#{Time.now}]  #{$!.backtrace}"
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("Exception received in #{self.class}'s process method"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!}"))
+          ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{$!.backtrace}"))
         end
       end
       @process_thread.join
@@ -1051,15 +1039,11 @@ module Cougaar
     end
     
     def To_s
-      puts "ActionFailure for action: #{@action.class}"
-      puts "  #{message}"
-      Cougaar.logger.error "[#{Time.now}]  ActionFailure for action: #{@action.class}"
-      Cougaar.logger.error "[#{Time.now}]  #{message}"
-
+      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("ActionFailure for action: #{@action.class}"))
+      ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{message}"))      
       if @root_exception
-        puts "EXCEPTION REPORT: \n#{@root_exception}"
-        Cougaar.logger.error "[#{Time.now}]  EXCEPTION REPORT: \n#{@root_exception}"
-        @root_exception.backtrace.join("\n")
+        ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("EXCEPTION REPORT: \n#{@root_exception}"))      
+        ExperimentMonitor.notify(ExperimentMonitor::ErrorNotification.new("#{@root_exception.backtrace.join("\n")}"))
       end
     end
   end

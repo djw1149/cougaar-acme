@@ -117,10 +117,8 @@ if $0==__FILE__
   ms = Cougaar::MtsStats.new(soc)
   d = ms.getAllData()
   puts d
-  Cougaar.logger.info d
 
   ms = UltraLog::MtsStats.new(soc, "local")
   d = ms.getAllData()
   puts d
-  Cougaar.logger.info d
 end
