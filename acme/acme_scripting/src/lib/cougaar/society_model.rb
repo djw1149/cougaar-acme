@@ -977,6 +977,8 @@ module Cougaar
       PLUGIN = "Node.AgentManager.Agent.PluginManager.Plugin"
       BINDER = "Node.AgentManager.Agent.PluginManager.Binder"
       
+      PRIORITY_COMPONENT = "COMPONENT"
+      
       attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments
       attr_reader :order
       
@@ -992,9 +994,16 @@ module Cougaar
         if @name.nil?
           @name = @classname + "(" + @arguments.join(",") + ")"
         end
+        if @priority.nil?
+          priority_component
+        end
         if @insertionpoint.nil?
           insertionpoint_plugin
         end
+      end
+      
+      def priority_component
+        @priority = PRIORITY_COMPONENT
       end
       
       def insertionpoint_binder
@@ -1064,10 +1073,11 @@ module Cougaar
       end
       
       def to_xml(i)
-        xml =  "#{' '*i}<component name='#{@name}'\n"
+        xml =  "#{' '*i}<component\n"
+        xml << "#{' '*i}  name='#{@name}'\n"
         xml << "#{' '*i}  class='#{@classname}'\n"
-        xml << "#{' '*i}  priority='#{@priority}'\n"
-        xml << "#{' '*i}  order='#{@order}'\n"
+        xml << "#{' '*i}  priority='#{@priority}'\n" if @priority
+        xml << "#{' '*i}  order='#{@order}'\n" if @order
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
         each_argument do |arg|
           xml << "#{' '*i}  <argument order='#{arg.order}'>\n"
