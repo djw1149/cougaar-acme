@@ -27,10 +27,10 @@ society.each_agent do |agent|
   end
 end
 
-# Now for each agent that is a target of the sca_supported_org,
-#  make sure it has the YPServer
+# Now for each agent that is either a target of the sca_supported_org,
+#  or has subordinates, make sure it has the YPServer
 society.each_agent do |agent|
-  if sca_supported_org_targets.include?(agent.name)
+  if sca_supported_org_targets.include?(agent.name) || agent.has_facet?(:subordinate_org_id)
     agent.add_component do |c|
       c.classname = yp_server
     end
@@ -41,12 +41,3 @@ society.each_agent do |agent|
 end
 
 
-#   if agent.has_facet?(:subordinate_org_id)
-#     agent.add_component do |c|
-#       c.classname = yp_server
-#     end
-#     agent.add_component do |c|
-#       c.classname = publish_taxonomy
-#     end
-#   end
-# end
