@@ -1,0 +1,21 @@
+#################################################
+# components and aspect needed to add metrics
+
+society.each_node do |node|
+   node.override_parameter("-Dorg.cougaar.message.transport.aspects","org.cougaar.core.mts.StatisticsAspect")
+   node.agent.add_component do |c|
+      c.classname = "org.cougaar.core.qos.metrics.MetricsServletPlugin"
+   end
+   node.agent.add_component do |c|
+      c.classname = "org.cougaar.core.mts.StatisticsPlugin"
+   end
+   node.agent.add_component do |c|
+      c.classname = "org.cougaar.core.qos.metrics.AgentStatusRatePlugin"
+   end
+   node.agent.add_component do |c|
+      c.classname = "org.cougaar.core.thread.AgentSensorPlugin"
+   end
+   node.agent.add_component do |c|
+      c.classname = "org.cougaar.core.thread.TopPlugin"
+   end
+end
