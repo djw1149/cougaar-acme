@@ -17,10 +17,10 @@ module ACME; module Plugins
     end
     
     def register_commands
-      register_command("test_cip", "return the 'ls' of $CIP") do |message, command|
+      register_command("test_cip", "return the $CIP") do |message, command|
         result = "\n"
-        result += `su -l -c 'cd $CIP; ls -al' asmt`
-        message.reply.set_body(result).send
+        result += `su -l -c 'echo $CIP' asmt`
+        message.reply.set_body("CIP=#{result}").send
       end
       register_command("reset_crypto", "Reset the crypto service") do |message, command|
         result = "\n"
