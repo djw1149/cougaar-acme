@@ -246,18 +246,18 @@ class SocietyGenerator
       end
       list = header.list_for(row)
       org = Organization.new(@use_full_org_id)
-      org.orig_org_id = list[1]
-      org.base_org_id = list[2]
-      org.suffix = list[3]
-      org.combat_support = list[5]
-      org.echelon = list[6]
-      org.echelon_group = list[7]
-      org.is_deployable = 'T' if list[8] =~ /^[yYtT]/
-      org.has_physical_assets = 'T' if list[9] =~ /^[yYtT]/
-      org.has_equipment_assets = 'T' if list[10] =~ /^[yYtT]/
-      org.has_personnel_assets = 'T' if list[11] =~ /^[yYtT]/
-      org.uic = list[12]
-      org.home_location = list[13]
+      org.orig_org_id = list['orig_org_id']
+      org.base_org_id = list['base_org_id']
+      org.suffix = list['suffix']
+      org.combat_support = list['combat_support']
+      org.echelon = list['echelon']
+      org.echelon_group = list['echelon_group']
+      org.is_deployable = 'T' if list['is_deployable'] =~ /^[yYtT]/
+      org.has_physical_assets = 'T' if list['has_physical_assets'] =~ /^[yYtT]/
+      org.has_equipment_assets = 'T' if list['has_equipment_assets'] =~ /^[yYtT]/
+      org.has_personnel_assets = 'T' if list['has_personnel_assets'] =~ /^[yYtT]/
+      org.uic = list['uic']
+      org.home_location = list['home_location']
       @organizations[org.org_id] = org            # Puts the org in the @organizations hash keyed by the org_id
     end
     @org_id_list = @organizations.keys            # Make a list of the org_ids
@@ -271,7 +271,7 @@ class SocietyGenerator
           next
         end
         list = header.list_for(row)
-        org_id = list[2] + '.' + list[3]
+        org_id = list['base_org_id'] + '.' + list['suffix']
         org = @organizations[org_id]
         raise "Unknown organization #{org_id}" unless org
         @society_member_list<<org_id
@@ -290,9 +290,9 @@ class SocietyGenerator
         next
       end
       list = header.list_for(row)
-      org_id = list[2] + '.' + list[3]
-      if list[5]
-        sup_org_id = list[5] + '.' + list[6]
+      org_id = list['base_orig_id'] + '.' + list['suffix']
+      if list['parent_base_org_id']
+        sup_org_id = list['parent_base_org_id'] + '.' + list['parent_org_id_suffix']
         org = @organizations[org_id]
         raise "Unknown organization #{org_id}" unless org
         sup_org = @organizations[sup_org_id]
@@ -312,10 +312,10 @@ class SocietyGenerator
         next
       end
       list = header.list_for(row)
-      org_id = list[1] + '.' + list[2]
+      org_id = list['base_org_id'] + '.' + list['org_id_suffix']
       org = @organizations[org_id]
       raise "Unknown organization #{org_id}" unless org
-      org.roles<<Role.new(list[3],list[4],list[5],list[6])
+      org.roles<<Role.new(list['role'],list['echelon_of_support'],list['role_mechanism'],list['notes'])
     end
     
     first = true                                # Process org_sca.csv (Support Command Assignments)
@@ -326,11 +326,11 @@ class SocietyGenerator
         next
       end
       list = header.list_for(row)
-      org_id = list[2] + '.' + list[3]
+      org_id = list['base_org_id'] + '.' + list['org_id_suffix']
       org = @organizations[org_id]
       raise "Unknown organization #{org_id}" unless org
-      supported_org_id = list[5] + '.' + list[6]
-      echelon_of_support = list[7]
+      supported_org_id = list['supported_base_org_id'] + '.' + list['supported_org_id_suffix']
+      echelon_of_support = list['echelon_of_support']
       supported_org = @organizations[supported_org_id]
       raise "Unknown supported organization #{supported_org_id}" unless supported_org
       if (@society_member_list.include?(org_id) &&
