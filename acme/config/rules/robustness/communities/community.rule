@@ -17,32 +17,23 @@ attributes = {"INITIAL_EXPIRATION"				=> "180000",
               
 enclave_attributes = {}
 enclave_attributes["REAR"] 	= attributes.clone # Copy defaults and override values below
-enclave_attributes["REAR"]["HEARTBEAT_TIMEOUT"] = "30000"
-enclave_attributes["REAR"]["RESTART_EXPIRATION"] = "180000"
+
+# Example of overriding values per enclave
+#enclave_attributes["REAR"]["HEARTBEAT_TIMEOUT"] = "30000"
+#enclave_attributes["REAR"]["RESTART_EXPIRATION"] = "180000"
 
 enclave_attributes["FWD"] 	= attributes.clone # Copy defaults and override values below
-enclave_attributes["FWD"]["HEARTBEAT_TIMEOUT"] = "30000"
-enclave_attributes["FWD"]["RESTART_EXPIRATION"] = "180000"
 
 enclave_attributes["CONUS"] = attributes.clone # Copy defaults and override values below
-enclave_attributes["CONUS"]["HEARTBEAT_TIMEOUT"] = "30000"
-enclave_attributes["CONUS"]["RESTART_EXPIRATION"] = "180000"
 
 enclave_attributes["TRANS"] = attributes.clone # Copy defaults and override values below
-enclave_attributes["TRANS"]["HEARTBEAT_TIMEOUT"] = "30000"
-enclave_attributes["TRANS"]["RESTART_EXPIRATION"] = "180000"
 
 society.each_enclave do |enclave|
   society.communities.add("1AD-#{enclave}-COMM") do |community|
     community.add_attribute("CommunityType", "Robustness")
-    #community.add_attribute("CommunityManager", "1AD-#{enclave}-ARManager")
     
     enclave_attributes[enclave].each { |attr, value| community.add_attribute(attr, value) }
     
-    #community.add_agent("1AD-#{enclave}-ARManager") do |entity|
-    #  entity.add_role("ManagementAgent")
-    #  entity.add_role("HealthMonitor")
-    #end
     num_agents = 0
     society.each_enclave_node(enclave) do |node|
       unless node.has_facet?(:role)
