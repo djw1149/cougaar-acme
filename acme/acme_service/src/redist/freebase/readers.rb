@@ -95,7 +95,7 @@ module FreeBASE
       #puts "Loading Property File: #{filespec}"
       return unless File.exist?(filespec)
       data = nil
-      File.open(filespec) {|file| file.binmode; data = file.read}
+      File.open(filespec) {|file| data = file.read}
       read_slot(base_slot, YAML.load(data))
     end
     
