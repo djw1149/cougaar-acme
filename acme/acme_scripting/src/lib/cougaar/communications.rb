@@ -441,7 +441,7 @@ module Cougaar
               @event_listeners.each_value do |listener| 
                 begin
                   listener.call(event)
-                rescue
+                rescue Exception
                   @run.error_message "Exception in Cougaar Event listener: #{$!}"
                   @run.error_message "    for event: #{event}"
                 end
