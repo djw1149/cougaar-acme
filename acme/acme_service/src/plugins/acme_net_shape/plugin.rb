@@ -6,12 +6,11 @@
 # between each VLAN.
 #
 require "rexml/document"
-require "utb/failure.rb"
 require "acme_net_shape/vlan.rb"
 
 module ACME; module Plugins
 
-class Shaper < UTB::Failure
+class Shaper
   extend FreeBASE::StandardPlugin
 
   def self.start(plugin)
@@ -31,8 +30,48 @@ class Shaper < UTB::Failure
   attr_reader :plugin
 
   def initialize( plugin )
-    super( plugin )
+    super( )
+    @plugin = plugin
     @network = VlanSupport::Network.new( plugin.properties["config"] )
+
+    cmd = @plugin.properties["command"]
+    desc = @plugin.properties["description"]
+ 
+    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}/description"].data = desc
+    @plugin["/plugins/acme_host_jabber_service/commands/#{cmd}"].set_proc do |msg, cmd|
+       case cmd
+         when "trigger"
+           trigger()
+           reply = "OK"
+         when "reset"
+           reset()
+           reply = "OK"
+         when /shape\((.*),(.*),(.*)\)/
+           do_shape( $1, $2, $3 )
+           reply = "shaping from #{$1} to #{$2} at #{$3}Mbit"
+         when /enable_link\((.*),(.*)\)/
+           do_enable_link( $1, $2 )
+           reply = "enabled link from #{$1} to #{$2}"
+         when /disable_link\((.*),(.*)\)/
+           do_disable_link( $1, $2 )
+           reply = "disabled link from #{$1} to #{$2}"
+         else 
+           reply = "#{cmd} unknown-#{command}"
+       end
+       msg.reply.set_body( reply ).send
+    end           
+  end
+
+  def do_shape( from_vlan, to_vlan, bandwidth )
+    @network.shape( from_vlan, to_vlan, bandwidth )  
+  end 
+
+  def do_disable_link( from_vlan, to_vlan )
+    @network.disable_link( from_vlan, to_vlan )
+  end
+
+  def do_enable_link( from_vlan, to_vlan )
+    @network.enable_link( from_vlan, to_vlan )
   end
 
   def trigger
