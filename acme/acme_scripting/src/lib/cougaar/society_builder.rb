@@ -193,7 +193,7 @@ module Cougaar
       end
       def perform
         File.open(@filename, "w") do |file|
-          if (File.basename(@filename)==File.basename(@filename, ".xml"))
+          if (File.basename(@filename)!=File.basename(@filename, ".xml"))
             file.puts @run.society.to_xml
           else
             file.puts @run.society.to_ruby
