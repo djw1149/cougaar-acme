@@ -93,7 +93,11 @@ module InfoEther
       def receive_messages
         @receive_thread = Thread.new {
           while(true)
-            data = @socket.recv(8)
+            begin
+              data = @socket.recv(8)
+            rescue
+              data = nil
+            end
             if data.nil? || data.size==0
               @on_close.call(self) if @on_close
               stop
@@ -139,7 +143,7 @@ module InfoEther
       def start
         @socket_handler = SocketHandler.new(TCPSocket.new(@service_host, @service_port))
         reply = Message.new(@socket_handler).set_subject("connect").set_body(@name).request
-        unless reply.body=="connected"
+        unless reply.subject=="connected"
           raise "Connection error #{reply.body}"
         end
       end
@@ -161,7 +165,7 @@ module InfoEther
       
       def available_clients
         reply = new_message(nil).set_subject("list").request
-        reply.body.split(',')
+        reply.body.split("\n")
       end
       
       def stop
@@ -173,6 +177,21 @@ module InfoEther
         end
       end
       
+      def register(&block) # yield clientid, status
+        message = new_message(nil).set_subject("register")
+        @registration = add_message_listener(message.thread) do |message|
+          yield message.body, message.subject
+        end
+        message.request.subject
+      end
+      
+      def deregister
+        if @registration
+          remove_message_listener(@registration)
+          @registration = nil
+          return new_message(nil).set_subject("deregister").request.subject
+        end
+      end
     end
     
     class SimpleFileLogger
@@ -244,6 +263,7 @@ module InfoEther
       def initialize(port=DEFAULT_PORT)
         @port = port
         @handlers = {}
+        @registrants = {}
       end
       
       def start
@@ -251,23 +271,31 @@ module InfoEther
         @thread = Thread.new do
           while(true)
             socket = @server.accept
-            new_handler = SocketHandler.new(socket)
-            new_handler.add_listener do |message|
-              if message.to.nil? or message.to.size==0
-                control_message(message)
-              else
-                route_message(message)
-              end
-            end
-            # get rid of handler if already registered
-            new_handler.on_close do
-              client_id = nil
-              @handlers.each do |id, handler|
-                client_id = id if handler==new_handler
-              end
-              @logger.info "Client #{client_id} offline" if @logger
-              @handlers.delete(client_id) if client_id
-            end
+            handle(socket)
+          end
+        end
+      end
+      
+      def handle(socket)
+        new_handler = SocketHandler.new(socket)
+        new_handler.add_listener do |message|
+          if message.to.nil? or message.to.size==0
+            control_message(message)
+          else
+            route_message(message)
+          end
+        end
+        # get rid of handler if already registered
+        new_handler.on_close do
+          client_id = nil
+          @handlers.each do |id, handler|
+            client_id = id if handler==new_handler
+          end
+          if client_id
+            @logger.info "Client #{client_id} offline" if @logger
+            @handlers.delete(client_id)
+            @registrants.delete(client_id)
+            notify_registrants(client_id, "offline") 
           end
         end
       end
@@ -277,10 +305,25 @@ module InfoEther
         when 'connect'
           @handlers[message.body] = message.socket_handler
           @logger.info  "Client #{message.body} online" if @logger
-          message.reply.set_to(message.body).set_body("connected").send
+          notify_registrants(message.body, "online") 
+          message.reply.set_to(message.body).set_subject("connected").set_body("connected").send
         when 'list'
           @logger.debug "#{message.from} requested client list" if @logger
-          message.reply.set_body(@handlers.keys.sort.join(',')).send
+          message.reply.set_body(@handlers.keys.sort.join("\n")).send
+        when 'register'
+          @logger.debug "#{message.from} has registered for events" if @logger
+          @registrants[message.from] = message
+          message.reply.set_subject("registered").set_body("registered").send
+        when 'deregister'
+          @logger.debug "#{message.from} has deregistered for events" if @logger
+          @registrants.delete(message.from)
+          message.reply.set_subject("deregistered").set_body("deregistered").send
+        end
+      end
+      
+      def notify_registrants(client, event)
+        @registrants.each_value do |message|
+          message.reply.set_subject(event).set_body(client).send
         end
       end
       
