@@ -93,7 +93,7 @@ module Cougaar; module Actions
               # Reset the C-Link on the Router (Trunk!  Not Standard!)
               result = @run.comms.new_message(host).set_body("command[net]reset(#{subnet.make_interface(host.get_facet(:interface))})").request(30)
 
-              @run.error_message "WARNING!  Unable to reset router host: #{host.name}"
+              @run.error_message "WARNING!  Unable to reset router host: #{host.name}" if result.nil?
               
               # Each K-Link interface includes the VLAN already.  This is
               # because the VLAN ids are not the same.
