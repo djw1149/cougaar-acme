@@ -292,7 +292,7 @@ module Cougaar
             if data.kind_of?(Hash)
               data.each_pair { |key, value| self[key] = value }
             else
-              @map << {:cdata => data}
+              @map[:cdata] = data
             end
           end
           yield self if block_given?
@@ -370,7 +370,7 @@ module Cougaar
         # Creates a copy of this facet
         #
         def clone
-          return self
+          return Facet.new(@map)
         end
         
         private
@@ -393,8 +393,12 @@ module Cougaar
       #
       def add_facet(facet_data=nil, &block)
         @facets ||= []
-        a = Facet.new(facet_data, &block)
-        @facets << a
+        if facet_data.kind_of? Facet
+          @facets << facet_data
+        else
+          a = Facet.new(facet_data, &block)
+          @facets << a
+        end
       end
       
       ##
