@@ -7,7 +7,7 @@ module InfoEther
   module MessageRouter
   
     DEFAULT_PORT = 6667
-    DEBUG = true
+    DEBUG = false
     if DEBUG
       Thread.abort_on_exception=true
     end
