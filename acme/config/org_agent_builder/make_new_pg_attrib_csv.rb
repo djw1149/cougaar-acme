@@ -74,17 +74,17 @@ class Make_NewPG
   def write
     @writer << ["ORG_ID", "PG_ATTRIBUTE_LIB_ID", "ATTRIBUTE_VALUE", "ATTRIBUTE_ORDER", "START_DATE", "END_DATE", "BLANK"]
     @writer << [@base_org_id,"ItemIdentificationPG|AlternateItemIdentification","UIC/#@org_code","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
-    @writer << [@base_org_id,"ClusterPG|MessageAddress","#@org_code","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
-    @writer << [@base_org_id,"TypeIdentificationPG|TypeIdentification","#@org_type","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
+    @writer << [@base_org_id,"ClusterPG|MessageAddress","#@base_org_id","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
+    @writer << [@base_org_id,"TypeIdentificationPG|TypeIdentification","UTC/#@org_type","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"TypeIdentificationPG|Nomenclature","#@nomenclature","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"OrganizationPG|Service","Army","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"OrganizationPG|Agency","ARMY","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
-    @writer << [@base_org_id,"MilitaryOrgPG|UTC","Army","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
+    @writer << [@base_org_id,"MilitaryOrgPG|UTC","#@org_type","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"MilitaryOrgPG|UIC","#@org_code","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"MilitaryOrgPG|IsReserve","FALSE","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"MilitaryOrgPG|HomeLocation","GeoLocCode=#@home_location","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
     @writer << [@base_org_id,"ItemIdentificationPG|Nomenclature","#@nomenclature","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
-    @writer << [@base_org_id,"ItemIdentificationPG|ItemIdentification","#@org_code","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
+    @writer << [@base_org_id,"ItemIdentificationPG|ItemIdentification","#@base_org_id","0.000000000000000000000000000000","2000-01-01 00:00:00","\N", ""]
   end
 
 end
