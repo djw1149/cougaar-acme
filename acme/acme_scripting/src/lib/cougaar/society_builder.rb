@@ -110,6 +110,10 @@ module Cougaar
                     comp.priority = comp_element.attributes['priority']
                     comp.insertionpoint = comp_element.attributes['insertionpoint']
                     
+                    comp_element.elements.each("order") do |arg_element|
+                      comp.order = arg_element.text.strip.to_i
+                    end #order_element
+                    
                     #add arguments to component
                     comp_element.elements.each("argument") do |arg_element|
                       comp.add_argument(arg_element.text.strip)
@@ -135,6 +139,10 @@ module Cougaar
                         comp.classname = comp_element.attributes['class']
                         comp.priority = comp_element.attributes['priority']
                         comp.insertionpoint = comp_element.attributes['insertionpoint']
+                        
+                        comp_element.elements.each("order") do |arg_element|
+                          comp.order = arg_element.text.strip.to_i
+                        end #order_element
                         
                         #add arguments to component
                         comp_element.elements.each("argument") do |arg_element|
