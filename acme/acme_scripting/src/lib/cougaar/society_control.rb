@@ -68,8 +68,9 @@ module Cougaar
         result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
         if result.nil?
           @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
+        else
+          @pids[node.name] = result.body
         end
-        @pids[node.name] = result.body
       end
     end
     
