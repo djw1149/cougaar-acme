@@ -7,5 +7,5 @@ else
     do_action "UAInventory", "ua-#{include_args[0]}"
     do_action "FCSInventory", "fcs-#{include_args[0]}"
   end
-  do_action "CollectMemoryData", "memdata_#{include_args[0]}"
+  do_action "CollectMemoryData", "mem/memdata_#{include_args[0]}"
 end
