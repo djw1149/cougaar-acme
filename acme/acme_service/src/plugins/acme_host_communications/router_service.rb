@@ -40,12 +40,17 @@ class RouterService
   end
   
   def start_service
-    puts "Message Router Service started on port: #{@port}"
-    @plugin.log_info << "Message Router Service started on port: #{@port}"
-    @service = InfoEther::MessageRouter::Service.new(@port)
-    @service.logger = PluginLogger.new(@plugin)
-    @service.start
-    sleep 1
+    begin
+      @service = InfoEther::MessageRouter::Service.new(@port)
+      @service.logger = PluginLogger.new(@plugin)
+      @service.start
+      puts "Message Router Service started on port: #{@port}"
+      @plugin.log_info << "Message Router Service started on port: #{@port}"
+      sleep 1
+    rescue
+      puts "Message Router Service failed to start on port: #{@port}"
+      @plugin.log_error << "Message Router Service failed to start on port: #{@port}"
+    end
   end
   
   def start_client
