@@ -201,7 +201,7 @@ class SocietyGenerator
       end
     end
 
-    @org_data_directory = 'org_data' unless @org_data_directory               # org_data is the default for @org_data_directory
+    @org_data_directory = '1ad.org_data' unless @org_data_directory               # 1ad.org_data is the default for @org_data_directory
 
     if @society_member_file
       @society_member_file = @org_data_directory + '/' + @society_member_file # Look in org_data_directory for society_member_file
@@ -223,7 +223,7 @@ class SocietyGenerator
   
   def help
     puts "Reads OrgData/org_attribute.csv, OrgData/org_hierarchy.csv, OrgData/org_role.csv, and OrgData/org_sca.csv and writes society.xml"
-    puts "If the OrgData directory is not specified, the directory org_data/ is used."
+    puts "If the OrgData directory is not specified, the directory 1ad.org_data/ is used."
     puts "If society_member_file is specified, just the orgs in OrgData/society_member_file.csv are included in the society."
     puts "If output file is specified society.xml is written there, otherwise society.xml is written to stdout."
     puts "If full-org-id is set false, then the orig-org-id is used, otherwise the full-org-id is used."
