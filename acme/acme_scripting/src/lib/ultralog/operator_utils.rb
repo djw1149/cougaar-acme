@@ -73,5 +73,51 @@ module Ultralog
       end
       
     end
+
+    class SMSNotify
+      def initialize
+        @art = '7039196618@vtext.com'
+        @mark = '5716431333@vtext.com'
+        @rich = '5713326896@voicestream.net'
+        @joe = '7038696710@messaging.sprintpcs.com'
+        @phonelist = [@art, @mark, @rich, @joe]
+      end
+
+      def notify(error, *addresses)
+        list = addresses.length > 0 ? addresses : @phonelist
+        list.each do |number|
+          IO.popen("mail -s '#{error}' #{number}", "w") do |io|
+            io.putc(4)
+            io.putc(13)
+          end
+          sleep 1
+        end
+      end
+    end
+  end
+end
+
+module Cougaar
+  module Actions
+    class SendSMSNotification < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sends an SMS message to a list of addresses."
+        @parameters = [
+          {:message => "Message to be sent."},
+          {:addresses => "*addresses, If given, message will be sent to these addresses, otherwise it will be sent to default list"}
+        ]
+        @example = "do_action 'SendSMSNotification', 'Verify failed on host sm075'"
+      }
+ 
+      def initialize(run, message, *addresses)
+        super(run)
+        @message = message
+        @addresses = addresses
+      end
+
+      def perform
+        Ultralog::OperatorUtils::SMSNotify.new.notify(@message, *@addresses)
+      end
+    end
   end
 end
