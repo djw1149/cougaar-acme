@@ -1,10 +1,10 @@
-require "acme_reporting_core/RunTimeTest"
-require "acme_reporting_core/CompletionTest"
-require "acme_reporting_core/QData"
-require "acme_reporting_core/VerifyInventory"
-require "acme_reporting_core/DataGrabberTest"
-require "acme_reporting_core/Nameservers"
-require "acme_reporting_core/Scripts"
+require "./plugins/acme_reporting_core/RunTimeTest"
+require "./plugins/acme_reporting_core/CompletionTest"
+require "./plugins/acme_reporting_core/QData"
+require "./plugins/acme_reporting_core/VerifyInventory"
+require "./plugins/acme_reporting_core/DataGrabberTest"
+require "./plugins/acme_reporting_core/Nameservers"
+require "./plugins/acme_reporting_core/Scripts"
 
 module ACME
   module Plugins

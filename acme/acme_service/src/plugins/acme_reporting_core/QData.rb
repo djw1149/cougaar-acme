@@ -1,4 +1,5 @@
 require "parsedate"
+require "./plugins/acme_reporting_core/RunData"
 
 module ACME
   module Plugins
