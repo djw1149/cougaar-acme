@@ -206,12 +206,12 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF.oplan.noncsmart.q)'
+          name='org.cougaar.mlm.plugin.organization.GLSInitServlet(093FF.oplan.q)'
           class='org.cougaar.mlm.plugin.organization.GLSInitServlet'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            093FF.oplan.noncsmart.q
+            093FF.oplan.q
           </argument>
         </component>
         <component
