@@ -366,6 +366,7 @@ module Cougaar
       # Recursively iterates over all hosts, nodes and agents and removed their facet data
       # 
       def remove_all_facets
+        @facets = nil
         each_host do |host|
           host.remove_all_facets
           host.each_node do |node|
