@@ -65,22 +65,18 @@ module UltraLog
         attr_reader :organizations, :host, :port, :uri_frag
 
         ##
-        # Constructs an Oplan from host, port and url provided.
-        # port (default=8800) and url ($NCA/editOplan) are optional.
+        # Constructs an Oplan from uri.
         #
-        # host:: [String] Host name
-        # port:: [String] Port to connect to
-        # url_frag:: [String] URL of editOplan servlet
+        # uri:: [String] Node uri for NCA
         #
-        def initialize(host, port=8800, uri_frag="$NCA/editOplan") 
-            @host = host
-            @port = port
-            @uri_frag = uri_frag
-            get_data
+        def initialize(uri)
+          @base_uri = uri
+          @uri = uri+"/$NCA/editOplan"
+          get_data
         end
         
         def self.from_society(society)
-          OPlan.new(society.agents['NCA'].node.host.host_name, society.cougaar_port)
+          OPlan.new(society.agents['NCA'].node.uri)
         end
         
       private
@@ -92,7 +88,7 @@ module UltraLog
             re0 = /\<td\>(.+)\<\/td\>/
             re1 = /.*href=\"(.+)\">(\S+).*/
             #puts "host=#{@host} port=#{@port}"
-            result,uri = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/#{@uri_frag}")
+            result,uri = Cougaar::Communications::HTTP.get(@uri)
             @host = uri.host
             @port = uri.port
             #puts "new_host=#{@host} new_port=#{@port}"
@@ -144,7 +140,7 @@ module UltraLog
         # Publish the modified oplan.
         #
         def publish
-            result,uri = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/#{@uri_frag}?action=Publish")
+            result,uri = Cougaar::Communications::HTTP.get("#{@uri}?action=Publish")
         end
 
         ##
@@ -278,7 +274,7 @@ module UltraLog
                 end
             end
 
-            result,uri = Cougaar::Communications::HTTP.get("http://#{host}:#{port}#{@url_fragment}")
+            result,uri = Cougaar::Communications::HTTP.get(@uri)
             array = []
             result.each_line {|line| array << line.strip}
             result = array.join("\n")
@@ -338,7 +334,7 @@ module UltraLog
             end
 #            puts "NEW OP_TEMPO = #{@op_tempo} START = #{@start_offset} END = #{@end_offset}"
 
-            form_action_uri =  "http://#{host}:#{port}#{form_action}?"
+            form_action_uri =  "#{@base_uri}#{form_action}?"
             hidden_args.each do |key, value| 
                 form_action_uri += "#{key}=#{value}&"
             end
@@ -349,14 +345,4 @@ module UltraLog
         end	  
     end
      
-end
-
-
-if __FILE__ == $0
-    oplan = UltraLog::OPlan.new('u192')
-    #org = oplan["1-35-ARBN"]
-    #org["Employment-Defensive"].save("High", nil , nil )
-    org = oplan["109-MDM-TRKCO"]
-    org["Deployment"].save(nil, nil , "=85" )
-    oplan.publish
 end

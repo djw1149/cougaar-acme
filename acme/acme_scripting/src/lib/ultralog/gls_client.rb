@@ -281,7 +281,7 @@ module Cougaar
       }
       def perform
         begin
-          result = Cougaar::Communications::HTTP.get("http://#{@run.society.agents['NCA'].node.host.host_name}:#{@run.society.cougaar_port}/$NCA/glsinit?command=sendoplan")
+          result = Cougaar::Communications::HTTP.get("http://#{@run.society.agents['NCA'].uri}/glsinit?command=sendoplan")
           raise_failure "Error sending OPlan" unless result
         rescue
           raise_failure "Could not send OPlan", $!
@@ -299,11 +299,10 @@ module Cougaar
       def perform
         gls_client = @run['gls_client']
         begin
-          host_uri = "http://#{@run.society.agents['NCA'].node.host.host_name}:#{@run.society.cougaar_port}"
           if gls_client.c0_date
-            result = Cougaar::Communications::HTTP.get("#{host_uri}/$NCA/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
+            result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
           else
-            result = Cougaar::Communications::HTTP.get("#{host_uri}/$NCA/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}")
+            result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}")
           end
           raise_failure "Error publishing OPlan" unless result
         rescue

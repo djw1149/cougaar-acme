@@ -137,9 +137,9 @@ module UltraLog
       society.each_agent do |agent|
         print agent.name+"  "
 #          Cougaar.logger.info "#{agent.name}: "
-        result, uri = Cougaar::Communications::HTTP.get("http://#{agent.host.host_name}:#{society.cougaar_port}/$#{agent.name}/list")
+        result, uri = Cougaar::Communications::HTTP.get("#{agent.uri}/list")
         if result && result.include?("cnccalc")
-          result2, uri2 = Cougaar::Communications::HTTP.get("http://#{agent.host.host_name}:#{society.cougaar_port}/$#{agent.name}/cnccalc?command=start")
+          result2, uri2 = Cougaar::Communications::HTTP.get("#{agent.uri}/cnccalc?command=start")
           #puts result2 if result2
 #            Cougaar.logger.info "#{result2}" if result2
           if result2 && result2.include?("Received start<")

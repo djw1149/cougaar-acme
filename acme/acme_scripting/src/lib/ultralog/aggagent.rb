@@ -30,9 +30,8 @@ module UltraLog
         @cluster_url = cluster_url
         @agg_name = agg_name
         @keepalive_name= keepalive_name
-        
         @agg_url = @cluster_url+"/"+@agg_name+"?THICK_CLIENT=1"
-        @keepalive_url = @cluster_url + keepalive_name+"?KEEP_ALIVE=1"
+        @keepalive_url = @cluster_url + "/" + keepalive_name+"?KEEP_ALIVE=1"
         response, uri = Cougaar::Communications::HTTP.get(@agg_url+"&CHECK_URL=1")
         raise "Could not connect to #{@agg_url}" unless response
       end

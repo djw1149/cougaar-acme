@@ -27,8 +27,7 @@ module UltraLog
       def initialize(run, file)
         super(run)
         @file = file
-        host = @run.society.agents['AGG-Agent'].node.host.host_name
-        @uri = "http://#{host}:#{@run.society.cougaar_port}/$AGG-Agent"
+        @uri = @run.society.agents['AGG-Agent'].uri
       end
       def save(result)
         File.open(@file, "wb") do |file|

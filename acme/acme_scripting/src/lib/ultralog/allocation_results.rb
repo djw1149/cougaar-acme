@@ -15,14 +15,14 @@ class AllocationResults
     def initialize(host, agent, port=8800)
       if host.kind_of? Cougaar::Society
         society=host
-        port = society.cougaar_port
         host = society.agents['AGG-Agent'].node.host.host_name
+        @uri = "#{society.agents['AGG-Agent'].uri}/AllocationResults"
+      else
+        host  = host
+        port  = port
+        agent = agent
+        @uri = "http://#{host}:#{port}/$#{agent}/AllocationResults"
       end
-      @host  = host
-      @port  = port
-      @agent = agent
-      @uri = "http://#{@host}:#{@port}/$#{@agent}/AllocationResults"
-      puts @uri+'<--URI'
     end
 
     def query

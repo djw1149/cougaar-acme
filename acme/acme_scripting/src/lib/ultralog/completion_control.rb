@@ -63,19 +63,18 @@ module UltraLog
                   
     attr_reader   :scenarioTime, :completionAction
   
-    def initialize(host, port)
-      @host = host
-      @port = port
+    def initialize(uri)
+      @uri = uri
       query_defaults
       yield self if block_given?
     end
     
     def self.for_host(host, port)
-      return self.new(host, port)
+      return self.new("http://#{host}:#{port}/$NCA/completionControl")
     end
     
     def self.for_society(society)
-      return self.new(society.agents["NCA"].node.host.host_name, society.cougaar_port)
+      return self.new("#{society.agents['NCA'].uri}/completionControl")
     end
     
     def update
@@ -104,7 +103,7 @@ module UltraLog
     
     def query_defaults
       value = /value="(\w+)"/
-      data, uri = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/$NCA/completionControl", 300)
+      data, uri = Cougaar::Communications::HTTP.get(@uri, 300)
       # get the scenario time
       match = /Time<\/td><td>(.*)<\/td>/.match(data)
       @scenarioTime = match[1] if match

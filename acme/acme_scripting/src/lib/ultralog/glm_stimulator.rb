@@ -64,10 +64,8 @@ module UltraLog
                   :interval, :waitBefore, :waitAfter, :rescindAfterComplete, 
                   :useConfidence, :format
                   
-    def initialize(agent, host, port)
-      @agent = agent
-      @host = host
-      @port = port
+    def initialize(uri)
+      @uri = uri
       @inputFileName = ""
       @forPrep = ""
       @format = "html"
@@ -76,17 +74,17 @@ module UltraLog
     end
     
     def self.for_agent_on_host(agent, host, port)
-      return self.new(agent, host, port)
+      return self.new("http://#{host}:#{port}/$#{agent}")
     end
     
     def self.for_cougaar_agent(agent)
-      return self.new(agent.name, agent.node.host.host_name, agent.node.host.society.cougaar_port)
+      return self.new(agent.uri)
     end
     
     def update(format = nil)
       @format = format.to_s if format
       params = get_params
-      result = Cougaar::Communications::HTTP.get("http://#{@host}:#{@port}/$#{@agent}/stimulator?#{params.join('&')}", 300)
+      result = Cougaar::Communications::HTTP.get("#{@uri}/stimulator?#{params.join('&')}", 300)
       raise "Unable to update values in GLMStimulator" unless result
       return result[0]
     end
