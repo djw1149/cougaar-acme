@@ -1,0 +1,111 @@
+####################################################
+# Rule to insert a set of agent servlets in all agents
+# Sometimes servlets are loaded with a servlet loader (e.g. the PlanViewServlet);
+#    and sometimes they seem to be loaded without a servlet loader (e.g. the MoveAgentServlet)
+### Old TASKS.PSP
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)
+### New GLM Completion servlet
+# plugin = org.cougaar.glm.servlet.GLMCompletionServlet(/completion)
+### For the data grabber
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.HierarchyServlet,/hierarchy)
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.mlm.ui.servlet.DataGathererServlet,/datagatherer)
+### For the logistics inventory Servlet
+# plugin = org.cougaar.logistics.servlet.LogisticsInventoryServletComponent(org.cougaar.logistics.servlet.LogisticsInventoryServlet,/log_inventory)
+### Allows loading arbitrary components
+# plugin = org.cougaar.planning.servlet.LoaderServletComponent(/load)
+### CSMART Servlets follow
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet,/CSMART_AgentInfoServlet)
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet,/CSMART_CommunityProviderServlet)
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.MetricsServlet,/CSMART_MetricsServlet)
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.SearchServlet,/CSMART_SearchServlet)
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.PlanServlet,/CSMART_PlanServlet)
+### New WhitePages servlet for available at /wp
+# plugin = org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.core.wp.WhitePagesServlet,/wp)
+### New servlet for Agent Mobility. This only loads in Agents,
+### and you may want it in NodeAgents as well. Will be available at /move
+# plugin = org.cougaar.core.mobility.servlet.MoveAgentServlet
+### Unknown Servlets (Maybe they are old)
+## plugin = org.cougaar.core.topology.TopologyReaderServlet
+## plugin = org.cougaar.core.mobility.service.RedirectMovePlugin
+
+# servlet loader classes:
+simple_servlet_component_loader = "org.cougaar.core.servlet.SimpleServletComponent"
+logistics_inventory_servlet_component_loader = "org.cougaar.logistics.servlet.LogisticsInventoryServletComponent"
+# servlet classes:
+plan_view_servlet = "org.cougaar.planning.servlet.PlanViewServlet"
+glm_completion_servlet = "org.cougaar.glm.servlet.GLMCompletionServlet"
+hierarchy_servlet = "org.cougaar.planning.servlet.HierarchyServlet"
+data_gatherer_servlet = "org.cougaar.mlm.ui.servlet.DataGathererServlet"
+logistics_inventory_servlet = "org.cougaar.logistics.servlet.LogisticsInventoryServlet"
+loader_servlet_component = "org.cougaar.planning.servlet.LoaderServletComponent"
+agent_info_servlet = "org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet"
+community_provider_servlet = "org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet"
+metrics_servlet = "org.cougaar.tools.csmart.ui.servlet.MetricsServlet"
+search_servlet = "org.cougaar.tools.csmart.ui.servlet.SearchServlet"
+plan_servlet = "org.cougaar.tools.csmart.ui.servlet.PlanServlet"
+white_pages_servlet = "org.cougaar.core.wp.WhitePagesServlet"
+move_agent_servlet = "org.cougaar.core.mobility.servlet.MoveAgentServlet"
+
+society.each_agent do |agent|
+  agent.add_component do |c|                       # plan_view_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(plan_view_servlet)
+    c.add_argument("/tasks")
+  end
+  agent.add_component do |c|                       # glm_completion_servlet
+    c.classname = glm_completion_servlet
+    c.add_argument("/completion")
+  end
+  agent.add_component do |c|                       # hierarchy_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(hierarchy_servlet)
+    c.add_argument("/hierarchy")
+  end
+  agent.add_component do |c|                       # data_gatherer_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(data_gatherer_servlet)
+    c.add_argument("/datagatherer")
+  end
+  agent.add_component do |c|                       # logistics_inventory_servlet
+    c.classname = logistics_inventory_servlet_component_loader
+    c.add_argument(logistics_inventory_servlet)
+    c.add_argument("/log_inventory")
+  end
+  agent.add_component do |c|                       # loader_servlet_component
+    c.classname = loader_servlet_component
+    c.add_argument("/load")
+  end
+  agent.add_component do |c|                       # agent_info_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(agent_info_servlet)
+    c.add_argument("/CSMART_AgentInfoServlet")
+  end
+  agent.add_component do |c|                       # community_provider_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(community_provider_servlet)
+    c.add_argument("/CSMART_CommunityProviderServlet")
+  end
+  agent.add_component do |c|                       # metrics_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(metrics_servlet)
+    c.add_argument("/CSMART_MetricsServlet")
+  end
+  agent.add_component do |c|                       # search_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(search_servlet)
+    c.add_argument("/CSMART_SearchServlet")
+  end
+  agent.add_component do |c|                       # plan_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(plan_servlet)
+    c.add_argument("/CSMART_PlanServlet")
+  end
+  agent.add_component do |c|                       # white_pages_servlet
+    c.classname = simple_servlet_component_loader
+    c.add_argument(white_pages_servlet)
+    c.add_argument("/wp")
+  end
+  agent.add_component do |c|                       # move_agent_servlet
+    c.classname = move_agent_servlet
+  end
+end
