@@ -822,7 +822,11 @@ module Cougaar
         else
           if !o.include? value
             @parameters.delete(o)
-            @parameters << "#{o}\\;#{value}"
+            if o.index(';', -1).nil?
+              @parameters << "#{o}\\;#{value}"
+            else
+              @parameters << "#{o}#{value}"
+            end
           end
         end
       end
