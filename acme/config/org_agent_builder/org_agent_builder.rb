@@ -23,8 +23,6 @@ class CSVHeader
   end
 end
 
-
-
 class Role
   attr_accessor :role_id, :echelon_of_support, :mechanism, :note
 
@@ -70,10 +68,11 @@ end
 class Organization
   attr_accessor :base_org_id, :suffix, :orig_org_id, :org_code, :combat_support, :echelon, :echelon_group,
                 :is_deployable, :has_physical_assets, :has_equipment_assets, :has_personnel_assets,
-                :uic, :home_location
+                :uic, :home_location, :use_full_org_id
   attr_reader   :roles, :superior, :subordinates, :support_command_assignments
 
-  def initialize
+  def initialize(use_full_org_id=true)
+    @use_full_org_id = use_full_org_id              # Optional argument to allow using orig_org_id in the society xml file
     @roles = []
     @subordinates = []
     @support_command_assignments = []
@@ -84,7 +83,11 @@ class Organization
   end
 
   def to_s
-    org_id
+    if @use_full_org_id
+      org_id
+    else
+      orig_org_id
+    end
   end
 
   def hierarchy_to_s(indent=0)
@@ -166,7 +169,7 @@ class SocietyGenerator
   </host>
 </society>}
   
-  attr_reader :organizations, :org_id_list, :society_member_file, :society_member, :society_file
+  attr_reader :organizations, :org_id_list, :society_member_file, :society_member, :society_file, :use_full_org_id
   
   def initialize  
     @organizations = Hash.new
@@ -175,9 +178,11 @@ class SocietyGenerator
     @society_member_file = nil
     @society_member_list = Array.new
     @society_file = nil
+    @use_full_org_id = true                     # Default is to use full org_id, not orig_org_id
     opts = GetoptLong.new( [ '--org-data-directory', '-d', GetoptLong::OPTIONAL_ARGUMENT],
                            [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
                            [ '--society',  '-s', GetoptLong::OPTIONAL_ARGUMENT],
+                           [ '--full-org-id', '-f', GetoptLong::OPTIONAL_ARGUMENT],
 						   [ '--help',    '-h', GetoptLong::NO_ARGUMENT])
 
     opts.each do |opt, arg|
@@ -188,6 +193,8 @@ class SocietyGenerator
         @society_member_file = arg
       when '--society'
         @society_file = arg
+      when '--full-org-id'
+        @use_full_org_id = (arg != 'false')        # use_full_org_id is true unless arg is false
       when '--help'
         help
         exit 0
@@ -219,10 +226,12 @@ class SocietyGenerator
     puts "If the OrgData directory is not specified, the directory org_data/ is used."
     puts "If society_member_file is specified, just the orgs in OrgData/society_member_file.csv are included in the society."
     puts "If output file is specified society.xml is written there, otherwise society.xml is written to stdout."
+    puts "If full-org-id is set false, then the orig-org-id is used, otherwise the full-org-id is used."
     puts "Usage:\n\t#$0 [-m <society member file>] [-s <society file>] [-h]"
     puts "\t-d --org-data-directory..  The OrgData directory (org_data)."
     puts "\t-m --society-member......  The SocietyMember file (.csv)."
     puts "\t-s --society.............  The society file (.xml)."
+    puts "\t-f --full-org-id.........  Boolean to use full-org-id or orig-org_id."
     puts "\t-h --help................  Prints this help message."
   end
 
@@ -236,7 +245,7 @@ class SocietyGenerator
         next
       end
       list = header.list_for(row)
-      org = Organization.new
+      org = Organization.new(@use_full_org_id)
       org.orig_org_id = list[1]
       org.base_org_id = list[2]
       org.suffix = list[3]
