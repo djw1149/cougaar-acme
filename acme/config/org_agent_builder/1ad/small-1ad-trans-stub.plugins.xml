@@ -312,7 +312,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -320,13 +320,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -429,15 +429,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -462,6 +453,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -881,7 +881,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -889,13 +889,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -998,15 +998,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -1031,6 +1022,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -1450,7 +1450,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -1458,13 +1458,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -1567,15 +1567,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -1600,6 +1591,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -2022,7 +2022,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -2030,13 +2030,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -2139,15 +2139,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -2172,6 +2163,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -2304,7 +2304,7 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='FuelSupplyProvider'  />
         <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -2594,7 +2594,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -2602,13 +2602,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -2711,15 +2711,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -2744,6 +2735,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -2876,7 +2876,7 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='FuelSupplyProvider'  />
         <facet echelon_of_support='THEATER' role='PackagedPOLSupplyProvider'  />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
+        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3166,7 +3166,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -3174,13 +3174,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -3283,15 +3283,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -3316,6 +3307,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -3451,7 +3451,7 @@
         <facet echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
         <facet echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='1-AD.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='1-AD.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -3741,7 +3741,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -3749,13 +3749,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -3858,15 +3858,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -3891,6 +3882,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -4022,7 +4022,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -4312,7 +4312,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4320,13 +4320,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -4429,15 +4429,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -4462,6 +4453,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -4882,7 +4882,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -4890,13 +4890,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -4999,15 +4999,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -5032,6 +5023,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -5164,7 +5164,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet sca_supported_org='1-AD.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='1-AD.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -5454,7 +5454,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -5462,13 +5462,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -5571,15 +5571,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -5604,6 +5595,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -6025,7 +6025,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -6033,13 +6033,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -6142,15 +6142,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -6175,6 +6166,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -6306,7 +6306,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='AmmunitionProvider'  />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
+        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -6596,7 +6596,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -6604,13 +6604,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -6713,15 +6713,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -6746,6 +6737,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -7168,7 +7168,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -7176,13 +7176,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -7285,15 +7285,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -7318,6 +7309,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -7449,7 +7449,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='CORPS' role='SparePartsProvider'  />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
+        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -7739,7 +7739,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -7747,13 +7747,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -7856,15 +7856,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -7889,6 +7880,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -8024,7 +8024,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='StrategicTransportationProvider' mechanism='PassThrough'  />
-        <facet sca_supported_org='USAEUR.MIL' sca_echelon_of_support='THEATER'  />
+        <facet sca_echelon_of_support='THEATER' sca_supported_org='USAEUR.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -8314,7 +8314,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -8322,13 +8322,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -8431,15 +8431,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -8464,6 +8455,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -8595,7 +8595,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -8885,7 +8885,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -8893,13 +8893,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -9002,15 +9002,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -9035,6 +9026,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -9455,7 +9455,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -9463,13 +9463,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -9572,15 +9572,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -9605,6 +9596,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -9738,9 +9738,9 @@
         <facet note='Add' echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
         <facet note='Add' echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
-        <facet sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
-        <facet sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10030,7 +10030,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -10038,13 +10038,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -10147,15 +10147,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -10180,6 +10171,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -10313,7 +10313,7 @@
         <facet note='Add' echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
         <facet note='Add' echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -10603,7 +10603,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -10611,13 +10611,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -10720,15 +10720,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -10753,6 +10744,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -11174,7 +11174,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -11182,13 +11182,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -11291,15 +11291,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -11324,6 +11315,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -11746,7 +11746,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -11754,13 +11754,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -11863,15 +11863,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -11896,6 +11887,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -12317,7 +12317,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -12325,13 +12325,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -12434,15 +12434,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -12467,6 +12458,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -12598,7 +12598,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='THEATER' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='THEATER'  />
+        <facet sca_echelon_of_support='THEATER' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -12888,7 +12888,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -12896,13 +12896,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -13005,15 +13005,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -13038,6 +13029,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -13458,7 +13458,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -13466,13 +13466,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -13575,15 +13575,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -13608,6 +13599,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -13739,7 +13739,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='CORPS' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -14029,7 +14029,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -14037,13 +14037,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -14146,15 +14146,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -14179,6 +14170,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -14599,7 +14599,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -14607,13 +14607,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -14716,15 +14716,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -14749,6 +14740,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -14884,7 +14884,7 @@
         <facet echelon_of_support='BRIGADE' role='PackagedPOLSupplyProvider'  />
         <facet echelon_of_support='BRIGADE' role='SparePartsProvider'  />
         <facet echelon_of_support='BRIGADE' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='2-BDE.1-AD.ARMY.MIL' sca_echelon_of_support='BRIGADE'  />
+        <facet sca_echelon_of_support='BRIGADE' sca_supported_org='2-BDE.1-AD.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -15174,7 +15174,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -15182,13 +15182,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -15291,15 +15291,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -15324,6 +15315,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -15746,7 +15746,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -15754,13 +15754,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -15863,15 +15863,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -15896,6 +15887,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -16319,7 +16319,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -16327,13 +16327,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -16436,15 +16436,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -16469,6 +16460,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -16890,7 +16890,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -16898,13 +16898,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -17007,15 +17007,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -17040,6 +17031,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -17460,7 +17460,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -17468,13 +17468,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -17577,15 +17577,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -17610,6 +17601,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -18030,7 +18030,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -18038,13 +18038,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -18147,15 +18147,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -18180,6 +18171,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -18311,8 +18311,8 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='SparePartsProvider'  />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -18602,7 +18602,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -18610,13 +18610,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -18719,15 +18719,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -18752,6 +18743,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -18885,7 +18885,7 @@
         <facet note='Add' echelon_of_support='DIVISION' role='FuelSupplyProvider'  />
         <facet note='Add' echelon_of_support='DIVISION' role='PackagedPOLSupplyProvider'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SubsistenceSupplyProvider'  />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -19175,7 +19175,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -19183,13 +19183,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -19292,15 +19292,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -19325,6 +19316,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -19456,7 +19456,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='AmmunitionProvider'  />
-        <facet sca_supported_org='16-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='16-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -19746,7 +19746,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -19754,13 +19754,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -19863,15 +19863,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -19896,6 +19887,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -20027,8 +20027,8 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='DIVISION' role='SparePartsProvider'  />
-        <facet sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
-        <facet sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='CORPS-REAR.5-CORPS.ARMY.MIL'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='CORPS-ARTY.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -20318,7 +20318,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -20326,13 +20326,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -20435,15 +20435,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -20468,6 +20459,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -20890,7 +20890,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -20898,13 +20898,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -21007,15 +21007,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -21040,6 +21031,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -21171,7 +21171,7 @@
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
         <facet note='Add' echelon_of_support='DIVISION' role='SparePartsProvider'  />
-        <facet sca_supported_org='21-TSC-HQ.ARMY.MIL' sca_echelon_of_support='DIVISION'  />
+        <facet sca_echelon_of_support='DIVISION' sca_supported_org='21-TSC-HQ.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -21461,7 +21461,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -21469,13 +21469,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -21578,15 +21578,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -21611,6 +21602,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -21745,7 +21745,7 @@
         <facet has_physical_assets='T'  />
         <facet has_equipment_assets='T'  />
         <facet has_personnel_assets='T'  />
-        <facet sca_supported_org='5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -22035,7 +22035,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -22043,13 +22043,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -22152,15 +22152,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -22185,6 +22176,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -22607,7 +22607,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -22615,13 +22615,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -22724,15 +22724,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -22757,6 +22748,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -22889,7 +22889,7 @@
         <facet has_personnel_assets='T'  />
         <facet echelon_of_support='CORPS' role='FuelSupplyProvider'  />
         <facet echelon_of_support='CORPS' role='PackagedPOLSupplyProvider'  />
-        <facet sca_supported_org='7-CSG.5-CORPS.ARMY.MIL' sca_echelon_of_support='CORPS'  />
+        <facet sca_echelon_of_support='CORPS' sca_supported_org='7-CSG.5-CORPS.ARMY.MIL'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -23179,7 +23179,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -23187,13 +23187,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -23296,15 +23296,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -23329,6 +23320,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -23457,7 +23457,7 @@
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .lt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -24072,7 +24072,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -24080,13 +24080,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -24189,15 +24189,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -24222,6 +24213,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -24953,7 +24953,7 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,PackagedPOL,Consumable,BulkPOL,Subsistence,MaintainInventory,StrategicTransportation)'
           class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
@@ -24961,13 +24961,13 @@
             Ammunition
           </argument>
           <argument>
-            BulkPOL
-          </argument>
-          <argument>
             PackagedPOL
           </argument>
           <argument>
             Consumable
+          </argument>
+          <argument>
+            BulkPOL
           </argument>
           <argument>
             Subsistence
@@ -25070,15 +25070,6 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
           name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
           class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
           priority='COMPONENT'
@@ -25103,6 +25094,15 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
           </argument>
         </component>
         <component
@@ -25231,7 +25231,7 @@
         <facet note='Remove' echelon_of_support='JOINT' role='ConstructionSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SparePartsProvider' mechanism='TerminalInventoryManager'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='SubsistenceSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -25858,7 +25858,7 @@
         <facet echelon_group='Conus'  />
         <facet echelon_of_support='JOINT' role='FuelSupplyProvider' mechanism='TerminalInventoryManager'  />
         <facet echelon_of_support='JOINT' role='PackagedPOLSupplyProvider' mechanism='TerminalInventoryManager'  />
-        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -26178,7 +26178,7 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Conus'  />
         <facet note='C .gt. 30' echelon_of_support='JOINT' role='AmmunitionProvider' mechanism='TerminalAmmunitionPacker'  />
-        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
@@ -26448,6 +26448,15 @@
           class='org.cougaar.logistics.plugin.trans.AmmoProjectionExpanderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.trans.Level2TranslatorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.trans.Level2TranslatorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
+          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.generic.GenericTablePlugin(IOC_allocation_rules.xml)'
@@ -26848,7 +26857,7 @@
         <facet echelon='JOINT'  />
         <facet echelon_group='Transcom'  />
         <facet echelon_of_support='JOINT' role='StrategicTransportationProvider' mechanism='StubTransportationProvider'  />
-        <facet sca_supported_org='OSD.GOV' sca_echelon_of_support='JOINT'  />
+        <facet sca_echelon_of_support='JOINT' sca_supported_org='OSD.GOV'  />
         <component
           name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
           class='org.cougaar.core.servlet.SimpleServletComponent'
