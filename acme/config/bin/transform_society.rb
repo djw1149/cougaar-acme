@@ -10,9 +10,6 @@ $:.unshift dir2 if File.exist?(dir2)
 
 
 require 'cougaar/scripting'
-require 'cougaar/society_builder'
-require 'cougaar/society_model'
-require 'cougaar/society_rule_engine'
 require 'getoptlong'
 
 opts = GetoptLong.new( [ '--input',	'-i',		GetoptLong::REQUIRED_ARGUMENT],

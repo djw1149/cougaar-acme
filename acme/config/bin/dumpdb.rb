@@ -199,10 +199,10 @@ end
 
 
 if $0 == __FILE__
-  host = "u051"
+  host = "u173"
   username = "society_config"
   password = "s0c0nfig"
-  database = "CSMART102"
+  database = "csmart102"
 
 	experiment = []
   #experiment << "RC102A-1AD-TRANS"

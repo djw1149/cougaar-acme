@@ -7,8 +7,7 @@ dir2 = ( ( path + ['acme_service', 'src', 'redist'] ).join("/") ) unless File.ex
 $:.unshift dir1 if File.exist?(dir1)
 $:.unshift dir2 if File.exist?(dir2)
 
-require 'cougaar/society_builder'
-require 'cougaar/society_model'
+require 'cougaar/scripting'
 require 'getoptlong'
 
 opts = GetoptLong.new( [ '--input',	'-i',		GetoptLong::REQUIRED_ARGUMENT],
