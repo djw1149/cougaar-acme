@@ -45,11 +45,13 @@ module Cougaar; module Actions
       @run.society.each_host { |host|
         case (host.get_facet(:host_type))
           when "router":
-            subnet = netModel.get_subnet( host.get_facet(:subnet) )
+            subnet = netModel.subnet[ host.get_facet(:subnet) ]
 
             out.puts("  <host name='#{host.name}' host_type='#{host.get_facet(:host_type)}'>") 
-            subnet.k_links.each_value { |k_link|
-              out.puts "    " + @run.comms.new_message(host).set_body("command[net]info(#{k_link.interface})").send().body
+            subnet.klink.each_value { |k_link|
+              info = @run.comms.new_message(host).set_body("command[net]info(#{k_link.interface})").send(true)
+              out.puts "    #{info.body}"
+
             }
             out.puts("  </host>")
         end
