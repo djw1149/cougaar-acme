@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<society name='layout'
+  xmlns:xsi='http:/www.w3.org/2001/XMLSchema-instance'
+  xsi:noNamespaceSchemaLocation='http:/www.cougaar.org/2003/society.xsd'>
+  
+  <host name='HOST1'>
+    <facet enclave='EnclaveA'/>
+    <node name='NodeA'>
+      <facet role="NameServer"/>
+      <agent name='AgentA'/>
+    </node>
+    <node name='NodeB'>
+      <agent name='AgentB'/>
+    </node>
+    <node name='NodeC'>
+      <agent name='AgentC'/>
+    </node>
+    <node name='NodeD'>
+    </node>
+  </host>
+</society>

@@ -1,0 +1,10 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_cougaar_config
+version: 1.0
+autoload: true
+require_path: acme_cougaar_config/cougaar_config
+startup_module: ACME::Plugins::CougaarConfig
+properties_path: properties.yaml
+start_dependencies: 
+  acme_host_communications: "*"
+  raa_webrick: "*"

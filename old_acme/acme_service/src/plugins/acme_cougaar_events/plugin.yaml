@@ -1,0 +1,8 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_cougaar_events
+version: 1.0
+autoload: true
+require_path: acme_cougaar_events/events
+startup_module: ACME::Plugins::Events
+start_dependencies: 
+  acme_host_communications: "*"

@@ -1,0 +1,88 @@
+ACME Service Overview
+---------------------
+
+The ACME Service executes within host computers that need to be controlled and tested by and ACME scripts.  
+The ACME Service is a plugin-based architecture that is built upon an open-source platform developed by the 
+Ruby community named 'FreeBASE'.  The ACME Service is extensible with new capabilities through the creation 
+of plugins that conform to the FreeBASE architecture.
+  
+The plugins that come standard with the ACME Service include  TIC specific, host specific and cougaar 
+specific.  The host specific plugins include host stressors (CPU, NIC, power),  host control (reboot, 
+rexec, kickstart) and the core communications plugin (acme_host_jabber_service).  The Jabber Service plugin 
+provides connection to the Jabber IM server and presents a command/response API through instant messaging.  
+The basic message structure that is sent to the JabberService plugin follows this form:
+
+command[name]params 
+
+where name is the name of the command to execute and the (optional) params are parameters passed to the 
+command.  The JabberService plugin presents a FreeBASE slot-API for other ACME Service plugins to leverage 
+and publish accessible commands.  
+
+
+ACME Service Installation and Configuration
+-------------------------------------------
+
+To begin to use the ACME Service, proceed to download the ACME Service archive (tar.gz for unix systems, 
+.zip for window systems).   Uncompressing this file creates the following directory structure:
+./acme_service
+  ./bin <- Location of installer scripts
+  ./regress <- Test scripts
+  ./src <- Ruby scripts for the ACME Service
+    ./plugins <- ACME Service plugins
+      ./acme_... <- Plugin directory
+    ./redist <- Redistributed libraries required for running the ACME Service
+
+The ACME Service needs to be installed and running on every host (computer) that will be part of the  
+COUGAAR society to be managed through ACME.   To install the ACME Service you are required to have a valid 
+installation of Ruby (http://www.ruby-lang.org).  On Win32 system you can download a pre-built version of 
+Ruby from (http://rubyinstaller.sourceforge.net) .   To install and build Ruby on Linux systems follow the 
+directions laid out at the Ruby language home page.   All of the third-party extensions needed to run the 
+ACME Service are contained in the redist directory (under 'src').  The instructions to install the ACME 
+Service follow.
+
+Unpack the distribution archive:
+
+Unix-> tar -xvf acme_service.tar.gz
+Win32-> unzip acme_service.zip
+
+Move to the bin directory
+
+Unix-> cd acme_service/bin
+Win32-> cd acme_service\bin
+
+If you want to obtain installation help,  try the following command:
+
+> ruby install.rb --help
+Installs the ACME Service.
+Usage:
+        install.rb [[-u] [-n] [-t <dir>] [-j <jabberhost>] [-a <account>]
+                         [-p <pwd>] [-v <jvm path>] [-l <linux props path>] -h]
+        -u --uninstall          Uninstalls the package
+        -t --target             Installs the software at an absolute location, EG:
+                                install.rb -t /usr/local/acme
+                                will put the software directly underneath /usr/local/acme
+        -j --jabber-host        The jabber host (default 'acme').
+        -a --jabber-account     The jabber account (default <hostname>).
+        -p --jabber-password    The jabber password (default <hostname>_password).
+        -v --jvm-path           The JVM path to start nodes with.
+                                (default '/usr/java/j2sdk1.4.1/bin/java')
+        -l --linux-props        The Linux.props path to start the node with.
+                                (default '/mnt/shared/acme_config/Linux.props')
+        -n --noop               Don't actually do anything; just print out what it
+                                would do.
+
+The installation options include the target directory, jabber configuration and jvm/linux properties path.  
+The defaults were chosen because of the configuration at the DARPA TIC. To change them just specify your 
+desired configuration.
+
+Install the ACME Service
+
+Unix-> sudo ruby install.rb 
+password:
+Win32-> ruby install.rb
+...lots of messages about copying files...
+
+Linux note:  The default directory (if you do not provide on with âtarget)  is /usr/local/acme.  If you 
+install in this directory, you will need to do so as root (which is the reason the install command is 
+prefaced with sudo).  
+

@@ -1,0 +1,11 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_cougaar_xmlnode
+version: 1.0
+autoload: true
+require_path: acme_cougaar_xmlnode/xmlnode
+startup_module: ACME::Plugins::XMLCougaarNode
+properties_path: properties.yaml
+start_dependencies: 
+  acme_host_communications: "*"
+  raa_webrick: "*"
+  acme_cougaar_config: "*"

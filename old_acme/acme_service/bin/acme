@@ -1,0 +1,123 @@
+#!/bin/bash
+# init file for ACME
+#
+# description: Ultra*Log Automated Configuration Management Environment (ACME) Daemon
+# chkconfig: 2345 99 10
+#
+# source function library... run chkconfig --add acme to install
+#
+# <copyright>  
+# Copyright 2001-2004 InfoEther LLC  
+# Copyright 2001-2004 BBN Technologies
+#
+# under sponsorship of the Defense Advanced Research Projects  
+# Agency (DARPA).  
+#  
+# You can redistribute this software and/or modify it under the 
+# terms of the Cougaar Open Source License as published on the 
+# Cougaar Open Source Website (www.cougaar.org <www.cougaar.org> ).   
+#  
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR 
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+# </copyright>  
+
+. /etc/init.d/functions
+
+start() {
+  ps -ef > /tmp/$$  
+  if grep "acme\.rb" /tmp/$$> /dev/null ; then
+    echo "Acme already running.  Use service acme stop first."
+    RETVAL=1
+  else
+    cd /usr/local/acme
+    # su -l acme_user #...defaults to root!
+    #/usr/bin/ruby acme.rb &> run.log &
+
+    # restart if it dies
+    ./acme.sh &>/dev/null &
+
+    echo "$!" > acme-sh.pid
+
+	RETVAL=0
+	echo
+	echo_success
+  fi
+  rm /tmp/$$
+  return $RETVAL
+}
+
+stop() {
+  cd /usr/local/acme
+  if [ -f acme-sh.pid ] ; then
+    local line p pid=
+    read line < acme-sh.pid
+    for p in $line ; do
+      [ -z "${p//[0-9]/}" -a -d /proc/$p ] &&
+      pid="$pid $p"
+    done
+    if [ -n "${pid-:}" ] ; then
+      kill -9 $pid
+      rm -rf acme-sh.pid
+    fi
+  fi  
+  if [ -f acme.pid ] ; then
+    local line p pid=
+    read line < acme.pid
+    for p in $line ; do
+      [ -z "${p//[0-9]/}" -a -d /proc/$p ] &&
+      pid="$pid $p"
+    done
+    if [ -n "${pid-:}" ] ; then
+      kill -9 $pid
+      rm -rf acme.pid
+    fi
+  fi  
+  
+	RETVAL=0
+	echo_success
+	return $RETVAL
+}
+
+reload(){
+	stop
+	start
+}
+
+restart(){
+	stop
+        sleep 2
+	start
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+        ;;
+  reload)
+	reload
+        ;;
+  status)
+        status snmpd
+	RETVAL=$?
+        ;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|reload}"
+	RETVAL=1
+esac
+
+exit $RETVAL

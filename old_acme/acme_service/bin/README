@@ -1,0 +1,13 @@
+File: install.rb
+Desc:  Install the acme service.  
+For help: 
+ruby install.rb --help
+
+File: acme
+Desc: init.d script for RedHat linux.  
+Note: You need to edit the script and replace the hard coded 
+      default dir (/usr/local/acme) if you target install acme
+      in another directory (ruby install.rb -t <dir>).
+To Install:
+cp acme /etc/init.d/acme
+chkconfig --add acme

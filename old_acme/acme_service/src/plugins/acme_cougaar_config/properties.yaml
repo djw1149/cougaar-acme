@@ -1,0 +1,8 @@
+#### Properties: acme_cougaar_config - Version: 1.0
+properties: ~
+"|": 
+  - cougaar_install_path: ~
+  - jvm_path: ~
+  - cmd_prefix: ~
+  - cmd_suffix: ~
+  - cmd_user: ~

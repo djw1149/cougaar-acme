@@ -1,0 +1,8 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: acme_host_reboot
+version: 1.0
+autoload: true
+require_path: acme_host_reboot/reboot
+startup_module: ACME::Plugins::Reboot
+start_dependencies: 
+  acme_host_communications: "*"

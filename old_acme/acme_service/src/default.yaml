@@ -1,0 +1,15 @@
+#### Properties: Core configuration file - Version: 1.0
+properties: ~
+"|":
+  - config: ''
+    "|":
+      - log_file: "./acme.log"
+      - log_level: 2
+      - log_name: ACME
+      - plugin_path: "./plugins"
+      - product_name: "Cougaar Automated Configuration Management Environment (ACME)"
+  - version: ''
+    "|":
+      - major: 1
+      - minor: 1
+      - release: 0

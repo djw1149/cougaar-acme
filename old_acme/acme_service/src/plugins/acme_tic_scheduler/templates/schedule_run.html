@@ -1,0 +1,36 @@
+<html>
+  <HEAD>
+    <title>ACME Experiment En-queue on <!--Fragment key="hostname"--></title>
+    <META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+    <LINK href="/schedule_images/scheduler.css" type=text/css rel=stylesheet>
+  </HEAD>
+  <body>
+    <img src="/schedule_images/acme_top.jpg"><br>
+    <!--Fragment key="footer"-->
+    <div class="description">
+    Please select the priority of your experiment, then either choose an experiment 
+    definition file to upload or enter the text of the experiment definition in the 
+    text area below.  After this, select the Schedule button to schedule the experiment
+    to run.
+    </div>
+    <form action="/schedule_run" enctype="multipart/form-data" method="post">
+      <p>
+        <div class="header">Experiment Priority:</div>
+        <input type=radio name="priority" value="1">High
+        <br><input type=radio name="priority" checked value="2">Medium
+        <br><input type=radio name="priority" value="3">Low
+      </p>
+      <p>
+        <div class="header">Specify an experiment definition file:</div>
+        <input type="file" name="definition_file">
+      </p>
+      <p>
+        <div class="header">Enter experiment definition text:</div>
+        <TEXTAREA ROWS=20 COLS=80 NAME="definition_text"></TEXTAREA>
+      </p>
+      <p>
+        <input type="submit" value="Schedule">
+      </p>
+    </form>
+  </body>
+</html>
