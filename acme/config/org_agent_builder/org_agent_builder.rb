@@ -227,7 +227,7 @@ class SocietyGenerator
     puts "If society_member_file is specified, just the orgs in OrgData/society_member_file.csv are included in the society."
     puts "If output file is specified society.xml is written there, otherwise society.xml is written to stdout."
     puts "If full-org-id is set false, then the orig-org-id is used, otherwise the full-org-id is used."
-    puts "Usage:\n\t#$0 [-m <society member file>] [-s <society file>] [-h]"
+    puts "Usage:\n\t#$0 [-d <org-data-directory>] [-m <society member file>] [-s <society file>] [-h]"
     puts "\t-d --org-data-directory..  The OrgData directory (org_data)."
     puts "\t-m --society-member......  The SocietyMember file (.csv)."
     puts "\t-s --society.............  The society file (.xml)."
