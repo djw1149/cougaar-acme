@@ -1,0 +1,6 @@
+society.each_node do |node|
+    
+    # Preferred log file name
+    node.override_parameter("-Dorg.cougaar.core.logging.log4j.category.org.cougaar.core.wp","\"DETAIL#org.cougaar.util.log.log4j.DetailPriority\"")
+
+end
