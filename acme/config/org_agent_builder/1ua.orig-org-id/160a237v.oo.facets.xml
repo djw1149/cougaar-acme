@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<society name="160a237v.oo.facets" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="society.xsd">
+<society name="160a237v.oo.facets" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
   <host name="localhost">
     <node name="localnode">
       <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-MCG1">
@@ -17,6 +17,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-MCG"/>
         <facet org_code="AAA"/>
+        <facet subordinate_org_id="UA-MCG1-FCS-ICV-0"/>
         <facet subordinate_org_id="UA-MCG2"/>
         <facet subordinate_org_id="UA-TACP"/>
         <facet subordinate_org_id="UA-MED-SPT"/>
@@ -24,8 +25,8 @@
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-MCG1"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-MCG1_FCS-ICV_0">
-        <facet org_id="UA-MCG1_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-MCG1-FCS-ICV-0">
+        <facet org_id="UA-MCG1-FCS-ICV-0"/>
         <facet orig_org_id="UA-MCG1"/>
         <facet superior_org_id="UA-MCG1"/>
         <facet owner="UA-MCG1"/>
@@ -60,9 +61,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-MCG"/>
         <facet org_code="AAB"/>
+        <facet subordinate_org_id="UA-MCG2-FCS-ICV-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-MCG2_FCS-ICV_0">
-        <facet org_id="UA-MCG2_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-MCG2-FCS-ICV-0">
+        <facet org_id="UA-MCG2-FCS-ICV-0"/>
         <facet orig_org_id="UA-MCG2"/>
         <facet superior_org_id="UA-MCG2"/>
         <facet owner="UA-MCG2"/>
@@ -96,9 +98,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-TACP"/>
         <facet org_code="AAC"/>
+        <facet subordinate_org_id="UA-TACP-FCS-ICV-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-TACP_FCS-ICV_0">
-        <facet org_id="UA-TACP_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-TACP-FCS-ICV-0">
+        <facet org_id="UA-TACP-FCS-ICV-0"/>
         <facet orig_org_id="UA-TACP"/>
         <facet superior_org_id="UA-TACP"/>
         <facet owner="UA-TACP"/>
@@ -511,9 +514,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-TACP"/>
         <facet org_code="ACAB"/>
+        <facet subordinate_org_id="1-CA-BN-TACP-FCS-ICV-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-TACP_FCS-ICV_0">
-        <facet org_id="1-CA-BN-TACP_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-TACP-FCS-ICV-0">
+        <facet org_id="1-CA-BN-TACP-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-TACP"/>
         <facet superior_org_id="1-CA-BN-TACP"/>
         <facet owner="1-CA-BN-TACP"/>
@@ -603,9 +607,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet owner="1-CA-BN-SUPPORT-SECTION"/>
@@ -624,8 +634,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_1">
-        <facet org_id="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1">
+        <facet org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1"/>
         <facet orig_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet owner="1-CA-BN-SUPPORT-SECTION"/>
@@ -644,8 +654,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_2">
-        <facet org_id="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2">
+        <facet org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2"/>
         <facet orig_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet owner="1-CA-BN-SUPPORT-SECTION"/>
@@ -664,8 +674,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_3">
-        <facet org_id="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3">
+        <facet org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3"/>
         <facet orig_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet owner="1-CA-BN-SUPPORT-SECTION"/>
@@ -684,8 +694,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_4">
-        <facet org_id="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_4"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4">
+        <facet org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4"/>
         <facet orig_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet owner="1-CA-BN-SUPPORT-SECTION"/>
@@ -704,8 +714,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ACAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_5">
-        <facet org_id="1-CA-BN-SUPPORT-SECTION_FCS-ARV-A_5"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5">
+        <facet org_id="1-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5"/>
         <facet orig_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="1-CA-BN-SUPPORT-SECTION"/>
         <facet owner="1-CA-BN-SUPPORT-SECTION"/>
@@ -778,9 +788,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBB"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_0">
-        <facet org_id="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0">
+        <facet org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-1-PLT"/>
@@ -799,8 +814,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_1">
-        <facet org_id="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1">
+        <facet org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-1-PLT"/>
@@ -819,8 +834,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_2">
-        <facet org_id="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2">
+        <facet org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-1-PLT"/>
@@ -839,8 +854,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_3">
-        <facet org_id="1-CA-BN-INF-CO-A-1-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3">
+        <facet org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-1-PLT"/>
@@ -859,8 +874,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-INF-CO-A-1-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-1-PLT"/>
@@ -896,9 +911,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBC"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_0">
-        <facet org_id="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0">
+        <facet org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-2-PLT"/>
@@ -917,8 +937,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_1">
-        <facet org_id="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1">
+        <facet org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-2-PLT"/>
@@ -937,8 +957,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_2">
-        <facet org_id="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2">
+        <facet org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-2-PLT"/>
@@ -957,8 +977,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_3">
-        <facet org_id="1-CA-BN-INF-CO-A-2-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3">
+        <facet org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-2-PLT"/>
@@ -977,8 +997,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-INF-CO-A-2-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-2-PLT"/>
@@ -1014,9 +1034,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBD"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_0">
-        <facet org_id="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0">
+        <facet org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-3-PLT"/>
@@ -1035,8 +1060,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_1">
-        <facet org_id="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1">
+        <facet org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-3-PLT"/>
@@ -1055,8 +1080,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_2">
-        <facet org_id="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2">
+        <facet org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-3-PLT"/>
@@ -1075,8 +1100,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_3">
-        <facet org_id="1-CA-BN-INF-CO-A-3-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3">
+        <facet org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-3-PLT"/>
@@ -1095,8 +1120,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-INF-CO-A-3-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-A-3-PLT"/>
@@ -1151,9 +1176,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCB"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_0">
-        <facet org_id="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0">
+        <facet org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-1-PLT"/>
@@ -1172,8 +1202,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_1">
-        <facet org_id="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1">
+        <facet org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-1-PLT"/>
@@ -1192,8 +1222,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_2">
-        <facet org_id="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2">
+        <facet org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-1-PLT"/>
@@ -1212,8 +1242,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_3">
-        <facet org_id="1-CA-BN-INF-CO-B-1-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3">
+        <facet org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-1-PLT"/>
@@ -1232,8 +1262,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-INF-CO-B-1-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-1-PLT"/>
@@ -1269,9 +1299,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCC"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_0">
-        <facet org_id="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0">
+        <facet org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-2-PLT"/>
@@ -1290,8 +1325,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_1">
-        <facet org_id="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1">
+        <facet org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-2-PLT"/>
@@ -1310,8 +1345,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_2">
-        <facet org_id="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2">
+        <facet org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-2-PLT"/>
@@ -1330,8 +1365,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_3">
-        <facet org_id="1-CA-BN-INF-CO-B-2-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3">
+        <facet org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-2-PLT"/>
@@ -1350,8 +1385,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-INF-CO-B-2-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-2-PLT"/>
@@ -1387,9 +1422,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCD"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_0">
-        <facet org_id="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0">
+        <facet org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-3-PLT"/>
@@ -1408,8 +1448,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_1">
-        <facet org_id="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1">
+        <facet org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-3-PLT"/>
@@ -1428,8 +1468,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_2">
-        <facet org_id="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2">
+        <facet org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-3-PLT"/>
@@ -1448,8 +1488,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_3">
-        <facet org_id="1-CA-BN-INF-CO-B-3-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3">
+        <facet org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-3-PLT"/>
@@ -1468,8 +1508,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ACCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT_FCS-ARV-A_0">
-        <facet org_id="1-CA-BN-INF-CO-B-3-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0">
+        <facet org_id="1-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-INF-CO-B-3-PLT"/>
@@ -1524,9 +1564,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDB"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_0">
-        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0">
+        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-1-PLT"/>
@@ -1545,8 +1589,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_1">
-        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1">
+        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-1-PLT"/>
@@ -1565,8 +1609,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_2">
-        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2">
+        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-1-PLT"/>
@@ -1585,8 +1629,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-1-PLT"/>
@@ -1622,9 +1666,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDC"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_0">
-        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0">
+        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-2-PLT"/>
@@ -1643,8 +1691,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_1">
-        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1">
+        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-2-PLT"/>
@@ -1663,8 +1711,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_2">
-        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2">
+        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-2-PLT"/>
@@ -1683,8 +1731,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-2-PLT"/>
@@ -1720,9 +1768,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDD"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_0">
-        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0">
+        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-3-PLT"/>
@@ -1741,8 +1793,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_1">
-        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1">
+        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-3-PLT"/>
@@ -1761,8 +1813,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_2">
-        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2">
+        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-3-PLT"/>
@@ -1781,8 +1833,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-A-3-PLT"/>
@@ -1837,9 +1889,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEB"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_0">
-        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0">
+        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-1-PLT"/>
@@ -1858,8 +1914,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_1">
-        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1">
+        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-1-PLT"/>
@@ -1878,8 +1934,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_2">
-        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2">
+        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-1-PLT"/>
@@ -1898,8 +1954,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-1-PLT"/>
@@ -1935,9 +1991,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEC"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_0">
-        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0">
+        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-2-PLT"/>
@@ -1956,8 +2016,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_1">
-        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1">
+        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-2-PLT"/>
@@ -1976,8 +2036,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_2">
-        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2">
+        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-2-PLT"/>
@@ -1996,8 +2056,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-2-PLT"/>
@@ -2033,9 +2093,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACED"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_0">
-        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0">
+        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-3-PLT"/>
@@ -2054,8 +2118,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_1">
-        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1">
+        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-3-PLT"/>
@@ -2074,8 +2138,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_2">
-        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2">
+        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-3-PLT"/>
@@ -2094,8 +2158,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ACED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="1-CA-BN-MCS-CO-B-3-PLT"/>
@@ -2150,9 +2214,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ACFB"/>
+        <facet subordinate_org_id="1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-1-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-RECON-DET-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-RECON-DET-1-PLT"/>
         <facet superior_org_id="1-CA-BN-RECON-DET-1-PLT"/>
         <facet owner="1-CA-BN-RECON-DET-1-PLT"/>
@@ -2188,9 +2253,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ACFC"/>
+        <facet subordinate_org_id="1-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-2-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-RECON-DET-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-RECON-DET-2-PLT"/>
         <facet superior_org_id="1-CA-BN-RECON-DET-2-PLT"/>
         <facet owner="1-CA-BN-RECON-DET-2-PLT"/>
@@ -2226,9 +2292,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ACFD"/>
+        <facet subordinate_org_id="1-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-3-PLT_FCS-ARV-R_0">
-        <facet org_id="1-CA-BN-RECON-DET-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0">
+        <facet org_id="1-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="1-CA-BN-RECON-DET-3-PLT"/>
         <facet superior_org_id="1-CA-BN-RECON-DET-3-PLT"/>
         <facet owner="1-CA-BN-RECON-DET-3-PLT"/>
@@ -2282,9 +2349,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGB"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_0">
-        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0">
+        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -2303,8 +2374,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_1">
-        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1">
+        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -2323,8 +2394,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_2">
-        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2">
+        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -2343,8 +2414,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_3">
-        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3">
+        <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -2380,9 +2451,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGC"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_0">
-        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0">
+        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -2401,8 +2476,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_1">
-        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1">
+        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -2421,8 +2496,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_2">
-        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2">
+        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -2441,8 +2516,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ACGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_3">
-        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3">
+        <facet org_id="1-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3"/>
         <facet orig_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="1-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -2499,9 +2574,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-TACP"/>
         <facet org_code="ADAB"/>
+        <facet subordinate_org_id="2-CA-BN-TACP-FCS-ICV-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-TACP_FCS-ICV_0">
-        <facet org_id="2-CA-BN-TACP_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-TACP-FCS-ICV-0">
+        <facet org_id="2-CA-BN-TACP-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-TACP"/>
         <facet superior_org_id="2-CA-BN-TACP"/>
         <facet owner="2-CA-BN-TACP"/>
@@ -2591,9 +2667,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet owner="2-CA-BN-SUPPORT-SECTION"/>
@@ -2612,8 +2694,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_1">
-        <facet org_id="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1">
+        <facet org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1"/>
         <facet orig_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet owner="2-CA-BN-SUPPORT-SECTION"/>
@@ -2632,8 +2714,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_2">
-        <facet org_id="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2">
+        <facet org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2"/>
         <facet orig_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet owner="2-CA-BN-SUPPORT-SECTION"/>
@@ -2652,8 +2734,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_3">
-        <facet org_id="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3">
+        <facet org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3"/>
         <facet orig_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet owner="2-CA-BN-SUPPORT-SECTION"/>
@@ -2672,8 +2754,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_4">
-        <facet org_id="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_4"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4">
+        <facet org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4"/>
         <facet orig_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet owner="2-CA-BN-SUPPORT-SECTION"/>
@@ -2692,8 +2774,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="ADAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_5">
-        <facet org_id="2-CA-BN-SUPPORT-SECTION_FCS-ARV-A_5"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5">
+        <facet org_id="2-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5"/>
         <facet orig_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="2-CA-BN-SUPPORT-SECTION"/>
         <facet owner="2-CA-BN-SUPPORT-SECTION"/>
@@ -2766,9 +2848,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBB"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_0">
-        <facet org_id="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0">
+        <facet org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-1-PLT"/>
@@ -2787,8 +2874,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_1">
-        <facet org_id="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1">
+        <facet org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-1-PLT"/>
@@ -2807,8 +2894,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_2">
-        <facet org_id="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2">
+        <facet org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-1-PLT"/>
@@ -2827,8 +2914,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_3">
-        <facet org_id="2-CA-BN-INF-CO-A-1-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3">
+        <facet org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-1-PLT"/>
@@ -2847,8 +2934,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-INF-CO-A-1-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-1-PLT"/>
@@ -2884,9 +2971,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBC"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_0">
-        <facet org_id="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0">
+        <facet org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-2-PLT"/>
@@ -2905,8 +2997,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_1">
-        <facet org_id="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1">
+        <facet org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-2-PLT"/>
@@ -2925,8 +3017,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_2">
-        <facet org_id="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2">
+        <facet org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-2-PLT"/>
@@ -2945,8 +3037,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_3">
-        <facet org_id="2-CA-BN-INF-CO-A-2-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3">
+        <facet org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-2-PLT"/>
@@ -2965,8 +3057,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-INF-CO-A-2-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-2-PLT"/>
@@ -3002,9 +3094,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBD"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_0">
-        <facet org_id="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0">
+        <facet org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-3-PLT"/>
@@ -3023,8 +3120,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_1">
-        <facet org_id="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1">
+        <facet org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-3-PLT"/>
@@ -3043,8 +3140,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_2">
-        <facet org_id="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2">
+        <facet org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-3-PLT"/>
@@ -3063,8 +3160,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_3">
-        <facet org_id="2-CA-BN-INF-CO-A-3-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3">
+        <facet org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-3-PLT"/>
@@ -3083,8 +3180,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-INF-CO-A-3-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-A-3-PLT"/>
@@ -3139,9 +3236,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCB"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_0">
-        <facet org_id="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0">
+        <facet org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-1-PLT"/>
@@ -3160,8 +3262,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_1">
-        <facet org_id="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1">
+        <facet org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-1-PLT"/>
@@ -3180,8 +3282,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_2">
-        <facet org_id="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2">
+        <facet org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-1-PLT"/>
@@ -3200,8 +3302,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_3">
-        <facet org_id="2-CA-BN-INF-CO-B-1-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3">
+        <facet org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-1-PLT"/>
@@ -3220,8 +3322,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-INF-CO-B-1-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-1-PLT"/>
@@ -3257,9 +3359,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCC"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_0">
-        <facet org_id="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0">
+        <facet org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-2-PLT"/>
@@ -3278,8 +3385,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_1">
-        <facet org_id="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1">
+        <facet org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-2-PLT"/>
@@ -3298,8 +3405,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_2">
-        <facet org_id="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2">
+        <facet org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-2-PLT"/>
@@ -3318,8 +3425,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_3">
-        <facet org_id="2-CA-BN-INF-CO-B-2-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3">
+        <facet org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-2-PLT"/>
@@ -3338,8 +3445,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-INF-CO-B-2-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-2-PLT"/>
@@ -3375,9 +3482,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCD"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_0">
-        <facet org_id="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0">
+        <facet org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-3-PLT"/>
@@ -3396,8 +3508,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_1">
-        <facet org_id="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1">
+        <facet org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-3-PLT"/>
@@ -3416,8 +3528,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_2">
-        <facet org_id="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2">
+        <facet org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-3-PLT"/>
@@ -3436,8 +3548,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_3">
-        <facet org_id="2-CA-BN-INF-CO-B-3-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3">
+        <facet org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-3-PLT"/>
@@ -3456,8 +3568,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="ADCD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT_FCS-ARV-A_0">
-        <facet org_id="2-CA-BN-INF-CO-B-3-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0">
+        <facet org_id="2-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-INF-CO-B-3-PLT"/>
@@ -3512,9 +3624,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDB"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_0">
-        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0">
+        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-1-PLT"/>
@@ -3533,8 +3649,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_1">
-        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1">
+        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-1-PLT"/>
@@ -3553,8 +3669,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_2">
-        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2">
+        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-1-PLT"/>
@@ -3573,8 +3689,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-1-PLT"/>
@@ -3610,9 +3726,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDC"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_0">
-        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0">
+        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-2-PLT"/>
@@ -3631,8 +3751,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_1">
-        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1">
+        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-2-PLT"/>
@@ -3651,8 +3771,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_2">
-        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2">
+        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-2-PLT"/>
@@ -3671,8 +3791,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-2-PLT"/>
@@ -3708,9 +3828,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDD"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_0">
-        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0">
+        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-3-PLT"/>
@@ -3729,8 +3853,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_1">
-        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1">
+        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-3-PLT"/>
@@ -3749,8 +3873,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_2">
-        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2">
+        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-3-PLT"/>
@@ -3769,8 +3893,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-A-3-PLT"/>
@@ -3825,9 +3949,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEB"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_0">
-        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0">
+        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-1-PLT"/>
@@ -3846,8 +3974,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_1">
-        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1">
+        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-1-PLT"/>
@@ -3866,8 +3994,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_2">
-        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2">
+        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-1-PLT"/>
@@ -3886,8 +4014,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-1-PLT"/>
@@ -3923,9 +4051,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEC"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_0">
-        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0">
+        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-2-PLT"/>
@@ -3944,8 +4076,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_1">
-        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1">
+        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-2-PLT"/>
@@ -3964,8 +4096,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_2">
-        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2">
+        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-2-PLT"/>
@@ -3984,8 +4116,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-2-PLT"/>
@@ -4021,9 +4153,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADED"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_0">
-        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0">
+        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-3-PLT"/>
@@ -4042,8 +4178,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_1">
-        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1">
+        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-3-PLT"/>
@@ -4062,8 +4198,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_2">
-        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2">
+        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-3-PLT"/>
@@ -4082,8 +4218,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="ADED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="2-CA-BN-MCS-CO-B-3-PLT"/>
@@ -4138,9 +4274,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ADFB"/>
+        <facet subordinate_org_id="2-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-1-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-RECON-DET-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-RECON-DET-1-PLT"/>
         <facet superior_org_id="2-CA-BN-RECON-DET-1-PLT"/>
         <facet owner="2-CA-BN-RECON-DET-1-PLT"/>
@@ -4176,9 +4313,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ADFC"/>
+        <facet subordinate_org_id="2-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-2-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-RECON-DET-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-RECON-DET-2-PLT"/>
         <facet superior_org_id="2-CA-BN-RECON-DET-2-PLT"/>
         <facet owner="2-CA-BN-RECON-DET-2-PLT"/>
@@ -4214,9 +4352,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="ADFD"/>
+        <facet subordinate_org_id="2-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-3-PLT_FCS-ARV-R_0">
-        <facet org_id="2-CA-BN-RECON-DET-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0">
+        <facet org_id="2-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="2-CA-BN-RECON-DET-3-PLT"/>
         <facet superior_org_id="2-CA-BN-RECON-DET-3-PLT"/>
         <facet owner="2-CA-BN-RECON-DET-3-PLT"/>
@@ -4270,9 +4409,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGB"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_0">
-        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0">
+        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -4291,8 +4434,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_1">
-        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1">
+        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -4311,8 +4454,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_2">
-        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2">
+        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -4331,8 +4474,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_3">
-        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3">
+        <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -4368,9 +4511,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGC"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_0">
-        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0">
+        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -4389,8 +4536,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_1">
-        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1">
+        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -4409,8 +4556,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_2">
-        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2">
+        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -4429,8 +4576,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="ADGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_3">
-        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3">
+        <facet org_id="2-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3"/>
         <facet orig_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="2-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -4487,9 +4634,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-TACP"/>
         <facet org_code="AEAB"/>
+        <facet subordinate_org_id="3-CA-BN-TACP-FCS-ICV-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-TACP_FCS-ICV_0">
-        <facet org_id="3-CA-BN-TACP_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-TACP-FCS-ICV-0">
+        <facet org_id="3-CA-BN-TACP-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-TACP"/>
         <facet superior_org_id="3-CA-BN-TACP"/>
         <facet owner="3-CA-BN-TACP"/>
@@ -4579,9 +4727,15 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet owner="3-CA-BN-SUPPORT-SECTION"/>
@@ -4600,8 +4754,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_1">
-        <facet org_id="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1">
+        <facet org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-1"/>
         <facet orig_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet owner="3-CA-BN-SUPPORT-SECTION"/>
@@ -4620,8 +4774,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_2">
-        <facet org_id="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2">
+        <facet org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-2"/>
         <facet orig_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet owner="3-CA-BN-SUPPORT-SECTION"/>
@@ -4640,8 +4794,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_3">
-        <facet org_id="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3">
+        <facet org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-3"/>
         <facet orig_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet owner="3-CA-BN-SUPPORT-SECTION"/>
@@ -4660,8 +4814,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_4">
-        <facet org_id="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_4"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4">
+        <facet org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-4"/>
         <facet orig_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet owner="3-CA-BN-SUPPORT-SECTION"/>
@@ -4680,8 +4834,8 @@
         <facet org_type_id="CA-BN-SUPPORT-SECTION"/>
         <facet org_code="AEAD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_5">
-        <facet org_id="3-CA-BN-SUPPORT-SECTION_FCS-ARV-A_5"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5">
+        <facet org_id="3-CA-BN-SUPPORT-SECTION-FCS-ARV-A-5"/>
         <facet orig_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet superior_org_id="3-CA-BN-SUPPORT-SECTION"/>
         <facet owner="3-CA-BN-SUPPORT-SECTION"/>
@@ -4754,9 +4908,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBB"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_0">
-        <facet org_id="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0">
+        <facet org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-1-PLT"/>
@@ -4775,8 +4934,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_1">
-        <facet org_id="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1">
+        <facet org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-1-PLT"/>
@@ -4795,8 +4954,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_2">
-        <facet org_id="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2">
+        <facet org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-2"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-1-PLT"/>
@@ -4815,8 +4974,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_3">
-        <facet org_id="3-CA-BN-INF-CO-A-1-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3">
+        <facet org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ICV-3"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-1-PLT"/>
@@ -4835,8 +4994,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-INF-CO-A-1-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-INF-CO-A-1-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-1-PLT"/>
@@ -4872,9 +5031,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBC"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_0">
-        <facet org_id="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0">
+        <facet org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-2-PLT"/>
@@ -4893,8 +5057,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_1">
-        <facet org_id="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1">
+        <facet org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-1"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-2-PLT"/>
@@ -4913,8 +5077,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_2">
-        <facet org_id="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2">
+        <facet org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-2"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-2-PLT"/>
@@ -4933,8 +5097,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_3">
-        <facet org_id="3-CA-BN-INF-CO-A-2-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3">
+        <facet org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ICV-3"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-2-PLT"/>
@@ -4953,8 +5117,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-INF-CO-A-2-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-INF-CO-A-2-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-2-PLT"/>
@@ -4990,9 +5154,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBD"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_0">
-        <facet org_id="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0">
+        <facet org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-3-PLT"/>
@@ -5011,8 +5180,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_1">
-        <facet org_id="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1">
+        <facet org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-1"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-3-PLT"/>
@@ -5031,8 +5200,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_2">
-        <facet org_id="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2">
+        <facet org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-2"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-3-PLT"/>
@@ -5051,8 +5220,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_3">
-        <facet org_id="3-CA-BN-INF-CO-A-3-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3">
+        <facet org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ICV-3"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-3-PLT"/>
@@ -5071,8 +5240,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AEBD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-INF-CO-A-3-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-INF-CO-A-3-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-A-3-PLT"/>
@@ -5127,9 +5296,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECB"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_0">
-        <facet org_id="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0">
+        <facet org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-1-PLT"/>
@@ -5148,8 +5322,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_1">
-        <facet org_id="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1">
+        <facet org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-1"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-1-PLT"/>
@@ -5168,8 +5342,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_2">
-        <facet org_id="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2">
+        <facet org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-2"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-1-PLT"/>
@@ -5188,8 +5362,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_3">
-        <facet org_id="3-CA-BN-INF-CO-B-1-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3">
+        <facet org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ICV-3"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-1-PLT"/>
@@ -5208,8 +5382,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-INF-CO-B-1-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-INF-CO-B-1-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-1-PLT"/>
@@ -5245,9 +5419,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECC"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_0">
-        <facet org_id="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0">
+        <facet org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-2-PLT"/>
@@ -5266,8 +5445,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_1">
-        <facet org_id="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1">
+        <facet org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-1"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-2-PLT"/>
@@ -5286,8 +5465,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_2">
-        <facet org_id="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2">
+        <facet org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-2"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-2-PLT"/>
@@ -5306,8 +5485,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_3">
-        <facet org_id="3-CA-BN-INF-CO-B-2-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3">
+        <facet org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ICV-3"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-2-PLT"/>
@@ -5326,8 +5505,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-INF-CO-B-2-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-INF-CO-B-2-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-2-PLT"/>
@@ -5363,9 +5542,14 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECD"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_0">
-        <facet org_id="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0">
+        <facet org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-3-PLT"/>
@@ -5384,8 +5568,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_1">
-        <facet org_id="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1">
+        <facet org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-1"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-3-PLT"/>
@@ -5404,8 +5588,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_2">
-        <facet org_id="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2">
+        <facet org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-2"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-3-PLT"/>
@@ -5424,8 +5608,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_3">
-        <facet org_id="3-CA-BN-INF-CO-B-3-PLT_FCS-ICV_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3">
+        <facet org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ICV-3"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-3-PLT"/>
@@ -5444,8 +5628,8 @@
         <facet org_type_id="CA-BN-INF-PLT"/>
         <facet org_code="AECD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT_FCS-ARV-A_0">
-        <facet org_id="3-CA-BN-INF-CO-B-3-PLT_FCS-ARV-A_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0">
+        <facet org_id="3-CA-BN-INF-CO-B-3-PLT-FCS-ARV-A-0"/>
         <facet orig_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-INF-CO-B-3-PLT"/>
@@ -5500,9 +5684,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDB"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_0">
-        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0">
+        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-1-PLT"/>
@@ -5521,8 +5709,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_1">
-        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1">
+        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-1"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-1-PLT"/>
@@ -5541,8 +5729,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_2">
-        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2">
+        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-2"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-1-PLT"/>
@@ -5561,8 +5749,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-1-PLT"/>
@@ -5598,9 +5786,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDC"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_0">
-        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0">
+        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-2-PLT"/>
@@ -5619,8 +5811,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_1">
-        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1">
+        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-1"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-2-PLT"/>
@@ -5639,8 +5831,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_2">
-        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2">
+        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-MCS-2"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-2-PLT"/>
@@ -5659,8 +5851,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-MCS-CO-A-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-2-PLT"/>
@@ -5696,9 +5888,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDD"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_0">
-        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0">
+        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-3-PLT"/>
@@ -5717,8 +5913,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_1">
-        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1">
+        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-1"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-3-PLT"/>
@@ -5737,8 +5933,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_2">
-        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2">
+        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-MCS-2"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-3-PLT"/>
@@ -5757,8 +5953,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEDD"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-MCS-CO-A-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-A-3-PLT"/>
@@ -5813,9 +6009,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEB"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_0">
-        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0">
+        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-1-PLT"/>
@@ -5834,8 +6034,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_1">
-        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1">
+        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-1"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-1-PLT"/>
@@ -5854,8 +6054,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_2">
-        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2">
+        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-MCS-2"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-1-PLT"/>
@@ -5874,8 +6074,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-MCS-CO-B-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-1-PLT"/>
@@ -5911,9 +6111,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEC"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_0">
-        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0">
+        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-2-PLT"/>
@@ -5932,8 +6136,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_1">
-        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1">
+        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-1"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-2-PLT"/>
@@ -5952,8 +6156,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_2">
-        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2">
+        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-MCS-2"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-2-PLT"/>
@@ -5972,8 +6176,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEEC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-MCS-CO-B-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-2-PLT"/>
@@ -6009,9 +6213,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEED"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_0">
-        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0">
+        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-3-PLT"/>
@@ -6030,8 +6238,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_1">
-        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1">
+        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-1"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-3-PLT"/>
@@ -6050,8 +6258,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_2">
-        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT_FCS-MCS_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2">
+        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-MCS-2"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-3-PLT"/>
@@ -6070,8 +6278,8 @@
         <facet org_type_id="CA-BN-MCS-PLT"/>
         <facet org_code="AEED"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-MCS-CO-B-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet superior_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
         <facet owner="3-CA-BN-MCS-CO-B-3-PLT"/>
@@ -6126,9 +6334,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="AEFB"/>
+        <facet subordinate_org_id="3-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-1-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-RECON-DET-1-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-RECON-DET-1-PLT"/>
         <facet superior_org_id="3-CA-BN-RECON-DET-1-PLT"/>
         <facet owner="3-CA-BN-RECON-DET-1-PLT"/>
@@ -6164,9 +6373,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="AEFC"/>
+        <facet subordinate_org_id="3-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-2-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-RECON-DET-2-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-RECON-DET-2-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-RECON-DET-2-PLT"/>
         <facet superior_org_id="3-CA-BN-RECON-DET-2-PLT"/>
         <facet owner="3-CA-BN-RECON-DET-2-PLT"/>
@@ -6202,9 +6412,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-PLT"/>
         <facet org_code="AEFD"/>
+        <facet subordinate_org_id="3-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-3-PLT_FCS-ARV-R_0">
-        <facet org_id="3-CA-BN-RECON-DET-3-PLT_FCS-ARV-R_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0">
+        <facet org_id="3-CA-BN-RECON-DET-3-PLT-FCS-ARV-R-0"/>
         <facet orig_org_id="3-CA-BN-RECON-DET-3-PLT"/>
         <facet superior_org_id="3-CA-BN-RECON-DET-3-PLT"/>
         <facet owner="3-CA-BN-RECON-DET-3-PLT"/>
@@ -6258,9 +6469,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGB"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_0">
-        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0">
+        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-0"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -6279,8 +6494,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_1">
-        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1">
+        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-1"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -6299,8 +6514,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_2">
-        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2">
+        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-2"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -6319,8 +6534,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_3">
-        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT_NLOS-Mortar_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3">
+        <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT-NLOS-Mortar-3"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -6356,9 +6571,13 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGC"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_0">
-        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0">
+        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-0"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -6377,8 +6596,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_1">
-        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1">
+        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-1"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -6397,8 +6616,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_2">
-        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2">
+        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-2"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -6417,8 +6636,8 @@
         <facet org_type_id="CA-BN-MORTAR-PLT"/>
         <facet org_code="AEGC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_3">
-        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT_NLOS-Mortar_3"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3">
+        <facet org_id="3-CA-BN-MORTAR-BTY-2-PLT-NLOS-Mortar-3"/>
         <facet orig_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet superior_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
         <facet owner="3-CA-BN-MORTAR-BTY-2-PLT"/>
@@ -6881,9 +7100,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBB"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-0"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-1"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-2"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT_NLOS-Cannon_0">
-        <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT_NLOS-Cannon_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-0">
+        <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-0"/>
         <facet orig_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-A-1-CANNON-PLT"/>
@@ -6902,8 +7124,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT_NLOS-Cannon_1">
-        <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT_NLOS-Cannon_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-1">
+        <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-1"/>
         <facet orig_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-A-1-CANNON-PLT"/>
@@ -6922,8 +7144,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT_NLOS-Cannon_2">
-        <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT_NLOS-Cannon_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-2">
+        <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT-NLOS-Cannon-2"/>
         <facet orig_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-A-1-CANNON-PLT"/>
@@ -6959,9 +7181,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBC"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-0"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-1"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-2"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-2-CANNON-PLT_NLOS-Cannon_0">
-        <facet org_id="NLOS-BN-BTY-A-2-CANNON-PLT_NLOS-Cannon_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-0">
+        <facet org_id="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-0"/>
         <facet orig_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-A-2-CANNON-PLT"/>
@@ -6980,8 +7205,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-2-CANNON-PLT_NLOS-Cannon_1">
-        <facet org_id="NLOS-BN-BTY-A-2-CANNON-PLT_NLOS-Cannon_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-1">
+        <facet org_id="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-1"/>
         <facet orig_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-A-2-CANNON-PLT"/>
@@ -7000,8 +7225,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGBC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-2-CANNON-PLT_NLOS-Cannon_2">
-        <facet org_id="NLOS-BN-BTY-A-2-CANNON-PLT_NLOS-Cannon_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-2">
+        <facet org_id="NLOS-BN-BTY-A-2-CANNON-PLT-NLOS-Cannon-2"/>
         <facet orig_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-A-2-CANNON-PLT"/>
@@ -7055,9 +7280,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCB"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-0"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-1"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-2"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT_NLOS-Cannon_0">
-        <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT_NLOS-Cannon_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-0">
+        <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-0"/>
         <facet orig_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-B-1-CANNON-PLT"/>
@@ -7076,8 +7304,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT_NLOS-Cannon_1">
-        <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT_NLOS-Cannon_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-1">
+        <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-1"/>
         <facet orig_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-B-1-CANNON-PLT"/>
@@ -7096,8 +7324,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT_NLOS-Cannon_2">
-        <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT_NLOS-Cannon_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-2">
+        <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT-NLOS-Cannon-2"/>
         <facet orig_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-B-1-CANNON-PLT"/>
@@ -7133,9 +7361,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCC"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-0"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-1"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-2"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-2-CANNON-PLT_NLOS-Cannon_0">
-        <facet org_id="NLOS-BN-BTY-B-2-CANNON-PLT_NLOS-Cannon_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-0">
+        <facet org_id="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-0"/>
         <facet orig_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-B-2-CANNON-PLT"/>
@@ -7154,8 +7385,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-2-CANNON-PLT_NLOS-Cannon_1">
-        <facet org_id="NLOS-BN-BTY-B-2-CANNON-PLT_NLOS-Cannon_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-1">
+        <facet org_id="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-1"/>
         <facet orig_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-B-2-CANNON-PLT"/>
@@ -7174,8 +7405,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGCC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-2-CANNON-PLT_NLOS-Cannon_2">
-        <facet org_id="NLOS-BN-BTY-B-2-CANNON-PLT_NLOS-Cannon_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-2">
+        <facet org_id="NLOS-BN-BTY-B-2-CANNON-PLT-NLOS-Cannon-2"/>
         <facet orig_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-B-2-CANNON-PLT"/>
@@ -7229,9 +7460,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDB"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-0"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-1"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-2"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT_NLOS-Cannon_0">
-        <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT_NLOS-Cannon_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-0">
+        <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-0"/>
         <facet orig_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-C-1-CANNON-PLT"/>
@@ -7250,8 +7484,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT_NLOS-Cannon_1">
-        <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT_NLOS-Cannon_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-1">
+        <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-1"/>
         <facet orig_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-C-1-CANNON-PLT"/>
@@ -7270,8 +7504,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDB"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT_NLOS-Cannon_2">
-        <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT_NLOS-Cannon_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-2">
+        <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT-NLOS-Cannon-2"/>
         <facet orig_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-C-1-CANNON-PLT"/>
@@ -7307,9 +7541,12 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDC"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-0"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-1"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-2"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-2-CANNON-PLT_NLOS-Cannon_0">
-        <facet org_id="NLOS-BN-BTY-C-2-CANNON-PLT_NLOS-Cannon_0"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-0">
+        <facet org_id="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-0"/>
         <facet orig_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-C-2-CANNON-PLT"/>
@@ -7328,8 +7565,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-2-CANNON-PLT_NLOS-Cannon_1">
-        <facet org_id="NLOS-BN-BTY-C-2-CANNON-PLT_NLOS-Cannon_1"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-1">
+        <facet org_id="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-1"/>
         <facet orig_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-C-2-CANNON-PLT"/>
@@ -7348,8 +7585,8 @@
         <facet org_type_id="NLOS-BN-CANNON-PLT"/>
         <facet org_code="AGDC"/>
       </agent>
-      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-2-CANNON-PLT_NLOS-Cannon_2">
-        <facet org_id="NLOS-BN-BTY-C-2-CANNON-PLT_NLOS-Cannon_2"/>
+      <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-2">
+        <facet org_id="NLOS-BN-BTY-C-2-CANNON-PLT-NLOS-Cannon-2"/>
         <facet orig_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
         <facet superior_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
         <facet owner="NLOS-BN-BTY-C-2-CANNON-PLT"/>
