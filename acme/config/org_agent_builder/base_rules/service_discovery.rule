@@ -3,16 +3,88 @@
 #   at every agent so providers can register and customers can find providers
 #
 # plugin = org.cougaar.servicediscovery.plugin.SDRegistrationPlugin
-# plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin
-
+# plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin(NeededRole,NeededRole,...)
+# plugin = org.cougaar.servicediscovery.plugin.SDProviderPlugin(ProvidedRole,ProvidedRole,...)
+#
+# Roles
+# AmmunitionProvider
+# FuelSupplyProvider
+# PackagedPOLSupplyProvider
+# SparePartsProvider
+# SubsistenceSupplyProvider
+#
 sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
 sd_client_plugin = "org.cougaar.servicediscovery.plugin.SDClientPlugin"
+sd_provider_plugin = "org.cougaar.servicediscovery.plugin.SDProviderPlugin"
+supply_roles = Array ["AmmunitionProvider",
+                      "FuelSupplyProvider",
+                      "PackagedPOLSupplyProvider",
+                      "SparePartsProvider",
+                      "SubsistenceSupplyProvider"]
+strat_trans_role = "StrategicTransportationProvider"                      
 
+# First iterate over agents, getting the provided_roles, mechanisms, and echelons of support
 society.each_agent do |agent|
+  provided_roles = Hash.new
+  agent.each_facet(:role) do |facet|
+    my_role = facet[:role].to_s
+    my_mechanism = facet[:mechanism].to_s
+    my_echelon_of_support= facet[:echelon_of_support].to_s
+    provided_roles[my_role] = [my_mechanism,my_echelon_of_support]
+  end
+#
+# Then get the required_roles
+  required_roles = Array.new
+#
+# Add each provided_role if it is a supply_role, unless the mechanism is "TerminalInventoryManager"
+# or if it is the strat_trans_role with a mechanism of "PassThrough"
+  provided_roles.each do |my_role, m_e| 
+    if supply_roles.include?(my_role) && m_e[0] != "TerminalInventoryManager"
+      required_roles << my_role
+    end
+    if my_role == strat_trans_role && m_e[0] == "PassThrough"
+      required_roles << my_role
+    end
+  end
+# Add the required supply roles if the org has equipment_assets
+  if agent.get_facet(:has_equipment_assets)
+    required_roles << "AmmunitionProvider"
+    required_roles << "FuelSupplyProvider"
+    required_roles << "PackagedPOLSupplyProvider"
+    required_roles << "SparePartsProvider"
+  end
+#
+# Add the required supply role if the org has personnel_assets
+  if agent.get_facet(:has_personnel_assets)
+    required_roles << "SubsistenceSupplyProvider"
+  end
+#
+# Add the required strat_trans_role if the agent is deployable with either equipment or personnel
+  if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
+    if agent.get_facet(:is_deployable)
+      required_roles << strat_trans_role
+    end
+  end
+#
+# sort and get rid of duplicated required_roles, if any
+  required_roles = required_roles.sort
+  required_roles = required_roles.uniq 
+#
+# Then insert the SDRegistrationPlugin with no arguments
   agent.add_component do |c|
     c.classname = sd_registration_plugin
   end
+#
+# Then insert the SDClientPlugin with required role arguments
   agent.add_component do |c|
     c.classname = sd_client_plugin
+    required_roles.each { |my_role| c.add_argument(my_role) }
   end
+#
+# Then insert the SDProviderPlugin with Provided roles
+  agent.add_component do |c|
+    c.classname = sd_provider_plugin
+    provided_roles.each_key { |my_role| c.add_argument(my_role) }
+  end
+
 end
