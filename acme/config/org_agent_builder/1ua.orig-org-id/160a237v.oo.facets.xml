@@ -17,10 +17,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-MCG"/>
         <facet org_code="AAA"/>
-        <facet subordinate="UA-MCG2"/>
-        <facet subordinate="UA-TACP"/>
-        <facet subordinate="UA-MED-SPT"/>
-        <facet subordinate="UA-CO-HQ-SECTION"/>
+        <facet subordinate_org_id="UA-MCG2"/>
+        <facet subordinate_org_id="UA-TACP"/>
+        <facet subordinate_org_id="UA-MED-SPT"/>
+        <facet subordinate_org_id="UA-CO-HQ-SECTION"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-MCG1"/>
       </agent>
@@ -166,10 +166,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-CO-HQ"/>
         <facet org_code="ABA"/>
-        <facet subordinate="UA-BIC-RANGE-EXT-UA-HQ-SQUAD"/>
-        <facet subordinate="UA-BIC-NETOPS-UA-HQ-SQUAD"/>
-        <facet subordinate="UA-BIC-SIT-AWARE-TEAM"/>
-        <facet subordinate="UA-BIC-ISR-INTEG-TEAM"/>
+        <facet subordinate_org_id="UA-BIC-RANGE-EXT-UA-HQ-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-NETOPS-UA-HQ-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-SIT-AWARE-TEAM"/>
+        <facet subordinate_org_id="UA-BIC-ISR-INTEG-TEAM"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="UA-BIC-CO-HQ"/>
       </agent>
@@ -190,11 +190,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-RANGE-EXT-UA-HQ-SQUAD"/>
         <facet org_code="ABBA"/>
-        <facet subordinate="UA-BIC-RANGE-EXT-FSB-SQUAD"/>
-        <facet subordinate="UA-BIC-RANGE-EXT-1-CA-BN-SQUAD"/>
-        <facet subordinate="UA-BIC-RANGE-EXT-2-CA-BN-SQUAD"/>
-        <facet subordinate="UA-BIC-RANGE-EXT-3-CA-BN-SQUAD"/>
-        <facet subordinate="UA-BIC-RANGE-EXT-NLOS-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-RANGE-EXT-FSB-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-RANGE-EXT-1-CA-BN-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-RANGE-EXT-2-CA-BN-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-RANGE-EXT-3-CA-BN-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-RANGE-EXT-NLOS-SQUAD"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-RANGE-EXT-FSB-SQUAD">
         <facet org_id="UA-BIC-RANGE-EXT-FSB-SQUAD"/>
@@ -303,11 +303,11 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-NETOPS-UA-HQ-SQUAD"/>
         <facet org_code="ABCA"/>
-        <facet subordinate="UA-BIC-NETOPS-FSB-SQUAD"/>
-        <facet subordinate="UA-BIC-NETOPS-1-CA-BN-SQUAD"/>
-        <facet subordinate="UA-BIC-NETOPS-2-CA-BN-SQUAD"/>
-        <facet subordinate="UA-BIC-NETOPS-3-CA-BN-SQUAD"/>
-        <facet subordinate="UA-BIC-NETOPS-NLOS-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-NETOPS-FSB-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-NETOPS-1-CA-BN-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-NETOPS-2-CA-BN-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-NETOPS-3-CA-BN-SQUAD"/>
+        <facet subordinate_org_id="UA-BIC-NETOPS-NLOS-SQUAD"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-NETOPS-FSB-SQUAD">
         <facet org_id="UA-BIC-NETOPS-FSB-SQUAD"/>
@@ -416,7 +416,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-SIT-AWARE-TEAM"/>
         <facet org_code="ABDA"/>
-        <facet subordinate="UA-BIC-TGT-DEV-TEAM"/>
+        <facet subordinate_org_id="UA-BIC-TGT-DEV-TEAM"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-TGT-DEV-TEAM">
         <facet org_id="UA-BIC-TGT-DEV-TEAM"/>
@@ -453,7 +453,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="UA-BIC-ISR-INTEG-TEAM"/>
         <facet org_code="ABEA"/>
-        <facet subordinate="UA-BIC-CP-CTRL-TEAM"/>
+        <facet subordinate_org_id="UA-BIC-CP-CTRL-TEAM"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="UA-BIC-CP-CTRL-TEAM">
         <facet org_id="UA-BIC-CP-CTRL-TEAM"/>
@@ -488,10 +488,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCG"/>
         <facet org_code="ACAA"/>
-        <facet subordinate="1-CA-BN-TACP"/>
-        <facet subordinate="1-CA-BN-MED-PLT-HQ"/>
-        <facet subordinate="1-CA-BN-SUPPORT-SECTION"/>
-        <facet subordinate="1-CA-BN-CO-HQ-SECTION"/>
+        <facet subordinate_org_id="1-CA-BN-TACP"/>
+        <facet subordinate_org_id="1-CA-BN-MED-PLT-HQ"/>
+        <facet subordinate_org_id="1-CA-BN-SUPPORT-SECTION"/>
+        <facet subordinate_org_id="1-CA-BN-CO-HQ-SECTION"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="1-CA-BN-MCG"/>
       </agent>
@@ -547,8 +547,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-HQ"/>
         <facet org_code="ACACA"/>
-        <facet subordinate="1-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
-        <facet subordinate="1-CA-BN-MED-PLT-EVAC-SECTION"/>
+        <facet subordinate_org_id="1-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
+        <facet subordinate_org_id="1-CA-BN-MED-PLT-EVAC-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MED-PLT-TREATMENT-SQUAD">
         <facet org_id="1-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
@@ -757,9 +757,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ACBA"/>
-        <facet subordinate="1-CA-BN-INF-CO-A-1-PLT"/>
-        <facet subordinate="1-CA-BN-INF-CO-A-2-PLT"/>
-        <facet subordinate="1-CA-BN-INF-CO-A-3-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-1-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-2-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-A-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-A-1-PLT">
         <facet org_id="1-CA-BN-INF-CO-A-1-PLT"/>
@@ -1130,9 +1130,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ACCA"/>
-        <facet subordinate="1-CA-BN-INF-CO-B-1-PLT"/>
-        <facet subordinate="1-CA-BN-INF-CO-B-2-PLT"/>
-        <facet subordinate="1-CA-BN-INF-CO-B-3-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-1-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-2-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-INF-CO-B-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-INF-CO-B-1-PLT">
         <facet org_id="1-CA-BN-INF-CO-B-1-PLT"/>
@@ -1503,9 +1503,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ACDA"/>
-        <facet subordinate="1-CA-BN-MCS-CO-A-1-PLT"/>
-        <facet subordinate="1-CA-BN-MCS-CO-A-2-PLT"/>
-        <facet subordinate="1-CA-BN-MCS-CO-A-3-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-2-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-A-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-A-1-PLT">
         <facet org_id="1-CA-BN-MCS-CO-A-1-PLT"/>
@@ -1816,9 +1816,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ACEA"/>
-        <facet subordinate="1-CA-BN-MCS-CO-B-1-PLT"/>
-        <facet subordinate="1-CA-BN-MCS-CO-B-2-PLT"/>
-        <facet subordinate="1-CA-BN-MCS-CO-B-3-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-2-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MCS-CO-B-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MCS-CO-B-1-PLT">
         <facet org_id="1-CA-BN-MCS-CO-B-1-PLT"/>
@@ -2129,9 +2129,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-DET-HQ"/>
         <facet org_code="ACFA"/>
-        <facet subordinate="1-CA-BN-RECON-DET-1-PLT"/>
-        <facet subordinate="1-CA-BN-RECON-DET-2-PLT"/>
-        <facet subordinate="1-CA-BN-RECON-DET-3-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-RECON-DET-1-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-RECON-DET-2-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-RECON-DET-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-RECON-DET-1-PLT">
         <facet org_id="1-CA-BN-RECON-DET-1-PLT"/>
@@ -2262,8 +2262,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-BTY-HQ"/>
         <facet org_code="ACGA"/>
-        <facet subordinate="1-CA-BN-MORTAR-BTY-1-PLT"/>
-        <facet subordinate="1-CA-BN-MORTAR-BTY-2-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
+        <facet subordinate_org_id="1-CA-BN-MORTAR-BTY-2-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="1-CA-BN-MORTAR-BTY-1-PLT">
         <facet org_id="1-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -2476,10 +2476,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCG"/>
         <facet org_code="ADAA"/>
-        <facet subordinate="2-CA-BN-TACP"/>
-        <facet subordinate="2-CA-BN-MED-PLT-HQ"/>
-        <facet subordinate="2-CA-BN-SUPPORT-SECTION"/>
-        <facet subordinate="2-CA-BN-CO-HQ-SECTION"/>
+        <facet subordinate_org_id="2-CA-BN-TACP"/>
+        <facet subordinate_org_id="2-CA-BN-MED-PLT-HQ"/>
+        <facet subordinate_org_id="2-CA-BN-SUPPORT-SECTION"/>
+        <facet subordinate_org_id="2-CA-BN-CO-HQ-SECTION"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="2-CA-BN-MCG"/>
       </agent>
@@ -2535,8 +2535,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-HQ"/>
         <facet org_code="ADACA"/>
-        <facet subordinate="2-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
-        <facet subordinate="2-CA-BN-MED-PLT-EVAC-SECTION"/>
+        <facet subordinate_org_id="2-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
+        <facet subordinate_org_id="2-CA-BN-MED-PLT-EVAC-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MED-PLT-TREATMENT-SQUAD">
         <facet org_id="2-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
@@ -2745,9 +2745,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ADBA"/>
-        <facet subordinate="2-CA-BN-INF-CO-A-1-PLT"/>
-        <facet subordinate="2-CA-BN-INF-CO-A-2-PLT"/>
-        <facet subordinate="2-CA-BN-INF-CO-A-3-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-1-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-2-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-A-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-A-1-PLT">
         <facet org_id="2-CA-BN-INF-CO-A-1-PLT"/>
@@ -3118,9 +3118,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="ADCA"/>
-        <facet subordinate="2-CA-BN-INF-CO-B-1-PLT"/>
-        <facet subordinate="2-CA-BN-INF-CO-B-2-PLT"/>
-        <facet subordinate="2-CA-BN-INF-CO-B-3-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-1-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-2-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-INF-CO-B-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-INF-CO-B-1-PLT">
         <facet org_id="2-CA-BN-INF-CO-B-1-PLT"/>
@@ -3491,9 +3491,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ADDA"/>
-        <facet subordinate="2-CA-BN-MCS-CO-A-1-PLT"/>
-        <facet subordinate="2-CA-BN-MCS-CO-A-2-PLT"/>
-        <facet subordinate="2-CA-BN-MCS-CO-A-3-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-2-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-A-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-A-1-PLT">
         <facet org_id="2-CA-BN-MCS-CO-A-1-PLT"/>
@@ -3804,9 +3804,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="ADEA"/>
-        <facet subordinate="2-CA-BN-MCS-CO-B-1-PLT"/>
-        <facet subordinate="2-CA-BN-MCS-CO-B-2-PLT"/>
-        <facet subordinate="2-CA-BN-MCS-CO-B-3-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-2-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MCS-CO-B-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MCS-CO-B-1-PLT">
         <facet org_id="2-CA-BN-MCS-CO-B-1-PLT"/>
@@ -4117,9 +4117,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-DET-HQ"/>
         <facet org_code="ADFA"/>
-        <facet subordinate="2-CA-BN-RECON-DET-1-PLT"/>
-        <facet subordinate="2-CA-BN-RECON-DET-2-PLT"/>
-        <facet subordinate="2-CA-BN-RECON-DET-3-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-RECON-DET-1-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-RECON-DET-2-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-RECON-DET-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-RECON-DET-1-PLT">
         <facet org_id="2-CA-BN-RECON-DET-1-PLT"/>
@@ -4250,8 +4250,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-BTY-HQ"/>
         <facet org_code="ADGA"/>
-        <facet subordinate="2-CA-BN-MORTAR-BTY-1-PLT"/>
-        <facet subordinate="2-CA-BN-MORTAR-BTY-2-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
+        <facet subordinate_org_id="2-CA-BN-MORTAR-BTY-2-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="2-CA-BN-MORTAR-BTY-1-PLT">
         <facet org_id="2-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -4464,10 +4464,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCG"/>
         <facet org_code="AEAA"/>
-        <facet subordinate="3-CA-BN-TACP"/>
-        <facet subordinate="3-CA-BN-MED-PLT-HQ"/>
-        <facet subordinate="3-CA-BN-SUPPORT-SECTION"/>
-        <facet subordinate="3-CA-BN-CO-HQ-SECTION"/>
+        <facet subordinate_org_id="3-CA-BN-TACP"/>
+        <facet subordinate_org_id="3-CA-BN-MED-PLT-HQ"/>
+        <facet subordinate_org_id="3-CA-BN-SUPPORT-SECTION"/>
+        <facet subordinate_org_id="3-CA-BN-CO-HQ-SECTION"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="3-CA-BN-MCG"/>
       </agent>
@@ -4523,8 +4523,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MED-PLT-HQ"/>
         <facet org_code="AEACA"/>
-        <facet subordinate="3-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
-        <facet subordinate="3-CA-BN-MED-PLT-EVAC-SECTION"/>
+        <facet subordinate_org_id="3-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
+        <facet subordinate_org_id="3-CA-BN-MED-PLT-EVAC-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MED-PLT-TREATMENT-SQUAD">
         <facet org_id="3-CA-BN-MED-PLT-TREATMENT-SQUAD"/>
@@ -4733,9 +4733,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="AEBA"/>
-        <facet subordinate="3-CA-BN-INF-CO-A-1-PLT"/>
-        <facet subordinate="3-CA-BN-INF-CO-A-2-PLT"/>
-        <facet subordinate="3-CA-BN-INF-CO-A-3-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-1-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-2-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-A-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-A-1-PLT">
         <facet org_id="3-CA-BN-INF-CO-A-1-PLT"/>
@@ -5106,9 +5106,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-INF-CO-HQ"/>
         <facet org_code="AECA"/>
-        <facet subordinate="3-CA-BN-INF-CO-B-1-PLT"/>
-        <facet subordinate="3-CA-BN-INF-CO-B-2-PLT"/>
-        <facet subordinate="3-CA-BN-INF-CO-B-3-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-1-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-2-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-INF-CO-B-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-INF-CO-B-1-PLT">
         <facet org_id="3-CA-BN-INF-CO-B-1-PLT"/>
@@ -5479,9 +5479,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="AEDA"/>
-        <facet subordinate="3-CA-BN-MCS-CO-A-1-PLT"/>
-        <facet subordinate="3-CA-BN-MCS-CO-A-2-PLT"/>
-        <facet subordinate="3-CA-BN-MCS-CO-A-3-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-2-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-A-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-A-1-PLT">
         <facet org_id="3-CA-BN-MCS-CO-A-1-PLT"/>
@@ -5792,9 +5792,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MCS-CO-HQ"/>
         <facet org_code="AEEA"/>
-        <facet subordinate="3-CA-BN-MCS-CO-B-1-PLT"/>
-        <facet subordinate="3-CA-BN-MCS-CO-B-2-PLT"/>
-        <facet subordinate="3-CA-BN-MCS-CO-B-3-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-2-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MCS-CO-B-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MCS-CO-B-1-PLT">
         <facet org_id="3-CA-BN-MCS-CO-B-1-PLT"/>
@@ -6105,9 +6105,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-RECON-DET-HQ"/>
         <facet org_code="AEFA"/>
-        <facet subordinate="3-CA-BN-RECON-DET-1-PLT"/>
-        <facet subordinate="3-CA-BN-RECON-DET-2-PLT"/>
-        <facet subordinate="3-CA-BN-RECON-DET-3-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-RECON-DET-1-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-RECON-DET-2-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-RECON-DET-3-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-RECON-DET-1-PLT">
         <facet org_id="3-CA-BN-RECON-DET-1-PLT"/>
@@ -6238,8 +6238,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="CA-BN-MORTAR-BTY-HQ"/>
         <facet org_code="AEGA"/>
-        <facet subordinate="3-CA-BN-MORTAR-BTY-1-PLT"/>
-        <facet subordinate="3-CA-BN-MORTAR-BTY-2-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
+        <facet subordinate_org_id="3-CA-BN-MORTAR-BTY-2-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="3-CA-BN-MORTAR-BTY-1-PLT">
         <facet org_id="3-CA-BN-MORTAR-BTY-1-PLT"/>
@@ -6452,9 +6452,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-HQ"/>
         <facet org_code="AFA"/>
-        <facet subordinate="AVN-DET-FLT-TRP-A-HQ"/>
-        <facet subordinate="AVN-DET-FLT-TRP-B-HQ"/>
-        <facet subordinate="AVN-DET-SVC-TRP-HQ"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-A-HQ"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-B-HQ"/>
+        <facet subordinate_org_id="AVN-DET-SVC-TRP-HQ"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="AVN-DET-HQ"/>
       </agent>
@@ -6474,9 +6474,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-HQ"/>
         <facet org_code="AFBA"/>
-        <facet subordinate="AVN-DET-FLT-TRP-A-1-PLT"/>
-        <facet subordinate="AVN-DET-FLT-TRP-A-2-PLT"/>
-        <facet subordinate="AVN-DET-FLT-TRP-A-SPT-PLT"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-A-1-PLT"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-A-2-PLT"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-A-SPT-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="AVN-DET-FLT-TRP-A-1-PLT">
         <facet org_id="AVN-DET-FLT-TRP-A-1-PLT"/>
@@ -6548,9 +6548,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-FLT-TRP-HQ"/>
         <facet org_code="AFCA"/>
-        <facet subordinate="AVN-DET-FLT-TRP-B-1-PLT"/>
-        <facet subordinate="AVN-DET-FLT-TRP-B-2-PLT"/>
-        <facet subordinate="AVN-DET-FLT-TRP-B-SPT-PLT"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-B-1-PLT"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-B-2-PLT"/>
+        <facet subordinate_org_id="AVN-DET-FLT-TRP-B-SPT-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="AVN-DET-FLT-TRP-B-1-PLT">
         <facet org_id="AVN-DET-FLT-TRP-B-1-PLT"/>
@@ -6622,8 +6622,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-HQ"/>
         <facet org_code="AFDA"/>
-        <facet subordinate="AVN-DET-SVC-TRP-MAINT-PLT-HQ"/>
-        <facet subordinate="AVN-DET-SVC-TRP-SUPPORT-PLT"/>
+        <facet subordinate_org_id="AVN-DET-SVC-TRP-MAINT-PLT-HQ"/>
+        <facet subordinate_org_id="AVN-DET-SVC-TRP-SUPPORT-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="AVN-DET-SVC-TRP-MAINT-PLT-HQ">
         <facet org_id="AVN-DET-SVC-TRP-MAINT-PLT-HQ"/>
@@ -6641,9 +6641,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="AVN-DET-SVC-TRP-MAINT-PLT-HQ"/>
         <facet org_code="AFDBA"/>
-        <facet subordinate="AVN-DET-SVC-TRP-ARMT-ELEC-REPAIR-SECTION"/>
-        <facet subordinate="AVN-DET-SVC-TRP-AIRCRAFT-REPAIR-SECTION"/>
-        <facet subordinate="AVN-DET-SVC-TRP-AIRFRAME-REPAIR-SECTION"/>
+        <facet subordinate_org_id="AVN-DET-SVC-TRP-ARMT-ELEC-REPAIR-SECTION"/>
+        <facet subordinate_org_id="AVN-DET-SVC-TRP-AIRCRAFT-REPAIR-SECTION"/>
+        <facet subordinate_org_id="AVN-DET-SVC-TRP-AIRFRAME-REPAIR-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="AVN-DET-SVC-TRP-ARMT-ELEC-REPAIR-SECTION">
         <facet org_id="AVN-DET-SVC-TRP-ARMT-ELEC-REPAIR-SECTION"/>
@@ -6732,9 +6732,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTRY-HQ"/>
         <facet org_code="AGAA"/>
-        <facet subordinate="NLOS-BN-CIC-CMD-GRP"/>
-        <facet subordinate="NLOS-BN-NLOS-LS-PLT"/>
-        <facet subordinate="NLOS-BN-SENSOR-PLT-HQ"/>
+        <facet subordinate_org_id="NLOS-BN-CIC-CMD-GRP"/>
+        <facet subordinate_org_id="NLOS-BN-NLOS-LS-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-SENSOR-PLT-HQ"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="NLOS-BN-BTRY-HQ"/>
       </agent>
@@ -6754,7 +6754,7 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-CIC-CMD-GRP"/>
         <facet org_code="AGABA"/>
-        <facet subordinate="NLOS-BN-CIC-STAFF-CELLS"/>
+        <facet subordinate_org_id="NLOS-BN-CIC-STAFF-CELLS"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-CIC-STAFF-CELLS">
         <facet org_id="NLOS-BN-CIC-STAFF-CELLS"/>
@@ -6807,8 +6807,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-SENSOR-PLT-HQ"/>
         <facet org_code="AGADA"/>
-        <facet subordinate="NLOS-BN-RADAR-SECTION"/>
-        <facet subordinate="NLOS-BN-UAV-CL-III-SECTION"/>
+        <facet subordinate_org_id="NLOS-BN-RADAR-SECTION"/>
+        <facet subordinate_org_id="NLOS-BN-UAV-CL-III-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-RADAR-SECTION">
         <facet org_id="NLOS-BN-RADAR-SECTION"/>
@@ -6861,8 +6861,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTY-HQ"/>
         <facet org_code="AGBA"/>
-        <facet subordinate="NLOS-BN-BTY-A-1-CANNON-PLT"/>
-        <facet subordinate="NLOS-BN-BTY-A-2-CANNON-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-A-2-CANNON-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-A-1-CANNON-PLT">
         <facet org_id="NLOS-BN-BTY-A-1-CANNON-PLT"/>
@@ -7035,8 +7035,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTY-HQ"/>
         <facet org_code="AGCA"/>
-        <facet subordinate="NLOS-BN-BTY-B-1-CANNON-PLT"/>
-        <facet subordinate="NLOS-BN-BTY-B-2-CANNON-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-B-2-CANNON-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-B-1-CANNON-PLT">
         <facet org_id="NLOS-BN-BTY-B-1-CANNON-PLT"/>
@@ -7209,8 +7209,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="NLOS-BN-BTY-HQ"/>
         <facet org_code="AGDA"/>
-        <facet subordinate="NLOS-BN-BTY-C-1-CANNON-PLT"/>
-        <facet subordinate="NLOS-BN-BTY-C-2-CANNON-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
+        <facet subordinate_org_id="NLOS-BN-BTY-C-2-CANNON-PLT"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="NLOS-BN-BTY-C-1-CANNON-PLT">
         <facet org_id="NLOS-BN-BTY-C-1-CANNON-PLT"/>
@@ -7383,9 +7383,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-CO-HQ"/>
         <facet org_code="AHAA"/>
-        <facet subordinate="FSB-CIC"/>
-        <facet subordinate="FSB-DISTRO-MGT-CELL"/>
-        <facet subordinate="FSB-STAFF-CELL"/>
+        <facet subordinate_org_id="FSB-CIC"/>
+        <facet subordinate_org_id="FSB-DISTRO-MGT-CELL"/>
+        <facet subordinate_org_id="FSB-STAFF-CELL"/>
         <facet echelon_of_support="DIVISION" mechanism="PassThrough" role="StrategicTransportationProvider"/>
         <facet sca_echelon_of_support="DIVISION" sca_supported_org="FSB-CO-HQ"/>
       </agent>
@@ -7456,10 +7456,10 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-MED-CO-HQ"/>
         <facet org_code="AHBA"/>
-        <facet subordinate="FSB-TREATMENT-PLT"/>
-        <facet subordinate="FSB-HOLDING-DET"/>
-        <facet subordinate="FSB-SURG-PLT"/>
-        <facet subordinate="FSB-EVAC-PLT-HQ"/>
+        <facet subordinate_org_id="FSB-TREATMENT-PLT"/>
+        <facet subordinate_org_id="FSB-HOLDING-DET"/>
+        <facet subordinate_org_id="FSB-SURG-PLT"/>
+        <facet subordinate_org_id="FSB-EVAC-PLT-HQ"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FSB-TREATMENT-PLT">
         <facet org_id="FSB-TREATMENT-PLT"/>
@@ -7531,8 +7531,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-EVAC-PLT-HQ"/>
         <facet org_code="AHBEA"/>
-        <facet subordinate="FSB-AREA-SPT-EVAC-SECTION"/>
-        <facet subordinate="FSB-FWD-EVAC-SECTION"/>
+        <facet subordinate_org_id="FSB-AREA-SPT-EVAC-SECTION"/>
+        <facet subordinate_org_id="FSB-FWD-EVAC-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FSB-AREA-SPT-EVAC-SECTION">
         <facet org_id="FSB-AREA-SPT-EVAC-SECTION"/>
@@ -7585,8 +7585,8 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-SUSTAIN-CO-HQ"/>
         <facet org_code="AHCA"/>
-        <facet subordinate="FSB-MAINT-PLT"/>
-        <facet subordinate="FSB-DISTRO-PLT-HQ"/>
+        <facet subordinate_org_id="FSB-MAINT-PLT"/>
+        <facet subordinate_org_id="FSB-DISTRO-PLT-HQ"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FSB-MAINT-PLT">
         <facet org_id="FSB-MAINT-PLT"/>
@@ -7622,9 +7622,9 @@
         <facet agency="FORSCOM"/>
         <facet org_type_id="FSB-DISTRO-PLT-HQ"/>
         <facet org_code="AHCCA"/>
-        <facet subordinate="FSB-UAV-SUSTAIN-MAINT-SECTION"/>
-        <facet subordinate="FSB-FUEL-WATER-SECTION"/>
-        <facet subordinate="FSB-DRY-CARGO-SECTION"/>
+        <facet subordinate_org_id="FSB-UAV-SUSTAIN-MAINT-SECTION"/>
+        <facet subordinate_org_id="FSB-FUEL-WATER-SECTION"/>
+        <facet subordinate_org_id="FSB-DRY-CARGO-SECTION"/>
       </agent>
       <agent class="org.cougaar.core.agent.SimpleAgent" name="FSB-UAV-SUSTAIN-MAINT-SECTION">
         <facet org_id="FSB-UAV-SUSTAIN-MAINT-SECTION"/>
