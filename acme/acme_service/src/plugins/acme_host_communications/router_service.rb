@@ -31,10 +31,12 @@ class RouterService
     @port = plugin.properties["port"] || InfoEther::MessageRouter::DEFAULT_PORT
     @account = @plugin.properties["account"]
     @host = @plugin.properties["host"]
+    @start_router_service = @plugin.properties["start_router_service"]
+    @start_router_service == true if @start_router_service.nil?
     unless @account
       @account = `hostname`.strip.downcase
     end
-    start_service
+    start_service if @start_router_service
     start_client
     mount_commands
   end

@@ -3,4 +3,5 @@ properties: ~
 "|": 
   - host: localhost 
   - service_type: router 
+  - start_router_service: true
   - port: 6667
