@@ -61,7 +61,7 @@ module ACME
             data.assets = ts[1][1]
             data.units = ts[1][2]
           elsif (ts = get_timestamp(line, end_pattern)) then
-            data.time = ts[0] - start_time
+            data.time = Time.at(ts[0] - start_time).gmtime
           end
         end
         return data
@@ -74,7 +74,7 @@ module ACME
         ikko_data["run"] = data.run
         ikko_data["assets"] = data.assets
         ikko_data["units"] = data.units
-        ikko_data["time"] = data.time
+        ikko_data["time"] = data.time.strftime("%H:%M:%S")
         return @ikko["grabber.html", ikko_data]
       end
 
