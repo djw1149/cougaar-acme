@@ -29,6 +29,42 @@ require 'cougaar/scripting'
 module Cougaar
   module Actions
     # Set the log4j log level at runtime
+    class SetLogging < Cougaar::Action
+      DOCUMENTATION = Cougaar.document {
+        @description = "Sets the Log4j log level of a component on a set of nodes."
+        @parameters = [
+          {:category => "Log4J category (package or class name usually, possibly root) for which to change the log level."},
+          {:level => "New log level. One of DETAIL, DEBUG, INFO, WARN, ERROR, or SHOUT."},
+          {:nodes => "*parameters, Name of node(s) in which to change the log level. If none specified, sets it on all nodes"}
+        ]
+        @example = "do_action 'SetLogging', 'org.cougaar.mlm.plugin.organization', 'INFO', 'OSD-NODE', 'REAR-A-NODE'"
+      }
+
+      def initialize(run, category, level, *nodes)
+        super(run)
+        @level = level
+        @category = category
+        @nodes = nodes
+      end
+
+      def perform
+        log_nodes = Array.new
+        if @nodes.nil? || @nodes.size == 0
+          @run.society.each_node do |node|
+            log_nodes << node
+          end
+        else
+          @nodes.each do |node|
+            log_nodes << @run.society.nodes[node]
+          end
+        end
+
+        log_nodes.each do |node|
+          node.override_parameter("-Dorg.cougaar.core.logging.log4j.category.#{@category}", "\"#{@level}\"")
+        end
+      end
+    end
+
     class ChangeLogging < Cougaar::Action
       PRIOR_STATES = ["SocietyRunning"]
       DOCUMENTATION = Cougaar.document {
