@@ -1,7 +1,14 @@
 ####################################################
-# Rule to insert Inventory(Manager)Plugin at consumer orgs and supply chain orgs
-# However, if the org has a role mechanism of TerminalInventoryManager or TerminalAmmunitionPacker,
-# then we will insert a UniversalAllocator in another rule
+# Rule to insert Inventory(Manager)Plugin
+#   at consumer orgs and supply chain orgs
+#   However, if the org has a role mechanism of TerminalInventoryManager for any supply provider role,
+#   or has a role mechanism of TerminalAmmunitionPacker for the AmmunitionProvider role,
+#   then we will instead insert a UniversalAllocator in another rule
+#   Consumers:
+#     - orgs which have equipment are considered potential consumers of Ammunition, BulkPOL, PackagedPOL,
+#       and RepairParts (Consumable).
+#     - orgs which have personnel are consumers of Subsistence
+#
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Ammunition)
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=BulkPOL)
 # plugin = org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=PackagedPOL)

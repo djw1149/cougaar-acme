@@ -1,5 +1,11 @@
 ####################################################
 # Rule to insert LogProjectionPlugin
+#   at consumers.
+#   Consumers:
+#     - orgs which have equipment are considered potential consumers of Ammunition, BulkPOL, PackagedPOL,
+#       and RepairParts (Consumable).
+#     - orgs which have personnel are consumers of Subsistence
+#
 # plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=Ammunition)
 # plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=BulkPOL)
 # plugin = org.cougaar.logistics.plugin.demand.projection.LogProjectionPlugin(SUPPLY_TYPE=PackagedPOL)

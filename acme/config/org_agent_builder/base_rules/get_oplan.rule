@@ -1,5 +1,7 @@
 ####################################################
 # Rule to insert GetOplanPlugin
+#   at every agent that represents a deployable organization
+#
 # plugin = org.cougaar.mlm.plugin.ldm.GetOplanPlugin
 
 get_oplan_plugin = "org.cougaar.mlm.plugin.ldm.GetOplanPlugin"

@@ -1,5 +1,9 @@
 ####################################################
-# Rule to insert Ammo Packer Plugins at supply chain orgs with a mechanism of TerminalInventoryManager
+# Rule to insert Ammo Packer Plugins
+#   at the Terminal Ammunition Packer (Currently OSC)
+#   A Terminal Ammunition Packer has a role of Ammunitionprovider and a role mechanism
+#     of TerminalAmmunitionPacker
+#
 # plugin = org.cougaar.logistics.plugin.trans.AmmoLowFidelityExpanderPlugin
 # plugin = org.cougaar.logistics.plugin.packer.ALAmmoPacker
 # plugin = org.cougaar.logistics.plugin.trans.AmmoProjectionExpanderPlugin
