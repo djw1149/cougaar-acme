@@ -48,13 +48,14 @@ module Cougaar
         @runport = @run.society.cougaar_port 
         # find the host this agent is running on (at config time)
         @runhost = @run.society.agents[@agent].node.host.host_name
-        puts "SampleInventory: About to do put to: #{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory for #{@asset}"
-        list, uri = Cougaar::Communications::HTTP.get("#{@agent.uri}/list")
+        cougaar_agent = @run.society.agents[@agent]
+        list, uri = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/list")
         if uri
+          puts "SampleInventory: About to do put to: #{uri.scheme}://#{uri.host}:#{uri.port}/$#{@agent}/log_inventory for #{@asset}"
           resp = Cougaar::Communications::HTTP.put("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{@agent}/log_inventory", @asset)
           save(resp)
         else
-          @run.error_message "Inventory failed to access agent: #{@agent.name}"
+          @run.error_message "Inventory failed to redirect to agent: #{@agent.name}"
         end
       end
     end
