@@ -31,7 +31,7 @@ class DumpDB
     @database = database
     experiment_name = experiment
     @mysql = Mysql.new(@host, @username, @password, @database)
-    q = @mysql.query("select trial_id from expt_trial where NAME='#{experiment_name}'")
+    q = @mysql.query("select trial_id from expt_trial et, expt_experiment ee where et.expt_id = ee.expt_id and ee.NAME='#{experiment_name}'")
     q.each do |row|
       @experiment = row[0]
     end
@@ -205,13 +205,13 @@ if $0 == __FILE__
   database = "csmart102"
 
 	experiment = []
-  #experiment << "RC102A-1AD-TRANS"
-  experiment << "SA-1AD-TRANS"
+	#experiment << "RC102A-1AD-TRANS"
+	experiment << "SA-1AD-TRANS"
   
 	$outstr = $stdout
 	experiment.each do |exp|
 		$stderr.print "Dumping #{exp}\n"
-	  $outstr = open("#{exp}.xml", "w")
+		$outstr = open("#{exp}.xml", "w")
 		DumpDB.new(host, username, password, database, exp)
 		$stderr.print "DONE Dumping #{exp}\n"
 	end
