@@ -82,9 +82,9 @@ class Organization
   end
 
   def to_xml(indent=0, output=$stdout)
-    output.puts " "*indent + "<agent name='#{org_id}'"
+    output.puts " "*indent + "<agent name='#{self.to_s}'"
     output.puts " "*indent + "       class='org.cougaar.core.agent.SimpleAgent'>"
-    output.puts " "*indent + "  <facet org_id='#{org_id}' />"
+    output.puts " "*indent + "  <facet org_id='#{self.to_s}' />"
     output.puts " "*indent + "  <facet orig_org_id='#{orig_org_id}' />"
     output.puts " "*indent + "  <facet superior_org_id='#{superior.to_s}' />"
     @subordinates.each { |sub| output.puts " "*indent + "  <facet subordinate_org_id='#{sub.to_s}' />"}
