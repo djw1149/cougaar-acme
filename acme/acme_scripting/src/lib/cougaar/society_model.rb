@@ -843,6 +843,7 @@ module Cougaar
         else
           @parameters << param
         end
+        @parameters.uniq!
       end
 
       # Remove a parameter specifically on this node
