@@ -106,7 +106,7 @@ module Cougaar
     end
 
     class InstallCompletionMonitor < Cougaar::Action
-      PRIOR_STATES = ["SocietyLoaded"]
+      PRIOR_STATES = ["SocietySynchronized"]
       RESULTANT_STATE = "CompletionMonitorInstalled"
       DOCUMENTATION = Cougaar.document {
         @description = ""
