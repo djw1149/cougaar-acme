@@ -24,7 +24,6 @@ module Cougaar
   module Actions
     class DeployCommunitiesFile < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
-      RESULTANT_STATE = "SocietyRunning"
       DOCUMENTATION = Cougaar.document {
         @description = "Write the society's communities.xml file."
         @parameters = [
@@ -55,6 +54,31 @@ module Cougaar
         end
       end
 
+    end
+    
+    class SaveCurrentCommunities < Cougaar::Action
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Write the society's communities definition to a local file."
+        @parameters = [
+          {:file => "[default='communities.xml', File to write communities file to (in xml format)."}
+        ]
+        @example = "do_action 'SaveCurrentCommunities', 'myCommunities.xml'"
+      }
+      
+      def initialize(run, file='communities.xml')
+        super(run)
+        @file = file
+      end
+      
+      def to_s
+        return super.to_s+"(#{@file})"
+      end
+      
+      def perform
+        communities_xml = @run.society.communities.to_xml
+        File.open(@file, "w") { |file| puts communities_xml }
+      end
     end
   end
 
