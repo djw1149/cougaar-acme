@@ -35,6 +35,7 @@ module Cougaar
         @nodes = nodes
       end
       def perform
+        @run.error_messages("WARNING:  DisableNetworkInterfaces is deprecated.  Use DeactivateNIC.")
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
           if cougaar_node
@@ -117,6 +118,7 @@ module Cougaar
         @nodes = nodes
       end
       def perform
+        @run.error_messages("WARNING:  EnableNetworkInterfaces is deprecated.  Use ActivateNIC.")
         @nodes.each do |node|
           cougaar_node = @run.society.nodes[node]
           if cougaar_node
