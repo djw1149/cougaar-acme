@@ -249,22 +249,32 @@ module Cougaar; module Actions
   end
 
   class AssertInactive < Cougaar::Action
-    def initialize( run, host, *interfaces )
+    def initialize( run, host )
       super( run )
       @hostname = host
-      @interfaces = interfaces
     end
 
     def perform
-      host = @run.society.hosts[host]
-      @interfaces.each do |iface|
-        ifcfg = @run.comms.new_message(host).set_body("command[rexec]ifconfig #{@interface}")
-        ifcfg.body.each_line do |line|
-          case line
-            when /UP BROADCAST/
-              @run.error_message("ERROR: Host #{@host}/Interface #{iface} is active.")
+      host = @run.society.hosts[@hostname]
+      net = @run['network']
+
+      case (host.get_facet(:host_type))
+        when "router":
+          @run.error_message("WARNING:  AssertInactive not implemented for hosts of type router.")
+        when "standard":
+          @run.error_message("WARNING:  AssertInactive not implemented for hosts of type standard.")
+        when "migratory"
+          active = []
+          host.get_facet(:subnet).split(/,/).each do |subnet_name|
+            subnet = net.subnet[ subnet_name ]
+            ifcfg = @run.comms.new_message(host).set_body("command[rexec]ifconfig #{subnet.make_interface(host.get_facet(:interface))}").send(30)
+
+            ifcfg.body.each_line do |line|
+              active << subnet_name if line["UP BROADCAST"]
+            end
           end
-        end 
+
+          @run.error_message "Active interfaces for #{@hostname}/Active Interfaces: #{active.join(',')}" if (active.size > 0)
       end
     end
   end

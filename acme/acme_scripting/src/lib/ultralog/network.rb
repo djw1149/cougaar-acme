@@ -49,6 +49,15 @@ module Cougaar; module Actions
 
       @run.info_message "Changing host #{@host.name} to use subnet #{subnet}/New IP: #{new_ip}"
 
+      # Is it up or down?
+      ifg = @run.comms.new_message(@host).set_body("command[rexec]ifconfig #{@net.subnet[subnet].make_interface(@host.get_facet(:interface))}").send(30)
+      isUp = (ifg.body["UP BROADCAST"] || !(@net.migratory_active_subnet.has_key?(@host)))
+
+      puts "***************************  UP *****************************" if isUp
+      puts "------------------------- DOWN ------------------------------" unless isUp
+
+      @net.migratory_active_subnet[@host] = subnet
+
       # First, we disable all of the subnets.
       @host.get_facet(:subnet).split(/,/).each { |subnet_name|
                 
@@ -63,8 +72,10 @@ module Cougaar; module Actions
         @run.error_message("Unable to update IP Address.") if result.nil?
       end
 
-      # Now, we activate the apropriate subnet.
-      @run.comms.new_message(@host).set_body("command[net]enable(#{new_subnet.make_interface(@host.get_facet(:interface))})").send()
+      # Now, we activate the apropriate subnet. . . but only if it was up before.
+      if (isUp) then
+        @run.comms.new_message(@host).set_body("command[net]enable(#{new_subnet.make_interface(@host.get_facet(:interface))})").send()
+      end
     end
   end
 
@@ -131,6 +142,7 @@ module Cougaar; module Actions
 
     def perform
       net = @run['network']
+      net.migratory_active_subnet = Hash.new
       @run.society.each_service_host("dns") do |dns_host|
          result = @run.comms.new_message( dns_host ).set_body("command[dns]reset").request(60)
          @run.error_message "WARNING! Unable to reset DNS to a known state." if result.nil?

@@ -57,10 +57,11 @@ module Cougaar
   end
       
   class NetworkModel
-    attr_accessor :operator, :subnet, :net_file
+    attr_accessor :operator, :subnet, :net_file, :migratory_active_subnet
 
     def initialize
        @subnet = Hash.new
+       @migratory_active_subnet = Hash.new
     end
 
     def self.discover( operator, mask )
