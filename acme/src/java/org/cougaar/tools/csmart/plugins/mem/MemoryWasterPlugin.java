@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.cougaar.core.service.AlarmService;
 import org.cougaar.core.service.EventService;
 import org.cougaar.core.service.ServletService;
+import org.cougaar.tools.csmart.plugins.LAlarm;
 import org.cougaar.core.component.ServiceBroker;
 import org.cougaar.core.component.ServiceRevokedListener;
 import org.cougaar.core.plugin.ComponentPlugin;
@@ -37,24 +38,30 @@ public class MemoryWasterPlugin
 	private boolean init = false;
 	
 	private String communityName;
-	
+
+	public int getSize() { return size; }
+	public void setSize( int i ) { this.size = i; }
+	public int getFrequency() { return frequency; }
+	public int getDeviation() { return stddev; }
+		
 	private class MWServlet 
 		extends HttpServlet
 	{
 		private AlarmService alarmSvc = null;
 		private RefreshAlarm current = null;
+		private MemoryWasterPlugin plugin = null;
 		
-		private int size, freq, stddev = 0;
-		
-		public MWServlet( AlarmService alarmSvc, int freq, int std ) {
-			this.current = new RefreshAlarm( new byte[0], freq, std );
+		public MWServlet( MemoryWasterPlugin plugin,
+							AlarmService alarmSvc) {
+			this.current = new RefreshAlarm( new byte[0], 
+												plugin.getFrequency(), 
+												plugin.getDeviation() );
 			this.alarmSvc = alarmSvc;	
-			this.freq = freq;
-			this.stddev = std;
+			this.plugin = plugin;
 		}
 		
 		public void wasteMemory() {
-			current.setData( new byte[size * 1024]);
+			current.setData( new byte[plugin.getSize() * 1024]);
 		}	
 		
 		public void execute( HttpServletRequest request,
@@ -66,7 +73,7 @@ public class MemoryWasterPlugin
 				
 				String sizeStr = request.getParameter("size");
 				if (sizeStr != null) {
-					size = Integer.parseInt(sizeStr);
+					plugin.setSize(Integer.parseInt(sizeStr));
 					wasteMemory();
 				}
 								
@@ -79,9 +86,9 @@ public class MemoryWasterPlugin
 								" free=\"" + Runtime.getRuntime().freeMemory() + "\"" +
 								" total=\"" + Runtime.getRuntime().totalMemory() + "\"" + 
 								" max=\"" + Runtime.getRuntime().maxMemory() + "\"/>");
-				out.println("\t<wasted size=\"" + size * 1024 + "\" />");
-				out.println("\t<refresh period=\"" + freq + "\"" +
-									  " deviation=\"" + stddev + "\"/>");
+				out.println("\t<wasted size=\"" + plugin.getSize() * 1024 + "\" />");
+				out.println("\t<refresh period=\"" + plugin.getFrequency() + "\"" +
+									  " deviation=\"" + plugin.getDeviation() + "\"/>");
 				out.println("</memory-waster>");
 			} catch (Exception e) {
 				throw new ServletException(e);
@@ -122,14 +129,18 @@ public class MemoryWasterPlugin
 			String freqStr = (String) params.get( 1 );
 			String stdStr = (String) params.get( 2 );
 			
-			int freq = Integer.parseInt( freqStr );
-			int std = Integer.parseInt( stdStr );
+			frequency = Integer.parseInt( (String) params.get( 1 ) );
+			stddev = Integer.parseInt( (String) params.get( 2 ) );
 			
 			ServiceBroker broker = getBindingSite().getServiceBroker();
 			ServletService srv =
 				(ServletService) broker.getService(this, ServletService.class, null);
 			
-			srv.register(servletName, new MWServlet( getAlarmService(), freq, std));
+			srv.register(servletName, new MWServlet( this, getAlarmService()));
+			
+			LAlarm alarm = new LAlarm( getBlackboardService(), alarmService,
+				                       30 * 1000L, 30 * 1000L );
+    	    alarmService.addRealTimeAlarm( alarm );
 		} catch (Exception e) {
 			throw new RuntimeException(e);	
 		}
@@ -139,5 +150,9 @@ public class MemoryWasterPlugin
 	 * @see org.cougaar.core.blackboard.BlackboardClientComponent#execute()
 	 */
 	protected void execute() {
+		evt.event("MEMORY\t" + getAgentIdentifier() + "\t" +
+							   Runtime.getRuntime().freeMemory() + "\t" +
+							   Runtime.getRuntime().totalMemory() + "\t" +
+							   Runtime.getRuntime().maxMemory());
 	}
 }
