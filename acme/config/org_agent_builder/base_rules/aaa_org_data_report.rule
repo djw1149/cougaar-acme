@@ -1,0 +1,18 @@
+####################################################
+# Rule to insert OrgReportPlugin and OrgReportPlugin
+#   at every agent so it can join the society
+#
+# plugin = org.cougaar.mlm.plugin.organization.OrgDataPlugin
+# plugin = org.cougaar.mlm.plugin.organization.OrgReportPlugin
+
+org_data_plugin = "org.cougaar.mlm.plugin.organization.OrgDataPlugin"
+org_report_plugin = "org.cougaar.mlm.plugin.organization.OrgReportPlugin"
+
+society.each_agent do |agent|
+  agent.add_component do |c|
+    c.classname = org_data_plugin
+  end
+  agent.add_component do |c|
+    c.classname = org_report_plugin
+  end
+end
