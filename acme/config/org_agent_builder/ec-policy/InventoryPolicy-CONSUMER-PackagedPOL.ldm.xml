@@ -12,7 +12,7 @@
         </String>
     </RuleParam>
     <RuleParam name="OrderShipTime">
-        <Integer value = "3" min="0" max="1000">
+        <Integer value = "1" min="0" max="1000">
         </Integer>
     </RuleParam>
     <RuleParam name="SupplierAdvanceNoticeTime">
@@ -20,15 +20,15 @@
         </Integer>
     </RuleParam>
     <RuleParam name="HandlingTime">
-        <Integer value = "2" min="0" max="1000">
+        <Integer value = "1" min="0" max="1000">
         </Integer>
     </RuleParam>
     <RuleParam name="CriticalLevel">
-        <Integer value = "2" min="0" max="1000">
+        <Integer value = "3" min="0" max="1000">
         </Integer>
     </RuleParam>
     <RuleParam name="ReorderPeriod">
-        <Integer value = "4" min="0" max="1000">
+        <Integer value = "3" min="0" max="1000">
         </Integer>
     </RuleParam>
  </Policy>
