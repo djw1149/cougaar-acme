@@ -40,7 +40,7 @@ module Cougaar; module Actions
     end
 
     def set_bandwidth( bw )
-       puts "SEND: #{@noc.host_name}/command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})"
+       @run.info_message "SEND: #{@noc.host_name}/command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})"
        @run.comms.new_message( @noc ).set_body("command[shape]shape(#{@from_vlan},#{@to_vlan},#{bw})").request(30)
 
 #       @run.comms.new_message( @noc ).set_body("command[rexec]/sbin/tc class change dev eth0.#{@to_vlan} parent 1:1 classid 1:#{@from_vlan} htb rate #{bw}Mbit burst 15k ceil #{bw}Mbit").request( 30 )
@@ -99,6 +99,11 @@ module Cougaar; module Actions
       wl = WANLink.new( @run, noc, @from_vlan, @to_vlan)
       WANLink.store( @name, wl )
     end
+
+    def to_s
+      return super.to_s+"('#{@name}', '#{@from_vlan}', '#{@to_vlan}')"
+    end
+    
   end
 
   class EnableNetworkShaping < Cougaar::Action
@@ -115,7 +120,7 @@ module Cougaar; module Actions
       @nocname = nocname
     end
 
-   def to_s
+    def to_s
       hostname="unknown"
       if @nocname
        hostname = @nocname
@@ -204,6 +209,10 @@ module Cougaar; module Actions
     def perform
       WANLink.find( @wan_link ).disable
     end
+    
+    def to_s
+      return super.to_s+"('#{@wan_link}')"
+    end
   end
 
   class RenableWANLink < Cougaar::Action
@@ -246,6 +255,10 @@ module Cougaar; module Actions
     def perform
       WANLink.find( @wan_link ).start_intermittent( @on_time, @off_time )
     end
+    
+    def to_s
+      return super.to_s+"('#{@wan_link}', '#{@on_time}', '#{@off_time}')"
+    end
   end
 
   class StopIntermitWANLink < Cougaar::Action
@@ -265,6 +278,11 @@ module Cougaar; module Actions
     def perform
       WANLink.find( @wan_link ).stop_intermittent
     end
+    
+    def to_s
+      return super.to_s+"('#{@wan_link}')"
+    end
+
   end
 
   class SetBandwidth < Cougaar::Action
@@ -285,6 +303,10 @@ module Cougaar; module Actions
 
     def perform
       WANLink.find( @wan_link ).set_bandwidth( @bandwidth )
+    end
+    
+    def to_s
+      return super.to_s+"('#{@wan_link}', '#{@bandwidth}')"
     end
   end
 
