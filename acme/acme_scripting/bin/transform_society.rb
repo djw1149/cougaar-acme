@@ -2,7 +2,7 @@
 $:.unshift Dir.pwd.split("/")[0..(Dir.pwd.split("/").index("acme_scripting"))].push("src").push("lib").join("/")
 $:.unshift Dir.pwd.split("/")[0..(Dir.pwd.split("/").index("acme_scripting")-1)].push('acme_service').push("src").push("redist").join("/")
 
-require 'cougaar/builder'
+require 'cougaar/society_builder'
 require 'cougaar/society_model'
 require 'cougaar/society_rule_engine'
 require 'getoptlong'
