@@ -53,7 +53,7 @@ module UltraLog
 #	    @run.info_message "Set gls_connected"
             resp.read_body do |data|
               data.each_line do |line|
-                puts "DATA: #{line.strip}" if $COUGAAR_DEBUG
+                puts "DATA: #{line.strip}" if $COUGAAR_DEBUG_GLS
                 case line.strip
                 when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]* nextStage=.* stageDesc=.*>/
                   match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*) nextStage=(.*) stageDesc=.*>/.match(data)
@@ -98,7 +98,7 @@ module UltraLog
     
     def wait_for_next_stage
       @next_stage_count += 1
-      puts "Waiting for stage: #{@next_stage_count}" if $COUGAAR_DEBUG
+      puts "Waiting for stage: #{@next_stage_count}" if $COUGAAR_DEBUG_GLS
       while @next_stage_count != @stages.size
         sleep 2
       end
