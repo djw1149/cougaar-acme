@@ -100,7 +100,7 @@ module ACME; module Plugins
         end
         result << "  </reports>"
         result << "</run>"
-        File.open(@xml_file+".new", "w") {|f| f.puts result.join("\n")}
+        File.open(@xml_file, "w") {|f| f.puts result.join("\n")}
       end
       
       def build_index_page
