@@ -59,6 +59,7 @@ module ACME
         error = 0
         e = ratio_test(data)
         error = (error > e ? error : e)
+        
         return error
       end
       
@@ -79,13 +80,13 @@ module ACME
         str << "<CAPTION>\n"
         str << "Completion test for the file:  #{file.split(/\//).last}\n"
         str << "</CAPTION>\n"
-        str << "<TR><TD>Agent"
+        str << "<TR><TH>Agent"
         
         #Examine an arbitrary agent and pull out the field names"
         data.keys.each do |key|
           if data[key].class.to_s == "Hash" then
             data[key].keys.sort.each do |field|
-              str << "<TD>#{field}"
+              str << "<TH>#{field}"
             end
             break
           end
@@ -114,7 +115,7 @@ module ACME
       def agent_html(data, agent)
         set = ""
         if (data["Ratio"] == 1.0) then
-          set << "<TR BGCOLOR=#00FF00><TD>"
+          set << "<TR BGCOLOR=#00DD00><TD>"
         elsif (data["Ratio"] >= 0.90) then
           set << "<TR BGCOLOR=#FFFF00><TD>"
         else

@@ -1,6 +1,8 @@
 module ACME
   module Plugins
-    Quiescence_Data = Struct.new("Quiescence_Data", :node, :stage_data, :goodnode)
+    QuiescenceData = Struct.new("QuiescenceData", :node, :stage_data, :goodnode)
+    StageTime = Struct.new("StageTime", :start_time, :end_time, :range)
+
     class StageData
       attr_reader :stage, :times, :total, :quiesced
       def initialize(stage, starttime, initial_state)
@@ -71,9 +73,11 @@ module ACME
       end
 
       def adjust_hours(stage_times)
-        stage_times.each do |time|
-          if !time.nil? then
-            time += 24*60*60 if time.hour <= 10
+        stage_times.each do |stage_time|
+          if !stage_time.nil? then
+            stage_time.start_time += 24*60*60 if stage_time.start_time.hour <= 10
+            stage_time.end_time += 24*60*60 if (stage_time.end_time.hour <= 10 || stage_time.start_time.hour <= 10)
+            stage_time.range = (stage_time.start_time .. stage_time.end_time) 
           end
         end
       end
@@ -82,39 +86,55 @@ module ACME
         stage_times = []
         @nightrun = false
         curr = nil
+        stage = nil
         run_log.each do |line|
           if line =~ /Run.*Started/ then
             stage_times = []
-          elsif line =~ /Starting: PublishNextStage/ then
+          elsif (stage.nil? && line =~ /Starting: PublishNextStage/) then
             curr = get_timestamp(line, false)
             @nightrun = true if curr.hour >= 22
           elsif line =~ /Published stage Stage ([0-9]+)/ then
             stage = $1.to_i
-            stage_times[stage] = curr unless (stage == 4 or stage == 6)
+            stage_times[stage] = StageTime.new
+            if !(stage == 4 or stage == 6) then
+              stage_times[stage].start_time = curr
+            else
+              stage -= 1
+            end
+          elsif (!stage.nil? && line =~ /Done: SocietyQuiesced/) then
+            curr = get_timestamp(line, false)
+            @nightrun = true if curr.hour >= 22
+            stage_times[stage].end_time = curr
+            stage_times[stage].range = (stage_times[stage].start_time .. stage_times[stage].end_time) 
+            stage = nil 
           end
         end
+        stage_times.collect!{|x| (x.nil? || x.range.nil?) ? nil : x}
         adjust_hours(stage_times) if @nightrun
         stage_times[4] = stage_times[3] unless stage_times[3].nil?
         stage_times[6] = stage_times[5] unless stage_times[5].nil?
-        stage_times.collect! {|x| x.nil? ? Time.at(0).gmtime : x} #stages before the restore start at time 0
         return stage_times
       end
 
       def get_stage(time)
         stage = 0
-        while ((!@stage_times[stage].nil?) && (@stage_times[stage] <= time)) do
+        while (stage < @stage_times.size)
+          break if (!@stage_times[stage].nil? && @stage_times[stage].range === time)
           stage += 1
         end
 
-        stage -= 1 
         stage = 3 if stage == 4
         stage = 5 if stage == 6
         return stage
       end
       
       def create_new_stage(new_node, stage)
-        start_time = @stage_times[stage]
-        start_time = Time.at(0).gmtime if start_time.nil?
+        start_time = nil
+        if  (@stage_times[stage].nil?) then
+          start_time = Time.at(0).gmtime if start_time.nil?
+        else
+          start_time = @stage_times[stage].start_time
+        end
         initial = false
         last = stage - 1
         last -= 1 while (last >= 0 && new_node.stage_data[last].nil?)
@@ -127,7 +147,7 @@ module ACME
       def get_quiescence_times(qfiles)
         data = []
         qfiles.each do |qfile|
-          new_node = Quiescence_Data.new(qfile.name.split(/\//).last.split(/\./)[0], [], true)
+          new_node = QuiescenceData.new(qfile.name.split(/\//).last.split(/\./)[0], [], true)
           quiescent = false
           File.new(qfile.name).each do |line|
             next unless line =~ /quiescent="(false|true)"/
@@ -149,7 +169,7 @@ module ACME
         stages = []
         @stage_times.each_index do |i|
           next if (i == 4 or i == 6)
-          stages << i if @stage_times[i] > Time.at(0).gmtime
+          stages << i unless @stage_times[i].nil?
         end
         return stages
       end
@@ -178,15 +198,15 @@ module ACME
         str << "<HTML>\n"
         str << "<TABLE border=\"1\">\n"
         str << "<CAPTION>Total time unquiesced by stage</CAPTION>\n"
-        str << "<TR><TD>Node"
+        str << "<TR><TH>Node"
         run_stages.each do |s|
           stage = ((s == 3) || (s == 5) ? "#{s}#{s+1}" : s.to_s)
-          str << "<TD>Stage #{stage}"
+          str << "<TH>Stage #{stage}"
         end
         str << "\n"
         data.each do |node|
           if node.goodnode then
-            str << "<TR><TD BGCOLOR=#00FF00>#{node.node}"
+            str << "<TR><TD BGCOLOR=#00DD00>#{node.node}"
           else
             str << "<TR><TD BGCOLOR=#FF0000>#{node.node}"
           end
@@ -194,7 +214,7 @@ module ACME
             total = Time.at(0).gmtime
             total = node.stage_data[stage].total if (!node.stage_data[stage].nil?)
             if (node.stage_data[stage].nil? || node.stage_data[stage].quiesced) then
-              str << "<TD BGCOLOR=#00FF00>#{format_time(total)}"
+              str << "<TD BGCOLOR=#00DD00>#{format_time(total)}"
             else
               str << "<TD BGCOLOR=#FF0000>#{format_time(total)}"
             end

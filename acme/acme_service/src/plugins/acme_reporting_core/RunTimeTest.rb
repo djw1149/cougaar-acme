@@ -124,6 +124,12 @@ module ACME
         return n
       end
       
+      def std_percent(data)
+	m = mean(data)
+        sd = standard_deviation(data, m)
+        return sprintf("%6.3f", (100*sd).to_f / m.to_f) + "%"
+      end
+
       def collect_elements(all_data, field)
         data = []
         all_data.each do |elem|
@@ -151,9 +157,9 @@ module ACME
       end
       
       def get_html_string(data, i)
-        str = "<TR><TH>#{data.interrupted ? "#{i+1}INT" : (i+1).to_s}<TH>#{data.load_time.strftime("%H:%M:%S")}<TH>#{data.start_time.strftime("%H:%M:%S")}"
+        str = "<TR><TD>#{data.interrupted ? "#{i+1}INT" : (i+1).to_s}<TD>#{data.load_time.strftime("%H:%M:%S")}<TD>#{data.start_time.strftime("%H:%M:%S")}"
         data.stage_times.each do |stage_time|
-          str << "<TH>#{stage_time.strftime("%H:%M:%S")}"
+          str << "<TD>#{stage_time.strftime("%H:%M:%S")}"
         end
         str << "\n"
         return str
@@ -165,7 +171,7 @@ module ACME
         str << "<CAPTION>\n"
         str << "Run times by stage\n"
         str << "</CAPTION>\n"
-        str << "<TR><TH>Run<TH>Load Time<TH>Start Time<TH>Stage Time[s]\n"
+        str << "<TR><TH><B>Run<TH>Load Time<TH>Start Time<TH>Stage Time[s]</B>\n"
         all_data.each_index do |i|
           str << get_html_string(all_data[i], i)
         end
@@ -178,23 +184,30 @@ module ACME
           stage_times << collect_elements(all_stage_times, i)
         end
         
-        str << "<TR><TH>MEAN<TH>#{format_time(mean(load_times))}<TH>#{format_time(mean(start_times))}"
+        str << "<TR><TD>MEAN<TD>#{format_time(mean(load_times))}<TD>#{format_time(mean(start_times))}"
         stage_times.each do |stage|
-          str << "<TH>#{format_time(mean(stage))}"
+          str << "<TD>#{format_time(mean(stage))}"
         end
         str << "\n"
         
-        str << "<TR><TH>STDDEV<TH>#{format_time(standard_deviation(load_times))}<TH>#{format_time(standard_deviation(start_times))}"
+        str << "<TR><TD>STDDEV<TD>#{format_time(standard_deviation(load_times))}<TD>#{format_time(standard_deviation(start_times))}"
         stage_times.each do |stage|
-          str << "<TH>#{format_time(standard_deviation(stage))}"
+          str << "<TD>#{format_time(standard_deviation(stage))}"
         end
         str << "\n"
         
-        str << "<TR><TH>VARIANCE<TH>#{format_time(variance(load_times))}<TH>#{format_time(variance(start_times))}"
+#        str << "<TR><TD>VARIANCE<TH>#{format_time(variance(load_times))}<TD>#{format_time(variance(start_times))}"
+#        stage_times.each do |stage|
+#          str << "<TD>#{format_time(variance(stage))}"
+#        end
+#        str << "\n"
+
+        str << "<TR><TD>STDEV Percent<TD>#{std_percent(load_times)}<TD>#{std_percent(start_times)}"
         stage_times.each do |stage|
-          str << "<TH>#{format_time(variance(stage))}"
+          str << "<TD>#{std_percent(stage)}"
         end
         str << "\n"
+
         str <<"</TABLE>\n"
         str << "</HTML>\n"
         return str
