@@ -1,0 +1,11 @@
+####################################################
+# Rule to insert MnRBootStrapEventPlugin
+
+plugin = "org.cougaar.core.security.monitoring.plugin.BootStrapEventPlugin"
+
+society.each_node do |node|
+  node.add_component do |c|
+      c.classname = plugin
+  end
+end
+

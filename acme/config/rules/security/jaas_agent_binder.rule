@@ -1,0 +1,12 @@
+####################################################
+# Rule to insert JaasAgentBinder
+
+plugin = "org.cougaar.core.security.access.JaasAgentBinderFactory"
+
+society.each_node do |node|
+  node.add_component do |c|
+      c.insertionpoint = "Node.AgentManager.Binder"
+      c.classname = plugin
+  end
+end
+
