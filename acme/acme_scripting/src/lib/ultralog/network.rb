@@ -35,6 +35,10 @@ module Cougaar; module Actions
       @file = file
     end
 
+    def to_s
+      "#{super.to_s}(#{@file})"
+    end
+
     def perform
       netModel = @run['network']
       out = File.open( @file, "w" )
