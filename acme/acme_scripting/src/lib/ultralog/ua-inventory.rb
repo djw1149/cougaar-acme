@@ -37,13 +37,18 @@ module Cougaar
       end
       
       def perform
+	#Check to see if @modifier is a subdirectory of INV
+	#if it is not create it
+	Dir.mkdir("INV/#{@modifier}") if Dir["INV/#{@modifier}"].empty?
+
+
         # Get some inventory charts
-        get_inventory  "1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0", "JP8:NSN/9130010315816:1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0-FCS-MCS-1", "INV/INV#{@modifier}-1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0.xml"
-        get_inventory  "1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0", "JP8:NSN/9130010315816:1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0-FCS-ARV-R-1", "INV/INV#{@modifier}-1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0.xml"
-        get_inventory  "1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0", "JP8:NSN/9130010315816:1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0-ARV-R-1", "INV/INV#{@modifier}-1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0.xml"
-        get_inventory  "2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1", "JP8:NSN/9130010315816:2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1-FCS-ICV-1", "INV/INV#{@modifier}-2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1.xml"
-        get_inventory  "2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0", "JP8:NSN/9130010315816:2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0-FCS-MCS-1", "INV/INV#{@modifier}2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0.xml"
-        get_inventory  "UA-MCG2-FCS-ICV-0", "JP8:NSN/9130010315816:UA-MCG2-FCS-ICV-0-FCS-ICV-1", "INV/INV#{@modifier}UA-MCG2-FCS-ICV-0.xml"
+        get_inventory  "1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0", "JP8:NSN/9130010315816:1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0-FCS-MCS-1", "INV/#{@modifier}/INV#{@modifier}-1-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0.xml"
+        get_inventory  "1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0", "JP8:NSN/9130010315816:1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0-FCS-ARV-R-1", "INV/#{@modifier}/INV#{@modifier}-1-CA-BN-MCS-CO-A-1-PLT-FCS-ARV-R-0.xml"
+        get_inventory  "1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0", "JP8:NSN/9130010315816:1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0-ARV-R-1", "INV/#{@modifier}/INV#{@modifier}-1-CA-BN-RECON-DET-1-PLT-FCS-ARV-R-0.xml"
+        get_inventory  "2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1", "JP8:NSN/9130010315816:2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1-FCS-ICV-1", "INV/#{@modifier}/INV#{@modifier}-2-CA-BN-INF-CO-A-1-PLT-FCS-ICV-1.xml"
+        get_inventory  "2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0", "JP8:NSN/9130010315816:2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0-FCS-MCS-1", "INV/#{@modifier}/INV#{@modifier}2-CA-BN-MCS-CO-A-1-PLT-FCS-MCS-0.xml"
+        get_inventory  "UA-MCG2-FCS-ICV-0", "JP8:NSN/9130010315816:UA-MCG2-FCS-ICV-0-FCS-ICV-1", "INV/#{@modifier}/INV#{@modifier}UA-MCG2-FCS-ICV-0.xml"
 
       end
       

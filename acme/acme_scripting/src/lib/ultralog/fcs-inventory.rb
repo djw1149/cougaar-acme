@@ -37,10 +37,14 @@ module Cougaar
       end
       
       def perform
+	#Check to see if @modifier is a subdirectory of INV
+	#if it is not create it
+	Dir.mkdir("INV/#{@modifier}") if Dir["INV/#{@modifier}"].empty?
+
         # Get some inventory charts
-        get_inventory "FSB-FUEL-WATER-SECTION", "ALL TRUCKS:JP8", "INV/INV#{@modifier}-FSB-FUEL-WATER-SECTION-ALL-TRUCKS-JP8.xml"
-        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-0:JP8", "INV/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
-        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-10:JP8", "INV/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "ALL TRUCKS:JP8", "INV/#{@modifier/INV#{@modifier}-FSB-FUEL-WATER-SECTION-ALL-TRUCKS-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-0:JP8", "INV/#{@modifier/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-0-JP8.xml"
+        get_inventory "FSB-FUEL-WATER-SECTION", "FTTS-MS-Fuel-10:JP8", "INV/#{@modifier/INV#{@modifier}-FSB-FUEL-WATER-SECTION-FTTS-MS-Fuel-10-JP8.xml"
 
       end
 
