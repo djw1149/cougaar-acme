@@ -1,11 +1,11 @@
  agent_servlets.rule
  redirect_move.rule
  community_plugin.rule
- aaa_yp.rule
+ yp.rule
  service_discovery.rule
  subsistence_prototype_creation.rule
- aaa_prototype_creation.rule
- aaa_org_data_report.rule
+ prototype_creation.rule
+ org_data_report.rule
  gls_init.rule
  gls_expander_allocator.rule
  oplan_reader.rule
