@@ -15,6 +15,7 @@ module Cougaar
       file = File.new(filename)
       builder = SocietyBuilder.new(REXML::Document.new(file))
       builder.filename = filename
+      file.close()
       builder
     end
     
@@ -57,7 +58,9 @@ module Cougaar
     end
     
     def load_ruby
-      @society = eval File.new(@doc).read
+      f = File.new(@doc)
+      @society = eval f.read
+      f.close()
     end
     
     def parse_xml
