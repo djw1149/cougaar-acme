@@ -15,10 +15,12 @@ module ACME; module Plugins
       @plugin["/plugins/acme_host_communications/commands/rexec/description"].data = 
         "Executes host command. Params: host_command"
       @plugin["/plugins/acme_host_communications/commands/rexec"].set_proc do |message, command| 
-        status = "\n"
         command = command.gsub(/\&quot;/, '"').gsub(/\&apos;/, "'")
-        status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
-        message.reply.set_body(status).send
+        Thread.new {
+          status = "\n"
+          status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
+          message.reply.set_body(status).send
+        }
       end
     end
   end

@@ -16,11 +16,13 @@ module ACME; module Plugins
       @plugin["/plugins/acme_host_communications/commands/rexec_user/description"].data = 
         "Executes host command as the acme_config user. Params: host_command"
       @plugin["/plugins/acme_host_communications/commands/rexec_user"].set_proc do |message, command| 
-        status = "\n"
         command = command.gsub(/\&quot;/, '"').gsub(/\&apos;/, "'")
         command = @config_mgr.cmd_wrap(command)
-        status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
-        message.reply.set_body(status).send
+        Thread.new {
+          status = "\n"
+          status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
+          message.reply.set_body(status).send
+        }
       end
     end
   end
