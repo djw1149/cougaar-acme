@@ -6,7 +6,7 @@ javac -classpath ${COUGAAR_INSTALL_PATH}/sys/xerces.jar:${COUGAAR_INSTALL_PATH}/
 
 cd ${CSMART_INSTALL_PATH}/tmp/classes
 
-jar cvf designer.jar ../designer.jar
+jar cvf ../designer.jar .
 cp ../designer.jar ${CSMART_INSTALL_PATH}/lib
 
 To build XMLDiff:
@@ -15,6 +15,6 @@ javac -classpath ${COUGAAR_INSTALL_PATH}/sys/xerces.jar  -d ${CSMART_INSTALL_PAT
 
 cd ${CSMART_INSTALL_PATH}/tmp/classes
 
-jar cvf diff.jar ../diff.jar
+jar cvf ../diff.jar .
 cp ../diff.jar ${CSMART_INSTALL_PATH}/lib
 
