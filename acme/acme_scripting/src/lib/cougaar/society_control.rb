@@ -21,9 +21,10 @@
 
 module Cougaar
   class NodeController
-    def initialize(run, debug)
+    def initialize(run, timeout, debug)
       @run = run
       @debug = debug
+      @timeout = timeout
       @pids = {}
       @run['pids'] = @pids
     end
@@ -51,7 +52,7 @@ module Cougaar
             msg_body = launch_db_node(node)
           end
           puts "Sending message to #{host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
-          result = @run.comms.new_message(host).set_body("command[start_#{@node_type}node]#{msg_body}").request(120)
+          result = @run.comms.new_message(host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
           if result.nil?
             raise_failure "Could not start node #{node.name} on host #{host.host_name}"
           end
@@ -80,7 +81,7 @@ module Cougaar
         msg_body = launch_db_node(node)
       end
       puts "RESTART: Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
-      result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(120)
+      result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
       if result.nil?
         raise_failure "Could not start node #{node.name} on host #{node.host.host_name}"
       end
@@ -121,16 +122,16 @@ module Cougaar
     end
     
   end
-
+  
   module Actions
   
     class StartSociety < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
       
-      def initialize(run, debug=false)
+      def initialize(run, timeout=120, debug=false)
         super(run)
-        @run['node_controller'] = ::Cougaar::NodeController.new(run, debug)
+        @run['node_controller'] = ::Cougaar::NodeController.new(run, timeout, debug)
       end
       
       def perform
