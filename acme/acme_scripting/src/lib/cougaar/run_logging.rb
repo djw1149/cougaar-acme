@@ -51,83 +51,79 @@ module Cougaar
       end
 
       def perform
-	# Empty component means the root level
-	if @category == nil || @category == "" || @category == "Root" || @category == "ROOT"
-	  @category = "root"
-	end
+        # Empty component means the root level
+        if @category == nil || @category == "" || @category == "Root" || @category == "ROOT"
+          @category = "root"
+        end
 
-	# Note that a typo in the category will not be noticed
+        # Note that a typo in the category will not be noticed
 
-	# Empty level makes no sense.
-	if @level == nil || @level == ""
-	  @run.error_message "No log level given. Making no change."
-	  return
-	end
+        # Empty level makes no sense.
+        if @level == nil || @level == ""
+          @run.error_message "No log level given. Making no change."
+          return
+        end
 
-	# Ensure a known log level is supplied. Note that the log servlet
-	# notices such things later too. We could let it do it....
-	unless @level == "DETAIL" || @level == "DEBUG" || @level == "INFO" || @level == "WARN" || @level == "ERROR" || @level == "SHOUT"
-	  @run.error_message "Unknown log level #{@level}. Making no change."
-	  return
-	end
+        # Ensure a known log level is supplied. Note that the log servlet
+        # notices such things later too. We could let it do it....
+        unless @level == "DETAIL" || @level == "DEBUG" || @level == "INFO" || @level == "WARN" || @level == "ERROR" || @level == "SHOUT"
+          @run.error_message "Unknown log level #{@level}. Making no change."
+          return
+        end
 
-	if @agent == nil || @agent == "" || @agent == "ALL"
-	  @agent = "All"
-	end
+        if @agent == nil || @agent == "" || @agent == "ALL"
+          @agent = "All"
+        end
 
-	# FIXME: allow agent == "All" to do all of the society
-	if @agent == "All"
-	  @run.society.each_node do |node|
-	    do_agent node.name
-	  end
-	else
-	  do_agent @agent
-	end
+        # FIXME: allow agent == "All" to do all of the society
+        if @agent == "All"
+          @run.society.each_node do |node|
+            do_agent node.name
+          end
+        else
+          do_agent @agent
+        end
       end
 
       # Process a single agent (node)
       def do_agent(one_agent)
-
-	# FIXME: Do a transform_society for any reason?
-
+        # FIXME: Do a transform_society for any reason?
         cougaar_agent = @run.society.agents[one_agent]
 
-	# If didn't find it as an agent, try as a node
-	unless cougaar_agent
-	  cougaar_agent = @run.society.nodes[one_agent]
-	end
-
+        # If didn't find it as an agent, try as a node
+        unless cougaar_agent
+          cougaar_agent = @run.society.nodes[one_agent]
+        end
+      
         if cougaar_agent
           list, uri = Cougaar::Communications::HTTP.get("#{cougaar_agent.uri}/list")
           if uri
-
-	    # Get the current level
-	    lev = process_return(get_level(uri, one_agent))
-	    if lev
-	      if lev == @level
-		@run.info_message "Log level at #{one_agent} for #{@category} is already #{@level}."
-		return
-	      else
-		@run.info_message "Changing log level at #{one_agent} for #{@category} from #{lev} to #{@level}...."
-	      end
-	    else
-	      @run.error_message "Unable to get old log level at #{one_agent} for #{@category}..."
-	      # This indicates something really wrong, so just abort.
-	      return
-	    end
+            # Get the current level
+            lev = process_return(get_level(uri, one_agent))
+            if lev
+              if lev == @level
+                @run.info_message "Log level at #{one_agent} for #{@category} is already #{@level}."
+                return
+              else
+                @run.info_message "Changing log level at #{one_agent} for #{@category} from #{lev} to #{@level}...."
+              end
+            else
+              @run.error_message "Unable to get old log level at #{one_agent} for #{@category}..."
+              # This indicates something really wrong, so just abort.
+              return
+            end
+            # Now set the new level and check to see if the change went OK
+            lev = process_return(set_level(uri, one_agent))
+            unless lev
+              @run.error_message " ..... FAILED log level change!"
+              return
+            end
 	    
-	    # Now set the new level and check to see if the change went OK
-	    lev = process_return(set_level(uri, one_agent))
-	    unless lev
-	      @run.error_message " ..... FAILED log level change!"
-	      return
-	    end
-	    
-	    if lev != @level
-	      @run.error_message " .... FAILED! Log level at #{lev} instead of #{@level}!"
-	    else
-	      @run.info_message " .... Succeeded."
-	    end
+            if lev != @level
+              @run.error_message " .... FAILED! Log level at #{lev} instead of #{@level}!"
+            else
+              @run.info_message " .... Succeeded."
+            end
           else
             @run.error_message "ChangeLogging failed to redirect to agent: #{one_agent}"
           end
@@ -135,54 +131,53 @@ module Cougaar
           @run.error_message "ChangeLogging failed. Unknown agent: #{one_agent}"
         end
       end
-
+      
       def get_level (uri, one_agent)
-	return Cougaar::Communications::HTTP.get("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{one_agent}/log?action=Get&getlog=#{@category}")
+        return Cougaar::Communications::HTTP.get("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{one_agent}/log?action=Get&getlog=#{@category}")
       end
 
       # Parse the log config servlet body. Return the log level or nil on error
-      def process_return (resp)
-	# 1 is cat, 2 is level
-#	@run.info_message " - Comparing #{resp}...."
-	match = /.*Level for \"([^\"]*)\" is ([^ <]+)/.match(resp.to_s)
-	if match
-	  cat, lev = match[1,2]
-	  if lev && lev != nil
-	    return lev
-	  end
-	end
+      def process_return(resp)
+        # 1 is cat, 2 is level
+        #	@run.info_message " - Comparing #{resp}...."
+        match = /.*Level for \"([^\"]*)\" is ([^ <]+)/.match(resp.to_s)
+        if match
+          cat, lev = match[1,2]
+          if lev && lev != nil
+            return lev
+          end
+        end
 
-	# 1 is cat, 2 is failure reason
-	match2 = /.*Unable to \S+ logging level of \"([^\"]*)\": ([^\n\r<]*)/.match(resp.to_s)
-	if match2
-	  cat, err = match2[1,2]
-	  if err && err != nil
-	    @run.error_message "Error processing log level of #{cat}: #{err}"
-	    return nil
-	  end
-	end
-	
-	match3 = /.*Set \"([^\"]*)\" to ([^ <]+)/.match(resp.to_s)
-	if match3
-	  cat, lev = match3[1,2]
-	  if lev && lev != nil
-	    if lev == "null"
-	      @run.error_message "Error setting log level for #{cat}. Unknown log level."
-	      return nil
-	    else
-	      return lev
-	    end
-	  end
-	end
+        # 1 is cat, 2 is failure reason
+        match2 = /.*Unable to \S+ logging level of \"([^\"]*)\": ([^\n\r<]*)/.match(resp.to_s)
+        if match2
+          cat, err = match2[1,2]
+          if err && err != nil
+            @run.error_message "Error processing log level of #{cat}: #{err}"
+            return nil
+          end
+        end
+        
+        match3 = /.*Set \"([^\"]*)\" to ([^ <]+)/.match(resp.to_s)
+        if match3
+          cat, lev = match3[1,2]
+          if lev && lev != nil
+            if lev == "null"
+              @run.error_message "Error setting log level for #{cat}. Unknown log level."
+              return nil
+            else
+              return lev
+            end
+          end
+        end
 
-	@run.error_message "No match processing log servlet return"
-	return nil
+        @run.error_message "No match processing log servlet return"
+        return nil
       end
 
       def set_level (uri, one_agent)
-	return Cougaar::Communications::HTTP.get("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{one_agent}/log?action=Set&setlog=#{@category}&level=#{@level}")
+        return Cougaar::Communications::HTTP.get("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{one_agent}/log?action=Set&setlog=#{@category}&level=#{@level}")
       end
-
     end
   end
 end
