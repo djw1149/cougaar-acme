@@ -10,18 +10,21 @@ require 'getoptlong'
 opts = GetoptLong.new( [ '--input',	'-i',		GetoptLong::REQUIRED_ARGUMENT],
 											[ '--rules', '-r', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--output', '-o', GetoptLong::REQUIRED_ARGUMENT ],
+                      [ '--abort-on-warning', '-a',  GetoptLong::NO_ARGUMENT],
 											[ '--help', '-h', GetoptLong::NO_ARGUMENT])
 
 input = nil
 output = nil
 input_type = :unknown
 output_type = :unknown
+abort_on_warning = false
 rules = nil
 
 def help
   puts "Transforms a society with rules (and converts between xml and ruby).\nUsage:\n\t#$0 -i <input file> -r <rules dir> [-o <output file>] [-h]"
   puts "\t-i --input\tThe input file (.xml or .rb)."
   puts "\t-r --rules\tThe rule directory (e.g. ./rules)."
+  puts "\t-a --abort-on-warning\tAbort the generation of the society if a rule warning is encountered."
   puts "\t-o --output\tThe output file. (default new-<input>)"
 end
 
@@ -37,6 +40,8 @@ opts.each do |opt, arg|
     output = arg
     output_type = :xml if (File.basename(output)!=File.basename(output, ".xml"))
     output_type = :ruby if (File.basename(output)!=File.basename(output, ".rb"))
+  when '--abort-on-warning'
+    abort_on_warning = true
   when '--help'
     help
     exit 0
@@ -84,6 +89,7 @@ puts "done."
 puts "Applying transformation rules from #{rules}..."
 starttime = Time.now
 engine = Cougaar::Model::RuleEngine.new(builder.society)
+engine.abort_on_warning = abort_on_warning
 engine.enable_stdout
 engine.load_rules(rules)
 engine.execute
