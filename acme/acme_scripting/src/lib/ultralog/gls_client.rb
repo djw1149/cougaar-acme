@@ -39,7 +39,15 @@ module UltraLog
     end
     
     def connect(uri = nil)
-      uri = @run.society.agents['NCA'].uri unless uri
+      if uri.nil?
+        @run.society.each_agent do |agent|
+          if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+            uri = agent.uri
+            break
+          end
+        end
+      end      
+
       uri = URI.parse(uri)
       @gls_connection = Net::HTTP.new(uri.host, uri.port)
       @gls_connection.read_timeout = 1000.hours # no reason for this to ever timeout
@@ -100,14 +108,22 @@ module UltraLog
     
     def wait_for_next_stage
       @next_stage_count += 1
-      puts "Waiting for stage: #{@next_stage_count}" if $COUGAAR_DEBUG_GLS
+      Cougaar::ExperimentMonitor.notify(Cougaar::ExperimentMonitor::InfoNotification.new("Waiting for stage: #{@next_stage_count}" )) if $COUGAAR_DEBUG_GLS
       while @next_stage_count != @stages.size
         sleep 2
       end
     end
     
     def auto_publish_gls
-      result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{@oplan_id}&c0_date=#{@c0_date}")
+      cmd_uri = nil
+      @run.society.each_agent do |agent|
+        if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+          cmd_uri = agent.uri
+          break
+        end
+      end
+
+      result = Cougaar::Communications::HTTP.get("#{cmd_uri}/glsinit?command=publishgls&oplanID=#{@oplan_id}&c0_date=#{@c0_date}")
     end
 
     def can_get_oplan?
@@ -192,7 +208,15 @@ module Cougaar
 # GLS Client to die.
 	  @run.info_message "Fetching Oplan from DB"
 	  begin
-	    result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
+            cmd_uri = nil
+            @run.society.each_agent do |agent|
+              if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+                cmd_uri = agent.uri
+                break
+              end
+            end
+
+	    result = Cougaar::Communications::HTTP.get("#{cmd_uri}/glsinit?command=getopinfo")
 	    @run.error_message "Error getting OPlan Info" unless result
 	  rescue
 	    @run.error_message  $!
@@ -269,7 +293,15 @@ module Cougaar
       def perform
         gls_client = @run['gls_client']
         begin
-          result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
+          cmd_uri = nil
+          @run.society.each_agent do |agent|
+            if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
+              cmd_uri = agent.uri
+              break
+            end
+          end
+
+          result = Cougaar::Communications::HTTP.get("#{cmd_uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
           @run.error_message  "Error publishing next stage" unless result
         rescue
           @run.error_message "Could not publish next stage"
