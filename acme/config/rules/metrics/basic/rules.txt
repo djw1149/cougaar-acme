@@ -1,3 +1,0 @@
-Metrics-basic.rule
-Metrics-gossip.rule
-Metrics-persistance-size.rule

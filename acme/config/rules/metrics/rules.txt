@@ -1,0 +1,5 @@
+sensors/Metrics-rawsensor.rule
+sensors/MTS-verification.rule
+basic/Metrics-basic.rule
+basic/Metrics-gossip.rule
+basic/Metrics-persistance-size.rule
