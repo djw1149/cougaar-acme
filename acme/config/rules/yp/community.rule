@@ -3,25 +3,40 @@
 # are all of the subordinate agents of the community agents.
 # If one of the subordinate agents is itself a community, then
 # a nested community is created.
+# If a subordinate is not a community, then add all of its subordinates on down.
+# For example, NCA is an SCA. It's sub is TRANSCOM, which is not an SCA.
+# So TRANSCOM is in the NCA-YPCOMMUNITY, but also all of TRANSCOM's subordinates,
+# and their subs.
+# In this way every agent is in exactly 1 YP community, reachable from NCA.
+
+# Expect 14 YP Comms in full-1ad, 11 in small-1ad, 7 in tiny
 
 require 'cougaar/communities'
 require 'ultralog/enclaves'
 
 @comms = Hash.new
 
+# agents named in sca_supported_org facets are SCAs and should host a YP
+# For each such agent, its subs are members of that community
 society.each_agent do |agent|
-  if agent.has_facet?(:subordinate_org_id)     
-    name = agent.get_facet(:org_id).to_s
+  agent.each_facet(:sca_supported_org) do |sca|
+    name = sca[:sca_supported_org].to_s
     unless @comms.has_key?(name)
       subs = []
-      agent.each_facet(:subordinate_org_id) do |facet|
-	subs << facet[:subordinate_org_id].to_s
+      # Take that yp-root (is sca), and add each of its subs as a member
+      ypag = society.agents[name]
+      if ypag
+	ypag.each_facet(:subordinate_org_id) do |facet|
+	  subs << facet[:subordinate_org_id].to_s
+	end
       end
       @comms[name] = subs
     end
   end
 end
 
+# The keys are the agents that are yp comm heads
+# This sorts the keys with parent first
 keys = @comms.keys.sort do |a, b|
   if @comms[b].include?(a)
     -1
@@ -32,28 +47,77 @@ keys = @comms.keys.sort do |a, b|
   end
 end
 
-expansion = {}
-keys.each do |key|
-  t = @comms[key].dup
-  t = t.collect { |element| expansion.include?(element) ? 
-    expansion[element] : element }
-  expansion[key] = t
+# Create a hash showing what community each agent is in. It does not count
+# for an agent to have its own community
+@agentcomm = Hash.new
+society.each_agent do |agent|
+  keys.each do |key|
+    if (@comms[key].include?(agent.name))
+      @agentcomm[agent.name] = key
+    end
+  end
 end
 
+keys = nil
+
+# Now loop thru each agent in the society and add it to the nearest superior
+# community if it is not already in one -- except for the top agent (ie NCA)
+# This way every agent is in a community -- and agents that are SCAs / head communities
+# will also appear in the community one up, so that the communities recurse
+society.each_agent do |agent|
+#  puts "Looping through #{agent.name}"
+  supag = agent.get_facet(:superior_org_id).to_s
+  if (supag != nil && supag != nil.to_s)
+#    puts "Had a superior: #{supag}"
+    # every agent with a superior must be in a community
+    # While this one is not
+    while (@agentcomm[agent.name] == nil)
+#      puts "#{agent.name} not in a comm"
+      # put it in the community of the superior
+      @agentcomm[agent.name] = @agentcomm[supag]
+      # Get the next superior up the chain
+      supag_ag = society.agents[supag] 
+      if supag_ag
+	nextsup = supag_ag.get_facet(:superior_org_id).to_s
+	supag = nextsup
+      else
+#	puts "Null agent object for #{supag} superior up chain of #{agent.name}"
+	break
+      end
+    end
+    # If we get here, we found a spot to put this agent
+    # so add it if its not alread there
+    unless @comms[@agentcomm[agent.name]].include?(agent.name)
+#      puts "Adding #{agent.name} to comm #{@agentcomm[agent.name]}"
+      @comms[@agentcomm[agent.name]] << agent.name
+    end
+#  else
+#    puts "Null superior"
+  end
+end
+
+@agentcomm = nil
+
+# Now create the communities using the above info
 society.each_agent do |agent|
   if @comms.has_key?(agent.name)
     society.communities.add("#{agent.name}-YPCOMMUNITY") do |community|
+      # Should the community also be a Domain community?
       community.add_attribute("CommunityType", "Domain")
-      community.add_attribute("CommunityTYpe", "YPCommunity")
+      community.add_attribute("CommunityType", "YPCommunity")
       community.add_attribute("YPServerAgent", agent.name)
       community.add_attribute("CommunityManager", agent.name)
 
+      # Add the root as a member of the community
       community.add_agent(agent.name) do |entity|
 	entity.add_role("Member")
 	entity.add_role("YPServer")
       end
 
+      # Now add all the subs
       subs = @comms.fetch(agent.name)
+      # If the sub is itself the head of a community, then add that community as a sub,
+      # Otherwise, add that agent
       subs.each do |sub_agent|
 	if @comms.has_key?(sub_agent)
 	  community.add_entity("#{sub_agent}-YPCOMMUNITY", "Community") do |entity|
@@ -68,4 +132,7 @@ society.each_agent do |agent|
     end
   end
 end
-  
+
+@comms = nil
+
+
