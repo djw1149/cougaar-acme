@@ -18,7 +18,13 @@ module ACME; module Plugins
         command = command.gsub(/\&quot;/, '"').gsub(/\&apos;/, "'")
         Thread.new {
           status = "\n"
-          status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
+          begin
+            res = `#{command}`
+            status << foo.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
+          rescue
+            @plugin.log_error << "host_rexec failed to do #{command}"
+            status << "#{command} failed"
+          end
           message.reply.set_body(status).send
         }
       end

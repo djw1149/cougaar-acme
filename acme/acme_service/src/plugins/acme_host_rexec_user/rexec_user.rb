@@ -20,7 +20,13 @@ module ACME; module Plugins
         command = @config_mgr.cmd_wrap(command)
         Thread.new {
           status = "\n"
-          status << `#{command}`.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
+          begin
+            res = `#{command}`
+            status << res.gsub(/\&/, "&amp;").gsub(/\</, "&lt;")
+          rescue
+            @plugin.log_error << "host_rexec_user failed to do #{command}"
+            status << "#{command} failed"
+          end
           message.reply.set_body(status).send
         }
       end
