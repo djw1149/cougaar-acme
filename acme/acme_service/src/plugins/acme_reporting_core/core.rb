@@ -57,6 +57,8 @@ module ACME
           MemoryReport.new(archive, @plugin, @ikko).perform
           puts "MEM"
         rescue
+          puts $!
+          puts $!.backtrace
           archive.add_report("Exception", @plugin.plugin_configuration.name) do |report|
             report.open_file("Exception.html", "text/html", "Exception") do |out|
               out.puts "<html>"
