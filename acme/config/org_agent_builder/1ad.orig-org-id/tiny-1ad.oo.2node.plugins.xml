@@ -193,13 +193,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -229,7 +229,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -239,16 +239,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(OperationalCommanderInChief,LogisticsCommanderInChief)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            OperationalCommanderInChief
-          </argument>
-          <argument>
-            LogisticsCommanderInChief
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -521,13 +515,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -557,7 +551,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -906,12 +900,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -1090,13 +1084,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1126,7 +1120,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -1475,12 +1469,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -1662,13 +1656,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -1698,7 +1692,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -1726,13 +1720,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(StrategicTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            StrategicTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -2050,12 +2041,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -2237,13 +2228,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2273,7 +2264,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -2301,16 +2292,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelSupplyProvider,PackagedPOLSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelSupplyProvider
-          </argument>
-          <argument>
-            PackagedPOLSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -2628,12 +2613,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -2818,13 +2803,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -2854,7 +2839,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -2882,25 +2867,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelSupplyProvider,AmmunitionProvider,SparePartsProvider,SubsistenceSupplyProvider,PackagedPOLSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelSupplyProvider
-          </argument>
-          <argument>
-            AmmunitionProvider
-          </argument>
-          <argument>
-            SparePartsProvider
-          </argument>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
-          <argument>
-            PackagedPOLSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -3218,12 +3188,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -3404,13 +3374,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -3440,7 +3410,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -3468,13 +3438,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(AmmunitionProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AmmunitionProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -3792,12 +3759,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -3978,13 +3945,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4014,7 +3981,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -4042,13 +4009,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(AmmunitionProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AmmunitionProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -4366,12 +4330,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -4552,13 +4516,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -4588,7 +4552,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -4937,12 +4901,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -5123,13 +5087,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5159,7 +5123,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -5187,13 +5151,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SparePartsProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SparePartsProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -5511,12 +5472,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -5701,13 +5662,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -5737,581 +5698,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AmmunitionProvider
-          </argument>
-          <argument>
-            FuelSupplyProvider
-          </argument>
-          <argument>
-            PackagedPOLSupplyProvider
-          </argument>
-          <argument>
-            SparePartsProvider
-          </argument>
-          <argument>
-            StrategicTransportationProvider
-          </argument>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
-          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(StrategicTransportationProvider)'
-          class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            StrategicTransportationProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
-          class='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            subsistence.q
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.ClassIPartsPrototypeProvider(subsistence.q)'
-          class='org.cougaar.logistics.ldm.ClassIPartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            subsistence.q
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
-          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
-          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            MEI.q
-          </argument>
-          <argument>
-            -PrototypeProvider
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
-          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Parts.q
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
-          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
-          class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            Ammunition
-          </argument>
-          <argument>
-            BulkPOL
-          </argument>
-          <argument>
-            PackagedPOL
-          </argument>
-          <argument>
-            Consumable
-          </argument>
-          <argument>
-            Subsistence
-          </argument>
-          <argument>
-            MaintainInventory
-          </argument>
-          <argument>
-            StrategicTransportation
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
-          class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
-          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
-          class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            OriginFile=None
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.generic.GenericTablePlugin(default_allocation_rules.xml)'
-          class='org.cougaar.mlm.plugin.generic.GenericTablePlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            default_allocation_rules.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Ammunition,SUPPLY_PG_CLASS=AmmoConsumerPG)'
-          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-          <argument>
-            SUPPLY_PG_CLASS=AmmoConsumerPG
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
-          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=BulkPOL
-          </argument>
-          <argument>
-            SUPPLY_PG_CLASS=FuelConsumerPG
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=PackagedPOL,SUPPLY_PG_CLASS=PackagedPOLConsumerPG)'
-          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=PackagedPOL
-          </argument>
-          <argument>
-            SUPPLY_PG_CLASS=PackagedPOLConsumerPG
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Consumable,SUPPLY_PG_CLASS=RepairPartConsumerPG)'
-          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Consumable
-          </argument>
-          <argument>
-            SUPPLY_PG_CLASS=RepairPartConsumerPG
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Subsistence,SUPPLY_PG_CLASS=SubsistenceConsumerPG)'
-          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Subsistence
-          </argument>
-          <argument>
-            SUPPLY_PG_CLASS=SubsistenceConsumerPG
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=BulkPOL
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=PackagedPOL)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=PackagedPOL
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Consumable)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Consumable
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Subsistence)'
-          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Subsistence
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Ammunition)'
-          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Ammunition
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=BulkPOL)'
-          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=BulkPOL
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=PackagedPOL)'
-          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=PackagedPOL
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Consumable)'
-          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Consumable
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Subsistence)'
-          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SUPPLY_TYPE=Subsistence
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.inventory.LogisticsOPlanPlugin()'
-          class='org.cougaar.logistics.plugin.inventory.LogisticsOPlanPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
-          class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-          <argument>
-            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
-          </argument>
-          <argument>
-            DESTINATION=none
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
-          class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            forward.xml
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
-          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            fdm_equip_ref.q
-          </argument>
-        </component>
-      </agent>
-      <agent name='29-SPTGP' class='org.cougaar.core.agent.SimpleAgent'>
-        <facet org_id='29-SPTGP'  />
-        <facet orig_org_id='29-SPTGP'  />
-        <facet superior_org_id='21-TSC-HQ'  />
-        <facet subordinate_org_id='51-MAINTBN'  />
-        <facet subordinate_org_id='191-ORDBN'  />
-        <facet home_location='LXQD'  />
-        <facet uic='WCAYAA'  />
-        <facet combat_support='CSS'  />
-        <facet echelon='GROUP'  />
-        <facet echelon_group='Theater'  />
-        <facet is_deployable='T'  />
-        <facet has_physical_assets='T'  />
-        <facet has_equipment_assets='T'  />
-        <facet has_personnel_assets='T'  />
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.planning.servlet.PlanViewServlet
-          </argument>
-          <argument>
-            /tasks
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.glm.servlet.GLMCompletionServlet(/completion)'
-          class='org.cougaar.glm.servlet.GLMCompletionServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            /completion
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.HierarchyServlet,/hierarchy)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.planning.servlet.HierarchyServlet
-          </argument>
-          <argument>
-            /hierarchy
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.mlm.ui.servlet.DataGathererServlet,/datagatherer)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.mlm.ui.servlet.DataGathererServlet
-          </argument>
-          <argument>
-            /datagatherer
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent(org.cougaar.logistics.servlet.LogisticsInventoryServlet,/log_inventory)'
-          class='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.logistics.servlet.LogisticsInventoryServlet
-          </argument>
-          <argument>
-            /log_inventory
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.planning.servlet.LoaderServletComponent(/load)'
-          class='org.cougaar.planning.servlet.LoaderServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            /load
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet,/CSMART_AgentInfoServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet
-          </argument>
-          <argument>
-            /CSMART_AgentInfoServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet,/CSMART_CommunityProviderServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet
-          </argument>
-          <argument>
-            /CSMART_CommunityProviderServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.MetricsServlet,/CSMART_MetricsServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.MetricsServlet
-          </argument>
-          <argument>
-            /CSMART_MetricsServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.SearchServlet,/CSMART_SearchServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.SearchServlet
-          </argument>
-          <argument>
-            /CSMART_SearchServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.PlanServlet,/CSMART_PlanServlet)'
-          class='org.cougaar.core.servlet.SimpleServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.tools.csmart.ui.servlet.PlanServlet
-          </argument>
-          <argument>
-            /CSMART_PlanServlet
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.wp.WhitePagesServlet(/wp)'
-          class='org.cougaar.core.wp.WhitePagesServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            /wp
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.core.mobility.servlet.MoveAgentServlet()'
-          class='org.cougaar.core.mobility.servlet.MoveAgentServlet'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
-          class='org.cougaar.core.mobility.service.RedirectMovePlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.community.CommunityPlugin()'
-          class='org.cougaar.community.CommunityPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.yp.YPClientComponent()'
-          class='org.cougaar.yp.YPClientComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.YPService'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
-          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
-          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
-          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
-          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
-          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
-          priority='COMPONENT'
-          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
-          </argument>
-          <argument>
-            /matchmaker_query
-          </argument>
-        </component>
-        <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
-          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -6660,12 +6047,583 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
+          </argument>
+        </component>
+      </agent>
+      <agent name='29-SPTGP' class='org.cougaar.core.agent.SimpleAgent'>
+        <facet org_id='29-SPTGP'  />
+        <facet orig_org_id='29-SPTGP'  />
+        <facet superior_org_id='21-TSC-HQ'  />
+        <facet subordinate_org_id='51-MAINTBN'  />
+        <facet subordinate_org_id='191-ORDBN'  />
+        <facet home_location='LXQD'  />
+        <facet uic='WCAYAA'  />
+        <facet combat_support='CSS'  />
+        <facet echelon='GROUP'  />
+        <facet echelon_group='Theater'  />
+        <facet is_deployable='T'  />
+        <facet has_physical_assets='T'  />
+        <facet has_equipment_assets='T'  />
+        <facet has_personnel_assets='T'  />
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.PlanViewServlet,/tasks)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.planning.servlet.PlanViewServlet
+          </argument>
+          <argument>
+            /tasks
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.glm.servlet.GLMCompletionServlet(/completion)'
+          class='org.cougaar.glm.servlet.GLMCompletionServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            /completion
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.planning.servlet.HierarchyServlet,/hierarchy)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.planning.servlet.HierarchyServlet
+          </argument>
+          <argument>
+            /hierarchy
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.mlm.ui.servlet.DataGathererServlet,/datagatherer)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.mlm.ui.servlet.DataGathererServlet
+          </argument>
+          <argument>
+            /datagatherer
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent(org.cougaar.logistics.servlet.LogisticsInventoryServlet,/log_inventory)'
+          class='org.cougaar.logistics.servlet.LogisticsInventoryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.logistics.servlet.LogisticsInventoryServlet
+          </argument>
+          <argument>
+            /log_inventory
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.planning.servlet.LoaderServletComponent(/load)'
+          class='org.cougaar.planning.servlet.LoaderServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            /load
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet,/CSMART_AgentInfoServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.AgentInfoServlet
+          </argument>
+          <argument>
+            /CSMART_AgentInfoServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet,/CSMART_CommunityProviderServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.CommunityProviderServlet
+          </argument>
+          <argument>
+            /CSMART_CommunityProviderServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.MetricsServlet,/CSMART_MetricsServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.MetricsServlet
+          </argument>
+          <argument>
+            /CSMART_MetricsServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.SearchServlet,/CSMART_SearchServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.SearchServlet
+          </argument>
+          <argument>
+            /CSMART_SearchServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.servlet.SimpleServletComponent(org.cougaar.tools.csmart.ui.servlet.PlanServlet,/CSMART_PlanServlet)'
+          class='org.cougaar.core.servlet.SimpleServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.tools.csmart.ui.servlet.PlanServlet
+          </argument>
+          <argument>
+            /CSMART_PlanServlet
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.wp.WhitePagesServlet(/wp)'
+          class='org.cougaar.core.wp.WhitePagesServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            /wp
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.core.mobility.servlet.MoveAgentServlet()'
+          class='org.cougaar.core.mobility.servlet.MoveAgentServlet'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.core.mobility.service.RedirectMovePlugin()'
+          class='org.cougaar.core.mobility.service.RedirectMovePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.community.CommunityPlugin()'
+          class='org.cougaar.community.CommunityPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.yp.YPClientComponent()'
+          class='org.cougaar.yp.YPClientComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.YPService'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
+          class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.LineagePlugin()'
+          class='org.cougaar.servicediscovery.plugin.LineagePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDRegistrationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)'
+          class='org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet
+          </argument>
+          <argument>
+            /matchmaker_query
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
+          class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
+          priority='LOW'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            AmmunitionProvider
+          </argument>
+          <argument>
+            FuelSupplyProvider
+          </argument>
+          <argument>
+            PackagedPOLSupplyProvider
+          </argument>
+          <argument>
+            SparePartsProvider
+          </argument>
+          <argument>
+            StrategicTransportationProvider
+          </argument>
+          <argument>
+            SubsistenceSupplyProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin()'
+          class='org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
+          class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
+          class='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            subsistence.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.ClassIPartsPrototypeProvider(subsistence.q)'
+          class='org.cougaar.logistics.ldm.ClassIPartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            subsistence.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.MEIPrototypeProvider(MEI.q,-PrototypeProvider)'
+          class='org.cougaar.logistics.ldm.MEIPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            MEI.q
+          </argument>
+          <argument>
+            -PrototypeProvider
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.ldm.PartsPrototypeProvider(Parts.q)'
+          class='org.cougaar.logistics.ldm.PartsPrototypeProvider'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Parts.q
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgDataPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.OrgReportPlugin()'
+          class='org.cougaar.mlm.plugin.organization.OrgReportPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin(Ammunition,BulkPOL,PackagedPOL,Consumable,Subsistence,MaintainInventory,StrategicTransportation)'
+          class='org.cougaar.mlm.plugin.organization.GLSExpanderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            Ammunition
+          </argument>
+          <argument>
+            BulkPOL
+          </argument>
+          <argument>
+            PackagedPOL
+          </argument>
+          <argument>
+            Consumable
+          </argument>
+          <argument>
+            Subsistence
+          </argument>
+          <argument>
+            MaintainInventory
+          </argument>
+          <argument>
+            StrategicTransportation
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin()'
+          class='org.cougaar.mlm.plugin.organization.GLSAllocatorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin()'
+          class='org.cougaar.mlm.plugin.ldm.OplanReaderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin(OriginFile=None)'
+          class='org.cougaar.mlm.plugin.sample.StrategicTransportProjectorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            OriginFile=None
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.generic.GenericTablePlugin(default_allocation_rules.xml)'
+          class='org.cougaar.mlm.plugin.generic.GenericTablePlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            default_allocation_rules.xml
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Ammunition,SUPPLY_PG_CLASS=AmmoConsumerPG)'
+          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
+          </argument>
+          <argument>
+            SUPPLY_PG_CLASS=AmmoConsumerPG
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=BulkPOL,SUPPLY_PG_CLASS=FuelConsumerPG)'
+          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=BulkPOL
+          </argument>
+          <argument>
+            SUPPLY_PG_CLASS=FuelConsumerPG
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=PackagedPOL,SUPPLY_PG_CLASS=PackagedPOLConsumerPG)'
+          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=PackagedPOL
+          </argument>
+          <argument>
+            SUPPLY_PG_CLASS=PackagedPOLConsumerPG
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Consumable,SUPPLY_PG_CLASS=RepairPartConsumerPG)'
+          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Consumable
+          </argument>
+          <argument>
+            SUPPLY_PG_CLASS=RepairPartConsumerPG
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandForecastPlugin(SUPPLY_TYPE=Subsistence,SUPPLY_PG_CLASS=SubsistenceConsumerPG)'
+          class='org.cougaar.logistics.plugin.demand.DemandForecastPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Subsistence
+          </argument>
+          <argument>
+            SUPPLY_PG_CLASS=SubsistenceConsumerPG
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=BulkPOL)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=BulkPOL
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=PackagedPOL)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=PackagedPOL
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Consumable)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin(SUPPLY_TYPE=Subsistence)'
+          class='org.cougaar.logistics.plugin.demand.DemandGeneratorPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Subsistence
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Ammunition)'
+          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Ammunition
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=BulkPOL)'
+          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=BulkPOL
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=PackagedPOL)'
+          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=PackagedPOL
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Consumable)'
+          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Consumable
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.inventory.InventoryPlugin(SUPPLY_TYPE=Subsistence)'
+          class='org.cougaar.logistics.plugin.inventory.InventoryPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            SUPPLY_TYPE=Subsistence
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.inventory.LogisticsOPlanPlugin()'
+          class='org.cougaar.logistics.plugin.inventory.LogisticsOPlanPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+        </component>
+        <component
+          name='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin(POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml,DESTINATION=none,POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml,DESTINATION=none)'
+          class='org.cougaar.logistics.plugin.policy.LogisticsPolicyManagerPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Ammunition.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-BulkPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-PackagedPOL.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Consumable.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+          <argument>
+            POLICY=InventoryPolicy-CONSUMER-Subsistence.ldm.xml
+          </argument>
+          <argument>
+            DESTINATION=none
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.generic.PropagationPlugin(forward.xml)'
+          class='org.cougaar.mlm.plugin.generic.PropagationPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            forward.xml
+          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
+          class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
+          <argument>
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -6846,13 +6804,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -6882,7 +6840,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -6910,13 +6868,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(StrategicTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            StrategicTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -7234,12 +7189,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -7420,13 +7375,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -7456,7 +7411,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -7484,13 +7439,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelTransportProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelTransportProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -7808,12 +7760,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -7994,13 +7946,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8030,7 +7982,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -8058,13 +8010,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SubsistenceSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -8382,12 +8331,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -8567,13 +8516,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -8603,7 +8552,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -8952,12 +8901,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -9138,13 +9087,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9174,7 +9123,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -9202,13 +9151,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SubsistenceSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -9526,12 +9472,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -9716,13 +9662,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -9752,7 +9698,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -9780,25 +9726,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelSupplyProvider,AmmunitionProvider,SparePartsProvider,SubsistenceSupplyProvider,PackagedPOLSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelSupplyProvider
-          </argument>
-          <argument>
-            AmmunitionProvider
-          </argument>
-          <argument>
-            SparePartsProvider
-          </argument>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
-          <argument>
-            PackagedPOLSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -10116,12 +10047,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -10302,13 +10233,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10338,7 +10269,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -10687,12 +10618,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -10872,13 +10803,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -10908,7 +10839,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -11257,12 +11188,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -11442,13 +11373,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -11478,7 +11409,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -11827,12 +11758,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -12013,13 +11944,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12049,7 +11980,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -12077,13 +12008,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SparePartsProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SparePartsProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -12401,12 +12329,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -12587,13 +12515,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -12623,7 +12551,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -12651,13 +12579,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelTransportProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelTransportProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -12975,12 +12900,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -13164,13 +13089,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13200,7 +13125,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -13549,12 +13474,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -13734,13 +13659,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -13770,7 +13695,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -14119,12 +14044,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -14306,13 +14231,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14342,7 +14267,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -14370,16 +14295,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelSupplyProvider,PackagedPOLSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelSupplyProvider
-          </argument>
-          <argument>
-            PackagedPOLSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.logistics.ldm.ClassIConsumerPrototypeProvider(subsistence.q)'
@@ -14697,12 +14616,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -14878,13 +14797,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -14914,7 +14833,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(CONUSGroundTransportationProvider,OrganicAirTransportationProvider,TheaterStrategicTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             CONUSGroundTransportationProvider
@@ -14933,13 +14852,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(AirTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AirTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -15197,13 +15113,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15233,7 +15149,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15243,19 +15159,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(AmmunitionProvider,SparePartsProvider,SubsistenceSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AmmunitionProvider
-          </argument>
-          <argument>
-            SparePartsProvider
-          </argument>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -15525,13 +15432,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15561,7 +15468,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15571,13 +15478,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(CONUSGroundTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            CONUSGroundTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -15856,13 +15760,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -15892,7 +15796,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider,FuelSupplyProvider,PackagedPOLSupplyProvider,SparePartsProvider,StrategicTransportationProvider,SubsistenceSupplyProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AmmunitionProvider
@@ -16241,12 +16145,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equip_ref.q)'
+          name='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin(fdm_equipment.q)'
           class='org.cougaar.mlm.plugin.ldm.LDMSQLPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            fdm_equip_ref.q
+            fdm_equipment.q
           </argument>
         </component>
       </agent>
@@ -16424,13 +16328,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16460,7 +16364,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16470,19 +16374,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SparePartsProvider,SubsistenceSupplyProvider,ConstructionSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SparePartsProvider
-          </argument>
-          <argument>
-            SubsistenceSupplyProvider
-          </argument>
-          <argument>
-            ConstructionSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -16754,13 +16649,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16790,7 +16685,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -16800,16 +16695,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(FuelSupplyProvider,PackagedPOLSupplyProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            FuelSupplyProvider
-          </argument>
-          <argument>
-            PackagedPOLSupplyProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17082,13 +16971,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17118,7 +17007,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(CONUSGroundTransportationProvider,ShipPackingTransportationProvider,TheaterStrategicTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             CONUSGroundTransportationProvider
@@ -17137,13 +17026,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(SeaTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            SeaTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17399,13 +17285,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17433,12 +17319,12 @@
           </argument>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AmmunitionProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDClientPlugin(StrategicTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
-            AmmunitionProvider
+            StrategicTransportationProvider
           </argument>
         </component>
         <component
@@ -17448,13 +17334,16 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(AmmunitionProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            AmmunitionProvider
-          </argument>
+        </component>
+        <component
+          name='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin()'
+          class='org.cougaar.mlm.plugin.xml.XMLPrototypeProviderPlugin'
+          priority='COMPONENT'
+          insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -17730,13 +17619,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17766,7 +17655,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -17776,13 +17665,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(OrganicAirTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            OrganicAirTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -18055,13 +17941,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18091,7 +17977,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18101,13 +17987,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(ShipPackingTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            ShipPackingTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -18386,13 +18269,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18422,7 +18305,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin(AirTransportationProvider,SeaTransportationProvider)'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
           <argument>
             AirTransportationProvider
@@ -18438,13 +18321,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(StrategicTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            StrategicTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -18711,13 +18591,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18747,7 +18627,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -18757,13 +18637,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(TheaterStrategicTransportationProvider)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            TheaterStrategicTransportationProvider
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -19038,13 +18915,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19074,7 +18951,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19084,13 +18961,10 @@
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
-          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin(ArmyCommander)'
+          name='org.cougaar.servicediscovery.plugin.SDProviderPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDProviderPlugin'
           priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
-          <argument>
-            ArmyCommander
-          </argument>
         </component>
         <component
           name='org.cougaar.mlm.plugin.organization.OrgDataPlugin()'
@@ -19354,13 +19228,13 @@
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
           name='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent()'
           class='org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent'
-          priority='BINDER'
+          priority='COMPONENT'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
@@ -19390,7 +19264,7 @@
         <component
           name='org.cougaar.servicediscovery.plugin.SDClientPlugin()'
           class='org.cougaar.servicediscovery.plugin.SDClientPlugin'
-          priority='COMPONENT'
+          priority='LOW'
           insertionpoint='Node.AgentManager.Agent.PluginManager.Plugin'>
         </component>
         <component
