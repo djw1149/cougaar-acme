@@ -20,11 +20,12 @@
 #
 
 require 'thread'
+require 'yaml'
 
 module Cougaar
 
-  def self.new_experiment(name, society=nil)
-    return Experiment.new(name, society)
+  def self.new_experiment(name=nil)
+    return Experiment.new(name)
   end
   
   class ExperimentMonitor
@@ -221,13 +222,109 @@ module Cougaar
     def on_error_message(message)
     end
   end
+  
+  class ScriptDefinition
+    Parameter = Struct.new(:name, :description, :value)
+    
+    attr_reader :script, :parameters
+    
+    def initialize(script)
+      @script = script
+      @parameters = []
+    end
+    
+    def define_parameter(name, description=nil)
+      @parameters << Parameter.new(name, description)
+    end
+    
+    def set_parameter(name, value)
+      @parameters << Parameter.new(name, nil, value)
+    end
+    
+    def parameter_value(name)
+      @parameters.each {|param| return param.value if param.name == name}
+      return nil
+    end
+  end
+  
+  class ExperimentDefinition
+    attr_accessor :name, :description, :script, :include_scripts, :use_cases
+    
+    def initialize(name, description=nil)
+      @name = name
+      @description = description
+      @include_scripts = []
+      @use_cases = []
+    end
+  
+    def self.from_yaml(yaml)
+      map = YAML.load(yaml)
+      expt = ExperimentDefinition.new(map['name'], map['description'])
+      expt.script = map['script']
+      include_scripts = map['include_scripts']
+      if include_scripts
+        include_scripts.each do |iscript|
+          script = ScriptDefinition.new(iscript['script'])
+          params = iscript['parameters']
+          if params
+            params.each {|param| script.set_parameter(param.keys[0], param.values[0])}
+          end
+          expt.include_scripts << script
+        end
+      end
+      use_cases = map['use_cases']
+      use_cases.each {|uc| expt.use_cases << uc} if use_cases
+      expt
+    end
+    
+    def self.register(file)
+      @@experiments ||= {}
+      raise "Unknown file #{file}" unless File.exist?(file)
+      data = File.read(file)
+      index = 0
+      expt = nil
+      while(index = data.index("=begin experiment", index)) do 
+        eindex = data.index("=end", index)
+        raise "Could not find =end in file" unless eindex
+        yaml = data[(index+18)...eindex]
+        index += 18
+        expt = from_yaml(yaml)
+        @@experiments ||= {}
+        @@experiments[expt.name] = expt
+      end
+      expt.start if expt && file==$0
+    end
+    
+    def self.[](name)
+      if @@experiments
+        return @@experiments[name]
+      end
+    end
+    
+    def self.current=(expt_name)
+      @@current = expt_name
+    end
+    
+    def self.current
+      return nil unless @@current
+      @@experiments[@@current]
+    end
+    
+    def start
+      self.class.current = name
+      load script
+    end
+    
+  end
 
   class Experiment
     attr_accessor :name, :society
     
-    def initialize(name, society=nil)
+    def initialize(name=nil)
       @name = name
-      @society = society
+      if ExperimentDefinition.current
+        @name = ExperimentDefinition.current.name
+      end
     end
     
     def run(runcount = 1, &block)
@@ -363,6 +460,11 @@ module Cougaar
     
     def define_run(&proc)
       instance_eval &proc
+      if ExperimentDefinition.current
+        ExperimentDefinition.current.include_scripts.each do |include_script|
+          include(include_script.script, *(include_script.parameters.collect {|param| param.value}))
+        end
+      end
     end
     
     def wait_for(state_name, *args, &block)
