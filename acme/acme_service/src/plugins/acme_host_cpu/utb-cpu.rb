@@ -96,7 +96,7 @@ class CPU
       p.close
     end
 
-    #`killall -9 #{@cmd}` if @platform == "unix"
+    # `killall -9 #{@cmd}` if @platform == "unix"
 
     @PIDs = []
     @current_load = 0
