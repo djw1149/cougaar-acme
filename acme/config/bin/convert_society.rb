@@ -1,7 +1,9 @@
 #! /usr/bin/env ruby
 path = Dir.pwd.split("/")[0...(Dir.pwd.split("/").index("config"))]
-dir1 = ( path + ['src', 'ruby', 'acme_scripting', 'src', 'lib'] ).join("/")
-dir2 = ( path + ['src', 'ruby', 'acme_service', 'src', 'redist'] ).join("/")
+dir1 = ( ( path + ['src', 'ruby', 'acme_scripting', 'src', 'lib'] ).join("/") )
+dir2 = ( ( path + ['src', 'ruby', 'acme_service', 'src', 'redist'] ).join("/") )
+dir1 = ( ( path + ['acme_scripting', 'src', 'lib'] ).join("/") ) unless File.exist?(dir1)
+dir2 = ( ( path + ['acme_service', 'src', 'redist'] ).join("/") ) unless File.exist?(dir2)
 $:.unshift dir1 if File.exist?(dir1)
 $:.unshift dir2 if File.exist?(dir2)
 
