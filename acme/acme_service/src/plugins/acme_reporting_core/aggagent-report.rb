@@ -35,7 +35,7 @@ module ACME; module Plugins
             parser.get_queries.each do |query|
               total = total + 1
               if (parser.get_time( query, source ) > 60) then
-                file.puts "<TD color='red'>"
+                file.puts "<TD BGCOLOR='#00DD00'>"
                 overLimit = overLimit + 1
               else
                 file.puts "<TD>"
