@@ -30,6 +30,7 @@ module Cougaar
     end
     
     def add_cougaar_event_params
+      hostname = `hostname`.strip
       @xml_model = @run["loader"] == "XML"
       @node_type = ""
       @node_type = "xml_" if @xml_model
@@ -37,27 +38,39 @@ module Cougaar
         host.each_node do |node|
           node.add_parameter("-Dorg.cougaar.event.host=127.0.0.1")
           node.add_parameter("-Dorg.cougaar.event.port=5300")
-          node.add_parameter("-Dorg.cougaar.event.experiment=#{@run.name}")
+          node.add_parameter("-Dorg.cougaar.event.experiment=#{hostname}-#{@run.name}")
         end
       end
     end
     
     def start_all_nodes(action)
+      nodes = []
       @run.society.each_active_host do |host|
         host.each_node do |node|
-          if @xml_model
-            post_node_xml(node)
-            msg_body = launch_xml_node(node)
+          nameserver = false
+          host.each_facet(:role) do |facet|
+            nameserver = true if facet[:role].downcase=="nameserver"
+          end
+          if nameserver
+            nodes.unshift node
           else
-            msg_body = launch_db_node(node)
+            nodes << node
           end
-          puts "Sending message to #{host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
-          result = @run.comms.new_message(host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
-          if result.nil?
-            action.raise_failure "Could not start node #{node.name} on host #{host.host_name}"
-          end
-          @pids[node.name] = result.body
         end
+      end
+      nodes.each do |node|
+        if @xml_model
+          post_node_xml(node)
+          msg_body = launch_xml_node(node)
+        else
+          msg_body = launch_db_node(node)
+        end
+        puts "Sending message to #{node.host.name} -- [command[start_#{@node_type}node]#{msg_body}] \n" if @debug
+        result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
+        if result.nil?
+          @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
+        end
+        @pids[node.name] = result.body
       end
     end
     
@@ -67,8 +80,10 @@ module Cougaar
         host.each_node do |node|
           nameserver = false
           host.each_facet(:role) do |facet|
-            nameserver_nodes << node if facet[:role].downcase=="nameserver"
-            nameserver = true
+            if facet[:role].downcase=="nameserver"
+              nameserver_nodes << node
+              nameserver = true 
+            end
           end
           stop_node(node) unless nameserver
         end

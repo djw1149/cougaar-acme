@@ -250,6 +250,8 @@ module Cougaar
         @retry_count = JABBER_RETRY_COUNT unless @retry_count
         @event_listeners = {}
         @listener_count = 0
+        hostname = `hostname`.strip
+        @resource_id = "expt-#{hostname}-#{@run.name}"
       end
       
       def stop
@@ -271,7 +273,7 @@ module Cougaar
       def start
         @retry_count.times do |i|
           begin
-            @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/expt-#{@run.name}", @password)
+            @acme_session = Jabber::Session.bind_digest("#{@username}@#{@jabber_server}/#{@resource_id}", @password)
             @acme_session.on_session_failure do
               Cougaar.logger.error "Session to Jabber interrupted...preparing to retry connection"
               @acme_session.close
@@ -280,7 +282,7 @@ module Cougaar
             end
             # Listen for CougaarEvent messsages
             @acme_session.add_message_listener do |message|
-              if message.subject=="COUGAAR_EVENT"
+              if message.subject=="COUGAAR_EVENT" && message.to.resource==@resource_id
                 begin 
                   event = Cougaar::CougaarEvent.new
                   event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("`")
