@@ -23,7 +23,7 @@ require 'uri'
 
 module UltraLog
   class GLSClient
-    attr_reader :oplan_name, :oplan_id, :c0_date
+    attr_reader :oplan_name, :oplan_id, :c0_date, :next_stage
     
     def initialize(run)
       @run = run
@@ -32,6 +32,9 @@ module UltraLog
       @oplan_name = nil
       @oplan_id = nil
       @c0_date=nil
+      @next_stage = nil
+      @next_stage_count = 0
+      @stage = []
       connect
     end
     
@@ -39,6 +42,7 @@ module UltraLog
       uri = @run.society.agents['NCA'].uri unless uri
       uri = URI.parse(uri)
       @gls_connection = Net::HTTP.new(uri.host, uri.port)
+      @gls_connection.read_timeout = 60*60
       @gls_thread = Thread.new do
         begin
           req = Net::HTTP::Get.new("/$NCA/glsreply?command=connect")
@@ -46,20 +50,29 @@ module UltraLog
           @gls_connection.request(req) do |resp|
             return connect(resp['location']) if resp.code=='302'
             resp.read_body do |data|
-              case data.strip
-              when /^<oplan name=.* id=[0-9A-F]*>/
-                match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
-                @oplan_name = match[1]
-                @oplan_id = match[2]
-                @gls_connected = true
-              when /^<oplan name=.* id=[0-9A-F]*\s*c0_date=.*>/
-                match = /^<oplan name=(.*) id=([0-9A-F]*)\s*c0_date=(.*)>/.match(data)
-                @oplan_name = match[1]
-                @oplan_id = match[2]
-                @c0_date = match[3]
-                @gls_connected = true
-              when /^<GLS .*>/
-                @can_send_oplan = true
+              data.each_line do |line|
+                case line.strip
+                when /^<oplan name=.* id=[0-9A-F]*>/
+                  match = /^<oplan name=(.*) id=([0-9A-F]*)>/.match(data)
+                  @oplan_name = match[1]
+                  @oplan_id = match[2]
+                  @gls_connected = true
+                when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]*>/
+                  match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*)>/.match(data)
+                  @oplan_name = match[1]
+                  @oplan_id = match[2]
+                  @c0_date = match[3]
+                  @gls_connected = true
+                when /^<oplan name=.* id=[0-9A-F]* c0_date=[0-9\/]* nextStage=.*>/
+                  match = /^<oplan name=(.*) id=([0-9A-F]*) c0_date=([0-9\/]*) nextStage=(.*)>/.match(data)
+                  @oplan_name = match[1]
+                  @oplan_id = match[2]
+                  @c0_date = match[3]
+                  @next_stage = match[4]
+                  @stages << @next_stage
+                when /^<GLS .*>/
+                  @can_send_oplan = true
+                end
               end
             end
           end
@@ -69,6 +82,17 @@ module UltraLog
           Cougaar.logger.info "GLS Connection Closed"
         end
       end
+    end
+    
+    def wait_for_next_stage(stage)
+      @next_stage_count += 1
+      while @next_stage_count != @stages.size
+        sleep 2
+      end
+    end
+    
+    def auto_publish_gls
+      result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{@oplan_id}&c0_date=#{@c0_date}")
     end
 
     def can_send_oplan?
@@ -130,6 +154,73 @@ module Cougaar
         until gls_client.can_send_oplan?
           sleep 2
         end
+      end
+      
+      def unhandled_timeout
+        @run.do_action "StopSociety" 
+        @run.do_action "StopCommunications"
+      end
+    end
+
+    class GLSConnection < Cougaar::State
+      DEFAULT_TIMEOUT = 30.minutes
+      PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the GLS connection."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
+        ]
+        @example = "
+          wait_for 'GLSConnection'
+        "
+      }
+      def initialize(run, timeout=nil, &block)
+        super(run, timeout, &block)
+      end
+      
+      def process
+        gls_client = ::UltraLog::GLSClient.new(run)
+        @run['gls_client'] = gls_client
+        until gls_client.can_send_oplan?
+          sleep 2
+        end
+        begin
+          result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=getopinfo")
+          puts result
+          raise_failure "Error sending OPlan" unless result
+        rescue
+          puts $!
+          puts $!.backtrace.join
+        end
+      end
+      
+      def unhandled_timeout
+        @run.do_action "StopSociety" 
+        @run.do_action "StopCommunications"
+      end
+    end
+    
+    class NextOPlanStage < Cougaar::State
+      DEFAULT_TIMEOUT = 30.minutes
+      PRIOR_STATES = ["SocietyRunning"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Waits for the OPlan stage."
+        @parameters = [
+          {:timeout => "default=nil, Amount of time to wait in seconds."},
+          {:block => "The timeout handler (unhandled: StopSociety, StopCommunications"}
+        ]
+        @example = "
+          wait_for 'NextOPlanStage'
+        "
+      }
+      def initialize(run, timeout=nil, &block)
+        super(run, timeout, &block)
+      end
+      
+      def process
+        gls_client = @run['gls_client']
+        gls_client.wait_for_next_stage
       end
       
       def unhandled_timeout
@@ -276,7 +367,7 @@ module Cougaar
       def perform
       end
     end
-    
+
     class SendOPlan < Cougaar::Action
       PRIOR_STATES = ["OPlanReady"]
       RESULTANT_STATE = "OPlanSent"
@@ -290,6 +381,27 @@ module Cougaar
           raise_failure "Error sending OPlan" unless result
         rescue
           raise_failure "Could not send OPlan", $!
+        end
+      end
+    end
+
+    class PublishNextStage < Cougaar::Action
+      PRIOR_STATES = ["OPlanStage"]
+      RESULTANT_STATE = "SocietyPlanning"
+      DOCUMENTATION = Cougaar.document {
+        @description = "Publishes the next stage of the GLS root task to the glsinit servlet."
+        @example = "do_action 'PublishNextStage'"
+      }
+      
+      def perform
+        gls_client = @run['gls_client']
+        begin
+          result = Cougaar::Communications::HTTP.get("#{@run.society.agents['NCA'].uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
+          raise_failure "Error publishing next stage" unless result
+        rescue
+          raise_failure "Could not publish next stage", $!
+        ensure
+          gls_client.close
         end
       end
     end
