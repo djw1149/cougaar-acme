@@ -1,6 +1,30 @@
 require 'csv'
 require 'getoptlong'
 
+class CSVHeader
+  def initialize(row)
+    a = row.to_a
+    @column = {}
+    a.each_index { |i| @column[a[i].to_s] = i }
+  end
+  
+  def list_for(row)
+    @row = row.to_a
+    return self
+  end
+  
+  def [](index)
+  
+    if index.kind_of?(String)
+      @row[@column[index]]
+    else
+      @row[index]
+    end
+  end
+end
+
+
+
 class Role
   attr_accessor :role_id, :echelon_of_support, :mechanism, :note
 
@@ -192,15 +216,17 @@ class SocietyGenerator
     puts "\t-s --society.........  The society file (.xml)."
     puts "\t-h --help............  Prints this help message."
   end
-
+  
   def parse
+    header = nil
     first = true                                # Process org_attribute.csv
     CSV.open('org_data/org_attribute.csv',"r") do |row|
       if first
+        header = CSVHeader.new(row)
         first = false
         next
       end
-      list = row.to_a
+      list = header.list_for(row)
       org = Organization.new
       org.orig_org_id = list[1]
       org.base_org_id = list[2]
@@ -222,10 +248,11 @@ class SocietyGenerator
       first = true                                # Process society_member_file (Subset of the orgs to be output)
       CSV.open(@society_member_file,"r") do |row|
         if first
+          header = CSVHeader.new(row)
           first = false
           next
         end
-        list = row.to_a
+        list = header.list_for(row)
         org_id = list[2] + '.' + list[3]
         org = @organizations[org_id]
         raise "Unknown organization #{org_id}" unless org
@@ -240,10 +267,11 @@ class SocietyGenerator
     first = true                                # Process org_hierarchy.csv
     CSV.open('org_data/org_hierarchy.csv',"r") do |row|
       if first
+        header = CSVHeader.new(row)
         first = false
         next
       end
-      list = row.to_a
+      list = header.list_for(row)
       org_id = list[2] + '.' + list[3]
       if list[5]
         sup_org_id = list[5] + '.' + list[6]
@@ -261,10 +289,11 @@ class SocietyGenerator
     first = true                                # Process org_role.csv
     CSV.open('org_data/org_role.csv',"r") do |row|
       if first
+        header = CSVHeader.new(row)
         first = false
         next
       end
-      list = row.to_a
+      list = header.list_for(row)
       org_id = list[1] + '.' + list[2]
       org = @organizations[org_id]
       raise "Unknown organization #{org_id}" unless org
@@ -274,10 +303,11 @@ class SocietyGenerator
     first = true                                # Process org_sca.csv (Support Command Assignments)
     CSV.open('org_data/org_sca.csv',"r") do |row|
       if first
+        header = CSVHeader.new(row)
         first = false
         next
       end
-      list = row.to_a
+      list = header.list_for(row)
       org_id = list[2] + '.' + list[3]
       org = @organizations[org_id]
       raise "Unknown organization #{org_id}" unless org
