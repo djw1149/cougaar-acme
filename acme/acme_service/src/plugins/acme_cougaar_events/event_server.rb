@@ -129,6 +129,7 @@ module Cougaar
             @current = CougaarEvent.new
             @current.node = @node
             @current.experiment = @experiment
+            @current.data = ""
             attrs.each do |item| 
               case item[0]
               when 'type'
@@ -139,6 +140,13 @@ module Cougaar
                 @current.component = item[1]
               end
             end
+           else
+             @current.data << "<#{name}"
+             attrs.each do |item| 
+               @current.data << " #{item[0]} = \"#{item[1]}\""
+             end
+             @current.data << " >"
+    
         end
       end
       
@@ -155,6 +163,8 @@ module Cougaar
           when "CougaarEvent"
             @listener.call(@current)
             @current = nil
+          else
+            @current.data << "</#{name}>"
         end
       end
       
@@ -164,7 +174,7 @@ module Cougaar
       # text:: [String] The text (<tag>text</tag>)
       #
       def text(text)
-        @current.data = text if @current      
+        @current.data << text if @current      
       end
       
       ##
@@ -173,7 +183,7 @@ module Cougaar
       # content:: [String] The CData content
       #
       def cdata(content)
-        @current.data = content if @current      
+        @current.data << content if @current      
       end
       
       ##
@@ -187,4 +197,25 @@ module Cougaar
     end
     
   end
+end
+
+
+if $0==__FILE__
+
+  class Foo
+    def hey_now(bar)
+      puts "HERE IT IS:"
+      puts bar
+    end
+  end
+
+  a_foo = Foo.new
+  aproc = a_foo.method("hey_now")
+
+  file = ARGV[0]
+  f = File.new(file);
+  parser =  Cougaar::CougaarEventService::EventParser.new(f, aproc)
+  puts "got connection"
+  parser.parse
+  puts "closed connection"
 end
