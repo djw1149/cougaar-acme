@@ -34,7 +34,11 @@ class RouterService
     @start_router_service = @plugin.properties["start_router_service"]
     @start_router_service = true if @start_router_service.nil?
     unless @account
-      @account = `hostname`.strip.downcase
+      if @host.strip.downcase == "localhost"
+        @account = "localhost"
+      else
+        @account = `hostname`.strip.downcase
+      end
     end
     start_service if @start_router_service
     start_client
