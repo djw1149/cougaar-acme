@@ -281,14 +281,20 @@ module Cougaar
             # Listen for CougaarEvent messsages
             @acme_session.add_message_listener do |message|
               if message.subject=="COUGAAR_EVENT"
-                event = Cougaar::CougaarEvent.new
-                event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("`")
-                event.data = event.data.unpack("m")[0].gsub(/\&amp\;/, '&').gsub(/\&lt\;/, "<").gsub(/\&quot\;/, '"').gsub(/\&gt\;/, ">")
+                begin 
+                  event = Cougaar::CougaarEvent.new
+                  event.node, event.event_type, event.cluster_identifier, event.component, event.data = message.body.split("`")
+                  event.data = event.data.unpack("m")[0].gsub(/\&amp\;/, '&').gsub(/\&lt\;/, "<").gsub(/\&quot\;/, '"').gsub(/\&gt\;/, ">")
+                rescue Exception => exc
+                  @run.error_message "Exception from bad event: #{exc}"
+                  @run.error_message "    event was: #{event}"
+                end
                 @event_listeners.each_value do |listener| 
                   begin
                     listener.call(event)
                   rescue
                     @run.error_message "Exception in Cougaar Event listener: #{$!}"
+                    @run.error_message "    for event: #{event}"
                   end
                 end
               end
