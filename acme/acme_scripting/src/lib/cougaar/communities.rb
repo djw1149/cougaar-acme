@@ -237,6 +237,7 @@ module Cougaar
         
         def add_entity(name, entity_type, &block)
           entity = Entity.new(name, entity_type)
+          @entities << entity
           yield entity if block_given?
           entity
         end
