@@ -119,47 +119,59 @@ module Cougaar
         $StdOutMonitor = ExperimentMonitor.new
       
         def $StdOutMonitor.on_experiment_begin(experiment)
-          puts "[#{Time.now}] Experiment: #{experiment.name} started."
+          m = "[#{Time.now}] Experiment: #{experiment.name} started."
+          puts m
         end
         def $StdOutMonitor.on_experiment_end(experiment)
-          puts "[#{Time.now}] Experiment: #{experiment.name} finished."
+          m = "[#{Time.now}] Experiment: #{experiment.name} finished."
+          puts m
         end
       
         def $StdOutMonitor.on_run_begin(run)
-          puts "[#{Time.now}]   Run: #{run.name} started."
+          m = "[#{Time.now}]   Run: #{run.name} started."
+          puts m
         end
         def $StdOutMonitor.on_run_end(run)
-          puts "[#{Time.now}]   Run: #{run.name} finished."
+          m = "[#{Time.now}]   Run: #{run.name} finished."
+          puts m
         end
       
         def $StdOutMonitor.on_state_begin(state)
-          puts "[#{Time.now}]     Waiting for: #{state}"
+          m = "[#{Time.now}]     Waiting for: #{state}"
+          puts m
         end
         def $StdOutMonitor.on_state_end(state)
-          puts "[#{Time.now}]     Done: #{state}"
+          m = "[#{Time.now}]     Done: #{state}"
+          puts m
         end
       
         def $StdOutMonitor.on_action_begin(action)
-          puts "[#{Time.now}]     Starting: #{action}"
+          m = "[#{Time.now}]     Starting: #{action}"
+          puts m
         end
         def $StdOutMonitor.on_action_end(action)
-          puts "[#{Time.now}]     Finished: #{action}"
+          m = "[#{Time.now}]     Finished: #{action}"
+          puts m
         end
       
         def $StdOutMonitor.on_state_interrupt(state)
-          puts  "[#{Time.now}]      ** INTERRUPT ** #{state}"
+          m = "[#{Time.now}]      ** INTERRUPT ** #{state}"
+          puts m
         end
       
         def $StdOutMonitor.on_action_interrupt(action)
-          puts  "[#{Time.now}]      ** INTERRUPT ** #{action}"
+          m = "[#{Time.now}]      ** INTERRUPT ** #{action}"
+          puts m
         end
       
         def $StdOutMonitor.on_info_message(message)
-          puts  "[#{Time.now}]      INFO: #{message}"
+          m = "[#{Time.now}]      INFO: #{message}"
+          puts m
         end
       
         def $StdOutMonitor.on_error_message(message)
-          puts  "[#{Time.now}]      ERROR: #{message}"
+          m = "[#{Time.now}]      ERROR: #{message}"
+          puts m
         end
       end
     end
