@@ -202,6 +202,7 @@ class XMLCougaarNode
 			text = @society.to_xml
 			xml.write(text)
 			xml.close
+  			File.chmod(0644, xml.path)
 			cmd = build_command
       @plugin['log/info']  << "Starting command:\n#{cmd}"
 
