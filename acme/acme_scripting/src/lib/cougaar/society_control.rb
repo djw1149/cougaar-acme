@@ -233,7 +233,7 @@ module Cougaar
       
       def get_society_time
         nca_node = nil
-        run.society.each_agent do |agent|
+        @run.society.each_agent do |agent|
           if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
             nca_node = agent.node.agent
             break
