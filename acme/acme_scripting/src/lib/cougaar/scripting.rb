@@ -155,6 +155,7 @@ require 'cougaar/society_control'
 require 'cougaar/society_rule_engine'
 require 'cougaar/metrics'
 require 'cougaar/persistence'
+require 'cougaar/run_logging'
 begin
   require 'cougaar/csmart_database'
 rescue
