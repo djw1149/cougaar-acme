@@ -636,6 +636,7 @@ module Cougaar
     class Node
       attr_reader :agents, :name, :parameters
       attr_accessor :host, :agent, :prog_parameters, :env_parameters, :classname
+      attr_writer :active
       
       include Multifaceted
       
@@ -650,6 +651,7 @@ module Cougaar
         @env_parameters = []
         @prog_parameters = []
         @parameters = []
+        @active = false
         self.name = name
         @agent = Agent.new(@name)
         @agent.node = self
@@ -657,6 +659,10 @@ module Cougaar
         unless @classname
           @classname = 'org.cougaar.bootstrap.Bootstrapper'
         end
+      end
+      
+      def active?
+        @active
       end
       
       def name=(name)

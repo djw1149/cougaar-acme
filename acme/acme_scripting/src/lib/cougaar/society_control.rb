@@ -75,6 +75,7 @@ module Cougaar
           @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
         else
           @pids[node.name] = result.body
+          node.active=true
         end
       end
     end
@@ -103,6 +104,8 @@ module Cougaar
       result = @run.comms.new_message(host).set_body("command[stop_#{@node_type}node]#{@pids[node.name]}").request(60)
       if result.nil?
         puts "Could not stop node #{node.name}(#{@pids[node.name]}) on host #{host.host_name}"
+      else
+        node.active=false
       end
     end
     
@@ -116,8 +119,10 @@ module Cougaar
       result = @run.comms.new_message(node.host).set_body("command[start_#{@node_type}node]#{msg_body}").request(@timeout)
       if result.nil?
         @run.error_message "Could not start node #{node.name} on host #{node.host.host_name}"
+      else
+        node.active = true
+        @pids[node.name] = result.body
       end
-      @pids[node.name] = result.body
     end
     
     def kill_node(action, node)
@@ -128,6 +133,8 @@ module Cougaar
         result = @run.comms.new_message(node.host).set_body("command[stop_#{@node_type}node]#{pid}").request(60)
         if result.nil?
           @run.error_message "Could not kill node #{node.name}(#{pid}) on host #{node.host.host_name}"
+        else
+          node.active = false
         end
       else
         @run.error_message "Could not kill node #{node.name}...node does not have an active PID."
@@ -240,7 +247,6 @@ module Cougaar
             @run.info_message "OLD TIME: #{md[1]}" if @debug
           else
             @run.error_message "ERROR Accessing timeControl Servlet at node #{node.name}.  Data was #{data}"
-            return false
           end
         end
 
