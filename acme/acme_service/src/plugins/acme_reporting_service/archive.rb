@@ -18,14 +18,6 @@ module ACME; module Plugins
         @xml_file = xml_file
         @root_path = File.join(temp_path, base_name)
         
-        unless File.exist?(@root_path)
-          Dir.mkdir(@root_path)
-        end
-        
-        unless File.exist?(File.join(root_path, report_path))
-          Dir.mkdir(File.join(root_path, report_path))
-        end
-        
         @archive_file = @xml_file.gsub(/\.xml/, ".tgz")
         @mtime = File.mtime(xml_file)
         doc = REXML::Document.new(File.new(xml_file))
@@ -82,6 +74,12 @@ module ACME; module Plugins
       end
       
       def expand
+        unless File.exist?(@root_path)
+          Dir.mkdir(@root_path)
+        end
+        unless File.exist?(File.join(@root_path, @report_path))
+          Dir.mkdir(File.join(@root_path, @report_path))
+        end
         `tar -C #{@root_path} -xzf #{@archive_file}`
       end
       

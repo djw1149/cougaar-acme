@@ -4,12 +4,43 @@ require 'ikko'
 require 'acme_reporting_service/report'
 require 'acme_reporting_service/archive'
 require 'net/http'
+require 'thread'
 
 module ACME; module Plugins
 
 class ReportingService
 
   extend FreeBASE::StandardPlugin
+
+  class ProcessingQueue
+    def initialize
+      @q     = []
+      @mutex = Mutex.new
+      @cond  = ConditionVariable.new
+    end
+  
+    def enqueue(*elems)
+      @mutex.synchronize do
+        @q.push *elems
+        @cond.signal
+      end
+    end
+  
+    def dequeue
+      @mutex.synchronize do
+        while @q.empty? do
+          @cond.wait(@mutex)
+        end
+        return @q.shift
+      end
+    end
+  
+    def empty?
+      @mutex.synchronize do
+        return @q.empty?
+      end
+    end
+  end
   
   def self.start(plugin)
     self.new(plugin)
@@ -29,11 +60,14 @@ class ReportingService
     @report_host_name = @plugin.properties['report_host_name']
     @report_host_port = @plugin.properties['report_host_port']
     @society_name = @plugin.properties['society_name']
+    @thread_count = @plugin.properties['thread_count']
+    @thread_count ||= 1
     @plugin['/acme/reporting'].manager = self
     @listeners = []
     @hostname = `hostname`.strip
-    @archive_structures = []
+    @processing_queue = ProcessingQueue.new
     load_template_engine
+    start_threads
     monitor_path
   end
   
@@ -67,19 +101,11 @@ class ReportingService
     end
   end
   
-  def monitor_path
-    unless File.exist?(@archive_path)
-      @plugin.log_error << "Archive path #{@archive_path} not found"
-    end
-    last = []
-    Thread.new do
-      sleep 5
-      puts "Beginning to process archives"
-      while true
-        files = Dir.glob(File.join(@archive_path, "*.xml"))
-        new_files = files - last
-        new_files.each do |file|
-          archive = ArchiveStructure.new(self, file, @temp_path, @report_path) # this is the temporary expansion path
+  def start_threads
+    @thread_count.times do
+      Thread.new do
+        while true
+          archive = @processing_queue.dequeue
           unless archive.processed?
             archive.expand
             if archive.is_valid?
@@ -93,11 +119,28 @@ class ReportingService
             end
             archive.cleanup
           end
-          @archive_structures << archive
-          @archive_structures.sort
+        end
+      end
+    end
+  end
+      
+  def monitor_path
+    unless File.exist?(@archive_path)
+      @plugin.log_error << "Archive path #{@archive_path} not found"
+    end
+    last = []
+    Thread.new do
+      sleep 5
+      puts "Beginning to process archives"
+      while true
+        files = Dir.glob(File.join(@archive_path, "*.xml"))
+        new_files = files - last
+        new_files.each do |file|
+          archive = ArchiveStructure.new(self, file, @temp_path, @report_path)
+          @processing_queue.enqueue(archive)
         end
         last = files
-        sleep 60
+        sleep 5
       end
     end
   end
