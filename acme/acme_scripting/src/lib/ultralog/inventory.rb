@@ -31,10 +31,10 @@ module Cougaar
       # Take the asset to get the inventory for at this agent
       def initialize(run, agent, asset, file)
         super(run)
-	@file = file
-	@asset = asset
-	@agent = agent
-	@protocol = "http" 
+          @file = file
+          @asset = asset
+          @agent = agent
+          @protocol = "http" 
       end
 
       def save(result)
@@ -44,14 +44,18 @@ module Cougaar
       end
 
       def perform
-	# Get the http port set earlier for this society
-	@runport = @run.society.cougaar_port 
-	# find the host this agent is running on (at config time)
-	@runhost = @run.society.agents[@agent].node.host.host_name
-	puts "SampleInventory: About to do put to: #{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory for #{@asset}"
-	resp = Cougaar::Communications::HTTP.put("#{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory", @asset)
-	#puts "Response: " + resp
-	save(resp)
+        # Get the http port set earlier for this society
+        @runport = @run.society.cougaar_port 
+        # find the host this agent is running on (at config time)
+        @runhost = @run.society.agents[@agent].node.host.host_name
+        puts "SampleInventory: About to do put to: #{@protocol}://#{@runhost}:#{@runport}/$#{@agent}/log_inventory for #{@asset}"
+        list, uri = Cougaar::Communications::HTTP.get("#{@agent.uri}/list")
+        if uri
+          resp = Cougaar::Communications::HTTP.put("#{uri.scheme}://#{uri.host}:#{uri.port}/$#{@agent}/log_inventory", @asset)
+          save(resp)
+        else
+          @run.error_message "Inventory failed to access agent: #{@agent.name}"
+        end
       end
     end
   end
