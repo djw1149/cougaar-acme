@@ -56,7 +56,7 @@ society.each_agent do |agent|
       subs = @comms.fetch(agent.name)
       subs.each do |sub_agent|
 	if @comms.has_key?(sub_agent)
-	  community.add_agent("#{sub_agent}-YPCOMMUNITY") do |entity|
+	  community.add_entity("#{sub_agent}-YPCOMMUNITY", "Community") do |entity|
 	    entity.add_role("Member")
 	  end
 	else
