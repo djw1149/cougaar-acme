@@ -45,6 +45,7 @@ end
 require 'log4r'
 
 module Cougaar
+  
   class Documentation
     attr_accessor :description, :example
     def initialize(&block)
@@ -143,6 +144,11 @@ module Cougaar
     end
     @logger
   end
+
+  def self.debug?
+    return self.constants.include?("DEBUG") && DEBUG
+  end
+
 end
 
 require 'cougaar/society_model'

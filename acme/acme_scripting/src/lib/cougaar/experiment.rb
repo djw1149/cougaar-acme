@@ -576,13 +576,15 @@ module Cougaar
       ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, true)) if ExperimentMonitor.active?
       @state = STARTED
       #TODO: logging begin
-      @sequence.start
-      archive
+      if Cougaar.debug?
+        @sequence.dump
+      else
+        @sequence.start
+        archive
+      end
       ExperimentMonitor.notify(ExperimentMonitor::RunNotification.new(self, false)) if ExperimentMonitor.active?
       #TODO: logging end
     end
-    
-
     
     def interrupt
       @multirun.interrupt
@@ -624,6 +626,16 @@ module Cougaar
       @current_definition = 0
       @started = false
       @insert_index = 1
+    end
+    
+    def dump
+      @definitions.each do |definition|
+        if definition.kind_of?(Cougaar::Action)
+          puts "do_action #{definition.to_s}"
+        else
+          puts "wait_for #{definition.to_s}"
+        end
+      end
     end
     
     def insert_index=(value)
