@@ -841,7 +841,7 @@ module Cougaar
         if param.kind_of? Array
           @parameters.concat param
         else
-          @parameters << param unless @parameters.include?(param)
+          @parameters << param
         end
       end
 
