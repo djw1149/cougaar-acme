@@ -36,6 +36,7 @@ module ACME
       
       def get_timestamp(line)
         line =~ /\](.*)::/ #extract the date from the line
+        return Time.at(0) if $1.nil?
         pd = ParseDate.parsedate($1)
         time = Time.mktime(*pd)
         return time
