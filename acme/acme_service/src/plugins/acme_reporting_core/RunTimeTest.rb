@@ -85,9 +85,9 @@ module ACME
             current.interrupted = true
             if (target == :stage_time_end)
               current.stage_times << Time.at(ts[0] - start).gmtime
-            elsif (target == :start_time_end || target == :load_time_end)
-              current[target] = Time.at(ts[0] - start).gmtime
-            end
+#            elsif (target == :start_time_end || target == :load_time_end)
+#              current[target] = Time.at(ts[0] - start).gmtime
+#            end
             all_data << current
             target = :start_run
           elsif (target != :start_run && ts = get_timestamp(line, /Run:.*finished/)) then

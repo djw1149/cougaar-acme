@@ -419,11 +419,11 @@ module ACME
           inv_files = @archive.files_with_description(/Inventory/).sort{|x, y| x.name <=> y.name}
           inv_files.each do |inv_file|
             subject = inv_file.name
-            next if subject =~/Reconciliation/            
-
+            next if (subject =~/Reconciliation/ || subject =~ /Restore/)
             inv_file.name =~ /INV\/(.*)\//
             benchmark_dir = "/usr/local/acme/plugins/acme_reporting_core/goldeninv/INV/#{$1}"
-            benchmark = ("#{benchmark_dir}/#{inv_file.name.split(/\//).last}")
+            benchmark_dir.gsub!(/Stage-/, "Stage")
+            benchmark = ("#{benchmark_dir}/#{inv_file.name.split(/\//).last.gsub(/Stage-/, "Stage")}")
             data << InventoryTestData.new(subject, benchmark, [])
             data.last.errors = FileVerifier.new(subject, benchmark, abs_tol, rel_tol).verify
           end
