@@ -31,5 +31,6 @@
  glmt_theater_ground.rule
  glmt_plane_packer.rule
  glmt_ship_packer.rule
+ root_mobility_plugin.rule
 
  
