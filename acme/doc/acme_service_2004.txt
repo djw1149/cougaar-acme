@@ -33,11 +33,11 @@ An example shown here:
 
 In this example, the...
 
-  host: <host> 
+  host: [hostname]
 
 ...represents ''either'' the Jabber host or the Message Router host.  Which is used is dependent on the...
 
-  service_type: <router|jabber>
+  service_type: [router|jabber]
 
 setting.  To change to the Message Router, you set this to 'router' (as shown here), or to 'jabber' to choose that message transport.  If you want to run this on a single machine, the host can be set to 'localhost' and the service_type to 'router'.
 
@@ -51,7 +51,7 @@ In 2004, that action is still present, but to use the Message Router you need to
 
 The hostname can be left off if you have a host layout xml file and have the following facet defined.
 
-  <facet service="message-router"/>
+  &lt;facet service="message-router"/&gt;&lt;/nowiki&gt;
 
 Actually, if you already have a service="jabber" facet, the Message Router will use that, but as will be seen, it is better to put in the service="message-router".  The main issue here is that if you want your script to run on societies that use Jabber -or- Message Router communications, then you can use the aforementioned facets and the following action:
 
