@@ -91,7 +91,7 @@ module ACME; module Plugins
       return unless eindex
       map = YAML.load(data[(index+18)...eindex])
       @script_dir = File.dirname(replace_cip(map['script']))
-      @current = File.join(@script_dir, 'experiment_defintion.rb')
+      @current = File.join(@script_dir, 'experiment_definition.rb')
       exec_current(data)
       @current = nil
     end
