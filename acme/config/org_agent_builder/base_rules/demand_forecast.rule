@@ -19,34 +19,37 @@ demand_forecast_plugin = "org.cougaar.logistics.plugin.demand.DemandForecastPlug
 
 society.each_agent do |agent|
   if agent.get_facet(:has_equipment_assets)
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+    # Only add Ammo type for non-UA agents with equipment
+    unless agent.get_facet(:is_ua)
+      agent.add_component do |c| 
 	c.classname = demand_forecast_plugin
 	c.add_argument('SUPPLY_TYPE=Ammunition')
 	c.add_argument('SUPPLY_PG_CLASS=AmmoConsumerPG')
       end 
     end
-    agent.add_component do |c|
-      unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') && 
-	agent.get_facet(:is_ua) }
+    # And the FSB / FuelWaterSupply UA agent does not get the Fuel plugin
+    unless agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') && agent.get_facet(:is_ua) }
+      agent.add_component do |c|
 	c.classname = demand_forecast_plugin
 	c.add_argument('SUPPLY_TYPE=BulkPOL')
 	unless agent.get_facet(:is_ua)	
-	c.add_argument('SUPPLY_PG_CLASS=FuelConsumerPG')
+	  c.add_argument('SUPPLY_PG_CLASS=FuelConsumerPG')
 	else
 	  c.add_argument('SUPPLY_PG_CLASS=com.bbn.fcss.ldm.asset.FuelConsumerPG')
 	end
       end
     end
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+    # Only non-UA agents get the PackagedPOL
+    unless agent.get_facet(:is_ua)
+      agent.add_component do |c| 
 	c.classname = demand_forecast_plugin
 	c.add_argument('SUPPLY_TYPE=PackagedPOL')
 	c.add_argument('SUPPLY_PG_CLASS=PackagedPOLConsumerPG')
       end
     end
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+    # Only non-UA agents get teh Consumable
+    unless agent.get_facet(:is_ua)
+      agent.add_component do |c| 
 	c.classname = demand_forecast_plugin
 	c.add_argument('SUPPLY_TYPE=Consumable')
 	c.add_argument('SUPPLY_PG_CLASS=RepairPartConsumerPG')
@@ -54,8 +57,9 @@ society.each_agent do |agent|
     end
   end
   if agent.get_facet(:has_personnel_assets)
-    agent.add_component do |c| 
-      unless agent.get_facet(:is_ua)
+    # Only non-UA agents with personnel assets Eat
+    unless agent.get_facet(:is_ua)
+      agent.add_component do |c| 
 	c.classname = demand_forecast_plugin
 	c.add_argument('SUPPLY_TYPE=Subsistence')
 	c.add_argument('SUPPLY_PG_CLASS=SubsistenceConsumerPG')
