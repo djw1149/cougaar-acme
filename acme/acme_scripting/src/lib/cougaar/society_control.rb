@@ -159,10 +159,8 @@ module Cougaar
           end
         end
       end
-
     end # class
-
-  
+ 
     class KeepSocietySynchronized < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
       RESULTANT_STATE = "SocietyRunning"
