@@ -9,21 +9,52 @@ echo "Done"
 # 
 # Make the plugin societies
 echo "Making micro-trans-stub-17a12v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/micro-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/micro-trans-stub-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ad.1ua/micro-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/micro-trans-stub-17a12v.oo.plugins.xml
 echo "Done"
 echo "Making micro-17a12v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/micro-17a12v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/micro-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ad.1ua/micro-17a12v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/micro-17a12v.oo.plugins.xml
+echo "Done"
+
+echo "Making micro-trans-stub-160a237v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/micro-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/micro-trans-stub-160a237v.oo.plugins.xml
+echo "Done"
+echo "Making micro-160a237v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/micro-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/micro-160a237v.oo.plugins.xml
 echo "Done"
 
 echo "Making tiny-trans-stub-17a12v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/tiny-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/tiny-trans-stub-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ad.1ua/tiny-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/tiny-trans-stub-17a12v.oo.plugins.xml
 echo "Done"
 echo "Making tiny-17a12v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/tiny-17a12v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/tiny-17a12v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ad.1ua/tiny-17a12v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/tiny-17a12v.oo.plugins.xml
 echo "Done"
+
+echo "Making tiny-trans-stub-160a237v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/tiny-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/tiny-trans-stub-160a237v.oo.plugins.xml
+echo "Done"
+echo "Making tiny-160a237v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/tiny-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/tiny-160a237v.oo.plugins.xml
+echo "Done"
+
+echo "Making small-17a12v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/small-17a12v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/small-17a12v.oo.plugins.xml
+echo "Done"
+
+echo "Making small-trans-stub-17a12v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/small-trans-stub-17a12v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/small-trans-stub-17a12v.oo.plugins.xml
+echo "Done"
+
+echo "Making small-160a237v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/small-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/small-160a237v.oo.plugins.xml
+echo "Done"
+
+echo "Making small-trans-stub-160a237v.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.1ua/small-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/small-trans-stub-160a237v.oo.plugins.xml
+echo "Done"
+
 echo "Making full-1ad-160a237v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/full-160a237v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/full-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ad.1ua/full-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/full-160a237v.oo.plugins.xml
 echo "Done"
 echo "Making full-trans-stub-160a237v.oo.plugins.xml..."
-ruby ../bin/transform_society.rb -i 1ua.orig-org-id/full-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ua.orig-org-id/full-trans-stub-160a237v.oo.plugins.xml
+ruby ../bin/transform_society.rb -i 1ad.1ua/full-trans-stub-160a237v.oo.facets.xml -r base_rules/temp -o 1ad.1ua/full-trans-stub-160a237v.oo.plugins.xml
 echo "Done"

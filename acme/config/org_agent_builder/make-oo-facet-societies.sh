@@ -7,6 +7,9 @@ echo "Done"
 echo "Making micro-1ad.oo.facets.xml..."
 ruby org_agent_builder.rb -d 1ad.org_data -m micro-1ad.member.csv -s 1ad.orig-org-id/micro-1ad.oo.facets.xml -o
 echo "Done"
+echo "Making micro-1ad-trans-stub.oo.facets.xml..."
+ruby org_agent_builder.rb -d 1ad.org_data -m micro-1ad-trans-stub.member.csv -s 1ad.orig-org-id/micro-1ad-trans-stub.oo.facets.xml -o
+echo "Done"
 echo "Making tiny-1ad.oo.facets.xml..."
 ruby org_agent_builder.rb -d 1ad.org_data -m tiny-1ad.member.csv -s 1ad.orig-org-id/tiny-1ad.oo.facets.xml -o
 echo "Done"

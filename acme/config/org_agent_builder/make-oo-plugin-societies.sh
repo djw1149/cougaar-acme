@@ -14,6 +14,9 @@ echo "Done"
 echo "Making micro-1ad.oo.plugins.xml..."
 ruby ../bin/transform_society.rb -i 1ad.orig-org-id/micro-1ad.oo.facets.xml -r base_rules/temp -o 1ad.orig-org-id/micro-1ad.oo.plugins.xml
 echo "Done"
+echo "Making micro-1ad.oo.plugins.xml..."
+ruby ../bin/transform_society.rb -i 1ad.orig-org-id/micro-1ad-trans-stub.oo.facets.xml -r base_rules/temp -o 1ad.orig-org-id/micro-1ad-trans-stub.oo.plugins.xml
+echo "Done"
 echo "Making tiny-1ad.oo.plugins.xml..."
 ruby ../bin/transform_society.rb -i 1ad.orig-org-id/tiny-1ad.oo.facets.xml -r base_rules/temp -o 1ad.orig-org-id/tiny-1ad.oo.plugins.xml
 echo "Done"
