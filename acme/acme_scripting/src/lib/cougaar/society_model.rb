@@ -1119,7 +1119,7 @@ module Cougaar
       end
 
       def each_component
-        @components.each {|comp| yield comp}
+        @components.sort.each {|comp| yield comp}
       end
       
       def has_component?(component=nil, &block)
@@ -1165,7 +1165,7 @@ module Cougaar
         agent.classname = @classname
         agent.cloned = @cloned
         agent.uic = @uic
-        agent.add_components @components.collect {|component| component.clone(agent)}
+        agent.add_components @components.sort.collect {|component| component.clone(agent)}
         each_facet { |facet| agent.add_facet(facet.clone) }
         agent
       end
@@ -1176,7 +1176,7 @@ module Cougaar
         xml << " uic='#{@uic}'" if @uic
         xml << ">\n"
         xml << get_facet_xml(8)
-        @components.each {|comp| xml << comp.to_xml(8)}
+        @components.sort.each {|comp| xml << comp.to_xml(8)}
         xml << "      </agent>\n"
         return xml
       end
@@ -1186,7 +1186,7 @@ module Cougaar
         ruby << "        agent.classname='#{@classname}'\n" if @classname
         ruby << "        agent.uic='#{@uic}'\n" if @uic
         ruby << get_facet_ruby(8, 'agent')
-        @components.each {|comp| ruby << comp.to_ruby(self, 8)}
+        @components.sort.each {|comp| ruby << comp.to_ruby(self, 8)}
         ruby << "      end\n"
         ruby
       end
@@ -1211,7 +1211,7 @@ module Cougaar
       
       PRIORITY_COMPONENT = "COMPONENT"
       
-      attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments
+      attr_accessor :name, :agent, :classname, :priority, :insertionpoint, :arguments, :order
       
       ##
       # Construct a component
@@ -1222,6 +1222,7 @@ module Cougaar
         @name = name
         @classname = name
         @arguments = []
+        @order = -1
         yield self if block_given?
         if @name.nil?
           @name = self.comparison_name
@@ -1248,6 +1249,18 @@ module Cougaar
       
       def ==(component)
         return component.comparison_name == self.comparison_name
+      end
+
+      def <=>(component)
+        if @insertionpoint == component.insertionpoint
+          if component.order < 0
+            return -1
+          elsif @order < 0
+            return 1
+          end
+          return @order <=> component.order
+        end
+        return @insertionpoint <=> component.insertionpoint
       end
       
       def comparison_name
@@ -1287,6 +1300,7 @@ module Cougaar
         c.agent = agent
         c.classname = @classname
         c.priority = @priority
+        c.order = @order
         c.insertionpoint = @insertionpoint
         each_argument {|arg| c.add_argument(arg.value)}
         return c
@@ -1297,6 +1311,7 @@ module Cougaar
         xml << "#{' '*i}  name='#{@name}'\n"
         xml << "#{' '*i}  class='#{@classname}'\n"
         xml << "#{' '*i}  priority='#{@priority}'\n" if @priority
+        xml << "#{' '*i}  order='#{@order}'\n" if @order > -1
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
         each_argument do |arg|
           xml << "#{' '*i}  <argument>\n"
@@ -1311,6 +1326,7 @@ module Cougaar
         ruby =  "#{' '*i}#{parent.kind_of?(Node) ? 'node.agent' : 'agent'}.add_component('#{@name}') do |c|\n"
         ruby << "#{' '*i}  c.classname = '#{@classname}'\n"
         ruby << "#{' '*i}  c.priority = '#{@priority}'\n"
+        ruby << "#{' '*i}  c.order = '#{@order}'\n"
         ruby << "#{' '*i}  c.insertionpoint = '#{@insertionpoint}'\n"
         each_argument do |arg|
           ruby << "#{' '*i}  c.add_argument('#{arg.value}')\n"
