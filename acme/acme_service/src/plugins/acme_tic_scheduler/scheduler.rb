@@ -90,7 +90,8 @@ module ACME; module Plugins
       eindex = data.index("=end", index)
       return unless eindex
       map = YAML.load(data[(index+18)...eindex])
-      @current = File.join(File.dirname(replace_cip(map['script'])), 'experiment_defintion.rb')
+      @script_dir = File.dirname(replace_cip(map['script']))
+      @current = File.join(@script_dir, 'experiment_defintion.rb')
       exec_current(data)
       @current = nil
     end
@@ -102,8 +103,9 @@ module ACME; module Plugins
       `#{cmd}`
       path_as = File.join(@cougaar_config.manager.cougaar_install_path, "csmart", "acme_scripting", "src", "lib")
       path_redist = File.join(@cougaar_config.manager.cougaar_install_path, "csmart", "acme_service", "src", "redist")
+      out_log = File.join(@script_dir, 'scheduledRuns.log')
       File.open(@current, 'w') { |f| f.puts(data)}
-      cmd = @cougaar_config.manager.cmd_wrap("ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0")
+      cmd = @cougaar_config.manager.cmd_wrap("ruby -C#{File.dirname(@current)} -I#{path_as} -I#{path_redist} #{@current} -w0 >>& #{out_log}")
       result = `#{cmd}`
       cmd = @cougaar_config.manager.cmd_wrap("rm -f #{@current}")
       `#{cmd}`
