@@ -8,15 +8,28 @@ ldm_sql_plugin = "org.cougaar.mlm.plugin.ldm.LDMSQLPlugin"
 fcs_ldm_sql_plugin = "com.bbn.fcss.ldm.FCSLDMSQLPlugin"
 
 society.each_agent do |agent|
+  # FIXME: This assumes that UA Vehicle agents will have these facets
   if agent.get_facet(:has_personnel_assets) || agent.get_facet(:has_equipment_assets)
     agent.add_component do |c|
       if agent.get_facet(:is_ua)
 	c.classname = fcs_ldm_sql_plugin
+	# Once we have vehicle agents, these .q files must be
+	# different for those agents
+	# additionally, the parent of such agents must
+	# get an additional argument listing all the vehicle types
+	# that have been excluded, as in:
+	# exclude_types=Type1&Type2
 	if agent.has_facet? { |facet| facet[:role]=='FuelSupplyProvider' && (facet[:mechanism] == 'TruckScheduler') }
 	  c.add_argument('fcs_equip.q')	  
+	elsif agent.get_facet(:equip_type_id)
+	  c.add_argument('fcs_indiv_veh_equip.q')
 	else
-	  c.add_argument('fsc_indiv_equip.q')
+	  c.add_argument('fcs_indiv_equip.q')
 	end
+
+	# loop thru subordinates: for each one that has equip_type_id
+	# facet, add that value to a list if not already there
+	# FIXME!
       else
 	c.classname = ldm_sql_plugin
 	c.add_argument("fdm_equipment.q")
