@@ -49,11 +49,13 @@ module ACME
         File.new(run_log).each do |line|
           ts = get_timestamp(line)
           if (md = pattern_table[:start_run].match(line)) then
-            reset
+            reset 
             @run_start_time = ts
             surrent_stage = nil
           elsif (start.nil? && md = pattern_table[:load_time_start].match(line)) then            
             @type = md[1]
+            #start_time definition is dependent on run from 
+            #scratch or persistence
             if md[1] == "Persistence" then
               pattern_table[:start_time_end] = /Done: SocietyQuiesced/
             else
@@ -77,7 +79,7 @@ module ACME
               current_stage = "Stage#{md[1]}"
               @stages << StageTime.new(current_stage)
               self[current_stage].start_time = start
-            else #need to append this stage
+            else #need to append this stage (multiple stages without quiescing)
               self[current_stage].append_name("_#{md[1]}")
               current_stage += "_#{md[1]}"
             end
@@ -88,13 +90,15 @@ module ACME
             current_stage = "Advance to #{md[1]}"
             @advances << StageTime.new(current_stage)
             self[current_stage].start_time = ts
-          elsif (md = pattern_table[:advance_time_end].match(line))
+          elsif (md = pattern_table[:advance_time_end].match(line) && !self[current_stage].nil?)
             self[current_stage].end_time = ts
             current_stage = nil
           elsif (md = pattern_table[:kill_nodes].match(line)) then
+            #keep track of killed nodes because we don't care if they quiesce
             @killed_nodes << md[1].split(",").collect{|x| x.strip}
             @killed_nodes.flatten!
-          elsif (line =~ /INTERRUPT/) then 
+          elsif (line =~ /INTERRUPT/) then
+            #might interrupt during a stage so be sure to close current stage 
             @interrupted = true
             @run_end_time = ts
             self[current_stage].end_time = ts unless current_stage.nil?
@@ -105,6 +109,8 @@ module ACME
       end
 
       def reset
+        #set everything back to initial conditions
+        #useful if multiple runs are in the run.log
         @run_start_time = Time.at(0).gmtime
         @run_end_time = Time.at(0).gmtime
         @load_time = StageTime.new("Load Time")

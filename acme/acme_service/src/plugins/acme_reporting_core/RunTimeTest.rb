@@ -23,13 +23,13 @@ module ACME
             end
             times << runtime 
 
-            group_pattern = Regexp.new("-#{@archive.group}-")
+            #match all archives in the same group
+            group_pattern = Regexp.new("^[^-]*-#{@archive.group}-")
             @archive.get_prior_archives(60*60*24*365, group_pattern).each do |prior_name|
               old_data = get_prior_data(prior_name)
               times << old_data unless old_data.nil?
             end
   
-
             runtime_path = @plugin.properties['runtime_path']
             if File.exist?(runtime_path) then
               update_runtime_file(times[0], runtime_path, @archive.group)
@@ -96,8 +96,10 @@ module ACME
 
       def collect_elements(all_data, field)
         data = []
-        all_data.each do |elem|
-          data << elem[field].total unless (elem.interrupted || elem[field].nil?)
+        all_data.each do |run_data|
+          unless (run_data.interrupted || run_data[field].nil? || !(run_data.name =~ /^baseline/))
+            data << run_data[field].total 
+          end
         end
         return data
       end
@@ -106,7 +108,9 @@ module ACME
         result = {}
         data = []
         all_data.each do |run_data|
-          data << run_data.total
+          unless (run_data.interrupted || run_data.total.nil? || !(run_data.name =~ /^baseline/))
+            data << run_data.total
+          end
         end
         result["Total"] = yield data
         
@@ -132,8 +136,13 @@ module ACME
         end
       end
           
-      def get_class(val, mean, stddev)
+      def get_class(name, val, mean, stddev)
         return "#FFFFFF" if val.class.to_s =~ /String/
+        #baselines are right by definition so make them all green
+        return "#00DD00" if name =~ /^baseline/
+        #Don't do the coloration if we don't have meaningful stats
+        return "#FFFFFF" if (stddev == 0 && mean == 0)
+        #checked stressed runs against mean and stddev
         return val.to_f <= (mean + 2 * stddev) ? "#00DD00" : "#FF0000"
       end
 
@@ -149,11 +158,11 @@ module ACME
         if data.class.to_s =~ /RunTime/ then
           cellclass = data.interrupted ? "#FF0000" : "#FFFFFF"
           row_string = @ikko["cell_template.html", {"data"=>row, "options"=>"BGCOLOR=#{cellclass}"}]
-          cellclass = get_class(data.total, mean["Total"], stddev["Total"])
+          cellclass = get_class(row, data.total, mean["Total"], stddev["Total"])
           row_string << @ikko["cell_template.html", {"data"=>format_data(data.total), "options"=>"BGCOLOR=#{cellclass}"}]                        
           headers.each do |header|
             val = (data[header].nil? ? "-" : data[header].total)
-            cellclass = get_class(val, mean[header], stddev[header])
+            cellclass = get_class(row, val, mean[header], stddev[header])
             row_string << @ikko["cell_template.html", {"data"=>format_data(val), "options"=>"BGCOLOR=#{cellclass}"}]
           end
         else #data is a hash
@@ -166,12 +175,17 @@ module ACME
         end
         return row_string
       end
-        
+              
+      def row_sep(msg, size)
+        row_string = @ikko["cell_template.html", {"data"=>"<FONT color=#DDDDDD>#{msg}</FONT>", "options"=>"COLSPAN=#{size} BGCOLOR=#000000"}]  
+        return @ikko["row_template.html", {"data"=>row_string}]
+      end
 
       def html_output(all_data)
         ikko_data = {}
         ikko_data["description_link"]="run_times_description.html"
         ikko_data["id"] = @archive.base_name
+        ikko_data["group"] = @archive.group
 
         headers = get_headers(all_data)
         header_string = @ikko["header_template.html", {"data"=>"Run"}]
@@ -184,31 +198,82 @@ module ACME
         mean_data = collect_stat(all_data, headers){|x| mean(x)}
         stddev_data = collect_stat(all_data, headers){|x| standard_deviation(x)}
         percent_data = collect_stat(all_data, headers){|x| std_percent(x)}
+       
+        all_data = sort_by_category(all_data)
 
-        
+        stressed_sep = false
+        baseline_sep = false
         all_data.each_index do |i|
+          if (!baseline_sep && stressed_sep && all_data[i].name =~ /^baseline/)
+            baseline_sep = true
+            table_string << row_sep("Previous baseline runs", headers.size+2) #plus 2 for run and total
+          end
+          
           row_string = row_output(all_data[i].name, all_data[i], headers, mean_data, stddev_data)
           table_string << @ikko["row_template.html", {"data"=>row_string}]
+          if (!stressed_sep && all_data.size > 1)
+            stressed_sep = true
+            table_string << row_sep("Previous stressed runs", headers.size+2) #plus 2 for run and total
+          end
+
         end
 
-        row_string = row_output("MEAN", mean_data, headers, nil, nil)
-        table_string << @ikko["row_template.html", {"data"=>row_string}]
-        row_string = row_output("STDDEV", stddev_data, headers, nil, nil)
-        table_string << @ikko["row_template.html", {"data"=>row_string}]
-        row_string = row_output("STDDEV Percent", percent_data, headers, nil, nil)
-        table_string << @ikko["row_template.html", {"data"=>row_string}]
+        #avoid statistics in degenerate cases (0 or 1 baseline)
+        if mean_data["Total"] > 0        
+          row_string = row_output("MEAN", mean_data, headers, nil, nil)
+          table_string << @ikko["row_template.html", {"data"=>row_string}]
+          row_string = row_output("STDDEV", stddev_data, headers, nil, nil)
+          table_string << @ikko["row_template.html", {"data"=>row_string}]
+          row_string = row_output("STDDEV Percent", percent_data, headers, nil, nil)
+          table_string << @ikko["row_template.html", {"data"=>row_string}]
+        end   
 
         ikko_data["table"] = table_string
         return @ikko["time_report.html", ikko_data]
       end
+
+      def sort_by_category(all_data)
+      #we want current run first, then stressed runs by time then baseline runs by time
+        curr = all_data.shift
+        return all_data.sort{|x, y| cmp_names(x.name, y.name)}.unshift(curr)
+      end
+
+
+      def cmp_names(x, y)
+        x_type = y_type = x_time = y_time = nil
+        if x =~ /^([^-]*)-/
+          x_type = $1
+        end
+        if y =~ /^([^-]*)-/
+          y_type = $1
+        end
+          
+        if x =~ /([0-9]{6}-[0-9]{6})/
+          x_time = $1
+        end
+        if y =~ /([0-9]{6}-[0-9]{6})/
+          y_time = $1
+        end
+        
+        ret = 0
+        if x_type != y_type
+          ret = y_type <=> x_type
+        else
+          ret = y_time <=> x_time
+        end
+        return ret
+      end
+
+        
 
       def create_description
         ikko_data = {}
         ikko_data["name"]="Run Time Test"
         ikko_data["title"] = "Run Time Test Description"
         ikko_data["description"] = "Creates a table showing the time the society took for loading, starting, and each stage"
-        ikko_data["description"] << " for each run in the archive and compares it with each run in the rpevious 24 hours."
-        ikko_data["description"] << " 	Green boxes indicate times that are less than the mean plus two standard deviations."
+        ikko_data["description"] << " for each run in the archive and compares it with each run same group.  Statistics are"
+        ikko_data["description"] << " calculated from all baseline runs and stressed runs are compared to them.  Green boxes"
+        ikko_data["description"] << " indicate times that are less than the mean plus two standard deviations."
         ikko_data["description"] << " Red boxes indicate times that are greater than the mean plus two standard deviations."
         ikko_data["description"] << " The colors of the boxes do not currently determine success"
         ikko_data["description"] << " or failure of the test.  If the run name itself is red, then that run was interrupted"
