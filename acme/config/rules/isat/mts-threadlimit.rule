@@ -1,0 +1,13 @@
+#################
+# Limit the number of threads per node in the MTS destination Queue
+
+
+# Add to all nodes
+society.each_node_agent() do |node_agent|
+  node_agent.add_component do |c|
+    c.classname = "org.cougaar.mts.std.DestinationThreadConstrictor"
+    c.add_argument("MaxPerNode=2")
+    c.add_argument("MaxThreads=15")
+    c.insertionpoint = "Node.AgentManager.Agent.MessageTransport.Aspect"
+  end
+end

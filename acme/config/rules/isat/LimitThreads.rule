@@ -1,0 +1,15 @@
+
+######################################
+# Mark some agents as well behaved
+
+limitThreads =  Cougaar::Model::Component.new()
+limitThreads.name = "org.cougaar.core.thread.LimitThreadsPlugin"
+limitThreads.classname = "org.cougaar.core.thread.LimitThreadsPlugin"
+limitThreads.add_argument("maxThreads=1")
+
+plugins_to_add = [limitThreads]
+
+# Mark all agents as well behaved
+society.each_agent() do |agent|
+  agent.add_components(plugins_to_add)
+end
