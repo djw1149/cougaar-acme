@@ -76,7 +76,7 @@ module UltraLog
                     @stages << @next_stage
                   end
                 end # end while block
-		@run.info_message "Finishing each_line block"
+#		@run.info_message "Finishing each_line block"
               end # end each_line handle
 
 	      # Mark this after we've processed the return data to avoid
@@ -86,7 +86,7 @@ module UltraLog
 		@run.info_message "Set can_get_oplan"
 	      end
 
-	      @run.info_message "Finishing read_body block"
+#	      @run.info_message "Finishing read_body block"
             end # end response.read_body block
 	    # I believe we never get here!
           end # end req.resp
