@@ -36,7 +36,8 @@ public class MemoryWasterPlugin
 	private int stddev = 0;
 	
 	private boolean init = false;
-	
+    protected boolean doLog = false;
+    	
 	private String communityName;
 
 	public int getSize() { return size; }
@@ -75,6 +76,13 @@ public class MemoryWasterPlugin
 				if (sizeStr != null) {
 					plugin.setSize(Integer.parseInt(sizeStr));
 					wasteMemory();
+				}
+				
+				String logEnabled = request.getParameter("log");
+				if (logEnabled.equals("enable")) {
+					plugin.doLog = true;	
+				} else if (logEnabled.equals("disable")) {
+					plugin.doLog = false;
 				}
 								
 				PrintWriter out = response.getWriter();
@@ -150,12 +158,14 @@ public class MemoryWasterPlugin
 	 * @see org.cougaar.core.blackboard.BlackboardClientComponent#execute()
 	 */
 	protected void execute() {
-		evt.event("type=MEMORY\tagent=" + getAgentIdentifier() + "\t" +
-		          "real-time=" + System.currentTimeMillis() + "\t" +
-		          "sim-time=" + alarmService.currentTimeMillis() + "\t" +
-		          "free=" + Runtime.getRuntime().freeMemory() + "\t" +
-		          "total=" + Runtime.getRuntime().totalMemory() + "\t" +
-		          "max=" + Runtime.getRuntime().maxMemory() + "\t" +
-		          "wasted=" + getSize() * 1024);
+		if (doLog) {
+			evt.event("type=MEMORY\tagent=" + getAgentIdentifier() + "\t" +
+			          "real-time=" + System.currentTimeMillis() + "\t" +
+			          "sim-time=" + alarmService.currentTimeMillis() + "\t" +
+		    	      "free=" + Runtime.getRuntime().freeMemory() + "\t" +
+		        	  "total=" + Runtime.getRuntime().totalMemory() + "\t" +
+		          	  "max=" + Runtime.getRuntime().maxMemory() + "\t" +
+		          	  "wasted=" + getSize() * 1024);
+		}
 	}
 }
