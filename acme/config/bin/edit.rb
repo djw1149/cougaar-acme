@@ -42,14 +42,26 @@ society.each_host do |host|
 		node.remove_parameter("-Dorg.cougaar.node.InitializationComponent")
 		node.override_parameter("-Dorg.cougaar.core.node.InitializationComponent","XML")
 		node.override_parameter("-Dorg.cougaar.core.persistence.clear","true")
+		node.override_parameter("-Dorg.cougaar.society.file","#{file}")
 		# Put in your own ACME log4j config file name here
 		node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
+
 		# Put in your own preferred log file name here
-		node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","/mnt/shared/socA/workspace/log4jlogs/$HOSTNAME.log")
-		node.override_parameter("-Dorg.cougaar.society.file","#{file}")
+		node.override_parameter("-Dorg.cougaar.core.logging.log4j.appender.SECURITY.File","$COUGAAR_INSTALL_PATH/workspace/log4jlogs/$HOSTNAME.log")
+
 		# To run most societies, you need configs/common and configs/glmtrans
 		# on the path. Edit in your own cougaar_install_path
-		node.override_parameter("-Dorg.cougaar.config.path","/mnt/shared/socA/configs/common\\\;/mnt/shared/socA/configs/glmtrans\\\;")
+		node.override_parameter("-Dorg.cougaar.config.path","$COUGAAR_INSTALL_PATH/configs/common\\\;$COUGAAR_INSTALL_PATH/configs/glmtrans\\\;")
+
+
+    # the acme service will substitute for $COUGAAR_INSTALL_PATH in these
+		node.override_parameter("-Dorg.cougaar.install.path","$COUGAAR_INSTALL_PATH")
+		node.override_parameter("-Dorg.cougaar.workspace","$COUGAAR_INSTALL_PATH/workspace")
+		node.override_parameter("-Dorg.cougaar.system.path","$COUGAAR_INSTALL_PATH/sys")
+		node.override_parameter("-Djava.class.path","$COUGAAR_INSTALL_PATH/lib/bootstrap.jar")
+		node.remove_parameter("-Xbootclasspath/p:$COUGAAR_INSTALL_PATH/lib/javaiopatch.jar")
+		node.add_parameter("-Xbootclasspath/p:$COUGAAR_INSTALL_PATH/lib/javaiopatch.jar")
+
 
 	# Edit in your own preferred Java memory sizes here
     node.replace_parameter("/-Xms/","-Xms64m")
