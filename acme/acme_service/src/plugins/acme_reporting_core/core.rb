@@ -8,7 +8,7 @@ require "./plugins/acme_reporting_core/Nameservers"
 require "./plugins/acme_reporting_core/Scripts"
 require "./plugins/acme_reporting_core/BWUsage"
 require "./plugins/acme_reporting_core/MemoryReport"
-require "./plugins/acme_reporting_core/AgagentReport"
+require "./plugins/acme_reporting_core/aggagent-report"
 
 module ACME
   module Plugins
@@ -41,33 +41,43 @@ module ACME
         @cache_manager = CacheManager.new(cache_path)
       end
 
+      def completed( archive, testName )
+        @plugin.log_info << "Completed authoring of #{testName}"
+        puts "Completed authoring of #{testName}"
+      end
+
       def process_archive(archive)
-        puts "Processing an archive #{archive.base_name}"
+        @plugin.log_info << "Processing an archive #{archive.base_name}"
         begin
           run_log_test(archive)
-          puts "Run log"
+          completed( archive, "Run log" )
           RunTimeTest.new(archive, @plugin, @ikko, @cache_manager).perform
-          puts "Run Time"
+          completed( archive, "Run Time" )
           CompletionTest.new(archive, @plugin, @ikko).perform
-          puts "Comp"
+          completed( archive, "Comp" )
           QData.new(archive, @plugin, @ikko, @cache_manager).perform
-          puts "Q"
+          completed( archive, "Q" )
           VerifyInventory.new(archive, @plugin, @ikko).perform(0.10, 0.10)
-          puts "INV"
+          completed( archive, "INV" )
           DataGrabberTest.new(archive, @plugin, @ikko).perform
-          puts "GRAB"
+          completed( archive, "GRAB" )
           Nameservers.new(archive, @plugin, @ikko).perform
-          puts "NS"
+          completed( archive, "NS" )
           Scripts.new(archive, @plugin, @ikko).perform
-          puts "Definition"
+          completed( archive, "Definition" )
           BWUsage.new(archive, @plugin, @ikko).perform
-          puts "BWUsage"
+          completed( archive, "BWUsage" )
           MemoryReport.new(archive, @plugin, @ikko, @cache_manager).perform
-          puts "MEM"
-          AgagentReport.new(archive, @plugin, @ikko).perform
-          puts "AG"
+          completed( archive, "MEM" )
+          AggAgentReport.new(archive, @plugin, @ikko).perform
+          completed( archive, "AG" )
+
           @cache_manager.prune(500*1024*1024) #500 MB cache limit for now
+
         rescue
+          @plugin.log_error << $!
+          @plugin.log_error << $!.backtrace
+
           puts $!
           puts $!.backtrace
           archive.add_report("Exception", @plugin.plugin_configuration.name) do |report|
