@@ -355,9 +355,7 @@ VALUE process_is_active(VALUE module, VALUE rbArgs){
   int status;
   void *ptr = (void *)NUM2UINT(rbArgs);
   
-  printf("Looking at %d\n", ptr);
   status = IsActive(ptr);
-  printf("  status is %d\n", status);
   return status ? Qtrue : Qfalse;
 }
 
