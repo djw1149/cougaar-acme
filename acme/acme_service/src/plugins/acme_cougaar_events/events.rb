@@ -36,7 +36,7 @@ module ACME; module Plugins
           count = @counter[event.experiment]
           count = 0 unless count
           count += 1
-          puts count
+          #puts count
           @counter[event.experiment] = count
           message = @jabber.manager.new_chat_message("acme_console@#{@jabber.manager.host}/expt-#{event.experiment}")
           message.subject="COUGAAR_EVENT"
