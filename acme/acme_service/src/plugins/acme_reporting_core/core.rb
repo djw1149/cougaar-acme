@@ -4,6 +4,8 @@ require "CompletionTest"
 require "QData"
 require "VerifyInventory"
 require "DataGrabberTest"
+require "Nameservers"
+require "Scripts"
 
 module ACME
   module Plugins
@@ -46,6 +48,8 @@ module ACME
         puts "GRAB"
         Nameservers.new(archive, @plugin, @ikko).perform
         puts "NS"
+        Scripts.new(archive, @plugin, @ikko).perform
+        puts "Definition"
       end
       
       def run_log_test(archive)
