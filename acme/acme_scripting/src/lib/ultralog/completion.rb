@@ -350,15 +350,15 @@ module UltraLog
         soc_status = "INCOMPLETE"
       else
         # before doing the exhaustive check, see if every node is currently
-        # reporting quiescence.  Since this is reported at the node level, it'll
-        # be the same for all agents on each node.
+        # reporting quiescence (will be nil if not).  Since this is reported at
+        # the node level, it'll be the same for all agents on each node.
         @society.each_node_agent do |node|
           if !comp[node.name]
             soc_status = "INCOMPLETE"
             break
           end
         end
-        if !soc_status == "INCOMPLETE"
+        if soc_status != "INCOMPLETE"
           @society.each_agent(true) do |agent|
             agentHash = comp[agent.name]
             # This goes through all receiver messages and compares to sender messages
