@@ -59,8 +59,8 @@ while (@@is_OK) do
     $POLARIS_CONFIG.update if ($POLARIS_UPDATE)
    
     $POLARIS_CONFIG.update_versions 
-    $POLARIS_CONFIG.versions << scriptInfo.version 
-    $POLARIS_CONFIG.versions << configInfo.version 
+#    $POLARIS_CONFIG.versions << scriptInfo.version 
+#    $POLARIS_CONFIG.versions << configInfo.version 
    
     Cougaar.in_memory_society = $POLARIS_CONFIG.make_society
 #    ARGV[0] = $POLARIS_CONFIG.transform_script
