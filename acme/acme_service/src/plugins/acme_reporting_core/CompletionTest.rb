@@ -1,10 +1,6 @@
 module ACME
   module Plugins
 
-    SUCCESS = 0
-    PARTIAL = 1
-    FAIL = 2
-
     class AgentCompletionData
       attr_accessor :error
       attr_reader :name
@@ -12,7 +8,7 @@ module ACME
       def initialize (name)
         @name = name
         @comp_data = {}
-        @error = SUCCESS
+        @error = CompletionTest::SUCCESS
       end
         
       def []=(tag, value)
@@ -42,7 +38,12 @@ module ACME
         
         
     class CompletionTest
+
+      SUCCESS = 0
+      PARTIAL = 1
+      FAIL = 2
       
+
       FileData = Struct.new("FileData", :agents, :totals)
       TOLERENCE = 0.10
 
