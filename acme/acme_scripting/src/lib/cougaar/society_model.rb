@@ -188,14 +188,14 @@ module Cougaar
     
     
     ##
-    # Mixin module for components that have attributes
+    # Mixin module for components that have facets
     #
-    module Attributed
+    module Facetted
     
       ##
-      # The Attribute class holds a collection of key-value pairs so attributes can hold complex data.
+      # The Attribute class holds a collection of key-value pairs so facets can hold complex data.
       #
-      class Attribute
+      class Facet
   
         def initialize(data=nil, &block)
           @map = {}
@@ -224,27 +224,27 @@ module Cougaar
         end
         
         ##
-        # Gets the value of a given attribute key
+        # Gets the value of a given facet key
         #
-        # key:: [String | Symbol] The attribute key to get
-        # return:: [String] The attribute key's value
+        # key:: [String | Symbol] The facet key to get
+        # return:: [String] The facet key's value
         #
         def [](key)
           return @map[make_key(key)]
         end
         
         ##
-        # Sets the value of a given attribute key
+        # Sets the value of a given facet key
         #
-        # key:: [String | Symbol] The attribute key
-        # value:: [String] The attribute value
+        # key:: [String | Symbol] The facet key
+        # value:: [String] The facet value
         #
         def []=(key, value)
           @map[make_key(key)] = value
         end
         
         ##
-        # Checks to see if the set of keys is a subset of the total set of keys in this attribute
+        # Checks to see if the set of keys is a subset of the total set of keys in this facet
         #
         # keys:: [Array[String|Symbol]] Set of keys to match against
         # return:: [Boolean] true if keys are a subset, otherwise false
@@ -253,9 +253,31 @@ module Cougaar
           keys = keys.collect { | key | make_key(key) }
           ((@map.keys & keys).size == keys.size)
         end
+        
+        def to_xml(indent=0)
+          xml = "#{' ' * indent}<facet "
+          @map.each_pair do |key, value|
+            xml << "#{key}='#{value}' " if key != :cdata
+          end
+          if @map.has_key?(:cdata)
+            xml << ">#{@map[:cdata]}</facet>\n"
+          else
+            xml << " />\n"
+          end
+          xml
+        end
+        
+        def to_ruby(indent, context)
+          ruby = "#{' ' * indent}#{context}.add_facet |facet|\n"
+          @map.each_pair do |key, value|
+            ruby << "#{' ' * indent}  facet[:#{key}]='#{value}'\n"
+          end
+          ruby << "#{' ' * indent}end\n"
+          ruby
+        end
   
         ##
-        # Creates a copy of this attribute
+        # Creates a copy of this facet
         #
         def clone
           return self
@@ -275,85 +297,71 @@ module Cougaar
     
       
       ##
-      # Add an attribute(s) to the component
+      # Add an facet(s) to the component
       # 
-      # attribute_data:: [String | Hash] The attribute(s) to add
+      # facet_data:: [String | Hash] The facet(s) to add
       #
-      def add_attribute(attribute_data=nil, &block)
-        @attributes ||= []
-        a = Attribute.new(attribute_data, &block)
-        @attributes << a
+      def add_facet(facet_data=nil, &block)
+        @facets ||= []
+        a = Facet.new(facet_data, &block)
+        @facets << a
       end
       
       ##
-      # Iterates over each component
+      # Iterates over each facet
       #
-      # yield:: [String] The attribute
+      # yield:: [String] The facet
       #
-      def each_attribute(*keys)
-        return unless @attributes
-        @attributes.each do |attribute|
-          yield attribute if attribute.match?(keys)
+      def each_facet(*keys)
+        return unless @facets
+        @facets.each do |facet|
+          yield facet if facet.match?(keys)
         end
       end
       
       ##
-      # Returns the first attribute that contains the specified key name
+      # Returns the first facet that contains the specified key name
       #
-      # name:: [String | Symbol] The attribute key
-      # return:: [String] The attribute key's value
+      # name:: [String | Symbol] The facet key
+      # return:: [String] The facet key's value
       #
-      def get_attribute(name)
-        return nil unless @attributes
-        each_attribute(name) { | attribute | return attribute[name] }
+      def get_facet(name)
+        return nil unless @facets
+        each_facet(name) { | facet | return facet[name] }
       end
       
       ##
-      # Removes all attributes on this host, node or agent
+      # Removes all facets on this host, node or agent
       #
-      def remove_all_attributes
-        @attributes = nil
+      def remove_all_facets
+        @facets = nil
       end
       
       ##
-      # Returns the XML encoding of the components attributes
+      # Returns the XML encoding of the components facets
       #
       # indent:: [Integer] The number of spaces to indent
-      # return:: [String] The XML encoding of the attributes
+      # return:: [String] The XML encoding of the facets
       #
-      def get_attribute_xml(indent)
+      def get_facet_xml(indent)
         xml = ""
-        each_attribute do |attribute|
-          cdata = attribute.delete(:cdata)
-          xml << "#{' ' * indent}<attribute"
-          attribute.each_pair do |key, value|
-            xml << "#{key}='#{value}' "
-          end
-          if cdata
-            xml << ">#{cdata}</attribute>\n"
-          else
-            xml << " />\n"
-          end
+        each_facet do |facet|
+          xml << facet.to_xml(indent)
         end
         return xml
       end
       
       ##
-      # Returns the Ruby encoding of the components attributes
+      # Returns the Ruby encoding of the components facets
       #
       # indent:: [Integer] The number of spaces to indent
       # context:: [String] The component context (name) e.g. host, node, agent
-      # return:: [String] The Ruby encoding of the attributes
+      # return:: [String] The Ruby encoding of the facets
       #
-      def get_attribute_ruby(indent, context)
+      def get_facet_ruby(indent, context)
         ruby = ""
-        each_attribute do |attribute|
-          ruby << "#{' ' * indent}#{context}.add_attribute("
-          list = []
-          attribute.each_pair do |key, value|
-            list << ":#{key}=>'#{value}'"
-          end
-          ruby << "#{list.join(', ')})\n"
+        each_facet do |facet|
+          ruby << facet.to_ruby(indent, context)
         end
         return ruby
       end
@@ -366,7 +374,7 @@ module Cougaar
       attr_reader :nodes
       attr_accessor :name, :society
       
-      include Attributed
+      include Facetted
       
       ##
       # Constructs a host with the optional name
@@ -418,13 +426,13 @@ module Cougaar
       def clone
         host = Host.new(@name)
         each_node { |node| host.add_node(node.clone) }
-        each_attribute { |attribute| host.add_attribute(attribute.clone) }
+        each_facet { |facet| host.add_facet(facet.clone) }
         host
       end
       
       def to_xml
         xml = "  <host name='#{@name}'>\n"
-        xml << get_attribute_xml(4)
+        xml << get_facet_xml(4)
         each_node {|node| xml << node.to_xml}
         xml << "  </host>\n"
         return xml
@@ -432,7 +440,7 @@ module Cougaar
       
       def to_ruby
         ruby =  "  society.add_host('#{@name}') do |host|\n"
-        ruby << get_attribute_ruby(4, 'host')
+        ruby << get_facet_ruby(4, 'host')
         each_node {|node| ruby << node.to_ruby}
         ruby << "  end\n"
         ruby
@@ -460,13 +468,13 @@ module Cougaar
   
     ##
     # Holds the model of a node that is part of an experiment.
-    # Parameters are stored in the #paramters attribute
+    # Parameters are stored in the #paramters facet
     #
     class Node
       attr_reader :agents, :name, :parameters
       attr_accessor :host, :agent, :prog_parameters, :env_parameters, :classname
       
-      include Attributed
+      include Facetted
       
       ##
       # Constructs a node with optional name
@@ -616,7 +624,7 @@ module Cougaar
       def clone
         node = Node.new(@name)
         each_agent {|agent| node.add_agent agent.clone}
-        each_attribute { |attribute| node.add_attribute(attribute.clone) }
+        each_facet { |facet| node.add_facet(facet.clone) }
         node.parameters.concat @parameters
         node.env_parameters.concat @env_parameters
         node.prog_parameters.concat @prog_parameters
@@ -628,7 +636,7 @@ module Cougaar
       def to_xml
         xml = "    <node name='#{@name}'>\n"
         xml << "      <class>\n        #{@classname}\n      </class>\n"
-        xml << get_attribute_xml(6)
+        xml << get_facet_xml(6)
         each_prog_parameter do |param|
           xml << "      <prog_parameter>\n        #{param}\n      </prog_parameter>\n"
         end
@@ -649,7 +657,7 @@ module Cougaar
       def to_ruby
         ruby =  "    host.add_node('#{@name}') do |node|\n"
         ruby << "      node.classname = '#{@classname}'\n"
-        ruby << get_attribute_ruby(6, 'node')
+        ruby << get_facet_ruby(6, 'node')
         each_prog_parameter do |param|
           ruby << "      node.add_prog_parameter('#{param}')\n"
         end
@@ -678,7 +686,7 @@ module Cougaar
       attr_reader :name
       attr_accessor :name, :classname, :cloned, :uic
       
-      include Attributed
+      include Facetted
       
       ##
       # Constructs agent
@@ -751,13 +759,13 @@ module Cougaar
         agent.cloned = @cloned
         agent.uic = @uic
         agent.add_components @components.collect {|component| component.clone}
-        each_attribute { |attribute| agent.add_attribute(attribute.clone) }
+        each_facet { |facet| agent.add_facet(facet.clone) }
         agent
       end
       
       def to_xml
         xml = "      <agent name='#{@name}' class='#{classname}'>\n"
-        xml << get_attribute_xml(8)
+        xml << get_facet_xml(8)
         @components.each {|comp| xml << comp.to_xml(8)}
         xml << "      </agent>\n"
         return xml
@@ -765,7 +773,7 @@ module Cougaar
       
       def to_ruby
         ruby =  "      node.add_agent('#{@name}') do |agent|\n"
-        ruby << get_attribute_ruby(8, 'agent')
+        ruby << get_facet_ruby(8, 'agent')
         @components.each {|comp| ruby << comp.to_ruby(self, 8)}
         ruby << "      end\n"
         ruby

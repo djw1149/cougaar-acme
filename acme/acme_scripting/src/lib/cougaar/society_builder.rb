@@ -119,10 +119,10 @@ module Cougaar
         @doc.elements.each("society/host") do |host_element|
           society.add_host(host_element.attributes['name']) do |host|
             #add attributes to host
-            host_element.elements.each("attribute") do |element|
-              host.add_attribute do |attribute|
-                element.attributes.each { |a, v| attribute[a] = v }
-                attribute.cdata = element.text.strip if element.text
+            host_element.elements.each("facet") do |element|
+              host.add_facet do |facet|
+                element.attributes.each { |a, v| facet[a] = v }
+                facet.cdata = element.text.strip if element.text
               end
             end
             host_element.elements.each("node") do |node_element|
@@ -130,10 +130,10 @@ module Cougaar
                 element = node_element.elements["class"]
                 node.classname = element.text.strip if element
                 #add attributes to node
-                node_element.elements.each("attribute") do |element|
-                  node.add_attribute do |attribute|
-                    element.attributes.each { |a, v| attribute[a] = v }
-                    attribute.cdata = element.text.strip if element.text
+                node_element.elements.each("facet") do |element|
+                  node.add_facet do |facet|
+                    element.attributes.each { |a, v| facet[a] = v }
+                    facet.cdata = element.text.strip if element.text
                   end
                 end
                 #add parameters to node
@@ -167,10 +167,10 @@ module Cougaar
                   node.add_agent(agent_element.attributes['name']) do |agent|
                     agent.classname = agent_element.attributes['class']
                     #add attributes to agent
-                    agent_element.elements.each("attribute") do |element|
-                      agent.add_attribute do |attribute|
-                        element.attributes.each { |a, v| attribute[a] = v }
-                        attribute.cdata = element.text.strip if element.text
+                    agent_element.elements.each("facet") do |element|
+                      agent.add_facet do |facet|
+                        element.attributes.each { |a, v| facet[a] = v }
+                        facet.cdata = element.text.strip if element.text
                       end
                     end
                     
