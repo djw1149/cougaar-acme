@@ -96,6 +96,9 @@ module Cougaar
         unless @server
           ohost = @run.society.get_service_host("jabber")
           if ohost==nil
+	    ohost = @run.society.get_service_host("Jabber")
+	  end
+	  if ohost==nil
             puts "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
             @server = 'acme'
           else
