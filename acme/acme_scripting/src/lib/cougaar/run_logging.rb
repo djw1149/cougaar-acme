@@ -80,7 +80,7 @@ module Cougaar
       end
 
       # Process a single agent (node)
-      def do_agent (one_agent)
+      def do_agent(one_agent)
 
 	# FIXME: Do a transform_society for any reason?
 
@@ -96,7 +96,7 @@ module Cougaar
           if uri
 
 	    # Get the current level
-	    lev = process_return get_level uri, one_agent
+	    lev = process_return(get_level(uri, one_agent))
 	    if lev
 	      if lev == @level
 		@run.info_message "Log level at #{one_agent} for #{@category} is already #{@level}."
@@ -111,7 +111,7 @@ module Cougaar
 	    end
 	    
 	    # Now set the new level and check to see if the change went OK
-	    lev = process_return set_level uri, one_agent
+	    lev = process_return(set_level(uri, one_agent))
 	    unless lev
 	      @run.error_message " ..... FAILED log level change!"
 	      return
