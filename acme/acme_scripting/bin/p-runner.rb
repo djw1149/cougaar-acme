@@ -5,6 +5,7 @@ if $0 == __FILE__
   $:.unshift File.join( File.dirname( __FILE__ ), "..", "..", "acme_service", "src", "redist" )
   $:.unshift File.join( File.dirname( __FILE__ ), "..", "src", "lib" )
 end
+$stdout.sync = true
 
 require "p-config"
 
@@ -22,7 +23,7 @@ queue = ARGV[0].to_i
 server = XMLRPC::Client.new( $POLARIS_HOST, "/servlet/xml-rpc" )
 server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
-monitor = Polaris::Monitor.new( server )
+$POLARIS_MONITOR = Polaris::Monitor.new( server )
 Cougaar::ExperimentMonitor.add monitor
 
 playground = CVSPlayground.new
@@ -49,11 +50,14 @@ while (@@is_OK) do
     configFile = playground.get_file( configInfo )
 
     monitor.scriptId = scriptId.to_i
-    config = Polaris::CougaarConfig.new configFile, ENV["COUGAAR_INSTALL_PATH"]
+    $POLARIS_CONFIG = Polaris::CougaarConfig.new configFile, ENV["COUGAAR_INSTALL_PATH"]
 
-    config.update if ($POLARIS_UPDATE)
-     
-    ARGV[0] = config.transform_script
+    $POLARIS_CONFIG.update if ($POLARIS_UPDATE)
+    
+    $POLARIS_CONFIG.versions.append( scriptInfo.version )
+    $POLARIS_CONFIG.versions.append( configInfo.version )
+
+    ARGV[0] = $POLARIS_CONFIG.transform_script
 
     logs = Polaris::Logs.new("#{ENV['COUGAAR_INSTALL_PATH']}/workspace/log4jlogs")
     
@@ -62,7 +66,7 @@ while (@@is_OK) do
     rescue XMLRPC::FaultException => e
       puts "Code: #{e.faultCode}"
       puts "Msg: #{e.faultString}"
-      monitor.acme_failure( exc )
+      monitor.polaris_failure( e )
       throw e
     rescue Exception => exc
       puts "Caught ACME Exception: #{exc}"
