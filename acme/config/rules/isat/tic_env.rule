@@ -18,6 +18,8 @@ society.each_node do |node|
 #    node.override_parameter("-Dorg.cougaar.servicediscovery.plugin.SDClientPlugin.persistEarly","true")
     node.override_parameter("-Dorg.cougaar.robustness.exnihilo.plugin.COLLECT_MESSAGE_TRAFFIC_PROP","false")
 
+#    node.override_parameter("-Dorg.cougaar.util.log.checkwrappers","true")
+
     node.override_parameter("-Dorg.cougaar.core.logging.config.filename","loggingConfig.conf")
 
     node.override_parameter("-Dorg.cougaar.core.wp.resolver.select.defaultScore","1000")
