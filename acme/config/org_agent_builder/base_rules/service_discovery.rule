@@ -5,6 +5,9 @@
 # plugin = org.cougaar.servicediscovery.plugin.SDRegistrationPlugin
 # plugin = org.cougaar.servicediscovery.plugin.SDClientPlugin(NeededRole,NeededRole,...)
 # plugin = org.cougaar.servicediscovery.plugin.SDProviderPlugin(ProvidedRole,ProvidedRole,...)
+# plugin = org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin
+# plugin = org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent(org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet,/matchmaker_query)
+# plugin = org.cougaar.servicediscovery.plugin.LineagePlugin
 # plugin = org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent
 # plugin = org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent
 #
@@ -18,6 +21,11 @@
 sd_registration_plugin = "org.cougaar.servicediscovery.plugin.SDRegistrationPlugin"
 sd_client_plugin = "org.cougaar.servicediscovery.plugin.SDClientPlugin"
 sd_provider_plugin = "org.cougaar.servicediscovery.plugin.SDProviderPlugin"
+matchmaker_stub_plugin = "org.cougaar.servicediscovery.plugin.MatchmakerStubPlugin"
+matchmaker_query_servlet_component = "org.cougaar.servicediscovery.servlet.MatchMakerQueryServletComponent"
+matchmaker_query_servlet = "org.cougaar.servicediscovery.servlet.MatchMakerQueryServlet"
+
+lineage_plugin = "org.cougaar.servicediscovery.plugin.LineagePlugin"
 uddi4j_registration_service = "org.cougaar.servicediscovery.service.UDDI4JRegistrationServiceComponent"
 uddi4j_registry_query_service = "org.cougaar.servicediscovery.service.UDDI4JRegistryQueryServiceComponent"
 supply_roles = Array ["AmmunitionProvider",
@@ -74,7 +82,8 @@ society.each_agent do |agent|
   required_roles = required_roles.sort
   required_roles = required_roles.uniq 
 #
-# Then insert the UDDI4JRegistrationService, UDDI4JRegistryQueryService, and SDRegistrationPlugin with no arguments
+# Then insert the UDDI4JRegistrationService, UDDI4JRegistryQueryService, SDRegistrationPlugin with no arguments
+# and the MatchmakerStubPlugin and the LineagePlugin with no arguments
   agent.add_component do |c|
     c.classname = uddi4j_registration_service
     # Load UDDI4J plugins early so SDReg Plugin can always find them
@@ -87,6 +96,17 @@ society.each_agent do |agent|
   end
   agent.add_component do |c|
     c.classname = sd_registration_plugin
+  end
+  agent.add_component do |c|
+    c.classname = matchmaker_stub_plugin
+  end
+  agent.add_component do |c|
+    c.classname = matchmaker_query_servlet_component
+    c.add_argument(matchmaker_query_servlet)
+    c.add_argument("/matchmaker_query")
+  end
+  agent.add_component do |c|
+    c.classname = lineage_plugin
   end
 #
 # Then insert the SDClientPlugin with required role arguments
