@@ -1393,10 +1393,6 @@ module Cougaar
       end
       
       def perform
-        unless File.exist?(@directory)
-          @run.error_message "Could not mark directory #{@directory} for archival ... Directory not found."
-          return
-        end
         @run.archive_file(Proc.new { Dir.glob(File.expand_path(File.join(@directory, @pattern))) },  @description)
       end
       
