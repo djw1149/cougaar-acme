@@ -119,7 +119,7 @@ module Cougaar
         def to_ruby(indent, context)
           ruby = "#{' ' * indent}#{context}.add_facet do |facet|\n"
           @map.each_pair do |key, value|
-            ruby << "#{' ' * indent}  facet[:#{key}]='#{value}'\n"
+            ruby << "#{' ' * indent}  facet[:'#{key}']='#{value}'\n"
           end
           ruby << "#{' ' * indent}end\n"
           ruby
