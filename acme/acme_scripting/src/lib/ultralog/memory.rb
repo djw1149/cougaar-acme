@@ -22,7 +22,7 @@
 module Cougaar; module Actions
   class WasteMemory < Cougaar::Action
     PRIOR_STATES = ["SocietyRunning"]
-    def initialize(run, memory, *nodes)
+    def initialize(run, memory, nodes)
       super( run )
       @memory = memory
       @nodes = nodes
