@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
-path = Dir.pwd.split("/")[0...(Dir.pwd.split("/").index("config"))]
+fullpath = File.expand_path(__FILE__)
+path = fullpath.split("/")[0...(fullpath.split("/").index("config"))]
 dir1 = ( ( path + ['src', 'ruby', 'acme_scripting', 'src', 'lib'] ).join("/") )
 dir2 = ( ( path + ['src', 'ruby', 'acme_service', 'src', 'redist'] ).join("/") )
 dir1 = ( ( path + ['acme_scripting', 'src', 'lib'] ).join("/") ) unless File.exist?(dir1)
