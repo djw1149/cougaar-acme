@@ -412,7 +412,7 @@ module Cougaar
 	  if (@run.society.nodes[@node] == nil)
 	    @run.info_message "No node #{@node} to move #{@agent} to!"
 	  elsif (@run.society.agents[@agent] == nil)
-	    @run.info_message "No agent #{@agent} in society to move to #{@node} !"
+	    @run.info_message "No agent #{@agent} in society to move to #{@node}!"
 	  else
 	    # Could (should?) also check if the agent is already on the named node
 	    uri = "#{@run.society.agents[@agent].uri}/move?op=Move&mobileAgent=#{@agent}&originNode=&destNode=#{@node}&isForceRestart=false&action=Add"
