@@ -32,11 +32,11 @@ module Cougaar; module Actions
     end
 
     def disable
-      @run.comms.new_message( @noc ).set_body("command[rexec]iptables -I FORWARD -i eth0.#{@from_v} -o eth0.#{@to_v} -j DROP").request(30)
+      @run.comms.new_message( @noc ).set_body("command[shape]disable_link(#{@from_vlan},#{@to_vlan})").request(30)
     end
 
     def enable
-      @run.comms.new_message( @noc ).set_body("command[rexec]iptables -I FORWARD -i eth0.#{@from_v} -o eth0.#{@to_v} -j DROP").request(30)
+      @run.comms.new_message( @noc ).set_body("command[shape]enable_link(#{@from_vlan},#{to_vlan})").request(30)
     end
 
     def set_bandwidth( bw )
