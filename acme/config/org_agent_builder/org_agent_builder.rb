@@ -160,13 +160,15 @@ end
 
 class SocietyGenerator
 
-  XML_HEADER = %Q{<?xml version="1.0"?>
+  XML_HEADER_1 = %Q{<?xml version="1.0"?>
 <society name='ACME-UL-SOCIETY'
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">
+ xsi:noNamespaceSchemaLocation="http://www.cougaar.org/2003/society.xsd">}
+  
+  XML_HEADER_2 = %Q{
   <host name='localhost'>
     <node name='localnode'>}
-  
+
   XML_FOOTER = %Q{    </node>
   </host>
 </society>}
@@ -179,13 +181,15 @@ class SocietyGenerator
     @org_data_directory = nil
     @society_member_file = nil
     @society_member_list = Array.new
+    @exclude_threads = nil
     @society_file = nil
     @use_full_org_id = true                     # Default is to use full org_id, not orig_org_id
     opts = GetoptLong.new( [ '--org-data-directory', '-d', GetoptLong::OPTIONAL_ARGUMENT],
 			  [ '--society-member', '-m', GetoptLong::OPTIONAL_ARGUMENT],
 			  [ '--society',  '-s', GetoptLong::OPTIONAL_ARGUMENT],
 			  [ '--orig-org-id', '-o', GetoptLong::NO_ARGUMENT],
-			  [ '--help',    '-h', GetoptLong::NO_ARGUMENT])
+			  [ '--help',    '-h', GetoptLong::NO_ARGUMENT],
+                          [ '--exclude', '-x', GetoptLong::OPTIONAL_ARGUMENT])
 
     opts.each do |opt, arg|
       case opt
@@ -197,6 +201,8 @@ class SocietyGenerator
         @society_file = arg
       when '--orig-org-id'
 	@use_full_org_id = false
+      when '--exclude'
+	@exclude_threads = arg
       when '--help'
         help
         exit 0
@@ -233,6 +239,7 @@ class SocietyGenerator
     puts "\t-d --org-data-directory..  The OrgData directory (1ad.org_data)."
     puts "\t-m --society-member......  The SocietyMember file (.csv)."
     puts "\t-s --society.............  The society file (.xml)."
+    puts "\t-x --exclude.............  List of Threads to exclude: [1,3,P,5,9,S]"
     puts "\t-f --full-org-id.........  Boolean to use full-org-id or orig-org_id."
     puts "\t-h --help................  Prints this help message."
   end
@@ -351,7 +358,28 @@ class SocietyGenerator
 
   def xml_hierarchy
     # Output the orgs and facets in xml
-    puts XML_HEADER
+    puts XML_HEADER_1
+    if @exclude_threads
+      if(@exclude_threads.include?('1'))
+	puts('  <facet exclude_subsistence="T"/>')
+      end
+      if(@exclude_threads.include?('3'))
+	puts('  <facet exclude_bulk_pol="T"/>')
+      end
+      if(@exclude_threads.include?('P'))
+	puts('  <facet exclude_packaged_pol="T"/>')
+      end
+      if(@exclude_threads.include?('5'))
+	puts('  <facet exclude_ammunition="T"/>')
+      end
+      if(@exclude_threads.include?('9'))
+	puts('  <facet exclude_spare_parts="T"/>')
+      end
+      if(@exclude_threads.include?('S'))
+	puts('  <facet exclude_strategic_transportation="T"/>')
+      end
+    end
+    puts XML_HEADER_2
     @organizations.values[0].big_cheese.hierarchy_to_xml(6)
     puts XML_FOOTER
   end
@@ -363,7 +391,28 @@ class SocietyGenerator
     else
       output = $stdout
     end
-    output.puts XML_HEADER
+    output.puts XML_HEADER_1
+    if @exclude_threads
+      if(@exclude_threads.include?('1'))
+	output.puts('  <facet exclude_subsistence="T"/>')
+      end
+      if(@exclude_threads.include?('3'))
+	output.puts('  <facet exclude_bulk_pol="T"/>')
+      end
+      if(@exclude_threads.include?('P'))
+	output.puts('  <facet exclude_packaged_pol="T"/>')
+      end
+      if(@exclude_threads.include?('5'))
+	output.puts('  <facet exclude_ammunition="T"/>')
+      end
+      if(@exclude_threads.include?('9'))
+	output.puts('  <facet exclude_spare_parts="T"/>')
+      end
+      if(@exclude_threads.include?('S'))
+	output.puts('  <facet exclude_strategic_transportation="T"/>')
+      end
+    end
+    output.puts XML_HEADER_2
     @org_id_list = @organizations.keys                      # Make a list of the org_ids
     if @society_member_file
       xml_list = @org_id_list && @society_member_list
