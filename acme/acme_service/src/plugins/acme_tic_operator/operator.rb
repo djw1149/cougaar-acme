@@ -20,7 +20,7 @@ module ACME; module Plugins
     def register_commands
       register_command("test_cip", "return the $CIP") do |message, command|
         result = ""
-        result += call_cmd('echo $CIP')
+        result += call_cmd('echo $CIP').strip
         #result += `su -l -c 'echo $CIP' asmt`
         message.reply.set_body("CIP=[#{result}]").send
       end
