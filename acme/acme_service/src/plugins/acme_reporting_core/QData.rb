@@ -74,7 +74,9 @@ module ACME
         elsif (line =~ /^(.*),/) then #log4jlog format
           pd = ParseDate.parsedate($1)
         end
-        return Time.at(0) if (pd.nil? || pd != pd.compact) 
+        
+        return Time.at(0) if (pd.nil? || pd[0...6] != pd[0...6].compact)
+       
         return Time.mktime(*pd)
       end
 
