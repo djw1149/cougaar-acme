@@ -1,4 +1,4 @@
-
+require 'jdwp'
 
 module Cougaar
   module Actions
@@ -13,7 +13,7 @@ module Cougaar
           port = 7744
           host.each_node do |node|
             node.replace_parameter(/runjdwp/, "-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=#{port},server=y,suspend=n")
-            node.add_facet { |facet| facet[:debug_port] = port }
+            node.add_facet { |facet| facet[:debug_port] = port.to_s }
             port += 1
           end
         end
@@ -30,10 +30,17 @@ module Cougaar
         sessions = {}
         @run[:debug_sessions] = sessions
         @run.society.each_node do |node|
-          session = Session.new
-          session.transport = SocketTransport.new(node.host.uri_name, node.get_facet("debug_port"))
-          session.start
-          sessions[node.name] = session
+          begin
+            session = JDWP::Session.new
+            session.transport = JDWP::SocketTransport.new(node.host.uri_name, node.get_facet(:debug_port).to_i)
+            session.start
+            sessions[node.name] = session
+          rescue Exception => e
+            puts "Error debugging..."
+            puts node.name
+            puts node.host.uri_name
+            puts node.get_facet(:debug_port).to_i
+          end
         end
       end
     end
@@ -47,7 +54,7 @@ module Cougaar
       def perform
         sessions = @run[:debug_sessions]
         sessions.each do |node_name, session|
-          session.send(Packets::VirtualMachine::Suspend.new)
+          session.send(JDWP::Packets::VirtualMachine::Suspend.new)
         end
       end
     end
@@ -61,7 +68,7 @@ module Cougaar
       def perform
         sessions = @run[:debug_sessions]
         sessions.each do |node_name, session|
-          session.send(Packets::VirtualMachine::Resume.new)
+          session.send(JDWP::Packets::VirtualMachine::Resume.new)
         end
       end
     end
@@ -75,7 +82,7 @@ module Cougaar
       def perform
         sessions = @run[:debug_sessions]
         sessions.each do |node_name, session|
-          session.close
+          session.stop
         end
         @run[:debug_sessions] = {}
       end
