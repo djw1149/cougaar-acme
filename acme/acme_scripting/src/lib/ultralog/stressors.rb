@@ -135,6 +135,61 @@ module Cougaar
       end
     end
 
+    class IntermittentNetworkInterfaces < CyclicStress
+      PRIOR_STATES = ["SocietyLoaded"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Disables the NIC one or more nodes' hosts."
+        @parameters = [
+          {:handle => "required, Handle to refer to the intermittent thread.",
+           :on_time => "required, Amount of time stressor is on.",
+           :off_time => "required, Amount of time stressor is off.",
+           :nodes=> "required, List of node names."}
+        ]
+        @example = "do_action 'IntermittentNetworkInterfaces', 'IN-001', 1.second, 1.second, 'TRANSCOM-NODE', 'CONUS-NODE'"
+      }
+      def initialize(run, handle, on_time, off_time, *nodes)
+        super(run, handle, on_time, off_time)
+        @nodes = nodes
+      end
+
+      def perform
+        @nodes.each do |node|
+          cougaar_node = @run.society.nodes[node]
+          cougaar_host = cougaar_node.host
+          node_names = cougaar_host.nodes.collect { |node| node.name }
+                    
+          @run.info_message "Setting up intermittent network for host #{cougaar_host.name} that has nodes #{node_names.join(', ')}"
+        end
+        super.perform
+      end
+
+      def stress_on
+        @nodes.each do |node|
+          cougaar_node = @run.society.nodes[node]
+          if cougaar_node
+            @run.comms.new_message(cougaar_node.host).set_body("command[nic]trigger").send
+          else
+            raise_failure "Cannot disable nic on node #{node}, node unknown."
+          end
+        end
+      end
+
+      def stress_off
+        @nodes.each do |node|
+           cougaar_node = @run.society.nodes[node]
+           if cougaar_node
+             @run.comms.new_message(cougaar_node.host).set_body("command[nic]reset").send
+           else
+             raise_failure "Cannot enable nic on node #{node}, node unknown."
+           end
+        end
+      end
+
+      def to_s
+        return super.to_s + "(#{@nodes.join(', ')})"
+      end
+    end
+
     class StressCPU < Cougaar::Action
       PRIOR_STATES = ["SocietyLoaded"]
       DOCUMENTATION = Cougaar.document {
