@@ -107,18 +107,15 @@ module ACME; module Plugins
         begin
           report_entries = []
           @reports.each do |report|
-            file_entries = []
             report.each_file do |report_file|
-              file_entries << @service.ikko['report_index_file.html', 
-                {'name'=>File.basename(report_file.name),
+              report_entries << @service.ikko['report_index_entry.html', 
+                {'file'=>File.basename(report_file.name),
                  'path'=>report_file.name.split(File::SEPARATOR)[1..-1].join(File::SEPARATOR),
-                 'description'=>report_file.description}]
+                 'description'=>report_file.description,
+                 'name'=>report.name,
+                 'status'=>report.status,
+                 'plugin'=>report.plugin_name}]
             end
-            report_entries << @service.ikko['report_index_entry.html',
-              {'name'=>report.name,
-               'plugin'=>report.plugin_name,
-               'status'=>report.status,
-               'files'=>file_entries}]
           end
           File.open(File.join(@root_path, "reports", "index.html"), "w") do |index|
             index.puts @service.ikko['report_index.html',

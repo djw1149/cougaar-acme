@@ -72,7 +72,6 @@ class IndexManager
   end
 end
 
-
 if ENV['REQUEST_METHOD'] == "POST"
   paths = ENV['PATH_INFO'].split('/')
   host = paths[1] 
