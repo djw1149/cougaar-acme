@@ -346,7 +346,8 @@ module Cougaar
         def to_xml(indent=0)
           xml = "#{' ' * indent}<facet "
           @map.each_pair do |key, value|
-            xml << "#{key}='#{value}' " if key != :cdata
+            value = 
+            xml << "#{key}='#{REXML::Text.normalize(value)}' " if key != :cdata
           end
           if @map.has_key?(:cdata)
             xml << ">#{@map[:cdata]}</facet>\n"
@@ -1081,7 +1082,7 @@ module Cougaar
         xml << "#{' '*i}  insertionpoint='#{@insertionpoint}'>\n"
         each_argument do |arg|
           xml << "#{' '*i}  <argument order='#{arg.order}'>\n"
-          xml << "#{' '*i}    #{arg.value}\n"
+          xml << "#{' '*i}    #{REXML::Text.normalize(arg.value)}\n"
           xml << "#{' '*i}  </argument>\n"
         end
         xml << "#{' '*i}</component>\n"
