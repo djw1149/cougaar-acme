@@ -162,9 +162,9 @@ definition format (see experiment_definition.html) and three new ACME service ca
    report.description = "Exception report.  Success indicates not 
                          exceptions, Failure indicates exceptions found"
    if exception_files.size > 0
-     reports.failed
+     report.failed
    else
-     reports.success
+     report.success
    end
  end</pre>
 <p>In this example, a report is generated name 'EX' under the plugin named '@plugin.plugin_configuration_name'  This is important to pass in because all generated files (see below) are located under this path.  If two report plugins generate the same filename, the plugin name will disambiguate them.  The report is marked a <i>success</i> or <i>failure</i> depending on whether exceptions were located in the Log4J log files.  The full methods available on the ACME::Plugins::ReportingService::Report object can be found in the plugins/acme_reporting_service/report.rb file.  A summary of the most used ones are:</p>
