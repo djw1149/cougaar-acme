@@ -931,6 +931,9 @@ module Cougaar
       
       def move_to(nodename)
         newNode = @node.host.society.nodes[nodename]
+        if nodename == @node.name
+          return nil # don't move if already there
+        end
         @node.agents.delete(self)
         newNode.add_agent(self)
       end
