@@ -30,6 +30,22 @@ module Cougaar
   end
   
   module Actions
+  
+    class CreateJarConfigFiles < Cougaar::Action
+      PRIOR_STATES = ["OperatorServiceConnected"]
+      DOCUMENTATION = Cougaar.document {
+        @description = "Creates the Jar config files via operator machine."
+        @example = "do_action 'CreateJarConfigFiles'"
+      }
+    
+      def perform
+        operator = @run['operator']
+        cip = operator.test_cip.strip # strip cleans off whitespace...
+        op_host = @run.society.get_service_host('operator')
+        @run.comms.new_message(op_host).set_body("command[rexec]#{cip}/operator/createJarConfigFiles").request(30)
+      end
+    end
+    
     class ConnectOperatorService < Cougaar::Action
       RESULTANT_STATE = 'OperatorServiceConnected'
       DOCUMENTATION = Cougaar.document {
