@@ -1,5 +1,7 @@
 
 society.each_node do |node|
+    node.add_prog_parameter("org.cougaar.core.node.Node") unless node.prog_parameters.include?("org.cougaar.core.node.Node")
+    
     node.remove_parameter("-Dorg.cougaar.configuration.database")
     node.remove_parameter("-Dorg.cougaar.configuration.password")
     node.remove_parameter("-Dorg.cougaar.configuration.user")
