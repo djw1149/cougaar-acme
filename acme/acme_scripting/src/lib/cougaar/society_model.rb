@@ -740,7 +740,7 @@ module Cougaar
       
       def to_xml
         xml = "    <node name='#{@name}'>\n"
-        xml << "      <class>\n        #{@classname}\n      </class>\n"
+        xml << "      <class>\n        #{@classname}\n      </class>\n" if @classname
         xml << get_facet_xml(6)
         each_prog_parameter do |param|
           xml << "      <prog_parameter>\n        #{param}\n      </prog_parameter>\n"
@@ -761,7 +761,7 @@ module Cougaar
       
       def to_ruby
         ruby =  "    host.add_node('#{@name}') do |node|\n"
-        ruby << "      node.classname = '#{@classname}'\n"
+        ruby << "      node.classname = '#{@classname}'\n" if @classname
         ruby << get_facet_ruby(6, 'node')
         each_prog_parameter do |param|
           ruby << "      node.add_prog_parameter('#{param}')\n"
@@ -892,7 +892,10 @@ module Cougaar
       end
       
       def to_xml
-        xml = "      <agent name='#{@name}' class='#{classname}'>\n"
+        xml = "      <agent name='#{@name}'"
+        xml << " class='#{@classname}'" if @classname
+        xml << " uic='#{@uic}'" if @uic
+        xml << ">\n"
         xml << get_facet_xml(8)
         @components.each {|comp| xml << comp.to_xml(8)}
         xml << "      </agent>\n"
@@ -901,6 +904,8 @@ module Cougaar
       
       def to_ruby
         ruby =  "      node.add_agent('#{@name}') do |agent|\n"
+        ruby << "        agent.classname='#{@classname}'\n" if @classname
+        ruby << "        agent.uic='#{@uic}'\n" if @uic
         ruby << get_facet_ruby(8, 'agent')
         @components.each {|comp| ruby << comp.to_ruby(self, 8)}
         ruby << "      end\n"
