@@ -97,9 +97,9 @@ module Cougaar
           ohost = @run.society.get_service_host("jabber")
           if ohost==nil
             puts "Could not locate jabber service host (host with <facet service='jabber'/>)...defaulting to 'acme'"
-            @host = 'acme'
+            @server = 'acme'
           else
-            @host = ohost.host_name
+            @server = ohost.host_name
           end
         end
         @run.comms = Cougaar::Communications::JabberMessagingService.new(@run) do |jabber|
