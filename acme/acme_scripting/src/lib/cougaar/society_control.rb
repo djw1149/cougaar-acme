@@ -354,10 +354,30 @@ module Cougaar
           if event.component=="SimpleAgent" || event.component=="ClusterImpl"
             match = /.*AgentLifecycle\(([^\)]*)\) Agent\(([^\)]*)\) Node\(([^\)]*)\) Host\(([^\)]*)\)/.match(event.data)
             if match
-              cycle, agent, node, host = match[1,4]
-              if cycle == "Started" && @run.society.agents[agent] && node != @run.society.agents[agent].node.name
-                @run.society.agents[agent].move_to(node)
-                @run.info_message "Moving agent: #{agent} to node: #{node}"
+              cycle, agent_name, node_name, host_name = match[1,4]
+              node = @run.society.agents[agent_name].node
+              if cycle == "Started" && @run.society.agents[agent_name] && node_name != node.name
+                @run.society.agents[agent_name].move_to(node_name)
+                @run.info_message "Moving agent: #{agent_name} to node: #{node_name}"
+
+                # If the agent wasn't moved but actually restarted,
+                # then it might still exist on the old Node. This blocks
+                # quiescence and can use up memory.
+
+                # Get it out of the quiescence-way - ubug 13539
+                # Note that this is not needed. The removing
+                # of the agent below triggers a checkQuiescence itself
+#                result = Cougaar::Communications::HTTP.get("#{node.uri}/agentQuiescenceState?dead=#{agent_name}", 60)
+
+                # Remove it to free up resources - See ubug 13550
+                result = Cougaar::Communications::HTTP.get("#{node.uri}/move?op=Remove&mobileAgent=#{agent_name}&destNode=#{node.name}&action=Add", 60)
+
+                # FIXME: look at the result to see if this actually did something
+                # If it did, log that fact
+                # Note that you have to poll the /move servlet as it
+                # works asynchronously. Get the UID out of the first
+                # result (the one marked In Progress), and then look for
+                # DOES_NOT_EXIST vs SUCCESSFUL or REMOVED later
               end
             end
           end
