@@ -139,7 +139,7 @@ module Cougaar
       @logger = Log4r::Logger.new("ACME Run")
       File.delete('run.log') if File.exist?('run.log')
       outputter = Log4r::FileOutputter.new(name, {:filename=>"run.log"})
-      outputter.formatter = Log4r::PatternFormatter.new(:pattern => "[%l] %d :: %m")
+      outputter.formatter = Log4r::PatternFormatter.new(:date_method => :gmtime, :pattern => "[%l] %d :: %m")
       @logger.outputters = outputter
     end
     @logger
