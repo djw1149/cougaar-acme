@@ -134,7 +134,7 @@ module Cougaar
       }
       def perform
         @run.comms.on_cougaar_event do |event|
-          if event.component=="SimpleAgent"
+          if event.component=="SimpleAgent" || event.component=="ClusterImpl"
             match = /.*AgentLifecycle\(([^\)]*)\) Agent\(([^\)]*)\) Node\(([^\)]*)\) Host\(([^\)]*)\)/.match(event.data)
             if match
               cycle, agent, node, host = match[1,4]
