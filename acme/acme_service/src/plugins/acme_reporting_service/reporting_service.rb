@@ -44,7 +44,7 @@ class ReportingService
     archive.reports.each do |report|
       items << @ikko['report_item.html', {"status"=>report.status, "name"=>report.name}]
     end
-    items << @ikko['report_item.html', {"status"=>"NONE", "width"=>"100%", "name"=>"&nbsp", "colspan"=>(15-archive.reports.size).to_s}]
+    items << @ikko['report_item.html', {"status"=>"NONE", "width"=>"100%", "name"=>"&nbsp;", "colspan"=>(15-archive.reports.size).to_s}]
     entry = {"name"=>archive.base_name, "items"=>items}
     @ikko['report_entry.html', entry]
   end
