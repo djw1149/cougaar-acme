@@ -180,6 +180,7 @@ module Cougaar
       # return:: [Boolean] True if it has a facet
       #
       def has_facet?(name=nil, &block)
+        return false unless @facets
         if name
           return get_facet(name) ? true : false
         else
