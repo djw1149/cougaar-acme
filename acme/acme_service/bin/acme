@@ -14,7 +14,7 @@ start() {
   #/usr/bin/ruby acme.rb &> run.log &
 
   # restart if it dies
-  acme.sh &
+  ./acme.sh &
 
   echo "$!" > acme.pid
 
