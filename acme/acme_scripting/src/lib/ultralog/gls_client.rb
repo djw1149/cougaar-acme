@@ -333,6 +333,7 @@ module Cougaar
           end
 
           result = Cougaar::Communications::HTTP.get("#{cmd_uri}/glsinit?command=publishgls&oplanID=#{gls_client.oplan_id}&c0_date=#{gls_client.c0_date}")
+          @run.info_message "Published stage #{gls_client.next_stage}" if result
           @run.error_message  "Error publishing next stage" unless result
         rescue
           @run.error_message "Could not publish next stage"
