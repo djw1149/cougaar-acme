@@ -3,7 +3,7 @@
 # 
 # Copyright (C) 2001, 2002 by Michael Neumann (neumann@s-direktnet.de)
 #
-# $Id: parser.rb,v 1.1 2003-02-24 19:08:33 rich Exp $
+# $Id: parser.rb,v 1.2 2003-04-22 02:55:42 rich Exp $
 #
 
 
@@ -443,7 +443,7 @@ module XMLRPC
 
       def methodCall(node)
 	nodeMustBe(node, "methodCall")
-	assert( (1..2).include? node.childNodes.to_a.size ) 
+	assert( (1..2).include?(node.childNodes.to_a.size) ) 
 	name = methodName(node[0])
 
 	if node.childNodes.to_a.size == 2 then

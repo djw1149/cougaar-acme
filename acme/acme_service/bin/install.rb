@@ -11,7 +11,6 @@ require 'find'
 
 opts = GetoptLong.new([ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-host', '-j', GetoptLong::REQUIRED_ARGUMENT ],
-											[ '--uninstall', '-u', GetoptLong::NO_ARGUMENT ],
 											[ '--jabber-account', '-a', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jabber-password', '-p', GetoptLong::REQUIRED_ARGUMENT ],
 											[ '--jvm-path', '-v', GetoptLong::REQUIRED_ARGUMENT ],
@@ -26,7 +25,6 @@ opts = GetoptLong.new([ '--target', '-t', GetoptLong::REQUIRED_ARGUMENT ],
 
 @destdir = File.join("", "usr", "local", "acme")
 
-@uninstall = false
 @jabber_host = nil
 @jabber_account = nil
 @jabber_password = nil
@@ -60,12 +58,16 @@ opts.each do |opt, arg|
   when '--target'
     @destdir = arg
   when '--help'
-    puts "Installs the ACME Service.\nUsage:\n\t#$0 -j <jabberhost> [[-n] [-t <dir>] [-a <account>]\n\t\t\t [-p <pwd>] [-v <jvm path>] [-l <linux props path>] -h]"
+    puts "Installs the ACME Service.\nUsage:\n\t#$0 -j <jabberhost> [ [-n] [-h] [-t <dir>] [-a <account>] [-p <pwd>]"
+    puts "\t\t\t[-v <jvm path>] [-c <cougaar install path>] [-l <server props path>]"
+    puts "\t\t\t[-b <command prefix>] [-e <command suffix>] [-w <user>] -u]"
+    puts "\t-j --jabber-host\tThe jabber host (required)."
+    puts "\t-h --help\tPrint this help file."
+    puts "\t-n --noop\t\tDon't actually do anything; just print out what it"
+    puts "\t\t\t\twould do."
     puts "\t-t --target\t\tInstalls the software at an absolute location, EG:"
     puts "\t\t\t\t#$0 -t /usr/local/acme"
     puts "\t\t\t\twill put the software directly underneath /usr/local/acme"
-    puts "\t-u --uninstall\tUninstall ACME."
-    puts "\t-j --jabber-host\tThe jabber host (default empty string)."
     puts "\t-a --jabber-account\tThe jabber account (default <hostname>)."
     puts "\t-p --jabber-password\tThe jabber password (default <hostname>_password)."
     puts "\t-v --jvm-path\t\tThe JVM path to start nodes with."
@@ -80,21 +82,16 @@ opts.each do |opt, arg|
     puts "\t\t\t\t(default empty string)"
     puts "\t-w --cmd-user\tWho to use (userid) when starting java and computing $COUGAAR_INSTALL_PATH."
     puts "\t\t\t\t(default empty string)"
-    puts "\t-n --noop\t\tDon't actually do anything; just print out what it"
-    puts "\t\t\t\twould do."
+    puts "\t-u --uninstall\tUninstall ACME."
     exit 0
   when '--noop'
     NOOP = true
-  when '--uninstall'
-    @uninstall = true
 	end
 end
 
-unless @uninstall
-  unless @jabber_host
-    puts "Must specify --jabber-host <hostname> to install"
-    exit
-  end
+unless @jabber_host
+  puts "Must specify --jabber-host <hostname> to install"
+  exit
 end
 
 def install
@@ -178,32 +175,4 @@ def install
 	end
 end
 
-def verify?(msg)
-  print "#{msg} [Y/N] "
-  case STDIN.readline.strip
-  when "N", "n"
-    return false
-  when "Y", "y"
-    return true
-  else
-    puts 'Please answer "Y" or "N"'
-    return verify?(msg)
-  end
-end
-
-def uninstall
-  puts "Uninstalling ACME in #{@destdir}...\nPress ENTER to get a list of files that will be removed."
-  STDIN.readline
-  Find.find(@destdir) do |file|
-    puts "Will remove #{file}"
-  end
-  return unless verify?("Are you sure you want to remove #{@destdir}?")
-  op.rm_rf(@destdir)
-  puts "#{@destdir} removed."
-end
-
-if @uninstall
-  uninstall
-else
-  install
-end
+install

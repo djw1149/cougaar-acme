@@ -1,0 +1,48 @@
+This represents the first release of the ACME Service.  This service must be installed on all
+hosts that will run a Cougaar node.  
+
+Linux Requirments:
+
+  Ruby 1.6.8 ( see http://www.ruby-lang.org )
+  MySQL Ruby extension ( see http://www.tmtm.org/en/mysql/ruby )
+
+Windows Requirements:
+
+  Ruby 1.6.8 Installer ( see http://rubyinstaller.sourceforge.net )
+
+Installation:
+
+To install this service change to the bin directory and run the install script-
+
+  cd bin
+  ruby install.rb --help
+
+To configure the ACME Service to be started on boot on a Linux system, see the bin/README file.
+
+Removing Prior Installations:
+
+Prior to installation, you need to uninstall prior versions (if installed).  The ACME Framework
+document contains more detailed installation instructions and should be consulted prior to using
+the ACME system.
+
+To uninstall the previous verion of ACME, there used to be a -u action on the bin/install.rb.
+This has been removed.  To remove now, simply delete the directory where you -t <target dir>
+installed the ACME Service previously.  For example, if you installed the ACME Service in the
+default directory on linux:
+
+  /usr/local/acme
+
+Simply enter-
+
+  rm -rf /usr/local/acme
+
+Which will remove the ACME Service.  You also need to remove the working directory (if used)-
+
+  rm -rf ~/.acme
+
+This will ensure that the ACME Service does not use old data when trying to start up.  
+
+Questions:
+
+If you need help with installation or configuration of the ACME Service, please contact 
+ISAT personnel at <ul-isat@bbn.com> or report bugs to the UltraLog Bugzilla system.
