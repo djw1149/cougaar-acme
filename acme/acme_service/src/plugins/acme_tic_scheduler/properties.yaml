@@ -1,0 +1,5 @@
+#### Properties: acme_tic_scheduler - Version: 1.0
+properties: ~
+"|": 
+  - experiment_path: "./experiments"
+  - queue_status: disabled

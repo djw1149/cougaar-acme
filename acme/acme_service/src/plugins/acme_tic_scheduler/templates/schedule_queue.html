@@ -1,0 +1,42 @@
+<html>
+  <HEAD>
+    <title>Experiment Execution Queue</title>
+    <META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+    <LINK href="/schedule_images/scheduler.css" type=text/css rel=stylesheet>
+  </HEAD>
+  <body>
+    <img src="/schedule_images/acme_top.jpg"><br>
+    <!--Fragment key="footer"-->
+    <h1>Welcome to <!--Fragment key="hostname"-->'s Experiment Scheduler</h1>
+    <div class="description">
+    The ACME Experiment Scheduler is an ACME Service plugin that allows you to
+    queue ACME Experiment Defintion files for execution on the <i>operator</i>
+    host of an UltraLog society.  This control screen allows you to enable and
+    disable this service, see which experiment is currently executing, and a list
+    of queued experiments that are scheduled to run.
+    </div>
+    <form action="/schedule_queue" enctype="multipart/form-data" method="post">
+      <p>
+        <div class="header">Experiment Scheduling Queue Status:</div>
+        <input <!--Fragment key="enabled"--> type=radio name="status" value="enabled">Enabled
+        <input <!--Fragment key="disabled"--> type=radio name="status" value="disabled">Disabled
+      </p>
+      <p>
+        <div class="header">Currently executing experiment:</div>
+        <div class="current"><!--Fragment key="experiment"--></div>
+      </p>
+      <p>
+        <br>
+        <input type="submit" value="Update Status">
+      </p>
+    </form>
+    <div class="description">
+    The table below lists the experiments that are scheduled for execution on <!--Fragment key="hostname"-->
+    in the order that they will execute.  You can click the name of the experiment to see the experiment
+    definition file, or click an action to change an extry.
+    </div>
+    <table cellspacing=0>
+    <tr><th>Experiment Name</th><th>Priority</th><th>Date Posted</th><th>Action</th></tr>
+    <!--Fragment key="entries"-->
+    </table>
+</html>

@@ -1,0 +1,112 @@
+body {
+  font-family: Georgia, Times, sans-serif;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+}
+
+p {
+  margin-top: 0.4em;
+  margin-bottom: 0.1em;
+}
+
+h1 {
+  font-family: Georgia, Times, serif;
+  font-size: 16pt;
+  margin-left: 10px;
+}
+
+table {
+  margin-left: 10px;
+  width: 90%;
+  border:solid 1px #cccccc;
+}
+
+th {
+  padding: 10px;
+  border: 1px #cccccc;
+  background: #cccccc;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+td A:link
+{
+    COLOR      : blue;
+    TEXT-DECORATION: NONE;
+}
+
+td a:visited
+{
+    COLOR      : blue;
+    TEXT-DECORATION: NONE;
+}
+
+td a:hover
+{
+    COLOR      : blue;
+    TEXT-DECORATION: UNDERLINE;
+}
+
+.description {
+  font-size: 10pt;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.header {
+  font-variant: small-caps;
+  margin-top: 5px;
+}
+
+form {
+  margin-left: 10px;
+}
+
+.experiment-def {
+  color: #000000;
+  text-align: left;
+}
+
+.experiment-code {
+  color: #999999;
+  text-align: left;
+  font-style: italic;
+}
+
+.current {
+  color: #000000;
+  text-align: left;
+}
+
+.footer {
+  text-align: left;
+  font-variant: small-caps;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  background: #dddddd;
+}
+
+.footer A:link
+{
+    COLOR      : black;
+    TEXT-DECORATION: NONE;
+}
+
+.footer a:visited
+{
+    COLOR      : black;
+    TEXT-DECORATION: NONE;
+}
+
+.footer a:hover
+{
+    COLOR      : blue;
+    TEXT-DECORATION: UNDERLINE;
+}
