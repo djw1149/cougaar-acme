@@ -52,7 +52,7 @@ module Cougaar
         list.split(";").each do |item|
           raise "Unknown file or direcotory: #{item}" unless File.exist?(item)
           if File.stat(item).directory?
-            rules = Dir.glob(File.join(item, "*.rule"))
+            rules = Dir.glob(File.join(item, "*.rule")).sort
           else
             rules = [item]
           end
