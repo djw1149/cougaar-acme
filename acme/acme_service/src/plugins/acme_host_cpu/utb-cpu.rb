@@ -92,11 +92,11 @@ class CPU
   def stop()
     @PIDs.each do |p|
       @plugin['log/info'] << "Killing CPU stressor: #{p.pid}"
-      Process.kill(9, p.pid) if (p.pid)
+      Process.kill(10, p.pid) if (p.pid)
       p.close
     end
 
-    `killall -9 #{@cmd}` if @platform == "unix"
+    #`killall -9 #{@cmd}` if @platform == "unix"
 
     @PIDs = []
     @current_load = 0
