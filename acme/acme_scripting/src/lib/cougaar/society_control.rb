@@ -31,13 +31,18 @@ module Cougaar
         super(run)
         @debug = debug
       end
- 
+      
       def perform
         pids = {}
         xml_model = @run["loader"] == "XML"
         node_type = ""
         if xml_model
           node_type = "xml_"
+          @run.society.each_active_host do |host|
+            host.each_node do |node|
+              post_node_xml(node)
+            end
+          end
         end
         @run.society.each_active_host do |host|
           host.each_node do |node|
@@ -60,65 +65,24 @@ module Cougaar
         @run['pids'] = pids
       end
 
-		def launch_db_node(node)
-			 return node.parameters.join("\n")
-		end
-
-    class ConfigServer 
-			attr_reader :port
-		  @debug = false
-			@@port = 12345
-				
-      def initialize(config, debug)
-        @debug = debug
-	      @config = config
-				ready = false
-				@port = @@port = @@port + 1
-				while (not ready)
-					begin
-            @server = TCPServer.new(@port)
-						ready = true
-					  rescue
-							@port = @port + 1
-					end
-				end
-	      Thread.new(config) {|config|serveup(config)}
+      def launch_db_node(node)
+        return node.parameters.join("\n")
       end
-
-      def serveup(config) 
-				puts "Connection waiting on #{@port}\n" if @debug 
-		    session = @server.accept
-		    puts "Connection from #{session.addr} on #{@port}\n" if @debug
-		    session.print(config)
-		    session.close
-		    puts "Connection closed on #{@port}. \n" if @debug
-		    puts "Thread exiting\n" if @debug
-				@server.close()
+      
+      def launch_xml_node(node)
+        return node.name+".rb"
       end
-    end
-
-		def launch_xml_node(node)
-	    #node.add_parameter("-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=9001,suspend=n")
-	    #node.add_parameter("-Dorg.cougaar.nameserver.verbosity=2")
-		
-	    #node_society = Cougaar::Model::Society.new("society-for-#{node.name}")
-	    #node_host = Cougaar::Model::Host.new(node.host.name)
-	    #node_host.add_node(node)
-	    #node_society.add_host(node_host)
-      node_society = Cougaar::Model::Society.new( "society-for-#{node.name}" ) do |society|
-        society.add_host( node.host.name ) do |host|
-          host.add_node( node.clone(host) )
+      
+      def post_node_xml(node)
+        node_society = Cougaar::Model::Society.new( "society-for-#{node.name}" ) do |society|
+          society.add_host( node.host.name ) do |host|
+            host.add_node( node.clone(host) )
+          end
         end
+        node_society.remove_all_facets
+        result = Cougaar::Communications::HTTP.post("http://#{node.host.host_name}:8484/xmlnode/#{node.name}.rb", node_society.to_ruby, "x-application/ruby")
+        puts result if @debug
       end
-      cfg = ConfigServer.new(node_society.to_xml, @debug)
-			ipaddr = IPSocket.getaddress(Socket.gethostname())
-			text = "#{Socket.gethostname()}:#{cfg.port}\n"
-
-      # Use this line if the nodes can't DNS back to the script (DHCP)
-      #text = "#{ipaddr}:#{cfg.port}\n"
-
-			return text
-		end
     end
     
     class StopSociety <  Cougaar::Action
