@@ -163,7 +163,7 @@ module Cougaar
   end
   
   module Actions
-
+  
     class AdvanceTime < Cougaar::Action
       DOCUMENTATION = Cougaar.document {
         @description = "Advances the scenario time and sets the execution rate."
@@ -201,7 +201,11 @@ module Cougaar
           @run.info_message "Going to step forward #{steps_to_advance} steps and #{seconds_to_advance} seconds."
         end
         
-        start_time = get_society_time
+        if @expected_start_time
+          start_time = @expected_start_time
+        else
+          start_time = get_society_time
+        end
         
         steps_to_advance.times do | step |
           if @debug
@@ -274,6 +278,28 @@ module Cougaar
       end
 
     end # class
+ 
+ 
+    class AdvanceTimeFrom < AdvanceTime
+      DOCUMENTATION = Cougaar.document {
+        @description = "Advances the scenario time and sets the execution rate."
+        @parameters = [
+          {:expected_start_time => "required, date that the society is assumed to be on (mm/dd/yy hh:mm:ss)"},
+          {:time_to_advance => "default=1.day, seconds to advance the cougaar clock total."},
+          {:time_to_advance => "default=1.day, seconds to advance the cougaar clock total."},
+          {:time_step => "default=1.day, seconds to advance the cougaar clock each step."},
+          {:wait_for_quiescence => "default=true, if false, will return without waiting for quiescence after final step."},
+          {:execution_rate => "default=1.0, The new execution rate (1.0 = real time, 2.0 = 2X real time)"},
+          {:timeout => "default=1.hour, Timeout for waiting for quiescence"},
+          {:debug => "default=false, Set 'true' to debug action"}
+        ]
+        @example = "do_action 'AdvanceTimeFrom', '11/08/05', 24.days, 1.day, true, 1.0, 1.hour, false"
+      }
+      def initialize(run, expected_start_time, time_to_advance=1.day, time_step=1.day, wait_for_quiescence=true, execution_rate=1.0, timeout=1.hour, debug=false)
+        @expected_start_time = Time.utc(*ParseDate.parsedate(expected_start_time))
+        super(time_to_advance, time_step, wait_for_quiescence, execution_rate, timeout, debug)
+      end
+    end
  
     class KeepSocietySynchronized < Cougaar::Action
       PRIOR_STATES = ["CommunicationsRunning"]
