@@ -27,6 +27,20 @@ module Cougaar
   
   class ExperimentMonitor
   
+    @@monitors = []
+    
+    def self.add(monitor)
+      @@monitors << monitor
+    end
+    
+    def self.notify_interrupt(state)
+      @@monitors.each {|monitor| monitor.notify_interrupt(state_action)}
+    end
+    
+    def self.notify(state_action, begin_flag)
+      @@monitors.each {|monitor| monitor.notify(state_action.experiment, state_action.run, state_action, begin_flag)}
+    end
+  
     def self.enable_stdout
       monitor = ExperimentMonitor.new
       def monitor.on_new_experiment
@@ -49,14 +63,18 @@ module Cougaar
           puts "[#{Time.now}]     Done: #{current_state_action}"
         end
       end
+      def monitor.on_interrupted_state
+        puts  "[#{Time.now}]     ** INTERRUPT ** #{current_state_action}"
+      end
     end
   
     attr_reader :current_experiment, :current_run, :current_state_action
+    
     def initialize
       @current_experiment = nil
       @current_run = nil
       @current_state_action = nil
-      Experiment.hook(method(:notify))
+      ExperimentMonitor.add(self)
     end
     
     def current_experiment=(experiment)
@@ -80,6 +98,11 @@ module Cougaar
       end
     end
     
+    def notify_interrupt(state)
+      @current_state_action = state
+      on_interrupted_state
+    end
+    
     def on_new_experiment
     end
     
@@ -91,22 +114,13 @@ module Cougaar
     
     def on_end_state_action
     end
+    
+    def on_interrupted_state
+    end
   end
 
   class Experiment
     attr_accessor :name, :society
-    
-    @@hooks = []
-    
-    def self.hook(proc = nil, &block)
-      proc = block unless proc
-      @@hooks << proc
-    end
-    
-    def self.notify(state_action, begin_flag)
-      @@hooks.each {|proc| proc.call(state_action.experiment, state_action.run, state_action, begin_flag)}
-    end
-    
     
     def initialize(name, society=nil)
       @name = name
@@ -235,7 +249,7 @@ module Cougaar
     end
     
     def interrupt(state)
-      puts "Sequence interrupted by #{state.class}"
+      ExperimentMonitor.notify_interrupt(state)
       @definitions = @definitions[0..@definitions.index(state)]
     end
     
@@ -243,7 +257,7 @@ module Cougaar
       count = 0
       last_state = nil
       while @definitions[count]
-        Experiment.notify(@definitions[count], true)
+        ExperimentMonitor.notify(@definitions[count], true)
         if @definitions[count].kind_of? State
           last_state = @definitions[count]
           if last_state.timed_process?
@@ -259,7 +273,7 @@ module Cougaar
             exit
           end
         end
-        Experiment.notify(@definitions[count], false)
+        ExperimentMonitor.notify(@definitions[count], false)
         count += 1
       end
     end
