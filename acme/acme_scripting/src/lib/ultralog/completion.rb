@@ -277,12 +277,14 @@ module UltraLog
 
     def handleEvent(event)
       comp = @run["completion_agent_status"] 
-      data = event.data.split(":")
-      new_state = data[1].strip
       begin
+        data = event.data.split(":")
+        new_state = data[1].strip
         xml = REXML::Document.new(new_state)
-      rescue REXML::ParseException
-        ::Cougaar.logger.error "Invalid xml Quiesence message: #{new_state}"
+      rescue Exception => failure
+        ::Cougaar.logger.error "Exception: #{failure}"
+        ::Cougaar.logger.error "Invalid xml Quiesence message in event: #{event}"
+        puts "WARNING: Received bad event - more info in log file"
         return
       end
       root = xml.root
