@@ -53,15 +53,15 @@ module UltraLog
       @gls_connection.read_timeout = 1000.hours # no reason for this to ever timeout
       @gls_thread = Thread.new do
         begin
-          nca_node = nil
+          nca_agent = nil
           @run.society.each_agent do |agent|
             if (agent.has_facet?(:role) && agent.get_facet(:role) == "LogisticsCommanderInChief")
-              nca_node = agent.node.agent
+              nca_agent = agent.name
               break
             end
           end
 
-          req = Net::HTTP::Get.new("/$#{nca_node}/glsreply?command=connect")
+          req = Net::HTTP::Get.new("/$#{nca_agent}/glsreply?command=connect")
           Cougaar::Communications::HTTP.authenticate_request(req)
           @gls_connection.request(req) do |resp|
             #puts "#{resp.code} #{resp.message}"
