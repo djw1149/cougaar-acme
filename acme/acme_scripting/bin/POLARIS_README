@@ -1,0 +1,35 @@
+Polaris is integrated into ACME through several scripts:
+  p-register.rb - This registers CVS resources into Polaris.  It
+     takes the following parameters:
+        -f or --file - File name to register.
+        -n or --name - English readable name.
+        -c or --config - Use this if registering a Config file.  Leave it off
+             if it is a script file.
+
+  p-run.rb - This allows you to run scripts from outside of the Polaris
+     server.  It will post the results to the server provided in the
+     "p-config.rb" file.  It takes two arguments:
+        ARG[0] - This is the ACME script to run
+        ARG[1] - This is the configuration file to setup
+
+  p-runner.rb - This script will work with Polaris, and run tasks from
+     the apropriate task queue.  See notes about ssh below.
+     It takes 1 parameter:
+	ARG[0] - This is the type of queue it can service.
+                 (0 - SMALL, 1 - FULL, 2 - JUMBO)
+
+
+-=-=-=-=-=-=-=-=-=-
+
+SSH -
+
+For p-runner.rb to work, you need to create a ~/.ssh/config file under
+the user which will be running the program.  This file needs the following
+lines:
+   Protocol 1
+   BatchMode yes
+
+In addition, you need to take append the identity.pub key to the 
+authorized_keys file in Polaris's home on cvs.ultralog.net.
+
+

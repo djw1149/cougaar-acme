@@ -22,7 +22,7 @@ server = XMLRPC::Client.new( $POLARIS_HOST, "/servlet/xml-rpc" )
 server.set_parser(XMLRPC::XMLParser::REXMLStreamParser.new)
 
 
-scriptInfo = CVSInfo.new( ARGV[0] )
+scriptInfo = CVSInfo.new( scriptFile )
 if (!scriptInfo.committed?) then
   puts "You must run p-run.rb within a CVS heirarchy, or check in your script"
   exit -1
