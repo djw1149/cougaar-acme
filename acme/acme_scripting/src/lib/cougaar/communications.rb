@@ -43,29 +43,31 @@ module Cougaar
           {:command => "required, The string command to wait for."},
           {:timeout => "default=nil, Number of seconds to timeout."}
         ]
-        @example = "wait_for 'Command', 'continue'"
+        @example = "wait_for 'Command', 'continue' # waiting for command[continue]"
       }
+      
       def initialize(run, command, timeout=nil, &block)
         super(run, timeout, &block)
         @command = command
       end
+      
       def to_s
-        return super.to_s + "('#{@command}')"
+        return super.to_s + "('command[#{@command}]')"
       end
+      
       def process
         @myThread = Thread.current
-        id = @run.comms.acme_session.add_message_listener do |message|
-          if message.body == @command
-            @myThread.wakeup
-          end
+        @run.comms.add_command(@command, "wait_for: command[#{@command}]") do |message, params| 
+          message.reply.set_body('Proceeding...').send
+          @myThread.wakeup
         end
         Thread.stop
-        @run.comms.acme_session.delete_message_listener(id)
+        @run.comms.remove_command(@command)
       end
       
       def on_interrupt
         @myThread.exit
-        @run.comms.acme_session.delete_message_listener(id)
+        @run.comms.remove_command(@command)
       end
       
     end
