@@ -190,7 +190,7 @@ module Cougaar
     ##
     # Mixin module for components that have facets
     #
-    module Facetted
+    module Multifaceted
     
       ##
       # The Attribute class holds a collection of key-value pairs so facets can hold complex data.
@@ -374,7 +374,7 @@ module Cougaar
       attr_reader :nodes
       attr_accessor :name, :society
       
-      include Facetted
+      include Multifaceted
       
       ##
       # Constructs a host with the optional name
@@ -474,7 +474,7 @@ module Cougaar
       attr_reader :agents, :name, :parameters
       attr_accessor :host, :agent, :prog_parameters, :env_parameters, :classname
       
-      include Facetted
+      include Multifaceted
       
       ##
       # Constructs a node with optional name
@@ -686,7 +686,7 @@ module Cougaar
       attr_reader :name
       attr_accessor :name, :classname, :cloned, :uic
       
-      include Facetted
+      include Multifaceted
       
       ##
       # Constructs agent
