@@ -4,6 +4,7 @@ package org.cougaar.tools.csmart.plugins.mem;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,21 +46,13 @@ public class MemoryWasterPlugin
 		
 		private int size, freq, stddev = 0;
 		
-		public MWServlet( AlarmService alarmSvc ) {
+		public MWServlet( AlarmService alarmSvc, int freq, int std ) {
+			this.current = new RefreshAlarm( new byte[0], freq, std );
 			this.alarmSvc = alarmSvc;	
 		}
 		
 		public void wasteMemory() {
-			if (current != null) {
-				current.cancel();
-				current.free();
-				current = null; // Try and force G.C.	
-			}
-			
-			if (size > 0) {
-				current = new RefreshAlarm(size, frequency, stddev);
-				alarmSvc.addRealTimeAlarm(current);	
-			}
+			current.setData( new byte[size]);
 		}	
 		
 		public void execute( HttpServletRequest request,
@@ -70,17 +63,8 @@ public class MemoryWasterPlugin
 				String sizeStr = request.getParameter("size");
 				if (sizeStr != null) 
 					size = Integer.parseInt(sizeStr);
-					
-				String freqStr = request.getParameter("freq");
-				if (freqStr != null)
-					freq = Integer.parseInt(freqStr);
-					
-				String stdStr = request.getParameter("stddev");
-				if (stdStr != null) 
-					stddev = Integer.parseInt(stdStr);
 
-				if (size > 0) 
-					wasteMemory();
+				wasteMemory();
 					
 				PrintWriter out = response.getWriter();
 				out.println("<HTML><HEAD>");
@@ -126,11 +110,20 @@ public class MemoryWasterPlugin
 	
 	protected void setupSubscriptions() {
 		try {
+			
+			List params = (List) getParameters();
+			String servletName = (String) params.get( 0 );
+			String freqStr = (String) params.get( 1 );
+			String stdStr = (String) params.get( 2 );
+			
+			int freq = Integer.parseInt( freqStr );
+			int std = Integer.parseInt( stdStr );
+			
 			ServiceBroker broker = getBindingSite().getServiceBroker();
 			ServletService srv =
 				(ServletService) broker.getService(this, ServletService.class, null);
 			
-			srv.register("/mem-waster", new MWServlet( getAlarmService()));
+			srv.register("/mem-waster", new MWServlet( getAlarmService(), freq, std));
 		} catch (Exception e) {
 			throw new RuntimeException(e);	
 		}

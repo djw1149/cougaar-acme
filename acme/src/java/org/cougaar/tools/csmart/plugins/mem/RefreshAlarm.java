@@ -23,10 +23,8 @@ public class RefreshAlarm implements PeriodicAlarm {
 	private boolean doneIt = false;
 	private Random random = new Random();
 		
-	public RefreshAlarm( int size, int period, int stddev ) {
-		data = new byte[size];
-		random.nextBytes(data);
-		
+	public RefreshAlarm( byte data[], int freq, int stddev ) {
+		this.data = data;
 		this.period = period;
 		this.stddev = stddev;
 	}
@@ -38,8 +36,12 @@ public class RefreshAlarm implements PeriodicAlarm {
 		return expiry;
 	}
 
+	public void setData( byte data[] ) {
+		this.data = data;	
+	}
+	
 	public void free() {
-		data = null;
+		data = new byte[0];
 	}
 	/**
 	 * @see org.cougaar.core.agent.service.alarm.Alarm#expire()
