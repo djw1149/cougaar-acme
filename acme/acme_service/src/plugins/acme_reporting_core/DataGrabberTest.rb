@@ -15,7 +15,10 @@ module ACME
 
       def perform
         run_log = @archive.files_with_name(/run\.log/)[0]
-        data = grabber_data(run_log.name)
+        data = []
+        if (run_log) then        
+          data = grabber_data(run_log.name)
+        end
         if (!data.empty?) then
           @archive.add_report("Grabber", @plugin.plugin_configuration.name) do |report|
 
