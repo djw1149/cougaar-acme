@@ -491,7 +491,7 @@ module Cougaar
       #
       def add_node(node, &block)
         if node.kind_of? Node
-          if @society.nodes[node.name]
+          if @society && @society.nodes[node.name]
             return nil # node names must be unique society wide
           end
           @nodeIndex[node.name] = node
@@ -500,7 +500,7 @@ module Cougaar
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.node_added(node) }
           return node
         else
-          if @society.nodes[node]
+          if @society && @society.nodes[node]
             return nil # node names must be unique society wide
           end
           newNode = Node.new(node)
@@ -621,7 +621,7 @@ module Cougaar
       #
       def add_agent(agent, &block)
         if agent.kind_of? Agent
-          if @host.society.agents[agent.name]
+          if @host && @host.society.agents[agent.name]
             return nil # agent name must be unique society wide
           end
           @agentIndex[agent.name] = agent
@@ -630,7 +630,7 @@ module Cougaar
           $debug_society_model && SocietyMonitor.each_monitor { |m| m.agent_added(newAgent) }
           agent
         else
-          if @host.society.agents[agent]
+          if @host && @host.society.agents[agent]
             return nil # agent name must be unique society wide
           end
           newAgent = Agent.new(agent)
