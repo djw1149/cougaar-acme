@@ -99,7 +99,7 @@ class XMLCougaarNode
     # Mount handler for receiving file via HTTP
     @plugin['/protocols/http/xmlnode'].set_proc do |request, response|
       if request.request_method=="POST"
-        filename = File.join("", "tmp", request.path[9..-1])
+        filename = XMLCougaarNode.makeFileName(request.path[9..-1])
         File.open(filename, "w") do |file|
           file.write(request.body)
           response.body = "File #{request.path[9..-1]} written."
@@ -111,6 +111,15 @@ class XMLCougaarNode
         response['Content-Type'] = "text/html"
       end
     end
+
+  def XMLCougaarNode.makeFileName(basename)
+    tmpdir = File.join("", "tmp")
+    if (File.exist?(tmpdir) && File.ftype(tmpdir) == "directory")
+      filename = File.join(tmpdir, basename)
+    else
+      filename = File.join(".", basename)
+    end
+  end
   end
   
   class NodeConfig
@@ -178,7 +187,7 @@ class XMLCougaarNode
       begin
         @plugin = plugin
         
-        @filename = File.join('', 'tmp', node_config)
+        @filename = XMLCougaarNode.makeFileName(node_config)
         if @filename=~/.xml/
           @xml_filename = @filename
         else
