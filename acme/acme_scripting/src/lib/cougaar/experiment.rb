@@ -260,10 +260,11 @@ module Cougaar
         ExperimentMonitor.notify(@definitions[count], true)
         if @definitions[count].kind_of? State
           last_state = @definitions[count]
+          last_state.prepare
           if last_state.timed_process?
             last_state.timed_process
           else
-            last_state.process
+            last_state.untimed_process
           end
         else
           begin
@@ -311,25 +312,43 @@ module Cougaar
         end
       end
     end
+
+    def prepare
+      @process_thread = nil
+      @timer = nil
+      trap("SIGINT") {
+        @sequence.interrupt(self)
+        begin
+          on_interrupt
+          handle_timeout
+        rescue
+          Cougaar.logger.error $!
+          Cougaar.logger.error $!.backtrace.join("\n")
+        end
+        @timer.exit if !@timer.nil? && @timer.status
+        @process_thread.exit if !@process_thread.nil? && @process_thread.status
+      }
+    end
     
     def timed_process?
       return !@timeout.nil?
     end
     
     def timed_process
-      process_thread = nil
-      process_thread = Thread.new do 
-        timer = Thread.new do
+      @process_thread = nil
+      @process_thread = Thread.new do 
+        @timer = Thread.new do
           sleep @timeout
           @timed_out = true
           @sequence.interrupt(self)
           begin
+            on_interrupt
             handle_timeout
           rescue
             Cougaar.logger.error $!
             Cougaar.logger.error $!.backtrace.join("\n")
           end
-          process_thread.exit if process_thread.status
+          @process_thread.exit if @process_thread.status
         end
         begin
           process
@@ -338,11 +357,25 @@ module Cougaar
           puts $!
           puts $!.backtrace
         end
-        timer.exit if timer.status
+        @timer.exit if @timer.status
       end
-      process_thread.join
+      @process_thread.join
     end
     
+    def untimed_process
+      @process_thread = nil
+      @process_thread = Thread.new do 
+        begin
+          process
+        rescue
+          puts "Exception received in #{self.class}'s process method"
+          puts $!
+          puts $!.backtrace
+        end
+      end
+      @process_thread.join
+    end
+
     def process
       raise "Unprocessed process method for class: #{self.class}"
     end
@@ -354,7 +387,10 @@ module Cougaar
         unhandled_timeout
       end
     end
-      
+
+    def on_interrupt
+    end
+    
     def unhandled_timeout
     end
     

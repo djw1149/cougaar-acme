@@ -40,15 +40,21 @@ module Cougaar
         return super.to_s + "('#{@command}')"
       end
       def process
-        myThread = Thread.current
+        @myThread = Thread.current
         id = @run.comms.acme_session.add_message_listener do |message|
           if message.body == @command
-            myThread.wakeup
+            @myThread.wakeup
           end
         end
         Thread.stop
         @run.comms.acme_session.delete_message_listener(id)
       end
+      
+      def on_interrupt
+        @myThread.exit
+        @run.comms.acme_session.delete_message_listener(id)
+      end
+      
     end
   end
   
