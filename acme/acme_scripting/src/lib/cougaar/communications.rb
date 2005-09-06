@@ -28,7 +28,7 @@ require 'uri'
 require 'timeout'
 require 'net/http'
 require 'rexml/document'
-require 'jabber4r/rexml_1.8_patch'
+#require 'jabber4r/rexml_1.8_patch'
 require 'cougaar/curl'
 
 module Cougaar
