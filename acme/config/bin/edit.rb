@@ -63,8 +63,6 @@ society.each_host do |host|
 		node.override_parameter("-Dorg.cougaar.workspace","$COUGAAR_INSTALL_PATH/workspace")
 		node.override_parameter("-Dorg.cougaar.system.path","$COUGAAR_INSTALL_PATH/sys")
 		node.override_parameter("-Djava.class.path","$COUGAAR_INSTALL_PATH/lib/bootstrap.jar")
-		node.remove_parameter("-Xbootclasspath/p:$COUGAAR_INSTALL_PATH/lib/javaiopatch.jar")
-		node.add_parameter("-Xbootclasspath/p:$COUGAAR_INSTALL_PATH/lib/javaiopatch.jar")
 
 
 	# Edit in your own preferred Java memory sizes here

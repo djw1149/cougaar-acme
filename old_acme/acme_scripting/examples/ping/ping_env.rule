@@ -39,7 +39,6 @@ society.each_node do |node|
     node.override_parameter("-Dorg.cougaar.workspace","$COUGAAR_INSTALL_PATH/workspace")
     node.override_parameter("-Dorg.cougaar.system.path","$COUGAAR_INSTALL_PATH/sys")
     node.override_parameter("-Djava.class.path","$COUGAAR_INSTALL_PATH/lib/bootstrap.jar")
-    node.replace_parameter(/\-Xbootclasspath/, "-Xbootclasspath/p:$COUGAAR_INSTALL_PATH/lib/javaiopatch.jar")
 
     #Java Virtual Machine Parameters
     node.replace_parameter(/\-Xms/, "-Xms50m")
