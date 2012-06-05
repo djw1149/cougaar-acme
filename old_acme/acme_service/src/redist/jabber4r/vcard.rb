@@ -32,7 +32,8 @@ module Jabber
     ##
     # Dumps the attributes of the VCard
     # 
-    # return:: [String] The VCard as a string.    #
+    # return:: [String] The VCard as a string.
+    #
     def to_s
       "VCARD: [first=#{@given} last=#{@family} nick=#{@nickname} email=#{@email}]"
     end
